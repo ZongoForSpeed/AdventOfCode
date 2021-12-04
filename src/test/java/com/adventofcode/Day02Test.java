@@ -21,17 +21,10 @@ public class Day02Test {
 
         for (Pair<String, Integer> pair : pairs) {
             switch (pair.getLeft()) {
-                case "forward":
-                    position += pair.getRight();
-                    break;
-                case "down":
-                    depth += pair.getRight();
-                    break;
-                case "up":
-                    depth -= pair.getRight();
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown command: " + pair.getLeft());
+                case "forward" -> position += pair.getRight();
+                case "down" -> depth += pair.getRight();
+                case "up" -> depth -= pair.getRight();
+                default -> throw new IllegalStateException("Unknown command: " + pair.getLeft());
             }
         }
 
@@ -48,18 +41,13 @@ public class Day02Test {
 
         for (Pair<String, Integer> pair : pairs) {
             switch (pair.getLeft()) {
-                case "forward":
+                case "forward" -> {
                     position += pair.getRight();
                     depth += aim * pair.getRight();
-                    break;
-                case "down":
-                    aim += pair.getRight();
-                    break;
-                case "up":
-                    aim -= pair.getRight();
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown command: " + pair.getLeft());
+                }
+                case "down" -> aim += pair.getRight();
+                case "up" -> aim -= pair.getRight();
+                default -> throw new IllegalStateException("Unknown command: " + pair.getLeft());
             }
         }
 

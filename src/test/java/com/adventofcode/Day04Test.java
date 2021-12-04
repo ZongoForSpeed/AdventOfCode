@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -216,9 +218,11 @@ public class Day04Test {
      * Your puzzle answer was 69579.
      */
     @Test
-    void inputPartOne() {
-        Scanner scanner = new Scanner(Day04Test.class.getResourceAsStream("/day/4/input"));
-        assertThat(playBingoPartOne(scanner)).isEqualTo(69579);
+    void inputPartOne() throws IOException {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/day/4/input")) {
+            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+            assertThat(playBingoPartOne(scanner)).isEqualTo(69579);
+        }
     }
 
     /**
@@ -242,9 +246,10 @@ public class Day04Test {
      * Your puzzle answer was 14877.
      */
     @Test
-    void inputPartTwo() {
-        Scanner scanner = new Scanner(Day04Test.class.getResourceAsStream("/day/4/input"));
-        assertThat(playBingoPartTwo(scanner)).isEqualTo(14877);
+    void inputPartTwo() throws IOException {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/day/4/input")) {
+            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+            assertThat(playBingoPartTwo(scanner)).isEqualTo(14877);
+        }
     }
-
 }
