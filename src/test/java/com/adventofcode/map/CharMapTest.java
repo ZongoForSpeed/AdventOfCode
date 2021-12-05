@@ -1,10 +1,13 @@
 package com.adventofcode.map;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 class CharMapTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CharMapTest.class);
     @Test
     void testCharMap() {
         List<String> input = List.of(
@@ -24,7 +27,7 @@ class CharMapTest {
             }
         }
 
-        System.out.println(map.toString());
+        LOGGER.info("Map: {}", map);
     }
 
 }

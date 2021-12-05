@@ -3,6 +3,8 @@ package com.adventofcode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +20,8 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day04Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day04Test.class);
+
     private static boolean checkBingo(List<Integer> bingo) {
         for (int i = 0; i < 5; ++i) {
             if (IntStream.range(5 * i, 5 + 5 * i).mapToObj(bingo::get).allMatch(Objects::isNull)) {
@@ -45,22 +49,25 @@ public class Day04Test {
     private static Pair<int[], List<List<Integer>>> readBingo(Scanner scanner) {
         String firstLine = scanner.nextLine();
         int[] draws = Arrays.stream(firstLine.split(",")).mapToInt(Integer::valueOf).toArray();
-        System.out.println(Arrays.toString(draws));
+
+        LOGGER.info("Draws: {}", draws);
         scanner.nextLine();
         List<List<Integer>> bingos = new ArrayList<>();
         List<Integer> currentBingo = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (StringUtils.isBlank(line)) {
-                System.out.println(currentBingo);
+                LOGGER.info("Bingo: {}", currentBingo);
                 bingos.add(currentBingo);
+
                 currentBingo = new ArrayList<>();
             } else {
                 Arrays.stream(line.split(" ")).filter(StringUtils::isNotBlank).mapToInt(Integer::valueOf).forEach(currentBingo::add);
             }
-            System.out.println(line);
+            LOGGER.debug("Line: {}", line);
         }
-        System.out.println(currentBingo);
+
+        LOGGER.info("Bingo: {}", currentBingo);
         bingos.add(currentBingo);
 
         return Pair.of(draws, bingos);
@@ -68,13 +75,13 @@ public class Day04Test {
 
     private static int playBingoPartOne(int[] draws, List<List<Integer>> bingos) {
         for (int draw : draws) {
-            System.out.println(draw);
+            LOGGER.info("draw: {}", draw);
             for (List<Integer> bingo : bingos) {
                 int index = bingo.indexOf(draw);
                 if (index >= 0) {
                     bingo.set(index, null);
                     if (checkBingo(bingo)) {
-                        System.out.println("Found bingo" + bingo + " " + draw);
+                        LOGGER.info("BINGO ! {}, {}", bingo, draw);
                         return draw * bingo.stream().filter(Objects::nonNull).mapToInt(i -> i).sum();
                     }
                 }
@@ -86,13 +93,14 @@ public class Day04Test {
 
     private static int playBingoPartTwo(int[] draws, List<List<Integer>> bingos) {
         for (int draw : draws) {
-            System.out.println(draw);
+            LOGGER.info("draw: {}", draw);
             Set<List<Integer>> winningSets = new HashSet<>();
             for (List<Integer> bingo : bingos) {
                 int index = bingo.indexOf(draw);
                 if (index >= 0) {
                     bingo.set(index, null);
                     if (checkBingo(bingo)) {
+                        LOGGER.info("BINGO ! {}, {}", bingo, draw);
                         winningSets.add(bingo);
                     }
                 }
@@ -100,11 +108,10 @@ public class Day04Test {
 
             if (bingos.size() == 1 && !winningSets.isEmpty()) {
                 List<Integer> bingo = bingos.iterator().next();
-                System.out.println("Found bingo" + bingo + " " + draw);
+                LOGGER.info("Last bingo: {}, {}", bingo, draw);
                 return draw * bingo.stream().filter(Objects::nonNull).mapToInt(i -> i).sum();
             }
             bingos.removeAll(winningSets);
-
         }
 
         return 0;

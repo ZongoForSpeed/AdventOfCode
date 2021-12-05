@@ -3,6 +3,8 @@ package com.adventofcode;
 import com.adventofcode.utils.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day03Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day03Test.class);
 
     private static Pair<Integer, Integer> binaryDiagnostic(List<String> strings) {
         int length = strings.iterator().next().length();
@@ -33,13 +36,11 @@ public class Day03Test {
             sbEpsilon.append(i < size / 2 ? '1' : '0');
         }
 
-        System.out.println(sbGamma);
-        System.out.println(sbEpsilon);
-
         Integer gamma = Integer.valueOf(sbGamma.toString(), 2);
-        System.out.println(gamma);
+        LOGGER.info("Gamma : {}, {}", sbGamma, gamma);
+
         Integer epsilon = Integer.valueOf(sbEpsilon.toString(), 2);
-        System.out.println(epsilon);
+        LOGGER.info("Epsilon : {}, {}", sbEpsilon, epsilon);
 
         return Pair.of(gamma, epsilon);
     }
@@ -61,7 +62,7 @@ public class Day03Test {
             ++position;
         }
 
-        System.out.println(strings);
+        LOGGER.info("oxygenGeneratorRating : {}", strings);
         String next = strings.iterator().next();
         return Integer.valueOf(next, 2);
     }
@@ -83,7 +84,8 @@ public class Day03Test {
             ++position;
         }
 
-        System.out.println(strings);
+        LOGGER.info("CO2ScrubberRating : {}", strings);
+
         String next = strings.iterator().next();
         return Integer.valueOf(next, 2);
     }
