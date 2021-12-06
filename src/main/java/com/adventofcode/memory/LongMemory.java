@@ -6,16 +6,16 @@ import java.util.Collection;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-public class IntMemory implements Memory<Integer> {
+public class LongMemory implements Memory<Long> {
     private final BitSet bitSet;
-    private int[] mem;
+    private long[] mem;
 
-    public IntMemory() {
+    public LongMemory() {
         this(10);
     }
 
-    public IntMemory(int capacity) {
-        mem = new int[capacity];
+    public LongMemory(int capacity) {
+        mem = new long[capacity];
         bitSet = new BitSet(10);
     }
 
@@ -38,7 +38,7 @@ public class IntMemory implements Memory<Integer> {
         return key < mem.length && bitSet.get(key);
     }
 
-    public Integer get(int key) {
+    public Long get(int key) {
         if (key < 0) {
             throw new IllegalStateException("Negative key are not allowed: " + key);
         }
@@ -50,17 +50,17 @@ public class IntMemory implements Memory<Integer> {
     }
 
     @Override
-    public Integer put(int key, Integer value) {
+    public Long put(int key, Long value) {
         if (value == null) {
             throw new IllegalStateException("Null value are not allowed");
         }
-        return put(key, value.intValue());
+        return put(key, value.longValue());
     }
 
     @Override
     public void clear() {
         bitSet.clear();
-        mem = new int[10];
+        mem = new long[10];
     }
 
     @Override
@@ -69,11 +69,11 @@ public class IntMemory implements Memory<Integer> {
     }
 
     @Override
-    public Collection<Integer> values() {
-        return bitSet.stream().map(i -> mem[i]).boxed().collect(Collectors.toList());
+    public Collection<Long> values() {
+        return bitSet.stream().mapToLong(i -> mem[i]).boxed().collect(Collectors.toList());
     }
 
-    public Integer put(int key, int value) {
+    public Long put(int key, long value) {
         if (key < 0) {
             throw new IllegalStateException("Negative key are not allowed: " + key);
         }
@@ -81,7 +81,7 @@ public class IntMemory implements Memory<Integer> {
             grow(key);
         }
 
-        Integer last = get(key);
+        Long last = get(key);
         mem[key] = value;
         bitSet.set(key);
         return last;
