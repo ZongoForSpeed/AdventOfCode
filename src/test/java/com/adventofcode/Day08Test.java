@@ -72,7 +72,7 @@ public class Day08Test {
         mapping.put(buildSignal(permutation, List.of(0, 1, 2, 3, 4, 5, 6)), 8);
         //                                           a  b  c  d  f  g
         mapping.put(buildSignal(permutation, List.of(0, 1, 2, 3, 5, 6)), 9);
-        return mapping;
+        return Map.copyOf(mapping);
     }
 
     private int solveMapping(String line) {
