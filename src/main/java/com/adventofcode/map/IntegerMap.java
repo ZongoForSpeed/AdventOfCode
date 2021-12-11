@@ -32,6 +32,10 @@ public class IntegerMap {
         return get(p.x(), p.y());
     }
 
+    public void set(Point2D p, int value) {
+        set(p.x(), p.y(), value);
+    }
+
     public void set(int x, int y, int value) {
         if (y >= map.length) {
             int length = map.length;
@@ -45,6 +49,26 @@ public class IntegerMap {
         }
 
         map[y][x] = value;
+    }
+
+    public int increment(Point2D p, int value) {
+        return increment(p.x(), p.y(), value);
+    }
+
+    public int increment(int x, int y, int value) {
+        if (y >= map.length) {
+            int length = map.length;
+            map = Arrays.copyOf(map, y + 1);
+            Arrays.fill(map, length, y + 1, new int[0]);
+        }
+        if (x >= map[y].length) {
+            int length = map[y].length;
+            map[y] = Arrays.copyOf(map[y], x + 1);
+            Arrays.fill(map[y], length, x + 1, defaultValue);
+        }
+
+        map[y][x] += value;
+        return map[y][x];
     }
 
     @Override

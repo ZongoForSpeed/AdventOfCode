@@ -62,7 +62,7 @@ public class Day05Test {
                 int yMax = Math.max(y1, y2);
                 for (int x = xMin; x <= xMax; ++x) {
                     for (int y = yMin; y <= yMax; ++y) {
-                        map.set(x, y, map.get(x, y) + 1);
+                        map.increment(x, y, 1);
                     }
                 }
             }
@@ -96,16 +96,16 @@ public class Day05Test {
                 int dY = -Integer.compare(y1, y2);
 
                 if (dX == 0) {
-                    for (int y = y1; y != y2 + dY; y+= dY) {
-                        map.set(x1, y, map.get(x1, y) + 1);
+                    for (int y = y1; y != y2 + dY; y += dY) {
+                        map.increment(x1, y, 1);
                     }
                 } else if (dY == 0) {
                     for (int x = x1; x != x2 + dX; x += dX) {
-                        map.set(x, y1, map.get(x, y1) + 1);
+                        map.increment(x, y1, 1);
                     }
                 } else {
                     for (int x = x1, y = y1; x != x2 + dX && y != y2 + dY; x += dX, y += dY) {
-                        map.set(x, y, map.get(x, y) + 1);
+                        map.increment(x, y, 1);
                     }
                 }
 
