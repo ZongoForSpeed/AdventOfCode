@@ -1,5 +1,7 @@
 package com.adventofcode.map;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +34,18 @@ public class CharMap {
         return get(p.x(), p.y());
     }
 
+
     public void set(int x, int y, char value) {
+        reserve(x, y);
+
+        map[y][x] = value;
+    }
+
+    public void set(Point2D p, char value) {
+        set(p.x(), p.y(), value);
+    }
+
+    public void reserve(int x, int y) {
         if (y >= map.length) {
             int length = map.length;
             map = Arrays.copyOf(map, y + 1);
@@ -43,8 +56,28 @@ public class CharMap {
             map[y] = Arrays.copyOf(map[y], x + 1);
             Arrays.fill(map[y], length, x + 1, defaultValue);
         }
+    }
 
-        map[y][x] = value;
+    public void trim() {
+        int iMax = -1;
+        for (int i = 0; i < map.length; i++) {
+            int jMax = -1;
+            for (int j = 0; j < map[i].length; j++) {
+                if (map[i][j] != defaultValue) {
+                    jMax = j;
+                }
+            }
+            if (jMax >= 0) {
+                iMax = i;
+                map[i] = Arrays.copyOf(map[i], jMax + 1);
+            } else {
+                map[i] = new char[0];
+            }
+        }
+
+        if (iMax >= 0) {
+            map = Arrays.copyOf(map, iMax + 1);
+        }
     }
 
     @Override

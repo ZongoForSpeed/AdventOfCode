@@ -41,7 +41,7 @@ public final class Prime {
         return LongStream.concat(LongStream.of(2),
                 IntStream.range(1, size / 2)
                         .filter(test::get)
-                        .mapToLong(p -> 2 * p + 1))
+                        .mapToLong(p -> 2L * p + 1))
                 .toArray();
     }
 }
