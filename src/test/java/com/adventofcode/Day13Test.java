@@ -50,7 +50,6 @@ public class Day13Test {
 
         Scanner scanner = new Scanner(input);
 
-
         CharMap map = new CharMap(0, 0, '.');
         List<Pair<String, Integer>> instructions = new ArrayList<>();
         readMap(scanner, map, instructions);
@@ -63,9 +62,6 @@ public class Day13Test {
         applyInstruction(map, instructions.get(1));
         LOGGER.info("Map:\n{}", map);
         assertThat(map.points()).hasSize(16);
-
-        // assertThat(findAllPathsPartOne(new Scanner(input))).hasSize(226);
-        // assertThat(findAllPathsPartTwo(new Scanner(input))).hasSize(3509);
     }
 
     private void readMap(Scanner scanner, CharMap map, List<Pair<String, Integer>> instructions) {
