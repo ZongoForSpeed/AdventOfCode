@@ -13,20 +13,20 @@ public class AStar {
     /**
      * cf. https://fr.wikipedia.org/wiki/Algorithme_A*
      */
-    public static <E> long algorithm(Function<E, List<E>> graph, BiFunction<E, E, Long> distance, E start, E end, boolean useHeuristic) {
+    public static <E> long algorithm(Function<E, List<E>> graph, BiFunction<E, E, Long> distance, E start, E end) {
         Set<E> closedList = new HashSet<>();
-        Queue<Node<E>> queue = new PriorityQueue<>(useHeuristic ? Comparator.comparingLong(Node::getHeuristic) : Comparator.comparingLong(Node::getCost));
-        queue.add(new Node<>(start, 0L, distance.apply(start, end)));
+        Queue<Node<E>> queue = new PriorityQueue<>(Comparator.comparingLong(Node::cost));
+        queue.add(new Node<>(start, 0L, Integer.MAX_VALUE));
         while (!queue.isEmpty()) {
             Node<E> node = queue.poll();
-            if (node.getVertex().equals(end)) {
-                return node.getCost();
+            if (node.vertex().equals(end)) {
+                return node.cost();
             }
-            if (closedList.add(node.getVertex())) {
-                List<E> moves = graph.apply(node.getVertex());
+            if (closedList.add(node.vertex())) {
+                List<E> moves = graph.apply(node.vertex());
                 for (E move : moves) {
                     if (!closedList.contains(move)) {
-                        Node<E> suivant = new Node<>(move, node.getCost() + distance.apply(node.getVertex(), move), node.getCost() + distance.apply(end, move) + 1);
+                        Node<E> suivant = new Node<>(move, node.cost() + distance.apply(node.vertex(), move), Integer.MAX_VALUE);
                         queue.add(suivant);
                     }
                 }
@@ -36,27 +36,29 @@ public class AStar {
         return Long.MAX_VALUE;
     }
 
-    private static class Node<E> {
-        private final E vertex;
-        private final long heuristic;
-        private final long cost;
-
-        private Node(E vertex, long cost, long heuristic) {
-            this.vertex = vertex;
-            this.cost = cost;
-            this.heuristic = heuristic;
+    public static <E> long algorithm(Function<E, List<E>> graph, BiFunction<E, E,  Long> distance, BiFunction<E, E,  Long> heuristic, E start, E end) {
+        Set<E> closedList = new HashSet<>();
+        Queue<Node<E>> queue = new PriorityQueue<>(Comparator.comparingLong(Node::heuristic));
+        queue.add(new Node<>(start, 0L, heuristic.apply(start, end)));
+        while (!queue.isEmpty()) {
+            Node<E> node = queue.poll();
+            if (node.vertex().equals(end)) {
+                return node.cost();
+            }
+            if (closedList.add(node.vertex())) {
+                List<E> moves = graph.apply(node.vertex());
+                for (E move : moves) {
+                    if (!closedList.contains(move)) {
+                        Node<E> suivant = new Node<>(move, node.cost() + distance.apply(node.vertex(), move), node.cost() + heuristic.apply(end, move) + 1);
+                        queue.add(suivant);
+                    }
+                }
+            }
         }
 
-        public E getVertex() {
-            return vertex;
-        }
+        return Long.MAX_VALUE;
+    }
 
-        public long getHeuristic() {
-            return heuristic;
-        }
-
-        public long getCost() {
-            return cost;
-        }
+    private record Node<E>(E vertex, long cost, long heuristic) {
     }
 }

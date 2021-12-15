@@ -70,7 +70,7 @@ public class Day15Test {
         Point2D start = Point2D.of(0, 0);
         Point2D end = Point2D.of(xMax, yMax);
 
-        return AStar.algorithm(p -> adjacent(p, xMax, yMax), (ignore, p) -> Long.valueOf(map.get(p)), start, end, false);
+        return AStar.algorithm(p -> adjacent(p, xMax, yMax), (ignore, p) -> Long.valueOf(map.get(p)), start, end);
     }
 
     private static IntegerMap readMap(Scanner scanner, Function<IntegerMap, IntegerMap> mapFunction) {

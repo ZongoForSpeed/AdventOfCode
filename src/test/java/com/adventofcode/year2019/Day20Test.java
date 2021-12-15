@@ -20,7 +20,6 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 public class Day20Test {
     /**
      * --- Day 20: Donut Maze ---
@@ -361,8 +360,7 @@ public class Day20Test {
     void testInputPartTwo() throws IOException {
         char[][] map = FileUtils.readLines("/2019/day/20/input").stream().map(String::toCharArray).toArray(char[][]::new);
         DonutMaze donutMaze = new DonutMaze(map);
-        long steps = donutMaze.solveRecursiveMaze();
-        assertThat(steps).isEqualTo(7758L);
+        assertThat(donutMaze.solveRecursiveMaze()).isEqualTo(7758L);
     }
 
     public static class DonutMaze {
@@ -453,14 +451,14 @@ public class Day20Test {
             Point3D start = new Point3D(wrap.get("AA").get(0), 0);
             Point3D end = new Point3D(wrap.get("ZZ").get(0), 0);
 
-            return AStar.algorithm(this::flatNeighbours, Point3D::ManhattanDistance, start, end, false);
+            return AStar.algorithm(this::flatNeighbours, (x , y) -> 1L, start, end);
         }
 
         public long solveRecursiveMaze() {
             Point3D start = new Point3D(wrap.get("AA").get(0), 0);
             Point3D end = new Point3D(wrap.get("ZZ").get(0), 0);
 
-            return AStar.algorithm(this::recursiveNeighbours, Point3D::ManhattanDistance, start, end, false);
+            return AStar.algorithm(this::recursiveNeighbours, (x , y) -> 1L, start, end);
         }
     }
 }
