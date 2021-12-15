@@ -38,7 +38,7 @@ public class Day14Test {
         return newTemplate;
     }
 
-    private static Map<Character, Long> extendedPolymerization(Scanner scanner, int steps) {
+    private static long extendedPolymerization(Scanner scanner, int steps) {
         Pattern pattern = Pattern.compile("(\\w+) -> (\\w)");
 
         Map<Pair<Character, Character>, Character> rules = new HashMap<>();
@@ -90,7 +90,11 @@ public class Day14Test {
         frequency = frequency.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue() / 2));
 
         LOGGER.info("frequency = {}", frequency);
-        return frequency;
+
+        long max = frequency.values().stream().mapToLong(t -> t).max().orElseThrow();
+        long min = frequency.values().stream().mapToLong(t -> t).min().orElseThrow();
+
+        return max - min;
     }
 
     @Test
@@ -116,24 +120,8 @@ public class Day14Test {
                 CN -> C""";
 
 
-        Scanner scanner = new Scanner(input);
-        Map<Character, Long> frequency = extendedPolymerization(scanner, 10);
-
-        long max = frequency.values().stream().mapToLong(t -> t).max().orElseThrow();
-        long min = frequency.values().stream().mapToLong(t -> t).min().orElseThrow();
-
-        assertThat(max - min).isEqualTo(1588);
-
-        frequency = extendedPolymerization(new Scanner(input), 40);
-
-        max = frequency.values().stream().mapToLong(t -> t).max().orElseThrow();
-        min = frequency.values().stream().mapToLong(t -> t).min().orElseThrow();
-
-        assertThat(max - min).isEqualTo(2188189693529L);
-
-
-        // assertThat(findAllPathsPartOne(new Scanner(input))).hasSize(226);
-        // assertThat(findAllPathsPartTwo(new Scanner(input))).hasSize(3509);
+        assertThat(extendedPolymerization(new Scanner(input), 10)).isEqualTo(1588);
+        assertThat(extendedPolymerization(new Scanner(input), 40)).isEqualTo(2188189693529L);
     }
 
     /**
@@ -219,12 +207,8 @@ public class Day14Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream is = Day14Test.class.getResourceAsStream("/day/14/input")) {
-            Map<Character, Long> frequency = extendedPolymerization(new Scanner(Objects.requireNonNull(is)), 10);
-
-            long max = frequency.values().stream().mapToLong(t -> t).max().orElseThrow();
-            long min = frequency.values().stream().mapToLong(t -> t).min().orElseThrow();
-
-            assertThat(max - min).isEqualTo(3411);
+            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+            assertThat(extendedPolymerization(scanner, 10)).isEqualTo(3411);
         }
     }
 
@@ -248,13 +232,7 @@ public class Day14Test {
     void inputPartTwo() throws IOException {
         try (InputStream is = Day14Test.class.getResourceAsStream("/day/14/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
-
-            Map<Character, Long> frequency2 = extendedPolymerization(scanner, 40);
-
-            long max = frequency2.values().stream().mapToLong(t -> t).max().orElseThrow();
-            long min = frequency2.values().stream().mapToLong(t -> t).min().orElseThrow();
-
-            assertThat(max - min).isEqualTo(7477815755570L);
+            assertThat(extendedPolymerization(scanner, 40)).isEqualTo(7477815755570L);
         }
     }
 
