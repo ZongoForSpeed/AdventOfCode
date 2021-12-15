@@ -111,25 +111,26 @@ public class Day20Test {
      */
     @Test
     void testSimpleExample() {
-        String input = "         A           \n" +
-                "         A           \n" +
-                "  #######.#########  \n" +
-                "  #######.........#  \n" +
-                "  #######.#######.#  \n" +
-                "  #######.#######.#  \n" +
-                "  #######.#######.#  \n" +
-                "  #####  B    ###.#  \n" +
-                "BC...##  C    ###.#  \n" +
-                "  ##.##       ###.#  \n" +
-                "  ##...DE  F  ###.#  \n" +
-                "  #####    G  ###.#  \n" +
-                "  #########.#####.#  \n" +
-                "DE..#######...###.#  \n" +
-                "  #.#########.###.#  \n" +
-                "FG..#########.....#  \n" +
-                "  ###########.#####  \n" +
-                "             Z       \n" +
-                "             Z       ";
+        String input = """
+                         A          \s
+                         A          \s
+                  #######.######### \s
+                  #######.........# \s
+                  #######.#######.# \s
+                  #######.#######.# \s
+                  #######.#######.# \s
+                  #####  B    ###.# \s
+                BC...##  C    ###.# \s
+                  ##.##       ###.# \s
+                  ##...DE  F  ###.# \s
+                  #####    G  ###.# \s
+                  #########.#####.# \s
+                DE..#######...###.# \s
+                  #.#########.###.# \s
+                FG..#########.....# \s
+                  ###########.##### \s
+                             Z      \s
+                             Z      \s""";
         char[][] map = Arrays.stream(input.split("\\n")).map(String::toCharArray).toArray(char[][]::new);
         long steps = new DonutMaze(map).solveMaze();
         assertThat(steps).isEqualTo(23);
@@ -137,43 +138,44 @@ public class Day20Test {
 
     @Test
     void testLargerExample() {
-        String input = "                   A               \n" +
-                "                   A               \n" +
-                "  #################.#############  \n" +
-                "  #.#...#...................#.#.#  \n" +
-                "  #.#.#.###.###.###.#########.#.#  \n" +
-                "  #.#.#.......#...#.....#.#.#...#  \n" +
-                "  #.#########.###.#####.#.#.###.#  \n" +
-                "  #.............#.#.....#.......#  \n" +
-                "  ###.###########.###.#####.#.#.#  \n" +
-                "  #.....#        A   C    #.#.#.#  \n" +
-                "  #######        S   P    #####.#  \n" +
-                "  #.#...#                 #......VT\n" +
-                "  #.#.#.#                 #.#####  \n" +
-                "  #...#.#               YN....#.#  \n" +
-                "  #.###.#                 #####.#  \n" +
-                "DI....#.#                 #.....#  \n" +
-                "  #####.#                 #.###.#  \n" +
-                "ZZ......#               QG....#..AS\n" +
-                "  ###.###                 #######  \n" +
-                "JO..#.#.#                 #.....#  \n" +
-                "  #.#.#.#                 ###.#.#  \n" +
-                "  #...#..DI             BU....#..LF\n" +
-                "  #####.#                 #.#####  \n" +
-                "YN......#               VT..#....QG\n" +
-                "  #.###.#                 #.###.#  \n" +
-                "  #.#...#                 #.....#  \n" +
-                "  ###.###    J L     J    #.#.###  \n" +
-                "  #.....#    O F     P    #.#...#  \n" +
-                "  #.###.#####.#.#####.#####.###.#  \n" +
-                "  #...#.#.#...#.....#.....#.#...#  \n" +
-                "  #.#####.###.###.#.#.#########.#  \n" +
-                "  #...#.#.....#...#.#.#.#.....#.#  \n" +
-                "  #.###.#####.###.###.#.#.#######  \n" +
-                "  #.#.........#...#.............#  \n" +
-                "  #########.###.###.#############  \n" +
-                "           B   J   C               \n" +
-                "           U   P   P               ";
+        String input = """
+                                   A              \s
+                                   A              \s
+                  #################.############# \s
+                  #.#...#...................#.#.# \s
+                  #.#.#.###.###.###.#########.#.# \s
+                  #.#.#.......#...#.....#.#.#...# \s
+                  #.#########.###.#####.#.#.###.# \s
+                  #.............#.#.....#.......# \s
+                  ###.###########.###.#####.#.#.# \s
+                  #.....#        A   C    #.#.#.# \s
+                  #######        S   P    #####.# \s
+                  #.#...#                 #......VT
+                  #.#.#.#                 #.##### \s
+                  #...#.#               YN....#.# \s
+                  #.###.#                 #####.# \s
+                DI....#.#                 #.....# \s
+                  #####.#                 #.###.# \s
+                ZZ......#               QG....#..AS
+                  ###.###                 ####### \s
+                JO..#.#.#                 #.....# \s
+                  #.#.#.#                 ###.#.# \s
+                  #...#..DI             BU....#..LF
+                  #####.#                 #.##### \s
+                YN......#               VT..#....QG
+                  #.###.#                 #.###.# \s
+                  #.#...#                 #.....# \s
+                  ###.###    J L     J    #.#.### \s
+                  #.....#    O F     P    #.#...# \s
+                  #.###.#####.#.#####.#####.###.# \s
+                  #...#.#.#...#.....#.....#.#...# \s
+                  #.#####.###.###.#.#.#########.# \s
+                  #...#.#.....#...#.#.#.#.....#.# \s
+                  #.###.#####.###.###.#.#.####### \s
+                  #.#.........#...#.............# \s
+                  #########.###.###.############# \s
+                           B   J   C              \s
+                           U   P   P              \s""";
         char[][] map = Arrays.stream(input.split("\\n")).map(String::toCharArray).toArray(char[][]::new);
         long steps = new DonutMaze(map).solveMaze();
         assertThat(steps).isEqualTo(58);
@@ -311,44 +313,44 @@ public class Day20Test {
      * In your maze, when accounting for recursion, how many steps does it take to get from the open tile marked AA to the open tile marked ZZ, both at the outermost layer?
      */
     void testRecursiveDonutMaze() {
-        String input =
-                "             Z L X W       C                 \n" +
-                        "             Z P Q B       K                 \n" +
-                        "  ###########.#.#.#.#######.###############  \n" +
-                        "  #...#.......#.#.......#.#.......#.#.#...#  \n" +
-                        "  ###.#.#.#.#.#.#.#.###.#.#.#######.#.#.###  \n" +
-                        "  #.#...#.#.#...#.#.#...#...#...#.#.......#  \n" +
-                        "  #.###.#######.###.###.#.###.###.#.#######  \n" +
-                        "  #...#.......#.#...#...#.............#...#  \n" +
-                        "  #.#########.#######.#.#######.#######.###  \n" +
-                        "  #...#.#    F       R I       Z    #.#.#.#  \n" +
-                        "  #.###.#    D       E C       H    #.#.#.#  \n" +
-                        "  #.#...#                           #...#.#  \n" +
-                        "  #.###.#                           #.###.#  \n" +
-                        "  #.#....OA                       WB..#.#..ZH\n" +
-                        "  #.###.#                           #.#.#.#  \n" +
-                        "CJ......#                           #.....#  \n" +
-                        "  #######                           #######  \n" +
-                        "  #.#....CK                         #......IC\n" +
-                        "  #.###.#                           #.###.#  \n" +
-                        "  #.....#                           #...#.#  \n" +
-                        "  ###.###                           #.#.#.#  \n" +
-                        "XF....#.#                         RF..#.#.#  \n" +
-                        "  #####.#                           #######  \n" +
-                        "  #......CJ                       NM..#...#  \n" +
-                        "  ###.#.#                           #.###.#  \n" +
-                        "RE....#.#                           #......RF\n" +
-                        "  ###.###        X   X       L      #.#.#.#  \n" +
-                        "  #.....#        F   Q       P      #.#.#.#  \n" +
-                        "  ###.###########.###.#######.#########.###  \n" +
-                        "  #.....#...#.....#.......#...#.....#.#...#  \n" +
-                        "  #####.#.###.#######.#######.###.###.#.#.#  \n" +
-                        "  #.......#.......#.#.#.#.#...#...#...#.#.#  \n" +
-                        "  #####.###.#####.#.#.#.#.###.###.#.###.###  \n" +
-                        "  #.......#.....#.#...#...............#...#  \n" +
-                        "  #############.#.#.###.###################  \n" +
-                        "               A O F   N                     \n" +
-                        "               A A D   M                     ";
+        String input = """
+                             Z L X W       C                \s
+                             Z P Q B       K                \s
+                  ###########.#.#.#.#######.############### \s
+                  #...#.......#.#.......#.#.......#.#.#...# \s
+                  ###.#.#.#.#.#.#.#.###.#.#.#######.#.#.### \s
+                  #.#...#.#.#...#.#.#...#...#...#.#.......# \s
+                  #.###.#######.###.###.#.###.###.#.####### \s
+                  #...#.......#.#...#...#.............#...# \s
+                  #.#########.#######.#.#######.#######.### \s
+                  #...#.#    F       R I       Z    #.#.#.# \s
+                  #.###.#    D       E C       H    #.#.#.# \s
+                  #.#...#                           #...#.# \s
+                  #.###.#                           #.###.# \s
+                  #.#....OA                       WB..#.#..ZH
+                  #.###.#                           #.#.#.# \s
+                CJ......#                           #.....# \s
+                  #######                           ####### \s
+                  #.#....CK                         #......IC
+                  #.###.#                           #.###.# \s
+                  #.....#                           #...#.# \s
+                  ###.###                           #.#.#.# \s
+                XF....#.#                         RF..#.#.# \s
+                  #####.#                           ####### \s
+                  #......CJ                       NM..#...# \s
+                  ###.#.#                           #.###.# \s
+                RE....#.#                           #......RF
+                  ###.###        X   X       L      #.#.#.# \s
+                  #.....#        F   Q       P      #.#.#.# \s
+                  ###.###########.###.#######.#########.### \s
+                  #.....#...#.....#.......#...#.....#.#...# \s
+                  #####.#.###.#######.#######.###.###.#.#.# \s
+                  #.......#.......#.#.#.#.#...#...#...#.#.# \s
+                  #####.###.#####.#.#.#.#.###.###.#.###.### \s
+                  #.......#.....#.#...#...............#...# \s
+                  #############.#.#.###.################### \s
+                               A O F   N                    \s
+                               A A D   M                    \s""";
         char[][] map = Arrays.stream(input.split("\\n")).map(String::toCharArray).toArray(char[][]::new);
         DonutMaze donutMaze = new DonutMaze(map);
         long steps = donutMaze.solveRecursiveMaze();
@@ -380,19 +382,17 @@ public class Day20Test {
                         Point2D d = new Point2D(x, y);
                         for (Direction direction : Direction.values()) {
                             Point2D move = d.move(direction);
-                            char c = map[move.getY()][move.getX()];
+                            char c = map[move.y()][move.x()];
                             if (c == '.') {
                                 graph.computeIfAbsent(d, ignore -> new ArrayList<>()).add(move);
                             } else if (Character.isAlphabetic(c)) {
                                 Point2D shift = move.move(direction);
-                                char cc = map[shift.getY()][shift.getX()];
+                                char cc = map[shift.y()][shift.x()];
                                 String name = getWrapName(direction, c, cc);
-                                if (shift.getX() < 2 || shift.getX() > lineLength - 2 || shift.getY() < 2 || shift.getY() > lineLength - 2) {
+                                if (shift.x() < 2 || shift.x() > lineLength - 2 || shift.y() < 2 || shift.y() > lineLength - 2) {
                                     outerDoors.add(d);
-                                    // System.out.println(d + ": " + name + " is outer");
                                 } else {
                                     innerDoors.add(d);
-                                    // System.out.println(d + ": " + name + " is inner");
                                 }
                                 wrap.computeIfAbsent(name, ignore -> new ArrayList<>()).add(d);
                             }
@@ -414,42 +414,37 @@ public class Day20Test {
         }
 
         private static String getWrapName(Direction d, char c1, char c2) {
-            switch (d) {
-                case NORTH:
-                case WEST:
-                    return "" + c2 + c1;
-                case SOUTH:
-                case EAST:
-                    return "" + c1 + c2;
-            }
+            return switch (d) {
+                case NORTH, WEST -> "" + c2 + c1;
+                case SOUTH, EAST -> "" + c1 + c2;
+            };
 
-            return "NaN";
         }
 
         private List<Point3D> flatNeighbours(Point3D node) {
             List<Point3D> voisins = new ArrayList<>();
-            graph.getOrDefault(node.project(), Collections.emptyList()).stream().map(p -> new Point3D(p, node.getZ())).forEach(voisins::add);
+            graph.getOrDefault(node.project(), Collections.emptyList()).stream().map(p -> new Point3D(p, node.z())).forEach(voisins::add);
             Point2D innerWrap = innerWraps.get(node.project());
             if (innerWrap != null) {
-                voisins.add(new Point3D(innerWrap, node.getZ()));
+                voisins.add(new Point3D(innerWrap, node.z()));
             }
             Point2D outerWrap = outerWraps.get(node.project());
             if (outerWrap != null) {
-                voisins.add(new Point3D(outerWrap, node.getZ()));
+                voisins.add(new Point3D(outerWrap, node.z()));
             }
             return voisins;
         }
 
         private List<Point3D> recursiveNeighbours(Point3D node) {
             List<Point3D> voisins = new ArrayList<>();
-            graph.getOrDefault(node.project(), Collections.emptyList()).stream().map(p -> new Point3D(p, node.getZ())).forEach(voisins::add);
+            graph.getOrDefault(node.project(), Collections.emptyList()).stream().map(p -> new Point3D(p, node.z())).forEach(voisins::add);
             Point2D innerWrap = innerWraps.get(node.project());
             if (innerWrap != null) {
-                voisins.add(new Point3D(innerWrap, node.getZ() + 1));
+                voisins.add(new Point3D(innerWrap, node.z() + 1));
             }
             Point2D outerWrap = outerWraps.get(node.project());
-            if (outerWrap != null && node.getZ() > 0) {
-                voisins.add(new Point3D(outerWrap, node.getZ() - 1));
+            if (outerWrap != null && node.z() > 0) {
+                voisins.add(new Point3D(outerWrap, node.z() - 1));
             }
             return voisins;
         }

@@ -5,14 +5,6 @@ public record Point2D(int x, int y) {
         return new Point2D(x, y);
     }
 
-    public int getX() {
-        return x();
-    }
-
-    public int getY() {
-        return y();
-    }
-
     public Point2D move(Direction direction) {
         return switch (direction) {
             case NORTH -> new Point2D(x, y - 1);
@@ -27,7 +19,7 @@ public record Point2D(int x, int y) {
     }
 
     public static int ManhattanDistance(Point2D a, Point2D b) {
-        return 100 * (Math.abs(a.getX() - b.getX()) + Math.abs(a.getY() - b.getY()));
+        return 100 * (Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y()));
     }
 }
 

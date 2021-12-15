@@ -425,7 +425,7 @@ public class Day12Test {
         }
 
         public static boolean match(List<Moon> moons1, List<Moon> moons2, Function<Moon, Long> function) {
-            return !moons1.stream().map(function).collect(Collectors.toList()).equals(moons2.stream().map(function).collect(Collectors.toList()));
+            return !moons1.stream().map(function).toList().equals(moons2.stream().map(function).toList());
         }
 
         public void applyGravity(Moon moon) {

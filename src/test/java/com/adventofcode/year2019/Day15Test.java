@@ -43,16 +43,12 @@ public class Day15Test {
     }
 
     private static char print(long move) {
-        switch ((int) move) {
-            case 0:
-                return '#';
-            case 1:
-                return '.';
-            case 2:
-                return 'O';
-            default:
-                return '?';
-        }
+        return switch ((int) move) {
+            case 0 -> '#';
+            case 1 -> '.';
+            case 2 -> 'O';
+            default -> '?';
+        };
     }
 
     private static Map<Point2D, List<Pair<Point2D, Integer>>> createGraph(Map2D map) {
@@ -214,7 +210,7 @@ public class Day15Test {
 
         map.print(Day15Test::print);
 
-        Point2D oxygen = map.entrySet().stream().filter(e -> e.getValue() == 2).map(Map.Entry::getKey).findFirst().get();
+        Point2D oxygen = map.entrySet().stream().filter(e -> e.getValue() == 2).map(Map.Entry::getKey).findFirst().orElseThrow();
         Map<Point2D, List<Pair<Point2D, Integer>>> graph = createGraph(map);
 
         Dijkstra<Point2D> dijkstra = new Dijkstra<>(graph);

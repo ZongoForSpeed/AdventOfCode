@@ -37,15 +37,15 @@ public class Day17Test {
     }
 
     private static boolean isValid(char[][] map, Point2D position) {
-        if (position.getX() < 0 || position.getY() < 0) {
+        if (position.x() < 0 || position.y() < 0) {
             return false;
         }
 
-        if (map.length <= position.getY() || map[position.getY()].length <= position.getX()) {
+        if (map.length <= position.y() || map[position.y()].length <= position.x()) {
             return false;
         }
 
-        return map[position.getY()][position.getX()] == '#';
+        return map[position.y()][position.x()] == '#';
     }
 
     private static List<Pair<Character, Integer>> findPath(String input) {
@@ -56,24 +56,24 @@ public class Day17Test {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 switch (map[i][j]) {
-                    case '^':
+                    case '^' -> {
                         position = new Point2D(j, i);
                         direction = Direction.NORTH;
-                        break;
-                    case 'v':
+                    }
+                    case 'v' -> {
                         position = new Point2D(j, i);
                         direction = Direction.SOUTH;
-                        break;
-                    case '<':
+                    }
+                    case '<' -> {
                         position = new Point2D(j, i);
                         direction = Direction.WEST;
-                        break;
-                    case '>':
+                    }
+                    case '>' -> {
                         position = new Point2D(j, i);
                         direction = Direction.EAST;
-                        break;
-                    default:
-                        break;
+                    }
+                    default -> {
+                    }
                 }
             }
         }
@@ -176,14 +176,14 @@ public class Day17Test {
 
     @Test
     void testExample() {
-        String example =
-                "..#..........\n" +
-                        "..#..........\n" +
-                        "#######...###\n" +
-                        "#.#...#...#.#\n" +
-                        "#############\n" +
-                        "..#...#...#..\n" +
-                        "..#####...^..";
+        String example = """
+                ..#..........
+                ..#..........
+                #######...###
+                #.#...#...#.#
+                #############
+                ..#...#...#..
+                ..#####...^..""";
         int sum = computeSumAlignmentParameters(example);
         assertThat(sum).isEqualTo(76);
     }
@@ -285,22 +285,22 @@ public class Day17Test {
      */
     @Test
     void testPath() {
-        String input =
-                "#######...#####\n" +
-                        "#.....#...#...#\n" +
-                        "#.....#...#...#\n" +
-                        "......#...#...#\n" +
-                        "......#...###.#\n" +
-                        "......#.....#.#\n" +
-                        "^########...#.#\n" +
-                        "......#.#...#.#\n" +
-                        "......#########\n" +
-                        "........#...#..\n" +
-                        "....#########..\n" +
-                        "....#...#......\n" +
-                        "....#...#......\n" +
-                        "....#...#......\n" +
-                        "....#####......";
+        String input = """
+                #######...#####
+                #.....#...#...#
+                #.....#...#...#
+                ......#...#...#
+                ......#...###.#
+                ......#.....#.#
+                ^########...#.#
+                ......#.#...#.#
+                ......#########
+                ........#...#..
+                ....#########..
+                ....#...#......
+                ....#...#......
+                ....#...#......
+                ....#####......""";
 
         List<Pair<Character, Integer>> commands = findPath(input);
 
@@ -313,7 +313,7 @@ public class Day17Test {
         String line = FileUtils.readLine("/2019/day/17/input");
         StringBuilder sb = new StringBuilder();
         Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));
-        System.out.println(sb.toString());
+        System.out.println(sb);
         List<Pair<Character, Integer>> commands = findPath(sb.toString());
 
         System.out.println(commands);
@@ -327,11 +327,13 @@ public class Day17Test {
         // (L,6), (R,12), (R,12), (R,10) ==> C
         //[A, B, A, C, B, C, A, B, A, C]
 
-        String inputCommand = "A,B,A,C,B,C,A,B,A,C\n"
-                + "R,10,L,8,R,10,R,4\n"
-                + "L,6,L,6,R,10\n"
-                + "L,6,R,12,R,12,R,10\n"
-                + "n\n";
+        String inputCommand = """
+                A,B,A,C,B,C,A,B,A,C
+                R,10,L,8,R,10,R,4
+                L,6,L,6,R,10
+                L,6,R,12,R,12,R,10
+                n
+                """;
 
         BlockingQueue<Long> input = new LinkedBlockingQueue<>();
         inputCommand.chars().mapToLong(t -> t).forEach(input::add);
@@ -347,7 +349,7 @@ public class Day17Test {
             }
         });
 
-        System.out.println(out.toString());
+        System.out.println(out);
 
         assertThat(dust).hasValue(1045393);
     }

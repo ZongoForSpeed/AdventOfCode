@@ -150,12 +150,10 @@ public class Day11Test {
 
         public void programOutput(long output) {
             if (count % 2 == 0) {
-                // System.out.println("Painting " + position + " in " + output);
                 hull.put(position, output);
             } else {
                 direction = output == 0 ? direction.left() : direction.right();
                 move();
-                // System.out.println("Moving robot in " + direction + " to " + position);
             }
             count++;
         }

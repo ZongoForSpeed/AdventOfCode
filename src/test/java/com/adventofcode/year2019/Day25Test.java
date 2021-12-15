@@ -31,7 +31,7 @@ public class Day25Test {
         Droid droid = new Droid(ImmutableSet.of("molten lava", "infinite loop", "giant electromagnet", "photons", "escape pod"));
         Position position = droid.start(program);
         Deque<Direction> path = new LinkedList<>();
-        for (Direction direction : position.getDirections()) {
+        for (Direction direction : position.directions()) {
             droid.walk(position, direction, path);
         }
         List<Direction> directions = droid.paths.get("Security Checkpoint");
@@ -44,17 +44,16 @@ public class Day25Test {
             droid.doCommand("drop " + item);
         }
 
-        for (long l = 0; l < (1 << items.size()); l++) {
+        for (long l = 0; l < (1L << items.size()); l++) {
             BitSet bitSet = BitSet.valueOf(new long[]{l});
-            List<String> localItems = IntStream.range(0, items.size()).filter(bitSet::get).mapToObj(items::get).collect(Collectors.toList());
-            // System.out.println(localItems);
+            List<String> localItems = IntStream.range(0, items.size()).filter(bitSet::get).mapToObj(items::get).toList();
             localItems.forEach(i -> droid.doCommand("take " + i));
 
             Position doCommand = droid.doCommand(droid.exit.name().toLowerCase());
-            if ("Security Checkpoint".equals(doCommand.getPosition())) {
+            if ("Security Checkpoint".equals(doCommand.position())) {
                 localItems.forEach(i -> droid.doCommand("drop " + i));
             } else {
-                return doCommand.getMessage().trim();
+                return doCommand.message().trim();
             }
 
         }
@@ -129,7 +128,6 @@ public class Day25Test {
 
         private static Position parseOutput(String output) {
             if (output.contains("You take the ") || output.contains("You drop the ")) {
-                // System.out.println(output);
                 return null;
             }
             int indexOf = output.indexOf("== ");
@@ -220,14 +218,13 @@ public class Day25Test {
             Position position = doCommand(direction.name().toLowerCase());
             path.addLast(direction);
             if (seenPosition.add(position)) {
-                for (String item : position.getItems()) {
+                for (String item : position.items()) {
                     if (!forbiddenItems.contains(item)) {
-                        // System.out.println("Taking item: " + item);
                         items.add(item);
                         doCommand("take " + item);
                     }
                 }
-                for (Direction positionDirection : position.getDirections()) {
+                for (Direction positionDirection : position.directions()) {
                     walk(position, positionDirection, path);
                 }
             }
@@ -237,7 +234,6 @@ public class Day25Test {
                 paths.put(position.position, new ArrayList<>(path));
                 doCommand(direction.reverse().name().toLowerCase());
             } else {
-                // System.out.println("Exit: " + direction);
                 exit = direction;
             }
 
@@ -245,40 +241,9 @@ public class Day25Test {
         }
     }
 
-    private static class Position {
-        private final String position;
-        private final String description;
-        private final List<Direction> directions;
-        private final List<String> items;
-        private final String message;
-
-        private Position(String position, String description, List<Direction> directions, List<String> items, String message) {
-            this.position = position;
-            this.description = description;
-            this.directions = directions;
-            this.items = items;
-            this.message = message;
-        }
-
-        public String getPosition() {
-            return position;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public List<Direction> getDirections() {
-            return directions;
-        }
-
-        public List<String> getItems() {
-            return items;
-        }
-
-        public String getMessage() {
-            return message;
-        }
+    private record Position(String position, String description,
+                            List<Direction> directions,
+                            List<String> items, String message) {
 
         @Override
         public boolean equals(Object o) {

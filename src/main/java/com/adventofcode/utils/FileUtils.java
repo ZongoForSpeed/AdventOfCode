@@ -1,23 +1,28 @@
 package com.adventofcode.utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class FileUtils {
     public static List<String> readLines(String file) throws IOException {
         List<String> lines = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(FileUtils.class.getResourceAsStream(file)))) {
-            br.lines().forEach(lines::add);
+        try (InputStream is = FileUtils.class.getResourceAsStream(file)) {
+            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+            while (scanner.hasNextLine()) {
+                lines.add(scanner.nextLine());
+            }
         }
         return lines;
     }
 
     public static String readLine(String file) throws IOException {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(FileUtils.class.getResourceAsStream(file)))) {
-            return br.readLine();
+        try (InputStream is = FileUtils.class.getResourceAsStream(file)) {
+            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+            return scanner.nextLine();
         }
     }
 }

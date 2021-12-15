@@ -215,31 +215,20 @@ public class Intcode {
 
     private static void setValue(List<Long> memory, int[] mode, int position, int relativeBase, int offset, long value) {
         switch (mode[offset]) {
-            case 0:
-                setMemory(memory, (int) readMemory(memory, position + offset), value);
-                break;
-            case 1:
-                setMemory(memory, position + offset, value);
-                break;
-            case 2:
-                setMemory(memory, relativeBase + (int) readMemory(memory, position + offset), value);
-                break;
-            default:
-                throw new IllegalStateException("setValue(" + mode[offset] + ")");
+            case 0 -> setMemory(memory, (int) readMemory(memory, position + offset), value);
+            case 1 -> setMemory(memory, position + offset, value);
+            case 2 -> setMemory(memory, relativeBase + (int) readMemory(memory, position + offset), value);
+            default -> throw new IllegalStateException("setValue(" + mode[offset] + ")");
         }
     }
 
     private static long readParameter(List<Long> memory, int[] mode, int relativeBase, int position, int offset) {
-        switch (mode[offset]) {
-            case 0:
-                return readMemory(memory, (int) readMemory(memory, position + offset));
-            case 1:
-                return readMemory(memory, position + offset);
-            case 2:
-                return readMemory(memory, relativeBase + (int) readMemory(memory, position + offset));
-            default:
-                throw new IllegalStateException("readParameter(" + mode[offset] + ")");
-        }
+        return switch (mode[offset]) {
+            case 0 -> readMemory(memory, (int) readMemory(memory, position + offset));
+            case 1 -> readMemory(memory, position + offset);
+            case 2 -> readMemory(memory, relativeBase + (int) readMemory(memory, position + offset));
+            default -> throw new IllegalStateException("readParameter(" + mode[offset] + ")");
+        };
     }
 
     private static int[] parseCode(long code) {

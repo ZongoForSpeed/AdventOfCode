@@ -10,10 +10,6 @@ public class IntMemory implements Memory<Integer> {
     private final BitSet bitSet;
     private int[] mem;
 
-    public IntMemory() {
-        this(10);
-    }
-
     public IntMemory(int capacity) {
         mem = new int[capacity];
         bitSet = new BitSet(10);

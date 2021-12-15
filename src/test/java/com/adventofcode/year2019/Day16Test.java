@@ -35,7 +35,6 @@ public class Day16Test {
                 digits[n] = sum;
             }
 
-            // System.out.println(Arrays.toString(digits));
         }
         return IntStream.of(digits).mapToObj(String::valueOf).collect(Collectors.joining(""));
     }
@@ -54,7 +53,6 @@ public class Day16Test {
             }
 
             System.arraycopy(next, offset, digits, offset, next.length - offset);
-            // System.out.println(Arrays.toString(digits));
         }
 
         return Arrays.stream(digits, offset, offset + 8).mapToObj(String::valueOf).collect(Collectors.joining(""));

@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class Day18Test {
     );
 
     public static Optional<Long> countSteps(MazeMap map) {
-        MazeState start = new MazeState(map.getKeys(), map.getPosition());
+        MazeState start = new MazeState(map.keys(), map.position());
 
         Map<MazeState, Long> steps_to = new HashMap<>();
         steps_to.put(start, 0L);
@@ -43,7 +42,7 @@ public class Day18Test {
             MazeState state = queue.poll();
             Long steps = steps_to.get(state);
             if (steps != null) {
-                if (state.getMissingKeys() == 0L) {
+                if (state.missingKeys() == 0L) {
                     return Optional.of(steps);
                 }
 
@@ -88,11 +87,11 @@ public class Day18Test {
                     tiles.put(d, Tile.FREE);
                     position = d;
                 } else if (Character.isUpperCase(codePoint)) {
-                    tiles.put(d, new Tile(Tile.TileType.Door, codePoint - 'A'));
+                    tiles.put(d, new Tile(TileType.Door, codePoint - 'A'));
                 } else if (Character.isLowerCase(codePoint)) {
                     int key = codePoint - 'a';
-                    keys |= (1 << key);
-                    tiles.put(d, new Tile(Tile.TileType.Key, key));
+                    keys |= (1L << key);
+                    tiles.put(d, new Tile(TileType.Key, key));
                 } else if (codePoint == '.') {
                     tiles.put(d, Tile.FREE);
                 }
@@ -106,8 +105,8 @@ public class Day18Test {
         seen.add(pos);
 
         long found = Optional.ofNullable(map.get(pos))
-                .filter(tile -> Tile.TileType.Key == tile.getType())
-                .map(Tile::getValue)
+                .filter(tile -> TileType.Key == tile.type())
+                .map(Tile::value)
                 .map(v -> 1L << v)
                 .orElse(0L);
 
@@ -121,8 +120,8 @@ public class Day18Test {
     }
 
     public static List<MazeMap> partition(MazeMap maze) {
-        Map<Point2D, Tile> tiles = new HashMap<>(maze.getTiles());
-        Point2D position = maze.getPosition();
+        Map<Point2D, Tile> tiles = new HashMap<>(maze.tiles());
+        Point2D position = maze.position();
         tiles.remove(position);
         for (Direction direction : Direction.values()) {
             tiles.remove(position.move(direction));
@@ -243,58 +242,63 @@ public class Day18Test {
      */
     @Test
     void testSimple() {
-        String input = "#########\n" +
-                "#b.A.@.a#\n" +
-                "#########";
+        String input = """
+                #########
+                #b.A.@.a#
+                #########""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartOne(lines)).isEqualTo(8);
     }
 
     @Test
     void testLargerExample1() {
-        String input = "########################\n" +
-                "#f.D.E.e.C.b.A.@.a.B.c.#\n" +
-                "######################.#\n" +
-                "#d.....................#\n" +
-                "########################";
+        String input = """
+                ########################
+                #f.D.E.e.C.b.A.@.a.B.c.#
+                ######################.#
+                #d.....................#
+                ########################""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartOne(lines)).isEqualTo(86);
     }
 
     @Test
     void testLargerExample2() {
-        String input = "########################\n" +
-                "#...............b.C.D.f#\n" +
-                "#.######################\n" +
-                "#.....@.a.B.c.d.A.e.F.g#\n" +
-                "########################";
+        String input = """
+                ########################
+                #...............b.C.D.f#
+                #.######################
+                #.....@.a.B.c.d.A.e.F.g#
+                ########################""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartOne(lines)).isEqualTo(132);
     }
 
     @Test
     void testLargerExample3() {
-        String input = "#################\n" +
-                "#i.G..c...e..H.p#\n" +
-                "########.########\n" +
-                "#j.A..b...f..D.o#\n" +
-                "########@########\n" +
-                "#k.E..a...g..B.n#\n" +
-                "########.########\n" +
-                "#l.F..d...h..C.m#\n" +
-                "#################";
+        String input = """
+                #################
+                #i.G..c...e..H.p#
+                ########.########
+                #j.A..b...f..D.o#
+                ########@########
+                #k.E..a...g..B.n#
+                ########.########
+                #l.F..d...h..C.m#
+                #################""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartOne(lines)).isEqualTo(136);
     }
 
     @Test
     void testLargerExample4() {
-        String input = "########################\n" +
-                "#@..............ac.GI.b#\n" +
-                "###d#e#f################\n" +
-                "###A#B#C################\n" +
-                "###g#h#i################\n" +
-                "########################";
+        String input = """
+                ########################
+                #@..............ac.GI.b#
+                ###d#e#f################
+                ###A#B#C################
+                ###g#h#i################
+                ########################""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartOne(lines)).isEqualTo(81);
     }
@@ -444,54 +448,58 @@ public class Day18Test {
      */
     @Test
     void testSimpleVault() {
-        String input = "#######\n" +
-                "#a.#Cd#\n" +
-                "##...##\n" +
-                "##.@.##\n" +
-                "##...##\n" +
-                "#cB#Ab#\n" +
-                "#######";
+        String input = """
+                #######
+                #a.#Cd#
+                ##...##
+                ##.@.##
+                ##...##
+                #cB#Ab#
+                #######""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartTwo(lines)).isEqualTo(8);
     }
 
     @Test
     void testLargerVault() {
-        String input = "###############\n" +
-                "#d.ABC.#.....a#\n" +
-                "######...######\n" +
-                "######.@.######\n" +
-                "######...######\n" +
-                "#b.....#.....c#\n" +
-                "###############";
+        String input = """
+                ###############
+                #d.ABC.#.....a#
+                ######...######
+                ######.@.######
+                ######...######
+                #b.....#.....c#
+                ###############""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartTwo(lines)).isEqualTo(24);
     }
 
     @Test
     void testComplexVault1() {
-        String input = "#############\n" +
-                "#DcBa.#.GhKl#\n" +
-                "#.###...#I###\n" +
-                "#e#d#.@.#j#k#\n" +
-                "###C#...###J#\n" +
-                "#fEbA.#.FgHi#\n" +
-                "#############";
+        String input = """
+                #############
+                #DcBa.#.GhKl#
+                #.###...#I###
+                #e#d#.@.#j#k#
+                ###C#...###J#
+                #fEbA.#.FgHi#
+                #############""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartTwo(lines)).isEqualTo(32);
     }
 
     @Test
     void testComplexVault2() {
-        String input = "#############\n" +
-                "#g#f.D#..h#l#\n" +
-                "#F###e#E###.#\n" +
-                "#dCba...BcIJ#\n" +
-                "#####.@.#####\n" +
-                "#nK.L...G...#\n" +
-                "#M###N#H###.#\n" +
-                "#o#m..#i#jk.#\n" +
-                "#############";
+        String input = """
+                #############
+                #g#f.D#..h#l#
+                #F###e#E###.#
+                #dCba...BcIJ#
+                #####.@.#####
+                #nK.L...G...#
+                #M###N#H###.#
+                #o#m..#i#jk.#
+                #############""";
         Stream<String> lines = Arrays.stream(input.split("\\n"));
         assertThat(algorithmPartTwo(lines)).isEqualTo(70);
     }
@@ -502,38 +510,14 @@ public class Day18Test {
         assertThat(algorithmPartTwo(lines)).isEqualTo(2086);
     }
 
-    static class Tile {
+    enum TileType {
+        Free,
+        Key,
+        Door
+    }
+
+    record Tile(TileType type, int value) {
         public static final Tile FREE = new Tile(TileType.Free, -1);
-
-        private final TileType type;
-        private final int value;
-
-        public Tile(TileType type, int value) {
-            this.type = type;
-            this.value = value;
-        }
-
-        public TileType getType() {
-            return type;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Tile tile = (Tile) o;
-            return value == tile.value &&
-                    type == tile.type;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(type, value);
-        }
 
         @Override
         public String toString() {
@@ -543,46 +527,12 @@ public class Day18Test {
                     '}';
         }
 
-        enum TileType {
-            Free,
-            Key,
-            Door
-        }
     }
 
-    static class MazeMap {
-        private final Map<Point2D, Tile> tiles;
-        private final Point2D position;
-        private final long keys;
-
-        public MazeMap(Map<Point2D, Tile> tiles, Point2D position, long keys) {
-            this.tiles = tiles;
-            this.position = position;
-            this.keys = keys;
-        }
-
-        public Map<Point2D, Tile> getTiles() {
-            return tiles;
-        }
-
-        public Point2D getPosition() {
-            return position;
-        }
-
-        public long getKeys() {
-            return keys;
-        }
+    record MazeMap(Map<Point2D, Tile> tiles, Point2D position, long keys) {
     }
 
-    static class MazeState {
-        private final long missingKeys;
-        private final Point2D position;
-
-        public MazeState(long missingKeys, Point2D position) {
-            this.missingKeys = missingKeys;
-            this.position = position;
-        }
-
+    record MazeState(long missingKeys, Point2D position) {
         public List<MazeState> next(MazeMap map) {
             List<MazeState> result = new ArrayList<>();
             for (Direction direction : Direction.values()) {
@@ -591,19 +541,19 @@ public class Day18Test {
                 if (tile == null) {
                     continue;
                 }
-                switch (tile.getType()) {
+                switch (tile.type()) {
                     case Free:
                         result.add(new MazeState(missingKeys, move));
                         break;
                     case Key:
-                        if (((missingKeys >> tile.getValue()) & 1L) == 1L) {
-                            result.add(new MazeState(missingKeys - (1L << tile.getValue()), move));
+                        if (((missingKeys >> tile.value()) & 1L) == 1L) {
+                            result.add(new MazeState(missingKeys - (1L << tile.value()), move));
                         } else {
                             result.add(new MazeState(missingKeys, move));
                         }
                         break;
                     case Door:
-                        if (((missingKeys >> tile.getValue()) & 1L) == 0L) {
+                        if (((missingKeys >> tile.value()) & 1L) == 0L) {
                             result.add(new MazeState(missingKeys, move));
                         }
                         break;
@@ -611,28 +561,6 @@ public class Day18Test {
             }
 
             return result;
-        }
-
-        public long getMissingKeys() {
-            return missingKeys;
-        }
-
-        public Point2D getPosition() {
-            return position;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            MazeState state = (MazeState) o;
-            return missingKeys == state.missingKeys &&
-                    Objects.equals(position, state.position);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(missingKeys, position);
         }
 
         @Override

@@ -10,10 +10,6 @@ public class LongMemory implements Memory<Long> {
     private final BitSet bitSet;
     private long[] mem;
 
-    public LongMemory() {
-        this(10);
-    }
-
     public LongMemory(int capacity) {
         mem = new long[capacity];
         bitSet = new BitSet(10);

@@ -22,19 +22,19 @@ public class Day14Test {
         Map<String, Long> quantities = new HashMap<>();
         quantities.put("FUEL", fuelQuantity);
 
-        Map<String, Reaction> reactionMap = reactions.stream().collect(Collectors.toMap(k -> k.getChemicalOutput().getLeft(), Function.identity()));
+        Map<String, Reaction> reactionMap = reactions.stream().collect(Collectors.toMap(k -> k.chemicalOutput().getLeft(), Function.identity()));
 
         do {
             Optional<Map.Entry<String, Long>> firstChemical = quantities.entrySet().stream()
                     .filter(e -> !"ORE".equals(e.getKey()))
                     .filter(e -> e.getValue() > 0).findFirst();
-            if (!firstChemical.isPresent()) {
+            if (firstChemical.isEmpty()) {
                 break;
             }
 
             Reaction reaction = reactionMap.get(firstChemical.get().getKey());
             long needed = firstChemical.get().getValue();
-            long value = reaction.getChemicalOutput().getValue();
+            long value = reaction.chemicalOutput().getValue();
             reaction.apply(quantities, -Arithmetic.ceil(needed, value));
         }
         while (quantities.entrySet().stream().anyMatch(e -> !"ORE".equals(e.getKey()) && e.getValue() > 0));
@@ -352,14 +352,9 @@ public class Day14Test {
         assertThat(solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5194174L);
     }
 
-    private static class Reaction {
-        private final List<Pair<String, Long>> chemicalInputs;
-        private final Pair<String, Long> chemicalOutput;
-
-        public Reaction(List<Pair<String, Long>> chemicalInputs, Pair<String, Long> chemicalOutput) {
-            this.chemicalInputs = chemicalInputs;
-            this.chemicalOutput = chemicalOutput;
-        }
+    private record Reaction(
+            List<Pair<String, Long>> chemicalInputs,
+            Pair<String, Long> chemicalOutput) {
 
         static Reaction parseReaction(String line) {
             String[] split = line.split(" => ");
@@ -393,14 +388,6 @@ public class Day14Test {
                     return v + factor * chemical.getRight();
                 }
             });
-        }
-
-        public List<Pair<String, Long>> getChemicalInputs() {
-            return chemicalInputs;
-        }
-
-        public Pair<String, Long> getChemicalOutput() {
-            return chemicalOutput;
         }
 
         @Override

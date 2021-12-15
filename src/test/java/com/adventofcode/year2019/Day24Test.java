@@ -280,66 +280,73 @@ public class Day24Test {
         List<List<Integer>> adjacent = buildAdjacent(5);
         System.out.println(adjacent);
 
-        String initialState = "....#\n" +
-                "#..#.\n" +
-                "#..##\n" +
-                "..#..\n" +
-                "#....";
+        String initialState = """
+                ....#
+                #..#.
+                #..##
+                ..#..
+                #....""";
         BitSet bugs = parseLayout(initialState);
 
         System.out.println();
         System.out.println("Initial state:");
-        assertThat(printLayout(bugs, false)).isEqualTo("....#\n" +
-                "#..#.\n" +
-                "#..##\n" +
-                "..#..\n" +
-                "#....");
+        assertThat(printLayout(bugs, false)).isEqualTo("""
+                ....#
+                #..#.
+                #..##
+                ..#..
+                #....""");
         bugs = nextState(bugs, adjacent);
 
         System.out.println();
         System.out.println("After 1 minute:");
-        assertThat(printLayout(bugs, false)).isEqualTo("#..#.\n" +
-                "####.\n" +
-                "###.#\n" +
-                "##.##\n" +
-                ".##..");
+        assertThat(printLayout(bugs, false)).isEqualTo("""
+                #..#.
+                ####.
+                ###.#
+                ##.##
+                .##..""");
         bugs = nextState(bugs, adjacent);
 
         System.out.println();
         System.out.println("After 2 minute:");
-        assertThat(printLayout(bugs, false)).isEqualTo("#####\n" +
-                "....#\n" +
-                "....#\n" +
-                "...#.\n" +
-                "#.###");
+        assertThat(printLayout(bugs, false)).isEqualTo("""
+                #####
+                ....#
+                ....#
+                ...#.
+                #.###""");
         bugs = nextState(bugs, adjacent);
 
         System.out.println();
         System.out.println("After 3 minute:");
-        assertThat(printLayout(bugs, false)).isEqualTo("#....\n" +
-                "####.\n" +
-                "...##\n" +
-                "#.##.\n" +
-                ".##.#");
+        assertThat(printLayout(bugs, false)).isEqualTo("""
+                #....
+                ####.
+                ...##
+                #.##.
+                .##.#""");
         bugs = nextState(bugs, adjacent);
 
         System.out.println();
         System.out.println("After 4 minute:");
-        assertThat(printLayout(bugs, false)).isEqualTo("####.\n" +
-                "....#\n" +
-                "##..#\n" +
-                ".....\n" +
-                "##...");
+        assertThat(printLayout(bugs, false)).isEqualTo("""
+                ####.
+                ....#
+                ##..#
+                .....
+                ##...""");
     }
 
     @Test
     void testFindRepeatingLayout() {
         List<List<Integer>> adjacent = buildAdjacent(5);
-        String initialState = "....#\n" +
-                "#..#.\n" +
-                "#..##\n" +
-                "..#..\n" +
-                "#....";
+        String initialState = """
+                ....#
+                #..#.
+                #..##
+                ..#..
+                #....""";
         BitSet bugs = parseLayout(initialState);
 
         Set<Long> layouts = new HashSet<>();
@@ -347,11 +354,12 @@ public class Day24Test {
             bugs = nextState(bugs, adjacent);
         }
 
-        assertThat(printLayout(bugs, false)).isEqualTo(".....\n" +
-                ".....\n" +
-                ".....\n" +
-                "#....\n" +
-                ".#...");
+        assertThat(printLayout(bugs, false)).isEqualTo("""
+                .....
+                .....
+                .....
+                #....
+                .#...""");
         assertThat(biodiversityPoints(bugs)).isEqualTo(2129920);
     }
 
@@ -369,11 +377,12 @@ public class Day24Test {
             bugs = nextState(bugs, adjacent);
         }
 
-        assertThat(printLayout(bugs, false)).isEqualTo("....#\n" +
-                "....#\n" +
-                "##..#\n" +
-                "##..#\n" +
-                ".#..#");
+        assertThat(printLayout(bugs, false)).isEqualTo("""
+                ....#
+                ....#
+                ##..#
+                ##..#
+                .#..#""");
 
         assertThat(biodiversityPoints(bugs)).isEqualTo(19516944);
     }
@@ -584,11 +593,12 @@ public class Day24Test {
     @Test
     void testDepthExample() {
         List<List<Pair<Integer, Integer>>> adjacent = buildDepthAdjacent(5);
-        String layout = "....#\n" +
-                "#..#.\n" +
-                "#.?##\n" +
-                "..#..\n" +
-                "#....";
+        String layout = """
+                ....#
+                #..#.
+                #.?##
+                ..#..
+                #....""";
 
         BitSet bugs = parseLayout(layout);
         Map<Integer, BitSet> depthBugs = new HashMap<>();
@@ -598,82 +608,85 @@ public class Day24Test {
             depthBugs = nextState(depthBugs, adjacent);
         }
 
-        assertThat(printLayout(depthBugs, true)).isEqualTo("Depth -5:\n" +
-                "..#..\n" +
-                ".#.#.\n" +
-                "..?.#\n" +
-                ".#.#.\n" +
-                "..#..\n" +
-                "\n" +
-                "Depth -4:\n" +
-                "...#.\n" +
-                "...##\n" +
-                "..?..\n" +
-                "...##\n" +
-                "...#.\n" +
-                "\n" +
-                "Depth -3:\n" +
-                "#.#..\n" +
-                ".#...\n" +
-                "..?..\n" +
-                ".#...\n" +
-                "#.#..\n" +
-                "\n" +
-                "Depth -2:\n" +
-                ".#.##\n" +
-                "....#\n" +
-                "..?.#\n" +
-                "...##\n" +
-                ".###.\n" +
-                "\n" +
-                "Depth -1:\n" +
-                "#..##\n" +
-                "...##\n" +
-                "..?..\n" +
-                "...#.\n" +
-                ".####\n" +
-                "\n" +
-                "Depth 0:\n" +
-                ".#...\n" +
-                ".#.##\n" +
-                ".#?..\n" +
-                ".....\n" +
-                ".....\n" +
-                "\n" +
-                "Depth 1:\n" +
-                ".##..\n" +
-                "#..##\n" +
-                "..?.#\n" +
-                "##.##\n" +
-                "#####\n" +
-                "\n" +
-                "Depth 2:\n" +
-                "###..\n" +
-                "##.#.\n" +
-                "#.?..\n" +
-                ".#.##\n" +
-                "#.#..\n" +
-                "\n" +
-                "Depth 3:\n" +
-                "..###\n" +
-                ".....\n" +
-                "#.?..\n" +
-                "#....\n" +
-                "#...#\n" +
-                "\n" +
-                "Depth 4:\n" +
-                ".###.\n" +
-                "#..#.\n" +
-                "#.?..\n" +
-                "##.#.\n" +
-                ".....\n" +
-                "\n" +
-                "Depth 5:\n" +
-                "####.\n" +
-                "#..#.\n" +
-                "#.?#.\n" +
-                "####.\n" +
-                ".....\n\n");
+        assertThat(printLayout(depthBugs, true)).isEqualTo("""
+                Depth -5:
+                ..#..
+                .#.#.
+                ..?.#
+                .#.#.
+                ..#..
+
+                Depth -4:
+                ...#.
+                ...##
+                ..?..
+                ...##
+                ...#.
+
+                Depth -3:
+                #.#..
+                .#...
+                ..?..
+                .#...
+                #.#..
+
+                Depth -2:
+                .#.##
+                ....#
+                ..?.#
+                ...##
+                .###.
+
+                Depth -1:
+                #..##
+                ...##
+                ..?..
+                ...#.
+                .####
+
+                Depth 0:
+                .#...
+                .#.##
+                .#?..
+                .....
+                .....
+
+                Depth 1:
+                .##..
+                #..##
+                ..?.#
+                ##.##
+                #####
+
+                Depth 2:
+                ###..
+                ##.#.
+                #.?..
+                .#.##
+                #.#..
+
+                Depth 3:
+                ..###
+                .....
+                #.?..
+                #....
+                #...#
+
+                Depth 4:
+                .###.
+                #..#.
+                #.?..
+                ##.#.
+                .....
+
+                Depth 5:
+                ####.
+                #..#.
+                #.?#.
+                ####.
+                .....
+
+                """);
         long totalBugs = depthBugs.values().stream().mapToInt(BitSet::cardinality).sum();
         assertThat(totalBugs).isEqualTo(99);
     }

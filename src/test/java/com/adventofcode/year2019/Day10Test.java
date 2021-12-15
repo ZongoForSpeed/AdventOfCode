@@ -44,8 +44,8 @@ public class Day10Test {
             Map<Double, List<Asteroids>> beamView = new TreeMap<>(Day10Test::doubleCompare);
             for (Point2D asteroid : asteroids) {
                 if (!asteroid.equals(location)) {
-                    long dx = location.getX() - asteroid.getX();
-                    long dy = location.getY() - asteroid.getY();
+                    long dx = location.x() - asteroid.x();
+                    long dy = location.y() - asteroid.y();
                     double theta = (Math.atan2(-dx, dy) + 2 * Math.PI) % (Math.PI * 2);
                     double r = Math.sqrt(dx * dx + dy * dy);
                     Asteroids asteroids1 = new Asteroids(r, asteroid);
@@ -57,7 +57,6 @@ public class Day10Test {
                 count = beamView.size();
                 bestLocation = location;
                 bestBeamView = beamView;
-                // System.out.println("New best location " + location + " " + count);
             }
         }
 
@@ -454,7 +453,7 @@ public class Day10Test {
         }
 
         public long getCoordinate() {
-            return position.getX() * 100 + position.getY();
+            return position.x() * 100L + position.y();
         }
 
         @Override

@@ -169,8 +169,8 @@ public class Day19Test {
         String line = FileUtils.readLine("/2019/day/19/input");
 
         Point2D position = findSquare(line, 100, 30); //y must be at least 100 to fit 100x100 square
-        position = findSquare(line, position.getY() - 30, 1);
-        long result = position.getX() * 10000 + position.getY();
+        position = findSquare(line, position.y() - 30, 1);
+        long result = position.x() * 10000 + position.y();
         assertThat(result).isEqualTo(3790981);
     }
 }

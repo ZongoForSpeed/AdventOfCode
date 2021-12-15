@@ -70,7 +70,7 @@ public class Day03Test {
         Sets.SetView<Point2D> intersection = Sets.intersection(Sets.newHashSet(positions1.subList(1, positions1.size() - 1)), Sets.newHashSet(positions2.subList(1, positions2.size() - 1)));
         long distance = Integer.MAX_VALUE;
         for (Point2D position : intersection) {
-            long d = Math.abs(position.getX()) + Math.abs(position.getY());
+            long d = Math.abs(position.x()) + Math.abs(position.y());
             if (d < distance) {
                 distance = d;
             }
@@ -88,23 +88,13 @@ public class Day03Test {
             int distance = Integer.parseInt(move.substring(1));
 
             for (int i = 1; i < distance + 1; ++i) {
-                switch (direction) {
-                    case 'R':
-                        position = position.move(Direction.EAST);
-                        break;
-                    case 'U':
-                        position = position.move(Direction.NORTH);
-                        break;
-                    case 'L':
-                        position = position.move(Direction.WEST);
-                        break;
-                    case 'D':
-                        position = position.move(Direction.SOUTH);
-                        break;
-                    default:
-                        position = new Point2D(Integer.MIN_VALUE, Integer.MIN_VALUE);
-                        break;
-                }
+                position = switch (direction) {
+                    case 'R' -> position.move(Direction.EAST);
+                    case 'U' -> position.move(Direction.NORTH);
+                    case 'L' -> position.move(Direction.WEST);
+                    case 'D' -> position.move(Direction.SOUTH);
+                    default -> new Point2D(Integer.MIN_VALUE, Integer.MIN_VALUE);
+                };
                 result.add(position);
             }
             position = Iterables.getLast(result);

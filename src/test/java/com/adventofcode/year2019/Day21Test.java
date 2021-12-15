@@ -136,13 +136,15 @@ public class Day21Test {
     @Test
     void testPartOne() throws IOException {
         String line = FileUtils.readLine("/2019/day/21/input");
-        String command = "NOT A T\n" +
-                "NOT B J\n" +
-                "OR T J\n" +
-                "NOT C T\n" +
-                "OR T J\n" +
-                "AND D J\n" +
-                "WALK\n";
+        String command = """
+                NOT A T
+                NOT B J
+                OR T J
+                NOT C T
+                OR T J
+                AND D J
+                WALK
+                """;
         assertThat(runSpringscript(line, command)).isEqualTo(19361023);
     }
 
@@ -167,20 +169,22 @@ public class Day21Test {
     @Test
     void testPartTwo() throws IOException {
         String line = FileUtils.readLine("/2019/day/21/input");
-        String command = "NOT F J\n"
-                + "OR E J\n"
-                + "OR H J\n"
-                + "AND D J\n"
-                + "NOT C T\n"
-                + "AND T J\n"
-                + "NOT D T\n"
-                + "OR B T\n"
-                + "OR E T\n"
-                + "NOT T T\n"
-                + "OR T J\n"
-                + "NOT A T\n"
-                + "OR T J\n"
-                + "RUN\n";
+        String command = """
+                NOT F J
+                OR E J
+                OR H J
+                AND D J
+                NOT C T
+                AND T J
+                NOT D T
+                OR B T
+                OR E T
+                NOT T T
+                OR T J
+                NOT A T
+                OR T J
+                RUN
+                """;
         assertThat(runSpringscript(line, command)).isEqualTo(1141457530);
     }
 }

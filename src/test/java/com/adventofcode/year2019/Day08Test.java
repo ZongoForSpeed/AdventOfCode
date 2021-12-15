@@ -17,7 +17,6 @@ public class Day08Test {
         int[][] decoded = StreamSupport.stream(Iterables.partition(input.chars().map(c -> c - '0').boxed().collect(Collectors.toList()), layerSize).spliterator(), false)
                 .map(t -> t.stream().mapToInt(Integer::intValue).toArray())
                 .toArray(int[][]::new);
-        // System.out.println(Arrays.deepToString(decoded));
         int layers = input.length() / layerSize;
         int[] image = new int[layerSize];
         for (int index = 0; index < layerSize; index++) {
@@ -83,7 +82,6 @@ public class Day08Test {
                 zeros = digits[0];
                 result = digits[1] * digits[2];
             }
-            // System.out.println(Arrays.toString(digits));
         }
 
         assertThat(zeros).isEqualTo(6);
@@ -146,7 +144,7 @@ public class Day08Test {
         for (int index = 0; index < width * height; index += width) {
             StringBuilder sb = new StringBuilder();
             Arrays.spliterator(image, index, index + width).forEachRemaining((IntConsumer) i -> sb.append(i == 1 ? 'X' : ' '));
-            System.out.println(sb.toString());
+            System.out.println(sb);
         }
     }
 }

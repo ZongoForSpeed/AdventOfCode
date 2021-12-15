@@ -9,18 +9,6 @@ public record Point3D(int x, int y, int z) {
         return new Point3D(x, y, z);
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getZ() {
-        return z;
-    }
-
     public Point2D project() {
         return Point2D.of(x, y);
     }

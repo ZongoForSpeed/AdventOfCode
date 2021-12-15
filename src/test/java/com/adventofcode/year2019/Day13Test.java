@@ -45,18 +45,7 @@ public class Day13Test {
 
         List<String> print = game.print();
         long count = print.stream().flatMapToInt(String::chars).filter(c -> c == '░').count();
-        /*
-        char[][] chars = game.print();
-        int count = 0;
-        for (char[] printLine : chars) {
-            System.out.println(printLine);
-            for (char c : printLine) {
-                if ('░' == c) {
-                    count++;
-                }
-            }
-        }
-*/
+
         assertThat(count).isEqualTo(348);
     }
 
@@ -92,22 +81,17 @@ public class Day13Test {
         private int x;
         private int y;
         private long score = 0;
-        private Map2D squares = new Map2D();
+        private final Map2D squares = new Map2D();
 
         private static char print(long code) {
-            switch ((int) code) {
-                case 0:
-                    return ' ';
-                case 1:
-                    return '▓';
-                case 2:
-                    return '░';
-                case 3:
-                    return '═';
-                case 4:
-                    return 'Θ';
-            }
-            return ' ';
+            return switch ((int) code) {
+                case 0 -> ' ';
+                case 1 -> '▓';
+                case 2 -> '░';
+                case 3 -> '═';
+                case 4 -> 'Θ';
+                default -> ' ';
+            };
         }
 
         public void gameOutput(long output) {
@@ -147,7 +131,7 @@ public class Day13Test {
                     ballPosition = entry.getKey();
                 }
             }
-            return Integer.compare(ballPosition.getX(), paddlePosition.getX());
+            return Integer.compare(ballPosition.x(), paddlePosition.x());
         }
     }
 }
