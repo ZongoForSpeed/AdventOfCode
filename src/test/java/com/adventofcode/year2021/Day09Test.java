@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.map.IntegerMap;
 import com.adventofcode.map.Point2D;
@@ -183,7 +183,7 @@ public class Day09Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/day/9/input")) {
+        try (InputStream is = Day09Test.class.getResourceAsStream("/2021/day/9/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(smokeBasinRisk(scanner)).isEqualTo(524);
         }
@@ -245,7 +245,7 @@ public class Day09Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/day/9/input")) {
+        try (InputStream is = Day09Test.class.getResourceAsStream("/2021/day/9/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(smokeBasin(scanner)).isEqualTo(1235430);
         }

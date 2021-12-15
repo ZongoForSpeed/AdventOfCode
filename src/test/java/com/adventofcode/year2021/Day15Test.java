@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.graph.AStar;
 import com.adventofcode.map.IntegerMap;
@@ -162,7 +162,7 @@ public class Day15Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day15Test.class.getResourceAsStream("/day/15/input")) {
+        try (InputStream is = Day15Test.class.getResourceAsStream("/2021/day/15/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(chiton(scanner)).isEqualTo(537);
         }
@@ -312,7 +312,7 @@ public class Day15Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day15Test.class.getResourceAsStream("/day/15/input")) {
+        try (InputStream is = Day15Test.class.getResourceAsStream("/2021/day/15/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(chiton(scanner, Day15Test::repeat)).isEqualTo(2881);
         }

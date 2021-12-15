@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -206,7 +206,7 @@ public class Day14Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day14Test.class.getResourceAsStream("/day/14/input")) {
+        try (InputStream is = Day14Test.class.getResourceAsStream("/2021/day/14/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(extendedPolymerization(scanner, 10)).isEqualTo(3411);
         }
@@ -230,7 +230,7 @@ public class Day14Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day14Test.class.getResourceAsStream("/day/14/input")) {
+        try (InputStream is = Day14Test.class.getResourceAsStream("/2021/day/14/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(extendedPolymerization(scanner, 40)).isEqualTo(7477815755570L);
         }

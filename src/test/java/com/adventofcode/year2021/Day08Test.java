@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.maths.Permutations;
 import org.junit.jupiter.api.Test;
@@ -237,7 +237,7 @@ public class Day08Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day08Test.class.getResourceAsStream("/day/8/input")) {
+        try (InputStream is = Day08Test.class.getResourceAsStream("/2021/day/8/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(count1478(scanner)).isEqualTo(355);
         }
@@ -309,7 +309,7 @@ public class Day08Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day08Test.class.getResourceAsStream("/day/8/input")) {
+        try (InputStream is = Day08Test.class.getResourceAsStream("/2021/day/8/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(solveMapping(scanner)).isEqualTo(983030);
         }

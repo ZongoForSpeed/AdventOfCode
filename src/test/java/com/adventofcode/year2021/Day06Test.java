@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.memory.LongMemory;
 import org.junit.jupiter.api.Test;
@@ -139,7 +139,7 @@ public class Day06Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day06Test.class.getResourceAsStream("/day/6/input")) {
+        try (InputStream is = Day06Test.class.getResourceAsStream("/2021/day/6/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(nextDays(scanner.nextLine(), 80)).isEqualTo(386640);
         }
@@ -160,7 +160,7 @@ public class Day06Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day06Test.class.getResourceAsStream("/day/6/input")) {
+        try (InputStream is = Day06Test.class.getResourceAsStream("/2021/day/6/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(nextDays(scanner.nextLine(), 256)).isEqualTo(1733403626279L);
         }

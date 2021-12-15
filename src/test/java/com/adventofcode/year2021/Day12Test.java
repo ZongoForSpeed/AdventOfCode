@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
@@ -350,7 +350,7 @@ public class Day12Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day12Test.class.getResourceAsStream("/day/12/input")) {
+        try (InputStream is = Day12Test.class.getResourceAsStream("/2021/day/12/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(findAllPathsPartOne(scanner)).hasSize(5104);
         }
@@ -415,7 +415,7 @@ public class Day12Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day12Test.class.getResourceAsStream("/day/12/input")) {
+        try (InputStream is = Day12Test.class.getResourceAsStream("/2021/day/12/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(findAllPathsPartTwo(scanner)).hasSize(149220);
         }

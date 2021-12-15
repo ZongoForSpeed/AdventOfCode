@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.utils.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -118,7 +118,7 @@ public class Day02Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        List<String> input = FileUtils.readLines("/day/2/input");
+        List<String> input = FileUtils.readLines("/2021/day/2/input");
 
         Pair<Integer, Integer> p = divePartOne(input);
 
@@ -169,7 +169,7 @@ public class Day02Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        List<String> input = FileUtils.readLines("/day/2/input");
+        List<String> input = FileUtils.readLines("/2021/day/2/input");
 
         Triple<Integer, Integer, Integer> triple = divePartTwo(input);
         assertThat(triple).isEqualTo(Triple.of(2033, 909225, 768));

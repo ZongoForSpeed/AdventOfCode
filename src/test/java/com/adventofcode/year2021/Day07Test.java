@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -110,7 +110,7 @@ public class Day07Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/day/7/input")) {
+        try (InputStream is = Day07Test.class.getResourceAsStream("/2021/day/7/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(fuelCost(scanner.nextLine(), Day07Test::fuelPartOne)).isEqualTo(349357);
         }
@@ -153,7 +153,7 @@ public class Day07Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/day/7/input")) {
+        try (InputStream is = Day07Test.class.getResourceAsStream("/2021/day/7/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(fuelCost(scanner.nextLine(), Day07Test::fuelPartTwo)).isEqualTo(96708205);
         }

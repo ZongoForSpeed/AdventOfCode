@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -226,7 +226,7 @@ public class Day04Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day04Test.class.getResourceAsStream("/day/4/input")) {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/2021/day/4/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(playBingoPartOne(scanner)).isEqualTo(69579);
         }
@@ -254,7 +254,7 @@ public class Day04Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day04Test.class.getResourceAsStream("/day/4/input")) {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/2021/day/4/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             assertThat(playBingoPartTwo(scanner)).isEqualTo(14877);
         }

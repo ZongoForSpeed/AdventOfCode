@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.utils.FileUtils;
 import org.junit.jupiter.api.Test;
@@ -114,7 +114,7 @@ public class Day01Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        List<String> input = FileUtils.readLines("/day/1/input");
+        List<String> input = FileUtils.readLines("/2021/day/1/input");
         int[] array = input.stream().mapToInt(Integer::valueOf).toArray();
         assertThat(measurementIncreases(array)).isEqualTo(1713);
     }
@@ -169,7 +169,7 @@ public class Day01Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        List<String> input = FileUtils.readLines("/day/1/input");
+        List<String> input = FileUtils.readLines("/2021/day/1/input");
         int[] array = input.stream().mapToInt(Integer::valueOf).toArray();
         assertThat(measurementIncreases(array, 3)).isEqualTo(1734);
     }

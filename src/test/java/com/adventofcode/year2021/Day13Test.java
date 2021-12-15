@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.map.CharMap;
 import com.adventofcode.map.Point2D;
@@ -263,7 +263,7 @@ public class Day13Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day13Test.class.getResourceAsStream("/day/13/input")) {
+        try (InputStream is = Day13Test.class.getResourceAsStream("/2021/day/13/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             CharMap map = new CharMap(0, 0, '.');
             List<Pair<String, Integer>> instructions = new ArrayList<>();
@@ -286,7 +286,7 @@ public class Day13Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day13Test.class.getResourceAsStream("/day/13/input")) {
+        try (InputStream is = Day13Test.class.getResourceAsStream("/2021/day/13/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             CharMap map = new CharMap(0, 0, '.');
             List<Pair<String, Integer>> instructions = new ArrayList<>();

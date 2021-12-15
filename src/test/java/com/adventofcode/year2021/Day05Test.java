@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.map.IntegerMap;
 import com.adventofcode.map.Point2D;
@@ -186,7 +186,7 @@ public class Day05Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/day/5/input")) {
+        try (InputStream is = Day05Test.class.getResourceAsStream("/2021/day/5/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             int overlaps = countOverlapsPartOne(scanner);
             assertThat(overlaps).isEqualTo(6572);
@@ -231,7 +231,7 @@ public class Day05Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/day/5/input")) {
+        try (InputStream is = Day05Test.class.getResourceAsStream("/2021/day/5/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
             int overlaps = countOverlapsPartTwo(scanner);
             assertThat(overlaps).isEqualTo(21466);

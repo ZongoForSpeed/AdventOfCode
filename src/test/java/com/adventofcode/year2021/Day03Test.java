@@ -1,4 +1,4 @@
-package com.adventofcode;
+package com.adventofcode.year2021;
 
 import com.adventofcode.utils.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -175,7 +175,7 @@ public class Day03Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        List<String> input = FileUtils.readLines("/day/3/input");
+        List<String> input = FileUtils.readLines("/2021/day/3/input");
 
         Pair<Integer, Integer> p = binaryDiagnostic(input);
 
@@ -260,7 +260,7 @@ public class Day03Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        List<String> input = FileUtils.readLines("/day/3/input");
+        List<String> input = FileUtils.readLines("/2021/day/3/input");
 
         int oxygen = oxygenGeneratorRating(input);
         int co2 = CO2ScrubberRating(input);
