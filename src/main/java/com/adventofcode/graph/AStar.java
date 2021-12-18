@@ -16,7 +16,7 @@ public class AStar {
     public static <E> long algorithm(Function<E, List<E>> graph, BiFunction<E, E, Long> distance, E start, E end) {
         Set<E> closedList = new HashSet<>();
         Queue<Node<E>> queue = new PriorityQueue<>(Comparator.comparingLong(Node::cost));
-        queue.add(new Node<>(start, 0L, Integer.MAX_VALUE));
+        queue.add(new Node<>(start, 0L));
         while (!queue.isEmpty()) {
             Node<E> node = queue.poll();
             if (node.vertex().equals(end)) {
@@ -26,7 +26,7 @@ public class AStar {
                 List<E> moves = graph.apply(node.vertex());
                 for (E move : moves) {
                     if (!closedList.contains(move)) {
-                        Node<E> suivant = new Node<>(move, node.cost() + distance.apply(node.vertex(), move), Integer.MAX_VALUE);
+                        Node<E> suivant = new Node<>(move, node.cost() + distance.apply(node.vertex(), move));
                         queue.add(suivant);
                     }
                 }
@@ -36,29 +36,6 @@ public class AStar {
         return Long.MAX_VALUE;
     }
 
-    public static <E> long algorithm(Function<E, List<E>> graph, BiFunction<E, E,  Long> distance, BiFunction<E, E,  Long> heuristic, E start, E end) {
-        Set<E> closedList = new HashSet<>();
-        Queue<Node<E>> queue = new PriorityQueue<>(Comparator.comparingLong(Node::heuristic));
-        queue.add(new Node<>(start, 0L, heuristic.apply(start, end)));
-        while (!queue.isEmpty()) {
-            Node<E> node = queue.poll();
-            if (node.vertex().equals(end)) {
-                return node.cost();
-            }
-            if (closedList.add(node.vertex())) {
-                List<E> moves = graph.apply(node.vertex());
-                for (E move : moves) {
-                    if (!closedList.contains(move)) {
-                        Node<E> suivant = new Node<>(move, node.cost() + distance.apply(node.vertex(), move), node.cost() + heuristic.apply(end, move) + 1);
-                        queue.add(suivant);
-                    }
-                }
-            }
-        }
-
-        return Long.MAX_VALUE;
-    }
-
-    private record Node<E>(E vertex, long cost, long heuristic) {
+    private record Node<E>(E vertex, long cost) {
     }
 }
