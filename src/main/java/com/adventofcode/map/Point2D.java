@@ -17,9 +17,5 @@ public record Point2D(int x, int y) {
     public Point2D move(Point2D d) {
         return new Point2D(x + d.x, y + d.y);
     }
-
-    public static int ManhattanDistance(Point2D a, Point2D b) {
-        return 100 * (Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y()));
-    }
 }
 

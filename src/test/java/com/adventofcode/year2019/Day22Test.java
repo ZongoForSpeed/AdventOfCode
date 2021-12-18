@@ -134,7 +134,7 @@ public class Day22Test {
 
         m = Matrix2D.power(m, exponent, modulus);
 
-        return (m.a11 * position + m.a12) % modulus;
+        return (m.a11() * position + m.a12()) % modulus;
     }
 
     /**

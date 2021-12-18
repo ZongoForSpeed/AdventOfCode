@@ -7,6 +7,7 @@ import java.math.BigInteger;
 public final class Arithmetic {
     private Arithmetic() {
     }
+
     public static long chineseRemainderTheorem(long[] modulos, long[] reminders, long[] primes) {
         assert (modulos.length == reminders.length);
 
@@ -158,10 +159,6 @@ public final class Arithmetic {
             s = new_s;
             t = new_t;
         }
-
-        // std::cout << "Bézout coefficients:" << std::make_pair(old_s, old_t) << std::endl;
-        // std::cout << "greatest common divisor:" << old_r << std::endl;
-        // std::cout << "quotients by the gcd:" << std::make_pair(t, s) << std::endl;
 
         return Triple.of(old_r, old_s, old_t);
     }

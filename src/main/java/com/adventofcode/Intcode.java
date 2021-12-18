@@ -1,5 +1,6 @@
 package com.adventofcode;
 
+import com.adventofcode.maths.Permutations;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Collections;

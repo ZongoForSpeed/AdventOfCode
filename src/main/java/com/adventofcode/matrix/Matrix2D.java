@@ -2,21 +2,7 @@ package com.adventofcode.matrix;
 
 import java.math.BigInteger;
 
-public class Matrix2D {
-    public long a11;
-    public long a12;
-    public long a21;
-    public long a22;
-
-    public Matrix2D() {
-    }
-
-    public Matrix2D(long a11, long a12, long a21, long a22) {
-        this.a11 = a11;
-        this.a12 = a12;
-        this.a21 = a21;
-        this.a22 = a22;
-    }
+public record Matrix2D(long a11, long a12, long a21, long a22) {
 
     private static long multiplyMod(long a, long b, long modulus) {
         return BigInteger.valueOf(a).multiply(BigInteger.valueOf(b)).mod(BigInteger.valueOf(modulus)).longValue();
