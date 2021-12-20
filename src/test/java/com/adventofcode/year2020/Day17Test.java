@@ -1,5 +1,6 @@
 package com.adventofcode.year2020;
 
+import com.adventofcode.map.Point2D;
 import com.adventofcode.map.Point3D;
 import com.adventofcode.map.Point4D;
 import com.adventofcode.utils.FileUtils;
