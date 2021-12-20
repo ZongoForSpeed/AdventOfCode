@@ -40,10 +40,6 @@ public class Day20Test {
         }
 
         return code;
-        //return neighbors(p).stream()
-        //        .map(n -> charMap.getOrDefault(n, '.'))
-        //        .mapToInt(c -> (c == '#' ? 1 : 0))
-        //        .reduce(0, (b, v) -> 2 * v + b);
     }
 
     private static long enhanceImage(Scanner scanner, int steps) {
@@ -80,8 +76,8 @@ public class Day20Test {
         int yMin = charMap.keySet().stream().mapToInt(Point2D::y).min().orElseThrow();
         int yMax = charMap.keySet().stream().mapToInt(Point2D::y).max().orElseThrow();
 
-        charMap.put(Point2D.of(xMin - 20 - 2 * steps, yMin - 20 - 2 * steps), '.');
-        charMap.put(Point2D.of(xMax + 20 + 2 * steps, yMax + 20 + 2 * steps), '.');
+        charMap.put(Point2D.of(xMin - 2 * steps, yMin - 2 * steps), '.');
+        charMap.put(Point2D.of(xMax + 2 * steps, yMax + 2 * steps), '.');
 
         for (int step = 1; step <= steps; ++step) {
             charMap = enhanceImage(charMap, enhancementAlgorithm);
@@ -275,6 +271,8 @@ public class Day20Test {
      * Start with the original input image and apply the image enhancement
      * algorithm twice, being careful to account for the infinite size of the
      * images. How many pixels are lit in the resulting image?
+     *
+     * Your puzzle answer was 5819.
      */
     @Test
     void inputPartOne() throws IOException {
@@ -287,16 +285,16 @@ public class Day20Test {
     /**
      * --- Part Two ---
      *
-     * Sometimes, it's a good idea to appreciate just how big the ocean is. Using
-     * the Manhattan distance, how far apart do the scanners get?
+     * You still can't quite make out the details in the image. Maybe you just
+     * didn't enhance it enough.
      *
-     * In the above example, scanners 2 (1105,-1205,1229) and 3 (-92,-2380,-20)
-     * are the largest Manhattan distance apart. In total, they are
-     * 1197 + 1175 + 1249 = 3621 units apart.
+     * If you enhance the starting input image in the above example a total of 50
+     * times, 3351 pixels are lit in the final output image.
      *
-     * What is the largest Manhattan distance between any two scanners?
+     * Start again with the original input image and apply the image enhancement
+     * algorithm 50 times. How many pixels are lit in the resulting image?
      *
-     * Your puzzle answer was 10832.
+     * Your puzzle answer was 18516.
      */
     @Test
     void inputPartTwo() throws IOException {
