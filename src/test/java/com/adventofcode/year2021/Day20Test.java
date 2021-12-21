@@ -24,10 +24,6 @@ public class Day20Test {
             Point2D.of(-1, 1), Point2D.of(0, 1), Point2D.of(1, 1)
     );
 
-    private static List<Point2D> neighbors(Point2D p) {
-        return NEIGHBORS.stream().map(p::move).toList();
-    }
-
     private static int pixelCode(InfiniteCharMap charMap, Point2D p) {
         int code = 0;
         for (Point2D neighbor : NEIGHBORS) {
