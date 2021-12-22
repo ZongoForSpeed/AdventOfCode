@@ -3,8 +3,11 @@ package com.adventofcode.year2019;
 import com.adventofcode.utils.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -19,6 +22,8 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day24Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
+
     private static BitSet nextState(BitSet bugs, List<List<Integer>> adjacents) {
         BitSet next = new BitSet(adjacents.size());
         for (int i = 0; i < adjacents.size(); i++) {
@@ -33,7 +38,7 @@ public class Day24Test {
         return next;
     }
 
-    private static String printLayout(Map<Integer, BitSet> depthBugs, boolean show) {
+    private static String printLayout(Map<Integer, BitSet> depthBugs) {
         int[] depths = depthBugs.keySet().stream().mapToInt(t -> t).sorted().toArray();
         StringBuilder sb = new StringBuilder();
         for (int depth : depths) {
@@ -54,8 +59,7 @@ public class Day24Test {
             sb.append("\n\n");
         }
 
-        if (show)
-            System.out.println(sb);
+        LOGGER.info("{}", sb);
         return sb.toString();
     }
 
@@ -70,8 +74,7 @@ public class Day24Test {
             }
         }
 
-        if (show)
-            System.out.println(sb);
+        LOGGER.trace("{}", sb);
         return sb.toString();
     }
 
@@ -278,7 +281,7 @@ public class Day24Test {
     @Test
     void testSimpleExample() {
         List<List<Integer>> adjacent = buildAdjacent(5);
-        System.out.println(adjacent);
+        LOGGER.info("adjacent: {}", adjacent);
 
         String initialState = """
                 ....#
@@ -288,8 +291,7 @@ public class Day24Test {
                 #....""";
         BitSet bugs = parseLayout(initialState);
 
-        System.out.println();
-        System.out.println("Initial state:");
+        LOGGER.info("Initial state:");
         assertThat(printLayout(bugs, false)).isEqualTo("""
                 ....#
                 #..#.
@@ -298,8 +300,7 @@ public class Day24Test {
                 #....""");
         bugs = nextState(bugs, adjacent);
 
-        System.out.println();
-        System.out.println("After 1 minute:");
+        LOGGER.info("After 1 minute:");
         assertThat(printLayout(bugs, false)).isEqualTo("""
                 #..#.
                 ####.
@@ -308,8 +309,7 @@ public class Day24Test {
                 .##..""");
         bugs = nextState(bugs, adjacent);
 
-        System.out.println();
-        System.out.println("After 2 minute:");
+        LOGGER.info("After 2 minute:");
         assertThat(printLayout(bugs, false)).isEqualTo("""
                 #####
                 ....#
@@ -318,8 +318,7 @@ public class Day24Test {
                 #.###""");
         bugs = nextState(bugs, adjacent);
 
-        System.out.println();
-        System.out.println("After 3 minute:");
+        LOGGER.info("After 3 minute:");
         assertThat(printLayout(bugs, false)).isEqualTo("""
                 #....
                 ####.
@@ -328,8 +327,7 @@ public class Day24Test {
                 .##.#""");
         bugs = nextState(bugs, adjacent);
 
-        System.out.println();
-        System.out.println("After 4 minute:");
+        LOGGER.info("After 4 minute:");
         assertThat(printLayout(bugs, false)).isEqualTo("""
                 ####.
                 ....#
@@ -585,8 +583,7 @@ public class Day24Test {
 
         for (int i = 0; i < adjacent.size(); i++) {
             List<Pair<Integer, Integer>> pairs = adjacent.get(i);
-            System.out.println(i + 1 + " ==> " + pairs.stream().map(t -> Pair.of(t.getLeft() + 1, t.getRight())).map(Objects::toString).collect(Collectors.joining(", ")));
-
+            LOGGER.info("{} ==> {}", i + 1, pairs.stream().map(t -> Pair.of(t.getLeft() + 1, t.getRight())).map(Objects::toString).collect(Collectors.joining(", ")));
         }
     }
 
@@ -608,7 +605,7 @@ public class Day24Test {
             depthBugs = nextState(depthBugs, adjacent);
         }
 
-        assertThat(printLayout(depthBugs, true)).isEqualTo("""
+        assertThat(printLayout(depthBugs)).isEqualTo("""
                 Depth -5:
                 ..#..
                 .#.#.

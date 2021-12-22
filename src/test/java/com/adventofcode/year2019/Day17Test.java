@@ -6,6 +6,8 @@ import com.adventofcode.map.Point2D;
 import com.adventofcode.utils.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day17Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
     private static int computeSumAlignmentParameters(String output) {
         char[][] map = Arrays.stream(output.split("\\n")).map(String::toCharArray).toArray(char[][]::new);
         int sum = 0;
@@ -170,7 +173,8 @@ public class Day17Test {
         Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));
 
         String map = sb.toString();
-        System.out.println(map);
+        LOGGER.debug("Map: {}", map);
+
         assertThat(computeSumAlignmentParameters(map)).isEqualTo(7280);
     }
 
@@ -313,14 +317,14 @@ public class Day17Test {
         String line = FileUtils.readLine("/2019/day/17/input");
         StringBuilder sb = new StringBuilder();
         Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));
-        System.out.println(sb);
+        LOGGER.debug("{}", sb);
         List<Pair<Character, Integer>> commands = findPath(sb.toString());
 
-        System.out.println(commands);
+        LOGGER.info("{}", commands);
 
         String collect = commands.stream().map(p -> p.getLeft() + "," + p.getRight()).collect(Collectors.joining(","));
         assertThat(collect).isEqualTo("R,10,L,8,R,10,R,4,L,6,L,6,R,10,R,10,L,8,R,10,R,4,L,6,R,12,R,12,R,10,L,6,L,6,R,10,L,6,R,12,R,12,R,10,R,10,L,8,R,10,R,4,L,6,L,6,R,10,R,10,L,8,R,10,R,4,L,6,R,12,R,12,R,10");
-        System.out.println(collect);
+        LOGGER.info("{}", collect);
 
         // (R,10), (L,8), (R,10), (R,4) ==> A
         // (L,6), (L,6), (R,10) ==> B
@@ -349,8 +353,7 @@ public class Day17Test {
             }
         });
 
-        System.out.println(out);
-
+        LOGGER.info("Out: {}", out);
         assertThat(dust).hasValue(1045393);
     }
 }

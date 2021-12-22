@@ -3,6 +3,8 @@ package com.adventofcode.year2019;
 import com.adventofcode.Intcode;
 import com.adventofcode.utils.FileUtils;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
@@ -12,19 +14,23 @@ import java.util.concurrent.atomic.AtomicLong;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day21Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day21Test.class);
     private static long runSpringscript(String line, String command) {
         BlockingQueue<Long> queue = new LinkedBlockingQueue<>();
         command.chars().mapToLong(t -> t).forEach(queue::add);
         AtomicLong result = new AtomicLong();
+        StringBuilder sb = new StringBuilder();
         Intcode.intcode(line, Intcode.take(queue), c -> {
             if (c < 256) {
-                System.out.print((char) c);
-                // sb.append((char) c);
+                sb.append((char) c);
             } else {
-                System.out.println(c);
+                sb.append(c);
+                LOGGER.info("{}", sb);
+                sb.setLength(0);
                 result.set(c);
             }
         });
+        LOGGER.info("{}", sb);
 
         return result.get();
     }

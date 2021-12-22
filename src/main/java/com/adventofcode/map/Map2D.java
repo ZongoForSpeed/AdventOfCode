@@ -1,5 +1,8 @@
 package com.adventofcode.map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,6 +13,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Map2D implements Map<Point2D, Long> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Map2D.class);
     private final Map<Point2D, Long> map;
 
     public Map2D() {
@@ -70,7 +74,7 @@ public class Map2D implements Map<Point2D, Long> {
         }
 
         for (char[] chars : view) {
-            System.out.println(String.valueOf(chars));
+            LOGGER.debug("{}", chars);
         }
         return Arrays.stream(view).map(String::valueOf).collect(Collectors.toList());
     }
@@ -91,7 +95,7 @@ public class Map2D implements Map<Point2D, Long> {
         }
 
         for (char[] chars : view) {
-            System.out.println(String.valueOf(chars));
+            LOGGER.debug("{}", chars);
         }
         return Arrays.stream(view).map(String::valueOf).collect(Collectors.toList());
     }

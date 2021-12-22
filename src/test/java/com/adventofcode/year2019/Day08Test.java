@@ -3,6 +3,8 @@ package com.adventofcode.year2019;
 import com.adventofcode.utils.FileUtils;
 import com.google.common.collect.Iterables;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -13,6 +15,7 @@ import java.util.stream.StreamSupport;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day08Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
     private static int[] readImage(String input, int layerSize) {
         int[][] decoded = StreamSupport.stream(Iterables.partition(input.chars().map(c -> c - '0').boxed().collect(Collectors.toList()), layerSize).spliterator(), false)
                 .map(t -> t.stream().mapToInt(Integer::intValue).toArray())
@@ -144,7 +147,7 @@ public class Day08Test {
         for (int index = 0; index < width * height; index += width) {
             StringBuilder sb = new StringBuilder();
             Arrays.spliterator(image, index, index + width).forEachRemaining((IntConsumer) i -> sb.append(i == 1 ? 'X' : ' '));
-            System.out.println(sb);
+            LOGGER.debug("{}", sb);
         }
     }
 }

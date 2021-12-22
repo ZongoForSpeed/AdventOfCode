@@ -3,8 +3,11 @@ package com.adventofcode.year2019;
 import com.adventofcode.maths.Arithmetic;
 import com.adventofcode.utils.FileUtils;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -15,6 +18,8 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day12Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day12Test.class);
+
     /**
      * --- Day 12: The N-Body Problem ---
      * The space near Jupiter is not a very safe place; you need to be careful of a big distracting red spot, extreme
@@ -214,13 +219,12 @@ public class Day12Test {
                 "<x=4, y=-8, z=8>",
                 "<x=3, y=5, z=-1>").map(Moon::parse).collect(Collectors.toList());
 
-        moons.forEach(System.out::println);
-        System.out.println();
+        for (Moon moon : moons) {
+            LOGGER.debug("Moon: {}", moon);
+        }
         for (long i = 1; i < 11; i++) {
             Moon.step(moons);
-            System.out.println("After " + i + " step(s):");
-            moons.forEach(System.out::println);
-            System.out.println();
+            LOGGER.debug("After {} step(s):\n{}", i, moons);
         }
 
         long totalEnergy = moons.stream().mapToLong(Moon::energy).sum();
@@ -235,14 +239,14 @@ public class Day12Test {
                 "<x=2, y=-7, z=3>",
                 "<x=9, y=-8, z=-3>").map(Moon::parse).collect(Collectors.toList());
 
-        moons.forEach(System.out::println);
-        System.out.println();
+        for (Moon moon : moons) {
+            LOGGER.debug("Moon: {}", moon);
+        }
+
         for (long i = 1; i < 101; i++) {
             Moon.step(moons);
             if (i % 10 == 0) {
-                System.out.println("After " + i + " step(s):");
-                moons.forEach(System.out::println);
-                System.out.println();
+                LOGGER.debug("After {} step(s):\n{}", i, moons);
             }
         }
 

@@ -3,8 +3,11 @@ package com.adventofcode.year2019;
 import com.adventofcode.Intcode;
 import com.adventofcode.utils.FileUtils;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day23Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
     /**
      * --- Day 23: Category Six ---
      * The droids have finished repairing as much of the ship as they can. Their report indicates that this was a
@@ -235,7 +239,8 @@ public class Day23Test {
             receivedPackets.add(l);
             if (receivedPackets.size() == 3) {
                 Packet packet = new Packet(receivedPackets.get(0), receivedPackets.get(1), receivedPackets.get(2));
-                System.out.println("Computer " + address + " received " + packet);
+
+                LOGGER.info("Computer {} received {}", address, packet);
                 outputQueue.add(packet);
                 receivedPackets.clear();
             }
