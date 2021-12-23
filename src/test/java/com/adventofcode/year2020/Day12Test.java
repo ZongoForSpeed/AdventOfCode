@@ -1,5 +1,6 @@
 package com.adventofcode.year2020;
 
+import com.adventofcode.map.Point2D;
 import com.adventofcode.utils.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
@@ -29,14 +30,14 @@ public class Day12Test {
             case 'E' -> waypointX += value;
             case 'W' -> waypointX -= value;
             case 'L' -> {
-                Pair<Integer, Integer> waypoint = turnLeft(waypointX, waypointY, value);
-                waypointX = waypoint.getLeft();
-                waypointY = waypoint.getRight();
+                Point2D waypoint = turnLeft(waypointX, waypointY, value);
+                waypointX = waypoint.x();
+                waypointY = waypoint.y();
             }
             case 'R' -> {
-                Pair<Integer, Integer> waypoint = turnRight(waypointX, waypointY, value);
-                waypointX = waypoint.getLeft();
-                waypointY = waypoint.getRight();
+                Point2D waypoint = turnRight(waypointX, waypointY, value);
+                waypointX = waypoint.x();
+                waypointY = waypoint.y();
             }
             case 'F' -> {
                 x += waypointX * value;
@@ -58,20 +59,20 @@ public class Day12Test {
         return position;
     }
 
-    private static Pair<Integer, Integer> turnLeft(int x, int y, int angle) {
+    private static Point2D turnLeft(int x, int y, int angle) {
         return switch (angle) {
-            case 90 -> Pair.of(-y, x);
-            case 180 -> Pair.of(-x, -y);
-            case 270 -> Pair.of(y, -x);
+            case 90 -> Point2D.of(-y, x);
+            case 180 -> Point2D.of(-x, -y);
+            case 270 -> Point2D.of(y, -x);
             default -> throw new IllegalStateException("Cannot turn left : " + angle);
         };
     }
 
-    private static Pair<Integer, Integer> turnRight(int x, int y, int angle) {
+    private static Point2D turnRight(int x, int y, int angle) {
         return switch (angle) {
-            case 90 -> Pair.of(y, -x);
-            case 180 -> Pair.of(-x, -y);
-            case 270 -> Pair.of(-y, x);
+            case 90 -> Point2D.of(y, -x);
+            case 180 -> Point2D.of(-x, -y);
+            case 270 -> Point2D.of(-y, x);
             default -> throw new IllegalStateException("Cannot turn right : " + angle);
         };
     }
@@ -91,9 +92,9 @@ public class Day12Test {
             case 'L' -> direction = direction.turnLeft(value);
             case 'R' -> direction = direction.turnRight(value);
             case 'F' -> {
-                Pair<Integer, Integer> move = direction.move(x, y, value);
-                x = move.getLeft();
-                y = move.getRight();
+                Point2D move = direction.move(x, y, value);
+                x = move.x();
+                y = move.y();
             }
             default -> throw new IllegalStateException("Unknown action : " + type);
         }
@@ -262,26 +263,26 @@ public class Day12Test {
     enum Direction {
         NORTH {
             @Override
-            public Pair<Integer, Integer> move(int x, int y, int n) {
-                return Pair.of(x, y + n);
+            public Point2D move(int x, int y, int n) {
+                return Point2D.of(x, y + n);
             }
         },
         WEST {
             @Override
-            public Pair<Integer, Integer> move(int x, int y, int n) {
-                return Pair.of(x - n, y);
+            public Point2D move(int x, int y, int n) {
+                return Point2D.of(x - n, y);
             }
         },
         SOUTH {
             @Override
-            public Pair<Integer, Integer> move(int x, int y, int n) {
-                return Pair.of(x, y - n);
+            public Point2D move(int x, int y, int n) {
+                return Point2D.of(x, y - n);
             }
         },
         EAST {
             @Override
-            public Pair<Integer, Integer> move(int x, int y, int n) {
-                return Pair.of(x + n, y);
+            public Point2D move(int x, int y, int n) {
+                return Point2D.of(x + n, y);
             }
         };
 
@@ -294,12 +295,12 @@ public class Day12Test {
 
         }
 
-        public abstract Pair<Integer, Integer> move(int x, int y, int n);
+        public abstract Point2D move(int x, int y, int n);
     }
 
     private static record PositionWaypoint(int x, int y, int waypointX, int waypointY) {
     }
 
-    private static record PositionDirection(Direction d, int x, int y) {
+    private record PositionDirection(Direction d, int x, int y) {
     }
 }

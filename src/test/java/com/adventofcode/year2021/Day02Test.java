@@ -1,6 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.utils.FileUtils;
+import com.adventofcode.utils.IntegerPair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day02Test {
 
-    private static Pair<Integer, Integer> divePartOne(List<String> input) {
+    private static IntegerPair divePartOne(List<String> input) {
         int position = 0;
         int depth = 0;
 
@@ -28,7 +29,7 @@ public class Day02Test {
             }
         }
 
-        return Pair.of(position, depth);
+        return IntegerPair.of(position, depth);
     }
 
     private static Triple<Integer, Integer, Integer> divePartTwo(List<String> input) {
@@ -63,10 +64,10 @@ public class Day02Test {
                 "down 8",
                 "forward 2");
 
-        Pair<Integer, Integer> p = divePartOne(strings);
+        IntegerPair p = divePartOne(strings);
 
-        assertThat(p.getLeft()).isEqualTo(15);
-        assertThat(p.getRight()).isEqualTo(10);
+        assertThat(p.left()).isEqualTo(15);
+        assertThat(p.right()).isEqualTo(10);
 
         Triple<Integer, Integer, Integer> triple = divePartTwo(strings);
         assertThat(triple).isEqualTo(Triple.of(15, 60, 10));
@@ -120,9 +121,9 @@ public class Day02Test {
     void inputPartOne() throws IOException {
         List<String> input = FileUtils.readLines("/2021/day/2/input");
 
-        Pair<Integer, Integer> p = divePartOne(input);
+        IntegerPair p = divePartOne(input);
 
-        assertThat(p.getLeft() * p.getRight()).isEqualTo(1561344);
+        assertThat(p.left() * p.right()).isEqualTo(1561344);
     }
 
     /**

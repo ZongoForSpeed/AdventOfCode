@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.utils.LongLongPair;
+import com.adventofcode.utils.LongPair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -68,13 +68,13 @@ public class Day21Test {
         Player player1 = players.get("1");
         Player player2 = players.get("2");
 
-        LongLongPair result = playPartTwo(new HashMap<>(), true, player1, player2);
+        LongPair result = playPartTwo(new HashMap<>(), true, player1, player2);
         return Math.max(result.left(), result.right());
     }
 
-    private static LongLongPair playPartTwo(Map<Triple<Boolean, Player, Player>, LongLongPair> cache, boolean turn, Player player1, Player player2) {
+    private static LongPair playPartTwo(Map<Triple<Boolean, Player, Player>, LongPair> cache, boolean turn, Player player1, Player player2) {
         Triple<Boolean, Player, Player> key = Triple.of(turn, player1, player2);
-        LongLongPair cachedValue = cache.get(key);
+        LongPair cachedValue = cache.get(key);
         if (cachedValue != null) {
             return cachedValue;
         }
@@ -90,7 +90,7 @@ public class Day21Test {
                         if (newPlayer1.score() >= 21) {
                             player1wins++;
                         } else {
-                            LongLongPair pair = playPartTwo(cache, false, newPlayer1, player2);
+                            LongPair pair = playPartTwo(cache, false, newPlayer1, player2);
                             player1wins += pair.left();
                             player2wins += pair.right();
                         }
@@ -105,7 +105,7 @@ public class Day21Test {
                         if (newPlayer2.score() >= 21) {
                             player2wins++;
                         } else {
-                            LongLongPair pair = playPartTwo(cache, true, player1, newPlayer2);
+                            LongPair pair = playPartTwo(cache, true, player1, newPlayer2);
                             player1wins += pair.left();
                             player2wins += pair.right();
                         }
@@ -114,7 +114,7 @@ public class Day21Test {
             }
         }
 
-        cachedValue = LongLongPair.of(player1wins, player2wins);
+        cachedValue = LongPair.of(player1wins, player2wins);
         cache.put(key, cachedValue);
         return cachedValue;
     }

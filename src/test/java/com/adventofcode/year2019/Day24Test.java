@@ -1,6 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.utils.FileUtils;
+import com.adventofcode.utils.IntegerPair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -100,8 +101,8 @@ public class Day24Test {
         return adjacent;
     }
 
-    private static List<List<Pair<Integer, Integer>>> buildDepthAdjacent(int size) {
-        List<List<Pair<Integer, Integer>>> adjacent = new ArrayList<>();
+    private static List<List<IntegerPair>> buildDepthAdjacent(int size) {
+        List<List<IntegerPair>> adjacent = new ArrayList<>();
         int middle = (size / 2) * size + (size / 2);
         IntStream.range(0, size * size).forEach(ignore -> adjacent.add(new ArrayList<>()));
         for (int i = 0; i < size; i++) {
@@ -113,46 +114,46 @@ public class Day24Test {
                 if (i > 0) {
                     if (n - size == middle) {
                         for (int k = 0; k < size; ++k) {
-                            adjacent.get(n).add(Pair.of(size * (size - 1) + k, 1));
+                            adjacent.get(n).add(IntegerPair.of(size * (size - 1) + k, 1));
                         }
                     } else {
-                        adjacent.get(n).add(Pair.of(n - size, 0));
+                        adjacent.get(n).add(IntegerPair.of(n - size, 0));
                     }
                 } else {
-                    adjacent.get(n).add(Pair.of(middle - size, -1));
+                    adjacent.get(n).add(IntegerPair.of(middle - size, -1));
                 }
                 if (i < size - 1) {
                     if (n + size == middle) {
                         for (int k = 0; k < size; ++k) {
-                            adjacent.get(n).add(Pair.of(k, 1));
+                            adjacent.get(n).add(IntegerPair.of(k, 1));
                         }
                     } else {
-                        adjacent.get(n).add(Pair.of(n + size, 0));
+                        adjacent.get(n).add(IntegerPair.of(n + size, 0));
                     }
                 } else {
-                    adjacent.get(n).add(Pair.of(middle + size, -1));
+                    adjacent.get(n).add(IntegerPair.of(middle + size, -1));
                 }
                 if (j > 0) {
                     if (n - 1 == middle) {
                         for (int k = 0; k < size; ++k) {
-                            adjacent.get(n).add(Pair.of(size * (k + 1) - 1, 1));
+                            adjacent.get(n).add(IntegerPair.of(size * (k + 1) - 1, 1));
                         }
                     } else {
-                        adjacent.get(n).add(Pair.of(n - 1, 0));
+                        adjacent.get(n).add(IntegerPair.of(n - 1, 0));
                     }
                 } else {
-                    adjacent.get(n).add(Pair.of(middle - 1, -1));
+                    adjacent.get(n).add(IntegerPair.of(middle - 1, -1));
                 }
                 if (j < size - 1) {
                     if (n + 1 == middle) {
                         for (int k = 0; k < size; ++k) {
-                            adjacent.get(n).add(Pair.of(size * k, 1));
+                            adjacent.get(n).add(IntegerPair.of(size * k, 1));
                         }
                     } else {
-                        adjacent.get(n).add(Pair.of(n + 1, 0));
+                        adjacent.get(n).add(IntegerPair.of(n + 1, 0));
                     }
                 } else {
-                    adjacent.get(n).add(Pair.of(middle + 1, -1));
+                    adjacent.get(n).add(IntegerPair.of(middle + 1, -1));
                 }
             }
         }
@@ -184,7 +185,7 @@ public class Day24Test {
         return bugs.get(position);
     }
 
-    private static Map<Integer, BitSet> nextState(Map<Integer, BitSet> depthBugs, List<List<Pair<Integer, Integer>>> adjacents) {
+    private static Map<Integer, BitSet> nextState(Map<Integer, BitSet> depthBugs, List<List<IntegerPair>> adjacents) {
         Set<Integer> depths = depthBugs.keySet();
         int minDepth = depths.stream().mapToInt(t -> t).min().orElse(0) - 1;
         int maxDepth = depths.stream().mapToInt(t -> t).max().orElse(0) + 1;
@@ -194,7 +195,7 @@ public class Day24Test {
             int finalDepth = depth;
             BitSet bugs = new BitSet(adjacents.size());
             for (int i = 0; i < adjacents.size(); i++) {
-                long adjacent = adjacents.get(i).stream().filter(p -> getBugs(depthBugs, finalDepth + p.getRight(), p.getLeft())).count();
+                long adjacent = adjacents.get(i).stream().filter(p -> getBugs(depthBugs, finalDepth + p.right(), p.left())).count();
                 if (getBugs(depthBugs, depth, i)) {
                     bugs.set(i, adjacent == 1);
                 } else {
@@ -556,39 +557,39 @@ public class Day24Test {
      */
     @Test
     void testBuildDepthAdjacent() {
-        List<List<Pair<Integer, Integer>>> adjacent = buildDepthAdjacent(5);
+        List<List<IntegerPair>> adjacent = buildDepthAdjacent(5);
         assertThat(adjacent.get(18)).hasSize(4).contains(
-                Pair.of(13, 0),
-                Pair.of(23, 0),
-                Pair.of(17, 0),
-                Pair.of(19, 0)
+                IntegerPair.of(13, 0),
+                IntegerPair.of(23, 0),
+                IntegerPair.of(17, 0),
+                IntegerPair.of(19, 0)
         );
         assertThat(adjacent.get(13)).hasSize(8).contains(
-                Pair.of(8, 0),
-                Pair.of(18, 0),
-                Pair.of(4, 1),
-                Pair.of(9, 1),
-                Pair.of(14, 1),
-                Pair.of(19, 1),
-                Pair.of(24, 1),
-                Pair.of(14, 0)
+                IntegerPair.of(8, 0),
+                IntegerPair.of(18, 0),
+                IntegerPair.of(4, 1),
+                IntegerPair.of(9, 1),
+                IntegerPair.of(14, 1),
+                IntegerPair.of(19, 1),
+                IntegerPair.of(24, 1),
+                IntegerPair.of(14, 0)
         );
         assertThat(adjacent.get(3)).hasSize(4).contains(
-                Pair.of(7, -1),
-                Pair.of(8, 0),
-                Pair.of(2, 0),
-                Pair.of(4, 0)
+                IntegerPair.of(7, -1),
+                IntegerPair.of(8, 0),
+                IntegerPair.of(2, 0),
+                IntegerPair.of(4, 0)
         );
 
         for (int i = 0; i < adjacent.size(); i++) {
-            List<Pair<Integer, Integer>> pairs = adjacent.get(i);
-            LOGGER.info("{} ==> {}", i + 1, pairs.stream().map(t -> Pair.of(t.getLeft() + 1, t.getRight())).map(Objects::toString).collect(Collectors.joining(", ")));
+            List<IntegerPair> pairs = adjacent.get(i);
+            LOGGER.info("{} ==> {}", i + 1, pairs.stream().map(t -> IntegerPair.of(t.left() + 1, t.right())).map(Objects::toString).collect(Collectors.joining(", ")));
         }
     }
 
     @Test
     void testDepthExample() {
-        List<List<Pair<Integer, Integer>>> adjacent = buildDepthAdjacent(5);
+        List<List<IntegerPair>> adjacent = buildDepthAdjacent(5);
         String layout = """
                 ....#
                 #..#.
@@ -689,7 +690,7 @@ public class Day24Test {
 
     @Test
     void testInputPartTwo() throws IOException {
-        List<List<Pair<Integer, Integer>>> adjacent = buildDepthAdjacent(5);
+        List<List<IntegerPair>> adjacent = buildDepthAdjacent(5);
 
         List<String> lines = FileUtils.readLines("/2019/day/24/input");
         String layout = String.join("\n", lines);

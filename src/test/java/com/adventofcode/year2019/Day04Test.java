@@ -1,6 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.maths.Digits;
+import com.adventofcode.utils.IntegerPair;
 import com.google.common.collect.Ordering;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
@@ -70,21 +71,21 @@ public class Day04Test {
             return false;
         }
 
-        List<Pair<Integer, Integer>> counter = new ArrayList<>();
-        Pair<Integer, Integer> current = null;
+        List<IntegerPair> counter = new ArrayList<>();
+        IntegerPair current = null;
         for (int value : digits) {
             if (current == null) {
-                current = Pair.of(value, 1);
-            } else if (current.getLeft() == value) {
-                current = Pair.of(value, current.getRight() + 1);
+                current = IntegerPair.of(value, 1);
+            } else if (current.left() == value) {
+                current = IntegerPair.of(value, current.right() + 1);
             } else {
                 counter.add(current);
-                current = Pair.of(value, 1);
+                current = IntegerPair.of(value, 1);
             }
         }
         counter.add(current);
 
-        return counter.stream().anyMatch(p -> p.getRight() == 2);
+        return counter.stream().anyMatch(p -> p.right() == 2);
     }
 
     @Test

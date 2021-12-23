@@ -1,6 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.utils.FileUtils;
+import com.adventofcode.utils.IntegerPair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day03Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day03Test.class);
 
-    private static Pair<Integer, Integer> binaryDiagnostic(List<String> strings) {
+    private static IntegerPair binaryDiagnostic(List<String> strings) {
         int length = strings.iterator().next().length();
         int[] frequency = new int[length];
         for (String string : strings) {
@@ -42,7 +43,7 @@ public class Day03Test {
         Integer epsilon = Integer.valueOf(sbEpsilon.toString(), 2);
         LOGGER.info("Epsilon : {}, {}", sbEpsilon, epsilon);
 
-        return Pair.of(gamma, epsilon);
+        return IntegerPair.of(gamma, epsilon);
     }
 
     private static int oxygenGeneratorRating(List<String> strings) {
@@ -105,10 +106,10 @@ public class Day03Test {
                 "00010",
                 "01010");
 
-        Pair<Integer, Integer> p = binaryDiagnostic(strings);
+        IntegerPair p = binaryDiagnostic(strings);
 
-        assertThat(p.getLeft()).isEqualTo(22);
-        assertThat(p.getRight()).isEqualTo(9);
+        assertThat(p.left()).isEqualTo(22);
+        assertThat(p.right()).isEqualTo(9);
 
         int oxygen = oxygenGeneratorRating(strings);
         int co2 = CO2ScrubberRating(strings);
@@ -177,9 +178,9 @@ public class Day03Test {
     void inputPartOne() throws IOException {
         List<String> input = FileUtils.readLines("/2021/day/3/input");
 
-        Pair<Integer, Integer> p = binaryDiagnostic(input);
+        IntegerPair p = binaryDiagnostic(input);
 
-        assertThat(p.getLeft() * p.getRight()).isEqualTo(738234);
+        assertThat(p.left() * p.right()).isEqualTo(738234);
     }
 
     /**

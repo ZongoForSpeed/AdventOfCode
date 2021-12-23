@@ -1,6 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.utils.FileUtils;
+import com.adventofcode.utils.IntegerPair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -36,7 +37,7 @@ public class Day10Test {
         return value;
     }
 
-    private static Pair<Integer, Integer> jolterAdapter(List<Long> adapters) {
+    private static IntegerPair jolterAdapter(List<Long> adapters) {
         adapters = new ArrayList<>(adapters);
         Collections.sort(adapters);
         adapters.add(0, 0L);
@@ -51,7 +52,7 @@ public class Day10Test {
         }
 
         LOGGER.info("diffs = {}", diffs);
-        return Pair.of(diffs[1], diffs[3]);
+        return IntegerPair.of(diffs[1], diffs[3]);
     }
 
     private static long adapterArrangements(List<Long> adapters) {
@@ -94,9 +95,9 @@ public class Day10Test {
                 4L
         );
 
-        Pair<Integer, Integer> adapter = jolterAdapter(adapters);
-        assertThat(adapter.getLeft()).isEqualTo(7);
-        assertThat(adapter.getRight()).isEqualTo(5);
+        IntegerPair adapter = jolterAdapter(adapters);
+        assertThat(adapter.left()).isEqualTo(7);
+        assertThat(adapter.right()).isEqualTo(5);
 
         assertThat(adapterArrangements(adapters)).isEqualTo(8);
     }
@@ -137,9 +138,9 @@ public class Day10Test {
                 3L
         );
 
-        Pair<Integer, Integer> adapter = jolterAdapter(adapters);
-        assertThat(adapter.getLeft()).isEqualTo(22);
-        assertThat(adapter.getRight()).isEqualTo(10);
+        IntegerPair adapter = jolterAdapter(adapters);
+        assertThat(adapter.left()).isEqualTo(22);
+        assertThat(adapter.right()).isEqualTo(10);
 
         assertThat(adapterArrangements(adapters)).isEqualTo(19208);
     }
@@ -335,11 +336,11 @@ public class Day10Test {
                 .map(Long::parseLong)
                 .collect(Collectors.toList());
 
-        Pair<Integer, Integer> adapter = jolterAdapter(adapters);
-        assertThat(adapter.getLeft()).isEqualTo(72);
-        assertThat(adapter.getRight()).isEqualTo(31);
+        IntegerPair adapter = jolterAdapter(adapters);
+        assertThat(adapter.left()).isEqualTo(72);
+        assertThat(adapter.right()).isEqualTo(31);
 
-        long result = adapter.getLeft() * adapter.getRight();
+        long result = (long) adapter.left() * adapter.right();
         assertThat(result).isEqualTo(2232);
 
         assertThat(adapterArrangements(adapters)).isEqualTo(173625106649344L);

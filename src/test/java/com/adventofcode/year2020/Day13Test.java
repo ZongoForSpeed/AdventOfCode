@@ -3,7 +3,7 @@ package com.adventofcode.year2020;
 import com.adventofcode.maths.Arithmetic;
 import com.adventofcode.maths.Prime;
 import com.adventofcode.utils.FileUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import com.adventofcode.utils.LongPair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day13Test {
-    private static Pair<Long, Long> findBus(long timestamp, long[] buses) {
+    private static LongPair findBus(long timestamp, long[] buses) {
         long minWait = Long.MAX_VALUE;
         long minBus = -1;
         for (long bus : buses) {
@@ -25,7 +25,7 @@ public class Day13Test {
             }
         }
 
-        return Pair.of(minBus, minWait);
+        return LongPair.of(minBus, minWait);
     }
 
     private static long solveShuttleSearch(String note) {
@@ -64,9 +64,9 @@ public class Day13Test {
                 .mapToLong(Long::parseLong)
                 .toArray();
 
-        Pair<Long, Long> bus = findBus(timestamp, buses);
-        assertThat(bus.getLeft()).isEqualTo(59);
-        assertThat(bus.getRight()).isEqualTo(5);
+        LongPair bus = findBus(timestamp, buses);
+        assertThat(bus.left()).isEqualTo(59);
+        assertThat(bus.right()).isEqualTo(5);
 
         assertThat(solveShuttleSearch(notes.get(1))).isEqualTo(1068781);
     }
@@ -244,9 +244,9 @@ public class Day13Test {
                 .mapToLong(Long::parseLong)
                 .toArray();
 
-        Pair<Long, Long> bus = findBus(timestamp, buses);
-        assertThat(bus.getLeft()).isEqualTo(29);
-        assertThat(bus.getRight()).isEqualTo(6);
+        LongPair bus = findBus(timestamp, buses);
+        assertThat(bus.left()).isEqualTo(29);
+        assertThat(bus.right()).isEqualTo(6);
 
         assertThat(solveShuttleSearch(notes.get(1))).isEqualTo(780601154795940L);
     }
