@@ -80,10 +80,10 @@ public class Day21Test {
             List<String> ingredients = possibleAllergen.values().stream()
                     .filter(s -> s.size() == 1)
                     .flatMap(Collection::stream)
-                    .collect(Collectors.toList());
+                    .toList();
             for (Map.Entry<String, Set<String>> entry : possibleAllergen.entrySet()) {
                 if (entry.getValue().size() > 1) {
-                    entry.getValue().removeAll(ingredients);
+                    ingredients.forEach(entry.getValue()::remove);
                 }
             }
         }

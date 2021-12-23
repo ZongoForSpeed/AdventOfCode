@@ -1,5 +1,7 @@
 package com.adventofcode.year2021;
 
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +46,8 @@ public class Day16Test {
         return result;
     }
 
-    private static List<Integer> readBits(Deque<Integer> data, int size) {
-        List<Integer> result = new ArrayList<>();
+    private static IntList readBits(Deque<Integer> data, int size) {
+        IntList result = new IntArrayList();
         for (int s = 0; s < size; ++s) {
             result.add(data.removeFirst());
         }
@@ -59,14 +61,14 @@ public class Day16Test {
 
         if (type == 4) {
             LOGGER.info("Data {}", data);
-            List<Integer> allBits = new ArrayList<>();
+            IntList allBits = new IntArrayList();
             while (data.removeFirst() == 1) {
                 allBits.addAll(readBits(data, 4));
             }
 
             allBits.addAll(readBits(data, 4));
 
-            long value = allBits.stream().mapToLong(t -> t).reduce(0L, (a, v) -> 2L * a + v);
+            long value = allBits.intStream().mapToLong(t -> t).reduce(0L, (a, v) -> 2L * a + v);
             return new LiteralPacket(version, type, value);
         }
 
@@ -82,26 +84,26 @@ public class Day16Test {
         }
     }
 
-    private static List<Integer> readBits(String input) {
-        List<Integer> bytes = new ArrayList<>();
+    private static IntList readBits(String input) {
+        IntList bytes = new IntArrayList();
         for (char c : input.toCharArray()) {
             switch (c) {
-                case '0' -> bytes.addAll(List.of(0, 0, 0, 0));
-                case '1' -> bytes.addAll(List.of(0, 0, 0, 1));
-                case '2' -> bytes.addAll(List.of(0, 0, 1, 0));
-                case '3' -> bytes.addAll(List.of(0, 0, 1, 1));
-                case '4' -> bytes.addAll(List.of(0, 1, 0, 0));
-                case '5' -> bytes.addAll(List.of(0, 1, 0, 1));
-                case '6' -> bytes.addAll(List.of(0, 1, 1, 0));
-                case '7' -> bytes.addAll(List.of(0, 1, 1, 1));
-                case '8' -> bytes.addAll(List.of(1, 0, 0, 0));
-                case '9' -> bytes.addAll(List.of(1, 0, 0, 1));
-                case 'A' -> bytes.addAll(List.of(1, 0, 1, 0));
-                case 'B' -> bytes.addAll(List.of(1, 0, 1, 1));
-                case 'C' -> bytes.addAll(List.of(1, 1, 0, 0));
-                case 'D' -> bytes.addAll(List.of(1, 1, 0, 1));
-                case 'E' -> bytes.addAll(List.of(1, 1, 1, 0));
-                case 'F' -> bytes.addAll(List.of(1, 1, 1, 1));
+                case '0' -> bytes.addAll(IntList.of(0, 0, 0, 0));
+                case '1' -> bytes.addAll(IntList.of(0, 0, 0, 1));
+                case '2' -> bytes.addAll(IntList.of(0, 0, 1, 0));
+                case '3' -> bytes.addAll(IntList.of(0, 0, 1, 1));
+                case '4' -> bytes.addAll(IntList.of(0, 1, 0, 0));
+                case '5' -> bytes.addAll(IntList.of(0, 1, 0, 1));
+                case '6' -> bytes.addAll(IntList.of(0, 1, 1, 0));
+                case '7' -> bytes.addAll(IntList.of(0, 1, 1, 1));
+                case '8' -> bytes.addAll(IntList.of(1, 0, 0, 0));
+                case '9' -> bytes.addAll(IntList.of(1, 0, 0, 1));
+                case 'A' -> bytes.addAll(IntList.of(1, 0, 1, 0));
+                case 'B' -> bytes.addAll(IntList.of(1, 0, 1, 1));
+                case 'C' -> bytes.addAll(IntList.of(1, 1, 0, 0));
+                case 'D' -> bytes.addAll(IntList.of(1, 1, 0, 1));
+                case 'E' -> bytes.addAll(IntList.of(1, 1, 1, 0));
+                case 'F' -> bytes.addAll(IntList.of(1, 1, 1, 1));
             }
         }
         LOGGER.info("Bytes: {}", bytes);
@@ -441,10 +443,6 @@ public class Day16Test {
         OperatorPacket(int version, int type, List<Packet> subpackets) {
             super(version, type);
             this.subpackets = subpackets;
-        }
-
-        public List<Packet> subpackets() {
-            return subpackets;
         }
 
         @Override

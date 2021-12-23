@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.function.IntConsumer;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,7 +17,7 @@ public class Day08Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
 
     private static int[] readImage(String input, int layerSize) {
-        int[][] decoded = StreamSupport.stream(Iterables.partition(input.chars().map(c -> c - '0').boxed().collect(Collectors.toList()), layerSize).spliterator(), false)
+        int[][] decoded = StreamSupport.stream(Iterables.partition(input.chars().map(c -> c - '0').boxed().toList(), layerSize).spliterator(), false)
                 .map(t -> t.stream().mapToInt(Integer::intValue).toArray())
                 .toArray(int[][]::new);
         int layers = input.length() / layerSize;

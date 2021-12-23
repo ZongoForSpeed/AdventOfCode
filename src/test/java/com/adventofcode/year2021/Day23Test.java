@@ -1,8 +1,10 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.graph.AStar;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.IntSet;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +17,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day23Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
-    private static final Set<Integer> ENTRIES = Set.of(2, 4, 6, 8);
+    private static final IntSet ENTRIES = IntSet.of(2, 4, 6, 8);
 
     private static List<AStar.Move<State>> getPossibleMoves(Map<State, List<AStar.Move<State>>> cache, int size, State state) {
         List<AStar.Move<State>> moves = cache.get(state);
@@ -60,9 +61,9 @@ public class Day23Test {
             int holeNumber = amphipod - 'A';
 
             if (state.availablePositions(position)
-                    .stream()
+                    .intStream()
                     .filter(ENTRIES::contains)
-                    .mapToInt(j -> j / 2 - 1)
+                    .map(j -> j / 2 - 1)
                     .noneMatch(j -> j == holeNumber)) {
                 continue;
             }
@@ -551,8 +552,8 @@ public class Day23Test {
             );
         }
 
-        public List<Integer> availablePositions(int i) {
-            List<Integer> result = new ArrayList<>();
+        public IntList availablePositions(int i) {
+            IntList result = new IntArrayList();
             for (int p = i - 1; p >= 0; --p) {
                 if (hallway.charAt(p) == ' ') {
                     result.add(p);

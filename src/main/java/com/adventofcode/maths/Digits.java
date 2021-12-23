@@ -1,15 +1,17 @@
 package com.adventofcode.maths;
 
-import java.util.ArrayList;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
+
 import java.util.Collections;
-import java.util.List;
 
 public final class Digits {
     private Digits() {
         // No-Op
     }
-    public static List<Integer> digits(int n) {
-        List<Integer> d = new ArrayList<>();
+
+    public static IntList digits(int n) {
+        IntList d = new IntArrayList();
         while (n > 0) {
             d.add(n % 10);
             n /= 10;

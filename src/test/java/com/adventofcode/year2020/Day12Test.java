@@ -298,7 +298,7 @@ public class Day12Test {
         public abstract Point2D move(int x, int y, int n);
     }
 
-    private static record PositionWaypoint(int x, int y, int waypointX, int waypointY) {
+    private record PositionWaypoint(int x, int y, int waypointX, int waypointY) {
     }
 
     private record PositionDirection(Direction d, int x, int y) {

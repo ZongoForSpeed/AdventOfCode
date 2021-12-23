@@ -76,7 +76,7 @@ public class Map2D implements Map<Point2D, Long> {
         for (char[] chars : view) {
             LOGGER.debug("{}", chars);
         }
-        return Arrays.stream(view).map(String::valueOf).collect(Collectors.toList());
+        return Arrays.stream(view).map(String::valueOf).toList();
     }
 
     public List<String> print(Function<Long, Character> supplier) {
@@ -97,6 +97,6 @@ public class Map2D implements Map<Point2D, Long> {
         for (char[] chars : view) {
             LOGGER.debug("{}", chars);
         }
-        return Arrays.stream(view).map(String::valueOf).collect(Collectors.toList());
+        return Arrays.stream(view).map(String::valueOf).toList();
     }
 }

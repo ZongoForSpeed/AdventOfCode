@@ -30,28 +30,24 @@ public class Day24Test {
             String direction = matcher.group(1);
             LOGGER.trace("Match: {}", direction);
             switch (direction) {
-                case "e":
-                    x += 2;
-                    break;
-                case "se":
+                case "e" -> x += 2;
+                case "se" -> {
                     x += 1;
                     y -= 2;
-                    break;
-                case "sw":
+                }
+                case "sw" -> {
                     x -= 1;
                     y -= 2;
-                    break;
-                case "w":
-                    x -= 2;
-                    break;
-                case "nw":
+                }
+                case "w" -> x -= 2;
+                case "nw" -> {
                     x -= 1;
                     y += 2;
-                    break;
-                case "ne":
+                }
+                case "ne" -> {
                     x += 1;
                     y += 2;
-                    break;
+                }
             }
         }
 

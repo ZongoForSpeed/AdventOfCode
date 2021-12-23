@@ -81,7 +81,7 @@ public class ObjectMemory<V> implements Memory<V> {
     @Override
     @SuppressWarnings("unchecked")
     public Collection<V> values() {
-        return bitSet.stream().mapToObj(i -> (V) mem[i]).collect(Collectors.toList());
+        return bitSet.stream().mapToObj(i -> (V) mem[i]).toList();
 
     }
 

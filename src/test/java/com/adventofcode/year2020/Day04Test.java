@@ -337,14 +337,11 @@ public class Day04Test {
                 if (matcher.find()) {
                     int height = Integer.parseInt(matcher.group(1));
 
-                    switch (matcher.group(2)) {
-                        case "in":
-                            return height >= 59 && height <= 76;
-                        case "cm":
-                            return height >= 150 && height <= 193;
-                        default:
-                            return false;
-                    }
+                    return switch (matcher.group(2)) {
+                        case "in" -> height >= 59 && height <= 76;
+                        case "cm" -> height >= 150 && height <= 193;
+                        default -> false;
+                    };
                 }
 
                 return false;

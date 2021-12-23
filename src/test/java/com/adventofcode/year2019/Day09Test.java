@@ -2,11 +2,11 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.Intcode;
 import com.adventofcode.utils.FileUtils;
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -65,9 +65,9 @@ public class Day09Test {
      */
     @Test
     void testQuine() {
-        List<Long> output = new ArrayList<>();
+        LongList output = new LongArrayList();
         Intcode.intcode("109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99", () -> 0, output::add);
-        String result = output.stream().map(Objects::toString).collect(Collectors.joining(","));
+        String result = output.longStream().mapToObj(Objects::toString).collect(Collectors.joining(","));
         assertThat(result).isEqualTo("109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99");
     }
 

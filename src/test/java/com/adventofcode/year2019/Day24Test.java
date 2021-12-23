@@ -2,20 +2,24 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.utils.FileUtils;
 import com.adventofcode.utils.IntegerPair;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.IntSet;
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
+import it.unimi.dsi.fastutil.longs.LongSet;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,10 +28,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day24Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
-    private static BitSet nextState(BitSet bugs, List<List<Integer>> adjacents) {
+    private static BitSet nextState(BitSet bugs, List<IntList> adjacents) {
         BitSet next = new BitSet(adjacents.size());
         for (int i = 0; i < adjacents.size(); i++) {
-            long adjacent = adjacents.get(i).stream().filter(bugs::get).count();
+            long adjacent = adjacents.get(i).intStream().filter(bugs::get).count();
             if (bugs.get(i)) {
                 next.set(i, adjacent == 1);
             } else {
@@ -38,8 +42,9 @@ public class Day24Test {
         return next;
     }
 
-    private static String printLayout(Map<Integer, BitSet> depthBugs) {
-        int[] depths = depthBugs.keySet().stream().mapToInt(t -> t).sorted().toArray();
+    private static String printLayout(Int2ObjectMap<BitSet> depthBugs) {
+        int[] depths = depthBugs.keySet().toIntArray();
+        Arrays.sort(depths);
         StringBuilder sb = new StringBuilder();
         for (int depth : depths) {
             sb.append("Depth ").append(depth).append(':').append('\n');
@@ -78,9 +83,9 @@ public class Day24Test {
         return sb.toString();
     }
 
-    private static List<List<Integer>> buildAdjacent(int size) {
-        List<List<Integer>> adjacent = new ArrayList<>();
-        IntStream.range(0, size * size).forEach(ignore -> adjacent.add(new ArrayList<>()));
+    private static List<IntList> buildAdjacent(int size) {
+        List<IntList> adjacent = new ArrayList<>();
+        IntStream.range(0, size * size).forEach(ignore -> adjacent.add(new IntArrayList()));
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int n = size * i + j;
@@ -176,7 +181,7 @@ public class Day24Test {
         return bugs.stream().map(i -> 1 << i).sum();
     }
 
-    private static boolean getBugs(Map<Integer, BitSet> depthBugs, int depth, int position) {
+    private static boolean getBugs(Int2ObjectMap<BitSet> depthBugs, int depth, int position) {
         BitSet bugs = depthBugs.get(depth);
         if (bugs == null) {
             return false;
@@ -185,12 +190,12 @@ public class Day24Test {
         return bugs.get(position);
     }
 
-    private static Map<Integer, BitSet> nextState(Map<Integer, BitSet> depthBugs, List<List<IntegerPair>> adjacents) {
-        Set<Integer> depths = depthBugs.keySet();
-        int minDepth = depths.stream().mapToInt(t -> t).min().orElse(0) - 1;
-        int maxDepth = depths.stream().mapToInt(t -> t).max().orElse(0) + 1;
+    private static Int2ObjectMap<BitSet> nextState(Int2ObjectMap<BitSet> depthBugs, List<List<IntegerPair>> adjacents) {
+        IntSet depths = depthBugs.keySet();
+        int minDepth = depths.intStream().min().orElse(0) - 1;
+        int maxDepth = depths.intStream().max().orElse(0) + 1;
 
-        Map<Integer, BitSet> nextDepthBugs = new HashMap<>();
+        Int2ObjectMap<BitSet> nextDepthBugs = new Int2ObjectOpenHashMap<>();
         for (int depth = minDepth; depth < maxDepth + 1; depth++) {
             int finalDepth = depth;
             BitSet bugs = new BitSet(adjacents.size());
@@ -214,49 +219,49 @@ public class Day24Test {
      * You land on Eris, your last stop before reaching Santa. As soon as you do, your sensors start picking up strange
      * life forms moving around: Eris is infested with bugs! With an over 24-hour roundtrip for messages between you and
      * Earth, you'll have to deal with this problem on your own.
-     * 
+     *
      * Eris isn't a very large place; a scan of the entire area fits into a 5x5 grid (your puzzle input). The scan shows
      * bugs (#) and empty spaces (.).
-     * 
+     *
      * Each minute, The bugs live and die based on the number of bugs in the four adjacent tiles:
-     * 
+     *
      * A bug dies (becoming an empty space) unless there is exactly one bug adjacent to it.
      * An empty space becomes infested with a bug if exactly one or two bugs are adjacent to it.
      * Otherwise, a bug or empty space remains the same. (Tiles on the edges of the grid have fewer than four adjacent
      * tiles; the missing tiles count as empty space.) This process happens in every location simultaneously; that is,
      * within the same minute, the number of adjacent bugs is counted for every tile first, and then the tiles are
      * updated.
-     * 
+     *
      * Here are the first few minutes of an example scenario:
-     * 
+     *
      * Initial state:
      * ....#
      * #..#.
      * #..##
      * ..#..
      * #....
-     * 
+     *
      * After 1 minute:
      * #..#.
      * ####.
      * ###.#
      * ##.##
      * .##..
-     * 
+     *
      * After 2 minutes:
      * #####
      * ....#
      * ....#
      * ...#.
      * #.###
-     * 
+     *
      * After 3 minutes:
      * #....
      * ####.
      * ...##
      * #.##.
      * .##.#
-     * 
+     *
      * After 4 minutes:
      * ####.
      * ....#
@@ -265,7 +270,7 @@ public class Day24Test {
      * ##...
      * To understand the nature of the bugs, watch for the first time a layout of bugs and empty spaces matches any
      * previous layout. In the example above, the first layout to appear twice is:
-     * 
+     *
      * .....
      * .....
      * .....
@@ -275,12 +280,12 @@ public class Day24Test {
      * left-to-right in the second row, and so on. Each of these tiles is worth biodiversity points equal to increasing
      * powers of two: 1, 2, 4, 8, 16, 32, and so on. Add up the biodiversity points for tiles with bugs; in this example,
      * the 16th tile (32768 points) and 22nd tile (2097152 points) have bugs, a total biodiversity rating of 2129920.
-     * 
+     *
      * What is the biodiversity rating for the first layout that appears twice?
      */
     @Test
     void testSimpleExample() {
-        List<List<Integer>> adjacent = buildAdjacent(5);
+        List<IntList> adjacent = buildAdjacent(5);
         LOGGER.info("adjacent: {}", adjacent);
 
         String initialState = """
@@ -338,7 +343,7 @@ public class Day24Test {
 
     @Test
     void testFindRepeatingLayout() {
-        List<List<Integer>> adjacent = buildAdjacent(5);
+        List<IntList> adjacent = buildAdjacent(5);
         String initialState = """
                 ....#
                 #..#.
@@ -347,7 +352,7 @@ public class Day24Test {
                 #....""";
         BitSet bugs = parseLayout(initialState);
 
-        Set<Long> layouts = new HashSet<>();
+        LongSet layouts = new LongOpenHashSet();
         while (layouts.add(bugs.toLongArray()[0])) {
             bugs = nextState(bugs, adjacent);
         }
@@ -363,14 +368,14 @@ public class Day24Test {
 
     @Test
     void testInputPartOne() throws IOException {
-        List<List<Integer>> adjacent = buildAdjacent(5);
+        List<IntList> adjacent = buildAdjacent(5);
 
         List<String> lines = FileUtils.readLines("/2019/day/24/input");
         String layout = String.join("\n", lines);
 
         BitSet bugs = parseLayout(layout);
 
-        Set<Long> layouts = new HashSet<>();
+        LongSet layouts = new LongOpenHashSet();
         while (layouts.add(bugs.toLongArray()[0])) {
             bugs = nextState(bugs, adjacent);
         }
@@ -388,14 +393,14 @@ public class Day24Test {
     /**
      * --- Part Two ---
      * After careful analysis, one thing is certain: you have no idea where all these bugs are coming from.
-     * 
+     *
      * Then, you remember: Eris is an old Plutonian settlement! Clearly, the bugs are coming from recursively-folded
      * space.
-     * 
+     *
      * This 5x5 grid is only one level in an infinite number of recursion levels. The tile in the middle of the grid is
      * actually another 5x5 grid, the grid in your scan is contained as the middle tile of a larger 5x5 grid, and so on.
      * Two levels of grids look like this:
-     * 
+     *
      * |     |         |     |
      * |     |         |     |
      * |     |         |     |
@@ -424,13 +429,13 @@ public class Day24Test {
      * (To save space, some of the tiles are not drawn to scale.) Remember, this is only a small part of the infinitely
      * recursive grid; there is a 5x5 grid that contains this diagram, and a 5x5 grid that contains that one, and so on.
      * Also, the ? in the diagram contains another 5x5 grid, which itself contains another 5x5 grid, and so on.
-     * 
+     *
      * The scan you took (your puzzle input) shows where the bugs are on a single level of this structure. The middle
      * tile of your scan is empty to accommodate the recursive grids within it. Initially, no other levels contain bugs.
-     * 
+     *
      * Tiles still count as adjacent if they are directly up, down, left, or right of a given tile. Some tiles have
      * adjacent tiles at a recursion level above or below its own level. For example:
-     * 
+     *
      * |     |         |     |
      * 1  |  2  |    3    |  4  |  5
      * |     |         |     |
@@ -463,9 +468,9 @@ public class Day24Test {
      * Tile 14 has eight adjacent tiles: 9, E, J, O, T, Y, 15, and 19.
      * Tile N has eight adjacent tiles: I, O, S, and five tiles within the sub-grid marked ?.
      * The rules about bugs living and dying are the same as before.
-     * 
+     *
      * For example, consider the same initial state as above:
-     * 
+     *
      * ....#
      * #..#.
      * #.?##
@@ -474,77 +479,77 @@ public class Day24Test {
      * The center tile is drawn as ? to indicate the next recursive grid. Call this level 0; the grid within this one is
      * level 1, and the grid that contains this one is level -1. Then, after ten minutes, the grid at each level would
      * look like this:
-     * 
+     *
      * Depth -5:
      * ..#..
      * .#.#.
      * ..?.#
      * .#.#.
      * ..#..
-     * 
+     *
      * Depth -4:
      * ...#.
      * ...##
      * ..?..
      * ...##
      * ...#.
-     * 
+     *
      * Depth -3:
      * #.#..
      * .#...
      * ..?..
      * .#...
      * #.#..
-     * 
+     *
      * Depth -2:
      * .#.##
      * ....#
      * ..?.#
      * ...##
      * .###.
-     * 
+     *
      * Depth -1:
      * #..##
      * ...##
      * ..?..
      * ...#.
      * .####
-     * 
+     *
      * Depth 0:
      * .#...
      * .#.##
      * .#?..
      * .....
      * .....
-     * 
+     *
      * Depth 1:
      * .##..
      * #..##
      * ..?.#
      * ##.##
      * #####
-     * 
+     *
      * Depth 2:
      * ###..
      * ##.#.
      * #.?..
      * .#.##
      * #.#..
-     * 
+     *
      * Depth 3:
      * ..###
      * .....
      * #.?..
      * #....
      * #...#
-     * 
+     *
      * Depth 4:
      * .###.
      * #..#.
      * #.?..
      * ##.#.
      * .....
-     * 
+     *
      * Depth 5:
      * ####.
      * #..#.
@@ -552,7 +557,7 @@ public class Day24Test {
      * ####.
      * .....
      * In this example, after 10 minutes, a total of 99 bugs are present.
-     * 
+     *
      * Starting with your scan, how many bugs are present after 200 minutes?
      */
     @Test
@@ -598,7 +603,7 @@ public class Day24Test {
                 #....""";
 
         BitSet bugs = parseLayout(layout);
-        Map<Integer, BitSet> depthBugs = new HashMap<>();
+        Int2ObjectMap<BitSet> depthBugs = new Int2ObjectOpenHashMap<>();
         depthBugs.put(0, bugs);
 
         for (int minutes = 0; minutes < 10; minutes++) {
@@ -696,7 +701,7 @@ public class Day24Test {
         String layout = String.join("\n", lines);
 
         BitSet bugs = parseLayout(layout);
-        Map<Integer, BitSet> depthBugs = new HashMap<>();
+        Int2ObjectMap<BitSet> depthBugs = new Int2ObjectOpenHashMap<>();
         depthBugs.put(0, bugs);
 
         for (int minutes = 0; minutes < 200; minutes++) {

@@ -1,5 +1,7 @@
 package com.adventofcode.year2021;
 
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,10 +9,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -75,7 +75,7 @@ public class Day10Test {
     }
 
     private static long completeSyntax(Scanner scanner) {
-        List<Long> scores = new ArrayList<>();
+        LongList scores = new LongArrayList();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             long score = completeLineSyntax(line);
@@ -87,7 +87,7 @@ public class Day10Test {
 
         Collections.sort(scores);
         LOGGER.info("Scores: {}", scores);
-        return scores.get(scores.size() / 2);
+        return scores.getLong(scores.size() / 2);
     }
 
     private static long completeLineSyntax(String line) {
@@ -327,6 +327,6 @@ public class Day10Test {
         ROUND,
         SQUARE,
         CURLY,
-        ANGLE;
+        ANGLE
     }
 }

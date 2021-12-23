@@ -1,11 +1,13 @@
 package com.adventofcode;
 
 import com.adventofcode.maths.Permutations;
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.longs.LongList;
+import it.unimi.dsi.fastutil.longs.LongLists;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
@@ -30,7 +32,7 @@ public class Intcode {
     }
 
     public static long[] intcode(String stringCodes, long noun, long verb) {
-        List<Long> memory = Stream.of(stringCodes.split(",")).map(Long::valueOf).collect(Collectors.toList());
+        LongList memory = LongArrayList.toList(Stream.of(stringCodes.split(",")).mapToLong(Long::valueOf));
         if (noun > 0 && verb > 0) {
             memory.set(1, noun);
             memory.set(2, verb);
@@ -40,13 +42,13 @@ public class Intcode {
     }
 
     public static long ioIntcode(String stringCodes, long input) {
-        List<Long> memory = Stream.of(stringCodes.split(",")).map(Long::valueOf).collect(Collectors.toList());
+        LongList memory = LongArrayList.toList(Stream.of(stringCodes.split(",")).mapToLong(Long::valueOf));
         AtomicLong output = new AtomicLong();
         internalIntcode(memory, () -> input, output::set);
         return output.get();
     }
 
-    public static long thrusterSignal(String code, List<Long> settings) {
+    public static long thrusterSignal(String code, LongList settings) {
         try {
             return internalThrusterSignal(code, settings);
         } catch (InterruptedException | ExecutionException e) {
@@ -54,13 +56,13 @@ public class Intcode {
         }
     }
 
-    private static long internalThrusterSignal(String stringCodes, List<Long> settings) throws ExecutionException, InterruptedException {
+    private static long internalThrusterSignal(String stringCodes, LongList settings) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(settings.size());
-        BlockingQueue<Long> queue1 = new LinkedBlockingQueue<>(settings.subList(0, 1));
-        BlockingQueue<Long> queue2 = new LinkedBlockingQueue<>(settings.subList(1, 2));
-        BlockingQueue<Long> queue3 = new LinkedBlockingQueue<>(settings.subList(2, 3));
-        BlockingQueue<Long> queue4 = new LinkedBlockingQueue<>(settings.subList(3, 4));
-        BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(settings.subList(4, 5));
+        BlockingQueue<Long> queue1 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(0, 1)));
+        BlockingQueue<Long> queue2 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(1, 2)));
+        BlockingQueue<Long> queue3 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(2, 3)));
+        BlockingQueue<Long> queue4 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(3, 4)));
+        BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(4, 5)));
 
         executorService.submit(() -> {
             intcode(stringCodes, take(queue1), offer(queue2));
@@ -110,14 +112,14 @@ public class Intcode {
     }
 
     public static long[] intcode(String stringCodes, LongSupplier input, LongConsumer output) {
-        List<Long> memory = Stream.of(stringCodes.split(",")).map(Long::valueOf).collect(Collectors.toList());
+        LongList memory = LongArrayList.toList(Stream.of(stringCodes.split(",")).mapToLong(Long::valueOf));
         return internalIntcode(memory, input, output);
     }
 
-    private static long[] internalIntcode(List<Long> memory, LongSupplier input, LongConsumer output) {
+    private static long[] internalIntcode(LongList memory, LongSupplier input, LongConsumer output) {
         int relativeBase = 0;
         for (int position = 0; position < memory.size(); ) {
-            int[] mode = parseCode(memory.get(position));
+            int[] mode = parseCode(memory.getLong(position));
 
             switch (mode[0]) {
                 case 1: {
@@ -197,32 +199,31 @@ public class Intcode {
                     break;
                 }
                 case 99:
-                    return memory.stream().mapToLong(Long::longValue).toArray();
+                    return memory.toLongArray();
                 default:
                     throw new IllegalStateException("unknown code (" + mode[0] + ")");
             }
         }
 
-        // Arrays.fill(memory, -1);
-        return memory.stream().mapToLong(Long::longValue).toArray();
+        return memory.toLongArray();
     }
 
-    private static long readMemory(List<Long> memory, int position) {
+    private static long readMemory(LongList memory, int position) {
         if (position < memory.size()) {
-            return memory.get(position);
+            return memory.getLong(position);
         } else {
             return 0L;
         }
     }
 
-    private static void setMemory(List<Long> memory, int position, long value) {
+    private static void setMemory(LongList memory, int position, long value) {
         if (position >= memory.size()) {
             memory.addAll(Collections.nCopies(position - memory.size() + 1, 0L));
         }
         memory.set(position, value);
     }
 
-    private static void setValue(List<Long> memory, int[] mode, int position, int relativeBase, int offset, long value) {
+    private static void setValue(LongList memory, int[] mode, int position, int relativeBase, int offset, long value) {
         switch (mode[offset]) {
             case 0 -> setMemory(memory, (int) readMemory(memory, position + offset), value);
             case 1 -> setMemory(memory, position + offset, value);
@@ -231,7 +232,7 @@ public class Intcode {
         }
     }
 
-    private static long readParameter(List<Long> memory, int[] mode, int relativeBase, int position, int offset) {
+    private static long readParameter(LongList memory, int[] mode, int relativeBase, int position, int offset) {
         return switch (mode[offset]) {
             case 0 -> readMemory(memory, (int) readMemory(memory, position + offset));
             case 1 -> readMemory(memory, position + offset);
@@ -250,11 +251,11 @@ public class Intcode {
         return mode;
     }
 
-    public static Pair<List<Long>, Long> maxThrusterSignal(String program, Long... items) {
-        Optional<Pair<List<Long>, Long>> max = Permutations.of(items)
+    public static Pair<LongList, Long> maxThrusterSignal(String program, long... items) {
+        Optional<Pair<LongList, Long>> max = Permutations.of(items)
                 .map(settings -> Pair.of(settings, thrusterSignal(program, settings)))
-                .max((o1, o2) -> Comparator.comparingLong((ToLongFunction<Pair<List<Long>, Long>>) Pair::getRight).compare(o1, o2));
-        return max.orElseGet(() -> Pair.of(Collections.emptyList(), -1L));
+                .max((o1, o2) -> Comparator.comparingLong((ToLongFunction<Pair<LongList, Long>>) Pair::getRight).compare(o1, o2));
+        return max.orElseGet(() -> Pair.of(LongLists.emptyList(), -1L));
     }
 
     public static class Robot implements AutoCloseable {

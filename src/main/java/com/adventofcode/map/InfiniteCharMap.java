@@ -1,5 +1,6 @@
 package com.adventofcode.map;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -7,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class InfiniteCharMap implements Map<Point2D, Character> {
     private final Map<Point2D, Character> map;
@@ -44,7 +44,7 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
         return map.remove(key);
     }
 
-    public void putAll(Map<? extends Point2D, ? extends Character> m) {
+    public void putAll(@Nonnull Map<? extends Point2D, ? extends Character> m) {
         map.putAll(m);
     }
 
@@ -79,7 +79,7 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
             view[entry.getKey().y() - minY][entry.getKey().x() - minX] = supplier.apply(entry.getValue());
         }
 
-        return Arrays.stream(view).map(String::valueOf).collect(Collectors.toList());
+        return Arrays.stream(view).map(String::valueOf).toList();
     }
 
     @Override

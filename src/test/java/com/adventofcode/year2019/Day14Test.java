@@ -179,7 +179,7 @@ public class Day14Test {
                 "7 A, 1 B => 1 C",
                 "7 A, 1 C => 1 D",
                 "7 A, 1 D => 1 E",
-                "7 A, 1 E => 1 FUEL").map(Reaction::parseReaction).collect(Collectors.toList());
+                "7 A, 1 E => 1 FUEL").map(Reaction::parseReaction).toList();
 
         Map<String, Long> fuelReaction = solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 31L));
@@ -194,7 +194,7 @@ public class Day14Test {
                 "3 A, 4 B => 1 AB",
                 "5 B, 7 C => 1 BC",
                 "4 C, 1 A => 1 CA",
-                "2 AB, 3 BC, 4 CA => 1 FUEL").map(Reaction::parseReaction).collect(Collectors.toList());
+                "2 AB, 3 BC, 4 CA => 1 FUEL").map(Reaction::parseReaction).toList();
 
         Map<String, Long> fuelReaction = solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 165L));
@@ -212,7 +212,7 @@ public class Day14Test {
                 "7 DCFZ, 7 PSHF => 2 XJWVT",
                 "165 ORE => 2 GPVTF",
                 "3 DCFZ, 7 NZVS, 5 HKGWZ, 10 PSHF => 8 KHKGT"
-        ).map(Reaction::parseReaction).collect(Collectors.toList());
+        ).map(Reaction::parseReaction).toList();
 
         Map<String, Long> fuelReaction = solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 13312L));
@@ -233,7 +233,7 @@ public class Day14Test {
                 "1 NVRVD => 8 CXFTF",
                 "1 VJHF, 6 MNCFX => 4 RFSQX",
                 "176 ORE => 6 VJHF"
-        ).map(Reaction::parseReaction).collect(Collectors.toList());
+        ).map(Reaction::parseReaction).toList();
 
         Map<String, Long> fuelReaction = solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 180697L));
@@ -259,7 +259,7 @@ public class Day14Test {
                 "121 ORE => 7 VRPVC",
                 "7 XCVML => 6 RJRHP",
                 "5 BHXH, 4 VRPVC => 5 LTCX"
-        ).map(Reaction::parseReaction).collect(Collectors.toList());
+        ).map(Reaction::parseReaction).toList();
 
         Map<String, Long> fuelReaction = solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 2210736L));
@@ -267,7 +267,7 @@ public class Day14Test {
 
     @Test
     void testInputPartOne() throws IOException {
-        List<Reaction> reactions = FileUtils.readLines("/2019/day/14/input").stream().map(Reaction::parseReaction).collect(Collectors.toList());
+        List<Reaction> reactions = FileUtils.readLines("/2019/day/14/input").stream().map(Reaction::parseReaction).toList();
 
         Map<String, Long> fuelReaction = solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 337075L));
@@ -296,7 +296,7 @@ public class Day14Test {
                 "7 DCFZ, 7 PSHF => 2 XJWVT",
                 "165 ORE => 2 GPVTF",
                 "3 DCFZ, 7 NZVS, 5 HKGWZ, 10 PSHF => 8 KHKGT"
-        ).map(Reaction::parseReaction).collect(Collectors.toList());
+        ).map(Reaction::parseReaction).toList();
 
         assertThat(solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(82892753L);
     }
@@ -316,7 +316,7 @@ public class Day14Test {
                 "1 NVRVD => 8 CXFTF",
                 "1 VJHF, 6 MNCFX => 4 RFSQX",
                 "176 ORE => 6 VJHF"
-        ).map(Reaction::parseReaction).collect(Collectors.toList());
+        ).map(Reaction::parseReaction).toList();
 
         assertThat(solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5586022L);
     }
@@ -341,14 +341,14 @@ public class Day14Test {
                 "121 ORE => 7 VRPVC",
                 "7 XCVML => 6 RJRHP",
                 "5 BHXH, 4 VRPVC => 5 LTCX"
-        ).map(Reaction::parseReaction).collect(Collectors.toList());
+        ).map(Reaction::parseReaction).toList();
 
         assertThat(solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(460664L);
     }
 
     @Test
     void testInputPartTwo() throws IOException {
-        List<Reaction> reactions = FileUtils.readLines("/2019/day/14/input").stream().map(Reaction::parseReaction).collect(Collectors.toList());
+        List<Reaction> reactions = FileUtils.readLines("/2019/day/14/input").stream().map(Reaction::parseReaction).toList();
         assertThat(solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5194174L);
     }
 
@@ -358,7 +358,7 @@ public class Day14Test {
 
         static Reaction parseReaction(String line) {
             String[] split = line.split(" => ");
-            List<Pair<String, Long>> inputs = Stream.of(split[0].split(", ")).map(Reaction::parseChemical).collect(Collectors.toList());
+            List<Pair<String, Long>> inputs = Stream.of(split[0].split(", ")).map(Reaction::parseChemical).toList();
             Pair<String, Long> output = parseChemical(split[1]);
             return new Reaction(inputs, output);
         }

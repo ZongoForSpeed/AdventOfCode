@@ -2,7 +2,6 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.utils.FileUtils;
 import com.adventofcode.utils.IntegerPair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

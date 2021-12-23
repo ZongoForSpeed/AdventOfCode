@@ -1,6 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.maths.Permutations;
+import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +42,7 @@ public class Day08Test {
     }
 
 
-    private static String buildSignal(String permutation, List<Integer> digits) {
+    private static String buildSignal(String permutation, IntList digits) {
         StringBuilder sb = new StringBuilder();
         for (Integer digit : digits) {
             sb.append(permutation.charAt(digit));
@@ -52,26 +53,26 @@ public class Day08Test {
 
     private static Map<String, Integer> getMapping(String permutation) {
         Map<String, Integer> mapping = new HashMap<>();
-        //                                           a  b  c  e  f  g
-        mapping.put(buildSignal(permutation, List.of(0, 1, 2, 4, 5, 6)), 0);
-        //                                           c  f
-        mapping.put(buildSignal(permutation, List.of(2, 5)), 1);
-        //                                           a  c  d  e  g
-        mapping.put(buildSignal(permutation, List.of(0, 2, 3, 4, 6)), 2);
-        //                                           a  c  d  f  g
-        mapping.put(buildSignal(permutation, List.of(0, 2, 3, 5, 6)), 3);
-        //                                           b  c  d  f
-        mapping.put(buildSignal(permutation, List.of(1, 2, 3, 5)), 4);
-        //                                           a  b  d  f  g
-        mapping.put(buildSignal(permutation, List.of(0, 1, 3, 5, 6)), 5);
-        //                                           a  b  d  e  f  g
-        mapping.put(buildSignal(permutation, List.of(0, 1, 3, 4, 5, 6)), 6);
-        //                                           a  c  f
-        mapping.put(buildSignal(permutation, List.of(0, 2, 5)), 7);
-        //                                           a  b  c  d  e  f  g
-        mapping.put(buildSignal(permutation, List.of(0, 1, 2, 3, 4, 5, 6)), 8);
-        //                                           a  b  c  d  f  g
-        mapping.put(buildSignal(permutation, List.of(0, 1, 2, 3, 5, 6)), 9);
+        //                                              a  b  c  e  f  g
+        mapping.put(buildSignal(permutation, IntList.of(0, 1, 2, 4, 5, 6)), 0);
+        //                                              c  f
+        mapping.put(buildSignal(permutation, IntList.of(2, 5)), 1);
+        //                                              a  c  d  e  g
+        mapping.put(buildSignal(permutation, IntList.of(0, 2, 3, 4, 6)), 2);
+        //                                              a  c  d  f  g
+        mapping.put(buildSignal(permutation, IntList.of(0, 2, 3, 5, 6)), 3);
+        //                                              b  c  d  f
+        mapping.put(buildSignal(permutation, IntList.of(1, 2, 3, 5)), 4);
+        //                                              a  b  d  f  g
+        mapping.put(buildSignal(permutation, IntList.of(0, 1, 3, 5, 6)), 5);
+        //                                              a  b  d  e  f  g
+        mapping.put(buildSignal(permutation, IntList.of(0, 1, 3, 4, 5, 6)), 6);
+        //                                              a  c  f
+        mapping.put(buildSignal(permutation, IntList.of(0, 2, 5)), 7);
+        //                                              a  b  c  d  e  f  g
+        mapping.put(buildSignal(permutation, IntList.of(0, 1, 2, 3, 4, 5, 6)), 8);
+        //                                              a  b  c  d  f  g
+        mapping.put(buildSignal(permutation, IntList.of(0, 1, 2, 3, 5, 6)), 9);
         return Map.copyOf(mapping);
     }
 
@@ -83,7 +84,7 @@ public class Day08Test {
         for (Map<String, Integer> mapping : mappings) {
             if (left.stream().allMatch(mapping::containsKey)) {
                 LOGGER.debug("Mapping for line {} is mapping {}", line, mapping);
-                Integer reduce = right.stream().map(mapping::get).reduce(0, (a, b) -> a * 10 + b);
+                int reduce = right.stream().map(mapping::get).reduce(0, (a, b) -> a * 10 + b);
                 LOGGER.info("Numbers = {}, reduce = {}", right, reduce);
                 return reduce;
             }

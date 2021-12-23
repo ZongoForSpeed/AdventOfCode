@@ -16,20 +16,16 @@ public class Day05Test {
 
         for (int i = 0; i < boardingPasses.length(); ++i) {
             switch (boardingPasses.charAt(i)) {
-                case 'F':
-                    row <<= 1;
-                    break;
-                case 'B':
+                case 'F' -> row <<= 1;
+                case 'B' -> {
                     row++;
                     row <<= 1;
-                    break;
-                case 'L':
-                    column <<= 1;
-                    break;
-                case 'R':
+                }
+                case 'L' -> column <<= 1;
+                case 'R' -> {
                     column += 1;
                     column <<= 1;
-                    break;
+                }
             }
         }
 

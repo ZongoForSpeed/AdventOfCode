@@ -66,7 +66,7 @@ public class IntMemory implements Memory<Integer> {
 
     @Override
     public Collection<Integer> values() {
-        return bitSet.stream().map(i -> mem[i]).boxed().collect(Collectors.toList());
+        return bitSet.stream().map(i -> mem[i]).boxed().toList();
     }
 
     public Integer put(int key, int value) {

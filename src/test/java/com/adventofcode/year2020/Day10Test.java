@@ -2,51 +2,48 @@ package com.adventofcode.year2020;
 
 import com.adventofcode.utils.FileUtils;
 import com.adventofcode.utils.IntegerPair;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.longs.Long2LongMap;
+import it.unimi.dsi.fastutil.longs.Long2LongOpenHashMap;
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day10Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day10Test.class);
 
-    private static long arrangements(long n, Map<Long, Long> cache) {
+    private static long arrangements(long n, Long2LongMap cache) {
         if (n < 0) {
             return 0;
         } else if (n == 0) {
             return 1;
         }
 
-        Long value = cache.get(n);
-        if (value != null) {
-            return value;
+        if (cache.containsKey(n)) {
+            return cache.get(n);
         }
 
-        value = arrangements(n - 1, cache) + arrangements(n - 2, cache) + arrangements(n - 3, cache);
+        long value = arrangements(n - 1, cache) + arrangements(n - 2, cache) + arrangements(n - 3, cache);
         cache.put(n, value);
         return value;
     }
 
-    private static IntegerPair jolterAdapter(List<Long> adapters) {
-        adapters = new ArrayList<>(adapters);
+    private static IntegerPair jolterAdapter(LongList adapters) {
+        adapters = new LongArrayList(adapters);
         Collections.sort(adapters);
         adapters.add(0, 0L);
-        adapters.add(adapters.get(adapters.size() - 1) + 3);
+        adapters.add(adapters.getLong(adapters.size() - 1) + 3);
 
         int[] diffs = new int[10];
 
         for (int i = 1; i < adapters.size(); i++) {
-            long diff = adapters.get(i) - adapters.get(i - 1);
+            long diff = adapters.getLong(i) - adapters.getLong(i - 1);
             // LOGGER.info("{} diff {}-{}", diff, adapters.get(i), adapters.get(i - 1));
             diffs[(int) diff]++;
         }
@@ -55,18 +52,18 @@ public class Day10Test {
         return IntegerPair.of(diffs[1], diffs[3]);
     }
 
-    private static long adapterArrangements(List<Long> adapters) {
-        adapters = new ArrayList<>(adapters);
+    private static long adapterArrangements(LongList adapters) {
+        adapters = new LongArrayList(adapters);
         Collections.sort(adapters);
         adapters.add(0, 0L);
-        adapters.add(adapters.get(adapters.size() - 1) + 3);
+        adapters.add(adapters.getLong(adapters.size() - 1) + 3);
 
-        Map<Long, Long> cache = new HashMap<>();
+        Long2LongMap cache = new Long2LongOpenHashMap();
 
         long result = 1;
         long count = 0;
         for (int i = 1; i < adapters.size(); i++) {
-            long diff = adapters.get(i) - adapters.get(i - 1);
+            long diff = adapters.getLong(i) - adapters.getLong(i - 1);
             // LOGGER.info("{} diff {}-{}", diff, adapters.get(i), adapters.get(i - 1));
             if (diff == 1) {
                 ++count;
@@ -81,7 +78,7 @@ public class Day10Test {
 
     @Test
     void testAdapterArray1() {
-        List<Long> adapters = List.of(
+        LongList adapters = LongList.of(
                 16L,
                 10L,
                 15L,
@@ -104,7 +101,7 @@ public class Day10Test {
 
     @Test
     void testAdapterArray2() {
-        List<Long> adapters = List.of(
+        LongList adapters = LongList.of(
                 28L,
                 33L,
                 18L,
@@ -150,36 +147,36 @@ public class Day10Test {
      * Patched into the aircraft's data port, you discover weather forecasts of a
      * massive tropical storm. Before you can figure out whether it will impact
      * your vacation plans, however, your device suddenly turns off!
-     * 
+     *
      * Its battery is dead.
-     * 
+     *
      * You'll need to plug it in. There's only one problem: the charging outlet
      * near your seat produces the wrong number of jolts. Always prepared, you
      * make a list of all of the joltage adapters in your bag.
-     * 
+     *
      * Each of your joltage adapters is rated for a specific output joltage (your
      * puzzle input). Any given adapter can take an input 1, 2, or 3 jolts lower
      * than its rating and still produce its rated output joltage.
-     * 
+     *
      * In addition, your device has a built-in joltage adapter rated for 3 jolts
      * higher than the highest-rated adapter in your bag. (If your adapter list
      * were 3, 9, and 6, your device's built-in adapter would be rated for 12
      * jolts.)
-     * 
+     *
      * Treat the charging outlet near your seat as having an effective joltage
      * rating of 0.
-     * 
+     *
      * Since you have some time to kill, you might as well test all of your
      * adapters. Wouldn't want to get to your resort and realize you can't even
      * charge your device!
-     * 
+     *
      * If you use every adapter in your bag at once, what is the distribution of
      * joltage differences between the charging outlet, the adapters, and your
      * device?
-     * 
+     *
      * For example, suppose that in your bag, you have adapters with the following
      * joltage ratings:
-     * 
+     *
      * 16
      * 10
      * 15
@@ -191,13 +188,13 @@ public class Day10Test {
      * 6
      * 12
      * 4
-     * 
+     *
      * With these adapters, your device's built-in joltage adapter would be rated
      * for 19 + 3 = 22 jolts, 3 higher than the highest-rated adapter.
-     * 
+     *
      * Because adapters can only connect to a source 1-3 jolts lower than its
      * rating, in order to use every adapter, you'd need to choose them like this:
-     * 
+     *
      * - The charging outlet has an effective rating of 0 jolts, so the only
      * adapters that could connect to it directly would need to have a
      * joltage rating of 1, 2, or 3 jolts. Of these, only one you have is an
@@ -217,12 +214,12 @@ public class Day10Test {
      * then 16 (difference of 1), then 19 (difference of 3).
      * - Finally, your device's built-in adapter is always 3 higher than the
      * highest adapter, so its rating is 22 jolts (always a difference of 3).
-     * 
+     *
      * In this example, when using every adapter, there are 7 differences of 1
      * jolt and 5 differences of 3 jolts.
-     * 
+     *
      * Here is a larger example:
-     * 
+     *
      * 28
      * 33
      * 18
@@ -254,25 +251,25 @@ public class Day10Test {
      * 34
      * 10
      * 3
-     * 
+     *
      * In this larger example, in a chain that uses all of the adapters, there are
      * 22 differences of 1 jolt and 10 differences of 3 jolts.
-     * 
+     *
      * Find a chain that uses all of your adapters to connect the charging outlet
      * to your device's built-in adapter and count the joltage differences between
      * the charging outlet, the adapters, and your device. What is the number of
      * 1-jolt differences multiplied by the number of 3-jolt differences?
-     * 
+     *
      * --- Part Two ---
-     * 
+     *
      * To completely determine whether you have enough adapters, you'll need to
      * figure out how many different ways they can be arranged. Every arrangement
      * needs to connect the charging outlet to your device. The previous rules
      * about when adapters can successfully connect still apply.
-     * 
+     *
      * The first example above (the one that starts with 16, 10, 15) supports the
      * following arrangements:
-     * 
+     *
      * (0), 1, 4, 5, 6, 7, 10, 11, 12, 15, 16, 19, (22)
      * (0), 1, 4, 5, 6, 7, 10, 12, 15, 16, 19, (22)
      * (0), 1, 4, 5, 7, 10, 11, 12, 15, 16, 19, (22)
@@ -281,60 +278,59 @@ public class Day10Test {
      * (0), 1, 4, 6, 7, 10, 12, 15, 16, 19, (22)
      * (0), 1, 4, 7, 10, 11, 12, 15, 16, 19, (22)
      * (0), 1, 4, 7, 10, 12, 15, 16, 19, (22)
-     * 
+     *
      * (The charging outlet and your device's built-in adapter are shown in
      * parentheses.) Given the adapters from the first example, the total number
      * of arrangements that connect the charging outlet to your device is 8.
-     * 
+     *
      * The second example above (the one that starts with 28, 33, 18) has many
      * arrangements. Here are a few:
-     * 
+     *
      * (0), 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 23, 24, 25, 28, 31,
      * 32, 33, 34, 35, 38, 39, 42, 45, 46, 47, 48, 49, (52)
-     * 
+     *
      * (0), 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 23, 24, 25, 28, 31,
      * 32, 33, 34, 35, 38, 39, 42, 45, 46, 47, 49, (52)
-     * 
+     *
      * (0), 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 23, 24, 25, 28, 31,
      * 32, 33, 34, 35, 38, 39, 42, 45, 46, 48, 49, (52)
-     * 
+     *
      * (0), 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 23, 24, 25, 28, 31,
      * 32, 33, 34, 35, 38, 39, 42, 45, 46, 49, (52)
-     * 
+     *
      * (0), 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 23, 24, 25, 28, 31,
      * 32, 33, 34, 35, 38, 39, 42, 45, 47, 48, 49, (52)
-     * 
+     *
      * (0), 3, 4, 7, 10, 11, 14, 17, 20, 23, 25, 28, 31, 34, 35, 38, 39, 42, 45,
      * 46, 48, 49, (52)
-     * 
+     *
      * (0), 3, 4, 7, 10, 11, 14, 17, 20, 23, 25, 28, 31, 34, 35, 38, 39, 42, 45,
      * 46, 49, (52)
-     * 
+     *
      * (0), 3, 4, 7, 10, 11, 14, 17, 20, 23, 25, 28, 31, 34, 35, 38, 39, 42, 45,
      * 47, 48, 49, (52)
-     * 
+     *
      * (0), 3, 4, 7, 10, 11, 14, 17, 20, 23, 25, 28, 31, 34, 35, 38, 39, 42, 45,
      * 47, 49, (52)
-     * 
+     *
      * (0), 3, 4, 7, 10, 11, 14, 17, 20, 23, 25, 28, 31, 34, 35, 38, 39, 42, 45,
      * 48, 49, (52)
-     * 
+     *
      * In total, this set of adapters can connect the charging outlet to your
      * device in 19208 distinct arrangements.
-     * 
+     *
      * You glance back down at your bag and try to remember why you brought so
      * many adapters; there must be more than a trillion valid ways to arrange
      * them! Surely, there must be an efficient way to count the arrangements.
-     * 
+     *
      * What is the total number of distinct ways you can arrange the adapters to
      * connect the charging outlet to your device?
      */
     @Test
     void inputAdapterArray() throws IOException {
-        List<Long> adapters = FileUtils.readLines("/2020/day/10/input")
-                .stream()
-                .map(Long::parseLong)
-                .collect(Collectors.toList());
+        LongList adapters = LongArrayList.toList(
+                FileUtils.readLines("/2020/day/10/input").stream().mapToLong(Long::parseLong)
+        );
 
         IntegerPair adapter = jolterAdapter(adapters);
         assertThat(adapter.left()).isEqualTo(72);

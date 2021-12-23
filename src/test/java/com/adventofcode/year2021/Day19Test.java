@@ -159,9 +159,6 @@ public class Day19Test {
             for (String b : scanners.keySet()) {
                 for (Map.Entry<String, List<Probe>> entry1 : scanners.entrySet()) {
                     String i = entry1.getKey();
-                    // if (b.equals(i)) {
-                    //     continue;
-                    // }
                     for (Map.Entry<String, List<Probe>> entry2 : scanners.entrySet()) {
                         String j = entry2.getKey();
                         if (b.equals(j) || i.equals(j)) {

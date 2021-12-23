@@ -71,8 +71,8 @@ public class Day09Test {
         LOGGER.info("Map \n{}", map);
 
         List<Point2D> points = map.points();
-        int xMax = points.stream().mapToInt(Point2D::x).max().getAsInt();
-        int yMax = points.stream().mapToInt(Point2D::y).max().getAsInt();
+        int xMax = points.stream().mapToInt(Point2D::x).max().orElseThrow();
+        int yMax = points.stream().mapToInt(Point2D::y).max().orElseThrow();
 
         int risk = 0;
         for (Point2D point : points) {
@@ -100,8 +100,8 @@ public class Day09Test {
         LOGGER.info("Map \n{}", map);
 
         List<Point2D> points = map.points();
-        int xMax = points.stream().mapToInt(Point2D::x).max().getAsInt();
-        int yMax = points.stream().mapToInt(Point2D::y).max().getAsInt();
+        int xMax = points.stream().mapToInt(Point2D::x).max().orElseThrow();
+        int yMax = points.stream().mapToInt(Point2D::y).max().orElseThrow();
 
         Map<Point2D, List<Point2D>> adjacent = new HashMap<>();
         for (Point2D point : points) {

@@ -66,7 +66,7 @@ public class LongMemory implements Memory<Long> {
 
     @Override
     public Collection<Long> values() {
-        return bitSet.stream().mapToLong(i -> mem[i]).boxed().collect(Collectors.toList());
+        return bitSet.stream().mapToLong(i -> mem[i]).boxed().toList();
     }
 
     public Long put(int key, long value) {

@@ -3,17 +3,17 @@ package com.adventofcode.year2020;
 import com.adventofcode.map.CharMap;
 import com.adventofcode.map.IntegerMap;
 import com.adventofcode.map.Point2D;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import it.unimi.dsi.fastutil.ints.IntSet;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,7 +39,7 @@ public class Day20Test {
         return seaMonster;
     }
 
-    public static boolean assembleJurassicJigsaw(Map<Integer, List<CharMap>> tiles, IntegerMap position, int gridX, int gridY, Set<Integer> used, int gridSize, int size, CharMap fullGrid) {
+    public static boolean assembleJurassicJigsaw(Int2ObjectMap<List<CharMap>> tiles, IntegerMap position, int gridX, int gridY, IntSet used, int gridSize, int size, CharMap fullGrid) {
         if (gridY == gridSize) return true;
 
         int nextGridY = gridY;
@@ -49,8 +49,8 @@ public class Day20Test {
             nextGridY++;
         }
 
-        for (Map.Entry<Integer, List<CharMap>> entry : tiles.entrySet()) {
-            int id = entry.getKey();
+        for (Int2ObjectMap.Entry<List<CharMap>> entry : tiles.int2ObjectEntrySet()) {
+            int id = entry.getIntKey();
             if (!used.contains(id)) {
                 used.add(id);
                 for (CharMap tile : entry.getValue()) {
@@ -202,7 +202,6 @@ public class Day20Test {
 
 
         return found;
-
     }
 
     private static long findSeaMonster(CharMap seaMonster, CharMap trim) {
@@ -217,9 +216,9 @@ public class Day20Test {
         return 0;
     }
 
-    private static long computeProduct(Map<Integer, List<CharMap>> tiles, int grid, CharMap fullGrid) {
+    private static long computeProduct(Int2ObjectMap<List<CharMap>> tiles, int grid, CharMap fullGrid) {
         IntegerMap gridMap = new IntegerMap();
-        assembleJurassicJigsaw(tiles, gridMap, 0, 0, new HashSet<>(), grid, 10, fullGrid);
+        assembleJurassicJigsaw(tiles, gridMap, 0, 0, new IntOpenHashSet(), grid, 10, fullGrid);
         LOGGER.info("GridMap: \n{}", gridMap);
 
         long product = 1;
@@ -345,7 +344,7 @@ public class Day20Test {
                         ..#.###...
                         """);
 
-        Map<Integer, List<CharMap>> tiles = new HashMap<>();
+        Int2ObjectMap<List<CharMap>> tiles = new Int2ObjectOpenHashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
             line = line.replace(":", "");
@@ -376,29 +375,29 @@ public class Day20Test {
      * can even see a desert in the distance! Since you have some spare time, you
      * might as well see if there was anything interesting in the image the
      * Mythical Information Bureau satellite captured.
-     * 
+     *
      * After decoding the satellite messages, you discover that the data actually
      * contains many small images created by the satellite's camera array. The
      * camera array consists of many cameras; rather than produce a single square
      * image, they produce many smaller square image tiles that need to be
      * reassembled back into a single image.
-     * 
+     *
      * Each camera in the camera array returns a single monochrome image tile with
      * a random unique ID number. The tiles (your puzzle input) arrived in a
      * random order.
-     * 
+     *
      * Worse yet, the camera array appears to be malfunctioning: each image tile
      * has been rotated and flipped to a random orientation. Your first task is to
      * reassemble the original image by orienting the tiles so they fit together.
-     * 
+     *
      * To show how the tiles should be reassembled, each tile's image data
      * includes a border that should line up exactly with its adjacent tiles. All
      * tiles have this border, and the border lines up exactly when the tiles are
      * both oriented correctly. Tiles at the edge of the image also have this
      * border, but the outermost edges won't line up with any other tiles.
-     * 
+     *
      * For example, suppose you have the following nine tiles:
-     * 
+     *
      * Tile 2311:
      * ..##.#..#.
      * ##..#.....
@@ -410,7 +409,7 @@ public class Day20Test {
      * ..#....#..
      * ###...#.#.
      * ..###..###
-     * 
+     *
      * Tile 1951:
      * #.##...##.
      * #.####...#
@@ -422,7 +421,7 @@ public class Day20Test {
      * .###....#.
      * ..#.#..#.#
      * #...##.#..
-     * 
+     *
      * Tile 1171:
      * ####...##.
      * #..##.#..#
@@ -434,7 +433,7 @@ public class Day20Test {
      * #.##.####.
      * ####..#...
      * .....##...
-     * 
+     *
      * Tile 1427:
      * ###.##.#..
      * .#..#.##..
@@ -446,7 +445,7 @@ public class Day20Test {
      * .#.####.#.
      * ..#..###.#
      * ..##.#..#.
-     * 
+     *
      * Tile 1489:
      * ##.#.#....
      * ..##...#..
@@ -458,7 +457,7 @@ public class Day20Test {
      * ##.#...##.
      * ..##.##.##
      * ###.##.#..
-     * 
+     *
      * Tile 2473:
      * #....####.
      * #..#.##...
@@ -470,7 +469,7 @@ public class Day20Test {
      * ########.#
      * ##...##.#.
      * ..###.#.#.
-     * 
+     *
      * Tile 2971:
      * ..#.#....#
      * #...###...
@@ -482,7 +481,7 @@ public class Day20Test {
      * ..####.###
      * ..#.#.###.
      * ...#.#.#.#
-     * 
+     *
      * Tile 2729:
      * ...#.#.#.#
      * ####.#....
@@ -494,7 +493,7 @@ public class Day20Test {
      * ##.####...
      * ##..#.##..
      * #.##...##.
-     * 
+     *
      * Tile 3079:
      * #.#.#####.
      * .#..######
@@ -506,10 +505,10 @@ public class Day20Test {
      * ..#.###...
      * ..#.......
      * ..#.###...
-     * 
+     *
      * By rotating, flipping, and rearranging them, you can find a square
      * arrangement that causes all adjacent borders to line up:
-     * 
+     *
      * #...##.#.. ..###..### #.#.#####.
      * ..#.#..#.# ###...#.#. .#..######
      * .###....#. ..#....#.. ..#.......
@@ -520,7 +519,7 @@ public class Day20Test {
      * .....#..## #...##..#. ..#.###...
      * #.####...# ##..#..... ..#.......
      * #.##...##. ..##.#..#. ..#.###...
-     * 
+     *
      * #.##...##. ..##.#..#. ..#.###...
      * ##..#.##.. ..#..###.# ##.##....#
      * ##.####... .#.####.#. ..#.###..#
@@ -531,7 +530,7 @@ public class Day20Test {
      * ..#.#..... .#.##.#..# #.###.##..
      * ####.#.... .#..#.##.. .######...
      * ...#.#.#.# ###.##.#.. .##...####
-     * 
+     *
      * ...#.#.#.# ###.##.#.. .##...####
      * ..#.#.###. ..##.##.## #..#.##..#
      * ..####.### ##.#...##. .#.#..#.##
@@ -542,29 +541,29 @@ public class Day20Test {
      * #.#.###... .##..##... .####.##.#
      * #...###... ..##...#.. ...#..####
      * ..#.#....# ##.#.#.... ...##.....
-     * 
+     *
      * For reference, the IDs of the above tiles are:
-     * 
+     *
      * 1951    2311    3079
      * 2729    1427    2473
      * 2971    1489    1171
-     * 
+     *
      * To check that you've assembled the image correctly, multiply the IDs of the
      * four corner tiles together. If you do this with the assembled tiles from
      * the example above, you get 1951 * 3079 * 2971 * 1171 = 20899048083289.
-     * 
+     *
      * Assemble the tiles into an image. What do you get if you multiply together
      * the IDs of the four corner tiles?
-     * 
+     *
      * --- Part Two ---
-     * 
+     *
      * Now, you're ready to check the image for sea monsters.
-     * 
+     *
      * The borders of each tile are not part of the actual image; start by
      * removing them.
-     * 
+     *
      * In the example above, the tiles become:
-     * 
+     *
      * .#.#..#. ##...#.# #..#####
      * ###....# .#....#. .#......
      * ##.##.## #.#.#..# #####...
@@ -573,7 +572,7 @@ public class Day20Test {
      * ...##### ###.#... .#####.#
      * ....#..# ...##..# .#.###..
      * .####... #..#.... .#......
-     * 
+     *
      * #..#.##. .#..###. #.##....
      * #.####.. #.####.# .#.###..
      * ###.#.#. ..#.#### ##.#..##
@@ -582,7 +581,7 @@ public class Day20Test {
      * ...#..#. .#.#.##. .###.###
      * .#.#.... #.##.#.. .###.##.
      * ###.#... #..#.##. ######..
-     * 
+     *
      * .#.#.### .##.##.# ..#.##..
      * .####.## #.#...## #.#..#.#
      * ..#.#..# ..#.#.#. ####.###
@@ -591,9 +590,9 @@ public class Day20Test {
      * #.##..#. .#...#.. ####...#
      * .#.###.. ##..##.. ####.##.
      * ...###.. .##...#. ..#..###
-     * 
+     *
      * Remove the gaps to form the actual image:
-     * 
+     *
      * .#.#..#.##...#.##..#####
      * ###....#.#....#..#......
      * ##.##.###.#.#..######...
@@ -618,20 +617,20 @@ public class Day20Test {
      * #.##..#..#...#..####...#
      * .#.###..##..##..####.##.
      * ...###...##...#...#..###
-     * 
+     *
      * Now, you're ready to search for sea monsters! Because your image is
      * monochrome, a sea monster will look like this:
-     * 
+     *
      * #
      * #    ##    ##    ###
      * #  #  #  #  #  #
-     * 
+     *
      * When looking for this pattern in the image, the spaces can be anything;
      * only the # need to match. Also, you might need to rotate or flip your image
      * before it's oriented correctly to find sea monsters. In the above image,
      * after flipping and rotating it to the appropriate orientation, there are
      * two sea monsters (marked with O):
-     * 
+     *
      * .####...#####..#...###..
      * #####..#..#.#.####..#.#.
      * .#.#...#.###...#.##.O#..
@@ -656,18 +655,18 @@ public class Day20Test {
      * #....##..#.#########..##
      * #...#.....#..##...###.##
      * #..###....##.#...##.##.#
-     * 
+     *
      * Determine how rough the waters are in the sea monsters' habitat by counting
      * the number of # that are not part of a sea monster. In the above example,
      * the habitat's water roughness is 273.
-     * 
+     *
      * How many # are not part of a sea monster?
      */
     @Test
     void inputJurassicJigsaw() {
         Scanner scanner = new Scanner(Day20Test.class.getResourceAsStream("/2020/day/20/input"));
 
-        Map<Integer, List<CharMap>> tiles = new HashMap<>();
+        Int2ObjectMap<List<CharMap>> tiles = new Int2ObjectOpenHashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
             line = line.replace(":", "");

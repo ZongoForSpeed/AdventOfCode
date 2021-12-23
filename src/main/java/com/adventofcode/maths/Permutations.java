@@ -1,5 +1,8 @@
 package com.adventofcode.maths;
 
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.longs.LongList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -41,7 +44,20 @@ public final class Permutations {
                 new ArrayList<>());
     }
 
+    public static LongList permutation(long no, LongList items) {
+        return permutationHelper(no,
+                new LinkedList<>(Objects.requireNonNull(items)),
+                new LongArrayList());
+    }
+
     private static <T> List<T> permutationHelper(long no, LinkedList<T> in, List<T> out) {
+        if (in.isEmpty()) return out;
+        long subFactorial = factorial(in.size() - 1);
+        out.add(in.remove((int) (no / subFactorial)));
+        return permutationHelper((int) (no % subFactorial), in, out);
+    }
+
+    private static LongList permutationHelper(long no, LinkedList<Long> in, LongList out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)));
@@ -52,6 +68,12 @@ public final class Permutations {
     @SuppressWarnings("varargs") // Creating a List from an array is safe
     public static <T> Stream<List<T>> of(T... items) {
         List<T> itemList = Arrays.asList(items);
+        return LongStream.range(0, factorial(items.length))
+                .mapToObj(no -> permutation(no, itemList));
+    }
+
+    public static Stream<LongList> of(long... items) {
+        LongList itemList = LongList.of(items);
         return LongStream.range(0, factorial(items.length))
                 .mapToObj(no -> permutation(no, itemList));
     }

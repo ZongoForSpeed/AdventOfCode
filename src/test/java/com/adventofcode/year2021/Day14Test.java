@@ -1,15 +1,19 @@
 package com.adventofcode.year2021;
 
+import com.adventofcode.utils.CharPair;
+import it.unimi.dsi.fastutil.chars.Char2LongMap;
+import it.unimi.dsi.fastutil.chars.Char2LongOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2CharMap;
+import it.unimi.dsi.fastutil.objects.Object2CharOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2LongMap;
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -21,17 +25,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day14Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day14Test.class);
 
-    private static Map<Pair<Character, Character>, Long> extendedPolymerization(Map<Pair<Character, Character>, Long> template, Map<Pair<Character, Character>, Character> rules) {
-        Map<Pair<Character, Character>, Long> newTemplate = new HashMap<>();
-        for (Map.Entry<Pair<Character, Character>, Long> entry : template.entrySet()) {
-            Pair<Character, Character> pair = entry.getKey();
-            Long count = entry.getValue();
+    private static Object2LongMap<CharPair> extendedPolymerization(Object2LongMap<CharPair> template, Object2CharMap<CharPair> rules) {
+        Object2LongMap<CharPair> newTemplate = new Object2LongOpenHashMap<>();
+        for (Object2LongMap.Entry<CharPair> entry : template.object2LongEntrySet()) {
+            CharPair pair = entry.getKey();
+            Long count = entry.getLongValue();
             Character character = rules.get(pair);
             if (character != null) {
-                newTemplate.compute(Pair.of(pair.getLeft(), character), (ignore, value) -> value == null ? count : value + count);
-                newTemplate.compute(Pair.of(character, pair.getRight()), (ignore, value) -> value == null ? count : value + count);
+                newTemplate.compute(CharPair.of(pair.left(), character), (ignore, value) -> value == null ? count : value + count);
+                newTemplate.compute(CharPair.of(character, pair.right()), (ignore, value) -> value == null ? count : value + count);
             } else {
-                newTemplate.compute(Pair.of(pair.getLeft(), pair.getRight()), (ignore, value) -> value == null ? count : value + count);
+                newTemplate.compute(CharPair.of(pair.left(), pair.right()), (ignore, value) -> value == null ? count : value + count);
             }
         }
 
@@ -41,10 +45,10 @@ public class Day14Test {
     private static long extendedPolymerization(Scanner scanner, int steps) {
         Pattern pattern = Pattern.compile("(\\w+) -> (\\w)");
 
-        Map<Pair<Character, Character>, Character> rules = new HashMap<>();
-        Map<Pair<Character, Character>, Long> template = new HashMap<>();
+        Object2CharMap<CharPair> rules = new Object2CharOpenHashMap<>();
+        Object2LongMap<CharPair> template = new Object2LongOpenHashMap<>();
 
-        Map<Character, Long> frequency = new HashMap<>();
+        Char2LongMap frequency = new Char2LongOpenHashMap();
 
         boolean readRule = false;
         while (scanner.hasNextLine()) {
@@ -59,12 +63,12 @@ public class Day14Test {
                 if (matcher.matches()) {
                     String left = matcher.group(1);
                     String right = matcher.group(2);
-                    rules.put(Pair.of(left.charAt(0), left.charAt(1)), right.charAt(0));
+                    rules.put(CharPair.of(left.charAt(0), left.charAt(1)), right.charAt(0));
                 }
             } else {
                 char[] chars = line.toCharArray();
                 for (int i = 1; i < chars.length; i++) {
-                    template.compute(Pair.of(chars[i - 1], chars[i]), (ignore, value) -> value == null ? 1 : value + 1);
+                    template.compute(CharPair.of(chars[i - 1], chars[i]), (ignore, value) -> value == null ? 1 : value + 1);
                 }
 
                 frequency.compute(chars[0], (ignore, value) -> value == null ? 1 : value + 1);
@@ -80,19 +84,19 @@ public class Day14Test {
             LOGGER.debug("After step {}: {}", step, template);
         }
 
-        for (Map.Entry<Pair<Character, Character>, Long> entry : template.entrySet()) {
-            Pair<Character, Character> pair = entry.getKey();
-            Long count = entry.getValue();
-            frequency.compute(pair.getLeft(), (ignore, value) -> value == null ? count : value + count);
-            frequency.compute(pair.getRight(), (ignore, value) -> value == null ? count : value + count);
+        for (Object2LongMap.Entry<CharPair> entry : template.object2LongEntrySet()) {
+            CharPair pair = entry.getKey();
+            long count = entry.getLongValue();
+            frequency.compute(pair.left(), (ignore, value) -> value == null ? count : value + count);
+            frequency.compute(pair.right(), (ignore, value) -> value == null ? count : value + count);
         }
 
-        frequency = frequency.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue() / 2));
+        frequency = new Char2LongOpenHashMap(frequency.char2LongEntrySet().stream().collect(Collectors.toMap(Char2LongMap.Entry::getCharKey, e -> e.getLongValue() / 2)));
 
         LOGGER.info("frequency = {}", frequency);
 
-        long max = frequency.values().stream().mapToLong(t -> t).max().orElseThrow();
-        long min = frequency.values().stream().mapToLong(t -> t).min().orElseThrow();
+        long max = frequency.values().longStream().max().orElseThrow();
+        long min = frequency.values().longStream().min().orElseThrow();
 
         return max - min;
     }
