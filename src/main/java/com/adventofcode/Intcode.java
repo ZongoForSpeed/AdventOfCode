@@ -63,32 +63,40 @@ public class Intcode {
         BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(settings.subList(4, 5));
 
         executorService.submit(() -> {
-            intcode(stringCodes, take(queue1), queue2::offer);
+            intcode(stringCodes, take(queue1), offer(queue2));
         });
 
         executorService.submit(() -> {
-            intcode(stringCodes, take(queue2), queue3::offer);
+            intcode(stringCodes, take(queue2), offer(queue3));
         });
 
         executorService.submit(() -> {
-            intcode(stringCodes, take(queue3), queue4::offer);
+            intcode(stringCodes, take(queue3), offer(queue4));
         });
 
         executorService.submit(() -> {
-            intcode(stringCodes, take(queue4), queue5::offer);
+            intcode(stringCodes, take(queue4), offer(queue5));
         });
 
         Future<Long> future = executorService.submit(() -> {
             AtomicLong result = new AtomicLong(0);
             intcode(stringCodes, take(queue5), (n) -> {
-                queue1.offer(n);
+                offer(queue1).accept(n);
                 result.set(n);
             });
             return result.get();
         });
 
-        queue1.offer(0L);
+        queue1.put(0L);
         return future.get();
+    }
+
+    private static LongConsumer offer(BlockingQueue<Long> queue) {
+        return (value) -> {
+            if (!queue.offer(value)) {
+                throw new IllegalStateException("Cannot offer to queue!");
+            }
+        };
     }
 
     public static LongSupplier take(BlockingQueue<Long> queue) {
@@ -257,12 +265,12 @@ public class Intcode {
         public Robot(String program) {
             executorService = Executors.newSingleThreadExecutor();
             executorService.submit(() -> {
-                intcode(program, take(inputQueue), outputQueue::offer);
+                intcode(program, take(inputQueue), offer(outputQueue));
             });
         }
 
         public long action(long input) {
-            inputQueue.offer(input);
+            offer(inputQueue).accept(input);
             return take(outputQueue).getAsLong();
         }
 

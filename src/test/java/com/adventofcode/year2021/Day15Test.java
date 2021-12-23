@@ -26,10 +26,11 @@ public class Day15Test {
             Point2D.of(+1, 0) //
     );
 
-    private static List<Point2D> adjacent(Point2D p, int xMax, int yMax) {
+    private static List<AStar.Move<Point2D>> adjacent(IntegerMap map, Point2D p, int xMax, int yMax) {
         return ADJACENT_POINTS.stream()
-                .map(d -> Point2D.of(p.x() + d.x(), p.y() + d.y()))
+                .map(p::move)
                 .filter(a -> (a.y() >= 0) && (a.x() >= 0) && (a.y() <= yMax) && (a.x() <= xMax))
+                .map(a -> AStar.Move.of(a, map.get(a)))
                 .toList();
     }
 
@@ -70,7 +71,7 @@ public class Day15Test {
         Point2D start = Point2D.of(0, 0);
         Point2D end = Point2D.of(xMax, yMax);
 
-        return AStar.algorithm(p -> adjacent(p, xMax, yMax), (ignore, p) -> Long.valueOf(map.get(p)), start, end);
+        return AStar.algorithm(p -> adjacent(map, p, xMax, yMax), start, end);
     }
 
     private static IntegerMap readMap(Scanner scanner, Function<IntegerMap, IntegerMap> mapFunction) {

@@ -36,6 +36,36 @@ public class AStar {
         return Long.MAX_VALUE;
     }
 
+    public static <E> long algorithm(Function<E, List<Move<E>>> graph, E start, E end) {
+        Set<E> closedList = new HashSet<>();
+        Queue<Node<E>> queue = new PriorityQueue<>(Comparator.comparingLong(Node::cost));
+        queue.add(new Node<>(start, 0L));
+        while (!queue.isEmpty()) {
+            Node<E> node = queue.poll();
+            if (node.vertex().equals(end)) {
+                return node.cost();
+            }
+            if (closedList.add(node.vertex())) {
+                List<Move<E>> moves = graph.apply(node.vertex());
+                for (Move<E> move : moves) {
+                    E vertex = move.vertex();
+                    if (!closedList.contains(vertex)) {
+                        Node<E> suivant = new Node<>(vertex, node.cost() + move.cost());
+                        queue.add(suivant);
+                    }
+                }
+            }
+        }
+
+        return Long.MAX_VALUE;
+    }
+
     private record Node<E>(E vertex, long cost) {
+    }
+
+    public record Move<E>(E vertex, long cost) {
+        public static <S> Move<S> of(S vertex, long cost) {
+            return new Move<>(vertex, cost);
+        }
     }
 }

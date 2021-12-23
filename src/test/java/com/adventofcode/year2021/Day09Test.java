@@ -121,7 +121,9 @@ public class Day09Test {
             Queue<Point2D> queue = new ArrayDeque<>();
             Set<Point2D> basin = new HashSet<>();
 
-            queue.offer(lowPoint);
+            if (!queue.offer(lowPoint)) {
+                throw new IllegalStateException("Cannot offer to queue");
+            }
 
             while (!queue.isEmpty()) {
                 Point2D point = queue.poll();

@@ -64,22 +64,22 @@ public class Day25Test {
     /**
      * --- Day 25: Cryostasis ---
      * As you approach Santa's ship, your sensors report two important details:
-     * <p>
+     *
      * First, that you might be too late: the internal temperature is -40 degrees.
-     * <p>
+     *
      * Second, that one faint life signature is somewhere on the ship.
-     * <p>
+     *
      * The airlock door is locked with a code; your best option is to send in a small droid to investigate the situation.
      * You attach your ship to Santa's, break a small hole in the hull, and let the droid run in before you seal it up
      * again. Before your ship starts freezing, you detach your ship and set it to automatically stay within range of
      * Santa's ship.
-     * <p>
+     *
      * This droid can follow basic instructions and report on its surroundings; you can communicate with it through an
      * Intcode program (your puzzle input) running on an ASCII-capable computer.
-     * <p>
+     *
      * As the droid moves through its environment, it will describe what it encounters. When it says Command?, you can
      * give it a single instruction terminated with a newline (ASCII code 10). Possible instructions are:
-     * <p>
+     *
      * Movement via north, south, east, or west.
      * To take an item the droid sees in the environment, use the command take <name of item>. For example, if the droid
      * reports seeing a red ball, you can pick it up with take red ball.
@@ -87,27 +87,28 @@ public class Day25Test {
      * a green ball, you can drop it with drop green ball.
      * To get a list of all of the items the droid is currently carrying, use the command inv (for "inventory").
      * Extra spaces or other characters aren't allowed - instructions must be provided precisely.
-     * <p>
+     *
      * Santa's ship is a Reindeer-class starship; these ships use pressure-sensitive floors to determine the identity of
      * droids and crew members. The standard configuration for these starships is for all droids to weigh exactly the
      * same amount to make them easier to detect. If you need to get past such a sensor, you might be able to reach the
      * correct weight by carrying items from the environment.
-     * <p>
+     *
      * Look around the ship and see if you can find the password for the main airlock.
      */
     @Test
     void testFindPassword() throws IOException {
         String line = FileUtils.readLine("/2019/day/25/input");
         String password = findPassword(line);
-        assertThat(password).isEqualTo("== Pressure-Sensitive Floor ==\n" +
-                "Analyzing...\n" +
-                "\n" +
-                "Doors here lead:\n" +
-                "- north\n" +
-                "\n" +
-                "A loud, robotic voice says \"Analysis complete! You may proceed.\" and you enter the cockpit.\n" +
-                "Santa notices your small droid, looks puzzled for a moment, realizes what has happened, and radios your ship directly.\n" +
-                "\"Oh, hello! You should be able to get in by typing 4362 on the keypad at the main airlock.\"");
+        assertThat(password).isEqualTo("""
+                == Pressure-Sensitive Floor ==
+                Analyzing...
+
+                Doors here lead:
+                - north
+
+                A loud, robotic voice says "Analysis complete! You may proceed." and you enter the cockpit.
+                Santa notices your small droid, looks puzzled for a moment, realizes what has happened, and radios your ship directly.
+                "Oh, hello! You should be able to get in by typing 4362 on the keypad at the main airlock.\"""");
     }
 
     public static class Droid {
@@ -171,7 +172,7 @@ public class Day25Test {
         public Position start(String program) {
             executor.submit(() -> {
                 Intcode.intcode(program, this::input, this::output);
-                consoleOutput.offer(stringBuilder.toString());
+                consoleOutput.put(stringBuilder.toString());
                 stringBuilder.setLength(0);
                 return null;
             });
@@ -187,15 +188,20 @@ public class Day25Test {
         }
 
         private void output(long c) {
-            if (c < 255) {
-                stringBuilder.append((char) c);
-            } else {
-                stringBuilder.append(c);
-            }
+            try {
+                if (c < 255) {
+                    stringBuilder.append((char) c);
+                } else {
+                    stringBuilder.append(c);
+                }
 
-            if (stringBuilder.toString().contains("Command?\n")) {
-                consoleOutput.offer(stringBuilder.toString());
-                stringBuilder.setLength(0);
+                if (stringBuilder.toString().contains("Command?\n")) {
+                    consoleOutput.put(stringBuilder.toString());
+
+                    stringBuilder.setLength(0);
+                }
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
             }
         }
 
