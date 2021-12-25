@@ -95,4 +95,17 @@ public class CharMap {
         }
         return points;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CharMap charMap = (CharMap) o;
+        return Arrays.deepEquals(map, charMap.map);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(map);
+    }
 }
