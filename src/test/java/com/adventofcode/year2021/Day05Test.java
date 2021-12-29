@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day05Test {
+class Day05Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day05Test.class);
 
     @Test

@@ -19,7 +19,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day20Test {
+class Day20Test {
     /**
      * --- Day 20: Donut Maze ---
      * You notice a strange pattern on the surface of Pluto and land nearby to get a closer look. Upon closer inspection,

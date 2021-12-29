@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day21Test {
+class Day21Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day21Test.class);
 
     private static long runSpringscript(String line, String command) {

@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day25Test {
+class Day25Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day25Test.class);
 
     private static Point2D move(Point2D point, char direction, int xMax, int yMax) {
@@ -143,6 +143,8 @@ public class Day25Test {
             map = nextStep(map, xMax, yMax);
             LOGGER.info("After {} steps:\n{}", step, map);
         }
+
+        assertThat(map.points()).hasSize(8);
     }
 
     @Test

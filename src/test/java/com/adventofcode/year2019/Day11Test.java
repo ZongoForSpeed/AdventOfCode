@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day11Test {
+class Day11Test {
     /**
      * --- Day 11: Space Police ---
      * On the way to Jupiter, you're pulled over by the Space Police.

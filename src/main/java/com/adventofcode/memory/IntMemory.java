@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 public class IntMemory implements Memory<Integer> {
     private final BitSet bitSet;
@@ -27,17 +26,20 @@ public class IntMemory implements Memory<Integer> {
 
     @Override
     public boolean containsKey(int key) {
-        if (key < 0) {
-            throw new IllegalStateException("Negative key are not allowed: " + key);
-        }
+        checkKey(key);
 
         return key < mem.length && bitSet.get(key);
     }
 
-    public Integer get(int key) {
+    private void checkKey(int key) {
         if (key < 0) {
             throw new IllegalStateException("Negative key are not allowed: " + key);
         }
+    }
+
+    public Integer get(int key) {
+        checkKey(key);
+
         if (key < mem.length && bitSet.get(key)) {
             return mem[key];
         }
@@ -70,15 +72,27 @@ public class IntMemory implements Memory<Integer> {
     }
 
     public Integer put(int key, int value) {
-        if (key < 0) {
-            throw new IllegalStateException("Negative key are not allowed: " + key);
-        }
+        checkKey(key);
+
         if (key >= mem.length) {
             grow(key);
         }
 
         Integer last = get(key);
         mem[key] = value;
+        bitSet.set(key);
+        return last;
+    }
+
+    public Integer increment(int key, int value) {
+        checkKey(key);
+
+        if (key >= mem.length) {
+            grow(key);
+        }
+
+        Integer last = get(key);
+        mem[key] += value;
         bitSet.set(key);
         return last;
     }

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day23Test {
+class Day23Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
 
     private static String crabCupsPart1(String input, int moves) {

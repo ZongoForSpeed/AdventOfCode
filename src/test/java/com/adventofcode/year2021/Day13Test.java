@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day13Test {
+class Day13Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day13Test.class);
 
     @Test

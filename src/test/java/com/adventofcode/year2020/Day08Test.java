@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day08Test {
+class Day08Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
 
     List<Pair<String, Long>> parseCommands(List<String> program) {

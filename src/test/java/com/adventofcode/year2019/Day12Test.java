@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day12Test {
+class Day12Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12Test.class);
 
     /**

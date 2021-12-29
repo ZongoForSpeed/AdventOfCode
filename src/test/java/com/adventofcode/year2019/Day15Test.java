@@ -21,7 +21,7 @@ import java.util.Stack;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
-public class Day15Test {
+class Day15Test {
     private static void cartography(Intcode.Robot robot, Map2D map, Stack<Direction> paths, Set<Point2D> visited, Point2D position) {
         if (visited.add(position)) {
             for (Direction d : Direction.values()) {

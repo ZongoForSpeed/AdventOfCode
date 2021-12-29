@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day01Test {
+class Day01Test {
     public static long reportRepair2(long[] report) {
         for (int i = 0; i < report.length; i++) {
             for (int j = i + 1; j < report.length; j++) {

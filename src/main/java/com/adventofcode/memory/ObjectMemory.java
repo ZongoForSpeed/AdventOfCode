@@ -3,7 +3,6 @@ package com.adventofcode.memory;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class ObjectMemory<V> implements Memory<V> {
     private final BitSet bitSet;
@@ -28,11 +27,15 @@ public class ObjectMemory<V> implements Memory<V> {
         return bitSet.isEmpty();
     }
 
-    @Override
-    public boolean containsKey(int key) {
+    private void checkKey(int key) {
         if (key < 0) {
             throw new IllegalStateException("Negative key are not allowed: " + key);
         }
+    }
+
+    @Override
+    public boolean containsKey(int key) {
+        checkKey(key);
 
         return key < mem.length && bitSet.get(key);
     }
@@ -40,9 +43,7 @@ public class ObjectMemory<V> implements Memory<V> {
     @Override
     @SuppressWarnings("unchecked")
     public V get(int key) {
-        if (key < 0) {
-            throw new IllegalStateException("Negative key are not allowed: " + key);
-        }
+        checkKey(key);
 
         if (key < mem.length && bitSet.get(key)) {
             return (V) mem[key];
@@ -53,9 +54,7 @@ public class ObjectMemory<V> implements Memory<V> {
 
     @Override
     public V put(int key, V value) {
-        if (key < 0) {
-            throw new IllegalStateException("Negative key are not allowed: " + key);
-        }
+        checkKey(key);
 
         if (key >= mem.length) {
             grow(key);

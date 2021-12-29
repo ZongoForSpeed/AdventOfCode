@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day12Test {
+class Day12Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12Test.class);
 
     private static void findAllPathsPartOne(Map<String, List<String>> adjList, String current, String destination,

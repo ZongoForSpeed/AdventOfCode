@@ -13,7 +13,7 @@ import java.util.function.IntBinaryOperator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day07Test {
+class Day07Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day07Test.class);
 
     private static int fuelPartOne(int a, int b) {

@@ -27,7 +27,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day19Test {
+class Day19Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day19Test.class);
 
     private static final List<Matrix3D> ROTATIONS = buildOrientation();

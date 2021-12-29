@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day07Test {
+class Day07Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day07Test.class);
     private static final Pattern PATTERN = Pattern.compile("(\\d+) (.*) bag");
 

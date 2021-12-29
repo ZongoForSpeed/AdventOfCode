@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class FileUtils {
+public final class FileUtils {
+    private FileUtils() {
+        // No-Op
+    }
+
     public static List<String> readLines(String file) throws IOException {
         List<String> lines = new ArrayList<>();
         try (InputStream is = FileUtils.class.getResourceAsStream(file)) {

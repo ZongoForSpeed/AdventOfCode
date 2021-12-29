@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.longs.LongList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -60,7 +61,7 @@ public final class Permutations {
     private static LongList permutationHelper(long no, LinkedList<Long> in, LongList out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
-        out.add(in.remove((int) (no / subFactorial)));
+        out.add(in.remove((int) (no / subFactorial)).longValue());
         return permutationHelper((int) (no % subFactorial), in, out);
     }
 
@@ -69,6 +70,12 @@ public final class Permutations {
     public static <T> Stream<List<T>> of(T... items) {
         List<T> itemList = Arrays.asList(items);
         return LongStream.range(0, factorial(items.length))
+                .mapToObj(no -> permutation(no, itemList));
+    }
+
+    public static <T> Stream<List<T>> of(Collection<T> items) {
+        List<T> itemList = new ArrayList<>(items);
+        return LongStream.range(0, factorial(items.size()))
                 .mapToObj(no -> permutation(no, itemList));
     }
 

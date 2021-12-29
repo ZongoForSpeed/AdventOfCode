@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day18Test {
+class Day18Test {
     private static final List<Point2D> DIAGONALS = ImmutableList.of(
             new Point2D(-1, -1),
             new Point2D(-1, 1),

@@ -16,7 +16,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day17Test {
+class Day17Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
 
     private static Collection<Point3D> neighbors(Point3D p) {

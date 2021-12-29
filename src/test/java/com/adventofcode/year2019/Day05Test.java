@@ -9,7 +9,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day05Test {
+class Day05Test {
     /**
      * --- Day 5: Sunny with a Chance of Asteroids ---
      * You're starting to sweat as the ship makes its way toward Mercury. The Elves suggest that you get the air
@@ -169,36 +169,36 @@ public class Day05Test {
     @Test
     void testPositionModeEqual() {
         assertThat(Intcode.ioIntcode("3,9,8,9,10,9,4,9,99,-1,8", 8)).isEqualTo(1);
-        assertThat(Intcode.ioIntcode("3,9,8,9,10,9,4,9,99,-1,8", 42)).isEqualTo(0);
+        assertThat(Intcode.ioIntcode("3,9,8,9,10,9,4,9,99,-1,8", 42)).isZero();
     }
 
     @Test
     void testPositionModeLess() {
         assertThat(Intcode.ioIntcode("3,9,7,9,10,9,4,9,99,-1,8", 7)).isEqualTo(1);
-        assertThat(Intcode.ioIntcode("3,9,7,9,10,9,4,9,99,-1,8", 42)).isEqualTo(0);
+        assertThat(Intcode.ioIntcode("3,9,7,9,10,9,4,9,99,-1,8", 42)).isZero();
     }
 
     @Test
     void testImmediateModeEqual() {
         assertThat(Intcode.ioIntcode("3,3,1108,-1,8,3,4,3,99", 8)).isEqualTo(1);
-        assertThat(Intcode.ioIntcode("3,3,1108,-1,8,3,4,3,99", 42)).isEqualTo(0);
+        assertThat(Intcode.ioIntcode("3,3,1108,-1,8,3,4,3,99", 42)).isZero();
     }
 
     @Test
     void testImmediateModeLess() {
         assertThat(Intcode.ioIntcode("3,3,1107,-1,8,3,4,3,99", 7)).isEqualTo(1);
-        assertThat(Intcode.ioIntcode("3,3,1107,-1,8,3,4,3,99", 42)).isEqualTo(0);
+        assertThat(Intcode.ioIntcode("3,3,1107,-1,8,3,4,3,99", 42)).isZero();
     }
 
     @Test
     void testPositionJump() {
-        assertThat(Intcode.ioIntcode("3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9", 0)).isEqualTo(0);
+        assertThat(Intcode.ioIntcode("3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9", 0)).isZero();
         assertThat(Intcode.ioIntcode("3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9", 42)).isEqualTo(1);
     }
 
     @Test
     void testImmediateJump() {
-        assertThat(Intcode.ioIntcode("3,3,1105,-1,9,1101,0,0,12,4,12,99,1", 0)).isEqualTo(0);
+        assertThat(Intcode.ioIntcode("3,3,1105,-1,9,1101,0,0,12,4,12,99,1", 0)).isZero();
         assertThat(Intcode.ioIntcode("3,3,1105,-1,9,1101,0,0,12,4,12,99,1", 42)).isEqualTo(1);
     }
 

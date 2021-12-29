@@ -17,7 +17,7 @@ import java.util.TreeMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day10Test {
+class Day10Test {
     private static int doubleCompare(double a, double b) {
         if (Math.abs(a - b) < 0.000001) {
             return 0;

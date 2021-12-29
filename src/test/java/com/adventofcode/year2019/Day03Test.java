@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day03Test {
+class Day03Test {
     /**
      * --- Day 3: Crossed Wires ---
      * 

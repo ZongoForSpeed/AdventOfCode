@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day02Test {
+class Day02Test {
     private static int solvePuzzle(String input, int objective) {
         for (int noun = 0; noun < 100; ++noun) {
             for (int verb = 0; verb < 100; ++verb) {

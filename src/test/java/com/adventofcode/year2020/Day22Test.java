@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day22Test {
+class Day22Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22Test.class);
 
     private static long playCrabCombat(Scanner scanner) {

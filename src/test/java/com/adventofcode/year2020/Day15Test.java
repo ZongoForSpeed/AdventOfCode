@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day15Test {
+class Day15Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day15Test.class);
 
     long memoryGame(String input, int turn) {

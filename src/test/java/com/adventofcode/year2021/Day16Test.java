@@ -18,7 +18,7 @@ import java.util.stream.LongStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day16Test {
+class Day16Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day16Test.class);
 
     private static List<Packet> decodePackets(Deque<Integer> data) {
@@ -146,8 +146,8 @@ public class Day16Test {
         assertThat(evaluate("880086C3E88112")).isEqualTo(7);
         assertThat(evaluate("CE00C43D881120")).isEqualTo(9);
         assertThat(evaluate("D8005AC2A8F0")).isEqualTo(1);
-        assertThat(evaluate("F600BC2D8F")).isEqualTo(0);
-        assertThat(evaluate("9C005AC2F8F0")).isEqualTo(0);
+        assertThat(evaluate("F600BC2D8F")).isZero();
+        assertThat(evaluate("9C005AC2F8F0")).isZero();
         assertThat(evaluate("9C0141080250320F1802104A08")).isEqualTo(1);
 
     }

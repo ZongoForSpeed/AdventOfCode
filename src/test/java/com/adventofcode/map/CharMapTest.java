@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class CharMapTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(CharMapTest.class);
     @Test
@@ -27,7 +29,8 @@ class CharMapTest {
             }
         }
 
-        LOGGER.info("Map: {}", map);
+        LOGGER.info("Map:\n{}", map);
+        assertThat(map.points()).hasSize(15);
     }
 
 }

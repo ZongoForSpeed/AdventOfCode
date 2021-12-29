@@ -18,7 +18,6 @@ public class Dijkstra<E> {
 
     public Map<E, Integer> computeDistance(E start) {
         Map<E, Integer> distance = new HashMap<>();
-        // graph.keySet().forEach(k -> distance.put(k, Integer.MAX_VALUE));
         distance.put(start, 0);
 
         Set<E> nodes = new HashSet<>(graph.keySet());

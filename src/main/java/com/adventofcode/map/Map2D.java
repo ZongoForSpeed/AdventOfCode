@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.function.LongFunction;
 
 public class Map2D implements Map<Point2D, Long> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Map2D.class);
@@ -68,7 +67,7 @@ public class Map2D implements Map<Point2D, Long> {
         return map.entrySet();
     }
 
-    public List<String> print(char[][] view, Function<Long, Character> supplier) {
+    public List<String> print(char[][] view, LongFunction<Character> supplier) {
         for (Map.Entry<Point2D, Long> entry : map.entrySet()) {
             view[entry.getKey().y()][entry.getKey().x()] = supplier.apply(entry.getValue());
         }
@@ -79,7 +78,7 @@ public class Map2D implements Map<Point2D, Long> {
         return Arrays.stream(view).map(String::valueOf).toList();
     }
 
-    public List<String> print(Function<Long, Character> supplier) {
+    public List<String> print(LongFunction<Character> supplier) {
         int maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
         int minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
         int maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);

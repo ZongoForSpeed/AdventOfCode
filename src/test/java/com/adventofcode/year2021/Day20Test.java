@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day20Test {
+class Day20Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20Test.class);
 
     private static final List<Point2D> NEIGHBORS = List.of(

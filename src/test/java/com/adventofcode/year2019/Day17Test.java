@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day17Test {
+class Day17Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
     private static int computeSumAlignmentParameters(String output) {
         char[][] map = Arrays.stream(output.split("\\n")).map(String::toCharArray).toArray(char[][]::new);

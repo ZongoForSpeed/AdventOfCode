@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day02Test {
+class Day02Test {
     public static boolean passwordPolicy1(String policy) {
         Pattern pattern = Pattern.compile("(\\d+)-(\\d+) (\\w): (\\w*)");
         Matcher matcher = pattern.matcher(policy);

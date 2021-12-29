@@ -12,7 +12,7 @@ import java.util.OptionalLong;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day09Test {
+class Day09Test {
     boolean isValid(LongList codes, int start, int end, long value) {
         for (int n = start; n < end; ++n) {
             for (int m = n + 1; m < end; ++m) {

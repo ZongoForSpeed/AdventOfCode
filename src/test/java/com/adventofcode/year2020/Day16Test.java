@@ -22,7 +22,7 @@ import java.util.function.IntPredicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day16Test {
+class Day16Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day16Test.class);
 
     private static Triple<Map<String, IntPredicate>, int[], List<int[]>> readNote(List<String> notes) {

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day19Test {
+class Day19Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day19Test.class);
 
     private static String buildPattern(int rulesNumber, boolean addLoopRules, Memory<String> rules, Memory<String> cache) {

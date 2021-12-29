@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day16Test {
+class Day16Test {
     private static final short[] PATTERN = new short[]{0, 1, 0, -1};
 
     private static int pattern(int base, int n) {

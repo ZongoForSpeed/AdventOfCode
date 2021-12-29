@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class Day01Test {
+class Day01Test {
     /**
      * --- Day 1: The Tyranny of the Rocket Equation ---
      * Santa has become stranded at the edge of the Solar System while delivering presents to other planets! To accurately

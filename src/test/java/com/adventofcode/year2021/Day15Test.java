@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day15Test {
+class Day15Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day15Test.class);
 
     private static final List<Point2D> ADJACENT_POINTS = List.of(

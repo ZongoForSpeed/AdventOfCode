@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class InfiniteCharMap implements Map<Point2D, Character> {
     private final Map<Point2D, Character> map;
@@ -64,7 +64,7 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
         return map.entrySet();
     }
 
-    private List<String> print(Function<Character, Character> supplier) {
+    private List<String> print(UnaryOperator<Character> supplier) {
         int maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
         int minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
         int maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
@@ -84,6 +84,6 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
 
     @Override
     public String toString() {
-        return String.join("\n", print(Function.identity()));
+        return String.join("\n", print(UnaryOperator.identity()));
     }
 }

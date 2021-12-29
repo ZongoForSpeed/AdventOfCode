@@ -22,7 +22,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day09Test {
+class Day09Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day09Test.class);
 
     List<Point2D> adjacent(Point2D p, int xMax, int yMax) {

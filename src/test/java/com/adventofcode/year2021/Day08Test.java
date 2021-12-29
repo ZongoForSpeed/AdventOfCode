@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day08Test {
+class Day08Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
 
     public final List<Map<String, Integer>> mappings;

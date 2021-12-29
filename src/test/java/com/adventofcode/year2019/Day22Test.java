@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day22Test {
+class Day22Test {
     public static final String DEAL_WITH_INCREMENT = "deal with increment ";
     public static final String DEAL_INTO_NEW_STACK = "deal into new stack";
     public static final String CUT_N_CARDS = "cut ";

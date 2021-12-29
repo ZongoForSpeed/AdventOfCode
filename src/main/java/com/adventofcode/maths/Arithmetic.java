@@ -9,7 +9,9 @@ public final class Arithmetic {
     }
 
     public static long chineseRemainderTheorem(long[] modulos, long[] reminders, long[] primes) {
-        assert (modulos.length == reminders.length);
+        if (modulos.length != reminders.length) {
+            throw new IllegalStateException("modulos and reminders should have the same size !");
+        }
 
         long n = 1;
         for (long modulo : modulos) {
@@ -52,6 +54,32 @@ public final class Arithmetic {
             result = result - result / n;
         }
         return result;
+    }
+
+    public static long sigma(long n, long[] primes) {
+        long result = 1;
+        for (long p : primes) {
+            if (p * p > n) {
+                break;
+            }
+            if (n % p == 0) {
+                int counter = 0;
+                while (n % p == 0) {
+                    n /= p;
+                    ++counter;
+                }
+                result *= power(p, counter + 1) - 1;
+                result /= p - 1;
+            }
+        }
+        if (n > 1) {
+            result *= (n + 1);
+        }
+        return result;
+    }
+
+    public static long power(long b, int e) {
+        return BigInteger.valueOf(b).pow(e).longValue();
     }
 
     public static long powerMod(long b, long e, long modulo) {
@@ -142,25 +170,28 @@ public final class Arithmetic {
 
     public static Triple<Long, Long, Long> Bezout(long a, long b) {
         // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
-        long s = 0, old_s = 1;
-        long t = 1, old_t = 0;
-        long r = b, old_r = a;
+        long s = 0;
+        long oldS = 1;
+        long t = 1;
+        long oldT = 0;
+        long r = b;
+        long oldR = a;
         while (r != 0) {
-            long quotient = old_r / r;
-            long new_r = old_r - quotient * r;
-            long new_s = old_s - quotient * s;
-            long new_t = old_t - quotient * t;
+            long quotient = oldR / r;
+            long newR = oldR - quotient * r;
+            long newS = oldS - quotient * s;
+            long newT = oldT - quotient * t;
 
-            old_r = r;
-            old_s = s;
-            old_t = t;
+            oldR = r;
+            oldS = s;
+            oldT = t;
 
-            r = new_r;
-            s = new_s;
-            t = new_t;
+            r = newR;
+            s = newS;
+            t = newT;
         }
 
-        return Triple.of(old_r, old_s, old_t);
+        return Triple.of(oldR, oldS, oldT);
     }
 
 

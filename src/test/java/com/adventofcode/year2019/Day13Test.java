@@ -12,7 +12,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day13Test {
+class Day13Test {
     /**
      * --- Day 13: Care Package ---
      * As you ponder the solitude of space and the ever-increasing three-hour roundtrip for messages between you and

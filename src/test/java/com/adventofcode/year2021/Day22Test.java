@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day22Test {
+class Day22Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22Test.class);
     private static final Pattern CUBES_PATTERN = Pattern.compile("(on|off) x=(.*),y=(.*),z=(.*)");
 

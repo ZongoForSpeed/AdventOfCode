@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day03Test {
+class Day03Test {
     public static long tobogganTrajectory(List<String> map, int right, int down) {
         int taille = map.get(0).length();
         int count = 0;

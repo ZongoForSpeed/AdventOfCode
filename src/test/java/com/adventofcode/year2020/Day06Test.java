@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day06Test {
+class Day06Test {
     private static long countUniqueQuestions(List<String> group) {
         return group.stream().flatMapToInt(String::chars).distinct().count();
     }

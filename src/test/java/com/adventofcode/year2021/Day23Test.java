@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day23Test {
+class Day23Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
     private static final IntSet ENTRIES = IntSet.of(2, 4, 6, 8);
 

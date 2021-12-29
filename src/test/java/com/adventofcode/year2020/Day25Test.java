@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day25Test {
+class Day25Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day25Test.class);
 
     private static long findLoop(long pk) {

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day02Test {
+class Day02Test {
 
     private static IntegerPair divePartOne(List<String> input) {
         int position = 0;

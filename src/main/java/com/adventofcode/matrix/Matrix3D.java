@@ -11,19 +11,6 @@ public class Matrix3D {
         this.m = new int[3][3];
     }
 
-    public Matrix3D(int a11, int a12, int a13, int a21, int a22, int a23, int a31, int a32, int a33) {
-        this();
-        m[0][0] = a11;
-        m[0][1] = a12;
-        m[0][2] = a13;
-        m[1][0] = a21;
-        m[1][1] = a22;
-        m[1][2] = a23;
-        m[2][0] = a31;
-        m[2][1] = a32;
-        m[2][2] = a33;
-    }
-
     public Matrix3D(Point3D a, Point3D b, Point3D c) {
         this();
         this.m[0][0] = a.x();
@@ -58,17 +45,6 @@ public class Matrix3D {
         inverse.m[2][1] = (-((m[0][0] * m[2][1]) - (m[0][1] * m[2][0]))) / det;
         inverse.m[2][2] = ((m[0][0] * m[1][1]) - (m[0][1] * m[1][0])) / det;
         return inverse;
-    }
-
-    public Matrix3D transpose() {
-        Matrix3D result = new Matrix3D();
-        for (int i = 0; i < m.length; i++) {
-            for (int j = 0; j < m[i].length; j++) {
-                result.m[j][i] = m[i][j];
-            }
-        }
-
-        return result;
     }
 
     public Point3D apply(Point3D p) {

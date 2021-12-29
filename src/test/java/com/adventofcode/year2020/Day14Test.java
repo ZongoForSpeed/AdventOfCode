@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day14Test {
+class Day14Test {
 
     private static final Pattern MASK_PATTERN = Pattern.compile("mask = (.*)");
     private static final Pattern MEMORY_PATTERN = Pattern.compile("mem\\[(\\d+)\\] = (\\d+)");

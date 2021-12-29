@@ -25,6 +25,9 @@ import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class Intcode {
+    private Intcode() {
+        // No-Op
+    }
 
     public static String intcode(String stringCodes) {
         long[] codes = intcode(stringCodes, -1, -1);
@@ -51,8 +54,11 @@ public class Intcode {
     public static long thrusterSignal(String code, LongList settings) {
         try {
             return internalThrusterSignal(code, settings);
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException(e);
+        } catch (ExecutionException e) {
+            throw new IllegalStateException(e.getMessage(), e.getCause());
         }
     }
 
@@ -64,25 +70,14 @@ public class Intcode {
         BlockingQueue<Long> queue4 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(3, 4)));
         BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(4, 5)));
 
-        executorService.submit(() -> {
-            intcode(stringCodes, take(queue1), offer(queue2));
-        });
-
-        executorService.submit(() -> {
-            intcode(stringCodes, take(queue2), offer(queue3));
-        });
-
-        executorService.submit(() -> {
-            intcode(stringCodes, take(queue3), offer(queue4));
-        });
-
-        executorService.submit(() -> {
-            intcode(stringCodes, take(queue4), offer(queue5));
-        });
+        executorService.submit(() -> intcode(stringCodes, take(queue1), offer(queue2)));
+        executorService.submit(() -> intcode(stringCodes, take(queue2), offer(queue3)));
+        executorService.submit(() -> intcode(stringCodes, take(queue3), offer(queue4)));
+        executorService.submit(() -> intcode(stringCodes, take(queue4), offer(queue5)));
 
         Future<Long> future = executorService.submit(() -> {
             AtomicLong result = new AtomicLong(0);
-            intcode(stringCodes, take(queue5), (n) -> {
+            intcode(stringCodes, take(queue5), n -> {
                 offer(queue1).accept(n);
                 result.set(n);
             });
@@ -94,7 +89,7 @@ public class Intcode {
     }
 
     private static LongConsumer offer(BlockingQueue<Long> queue) {
-        return (value) -> {
+        return value -> {
             if (!queue.offer(value)) {
                 throw new IllegalStateException("Cannot offer to queue!");
             }
@@ -106,6 +101,7 @@ public class Intcode {
             try {
                 return queue.take();
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 throw new IllegalStateException(e);
             }
         };
@@ -265,9 +261,7 @@ public class Intcode {
 
         public Robot(String program) {
             executorService = Executors.newSingleThreadExecutor();
-            executorService.submit(() -> {
-                intcode(program, take(inputQueue), offer(outputQueue));
-            });
+            executorService.submit(() -> intcode(program, take(inputQueue), offer(outputQueue)));
         }
 
         public long action(long input) {

@@ -3,6 +3,7 @@ package com.adventofcode.map;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 
 public class IntegerMap {
@@ -37,16 +38,7 @@ public class IntegerMap {
     }
 
     public void set(int x, int y, int value) {
-        if (y >= map.length) {
-            int length = map.length;
-            map = Arrays.copyOf(map, y + 1);
-            Arrays.fill(map, length, y + 1, new int[0]);
-        }
-        if (x >= map[y].length) {
-            int length = map[y].length;
-            map[y] = Arrays.copyOf(map[y], x + 1);
-            Arrays.fill(map[y], length, x + 1, defaultValue);
-        }
+        ensure(x, y);
 
         map[y][x] = value;
     }
@@ -56,6 +48,13 @@ public class IntegerMap {
     }
 
     public int increment(int x, int y, int value) {
+        ensure(x, y);
+
+        map[y][x] += value;
+        return map[y][x];
+    }
+
+    private void ensure(int x, int y) {
         if (y >= map.length) {
             int length = map.length;
             map = Arrays.copyOf(map, y + 1);
@@ -66,8 +65,16 @@ public class IntegerMap {
             map[y] = Arrays.copyOf(map[y], x + 1);
             Arrays.fill(map[y], length, x + 1, defaultValue);
         }
+    }
 
-        map[y][x] += value;
+    public int compute(Point2D p, IntUnaryOperator operation) {
+        return compute(p.x(), p.y(), operation);
+    }
+
+    public int compute(int x, int y, IntUnaryOperator operation) {
+        ensure(x, y);
+
+        map[y][x] = operation.applyAsInt(map[y][x]);
         return map[y][x];
     }
 

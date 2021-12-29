@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day13Test {
+class Day13Test {
     private static LongPair findBus(long timestamp, long[] buses) {
         long minWait = Long.MAX_VALUE;
         long minBus = -1;

@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day10Test {
+class Day10Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day10Test.class);
 
     private static int validateSyntax(Scanner scanner) {

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 public class LongMemory implements Memory<Long> {
     private final BitSet bitSet;
@@ -27,17 +26,20 @@ public class LongMemory implements Memory<Long> {
 
     @Override
     public boolean containsKey(int key) {
-        if (key < 0) {
-            throw new IllegalStateException("Negative key are not allowed: " + key);
-        }
+        checkKey(key);
 
         return key < mem.length && bitSet.get(key);
     }
 
-    public Long get(int key) {
+    private void checkKey(int key) {
         if (key < 0) {
             throw new IllegalStateException("Negative key are not allowed: " + key);
         }
+    }
+
+    public Long get(int key) {
+        checkKey(key);
+
         if (key < mem.length && bitSet.get(key)) {
             return mem[key];
         }
@@ -70,9 +72,8 @@ public class LongMemory implements Memory<Long> {
     }
 
     public Long put(int key, long value) {
-        if (key < 0) {
-            throw new IllegalStateException("Negative key are not allowed: " + key);
-        }
+        checkKey(key);
+
         if (key >= mem.length) {
             grow(key);
         }

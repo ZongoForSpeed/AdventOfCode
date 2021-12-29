@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day03Test {
+class Day03Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day03Test.class);
 
     private static IntegerPair binaryDiagnostic(List<String> strings) {

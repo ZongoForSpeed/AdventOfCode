@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
-public class Day14Test {
+class Day14Test {
     private static Map<String, Long> solveOrePerFuel(List<Reaction> reactions, long fuelQuantity) {
         Map<String, Long> quantities = new HashMap<>();
         quantities.put("FUEL", fuelQuantity);

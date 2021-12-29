@@ -25,7 +25,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day24Test {
+class Day24Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
     private static BitSet nextState(BitSet bugs, List<IntList> adjacents) {

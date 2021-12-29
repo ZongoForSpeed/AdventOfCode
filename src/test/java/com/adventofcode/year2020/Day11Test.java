@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day11Test {
+class Day11Test {
     private static final List<Point2D> ADJACENT_SEATS =
             List.of(Point2D.of(-1, -1),
                     Point2D.of(-1, 0),
@@ -148,7 +148,7 @@ public class Day11Test {
                 ".............");
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
         int occupiedSeats = adjacentOccupiedSeats(grid, 1, 1, true);
-        assertThat(occupiedSeats).isEqualTo(0);
+        assertThat(occupiedSeats).isZero();
     }
 
     @Test
@@ -164,7 +164,7 @@ public class Day11Test {
 
         char[][] grid1 = inputGrid1.stream().map(String::toCharArray).toArray(char[][]::new);
         int occupiedSeats = adjacentOccupiedSeats(grid1, 3, 3, true);
-        assertThat(occupiedSeats).isEqualTo(0);
+        assertThat(occupiedSeats).isZero();
     }
 
     /**

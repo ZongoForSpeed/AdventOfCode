@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day14Test {
+class Day14Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day14Test.class);
 
     private static Object2LongMap<CharPair> extendedPolymerization(Object2LongMap<CharPair> template, Object2CharMap<CharPair> rules) {

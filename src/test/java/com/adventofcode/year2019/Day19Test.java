@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day19Test {
+class Day19Test {
     private static boolean tractorBeam(String line, long x, long y) {
         if (x < 0 || y < 0) {
             return false;

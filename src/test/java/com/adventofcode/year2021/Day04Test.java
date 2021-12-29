@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day04Test {
+class Day04Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day04Test.class);
 
     private static boolean checkBingo(List<Integer> bingo) {

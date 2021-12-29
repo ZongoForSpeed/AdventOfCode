@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day09Test {
+class Day09Test {
     /**
      * --- Day 9: Sensor Boost ---
      * You've just said goodbye to the rebooted rover and left Mars when you receive a faint distress signal coming from

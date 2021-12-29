@@ -20,7 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day23Test {
+class Day23Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
 
     /**

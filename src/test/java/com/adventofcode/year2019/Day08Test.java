@@ -13,7 +13,7 @@ import java.util.stream.StreamSupport;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day08Test {
+class Day08Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
 
     private static int[] readImage(String input, int layerSize) {
@@ -73,7 +73,7 @@ public class Day08Test {
         String line = FileUtils.readLine("/2019/day/8/input");
         int length = line.length();
         int size = 25 * 6;
-        assertThat(length % size).isEqualTo(0);
+        assertThat(length % size).isZero();
         long zeros = Integer.MAX_VALUE;
         long result = 0;
         for (int index = 0; index < length; index += size) {

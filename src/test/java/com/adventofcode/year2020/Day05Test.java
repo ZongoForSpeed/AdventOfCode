@@ -9,7 +9,7 @@ import java.util.OptionalLong;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day05Test {
+class Day05Test {
     public static long binaryBoarding(String boardingPasses) {
         long row = 0;
         long column = 0;

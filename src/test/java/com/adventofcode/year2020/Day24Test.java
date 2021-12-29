@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day24Test {
+class Day24Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
     private static final Pattern PATTERN = Pattern.compile("(e|se|sw|w|nw|ne)");
 

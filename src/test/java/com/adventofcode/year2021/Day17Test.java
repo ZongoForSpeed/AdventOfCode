@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day17Test {
+class Day17Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
 
     private static OptionalInt simulate(Point2D velocity, Target target) {

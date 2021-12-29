@@ -36,9 +36,9 @@ public record Point3D(int x, int y, int z) {
     }
 
     public double distance(Point3D p) {
-        long dx = x - p.x;
-        long dy = y - p.y;
-        long dz = z - p.z;
+        double dx = (x - p.x);
+        double dy = (y - p.y);
+        double dz = (z - p.z);
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 }

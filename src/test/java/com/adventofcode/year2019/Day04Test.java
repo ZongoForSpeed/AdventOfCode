@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day04Test {
+class Day04Test {
     /**
      * --- Day 4: Secure Container ---
      * You arrive at the Venus fuel depot only to discover it's protected by a password. The Elves had written the

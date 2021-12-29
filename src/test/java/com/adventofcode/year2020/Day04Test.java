@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day04Test {
+class Day04Test {
     private static final Set<String> MANDATORY_FIELDS =
             Set.of("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid");
 

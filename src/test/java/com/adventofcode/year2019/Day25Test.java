@@ -26,7 +26,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day25Test {
+class Day25Test {
     private static String findPassword(String program) {
         Droid droid = new Droid(ImmutableSet.of("molten lava", "infinite loop", "giant electromagnet", "photons", "escape pod"));
         Position position = droid.start(program);

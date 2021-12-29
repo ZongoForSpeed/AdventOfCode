@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day11Test {
+class Day11Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day11Test.class);
 
     private static final List<Point2D> ADJACENT_POINTS = List.of(

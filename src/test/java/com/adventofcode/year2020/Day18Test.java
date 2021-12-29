@@ -14,7 +14,7 @@ import java.util.function.BinaryOperator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day18Test {
+class Day18Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day18Test.class);
 
     private static long evalExpressionLR(Iterator<Character> iterator) {
