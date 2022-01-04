@@ -3,6 +3,7 @@ package com.adventofcode.map;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,28 @@ public class IntegerMap {
         for (int[] line : map) {
             Arrays.fill(line, 0, sizeX, defaultValue);
         }
+    }
+
+    public IntegerMap(IntegerMap m) {
+        defaultValue = m.defaultValue;
+        map = Arrays.copyOf(m.map, m.map.length);
+        for (int i = 0; i < map.length; i++) {
+            map[i] = Arrays.copyOf(m.map[i], m.map[i].length);
+        }
+    }
+
+    public static IntegerMap read(Scanner scanner) {
+        IntegerMap map = new IntegerMap(0, 0, -1);
+        int j = 0;
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            char[] charArray = line.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
+                map.set(i, j, charArray[i] - '0');
+            }
+            ++j;
+        }
+        return map;
     }
 
     public int get(int x, int y) {
@@ -83,6 +106,10 @@ public class IntegerMap {
         return Arrays.stream(map)
                 .map(Arrays::toString)
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    public void clear() {
+        this.map = new int[0][0];
     }
 
     public List<Point2D> points() {

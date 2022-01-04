@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.map.CharMap;
+import com.adventofcode.map.BooleanMap;
 import com.adventofcode.map.Point2D;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -50,7 +50,7 @@ class Day13Test {
 
         Scanner scanner = new Scanner(input);
 
-        CharMap map = new CharMap(0, 0, '.');
+        BooleanMap map = new BooleanMap(0, 0);
         List<Pair<String, Integer>> instructions = new ArrayList<>();
         readMap(scanner, map, instructions);
 
@@ -64,7 +64,7 @@ class Day13Test {
         assertThat(map.points()).hasSize(16);
     }
 
-    private void readMap(Scanner scanner, CharMap map, List<Pair<String, Integer>> instructions) {
+    private void readMap(Scanner scanner, BooleanMap map, List<Pair<String, Integer>> instructions) {
         Pattern pattern = Pattern.compile("fold along (\\w)=(\\d+)");
         boolean readFold = false;
 
@@ -86,30 +86,30 @@ class Day13Test {
                 String[] split = line.split(",");
                 int x = Integer.parseInt(split[0]);
                 int y = Integer.parseInt(split[1]);
-                map.set(x, y, '#');
+                map.set(x, y);
             }
         }
     }
 
-    private void applyInstruction(CharMap map, Pair<String, Integer> instruction) {
+    private void applyInstruction(BooleanMap map, Pair<String, Integer> instruction) {
         String axe = instruction.getLeft();
         int position = instruction.getRight();
         switch (axe) {
             case "x" -> {
-                List<Point2D> points = map.points();
+                List<Point2D> points = map.points().toList();
                 for (Point2D point : points) {
-                    if (point.x() > position && map.get(point) == '#') {
-                        map.set(point, '.');
-                        map.set(2 * position - point.x(), point.y(), '#');
+                    if (point.x() > position && map.get(point)) {
+                        map.reset(point);
+                        map.set(2 * position - point.x(), point.y());
                     }
                 }
             }
             case "y" -> {
-                List<Point2D> points = map.points();
+                List<Point2D> points = map.points().toList();
                 for (Point2D point : points) {
-                    if (point.y() > position && map.get(point) == '#') {
-                        map.set(point, '.');
-                        map.set(point.x(), 2 * position - point.y(), '#');
+                    if (point.y() > position && map.get(point)) {
+                        map.reset(point);
+                        map.set(point.x(), 2 * position - point.y());
                     }
                 }
             }
@@ -265,13 +265,13 @@ class Day13Test {
     void inputPartOne() throws IOException {
         try (InputStream is = Day13Test.class.getResourceAsStream("/2021/day/13/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            CharMap map = new CharMap(0, 0, '.');
+            BooleanMap map = new BooleanMap(0, 0);
             List<Pair<String, Integer>> instructions = new ArrayList<>();
             readMap(scanner, map, instructions);
             LOGGER.info("Instructions: {}", instructions);
 
             applyInstruction(map, instructions.get(0));
-            assertThat(map.points()).hasSize(842);
+            assertThat(map.cardinality()).isEqualTo(842);
         }
     }
 
@@ -288,7 +288,7 @@ class Day13Test {
     void inputPartTwo() throws IOException {
         try (InputStream is = Day13Test.class.getResourceAsStream("/2021/day/13/input")) {
             Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            CharMap map = new CharMap(0, 0, '.');
+            BooleanMap map = new BooleanMap(0, 0);
             List<Pair<String, Integer>> instructions = new ArrayList<>();
             readMap(scanner, map, instructions);
 

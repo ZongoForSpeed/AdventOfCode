@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ class Day07Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day07Test.class);
 
     private static int getWireValue(Map<String, Integer> cache, Map<String, String> commands, String wire) {
-        if (StringUtils.isNumeric(wire)) {
+        if (NumberUtils.isParsable(wire)) {
             return Integer.parseInt(wire);
         }
 

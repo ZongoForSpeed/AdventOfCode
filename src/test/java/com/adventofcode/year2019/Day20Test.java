@@ -376,7 +376,7 @@ class Day20Test {
             for (int y = 2; y < map.length - 2; y++) {
                 for (int x = 2; x < lineLength - 2; x++) {
                     if (map[y][x] == '.') {
-                        Point2D d = new Point2D(x, y);
+                        Point2D d = Point2D.of(x, y);
                         for (Direction direction : Direction.values()) {
                             Point2D move = d.move(direction);
                             char c = map[move.y()][move.x()];

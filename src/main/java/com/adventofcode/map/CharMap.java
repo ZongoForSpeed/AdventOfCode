@@ -1,8 +1,12 @@
 package com.adventofcode.map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class CharMap {
@@ -21,6 +25,34 @@ public class CharMap {
         }
     }
 
+    public static CharMap read(String input, Predicate<Character> predicate) {
+        return read(new Scanner(input), predicate);
+    }
+
+    public static CharMap read(Scanner scanner, Predicate<Character> predicate) {
+        return read(scanner, predicate, false);
+    }
+
+    public static CharMap read(Scanner scanner, Predicate<Character> predicate, boolean stopWhenBlank) {
+        CharMap map = new CharMap();
+        int j = 0;
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (stopWhenBlank && StringUtils.isBlank(line)) {
+                break;
+            }
+            char[] charArray = line.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
+                char c = charArray[i];
+                if (predicate.test(c)) {
+                    map.set(i, j, c);
+                }
+            }
+            j++;
+        }
+        return map;
+    }
+
     public char get(int x, int y) {
         if (y < map.length && x < map[y].length) {
             return map[y][x];
@@ -32,7 +64,6 @@ public class CharMap {
         return get(p.x(), p.y());
     }
 
-
     public void set(int x, int y, char value) {
         reserve(x, y);
 
@@ -41,6 +72,14 @@ public class CharMap {
 
     public void set(Point2D p, char value) {
         set(p.x(), p.y(), value);
+    }
+
+    public void reset(Point2D p) {
+        reset(p.x(), p.y());
+    }
+
+    public void reset(int x, int y) {
+        set(x, y, defaultValue);
     }
 
     public void reserve(int x, int y) {
@@ -80,7 +119,7 @@ public class CharMap {
 
     @Override
     public String toString() {
-        return Arrays.stream(map).map(String::valueOf).map(s -> s + System.lineSeparator()).collect(Collectors.joining());
+        return Arrays.stream(map).map(String::valueOf).collect(Collectors.joining("\n"));
     }
 
     public List<Point2D> points() {

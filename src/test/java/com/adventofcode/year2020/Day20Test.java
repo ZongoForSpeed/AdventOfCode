@@ -1,5 +1,6 @@
 package com.adventofcode.year2020;
 
+import com.adventofcode.map.BooleanMap;
 import com.adventofcode.map.CharMap;
 import com.adventofcode.map.IntegerMap;
 import com.adventofcode.map.Point2D;
@@ -20,23 +21,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day20Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20Test.class);
 
-    private static CharMap readSeaMonster() {
-        List<String> inputSeaMonster = List.of(
-                "                  # ",
-                "#    ##    ##    ###",
-                " #  #  #  #  #  #   "
-        );
-        CharMap seaMonster = new CharMap();
-        for (int i = 0; i < inputSeaMonster.size(); i++) {
-            char[] line = inputSeaMonster.get(i).toCharArray();
-            for (int j = 0; j < line.length; j++) {
-                if (line[j] == '#') {
-                    seaMonster.set(j, i, line[j]);
-                }
-            }
-        }
-
-        return seaMonster;
+    private static BooleanMap readSeaMonster() {
+        String input = """
+                                  # \s
+                #    ##    ##    ###\s
+                 #  #  #  #  #  #   \s
+                """;
+        return BooleanMap.read(input, c -> c == '#');
     }
 
     public static boolean assembleJurassicJigsaw(Int2ObjectMap<List<CharMap>> tiles, IntegerMap position, int gridX, int gridY, IntSet used, int gridSize, int size, CharMap fullGrid) {
@@ -157,29 +148,18 @@ class Day20Test {
     }
 
     public static CharMap readTile(Scanner scan) {
-        CharMap m = new CharMap();
-        int y = 0;
-        while (scan.hasNextLine()) {
-            String line = scan.nextLine().trim();
-            if (line.length() == 0) break;
-
-            for (int x = 0; x < line.length(); x++) {
-                m.set(x, y, line.charAt(x));
-            }
-            y++;
-
-        }
-        return m;
+        return CharMap.read(scan, c -> true, true);
     }
 
-    public static int countAndMark(CharMap seamonster, CharMap map) {
+    public static int countAndMark(BooleanMap seamonster, CharMap map) {
         int found = 0;
 
         for (Point2D p : map.points()) {
             boolean monster = true;
-            for (Point2D q : seamonster.points()) {
-                if (seamonster.get(q.x(), q.y()) == '#') {
-                    char z = map.get(p.x() + q.x(), p.y() + q.y());
+            List<Point2D> points = seamonster.points().toList();
+            for (Point2D q : points) {
+                if (seamonster.get(q)) {
+                    char z = map.get(p.move(q));
                     if ((z != '#') && (z != 'O')) {
                         monster = false;
                         break;
@@ -188,12 +168,11 @@ class Day20Test {
                 }
             }
             if (monster) {
-                for (Point2D q : seamonster.points()) {
-                    if (seamonster.get(q.x(), q.y()) == '#') {
-                        map.set(p.x() + q.x(), p.y() + q.y(), 'O');
+                for (Point2D q : points) {
+                    if (seamonster.get(q)) {
+                        map.set(p.move(q), 'O');
                     }
                 }
-
                 found++;
             }
 
@@ -204,7 +183,7 @@ class Day20Test {
         return found;
     }
 
-    private static long findSeaMonster(CharMap seaMonster, CharMap trim) {
+    private static long findSeaMonster(BooleanMap seaMonster, CharMap trim) {
         for (CharMap f : directions(trim)) {
             int found = countAndMark(seaMonster, f);
             long sea = f.points().stream().filter(p -> f.get(p) == '#').count();
@@ -364,7 +343,7 @@ class Day20Test {
 
         CharMap trim = removeBorder(fullGrid, grid, 10);
 
-        CharMap seaMonster = readSeaMonster();
+        BooleanMap seaMonster = readSeaMonster();
         long monster = findSeaMonster(seaMonster, trim);
         assertThat(monster).isEqualTo(273L);
     }
@@ -686,7 +665,7 @@ class Day20Test {
 
         CharMap trim = removeBorder(fullGrid, grid, 10);
 
-        CharMap seaMonster = readSeaMonster();
+        BooleanMap seaMonster = readSeaMonster();
         long monster = findSeaMonster(seaMonster, trim);
         assertThat(monster).isEqualTo(1858);
     }

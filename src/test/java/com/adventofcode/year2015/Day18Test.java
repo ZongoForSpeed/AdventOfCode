@@ -1,5 +1,6 @@
 package com.adventofcode.year2015;
 
+import com.adventofcode.map.BooleanMap;
 import com.adventofcode.map.CharMap;
 import com.adventofcode.map.Point2D;
 import org.assertj.core.api.Assertions;
@@ -36,23 +37,23 @@ class Day18Test {
                 .toList();
     }
 
-    private static CharMap nextStep(CharMap map, int xMax, int yMax, Set<Point2D> corners) {
-        CharMap next = new CharMap();
+    private static BooleanMap nextStep(BooleanMap map, int xMax, int yMax, Set<Point2D> corners) {
+        BooleanMap next = new BooleanMap();
         for (int x = 0; x < xMax; ++x) {
             for (int y = 0; y < yMax; ++y) {
                 Point2D point = Point2D.of(x, y);
                 if (corners.contains(point)) {
-                    next.set(point, '#');
+                    next.set(point);
                     continue;
                 }
-                long count = neighbors(point, xMax, yMax).stream().map(map::get).filter(c -> c == '#').count();
-                if (map.get(point) == '#') {
+                long count = neighbors(point, xMax, yMax).stream().filter(map::get).count();
+                if (map.get(point)) {
                     if (count == 2 || count == 3) {
-                        next.set(point, '#');
+                        next.set(point);
                     }
                 } else {
                     if (count == 3) {
-                        next.set(point, '#');
+                        next.set(point);
                     }
                 }
             }
@@ -61,11 +62,11 @@ class Day18Test {
         return next;
     }
 
-    private static int getLightsPartOne(Scanner scanner, int steps, int xMax, int yMax) {
+    private static long getLightsPartOne(Scanner scanner, int steps, int xMax, int yMax) {
         return getLights(scanner, steps, xMax, yMax, Collections.emptySet());
     }
 
-    private static int getLightsPartTwo(Scanner scanner, int steps, int xMax, int yMax) {
+    private static long getLightsPartTwo(Scanner scanner, int steps, int xMax, int yMax) {
         return getLights(scanner, steps, xMax, yMax, Set.of(
                 Point2D.of(0, 0),
                 Point2D.of(xMax - 1, 0),
@@ -74,12 +75,10 @@ class Day18Test {
         ));
     }
 
-    private static int getLights(Scanner scanner, int steps, int xMax, int yMax, Set<Point2D> corners) {
-        CharMap map = readMap(scanner);
+    private static long getLights(Scanner scanner, int steps, int xMax, int yMax, Set<Point2D> corners) {
+        BooleanMap map = BooleanMap.read(scanner, c -> c == '#');
 
-        for (Point2D p : corners) {
-            map.set(p, '#');
-        }
+        corners.forEach(map::set);
 
         LOGGER.info("Initial state:\n{}", map);
 
@@ -88,24 +87,7 @@ class Day18Test {
             LOGGER.info("After {} steps:\n{}", step, map);
         }
 
-        return map.points().size();
-    }
-
-    private static CharMap readMap(Scanner scanner) {
-        CharMap map = new CharMap();
-        int j = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            char[] charArray = line.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                char c = charArray[i];
-                if (c == '#') {
-                    map.set(i, j, c);
-                }
-            }
-            j++;
-        }
-        return map;
+        return map.cardinality();
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.adventofcode.year2015;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +69,7 @@ class Day21Test {
                 LOGGER.debug("Type: {}", currentType);
             } else {
                 String name = line.substring(0, 12).trim();
-                int[] stats = Arrays.stream(line.substring(12).split(" ")).filter(StringUtils::isNumeric).mapToInt(Integer::parseInt).toArray();
+                int[] stats = Arrays.stream(line.substring(12).split(" ")).filter(NumberUtils::isParsable).mapToInt(Integer::parseInt).toArray();
                 Item item = Item.of(name, stats[0], stats[1], stats[2]);
                 LOGGER.debug("Object: {}", item);
                 items.computeIfAbsent(currentType, ignore -> new ArrayList<>()).add(item);

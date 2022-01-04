@@ -39,32 +39,10 @@ class Day20Test {
     }
 
     private static long enhanceImage(Scanner scanner, int steps) {
-        InfiniteCharMap charMap = new InfiniteCharMap();
+        String enhancementAlgorithm = scanner.nextLine();
+        scanner.nextLine();
 
-        String enhancementAlgorithm = null;
-        int j = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            LOGGER.info("Line : {}", line);
-
-            if (StringUtils.isBlank(line)) {
-                continue;
-            }
-
-            if (enhancementAlgorithm == null) {
-                enhancementAlgorithm = line;
-            } else {
-                char[] chars = line.toCharArray();
-                for (int i = 0; i < chars.length; i++) {
-                    char c = chars[i];
-                    if (c == '#') {
-                        charMap.put(Point2D.of(i, j), c);
-                    }
-                }
-                ++j;
-            }
-        }
-
+        InfiniteCharMap charMap = InfiniteCharMap.read(scanner, c -> c == '#');
         LOGGER.info("CharMap: \n{}", charMap);
 
         int xMin = charMap.keySet().stream().mapToInt(Point2D::x).min().orElseThrow();

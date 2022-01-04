@@ -107,7 +107,7 @@ class Day13Test {
                     if (x == -1 && y == 0) {
                         score = output;
                     } else {
-                        squares.put(new Point2D(x, y), output);
+                        squares.put(Point2D.of(x, y), output);
                     }
                     break;
             }
@@ -122,8 +122,8 @@ class Day13Test {
         }
 
         public long gameInput() {
-            Point2D ballPosition = new Point2D(0, 0);
-            Point2D paddlePosition = new Point2D(0, 0);
+            Point2D ballPosition = Point2D.of(0, 0);
+            Point2D paddlePosition = Point2D.of(0, 0);
             for (Map.Entry<Point2D, Long> entry : squares.entrySet()) {
                 if (entry.getValue() == 3) {
                     paddlePosition = entry.getKey();

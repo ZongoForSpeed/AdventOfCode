@@ -60,7 +60,8 @@ class Day15Test {
     }
 
     private static long chiton(Scanner scanner, Function<IntegerMap, IntegerMap> mapFunction) {
-        IntegerMap map = readMap(scanner, mapFunction);
+        IntegerMap map = IntegerMap.read(scanner);
+        map = mapFunction.apply(map);
 
         LOGGER.info("Map:\n{}", map);
 
@@ -71,22 +72,8 @@ class Day15Test {
         Point2D start = Point2D.of(0, 0);
         Point2D end = Point2D.of(xMax, yMax);
 
-        return AStar.algorithm(p -> adjacent(map, p, xMax, yMax), start, end);
-    }
-
-    private static IntegerMap readMap(Scanner scanner, Function<IntegerMap, IntegerMap> mapFunction) {
-        int j = 0;
-        IntegerMap map = new IntegerMap();
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            int i = 0;
-            for (char c : line.toCharArray()) {
-                map.set(i++, j, c - '0');
-            }
-            j++;
-        }
-
-        return mapFunction.apply(map);
+        IntegerMap finalMap = map;
+        return AStar.algorithm(p -> adjacent(finalMap, p, xMax, yMax), start, end);
     }
 
     @Test

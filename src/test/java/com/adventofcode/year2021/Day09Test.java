@@ -57,16 +57,7 @@ class Day09Test {
     }
 
     private int smokeBasinRisk(Scanner scanner) {
-        IntegerMap map = new IntegerMap(0, 0, -1);
-        int j = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            char[] charArray = line.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                map.set(i, j, charArray[i] - '0');
-            }
-            ++j;
-        }
+        IntegerMap map = IntegerMap.read(scanner);
 
         LOGGER.info("Map \n{}", map);
 
@@ -86,16 +77,7 @@ class Day09Test {
     }
 
     private int smokeBasin(Scanner scanner) {
-        IntegerMap map = new IntegerMap(0, 0, -1);
-        int j = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            char[] charArray = line.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                map.set(i, j, charArray[i] - '0');
-            }
-            ++j;
-        }
+        IntegerMap map = IntegerMap.read(scanner);
 
         LOGGER.info("Map \n{}", map);
 

@@ -19,7 +19,6 @@ import java.util.Set;
 import java.util.Stack;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.entry;
 
 class Day15Test {
     private static void cartography(Intcode.Robot robot, Map2D map, Stack<Direction> paths, Set<Point2D> visited, Point2D position) {
@@ -204,7 +203,7 @@ class Day15Test {
         String line = FileUtils.readLine("/2019/day/15/input");
         Intcode.Robot robot = new Intcode.Robot(line);
 
-        Point2D origin = new Point2D(0, 0);
+        Point2D origin = Point2D.of(0, 0);
         Map2D map = new Map2D();
         cartography(robot, map, new Stack<>(), new HashSet<>(), origin);
 
@@ -216,7 +215,7 @@ class Day15Test {
         Dijkstra<Point2D> dijkstra = new Dijkstra<>(graph);
 
         Map<Point2D, Integer> distance = dijkstra.computeDistance(origin);
-        assertThat(distance).contains(entry(oxygen, 240));
+        assertThat(distance).containsEntry(oxygen, 240);
 
         Map<Point2D, Integer> oxygenFill = dijkstra.computeDistance(oxygen);
         int duration = oxygenFill.values().stream().mapToInt(x -> x).max().orElse(0);

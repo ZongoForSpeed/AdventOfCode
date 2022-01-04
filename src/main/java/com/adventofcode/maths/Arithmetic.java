@@ -160,7 +160,7 @@ public final class Arithmetic {
 
     public static long inverseModulaire(long a, long n) {
         long inverse;
-        Triple<Long, Long, Long> result = Bezout(a, n);
+        Triple<Long, Long, Long> result = bezout(a, n);
         inverse = result.getMiddle();
         if (inverse < 0)
             return inverse + n;
@@ -168,7 +168,7 @@ public final class Arithmetic {
             return inverse;
     }
 
-    public static Triple<Long, Long, Long> Bezout(long a, long b) {
+    public static Triple<Long, Long, Long> bezout(long a, long b) {
         // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
         long s = 0;
         long oldS = 1;

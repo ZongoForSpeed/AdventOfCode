@@ -39,7 +39,7 @@ class Day19Test {
                     break;
                 }
                 if (tractorBeam(line, x, y + 99)) {
-                    return new Point2D(x, y);
+                    return Point2D.of(x, y);
                 }
             }
         }
@@ -100,9 +100,9 @@ class Day19Test {
             for (int y = 0; y < 50; y++) {
                 if (tractorBeam(line, x, y)) {
                     count++;
-                    map.put(new Point2D(x, y), 1L);
+                    map.put(Point2D.of(x, y), 1L);
                 } else {
-                    map.put(new Point2D(x, y), 0L);
+                    map.put(Point2D.of(x, y), 0L);
                 }
             }
         }

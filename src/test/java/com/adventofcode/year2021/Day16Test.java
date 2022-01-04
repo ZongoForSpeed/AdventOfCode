@@ -307,7 +307,8 @@ class Day16Test {
      *     operator packet that contains an operator packet that contains five
      *     literal values; it has a version sum of 31.
      *
-     * Decode the structure of your hexadecimal-encoded BITS transmission; what do you get if you add up the version numbers in all packets?
+     * Decode the structure of your hexadecimal-encoded BITS transmission; what do
+     * you get if you add up the version numbers in all packets?
      */
     @Test
     void inputPartOne() throws IOException {
@@ -365,7 +366,8 @@ class Day16Test {
      *   - 9C005AC2F8F0 produces 0, because 5 is not equal to 15.
      *   - 9C0141080250320F1802104A08 produces 1, because 1 + 3 = 2 * 2.
      *
-     * What do you get if you evaluate the expression represented by your hexadecimal-encoded BITS transmission?
+     * What do you get if you evaluate the expression represented by your hexadecimal-
+     * encoded BITS transmission?
      */
     @Test
     void inputPartTwo() throws IOException {

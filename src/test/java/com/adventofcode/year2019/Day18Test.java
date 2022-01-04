@@ -23,10 +23,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class Day18Test {
     private static final List<Point2D> DIAGONALS = ImmutableList.of(
-            new Point2D(-1, -1),
-            new Point2D(-1, 1),
-            new Point2D(1, -1),
-            new Point2D(1, 1)
+            Point2D.of(-1, -1),
+            Point2D.of(-1, 1),
+            Point2D.of(1, -1),
+            Point2D.of(1, 1)
     );
 
     public static Optional<Long> countSteps(MazeMap map) {
@@ -77,12 +77,12 @@ class Day18Test {
 
     public static MazeMap buildMaze(char[][] map) {
         Map<Point2D, Tile> tiles = new HashMap<>();
-        Point2D position = new Point2D(-1, -1);
+        Point2D position = Point2D.of(-1, -1);
         long keys = 0;
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 char codePoint = map[i][j];
-                Point2D d = new Point2D(i, j);
+                Point2D d = Point2D.of(i, j);
                 if (codePoint == '@') {
                     tiles.put(d, Tile.FREE);
                     position = d;

@@ -84,7 +84,7 @@ class Day03Test {
     public static List<Point2D> readPath(String path) {
         String[] steps = path.split(",");
         List<Point2D> result = new ArrayList<>();
-        Point2D position = new Point2D(0, 0);
+        Point2D position = Point2D.of(0, 0);
         result.add(position);
         for (String move : steps) {
             char direction = move.charAt(0);
@@ -96,7 +96,7 @@ class Day03Test {
                     case 'U' -> position.move(Direction.NORTH);
                     case 'L' -> position.move(Direction.WEST);
                     case 'D' -> position.move(Direction.SOUTH);
-                    default -> new Point2D(Integer.MIN_VALUE, Integer.MIN_VALUE);
+                    default -> Point2D.of(Integer.MIN_VALUE, Integer.MIN_VALUE);
                 };
                 result.add(position);
             }

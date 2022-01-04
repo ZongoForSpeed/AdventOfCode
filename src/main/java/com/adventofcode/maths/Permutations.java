@@ -1,5 +1,7 @@
 package com.adventofcode.maths;
 
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 
@@ -51,6 +53,12 @@ public final class Permutations {
                 new LongArrayList());
     }
 
+    public static IntList permutation(long no, IntList items) {
+        return permutationHelper(no,
+                new LinkedList<>(Objects.requireNonNull(items)),
+                new IntArrayList());
+    }
+
     private static <T> List<T> permutationHelper(long no, LinkedList<T> in, List<T> out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
@@ -62,6 +70,13 @@ public final class Permutations {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)).longValue());
+        return permutationHelper((int) (no % subFactorial), in, out);
+    }
+
+    private static IntList permutationHelper(long no, LinkedList<Integer> in, IntList out) {
+        if (in.isEmpty()) return out;
+        long subFactorial = factorial(in.size() - 1);
+        out.add(in.remove((int) (no / subFactorial)).intValue());
         return permutationHelper((int) (no % subFactorial), in, out);
     }
 
@@ -81,6 +96,12 @@ public final class Permutations {
 
     public static Stream<LongList> of(long... items) {
         LongList itemList = LongList.of(items);
+        return LongStream.range(0, factorial(items.length))
+                .mapToObj(no -> permutation(no, itemList));
+    }
+
+    public static Stream<IntList> of(int... items) {
+        IntList itemList = IntList.of(items);
         return LongStream.range(0, factorial(items.length))
                 .mapToObj(no -> permutation(no, itemList));
     }

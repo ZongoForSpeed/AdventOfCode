@@ -25,7 +25,7 @@ class Day25Test {
             default -> throw new IllegalStateException("Unknown direction " + direction);
         };
 
-        return point.move(d, xMax, yMax);
+        return point.moveLoop(d, xMax, yMax);
     }
 
     private static CharMap nextStepEast(CharMap map, int xMax, int yMax) {
@@ -74,21 +74,10 @@ class Day25Test {
     }
 
     private static int findLastStep(Scanner scanner) {
-        CharMap map = new CharMap();
-        int xMax = 0;
-        int y = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            char[] chars = line.toCharArray();
-            for (int x = 0; x < chars.length; x++) {
-                if (chars[x] != '.') {
-                    map.set(x, y, chars[x]);
-                }
-            }
-            xMax = Math.max(line.length() - 1, xMax);
-            ++y;
-        }
-        int yMax = y - 1;
+        CharMap map = CharMap.read(scanner, c -> c != '.');
+
+        int xMax = map.points().stream().mapToInt(Point2D::x).max().orElseThrow();
+        int yMax = map.points().stream().mapToInt(Point2D::y).max().orElseThrow();
 
         LOGGER.info("Initial state:\n{}", map);
         LOGGER.info("xMax: {}, yMax: {}", xMax, yMax);
@@ -120,21 +109,10 @@ class Day25Test {
                 ..vvv..""";
 
         Scanner scanner = new Scanner(input);
-        CharMap map = new CharMap();
-        int xMax = 0;
-        int y = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            char[] chars = line.toCharArray();
-            for (int x = 0; x < chars.length; x++) {
-                if (chars[x] != '.') {
-                    map.set(x, y, chars[x]);
-                }
-            }
-            xMax = Math.max(line.length() - 1, xMax);
-            ++y;
-        }
-        int yMax = y - 1;
+        CharMap map = CharMap.read(scanner, c -> c != '.');
+
+        int xMax = map.points().stream().mapToInt(Point2D::x).max().orElseThrow();
+        int yMax = map.points().stream().mapToInt(Point2D::y).max().orElseThrow();
 
         LOGGER.info("Initial state:\n{}", map);
         LOGGER.info("xMax: {}, yMax: {}", xMax, yMax);

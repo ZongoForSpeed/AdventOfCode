@@ -43,8 +43,8 @@ class Day11Test {
     }
 
     private static int dumboOctopusPartOne(Scanner scanner, int steps) {
-        IntegerMap map = new IntegerMap();
-        List<Point2D> points = readMap(scanner, map);
+        IntegerMap map = IntegerMap.read(scanner);
+        List<Point2D> points = new ArrayList<>(map.points());
 
         LOGGER.info("Map :\n{}", map);
 
@@ -63,25 +63,9 @@ class Day11Test {
         return countFlashes;
     }
 
-    private static List<Point2D> readMap(Scanner scanner, IntegerMap map) {
-        List<Point2D> points = new ArrayList<>();
-        int j = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            char[] charArray = line.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                map.set(i, j, charArray[i] - '0');
-                points.add(Point2D.of(i, j));
-            }
-            j++;
-        }
-        return points;
-    }
-
-
     private static int dumboOctopusPartTwo(Scanner scanner) {
-        IntegerMap map = new IntegerMap();
-        List<Point2D> points = readMap(scanner, map);
+        IntegerMap map = IntegerMap.read(scanner);
+        List<Point2D> points = new ArrayList<>(map.points());
 
         LOGGER.info("Map :\n{}", map);
 

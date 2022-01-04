@@ -60,19 +60,19 @@ class Day17Test {
             for (int j = 0; j < map[i].length; j++) {
                 switch (map[i][j]) {
                     case '^' -> {
-                        position = new Point2D(j, i);
+                        position = Point2D.of(j, i);
                         direction = Direction.NORTH;
                     }
                     case 'v' -> {
-                        position = new Point2D(j, i);
+                        position = Point2D.of(j, i);
                         direction = Direction.SOUTH;
                     }
                     case '<' -> {
-                        position = new Point2D(j, i);
+                        position = Point2D.of(j, i);
                         direction = Direction.WEST;
                     }
                     case '>' -> {
-                        position = new Point2D(j, i);
+                        position = Point2D.of(j, i);
                         direction = Direction.EAST;
                     }
                     default -> {
