@@ -1,17 +1,9 @@
 package com.adventofcode.year2016;
 
-import it.unimi.dsi.fastutil.chars.Char2IntMap;
-import it.unimi.dsi.fastutil.chars.Char2IntOpenHashMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Comparator;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -19,62 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 class Day06Test {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Day06Test.class);
-
-    private static Int2ObjectMap<Char2IntMap> getFrequencies(Scanner scanner) {
-        Int2ObjectMap<Char2IntMap> frequencies = new Int2ObjectOpenHashMap<>();
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            char[] chars = line.toCharArray();
-            for (int i = 0; i < chars.length; i++) {
-                frequencies
-                        .computeIfAbsent(i, ignore -> new Char2IntOpenHashMap())
-                        .compute(chars[i], (ignore, value) -> value == null ? 1 : value + 1);
-            }
-        }
-
-        LOGGER.info("Frequencies: {}", frequencies);
-        return frequencies;
-    }
-
-    private static String decodePasswordMostCommon(Scanner scanner) {
-        Int2ObjectMap<Char2IntMap> frequencies = getFrequencies(scanner);
-
-        int max = frequencies.keySet().intStream().max().orElseThrow();
-        char[] password = new char[max + 1];
-        for (int position = 0; position <= max; ++position) {
-            Char2IntMap integerMap = frequencies.get(position);
-            char character = integerMap
-                    .char2IntEntrySet()
-                    .stream()
-                    .max(Comparator.comparingInt(Map.Entry::getValue))
-                    .map(Map.Entry::getKey)
-                    .orElseThrow();
-            LOGGER.info("character at position {} : {}", position, character);
-            password[position] = character;
-        }
-        return String.valueOf(password);
-    }
-
-
-    private static String decodePasswordLeastCommon(Scanner scanner) {
-        Int2ObjectMap<Char2IntMap> frequencies = getFrequencies(scanner);
-
-        int max = frequencies.keySet().intStream().max().orElseThrow();
-        char[] password = new char[max + 1];
-        for (int position = 0; position <= max; ++position) {
-            Char2IntMap integerMap = frequencies.get(position);
-            char character = integerMap
-                    .char2IntEntrySet()
-                    .stream()
-                    .min(Comparator.comparingInt(Map.Entry::getValue))
-                    .map(Map.Entry::getKey)
-                    .orElseThrow();
-            LOGGER.info("character at position {} : {}", position, character);
-            password[position] = character;
-        }
-        return String.valueOf(password);
-    }
 
     @Test
     void inputExample() {
@@ -96,84 +32,21 @@ class Day06Test {
                 dvrsen
                 enarar""";
 
-        assertThat(decodePasswordMostCommon(new Scanner(input))).isEqualTo("easter");
-        assertThat(decodePasswordLeastCommon(new Scanner(input))).isEqualTo("advent");
+        assertThat(Day06.decodePasswordMostCommon(new Scanner(input))).isEqualTo("easter");
+        assertThat(Day06.decodePasswordLeastCommon(new Scanner(input))).isEqualTo("advent");
     }
 
-    /**
-     * --- Day 6: Signals and Noise ---
-     *
-     * Something is jamming your communications with Santa. Fortunately, your
-     * signal is only partially jammed, and protocol in situations like this is to
-     * switch to a simple repetition code to get the message through.
-     *
-     * In this model, the same message is sent repeatedly. You've recorded the
-     * repeating message signal (your puzzle input), but the data seems quite
-     * corrupted - almost too badly to recover. Almost.
-     *
-     * All you need to do is figure out which character is most frequent for each
-     * position. For example, suppose you had recorded the following messages:
-     *
-     * eedadn
-     * drvtee
-     * eandsr
-     * raavrd
-     * atevrs
-     * tsrnev
-     * sdttsa
-     * rasrtv
-     * nssdts
-     * ntnada
-     * svetve
-     * tesnvt
-     * vntsnd
-     * vrdear
-     * dvrsen
-     * enarar
-     *
-     * The most common character in the first column is e; in the second, a; in
-     * the third, s, and so on. Combining these characters returns the error-
-     * corrected message, easter.
-     *
-     * Given the recording in your puzzle input, what is the error-corrected
-     * version of the message being sent?
-     *
-     * Your puzzle answer was mlncjgdg.
-     */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day06Test.class.getResourceAsStream("/2016/day/6/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(decodePasswordMostCommon(scanner)).isEqualTo("mlncjgdg");
+        try (InputStream is = Day06Test.class.getResourceAsStream("/2016/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+            assertThat(Day06.decodePasswordMostCommon(scanner)).isEqualTo("mlncjgdg");
         }
     }
 
-    /**
-     * --- Part Two ---
-     *
-     * Of course, that would be the message - if you hadn't agreed to use a
-     * modified repetition code instead.
-     *
-     * In this modified code, the sender instead transmits what looks like random
-     * data, but for each character, the character they actually want to send is
-     * slightly less likely than the others. Even after signal-jamming noise, you
-     * can look at the letter distributions in each column and choose the least
-     * common letter to reconstruct the original message.
-     *
-     * In the above example, the least common character in the first column is a;
-     * in the second, d, and so on. Repeating this process for the remaining
-     * characters produces the original message, advent.
-     *
-     * Given the recording in your puzzle input and this new decoding methodology,
-     * what is the original message that Santa is trying to send?
-     *
-     * Your puzzle answer was bipjaytb.
-     */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day06Test.class.getResourceAsStream("/2016/day/6/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(decodePasswordLeastCommon(scanner)).isEqualTo("bipjaytb");
+        try (InputStream is = Day06Test.class.getResourceAsStream("/2016/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+            assertThat(Day06.decodePasswordLeastCommon(scanner)).isEqualTo("bipjaytb");
         }
     }
 }

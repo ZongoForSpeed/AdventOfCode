@@ -32,10 +32,10 @@ class Day14Test {
             Long count = entry.getLongValue();
             Character character = rules.get(pair);
             if (character != null) {
-                newTemplate.compute(CharPair.of(pair.left(), character), (ignore, value) -> value == null ? count : value + count);
-                newTemplate.compute(CharPair.of(character, pair.right()), (ignore, value) -> value == null ? count : value + count);
+                newTemplate.mergeLong(CharPair.of(pair.left(), character), count, Long::sum);
+                newTemplate.mergeLong(CharPair.of(character, pair.right()), count, Long::sum);
             } else {
-                newTemplate.compute(CharPair.of(pair.left(), pair.right()), (ignore, value) -> value == null ? count : value + count);
+                newTemplate.mergeLong(CharPair.of(pair.left(), pair.right()), count, Long::sum);
             }
         }
 
@@ -68,11 +68,11 @@ class Day14Test {
             } else {
                 char[] chars = line.toCharArray();
                 for (int i = 1; i < chars.length; i++) {
-                    template.compute(CharPair.of(chars[i - 1], chars[i]), (ignore, value) -> value == null ? 1 : value + 1);
+                    template.mergeLong(CharPair.of(chars[i - 1], chars[i]), 1L, Long::sum);
                 }
 
-                frequency.compute(chars[0], (ignore, value) -> value == null ? 1 : value + 1);
-                frequency.compute(chars[chars.length - 1], (ignore, value) -> value == null ? 1 : value + 1);
+                frequency.mergeLong(chars[0], 1L, Long::sum);
+                frequency.mergeLong(chars[chars.length - 1], 1L, Long::sum);
             }
         }
 
@@ -87,8 +87,8 @@ class Day14Test {
         for (Object2LongMap.Entry<CharPair> entry : template.object2LongEntrySet()) {
             CharPair pair = entry.getKey();
             long count = entry.getLongValue();
-            frequency.compute(pair.left(), (ignore, value) -> value == null ? count : value + count);
-            frequency.compute(pair.right(), (ignore, value) -> value == null ? count : value + count);
+            frequency.mergeLong(pair.left(), count, Long::sum);
+            frequency.mergeLong(pair.right(), count, Long::sum);
         }
 
         frequency = new Char2LongOpenHashMap(frequency.char2LongEntrySet().stream().collect(Collectors.toMap(Char2LongMap.Entry::getCharKey, e -> e.getLongValue() / 2)));

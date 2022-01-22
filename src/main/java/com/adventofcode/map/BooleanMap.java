@@ -13,12 +13,22 @@ import java.util.stream.Stream;
 
 public class BooleanMap {
     private final List<BitSet> bitSets;
+    private final char separator;
+    int sizeX;
+    int sizeY;
 
     public BooleanMap() {
-        this(0, 0);
+        this(0, 0, '\n');
     }
 
     public BooleanMap(int sizeX, int sizeY) {
+        this(sizeX, sizeY, '\n');
+    }
+
+    public BooleanMap(int sizeX, int sizeY, char separator) {
+        this.separator = separator;
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
         this.bitSets = new ArrayList<>();
         IntStream.range(0, sizeY).forEach(i -> bitSets.add(new BitSet(sizeX)));
     }
@@ -44,6 +54,8 @@ public class BooleanMap {
                 char c = charArray[i];
                 if (predicate.test(c)) {
                     map.set(i, j);
+                } else {
+                    map.reset(i, j);
                 }
             }
             j++;
@@ -66,6 +78,8 @@ public class BooleanMap {
         reserve(y);
 
         bitSets.get(y).set(x);
+        sizeX = Math.max(x, sizeX);
+        sizeY = Math.max(y, sizeY);
     }
 
     public void set(Point2D p) {
@@ -92,14 +106,16 @@ public class BooleanMap {
         if (y < bitSets.size()) {
             bitSets.get(y).clear(x);
         }
+        sizeX = Math.max(x, sizeX);
+        sizeY = Math.max(y, sizeY);
     }
 
     public int xMax() {
-        return bitSets.stream().mapToInt(BitSet::length).max().orElse(1);
+        return sizeX;
     }
 
     public int yMax() {
-        return bitSets.size();
+        return sizeY;
     }
 
     public void reserve(int y) {
@@ -111,16 +127,15 @@ public class BooleanMap {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int xMax = xMax();
-        for (BitSet set : bitSets) {
-            for (int x = 0; x < xMax; ++x) {
-                if (set.get(x)) {
+        for (int y = 0; y <= sizeY; ++y) {
+            for (int x = 0; x <= sizeX; ++x) {
+                if (get(x, y)) {
                     sb.append('#');
                 } else {
                     sb.append('.');
                 }
             }
-            sb.append('\n');
+            sb.append(separator);
         }
         return sb.toString();
     }
@@ -145,8 +160,56 @@ public class BooleanMap {
         while (bitSets.size() > lastLine + 1) {
             bitSets.remove(bitSets.size() - 1);
         }
+
+        sizeY = lastLine + 1;
+        sizeX = bitSets.stream().flatMapToInt(BitSet::stream).max().orElseThrow() + 1;
     }
 
+    public BooleanMap subMap(int xMin, int xMax, int yMin, int yMax) {
+        BooleanMap subMap = new BooleanMap(xMax - xMin - 1, yMax - yMin - 1, separator);
+        for (int x = xMin; x < xMax; ++x) {
+            for (int y = yMin; y < yMax; ++y) {
+                subMap.set(x - xMin, y - yMin, get(x, y));
+            }
+        }
+        return subMap;
+    }
+
+    public BooleanMap rotate() {
+        BooleanMap rotate = new BooleanMap(sizeY, sizeX, separator);
+        for (int y = 0; y <= sizeY; ++y) {
+            for (int x = 0; x <= sizeX; ++x) {
+                if (get(x, y)) {
+                    rotate.set(sizeY - y, x);
+                }
+            }
+        }
+        return rotate;
+    }
+
+    public BooleanMap flipX() {
+        BooleanMap rotate = new BooleanMap(sizeX, sizeY, separator);
+        for (int y = 0; y <= sizeY; ++y) {
+            for (int x = 0; x <= sizeX; ++x) {
+                if (get(x, y)) {
+                    rotate.set(x, sizeY - y);
+                }
+            }
+        }
+        return rotate;
+    }
+
+    public BooleanMap flipY() {
+        BooleanMap rotate = new BooleanMap(sizeX, sizeY, separator);
+        for (int y = 0; y <= sizeY; ++y) {
+            for (int x = 0; x <= sizeX; ++x) {
+                if (get(x, y)) {
+                    rotate.set(sizeX - x, y);
+                }
+            }
+        }
+        return rotate;
+    }
 
     @Override
     public boolean equals(Object o) {

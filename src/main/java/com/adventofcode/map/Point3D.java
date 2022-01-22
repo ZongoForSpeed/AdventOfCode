@@ -1,5 +1,7 @@
 package com.adventofcode.map;
 
+import java.util.StringJoiner;
+
 public record Point3D(int x, int y, int z) {
     public static final Point3D ORIGIN = of(0, 0, 0);
 
@@ -40,5 +42,14 @@ public record Point3D(int x, int y, int z) {
         double dy = (y - p.y);
         double dz = (z - p.z);
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner joiner = new StringJoiner(", ", "(", ")");
+        joiner.add(Integer.toString(x));
+        joiner.add(Integer.toString(y));
+        joiner.add(Integer.toString(z));
+        return joiner.toString();
     }
 }

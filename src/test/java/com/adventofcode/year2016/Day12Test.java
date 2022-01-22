@@ -85,8 +85,7 @@ class Day12Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day12Test.class.getResourceAsStream("/2016/day/12/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+        try (InputStream is = Day12Test.class.getResourceAsStream("/2016/day/12/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Assembunny.run(scanner)).containsEntry("a", 318117);
         }
     }
@@ -105,8 +104,7 @@ class Day12Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day12Test.class.getResourceAsStream("/2016/day/12/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+        try (InputStream is = Day12Test.class.getResourceAsStream("/2016/day/12/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Assembunny.run(scanner, Map.of("c", 1))).containsEntry("a", 9227771);
         }
     }

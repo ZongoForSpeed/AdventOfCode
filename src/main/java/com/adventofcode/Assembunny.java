@@ -54,7 +54,7 @@ public final class Assembunny {
                 }
                 case "inc" -> {
                     if (StringUtils.isAlpha(command[1])) {
-                        register.compute(command[1], (ignore, value) -> value == null ? 1 : value + 1);
+                        register.merge(command[1], 1, Integer::sum);
                     } else {
                         LOGGER.warn("Invalid command at {}: {}", current, command);
                     }

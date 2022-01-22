@@ -1,15 +1,10 @@
 package com.adventofcode;
 
-import com.adventofcode.maths.Permutations;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
-import it.unimi.dsi.fastutil.longs.LongLists;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -19,7 +14,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.LongConsumer;
 import java.util.function.LongSupplier;
-import java.util.function.ToLongFunction;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -51,44 +45,7 @@ public class Intcode {
         return output.get();
     }
 
-    public static long thrusterSignal(String code, LongList settings) {
-        try {
-            return internalThrusterSignal(code, settings);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new IllegalStateException(e);
-        } catch (ExecutionException e) {
-            throw new IllegalStateException(e.getMessage(), e.getCause());
-        }
-    }
-
-    private static long internalThrusterSignal(String stringCodes, LongList settings) throws ExecutionException, InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(settings.size());
-        BlockingQueue<Long> queue1 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(0, 1)));
-        BlockingQueue<Long> queue2 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(1, 2)));
-        BlockingQueue<Long> queue3 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(2, 3)));
-        BlockingQueue<Long> queue4 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(3, 4)));
-        BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(4, 5)));
-
-        executorService.submit(() -> intcode(stringCodes, take(queue1), offer(queue2)));
-        executorService.submit(() -> intcode(stringCodes, take(queue2), offer(queue3)));
-        executorService.submit(() -> intcode(stringCodes, take(queue3), offer(queue4)));
-        executorService.submit(() -> intcode(stringCodes, take(queue4), offer(queue5)));
-
-        Future<Long> future = executorService.submit(() -> {
-            AtomicLong result = new AtomicLong(0);
-            intcode(stringCodes, take(queue5), n -> {
-                offer(queue1).accept(n);
-                result.set(n);
-            });
-            return result.get();
-        });
-
-        queue1.put(0L);
-        return future.get();
-    }
-
-    private static LongConsumer offer(BlockingQueue<Long> queue) {
+    public static LongConsumer offer(BlockingQueue<Long> queue) {
         return value -> {
             if (!queue.offer(value)) {
                 throw new IllegalStateException("Cannot offer to queue!");
@@ -245,13 +202,6 @@ public class Intcode {
         mode[2] = (intCode / 1000) % 10;
         mode[3] = (intCode / 10000) % 10;
         return mode;
-    }
-
-    public static Pair<LongList, Long> maxThrusterSignal(String program, long... items) {
-        Optional<Pair<LongList, Long>> max = Permutations.of(items)
-                .map(settings -> Pair.of(settings, thrusterSignal(program, settings)))
-                .max((o1, o2) -> Comparator.comparingLong((ToLongFunction<Pair<LongList, Long>>) Pair::getRight).compare(o1, o2));
-        return max.orElseGet(() -> Pair.of(LongLists.emptyList(), -1L));
     }
 
     public static class Robot implements AutoCloseable {

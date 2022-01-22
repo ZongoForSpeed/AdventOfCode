@@ -105,8 +105,7 @@ class Day23Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day23Test.class.getResourceAsStream("/2016/day/23/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+        try (InputStream is = Day23Test.class.getResourceAsStream("/2016/day/23/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             Map<String, Integer> registers = Assembunny.run(scanner, Map.of("a", 7));
             assertThat(registers).containsEntry("a", 10890);
         }

@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 public class InfiniteCharMap implements Map<Point2D, Character> {
+
     private final Map<Point2D, Character> map;
 
     public InfiniteCharMap() {
