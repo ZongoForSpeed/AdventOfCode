@@ -73,8 +73,7 @@ public final class Day24 {
      * least once?
      *
      * Your puzzle answer was 470.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * Of course, if you leave the cleaning robot somewhere weird, someone is

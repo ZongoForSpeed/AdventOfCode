@@ -83,8 +83,7 @@ public class Day25 {
      * machine's console. What code do you give the machine?
      *
      * Your puzzle answer was 2650453.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * The machine springs to life, then falls silent again. It beeps. "Insufficient

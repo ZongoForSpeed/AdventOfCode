@@ -54,7 +54,7 @@ public final class Day01 {
      *
      * Your puzzle answer was 234.
      */
-    public static long computeDistancePartOne(String input) {
+    public static int computeDistancePartOne(String input) {
         Point2D position = Point2D.of(0, 0);
         Direction direction = Direction.NORTH;
         for (String s : input.split(", ")) {
@@ -85,7 +85,7 @@ public final class Day01 {
      *
      * Your puzzle answer was 113.
      */
-    public static long computeDistancePartTwo(String input) {
+    public static int computeDistancePartTwo(String input) {
         Set<Point2D> visited = new HashSet<>();
         Point2D position = Point2D.of(0, 0);
         visited.add(position);

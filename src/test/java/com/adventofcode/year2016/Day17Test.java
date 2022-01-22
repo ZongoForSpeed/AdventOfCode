@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day17Test {
 
     @Test
-    void inputExample() throws IOException {
+    void inputExample() {
         assertThat(Day17.findShortestPath("ihgpwlah")).isEqualTo("DDRRRD");
         assertThat(Day17.findShortestPath("kglvqrro")).isEqualTo("DDUDRLRRUDRD");
         assertThat(Day17.findShortestPath("ulqzkmiv")).isEqualTo("DRURDRUDDLLDLUURRDULRLDUUDDDRR");
@@ -21,12 +21,12 @@ class Day17Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         assertThat(Day17.findShortestPath("ioramepc")).isEqualTo("RDDRULDDRR");
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         assertThat(Day17.findLongestPath("ioramepc")).hasSize(766);
     }
 

@@ -184,9 +184,7 @@ public class Day23 {
             this.executor = Executors.newSingleThreadExecutor();
             this.queue = new LinkedBlockingQueue<>();
             this.receivedPackets = new LongArrayList();
-            executor.submit(() -> {
-                Intcode.intcode(program, this::input, this::output);
-            });
+            executor.submit(() -> Intcode.intcode(program, this::input, this::output));
         }
 
         public BlockingQueue<Long> inputQueue() {
@@ -220,6 +218,7 @@ public class Day23 {
                     try {
                         queue.wait();
                     } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
                         throw new IllegalStateException(e);
                     }
                 }

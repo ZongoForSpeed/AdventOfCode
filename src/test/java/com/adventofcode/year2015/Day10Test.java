@@ -26,14 +26,14 @@ class Day10Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         String input = "3113322113";
         input = Day10.lookAndSay(input, 40);
         assertThat(input).hasSize(329356);
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         String input = "3113322113";
         input = Day10.lookAndSay(input, 50);
         assertThat(input).hasSize(4666278);

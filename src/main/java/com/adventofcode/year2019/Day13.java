@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public final class Day13 {
+
+    private Day13() {
+        // No-Op
+    }
+
     /**
      * --- Day 13: Care Package ---
      * As you ponder the solitude of space and the ever-increasing three-hour roundtrip for messages between you and
@@ -74,7 +79,6 @@ public final class Day13 {
 
         private static char print(long code) {
             return switch ((int) code) {
-                case 0 -> ' ';
                 case 1 -> '▓';
                 case 2 -> '░';
                 case 3 -> '═';

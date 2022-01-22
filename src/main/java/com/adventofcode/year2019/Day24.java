@@ -16,7 +16,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Day24 {
-    static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
+
+    private Day24() {
+        // No-Op
+    }
 
     static BitSet nextState(BitSet bugs, List<IntList> adjacents) {
         BitSet next = new BitSet(adjacents.size());

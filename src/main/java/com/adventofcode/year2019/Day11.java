@@ -6,6 +6,11 @@ import com.adventofcode.map.Map2D;
 import com.adventofcode.map.Point2D;
 
 public final class Day11 {
+
+    private Day11() {
+        // No-Op
+    }
+
     /**
      * --- Day 11: Space Police ---
      * On the way to Jupiter, you're pulled over by the Space Police.

@@ -1,6 +1,10 @@
 package com.adventofcode.year2017;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class Day15 {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day15.class);
     private Day15() {
         // No-Op
     }
@@ -98,9 +102,9 @@ public final class Day15 {
         for (int i = 0; i < 40_000_000; ++i) {
             a = generatorAPartOne(a);
             b = generatorBPartOne(b);
-            // LOGGER.info("\t{}\t{}", a, b);
+            LOGGER.trace("\t{}\t{}", a, b);
             if ((a & match) == (b & match)) {
-                // LOGGER.info("\t{}\t{}", a, b);
+                LOGGER.trace("\t{}\t{}", a, b);
                 countPair++;
             }
         }
@@ -184,9 +188,9 @@ public final class Day15 {
         for (int i = 0; i < 5_000_000; ++i) {
             a = generatorAPartTwo(a);
             b = generatorBPartTwo(b);
-            // LOGGER.info("\t{}\t{}", a, b);
+            LOGGER.trace("\t{}\t{}", a, b);
             if ((a & match) == (b & match)) {
-                // LOGGER.info("\t{}\t{}", a, b);
+                LOGGER.trace("\t{}\t{}", a, b);
                 countPair++;
             }
         }

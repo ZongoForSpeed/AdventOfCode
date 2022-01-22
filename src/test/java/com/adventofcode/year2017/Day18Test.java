@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day18Test {
 
     @Test
-    void inputExample() throws InterruptedException {
+    void inputExample() {
         String input = """
                 set a 1
                 add a 2

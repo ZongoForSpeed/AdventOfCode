@@ -11,7 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public final class Day17 {
-    static final Logger LOGGER = LoggerFactory.getLogger(Day17.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day17.class);
+
+    private Day17() {
+        // No-Op
+    }
 
     /**
      * --- Day 17: Set and Forget ---

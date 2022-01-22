@@ -1,15 +1,14 @@
 package com.adventofcode.year2019;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class Day12 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Day12.class);
+    private Day12() {
+        // No-Op
+    }
 
     /**
      * --- Day 12: The N-Body Problem ---
@@ -363,7 +362,7 @@ public class Day12 {
         @Override
         public String toString() {
             return "pos=" + String.format(FORMAT, positionX, positionY, positionZ)
-                    + ", vel=" + String.format(FORMAT, velocityX, velocityY, velocityZ);
+                   + ", vel=" + String.format(FORMAT, velocityX, velocityY, velocityZ);
         }
 
         @Override
@@ -372,11 +371,11 @@ public class Day12 {
             if (o == null || getClass() != o.getClass()) return false;
             Moon moon = (Moon) o;
             return positionX == moon.positionX &&
-                    positionY == moon.positionY &&
-                    positionZ == moon.positionZ &&
-                    velocityX == moon.velocityX &&
-                    velocityY == moon.velocityY &&
-                    velocityZ == moon.velocityZ;
+                   positionY == moon.positionY &&
+                   positionZ == moon.positionZ &&
+                   velocityX == moon.velocityX &&
+                   velocityY == moon.velocityY &&
+                   velocityZ == moon.velocityZ;
         }
 
         @Override

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Day03 {
+    private Day03() {
+        // No-Op
+    }
+
     /**
      * --- Day 3: Crossed Wires ---
      *
@@ -68,7 +72,7 @@ public class Day03 {
         Sets.SetView<Point2D> intersection = Sets.intersection(Sets.newHashSet(positions1.subList(1, positions1.size() - 1)), Sets.newHashSet(positions2.subList(1, positions2.size() - 1)));
         long distance = Integer.MAX_VALUE;
         for (Point2D position : intersection) {
-            long d = Math.abs(position.x()) + Math.abs(position.y());
+            int d = Math.abs(position.x()) + Math.abs(position.y());
             if (d < distance) {
                 distance = d;
             }

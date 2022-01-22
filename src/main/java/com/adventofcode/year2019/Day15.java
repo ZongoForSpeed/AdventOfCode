@@ -12,9 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 public class Day15 {
+
+    private Day15() {
+        // No-Op
+    }
+
     public static void cartography(Intcode.Robot robot, Map2D map, Deque<Direction> paths, Set<Point2D> visited, Point2D position) {
         if (visited.add(position)) {
             for (Direction d : Direction.values()) {
@@ -184,7 +188,7 @@ public class Day15 {
                 for (Direction value : Direction.values()) {
                     Point2D move = point.move(value);
                     if (map.getOrDefault(move, 0L) != 0L) {
-                        graph.computeIfAbsent(point, (ignore) -> new ArrayList<>()).add(Pair.of(move, 1));
+                        graph.computeIfAbsent(point, ignore -> new ArrayList<>()).add(Pair.of(move, 1));
                     }
                 }
             }

@@ -9,7 +9,10 @@ import java.util.Arrays;
 import java.util.stream.StreamSupport;
 
 public final class Day08 {
-    static final Logger LOGGER = LoggerFactory.getLogger(Day08.class);
+
+    private Day08() {
+        // No-Op
+    }
 
     /**
      * --- Day 8: Space Image Format ---

@@ -10,7 +10,7 @@ public final class Day02 {
         // No-Op
     }
 
-    private static long corruptionChecksumPartOne(String row) {
+    private static int corruptionChecksumPartOne(String row) {
         int[] array = Arrays.stream(row.split("[ \t]"))
                 .filter(StringUtils::isNotBlank)
                 .mapToInt(Integer::parseInt)

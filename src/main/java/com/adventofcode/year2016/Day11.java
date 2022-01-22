@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Day11 {
-    static final Logger LOGGER = LoggerFactory.getLogger(Day11.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day11.class);
 
     public static long example() {
         // The first floor contains a hydrogen-compatible microchip and a lithium-compatible microchip.
@@ -371,15 +371,6 @@ public class Day11 {
         }
 
         public static long heuristic(State current, State end) {
-            // long heuristic = 0;
-            // for (int floor1 = 1; floor1 <= 3; ++floor1) {
-            //     Floor currentFloor = current.getFloor(floor1);
-            //     for (int floor2 = floor1 + 1; floor2 <= 4; ++floor2) {
-            //         Floor endFloor = end.getFloor(floor2);
-            //         heuristic += Math.abs(floor2 - floor1) * Floor.heuristic(currentFloor, endFloor);
-            //     }
-            // }
-            // return heuristic;
             return 4 * Floor.heuristic(current.first(), end.first())
                    + 3 * Floor.heuristic(current.second(), end.second())
                    + 2 * Floor.heuristic(current.third(), end.third())

@@ -14,6 +14,10 @@ public final class Day22 {
     public static final String DEAL_INTO_NEW_STACK = "deal into new stack";
     public static final String CUT_N_CARDS = "cut ";
 
+    private Day22() {
+        // No-Op
+    }
+
     /**
      * --- Day 22: Slam Shuffle ---
      * There isn't much to do while you wait for the droids to repair your ship. At least you're drifting in the right

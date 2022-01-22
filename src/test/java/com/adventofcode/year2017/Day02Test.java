@@ -28,7 +28,7 @@ class Day02Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/2/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is));) {
+        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/2/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day02.corruptionChecksumPartOne(scanner)).isEqualTo(45972);
         }
     }

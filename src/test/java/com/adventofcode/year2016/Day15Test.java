@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day15Test {
 
     @Test
-    void inputExample() throws IOException {
+    void inputExample() {
         String input = """
                 Disc #1 has 5 positions; at time=0, it is at position 4.
                 Disc #2 has 2 positions; at time=0, it is at position 1.""";

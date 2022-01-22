@@ -8,6 +8,8 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.BitSet;
@@ -19,11 +21,12 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Day24Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
     @Test
     void testSimpleExample() {
         List<IntList> adjacent = Day24.buildAdjacent(5);
-        Day24.LOGGER.info("adjacent: {}", adjacent);
+        LOGGER.info("adjacent: {}", adjacent);
 
         String initialState = """
                 ....#
@@ -33,7 +36,7 @@ class Day24Test {
                 #....""";
         BitSet bugs = Day24.parseLayout(initialState);
 
-        Day24.LOGGER.info("Initial state:");
+        LOGGER.info("Initial state:");
         assertThat(Day24.printLayout(bugs)).isEqualTo("""
                 ....#
                 #..#.
@@ -42,7 +45,7 @@ class Day24Test {
                 #....""");
         bugs = Day24.nextState(bugs, adjacent);
 
-        Day24.LOGGER.info("After 1 minute:");
+        LOGGER.info("After 1 minute:");
         assertThat(Day24.printLayout(bugs)).isEqualTo("""
                 #..#.
                 ####.
@@ -51,7 +54,7 @@ class Day24Test {
                 .##..""");
         bugs = Day24.nextState(bugs, adjacent);
 
-        Day24.LOGGER.info("After 2 minute:");
+        LOGGER.info("After 2 minute:");
         assertThat(Day24.printLayout(bugs)).isEqualTo("""
                 #####
                 ....#
@@ -60,7 +63,7 @@ class Day24Test {
                 #.###""");
         bugs = Day24.nextState(bugs, adjacent);
 
-        Day24.LOGGER.info("After 3 minute:");
+        LOGGER.info("After 3 minute:");
         assertThat(Day24.printLayout(bugs)).isEqualTo("""
                 #....
                 ####.
@@ -69,7 +72,7 @@ class Day24Test {
                 .##.#""");
         bugs = Day24.nextState(bugs, adjacent);
 
-        Day24.LOGGER.info("After 4 minute:");
+        LOGGER.info("After 4 minute:");
         assertThat(Day24.printLayout(bugs)).isEqualTo("""
                 ####.
                 ....#
@@ -155,7 +158,7 @@ class Day24Test {
 
         for (int i = 0; i < adjacent.size(); i++) {
             List<IntegerPair> pairs = adjacent.get(i);
-            Day24.LOGGER.info("{} ==> {}", i + 1, pairs.stream().map(t -> IntegerPair.of(t.left() + 1, t.right())).map(Objects::toString).collect(Collectors.joining(", ")));
+            LOGGER.info("{} ==> {}", i + 1, pairs.stream().map(t -> IntegerPair.of(t.left() + 1, t.right())).map(Objects::toString).collect(Collectors.joining(", ")));
         }
     }
 

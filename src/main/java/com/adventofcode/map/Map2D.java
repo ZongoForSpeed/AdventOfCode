@@ -3,6 +3,7 @@ package com.adventofcode.map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class Map2D implements Map<Point2D, Long> {
         return map.remove(key);
     }
 
-    public void putAll(Map<? extends Point2D, ? extends Long> m) {
+    public void putAll(@Nonnull Map<? extends Point2D, ? extends Long> m) {
         map.putAll(m);
     }
 

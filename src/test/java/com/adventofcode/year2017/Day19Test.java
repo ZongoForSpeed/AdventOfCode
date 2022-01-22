@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day19Test {
 
     @Test
-    void inputExample() throws InterruptedException {
+    void inputExample() {
         String input = """
                      |         \s
                      |  +--+   \s
@@ -35,7 +35,7 @@ class Day19Test {
     }
 
     @Test
-    void inputPartTwo() throws IOException, InterruptedException {
+    void inputPartTwo() throws IOException {
         try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/19/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day19.findPacketsPartTwo(scanner)).isEqualTo(17450);
         }

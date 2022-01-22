@@ -7,6 +7,10 @@ import java.util.stream.IntStream;
 public final class Day16 {
     private static final short[] PATTERN = new short[]{0, 1, 0, -1};
 
+    private Day16() {
+        // No-Op
+    }
+
     private static int pattern(int base, int n) {
         return PATTERN[((n + 1) / base) % 4];
     }

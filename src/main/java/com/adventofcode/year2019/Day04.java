@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Day04 {
+    private Day04() {
+        // No-Op
+    }
+
     /**
      * --- Day 4: Secure Container ---
      * You arrive at the Venus fuel depot only to discover it's protected by a password. The Elves had written the

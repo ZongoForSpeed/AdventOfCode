@@ -1,6 +1,10 @@
 package com.adventofcode.year2019;
 
 public final class Day01 {
+    private Day01() {
+        // No-Op
+    }
+
     /**
      * --- Day 1: The Tyranny of the Rocket Equation ---
      * Santa has become stranded at the edge of the Solar System while delivering presents to other planets! To accurately

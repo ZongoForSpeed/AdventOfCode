@@ -285,7 +285,9 @@ public final class Day18 {
         @Override
         public void send(long value) {
             ++count;
-            sendQueue.offer(value);
+            if (!sendQueue.offer(value)) {
+                throw new IllegalStateException("Cannot offer to queue: " + value);
+            }
         }
 
         @Override

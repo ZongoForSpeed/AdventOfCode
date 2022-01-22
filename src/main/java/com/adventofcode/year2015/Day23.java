@@ -65,8 +65,7 @@ public class Day23 {
      * What is the value in register b when the program in your puzzle input is finished executing?
      *
      * Your puzzle answer was 255.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * The unknown benefactor is very thankful for releasi-- er, helping little

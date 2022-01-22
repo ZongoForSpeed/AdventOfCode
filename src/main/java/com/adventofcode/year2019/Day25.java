@@ -2,7 +2,6 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.Intcode;
 import com.adventofcode.map.Direction;
-import com.google.common.collect.ImmutableSet;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -57,7 +56,7 @@ public class Day25 {
      * Look around the ship and see if you can find the password for the main airlock.
      */
     static String findPassword(String program) {
-        Droid droid = new Droid(ImmutableSet.of("molten lava", "infinite loop", "giant electromagnet", "photons", "escape pod"));
+        Droid droid = new Droid(Set.of("molten lava", "infinite loop", "giant electromagnet", "photons", "escape pod"));
         Position position = droid.start(program);
         Deque<Direction> path = new LinkedList<>();
         for (Direction direction : position.directions()) {
@@ -162,6 +161,7 @@ public class Day25 {
             try {
                 return instructions.take();
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 throw new IllegalStateException(e);
             }
         }
@@ -180,6 +180,7 @@ public class Day25 {
                     stringBuilder.setLength(0);
                 }
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 throw new IllegalStateException(e);
             }
         }
@@ -195,6 +196,7 @@ public class Day25 {
             try {
                 return parseOutput(consoleOutput.take());
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 throw new IllegalStateException(e);
             }
         }

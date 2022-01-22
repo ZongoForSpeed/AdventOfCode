@@ -68,8 +68,7 @@ public final class Day25 {
      * forever?
      *
      * Your puzzle answer was 470.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * The antenna is ready. Now, all you need is the fifty stars required to

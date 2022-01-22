@@ -20,7 +20,9 @@ public final class Day16 {
             ShortList checksum = new ShortArrayList();
             ShortListIterator iterator = input.iterator();
             while (iterator.hasNext()) {
-                checksum.add((short) ((iterator.nextShort() == iterator.nextShort()) ? 1 : 0));
+                short a = iterator.nextShort();
+                short b = iterator.nextShort();
+                checksum.add((short) ((a == b) ? 1 : 0));
             }
             input = checksum;
         } while (input.size() % 2 == 0);
@@ -123,8 +125,7 @@ public final class Day16 {
      * Your puzzle input is 10111100110001111.
      *
      * Your puzzle answer was 11100110111101110.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * The second disk you have to fill has length 35651584. Again using the

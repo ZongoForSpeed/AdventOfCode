@@ -2,7 +2,6 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.map.Direction;
 import com.adventofcode.map.Point2D;
-import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -383,9 +382,9 @@ public class Day18 {
         @Override
         public String toString() {
             return "Tile{" +
-                    "type=" + type +
-                    ", value=" + value +
-                    '}';
+                   "type=" + type +
+                   ", value=" + value +
+                   '}';
         }
 
     }
@@ -427,9 +426,9 @@ public class Day18 {
         @Override
         public String toString() {
             return "State{" +
-                    "missing_keys=" + missingKeys +
-                    ", pos=" + position +
-                    '}';
+                   "missing_keys=" + missingKeys +
+                   ", pos=" + position +
+                   '}';
         }
     }
 }

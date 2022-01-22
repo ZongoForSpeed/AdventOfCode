@@ -15,7 +15,7 @@ class Day25Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         // To continue, please consult the code grid in the manual.  Enter the code at row 2978, column 3083.
         assertThat(Day25.findCode(2978, 3083)).isEqualTo(2650453);
     }

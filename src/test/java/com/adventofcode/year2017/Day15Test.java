@@ -16,12 +16,12 @@ class Day15Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         assertThat(Day15.countPairsPartOne(618, 814)).isEqualTo(577);
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         assertThat(Day15.countPairsPartTwo(618, 814)).isEqualTo(316);
     }
 }

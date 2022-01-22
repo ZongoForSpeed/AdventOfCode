@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day20Test {
 
     @Test
-    void inputExample() throws InterruptedException {
+    void inputExample() {
         String input = """
                 p=< 3,0,0>, v=< 2,0,0>, a=<-1,0,0>
                 p=< 4,0,0>, v=< 0,0,0>, a=<-2,0,0>""";
@@ -46,7 +46,7 @@ class Day20Test {
     }
 
     @Test
-    void inputPartTwo() throws IOException, InterruptedException {
+    void inputPartTwo() throws IOException {
         try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/20/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day20.particlesCollision(scanner)).isEqualTo(461);
         }

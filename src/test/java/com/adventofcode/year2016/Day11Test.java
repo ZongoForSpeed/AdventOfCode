@@ -10,17 +10,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day11Test {
 
     @Test
-    void inputExample() throws IOException {
+    void inputExample() {
         assertThat(Day11.example()).isEqualTo(11);
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         assertThat(Day11.partOne()).isEqualTo(33);
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         assertThat(Day11.partTwo()).isEqualTo(57);
     }
 

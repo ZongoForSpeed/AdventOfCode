@@ -135,7 +135,7 @@ class Day23Test {
     }
 
     @Test
-    void inputPartTwo() throws IOException, InterruptedException {
+    void inputPartTwo() {
         assertThat(Day23.runProgramFast(105700, 122700)).isEqualTo(915L);
     }
 

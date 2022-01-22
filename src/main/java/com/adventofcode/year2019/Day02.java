@@ -3,6 +3,10 @@ package com.adventofcode.year2019;
 import com.adventofcode.Intcode;
 
 public final class Day02 {
+    private Day02() {
+        // No-Op
+    }
+
     /**
      * --- Day 2: 1202 Program Alarm ---
      * On the way to your gravity assist around the Moon, your ship computer beeps angrily about a "1202 program alarm".

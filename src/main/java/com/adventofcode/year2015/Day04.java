@@ -57,7 +57,7 @@ public final class Day04 {
         for (int i = 1; ; ++i) {
             byte[] hash = DigestUtils.md5(secretKey + i);
             if (hash[0] == 0 && hash[1] == 0 && hash[2] == 0) {
-                LOGGER.info("hash({}{}) = {}", secretKey, i, new String(Hex.encodeHex(hash)));
+                LOGGER.info("hash({}{}) = {}", secretKey, i, Hex.encodeHex(hash));
                 return i;
             }
         }

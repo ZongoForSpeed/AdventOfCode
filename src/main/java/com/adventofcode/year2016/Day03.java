@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day03 {
-    public static final Logger LOGGER = LoggerFactory.getLogger(Day03.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day03.class);
 
     private Day03() {
         // No-Op

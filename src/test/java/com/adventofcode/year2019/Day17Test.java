@@ -4,6 +4,8 @@ import com.adventofcode.Intcode;
 import com.adventofcode.utils.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Day17Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
 
     @Test
     void testInputPartOne() throws IOException {
@@ -23,7 +26,7 @@ class Day17Test {
         Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));
 
         String map = sb.toString();
-        Day17.LOGGER.debug("Map: {}", map);
+        LOGGER.debug("Map: {}", map);
 
         assertThat(Day17.computeSumAlignmentParameters(map)).isEqualTo(7280);
     }
@@ -72,14 +75,14 @@ class Day17Test {
         String line = FileUtils.readLine("/2019/day/17/input");
         StringBuilder sb = new StringBuilder();
         Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));
-        Day17.LOGGER.debug("{}", sb);
+        LOGGER.debug("{}", sb);
         List<Pair<Character, Integer>> commands = Day17.findPath(sb.toString());
 
-        Day17.LOGGER.info("{}", commands);
+        LOGGER.info("{}", commands);
 
         String collect = commands.stream().map(p -> p.getLeft() + "," + p.getRight()).collect(Collectors.joining(","));
         assertThat(collect).isEqualTo("R,10,L,8,R,10,R,4,L,6,L,6,R,10,R,10,L,8,R,10,R,4,L,6,R,12,R,12,R,10,L,6,L,6,R,10,L,6,R,12,R,12,R,10,R,10,L,8,R,10,R,4,L,6,L,6,R,10,R,10,L,8,R,10,R,4,L,6,R,12,R,12,R,10");
-        Day17.LOGGER.info("{}", collect);
+        LOGGER.info("{}", collect);
 
         // (R,10), (L,8), (R,10), (R,4) ==> A
         // (L,6), (L,6), (R,10) ==> B
@@ -108,7 +111,7 @@ class Day17Test {
             }
         });
 
-        Day17.LOGGER.info("Out: {}", out);
+        LOGGER.info("Out: {}", out);
         assertThat(dust).hasValue(1045393);
     }
 }

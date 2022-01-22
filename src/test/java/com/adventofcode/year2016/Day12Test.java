@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day12Test {
 
     @Test
-    void inputExample() throws IOException {
+    void inputExample() {
         String input = """
                 cpy 41 a
                 inc a

@@ -9,6 +9,10 @@ import java.util.Queue;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class Day19 {
+    private Day19() {
+        // No-Op
+    }
+
     private static boolean tractorBeam(String line, long x, long y) {
         if (x < 0 || y < 0) {
             return false;
@@ -30,10 +34,10 @@ public final class Day19 {
                 boolean beam = tractorBeam(line, x, y);
                 if (!trackBeam) {
                     trackBeam = beam;
-                } else if (!beam || !tractorBeam(line, x + 99, y)) {
+                } else if (!beam || !tractorBeam(line, x + 99L, y)) {
                     break;
                 }
-                if (tractorBeam(line, x, y + 99)) {
+                if (tractorBeam(line, x, y + 99L)) {
                     return Point2D.of(x, y);
                 }
             }
@@ -99,7 +103,7 @@ public final class Day19 {
             }
         }
 
-        map.print((i) -> i == 1 ? 'X' : '.');
+        map.print(i -> i == 1 ? 'X' : '.');
         return count;
     }
 

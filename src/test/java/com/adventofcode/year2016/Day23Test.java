@@ -131,7 +131,7 @@ class Day23Test {
      * Your puzzle answer was 1034.
      */
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         assertThat(75 * 78 + Permutations.factorial(12)).isEqualTo(479_007_450);
     }
 }

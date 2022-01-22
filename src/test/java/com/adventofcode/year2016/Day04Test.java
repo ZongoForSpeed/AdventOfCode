@@ -30,14 +30,14 @@ class Day04Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day04Test.class.getResourceAsStream("/2016/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is));) {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/2016/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day04.checkRoomName(scanner)).isEqualTo(245102);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day04Test.class.getResourceAsStream("/2016/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is));) {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/2016/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day04.decryptRoomName(scanner)).isEqualTo(324);
         }
     }

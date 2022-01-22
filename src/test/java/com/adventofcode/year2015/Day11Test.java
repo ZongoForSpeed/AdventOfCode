@@ -23,12 +23,12 @@ class Day11Test {
 
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         assertThat(Day11.nextPassword("cqjxjnds")).isEqualTo("cqjxxyzz");
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         assertThat(Day11.nextPassword("cqjxxyzz")).isEqualTo("cqkaabcc");
     }
 }

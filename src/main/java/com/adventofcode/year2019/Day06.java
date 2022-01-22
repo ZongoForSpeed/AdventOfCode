@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.adventofcode.Intcode.intcode;
-
 public class Day06 {
+    private Day06() {
+        // No-Op
+    }
+
     /**
      * --- Day 6: Universal Orbit Map ---
      * You've landed at the Universal Orbit Map facility on Mercury. Because navigation in space often involves
@@ -177,7 +179,7 @@ public class Day06 {
         return nodes;
     }
 
-    static long countOrbitalTransfers(Map<String, String> graph, String node1, String node2) {
+    static int countOrbitalTransfers(Map<String, String> graph, String node1, String node2) {
         Set<String> parents1 = findParents(graph, node1);
         Set<String> parents2 = findParents(graph, node2);
         Sets.SetView<String> difference12 = Sets.difference(parents1, parents2);

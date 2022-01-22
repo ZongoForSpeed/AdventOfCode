@@ -55,8 +55,7 @@ public final class Day10 {
      * What is the length of the result?
      *
      * Your puzzle answer was 329356.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * Neat, right? You might also enjoy hearing John Conway talking about

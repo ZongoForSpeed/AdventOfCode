@@ -3,6 +3,11 @@ package com.adventofcode.year2019;
 import com.adventofcode.Intcode;
 
 public final class Day05 {
+
+    private Day05() {
+        // No-Op
+    }
+
     /**
      * --- Day 5: Sunny with a Chance of Asteroids ---
      * You're starting to sweat as the ship makes its way toward Mercury. The Elves suggest that you get the air

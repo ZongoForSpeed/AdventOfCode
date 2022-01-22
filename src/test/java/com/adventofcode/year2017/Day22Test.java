@@ -14,7 +14,7 @@ class Day22Test {
 
 
     @Test
-    void inputExample() throws InterruptedException {
+    void inputExample() {
         String input = """
                 ..#
                 #..
@@ -36,7 +36,7 @@ class Day22Test {
     }
 
     @Test
-    void inputPartTwo() throws IOException, InterruptedException {
+    void inputPartTwo() throws IOException {
         try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day22.sporificaVirusPartTwo(scanner, 10_000_000)).isEqualTo(2511991);
         }

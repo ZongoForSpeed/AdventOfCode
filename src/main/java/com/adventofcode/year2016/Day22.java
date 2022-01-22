@@ -38,7 +38,7 @@ public class Day22 {
         return nodes;
     }
 
-    private static long distance(Point2D a, Point2D b) {
+    private static int distance(Point2D a, Point2D b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 

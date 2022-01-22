@@ -351,7 +351,6 @@ public class Day13 {
      */
     static int findBestDelay(Scanner scanner) {
         List<PacketScanner> firewall = readPacketScanners(scanner);
-        // firewall.sort(Comparator.comparingInt(PacketScanner::range));
         int delay = 0;
         while (!tryDelay(firewall, delay)) {
             delay++;

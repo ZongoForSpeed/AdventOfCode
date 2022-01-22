@@ -125,8 +125,7 @@ public class Day15 {
      * total score of the highest-scoring cookie you can make?
      *
      * Your puzzle answer was 222870.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * Your cookie recipe becomes wildly popular! Someone asks if you can make

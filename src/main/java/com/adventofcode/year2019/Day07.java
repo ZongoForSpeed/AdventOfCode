@@ -22,6 +22,10 @@ import static com.adventofcode.Intcode.offer;
 import static com.adventofcode.Intcode.take;
 
 public class Day07 {
+    private Day07() {
+        // No-Op
+    }
+
     /**
      * --- Day 7: Amplification Circuit ---
      * Based on the navigational maps, you're going to need to send more power to your ship's thrusters to reach Santa

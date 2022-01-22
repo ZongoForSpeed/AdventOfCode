@@ -17,6 +17,10 @@ public class Day18 {
             Point2D.of(1, -1)
     );
 
+    private Day18() {
+        // No-Op
+    }
+
     private static int getAboveTile(BooleanMap map, Point2D p) {
         return ABOVE_TILES.stream()
                 .map(p::move)
@@ -129,8 +133,7 @@ public class Day18 {
      *
      *
      * Your puzzle answer was 1987.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * How many safe tiles are there in a total of 400000 rows?

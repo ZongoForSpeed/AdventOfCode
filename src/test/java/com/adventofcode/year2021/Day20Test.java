@@ -2,7 +2,6 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.map.InfiniteCharMap;
 import com.adventofcode.map.Point2D;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,70 +35,6 @@ class Day20Test {
         }
 
         return code;
-    }
-
-    private static long enhanceImage(Scanner scanner, int steps) {
-        String enhancementAlgorithm = scanner.nextLine();
-        scanner.nextLine();
-
-        InfiniteCharMap charMap = InfiniteCharMap.read(scanner, c -> c == '#');
-        LOGGER.info("CharMap: \n{}", charMap);
-
-        int xMin = charMap.keySet().stream().mapToInt(Point2D::x).min().orElseThrow();
-        int xMax = charMap.keySet().stream().mapToInt(Point2D::x).max().orElseThrow();
-        int yMin = charMap.keySet().stream().mapToInt(Point2D::y).min().orElseThrow();
-        int yMax = charMap.keySet().stream().mapToInt(Point2D::y).max().orElseThrow();
-
-        charMap.put(Point2D.of(xMin - 2 * steps, yMin - 2 * steps), '.');
-        charMap.put(Point2D.of(xMax + 2 * steps, yMax + 2 * steps), '.');
-
-        for (int step = 1; step <= steps; ++step) {
-            charMap = enhanceImage(charMap, enhancementAlgorithm);
-            LOGGER.trace("CharMap after step {}: \n{}", step, charMap);
-        }
-
-        LOGGER.debug("CharMap after step {}: \n{}", steps, charMap);
-
-
-        return charMap.values().stream().filter(c -> '#' == c).count();
-
-
-    }
-
-    private static InfiniteCharMap enhanceImage(InfiniteCharMap charMap, String enhancementAlgorithm) {
-        int xMin = charMap.keySet().stream().mapToInt(Point2D::x).min().orElseThrow() + 1;
-        int xMax = charMap.keySet().stream().mapToInt(Point2D::x).max().orElseThrow() - 1;
-        int yMin = charMap.keySet().stream().mapToInt(Point2D::y).min().orElseThrow() + 1;
-        int yMax = charMap.keySet().stream().mapToInt(Point2D::y).max().orElseThrow() - 1;
-
-        InfiniteCharMap nextCharMap = new InfiniteCharMap();
-        for (int x = xMin; x <= xMax; ++x) {
-            for (int y = yMin; y <= yMax; ++y) {
-                Point2D point = Point2D.of(x, y);
-                int code = pixelCode(charMap, point);
-                if (enhancementAlgorithm.charAt(code) == '#') {
-                    nextCharMap.put(point, '#');
-                } else {
-                    nextCharMap.put(point, '.');
-                }
-            }
-        }
-        return nextCharMap;
-    }
-
-    @Test
-    void inputExample() {
-        String input = """
-                ..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..###..######.###...####..#..#####..##..#.#####...##.#.#..#.##..#.#......#.###.######.###.####...#.##.##..#..#..#####.....#.#....###..#.##......#.....#..#..#..##..#...##.######.####.####.#.#...#.......#..#.#.#...####.##.#......#..#...##.#.##..#...##.#.##..###.#......#.#.......#.#.#.####.###.##...#.....####.#..#..#.##.#....##..#.####....##...##..#...#......#.#.......#.......##..####..#...#.#.#...##..#.#..###..#####........#..####......#..#
-                        
-                #..#.
-                #....
-                ##..#
-                ..#..
-                ..###""";
-
-        assertThat(enhanceImage(new Scanner(input), 2)).isEqualTo(35);
-        assertThat(enhanceImage(new Scanner(input), 50)).isEqualTo(3351);
     }
 
     /**
@@ -247,16 +182,7 @@ class Day20Test {
      * images. How many pixels are lit in the resulting image?
      *
      * Your puzzle answer was 5819.
-     */
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day20Test.class.getResourceAsStream("/2021/day/20/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(enhanceImage(scanner, 2)).isEqualTo(5819);
-        }
-    }
-
-    /**
+     *
      * --- Part Two ---
      *
      * You still can't quite make out the details in the image. Maybe you just
@@ -270,6 +196,78 @@ class Day20Test {
      *
      * Your puzzle answer was 18516.
      */
+    private static long enhanceImage(Scanner scanner, int steps) {
+        String enhancementAlgorithm = scanner.nextLine();
+        scanner.nextLine();
+
+        InfiniteCharMap charMap = InfiniteCharMap.read(scanner, c -> c == '#');
+        LOGGER.info("CharMap: \n{}", charMap);
+
+        int xMin = charMap.keySet().stream().mapToInt(Point2D::x).min().orElseThrow();
+        int xMax = charMap.keySet().stream().mapToInt(Point2D::x).max().orElseThrow();
+        int yMin = charMap.keySet().stream().mapToInt(Point2D::y).min().orElseThrow();
+        int yMax = charMap.keySet().stream().mapToInt(Point2D::y).max().orElseThrow();
+
+        charMap.put(Point2D.of(xMin - 2 * steps, yMin - 2 * steps), '.');
+        charMap.put(Point2D.of(xMax + 2 * steps, yMax + 2 * steps), '.');
+
+        for (int step = 1; step <= steps; ++step) {
+            charMap = enhanceImage(charMap, enhancementAlgorithm);
+            LOGGER.trace("CharMap after step {}: \n{}", step, charMap);
+        }
+
+        LOGGER.debug("CharMap after step {}: \n{}", steps, charMap);
+
+
+        return charMap.values().stream().filter(c -> '#' == c).count();
+
+
+    }
+
+    private static InfiniteCharMap enhanceImage(InfiniteCharMap charMap, String enhancementAlgorithm) {
+        int xMin = charMap.keySet().stream().mapToInt(Point2D::x).min().orElseThrow() + 1;
+        int xMax = charMap.keySet().stream().mapToInt(Point2D::x).max().orElseThrow() - 1;
+        int yMin = charMap.keySet().stream().mapToInt(Point2D::y).min().orElseThrow() + 1;
+        int yMax = charMap.keySet().stream().mapToInt(Point2D::y).max().orElseThrow() - 1;
+
+        InfiniteCharMap nextCharMap = new InfiniteCharMap();
+        for (int x = xMin; x <= xMax; ++x) {
+            for (int y = yMin; y <= yMax; ++y) {
+                Point2D point = Point2D.of(x, y);
+                int code = pixelCode(charMap, point);
+                if (enhancementAlgorithm.charAt(code) == '#') {
+                    nextCharMap.put(point, '#');
+                } else {
+                    nextCharMap.put(point, '.');
+                }
+            }
+        }
+        return nextCharMap;
+    }
+
+    @Test
+    void inputExample() {
+        String input = """
+                ..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..###..######.###...####..#..#####..##..#.#####...##.#.#..#.##..#.#......#.###.######.###.####...#.##.##..#..#..#####.....#.#....###..#.##......#.....#..#..#..##..#...##.######.####.####.#.#...#.......#..#.#.#...####.##.#......#..#...##.#.##..#...##.#.##..###.#......#.#.......#.#.#.####.###.##...#.....####.#..#..#.##.#....##..#.####....##...##..#...#......#.#.......#.......##..####..#...#.#.#...##..#.#..###..#####........#..####......#..#
+                        
+                #..#.
+                #....
+                ##..#
+                ..#..
+                ..###""";
+
+        assertThat(enhanceImage(new Scanner(input), 2)).isEqualTo(35);
+        assertThat(enhanceImage(new Scanner(input), 50)).isEqualTo(3351);
+    }
+
+    @Test
+    void inputPartOne() throws IOException {
+        try (InputStream is = Day20Test.class.getResourceAsStream("/2021/day/20/input")) {
+            Scanner scanner = new Scanner(Objects.requireNonNull(is));
+            assertThat(enhanceImage(scanner, 2)).isEqualTo(5819);
+        }
+    }
+
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream is = Day20Test.class.getResourceAsStream("/2021/day/20/input")) {

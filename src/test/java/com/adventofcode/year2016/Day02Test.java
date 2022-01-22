@@ -26,14 +26,14 @@ class Day02Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2016/day/2/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is));) {
+        try (InputStream is = Day02Test.class.getResourceAsStream("/2016/day/2/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day02.findCodePartOne(scanner)).isEqualTo("97289");
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2016/day/2/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is));) {
+        try (InputStream is = Day02Test.class.getResourceAsStream("/2016/day/2/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day02.findCodePartTwo(scanner)).isEqualTo("9A7DC");
         }
     }

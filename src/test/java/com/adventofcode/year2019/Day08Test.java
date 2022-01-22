@@ -3,6 +3,8 @@ package com.adventofcode.year2019;
 import com.adventofcode.utils.FileUtils;
 import com.adventofcode.utils.LongPair;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,7 +13,7 @@ import java.util.function.IntConsumer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Day08Test {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
 
     @Test
     void testInputPartOne() throws IOException {
@@ -46,7 +48,7 @@ class Day08Test {
         for (int index = 0; index < width * height; index += width) {
             StringBuilder sb = new StringBuilder();
             Arrays.spliterator(image, index, index + width).forEachRemaining((IntConsumer) i -> sb.append(i == 1 ? 'X' : ' '));
-            Day08.LOGGER.debug("{}", sb);
+            LOGGER.debug("{}", sb);
         }
     }
 }

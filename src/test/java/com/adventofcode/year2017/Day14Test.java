@@ -19,12 +19,12 @@ class Day14Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         assertThat(Day14.buildDisk("jxqlasbh").cardinality()).isEqualTo(8140);
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         assertThat(Day14.countRegion(Day14.buildDisk("jxqlasbh"))).isEqualTo(1182);
     }
 }

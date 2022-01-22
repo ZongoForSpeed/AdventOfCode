@@ -16,6 +16,10 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class Day20 {
+    private Day20() {
+        // No-Op
+    }
+
     /**
      * --- Day 20: Donut Maze ---
      * You notice a strange pattern on the surface of Pluto and land nearby to get a closer look. Upon closer inspection,

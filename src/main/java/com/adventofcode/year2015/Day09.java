@@ -56,8 +56,7 @@ public final class Day09 {
      * What is the distance of the shortest route?
      *
      * Your puzzle answer was 141.
-     */
-    /**
+     *
      * --- Part Two ---
      *
      * The next year, just to show off, Santa decides to take the route with the

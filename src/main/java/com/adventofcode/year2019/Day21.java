@@ -11,6 +11,10 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class Day21 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day21.class);
 
+    private Day21() {
+        // No-Op
+    }
+
     /**
      * --- Day 21: Springdroid Adventure ---
      * You lift off from Pluto and start flying in the direction of Santa.

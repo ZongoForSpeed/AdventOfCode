@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day21Test {
 
     @Test
-    void inputExample() throws InterruptedException {
+    void inputExample() {
         String input = """
                 ../.# => ##./#../...
                 .#./..#/### => #..#/..../..../#..#""";
@@ -32,7 +32,7 @@ class Day21Test {
     }
 
     @Test
-    void inputPartTwo() throws IOException, InterruptedException {
+    void inputPartTwo() throws IOException {
         try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day21.buildFractal(scanner, 18)).extracting(BooleanMap::cardinality).isEqualTo(1956174L);
         }

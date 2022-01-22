@@ -3,6 +3,9 @@ package com.adventofcode.year2019;
 import com.adventofcode.Intcode;
 
 public final class Day09 {
+    private Day09() {
+
+    }
     /**
      * --- Day 9: Sensor Boost ---
      * You've just said goodbye to the rebooted rover and left Mars when you receive a faint distress signal coming from

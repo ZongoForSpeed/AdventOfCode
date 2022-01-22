@@ -28,7 +28,7 @@ class Day03Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day03Test.class.getResourceAsStream("/2016/day/3/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is));) {
+        try (InputStream is = Day03Test.class.getResourceAsStream("/2016/day/3/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day03.countTrianglesPartOne(scanner)).isEqualTo(1032);
         }
     }

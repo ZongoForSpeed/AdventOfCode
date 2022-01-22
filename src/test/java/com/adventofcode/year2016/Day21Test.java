@@ -37,7 +37,7 @@ class Day21Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day21Test.class.getResourceAsStream("/2016/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is));) {
+        try (InputStream is = Day21Test.class.getResourceAsStream("/2016/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day21.unscramblingFunction(scanner, "fbgdceah")).isEqualTo("hegbdcfa");
 
         }

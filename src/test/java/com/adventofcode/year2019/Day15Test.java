@@ -13,7 +13,6 @@ import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

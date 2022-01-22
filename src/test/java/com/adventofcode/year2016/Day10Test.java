@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day10Test {
 
     @Test
-    void inputExample() throws IOException {
+    void inputExample() {
         String input = """
                 value 5 goes to bot 2
                 bot 2 gives low to bot 1 and high to bot 0

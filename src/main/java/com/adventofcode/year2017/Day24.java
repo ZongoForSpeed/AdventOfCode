@@ -19,6 +19,10 @@ import java.util.Set;
 public class Day24 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
 
+    private Day24() {
+        // No-Op
+    }
+
     public static long strength(List<IntegerPair> bridge) {
         return bridge.stream().mapToLong(c -> c.left() + c.right()).sum();
     }

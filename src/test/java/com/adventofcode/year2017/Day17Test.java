@@ -23,7 +23,7 @@ class Day17Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() {
         List<Integer> circularBuffer = Day17.buildBufferPartOne(2017, 303);
         int index = circularBuffer.indexOf(2017);
 
@@ -32,7 +32,7 @@ class Day17Test {
 
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() {
         assertThat(Day17.buildBufferPartTwo(50000000, 303)).isEqualTo(17202899);
     }
 

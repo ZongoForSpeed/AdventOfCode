@@ -51,7 +51,7 @@ class Day24Test {
     }
 
     @Test
-    void inputPartTwo() throws IOException, InterruptedException {
+    void inputPartTwo() throws IOException {
         try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/24/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             List<IntegerPair> strongestBridge = Day24.findStrongestBridgePartTwo(scanner);
 
