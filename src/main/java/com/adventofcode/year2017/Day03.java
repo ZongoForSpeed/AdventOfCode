@@ -1,7 +1,7 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.map.Direction;
-import com.adventofcode.map.Point2D;
+import com.adventofcode.point.Direction;
+import com.adventofcode.point.Point2D;
 
 import java.util.HashMap;
 import java.util.List;

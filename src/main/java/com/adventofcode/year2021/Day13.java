@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.map.BooleanMap;
-import com.adventofcode.map.Point2D;
+import com.adventofcode.point.map.BooleanMap;
+import com.adventofcode.point.Point2D;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;

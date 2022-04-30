@@ -1,4 +1,6 @@
-package com.adventofcode.map;
+package com.adventofcode.point.map;
+
+import com.adventofcode.point.Point2D;
 
 import java.util.ArrayList;
 import java.util.Arrays;

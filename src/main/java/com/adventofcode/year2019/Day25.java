@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.Intcode;
-import com.adventofcode.map.Direction;
+import com.adventofcode.point.Direction;
 
 import java.util.ArrayList;
 import java.util.BitSet;

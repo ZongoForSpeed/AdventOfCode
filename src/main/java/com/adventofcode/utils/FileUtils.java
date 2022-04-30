@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public final class FileUtils {
+
     private FileUtils() {
         // No-Op
     }

@@ -1,5 +1,6 @@
-package com.adventofcode.map;
+package com.adventofcode.point.map;
 
+import com.adventofcode.point.Point2D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

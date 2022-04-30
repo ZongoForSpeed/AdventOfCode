@@ -1,6 +1,6 @@
 package com.adventofcode.matrix;
 
-import com.adventofcode.map.Point3D;
+import com.adventofcode.point.Point3D;
 
 import java.util.Arrays;
 

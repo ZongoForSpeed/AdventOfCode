@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.map.IntegerMap;
+import com.adventofcode.point.map.IntegerMap;
 import com.adventofcode.utils.TriConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

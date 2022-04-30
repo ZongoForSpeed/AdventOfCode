@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.map.Point2D;
+import com.adventofcode.point.Point2D;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.tuple.Pair;
 

@@ -1,5 +1,6 @@
 package com.adventofcode.map;
 
+import com.adventofcode.point.map.CharMap;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.adventofcode.map;
+package com.adventofcode.point;
 
 import java.util.StringJoiner;
 

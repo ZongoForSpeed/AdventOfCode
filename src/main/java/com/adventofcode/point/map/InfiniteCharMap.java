@@ -1,5 +1,6 @@
-package com.adventofcode.map;
+package com.adventofcode.point.map;
 
+import com.adventofcode.point.Point2D;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nonnull;

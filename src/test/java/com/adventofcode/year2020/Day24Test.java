@@ -1,6 +1,6 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.map.Point2D;
+import com.adventofcode.point.Point2D;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

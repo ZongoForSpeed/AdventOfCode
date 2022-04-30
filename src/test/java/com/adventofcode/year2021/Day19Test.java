@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.map.Point3D;
+import com.adventofcode.point.Point3D;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 

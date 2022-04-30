@@ -1,4 +1,4 @@
-package com.adventofcode.map;
+package com.adventofcode.point;
 
 public record Point2D(int x, int y) {
     public static Point2D of(int x, int y) {
@@ -13,6 +13,10 @@ public record Point2D(int x, int y) {
         } else {
             return p;
         }
+    }
+
+    public static int manhattanDistance(Point2D a, Point2D b) {
+        return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
     public Point2D move(Direction direction) {

@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.map.BooleanMap;
-import com.adventofcode.map.CharMap;
+import com.adventofcode.point.map.BooleanMap;
+import com.adventofcode.point.map.CharMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.junit.jupiter.api.Test;

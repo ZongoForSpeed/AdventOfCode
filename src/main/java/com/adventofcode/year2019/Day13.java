@@ -1,8 +1,8 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.Intcode;
-import com.adventofcode.map.Map2D;
-import com.adventofcode.map.Point2D;
+import com.adventofcode.point.map.Map2D;
+import com.adventofcode.point.Point2D;
 
 import java.util.List;
 import java.util.Map;

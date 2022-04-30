@@ -1,7 +1,7 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.map.BooleanMap;
-import com.adventofcode.map.Point2D;
+import com.adventofcode.point.map.BooleanMap;
+import com.adventofcode.point.Point2D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.map.Point3D;
+import com.adventofcode.point.Point3D;
 import com.adventofcode.matrix.Matrix3D;
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;

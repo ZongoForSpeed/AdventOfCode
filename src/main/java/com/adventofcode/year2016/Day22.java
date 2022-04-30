@@ -1,8 +1,8 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.graph.AStar;
-import com.adventofcode.map.Direction;
-import com.adventofcode.map.Point2D;
+import com.adventofcode.point.Direction;
+import com.adventofcode.point.Point2D;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
