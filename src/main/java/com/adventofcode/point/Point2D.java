@@ -1,6 +1,6 @@
 package com.adventofcode.point;
 
-public record Point2D(int x, int y) {
+public record Point2D(int x, int y) implements Comparable<Point2D> {
     public static Point2D of(int x, int y) {
         return new Point2D(x, y);
     }
@@ -52,6 +52,15 @@ public record Point2D(int x, int y) {
 
     public Point2D move(Point2D d) {
         return Point2D.of(x + d.x, y + d.y);
+    }
+
+    @Override
+    public int compareTo(Point2D o) {
+        int compare = Integer.compare(y, o.y);
+        if (compare != 0) {
+            return compare;
+        }
+        return Integer.compare(x, o.x);
     }
 }
 

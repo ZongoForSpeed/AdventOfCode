@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Day11 {
+public final class Day11 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day11.class);
 
     public static long example() {

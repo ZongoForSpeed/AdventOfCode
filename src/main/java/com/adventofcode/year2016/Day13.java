@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
-public class Day13 {
+public final class Day13 {
     private static boolean isOpenSpace(Point2D p, int favoriteNumber) {
         long x = p.x();
         long y = p.y();

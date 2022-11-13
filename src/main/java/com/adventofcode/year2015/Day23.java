@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-public class Day23 {
+public final class Day23 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23.class);
 
     private Day23() {

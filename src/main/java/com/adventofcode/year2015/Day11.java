@@ -3,7 +3,7 @@ package com.adventofcode.year2015;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Day11 {
+public final class Day11 {
     private Day11() {
         // No-Op
     }

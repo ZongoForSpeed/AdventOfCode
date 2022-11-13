@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Scanner;
 
-public class Day24 {
+public final class Day24 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
 
     private Day24() {

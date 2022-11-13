@@ -15,9 +15,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day25 {
+public final class Day25 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day25.class);
     private static final Pattern PATTERN = Pattern.compile("Perform a diagnostic checksum after (\\d*) steps.");
+
+    private Day25() {
+        // No-Op
+    }
 
     private static State readState(Scanner scanner) {
         // In state A:

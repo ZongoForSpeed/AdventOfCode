@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day15 {
+public final class Day15 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day15.class);
     private static final Pattern PATTERN = Pattern.compile("Disc #(\\d+) has (\\d+) positions; at time=0, it is at position (\\d+)\\.");
 

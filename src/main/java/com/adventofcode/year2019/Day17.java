@@ -3,15 +3,12 @@ package com.adventofcode.year2019;
 import com.adventofcode.point.Direction;
 import com.adventofcode.point.Point2D;
 import org.apache.commons.lang3.tuple.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public final class Day17 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Day17.class);
 
     private Day17() {
         // No-Op
@@ -227,6 +224,7 @@ public final class Day17 {
                         direction = Direction.EAST;
                     }
                     default -> {
+                        // Nothing
                     }
                 }
             }

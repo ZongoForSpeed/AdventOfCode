@@ -15,8 +15,12 @@ import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
-public class Day21 {
+public final class Day21 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day21.class);
+
+    private Day21() {
+        // No-Op
+    }
 
     public static Player createPlayer(int hitPoints, List<Item> items) {
         int armor = items.stream().mapToInt(Item::armor).sum();

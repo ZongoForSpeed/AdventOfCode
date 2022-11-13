@@ -10,8 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Day16 {
+public final class Day16 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day16.class);
+
+    private Day16() {
+        // No-Op
+    }
 
     /**
      * --- Day 16: Permutation Promenade ---

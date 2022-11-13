@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Day22 {
-    public static final TerminalState WINNING_STATE = TerminalState.of(true);
-    public static final TerminalState LOOSING_STATE = TerminalState.of(false);
+public final class Day22 {
+    private static final TerminalState WINNING_STATE = TerminalState.of(true);
+    private static final TerminalState LOOSING_STATE = TerminalState.of(false);
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22.class);
 
     public static List<AStar.Move<State>> nextStatePartOne(State state) {

@@ -18,8 +18,12 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Day22 {
+public final class Day22 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22.class);
+
+    private Day22() {
+        // No-Op
+    }
 
     private static short parseString(String s) {
         return Short.parseShort(s.substring(0, s.length() - 1));

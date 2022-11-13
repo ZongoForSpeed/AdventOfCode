@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Day03 {
+public final class Day03 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day03.class);
 
     private Day03() {

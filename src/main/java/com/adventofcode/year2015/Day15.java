@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Day15 {
+public final class Day15 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day15.class);
 
     private Day15() {

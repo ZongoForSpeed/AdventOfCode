@@ -3,7 +3,7 @@ package com.adventofcode.year2015;
 import com.adventofcode.maths.Arithmetic;
 import com.adventofcode.maths.Prime;
 
-class Day20 {
+public final class Day20 {
     private final long[] primes;
 
     public Day20() {

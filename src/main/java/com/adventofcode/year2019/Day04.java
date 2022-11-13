@@ -3,7 +3,7 @@ package com.adventofcode.year2019;
 import com.adventofcode.maths.Digits;
 import com.adventofcode.utils.IntegerPair;
 import com.google.common.collect.Ordering;
-import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.chars.CharList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +35,14 @@ public final class Day04 {
      * Your puzzle input is 153517-630395.
      */
     public static boolean matchPartOne(int n) {
-        IntList digits = Digits.digits(n);
+        CharList digits = Digits.digits(n);
         boolean sorted = Ordering.natural().isOrdered(digits);
         if (!sorted) {
             return false;
         }
 
         for (int i = 1, digitsSize = digits.size(); i < digitsSize; i++) {
-            if (digits.getInt(i) == digits.getInt(i - 1)) {
+            if (digits.getChar(i) == digits.getChar(i - 1)) {
                 return true;
             }
         }
@@ -65,7 +65,7 @@ public final class Day04 {
      * Your puzzle input is still 153517-630395.
      */
     public static boolean matchPartTwo(int n) {
-        IntList digits = Digits.digits(n);
+        CharList digits = Digits.digits(n);
         boolean sorted = Ordering.natural().isOrdered(digits);
         if (!sorted) {
             return false;

@@ -18,9 +18,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Day07 {
+public final class Day07 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day07.class);
     private static final Pattern PATTERN = Pattern.compile("(\\w+) \\((\\d+)\\)");
+
+    private Day07() {
+        // No-Op
+    }
 
     private static Map<Program, List<Program>> readPrograms(Scanner scanner) {
         Map<String, Program> programs = new HashMap<>();

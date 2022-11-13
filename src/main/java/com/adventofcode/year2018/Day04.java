@@ -218,9 +218,9 @@ public final class Day04 {
         Map<Integer, List<LocalDateTime>> sleepingGuards = new HashMap<>();
 
         int guard = 0;
-        for (Pair<LocalDateTime, String> record : records) {
-            LocalDateTime time = record.getLeft();
-            String group = record.getRight();
+        for (Pair<LocalDateTime, String> pair : records) {
+            LocalDateTime time = pair.getLeft();
+            String group = pair.getRight();
             if (group.startsWith("Guard ")) {
                 guard = Integer.parseInt(group.split(" ")[1].substring(1));
             } else if (group.equalsIgnoreCase("falls asleep")) {

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
-public class Day12 {
+public final class Day12 {
     private Day12() {
         // No-Op
     }

@@ -15,7 +15,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
-public class Day17 {
+public final class Day17 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17.class);
 
     public static List<String> algorithm(String passcode, Point2D start, Point2D end) {

@@ -126,4 +126,16 @@ public class IntegerMap {
         }
         return points;
     }
+
+
+    public IntegerMap subMap(int xMin, int xMax, int yMin, int yMax) {
+        IntegerMap subMap = new IntegerMap(xMax - xMin - 1, yMax - yMin - 1, defaultValue);
+        for (int x = xMin; x < xMax; ++x) {
+            for (int y = yMin; y < yMax; ++y) {
+                subMap.set(x - xMin, y - yMin, get(x, y));
+            }
+        }
+        return subMap;
+    }
+
 }

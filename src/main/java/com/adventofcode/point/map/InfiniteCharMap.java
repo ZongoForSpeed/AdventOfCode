@@ -65,6 +65,10 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
         return map.containsKey(key);
     }
 
+    public boolean containsKey(int x, int y) {
+        return containsKey(Point2D.of(x, y));
+    }
+
     @Override
     public boolean containsValue(Object value) {
         return map.containsValue(value);
@@ -75,14 +79,26 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
         return map.get(key);
     }
 
+    public Character get(int x, int y) {
+        return get(Point2D.of(x, y));
+    }
+
     @Override
     public Character put(Point2D key, Character value) {
         return map.put(key, value);
     }
 
+    public Character put(int x, int y, Character value) {
+        return put(Point2D.of(x, y), value);
+    }
+
     @Override
     public Character remove(Object key) {
         return map.remove(key);
+    }
+
+    public Character remove(int x, int y) {
+        return remove(Point2D.of(x, y));
     }
 
     @Override

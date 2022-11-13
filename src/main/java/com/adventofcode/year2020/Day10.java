@@ -161,7 +161,7 @@ public final class Day10 {
 
         for (int i = 1; i < adapters.size(); i++) {
             long diff = adapters.getLong(i) - adapters.getLong(i - 1);
-            // LOGGER.info("{} diff {}-{}", diff, adapters.get(i), adapters.get(i - 1));
+            LOGGER.info("{} diff {}-{}", diff, adapters.getLong(i), adapters.getLong(i - 1));
             diffs[(int) diff]++;
         }
 
@@ -248,7 +248,7 @@ public final class Day10 {
         long count = 0;
         for (int i = 1; i < adapters.size(); i++) {
             long diff = adapters.getLong(i) - adapters.getLong(i - 1);
-            // LOGGER.info("{} diff {}-{}", diff, adapters.get(i), adapters.get(i - 1));
+            LOGGER.trace("{} diff {}-{}", diff, adapters.getLong(i), adapters.getLong(i - 1));
             if (diff == 1) {
                 ++count;
             } else {

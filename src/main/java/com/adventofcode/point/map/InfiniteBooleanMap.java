@@ -73,7 +73,11 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
 
     @Override
     public boolean containsValue(Object value) {
-        return map.values().stream().anyMatch(e -> e.containsValue(value));
+        if (value instanceof Boolean boolValue) {
+            return map.values().stream().anyMatch(e -> e.containsValue(boolValue.booleanValue()));
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -164,6 +168,6 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
 
     @Override
     public String toString() {
-        return String.join("\n", print(b -> b ? '#' : '.'));
+        return String.join("\n", print(b -> Boolean.TRUE.equals(b) ? '#' : '.'));
     }
 }

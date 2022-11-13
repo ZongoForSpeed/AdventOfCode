@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day13 {
+public final class Day13 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day13.class);
     private static final Pattern PATTERN = Pattern.compile("(\\w+) would (gain|lose) (\\d+) happiness units by sitting next to (\\w+)\\.");
 

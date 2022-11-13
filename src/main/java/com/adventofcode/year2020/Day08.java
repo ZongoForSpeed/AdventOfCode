@@ -184,7 +184,7 @@ public final class Day08 {
                 List<String> newProgram = new ArrayList<>(program);
                 newProgram.set(i, s);
                 Pair<Long, Boolean> result = runHandheldGameConsole(newProgram);
-                if (result.getRight()) {
+                if (Boolean.TRUE.equals(result.getRight())) {
                     return result.getLeft();
                 }
             } else if (s.startsWith("jmp")) {
@@ -192,7 +192,7 @@ public final class Day08 {
                 List<String> newProgram = new ArrayList<>(program);
                 newProgram.set(i, s);
                 Pair<Long, Boolean> result = runHandheldGameConsole(newProgram);
-                if (result.getRight()) {
+                if (Boolean.TRUE.equals(result.getRight())) {
                     return result.getLeft();
                 }
             }

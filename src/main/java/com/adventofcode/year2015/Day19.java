@@ -15,7 +15,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Day19 {
+public final class Day19 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day19.class);
 
     private Day19() {

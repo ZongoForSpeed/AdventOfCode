@@ -3,7 +3,7 @@ package com.adventofcode.year2015;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Day25 {
+public final class Day25 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day25.class);
 
     private Day25() {

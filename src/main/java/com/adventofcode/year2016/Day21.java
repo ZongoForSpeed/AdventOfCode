@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day21 {
+public final class Day21 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day21.class);
     private static final Pattern SWAP_POSITION = Pattern.compile("swap position (\\d+) with position (\\d+)");
     private static final Pattern SWAP_LETTER = Pattern.compile("swap letter (\\w+) with letter (\\w+)");

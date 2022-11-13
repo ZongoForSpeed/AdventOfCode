@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Day16 {
+public final class Day16 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day16.class);
     private static final Pattern PATTERN = Pattern.compile("Sue (\\d+): (.*)");
 

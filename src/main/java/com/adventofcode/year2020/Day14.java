@@ -29,6 +29,7 @@ public final class Day14 {
                 case '0' -> bitSet.set(n, false);
                 case '1' -> bitSet.set(n, true);
                 default -> {
+                    // Nothing
                 }
             }
         }

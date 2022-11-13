@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-public class Day20 {
+public final class Day20 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20.class);
 
     private static Stream<Range> excludeIPs(Scanner scanner, long upper) {

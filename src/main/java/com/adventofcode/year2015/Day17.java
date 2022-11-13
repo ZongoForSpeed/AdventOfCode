@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.BitSet;
 import java.util.Scanner;
 
-public class Day17 {
+public final class Day17 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17.class);
 
     private Day17() {

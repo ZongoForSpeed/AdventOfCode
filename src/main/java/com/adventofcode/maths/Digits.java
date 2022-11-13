@@ -1,5 +1,7 @@
 package com.adventofcode.maths;
 
+import it.unimi.dsi.fastutil.chars.CharArrayList;
+import it.unimi.dsi.fastutil.chars.CharList;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 
@@ -10,10 +12,13 @@ public final class Digits {
         // No-Op
     }
 
-    public static IntList digits(int n) {
-        IntList d = new IntArrayList();
+    public static CharList digits(int n) {
+        if (n == 0) {
+            return CharList.of((char) 0);
+        }
+        CharList d = new CharArrayList();
         while (n > 0) {
-            d.add(n % 10);
+            d.add((char) (n % 10));
             n /= 10;
         }
 

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Day18 {
+public final class Day18 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day18.class);
     private static final List<Point2D> NEIGHBORS = List.of(
             Point2D.of(-1, -1),
