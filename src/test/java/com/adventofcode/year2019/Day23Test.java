@@ -1,6 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.utils.FileUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ class Day23Test {
         assertThat(Day23.runNetworkInterfaceController(program)).isEqualTo(20367);
     }
 
-    @Test
+    @Disabled
     void testNotAlwaysTransmitting() throws IOException, InterruptedException {
         String program = FileUtils.readLine("/2019/day/23/input");
         assertThat(Day23.runNotAlwaysTransmitting(program)).isEqualTo(15080);
