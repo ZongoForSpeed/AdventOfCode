@@ -17,23 +17,13 @@ import java.util.stream.Collectors;
 
 public final class Day11 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day11.class);
-    private static final List<Point2D> ADJACENT_POINTS = List.of(
-            Point2D.of(-1, -1), //
-            Point2D.of(-1, 0), //
-            Point2D.of(-1, +1), //
-            Point2D.of(0, -1), //
-            Point2D.of(0, +1), //
-            Point2D.of(+1, -1), //
-            Point2D.of(+1, 0), //
-            Point2D.of(+1, +1) //
-    );
 
     private Day11() {
         // No-Op
     }
 
     private static List<Point2D> adjacent(Point2D p, int xMax, int yMax) {
-        return ADJACENT_POINTS.stream()
+        return Point2D.ADJACENT.stream()
                 .map(d -> Point2D.of(p.x() + d.x(), p.y() + d.y()))
                 .filter(a -> (a.y() >= 0) && (a.x() >= 0) && (a.y() <= yMax) && (a.x() <= xMax))
                 .toList();

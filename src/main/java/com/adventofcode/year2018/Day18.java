@@ -12,16 +12,6 @@ import java.util.Scanner;
 
 public final class Day18 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day18.class);
-    private static final List<Point2D> ADJACENT =
-            List.of(Point2D.of(-1, -1),
-                    Point2D.of(-1, 0),
-                    Point2D.of(-1, 1),
-                    Point2D.of(0, -1),
-                    Point2D.of(0, 1),
-                    Point2D.of(1, -1),
-                    Point2D.of(1, 0),
-                    Point2D.of(1, 1)
-            );
 
     private Day18() {
         // No-Op
@@ -228,7 +218,7 @@ public final class Day18 {
         for (int x = 0; x <= maxX; ++x) {
             for (int y = 0; y <= maxY; ++y) {
                 Point2D point = Point2D.of(x, y);
-                List<Point2D> list = ADJACENT.stream().map(point::move).filter(p -> p.x() >= 0 && p.x() <= maxX && p.y() >= 0 && p.y() <= maxY).toList();
+                List<Point2D> list = Point2D.ADJACENT.stream().map(point::move).filter(p -> p.x() >= 0 && p.x() <= maxX && p.y() >= 0 && p.y() <= maxY).toList();
                 adjacent.put(point, list);
             }
         }

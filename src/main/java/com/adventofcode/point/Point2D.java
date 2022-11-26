@@ -1,6 +1,19 @@
 package com.adventofcode.point;
 
+import java.util.List;
+
 public record Point2D(int x, int y) implements Comparable<Point2D> {
+    public static final List<Point2D> ADJACENT =
+            List.of(of(-1, -1),
+                    of(-1, 0),
+                    of(-1, 1),
+                    of(0, -1),
+                    of(0, 1),
+                    of(1, -1),
+                    of(1, 0),
+                    of(1, 1)
+            );
+
     public static Point2D of(int x, int y) {
         return new Point2D(x, y);
     }

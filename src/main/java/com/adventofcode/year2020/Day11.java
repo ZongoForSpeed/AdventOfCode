@@ -3,19 +3,8 @@ package com.adventofcode.year2020;
 import com.adventofcode.point.Point2D;
 
 import java.util.Arrays;
-import java.util.List;
 
 public final class Day11 {
-    private static final List<Point2D> ADJACENT_SEATS =
-            List.of(Point2D.of(-1, -1),
-                    Point2D.of(-1, 0),
-                    Point2D.of(-1, 1),
-                    Point2D.of(0, -1),
-                    Point2D.of(0, 1),
-                    Point2D.of(1, -1),
-                    Point2D.of(1, 0),
-                    Point2D.of(1, 1)
-            );
 
     private Day11() {
         // No-Op
@@ -26,7 +15,7 @@ public final class Day11 {
                 int lengthY = grid[0].length;
 
                 int result = 0;
-                for (Point2D delta : ADJACENT_SEATS) {
+                for (Point2D delta : Point2D.ADJACENT) {
                     int x = x0 + delta.x();
                     int y = y0 + delta.y();
                     if (deepSearch) {
