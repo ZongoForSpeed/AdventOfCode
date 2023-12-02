@@ -112,16 +112,19 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
     }
 
     @Override
+    @Nonnull
     public Set<Point2D> keySet() {
         return map.keySet();
     }
 
     @Override
+    @Nonnull
     public Collection<Character> values() {
         return map.values();
     }
 
     @Override
+    @Nonnull
     public Set<Entry<Point2D, Character>> entrySet() {
         return map.entrySet();
     }

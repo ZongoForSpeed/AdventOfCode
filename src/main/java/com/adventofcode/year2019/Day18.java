@@ -40,10 +40,10 @@ public class Day18 {
                 }
 
                 for (MazeState next : state.next(map)) {
-                    if (!steps_to.containsKey(next)) {
-                        steps_to.put(next, steps + 1);
+                    steps_to.computeIfAbsent(next, ignore -> {
                         queue.add(next);
-                    }
+                        return steps + 1;
+                    });
                 }
             }
         }

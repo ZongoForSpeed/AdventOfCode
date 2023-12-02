@@ -193,7 +193,6 @@ public final class Day18 {
 
         latch.await();
         executorService.shutdown();
-
         return callback1.getCount();
     }
 

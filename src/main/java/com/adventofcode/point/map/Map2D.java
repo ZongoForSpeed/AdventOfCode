@@ -21,50 +21,65 @@ public class Map2D implements Map<Point2D, Long> {
         this.map = new HashMap<>();
     }
 
+    @Override
     public int size() {
         return map.size();
     }
 
+    @Override
     public boolean isEmpty() {
         return map.isEmpty();
     }
 
+    @Override
     public boolean containsKey(Object key) {
         return map.containsKey(key);
     }
 
+    @Override
     public boolean containsValue(Object value) {
         return map.containsValue(value);
     }
 
+    @Override
     public Long get(Object key) {
         return map.get(key);
     }
 
+    @Override
     public Long put(Point2D key, Long value) {
         return map.put(key, value);
     }
 
+    @Override
     public Long remove(Object key) {
         return map.remove(key);
     }
 
+    @Override
     public void putAll(@Nonnull Map<? extends Point2D, ? extends Long> m) {
         map.putAll(m);
     }
 
+    @Override
     public void clear() {
         map.clear();
     }
 
+    @Override
+    @Nonnull
     public Set<Point2D> keySet() {
         return map.keySet();
     }
 
+    @Override
+    @Nonnull
     public Collection<Long> values() {
         return map.values();
     }
 
+    @Override
+    @Nonnull
     public Set<Map.Entry<Point2D, Long>> entrySet() {
         return map.entrySet();
     }

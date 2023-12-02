@@ -75,6 +75,10 @@ public final class Day02 {
     public static final class PartOne {
         static final Map<String, Integer> POSSIBLE_CUBES = Map.of("red", 12, "green", 13, "blue", 14);
 
+        private PartOne() {
+            // No-Op
+        }
+
         public static int cubeConundrum(Scanner scanner) {
             int sum = 0;
 

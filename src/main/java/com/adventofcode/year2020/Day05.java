@@ -83,6 +83,7 @@ public final class Day05 {
                     column += 1;
                     column <<= 1;
                 }
+                default -> throw new IllegalStateException("Unexpected value: " + boardingPasses.charAt(i));
             }
         }
 

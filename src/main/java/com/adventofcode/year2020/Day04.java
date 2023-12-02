@@ -267,7 +267,7 @@ public final class Day04 {
             }
         },
         pid(false) {
-            public static final Pattern PATTERN = Pattern.compile("[0-9]{9}");
+            public static final Pattern PATTERN = Pattern.compile("\\d{9}");
 
             // (Passport ID) - a nine-digit number, including leading zeroes.
             @Override

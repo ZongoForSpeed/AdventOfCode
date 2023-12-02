@@ -57,6 +57,7 @@ public record Range(int lower, int upper) {
         return upper - lower + 1;
     }
 
+    @Override
     public String toString() {
         return "[" + lower + ".." + upper + "]";
     }

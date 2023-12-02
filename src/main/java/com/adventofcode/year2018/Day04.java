@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public final class Day04 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day04.class);
-    private static final Pattern PATTERN = Pattern.compile("\\[(.*)\\] (.*)");
+    private static final Pattern PATTERN = Pattern.compile("\\[(.*)] (.*)");
     private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm[ss][.SSS]");
 
     private Day04() {
@@ -135,6 +135,10 @@ public final class Day04 {
             }
         }
 
+        if (worstGuard == null) {
+            throw new IllegalStateException("Found null worstGuard");
+        }
+
         LOGGER.info("Worst guard is {}: {}", worstGuard, maxDuration);
         List<LocalDateTime> timeList = sleepingGuards.get(worstGuard);
         int[] minutes = getMinutes(timeList);
@@ -175,6 +179,10 @@ public final class Day04 {
                 worstGuard = entry.getKey();
                 maxSleeping = max;
             }
+        }
+
+        if (worstGuard == null) {
+            throw new IllegalStateException("Found null worstGuard");
         }
 
         LOGGER.info("Worst guard is {}: {}", worstGuard, worstMinute);

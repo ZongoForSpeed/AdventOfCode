@@ -153,28 +153,29 @@ public class Day07 {
     }
 
     private static long internalThrusterSignal(String stringCodes, LongList settings) throws ExecutionException, InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(settings.size());
-        BlockingQueue<Long> queue1 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(0, 1)));
-        BlockingQueue<Long> queue2 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(1, 2)));
-        BlockingQueue<Long> queue3 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(2, 3)));
-        BlockingQueue<Long> queue4 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(3, 4)));
-        BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(4, 5)));
+        try (ExecutorService executorService = Executors.newFixedThreadPool(settings.size())) {
+            BlockingQueue<Long> queue1 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(0, 1)));
+            BlockingQueue<Long> queue2 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(1, 2)));
+            BlockingQueue<Long> queue3 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(2, 3)));
+            BlockingQueue<Long> queue4 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(3, 4)));
+            BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(4, 5)));
 
-        executorService.submit(() -> intcode(stringCodes, take(queue1), offer(queue2)));
-        executorService.submit(() -> intcode(stringCodes, take(queue2), offer(queue3)));
-        executorService.submit(() -> intcode(stringCodes, take(queue3), offer(queue4)));
-        executorService.submit(() -> intcode(stringCodes, take(queue4), offer(queue5)));
+            executorService.submit(() -> intcode(stringCodes, take(queue1), offer(queue2)));
+            executorService.submit(() -> intcode(stringCodes, take(queue2), offer(queue3)));
+            executorService.submit(() -> intcode(stringCodes, take(queue3), offer(queue4)));
+            executorService.submit(() -> intcode(stringCodes, take(queue4), offer(queue5)));
 
-        Future<Long> future = executorService.submit(() -> {
-            AtomicLong result = new AtomicLong(0);
-            intcode(stringCodes, take(queue5), n -> {
-                offer(queue1).accept(n);
-                result.set(n);
+            Future<Long> future = executorService.submit(() -> {
+                AtomicLong result = new AtomicLong(0);
+                intcode(stringCodes, take(queue5), n -> {
+                    offer(queue1).accept(n);
+                    result.set(n);
+                });
+                return result.get();
             });
-            return result.get();
-        });
 
-        queue1.put(0L);
-        return future.get();
+            queue1.put(0L);
+            return future.get();
+        }
     }
 }

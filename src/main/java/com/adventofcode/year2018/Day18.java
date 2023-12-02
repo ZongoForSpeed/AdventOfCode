@@ -205,7 +205,7 @@ public final class Day18 {
      * 1000000000 minutes?
      */
     static long treesAndLumberyards(Scanner scanner, int minutes) {
-        CharMap map = CharMap.read(scanner, (ignore) -> true);
+        CharMap map = CharMap.read(scanner, ignore -> true);
 
         LOGGER.info("Initial state:\n{}", map);
 
