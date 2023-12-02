@@ -74,7 +74,7 @@ public final class Day01 {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 int value = calibrationValue(line);
-                LOGGER.info("line = {} ==> value = {}", line, value);
+                LOGGER.debug("line = {} ==> value = {}", line, value);
                 sum += value;
             }
 
@@ -138,7 +138,7 @@ public final class Day01 {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 int value = calibrationValue(line);
-                LOGGER.info("line = {} ==> value = {}", line, value);
+                LOGGER.debug("line = {} ==> value = {}", line, value);
                 sum += value;
             }
 
@@ -156,7 +156,7 @@ public final class Day01 {
                     .max(Comparator.comparingInt(Pair::getLeft));
 
             int value = min.map(Pair::getValue).orElse(0) * 10 + max.map(Pair::getValue).orElse(0);
-            LOGGER.info("line = {} ==> min = {}, max = {}, value = {}", line, min, max, value);
+            LOGGER.debug("line = {} ==> min = {}, max = {}, value = {}", line, min, max, value);
             return value;
         }
     }
