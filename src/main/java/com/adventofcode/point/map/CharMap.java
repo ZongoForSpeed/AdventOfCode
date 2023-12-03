@@ -2,6 +2,7 @@ package com.adventofcode.point.map;
 
 import com.adventofcode.point.Point2D;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -134,6 +135,19 @@ public class CharMap {
             }
         }
         return points;
+    }
+
+    public List<Pair<Point2D, Character>> entries() {
+        List<Pair<Point2D, Character>> entries = new ArrayList<>();
+        for (int y = 0; y < map.length; y++) {
+            char[] line = map[y];
+            for (int x = 0; x < line.length; x++) {
+                if (line[x] != defaultValue) {
+                    entries.add(Pair.of(Point2D.of(x, y), line[x]));
+                }
+            }
+        }
+        return entries;
     }
 
     @Override
