@@ -1,8 +1,9 @@
 package com.adventofcode.point.map;
 
 import com.adventofcode.point.Point2D;
+import com.adventofcode.utils.TriConsumer;
+import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -119,6 +120,42 @@ public class CharMap {
         }
     }
 
+    public int xMax() {
+        int max = 0;
+        for (char[] line : map) {
+            for (int x = 0; x < line.length; x++) {
+                if (line[x] != defaultValue) {
+                    max = Math.max(x, max);
+                }
+            }
+        }
+        return max;
+    }
+
+    public int yMax() {
+        int max = 0;
+        for (int y = 0; y < map.length; y++) {
+            char[] line = map[y];
+            for (char c : line) {
+                if (c != defaultValue) {
+                    max = Math.max(y, max);
+                }
+            }
+        }
+        return max;
+    }
+
+    public void foreach(TriConsumer<Integer, Integer, Character> consumer) {
+        for (int y = 0; y < map.length; y++) {
+            char[] line = map[y];
+            for (int x = 0; x < line.length; x++) {
+                if (line[x] != defaultValue) {
+                    consumer.accept(x, y, line[x]);
+                }
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return Arrays.stream(map).map(String::valueOf).collect(Collectors.joining("\n"));
@@ -137,13 +174,13 @@ public class CharMap {
         return points;
     }
 
-    public List<Pair<Point2D, Character>> entries() {
-        List<Pair<Point2D, Character>> entries = new ArrayList<>();
+    public List<ObjectCharPair<Point2D>> entries() {
+        List<ObjectCharPair<Point2D>> entries = new ArrayList<>();
         for (int y = 0; y < map.length; y++) {
             char[] line = map[y];
             for (int x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
-                    entries.add(Pair.of(Point2D.of(x, y), line[x]));
+                    entries.add(ObjectCharPair.of(Point2D.of(x, y), line[x]));
                 }
             }
         }

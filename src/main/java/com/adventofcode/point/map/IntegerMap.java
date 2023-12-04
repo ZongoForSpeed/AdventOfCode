@@ -1,6 +1,8 @@
 package com.adventofcode.point.map;
 
 import com.adventofcode.point.Point2D;
+import com.adventofcode.utils.TriConsumer;
+import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -127,6 +129,54 @@ public class IntegerMap {
         return points;
     }
 
+    public List<ObjectIntPair<Point2D>> entries() {
+        List<ObjectIntPair<Point2D>> entries = new ArrayList<>();
+        for (int y = 0; y < map.length; y++) {
+            int[] line = map[y];
+            for (int x = 0; x < line.length; x++) {
+                if (line[x] != defaultValue) {
+                    entries.add(ObjectIntPair.of(Point2D.of(x, y), line[x]));
+                }
+            }
+        }
+        return entries;
+    }
+
+    public int xMax() {
+        int max = 0;
+        for (int[] line : map) {
+            for (int x = 0; x < line.length; x++) {
+                if (line[x] != defaultValue) {
+                    max = Math.max(x, max);
+                }
+            }
+        }
+        return max;
+    }
+
+    public int yMax() {
+        int max = 0;
+        for (int y = 0; y < map.length; y++) {
+            int[] line = map[y];
+            for (int c : line) {
+                if (c != defaultValue) {
+                    max = Math.max(y, max);
+                }
+            }
+        }
+        return max;
+    }
+
+    public void foreach(TriConsumer<Integer, Integer, Integer> consumer) {
+        for (int y = 0; y < map.length; y++) {
+            int[] line = map[y];
+            for (int x = 0; x < line.length; x++) {
+                if (line[x] != defaultValue) {
+                    consumer.accept(x, y, line[x]);
+                }
+            }
+        }
+    }
 
     public IntegerMap subMap(int xMin, int xMax, int yMin, int yMax) {
         IntegerMap subMap = new IntegerMap(xMax - xMin - 1, yMax - yMin - 1, defaultValue);

@@ -3,7 +3,7 @@ package com.adventofcode.year2023;
 import com.adventofcode.point.Direction;
 import com.adventofcode.point.Point2D;
 import com.adventofcode.point.map.CharMap;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,8 +84,8 @@ public final class Day03 {
 
             List<Point2D> symbols = map.entries()
                     .stream()
-                    .filter(e -> !Character.isDigit(e.getRight()))
-                    .map(Pair::getLeft)
+                    .filter(e -> !Character.isDigit(e.rightChar()))
+                    .map(it.unimi.dsi.fastutil.Pair::left)
                     .toList();
 
             LOGGER.info("symbols = {}", symbols);
@@ -237,8 +237,8 @@ public final class Day03 {
 
             List<Point2D> symbols = map.entries()
                     .stream()
-                    .filter(e -> e.getRight() == '*')
-                    .map(Pair::getLeft)
+                    .filter(e -> e.rightChar() == '*')
+                    .map(Pair::left)
                     .toList();
 
             LOGGER.debug("symbols = {}", symbols);

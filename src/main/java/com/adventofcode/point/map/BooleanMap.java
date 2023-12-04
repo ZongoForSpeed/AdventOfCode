@@ -1,6 +1,9 @@
 package com.adventofcode.point.map;
 
 import com.adventofcode.point.Point2D;
+import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
+import it.unimi.dsi.fastutil.objects.ObjectCharImmutablePair;
+import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
