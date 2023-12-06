@@ -21,7 +21,7 @@ class Day06Test {
         long reduce = Day06.PartOne.raceRecord(scanner);
         Assertions.assertThat(reduce).isEqualTo(288);
     }
-    
+
     @Test
     void examplePartTwo() {
         String input = """

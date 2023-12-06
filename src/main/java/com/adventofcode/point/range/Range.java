@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public record Range(int lower, int upper) {
-    public static Range of(int lower, int upper) {
+public record Range(long lower, long upper) {
+    public static Range of(long lower, long upper) {
         return new Range(lower, upper);
     }
 
@@ -15,10 +15,10 @@ public record Range(int lower, int upper) {
     }
 
     public static List<Range> fullUnion(Range r1, Range r2) {
-        int lowerMin = Math.min(r1.lower, r2.lower);
-        int lowerMax = Math.max(r1.lower, r2.lower);
-        int upperMin = Math.min(r1.upper, r2.upper);
-        int upperMax = Math.max(r1.upper, r2.upper);
+        long lowerMin = Math.min(r1.lower, r2.lower);
+        long lowerMax = Math.max(r1.lower, r2.lower);
+        long upperMin = Math.min(r1.upper, r2.upper);
+        long upperMax = Math.max(r1.upper, r2.upper);
 
         return List.of(
                 new Range(lowerMin, lowerMax - 1),
@@ -27,16 +27,20 @@ public record Range(int lower, int upper) {
         );
     }
 
+    public static List<Range> difference(Range r1, Range r2) {
+        return fullUnion(r1, r2).stream().filter(r -> !intersect(r, r2)).toList();
+    }
+
     public static boolean intersect(Range r1, Range r2) {
-        int lowerMax = Math.max(r1.lower, r2.lower);
-        int upperMin = Math.min(r1.upper, r2.upper);
+        long lowerMax = Math.max(r1.lower, r2.lower);
+        long upperMin = Math.min(r1.upper, r2.upper);
 
         return lowerMax <= upperMin;
     }
 
     public static Optional<Range> intersection(Range r1, Range r2) {
-        int lowerMax = Math.max(r1.lower, r2.lower);
-        int upperMin = Math.min(r1.upper, r2.upper);
+        long lowerMax = Math.max(r1.lower, r2.lower);
+        long upperMin = Math.min(r1.upper, r2.upper);
 
         if (lowerMax > upperMin) {
             return Optional.empty();
