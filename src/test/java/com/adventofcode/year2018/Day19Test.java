@@ -31,7 +31,7 @@ class Day19Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/19/input");
+        try (InputStream is = Day19Test.class.getResourceAsStream("/2018/day/19/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day19.executePartOne(scanner).toIntArray()).startsWith(878);
         }
@@ -39,7 +39,7 @@ class Day19Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/19/input");
+        try (InputStream is = Day19Test.class.getResourceAsStream("/2018/day/19/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day19.executePartTwo(scanner)).isEqualTo(11510496);
         }

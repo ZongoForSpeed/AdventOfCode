@@ -277,27 +277,27 @@ public final class Day07 {
         private static Type computeTypeJoker(Char2IntMap map, int joker) {
             int size = map.size();
             switch (size) {
-                case 1, 2:
+                case 1, 2 -> {
                     return Type.FIVE_OF_A_KIND;
-                case 3: {
+                }
+                case 3 -> {
                     if (map.containsValue(3)) {
                         return Type.FOUR_OF_A_KIND;
+                    } else if (joker == 2) {
+                        return Type.FOUR_OF_A_KIND;
+                    } else if (joker == 1) {
+                        return Type.FULL_HOUSE;
                     } else {
-                        if (joker == 2) {
-                            return Type.FOUR_OF_A_KIND;
-                        } else if (joker == 1) {
-                            return Type.FULL_HOUSE;
-                        } else {
-                            return Type.TWO_PAIR;
-                        }
+                        return Type.TWO_PAIR;
                     }
                 }
-                case 4:
+                case 4 -> {
                     return Type.THREE_OF_A_KIND;
-                case 5:
+                }
+                case 5 -> {
                     return Type.ONE_PAIR;
-                default:
-                    throw new IllegalStateException();
+                }
+                default -> throw new IllegalStateException();
             }
         }
     }
@@ -306,28 +306,30 @@ public final class Day07 {
     private static Type computeTypeSimple(Char2IntMap map) {
         int size = map.size();
         switch (size) {
-            case 1:
+            case 1 -> {
                 return Type.FIVE_OF_A_KIND;
-            case 2: {
+            }
+            case 2 -> {
                 if (map.containsValue(4)) {
                     return Type.FOUR_OF_A_KIND;
                 } else {
                     return Type.FULL_HOUSE;
                 }
             }
-            case 3: {
+            case 3 -> {
                 if (map.containsValue(3)) {
                     return Type.THREE_OF_A_KIND;
                 } else {
                     return Type.TWO_PAIR;
                 }
             }
-            case 4:
+            case 4 -> {
                 return Type.ONE_PAIR;
-            case 5:
+            }
+            case 5 -> {
                 return Type.HIGH_CARD;
-            default:
-                throw new IllegalStateException();
+            }
+            default -> throw new IllegalStateException();
         }
     }
 
