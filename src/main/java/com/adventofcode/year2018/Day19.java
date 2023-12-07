@@ -6,8 +6,6 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -125,7 +123,7 @@ public final class Day19 {
 
         String s = scanner.nextLine();
         int ip = Integer.parseInt(s.split(" ")[1]);
-        List<Command> commands = parseCommands(scanner);
+        List<OpCode.Command> commands = OpCode.parseCommands(scanner);
 
         IntList register = new IntArrayList(Collections.nCopies(6, 0));
 
@@ -135,7 +133,7 @@ public final class Day19 {
                 register.set(ip, register.getInt(ip) - 1);
                 break;
             }
-            Command command = commands.get(current);
+            OpCode.Command command = commands.get(current);
             LOGGER.trace("Register before: {} -> {}", register, command);
             OpCode.executeInstruction(register, command.code(), command.a(), command.b(), command.c());
             LOGGER.trace("Register after: {}", register);
@@ -157,7 +155,7 @@ public final class Day19 {
     static int executePartTwo(Scanner scanner) {
         String s = scanner.nextLine();
         int ip = Integer.parseInt(s.split(" ")[1]);
-        List<Command> commands = parseCommands(scanner);
+        List<OpCode.Command> commands = OpCode.parseCommands(scanner);
 
         IntList register = new IntArrayList(Collections.nCopies(6, 0));
         register.set(0, 1);
@@ -170,7 +168,7 @@ public final class Day19 {
                 register.set(ip, register.getInt(ip) - 1);
                 break;
             }
-            Command command = commands.get(current);
+            OpCode.Command command = commands.get(current);
             LOGGER.trace("Register before: {} -> {}", register, command);
             OpCode.executeInstruction(register, command.code(), command.a(), command.b(), command.c());
             LOGGER.trace("Register after: {}", register);
@@ -190,24 +188,4 @@ public final class Day19 {
         return IntStream.range(1, n + 1).filter(i -> n % i == 0).sum();
     }
 
-    private static List<Command> parseCommands(Scanner scanner) {
-        List<Command> commands = new ArrayList<>();
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] split = line.split(" ");
-            String command = split[0];
-            int[] array = Arrays.stream(split).skip(1).mapToInt(Integer::parseInt).toArray();
-            LOGGER.info("Command: {} {}", command, array);
-            commands.add(Command.of(command, array[0], array[1], array[2]));
-        }
-
-        LOGGER.info("Commands: {}", commands);
-        return commands;
-    }
-
-    record Command(String code, int a, int b, int c) {
-        public static Command of(String code, int a, int b, int c) {
-            return new Command(code, a, b, c);
-        }
-    }
 }
