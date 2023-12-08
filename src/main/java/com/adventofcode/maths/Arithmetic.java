@@ -96,6 +96,14 @@ public final class Arithmetic {
         return c * (lcm / gcd(lcm, c));
     }
 
+    public static long lcm(long... a) {
+        long lcm = 1;
+        for (long v : a) {
+            lcm = lcm(lcm, v);
+        }
+        return lcm;
+    }
+
     public static int gcd(int a, int b, int c) {
         return gcd(a, gcd(b, c));
     }
