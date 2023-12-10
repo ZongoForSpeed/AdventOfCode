@@ -91,10 +91,10 @@ public class Day03 {
 
             for (int i = 1; i < distance + 1; ++i) {
                 position = switch (direction) {
-                    case 'R' -> position.move(Direction.EAST);
-                    case 'U' -> position.move(Direction.NORTH);
-                    case 'L' -> position.move(Direction.WEST);
-                    case 'D' -> position.move(Direction.SOUTH);
+                    case 'R' -> position.move(Direction.RIGHT);
+                    case 'U' -> position.move(Direction.UP);
+                    case 'L' -> position.move(Direction.LEFT);
+                    case 'D' -> position.move(Direction.DOWN);
                     default -> Point2D.of(Integer.MIN_VALUE, Integer.MIN_VALUE);
                 };
                 result.add(position);

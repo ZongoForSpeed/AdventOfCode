@@ -292,8 +292,8 @@ public class Day20 {
 
         private static String getWrapName(Direction d, char c1, char c2) {
             return switch (d) {
-                case NORTH, WEST -> "" + c2 + c1;
-                case SOUTH, EAST -> "" + c1 + c2;
+                case UP, LEFT -> "" + c2 + c1;
+                case DOWN, RIGHT -> "" + c1 + c2;
             };
 
         }

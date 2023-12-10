@@ -209,19 +209,19 @@ public final class Day17 {
                 switch (map[i][j]) {
                     case '^' -> {
                         position = Point2D.of(j, i);
-                        direction = Direction.NORTH;
+                        direction = Direction.UP;
                     }
                     case 'v' -> {
                         position = Point2D.of(j, i);
-                        direction = Direction.SOUTH;
+                        direction = Direction.DOWN;
                     }
                     case '<' -> {
                         position = Point2D.of(j, i);
-                        direction = Direction.WEST;
+                        direction = Direction.LEFT;
                     }
                     case '>' -> {
                         position = Point2D.of(j, i);
-                        direction = Direction.EAST;
+                        direction = Direction.RIGHT;
                     }
                     default -> {
                         // Nothing

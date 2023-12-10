@@ -87,10 +87,10 @@ public final class Day02 {
             String line = scanner.nextLine();
             for (char c : line.toCharArray()) {
                 Point2D nextPosition = switch (c) {
-                    case 'U' -> position.move(Direction.NORTH);
-                    case 'D' -> position.move(Direction.SOUTH);
-                    case 'L' -> position.move(Direction.WEST);
-                    case 'R' -> position.move(Direction.EAST);
+                    case 'U' -> position.move(Direction.UP);
+                    case 'D' -> position.move(Direction.DOWN);
+                    case 'L' -> position.move(Direction.LEFT);
+                    case 'R' -> position.move(Direction.RIGHT);
                     default -> throw new IllegalStateException("Unexpected value: " + c);
                 };
                 if (availablePosition.contains(nextPosition)) {

@@ -1,68 +1,68 @@
 package com.adventofcode.point;
 
 public enum Direction {
-    NORTH() {
+    UP() {
         @Override
         public Direction reverse() {
-            return SOUTH;
+            return DOWN;
         }
 
         @Override
         public Direction left() {
-            return WEST;
+            return LEFT;
         }
 
         @Override
         public Direction right() {
-            return EAST;
+            return RIGHT;
         }
     },
-    SOUTH() {
+    DOWN() {
         @Override
         public Direction reverse() {
-            return NORTH;
+            return UP;
         }
 
         @Override
         public Direction left() {
-            return EAST;
+            return RIGHT;
         }
 
         @Override
         public Direction right() {
-            return WEST;
+            return LEFT;
         }
     },
-    WEST() {
+    LEFT() {
         @Override
         public Direction reverse() {
-            return EAST;
+            return RIGHT;
         }
 
         @Override
         public Direction left() {
-            return SOUTH;
+            return DOWN;
         }
 
         @Override
         public Direction right() {
-            return NORTH;
+            return UP;
         }
     },
-    EAST() {
+    RIGHT() {
         @Override
         public Direction reverse() {
-            return WEST;
+            return LEFT;
         }
 
         @Override
         public Direction left() {
-            return NORTH;
+            return UP;
         }
 
         @Override
         public Direction right() {
-            return SOUTH;
+            return DOWN;
         }
     };
 

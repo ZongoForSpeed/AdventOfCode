@@ -56,7 +56,7 @@ public final class Day01 {
      */
     public static int computeDistancePartOne(String input) {
         Point2D position = Point2D.of(0, 0);
-        Direction direction = Direction.NORTH;
+        Direction direction = Direction.UP;
         for (String s : input.split(", ")) {
             direction = switch (s.charAt(0)) {
                 case 'L' -> direction.left();
@@ -89,7 +89,7 @@ public final class Day01 {
         Set<Point2D> visited = new HashSet<>();
         Point2D position = Point2D.of(0, 0);
         visited.add(position);
-        Direction direction = Direction.NORTH;
+        Direction direction = Direction.UP;
         mainLoop:
         for (String s : input.split(", ")) {
             direction = switch (s.charAt(0)) {

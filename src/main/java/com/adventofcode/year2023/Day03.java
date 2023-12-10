@@ -100,11 +100,11 @@ public final class Day03 {
                 char c = map.get(first);
                 if (Character.isDigit(c)) {
                     digitsMap.set(first, c);
-                    Point2D move1 = first.move(Direction.EAST);
+                    Point2D move1 = first.move(Direction.RIGHT);
                     if (points.contains(move1) && visited.add(move1)) {
                         queue.addLast(move1);
                     }
-                    Point2D move2 = first.move(Direction.WEST);
+                    Point2D move2 = first.move(Direction.LEFT);
                     if (points.contains(move2) && visited.add(move2)) {
                         queue.addLast(move2);
                     }
@@ -196,11 +196,11 @@ public final class Day03 {
                 char c = map.get(first);
                 if (Character.isDigit(c)) {
                     digitsMap.set(first, c);
-                    Point2D move1 = first.move(Direction.EAST);
+                    Point2D move1 = first.move(Direction.RIGHT);
                     if (points.contains(move1) && visited.add(move1)) {
                         queue.addLast(move1);
                     }
-                    Point2D move2 = first.move(Direction.WEST);
+                    Point2D move2 = first.move(Direction.LEFT);
                     if (points.contains(move2) && visited.add(move2)) {
                         queue.addLast(move2);
                     }

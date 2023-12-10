@@ -16,10 +16,10 @@ import java.util.Set;
 public final class Day20 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20.class);
     private static final Map<Character, Direction> DIRECTIONS = Map.of(
-            'E', Direction.EAST,
-            'N', Direction.NORTH,
-            'W', Direction.WEST,
-            'S', Direction.SOUTH
+            'E', Direction.RIGHT,
+            'N', Direction.UP,
+            'W', Direction.LEFT,
+            'S', Direction.DOWN
     );
 
     private Day20() {

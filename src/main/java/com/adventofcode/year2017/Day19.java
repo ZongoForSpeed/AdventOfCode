@@ -42,13 +42,13 @@ public final class Day19 {
 
         Direction direction;
         if (start.x() == xMin) {
-            direction = Direction.EAST;
+            direction = Direction.RIGHT;
         } else if (start.x() == xMax) {
-            direction = Direction.WEST;
+            direction = Direction.LEFT;
         } else if (start.y() == yMin) {
-            direction = Direction.SOUTH;
+            direction = Direction.DOWN;
         } else if (start.y() == yMax) {
-            direction = Direction.NORTH;
+            direction = Direction.UP;
         } else {
             throw new IllegalStateException("Cannot start from " + start);
         }

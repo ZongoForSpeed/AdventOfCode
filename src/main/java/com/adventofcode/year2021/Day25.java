@@ -18,8 +18,8 @@ public final class Day25 {
 
     private static Point2D move(Point2D point, char direction, int xMax, int yMax) {
         Direction d = switch (direction) {
-            case 'v' -> Direction.SOUTH;
-            case '>' -> Direction.EAST;
+            case 'v' -> Direction.DOWN;
+            case '>' -> Direction.RIGHT;
             default -> throw new IllegalStateException("Unknown direction " + direction);
         };
 

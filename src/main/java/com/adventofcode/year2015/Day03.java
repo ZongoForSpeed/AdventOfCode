@@ -96,10 +96,10 @@ public final class Day03 {
 
     public static Point2D move(Point2D position, char c) {
         return switch (c) {
-            case '^' -> position.move(Direction.NORTH);
-            case 'v' -> position.move(Direction.SOUTH);
-            case '<' -> position.move(Direction.WEST);
-            case '>' -> position.move(Direction.EAST);
+            case '^' -> position.move(Direction.UP);
+            case 'v' -> position.move(Direction.DOWN);
+            case '<' -> position.move(Direction.LEFT);
+            case '>' -> position.move(Direction.RIGHT);
             default -> throw new IllegalStateException("Unknown direction " + c);
         };
     }

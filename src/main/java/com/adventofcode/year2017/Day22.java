@@ -151,7 +151,7 @@ public final class Day22 {
         booleanMap.points().forEach(p -> current.put(p, true));
 
         Point2D position = Point2D.of(x, y);
-        Direction direction = Direction.NORTH;
+        Direction direction = Direction.UP;
         long bursts = 0;
         for (int step = 1; step <= steps; ++step) {
             if (Boolean.TRUE == current.getOrDefault(position, false)) {
@@ -293,7 +293,7 @@ public final class Day22 {
         booleanMap.points().forEach(p -> current.put(p, '#'));
 
         Point2D position = Point2D.of(x, y);
-        Direction direction = Direction.NORTH;
+        Direction direction = Direction.UP;
         long infection = 0;
         for (int step = 1; step <= steps; ++step) {
             char node = current.getOrDefault(position, '.');

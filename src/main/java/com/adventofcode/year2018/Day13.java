@@ -249,19 +249,19 @@ public final class Day13 {
             switch (c) {
                 case '>' -> {
                     charMap.set(point, '-');
-                    carts.add(new Cart(++id, point, Direction.EAST, 0));
+                    carts.add(new Cart(++id, point, Direction.RIGHT, 0));
                 }
                 case '<' -> {
                     charMap.set(point, '-');
-                    carts.add(new Cart(++id, point, Direction.WEST, 0));
+                    carts.add(new Cart(++id, point, Direction.LEFT, 0));
                 }
                 case '^' -> {
                     charMap.set(point, '|');
-                    carts.add(new Cart(++id, point, Direction.NORTH, 0));
+                    carts.add(new Cart(++id, point, Direction.UP, 0));
                 }
                 case 'v' -> {
                     charMap.set(point, '|');
-                    carts.add(new Cart(++id, point, Direction.SOUTH, 0));
+                    carts.add(new Cart(++id, point, Direction.DOWN, 0));
                 }
                 default -> {
                     // Nothing
@@ -371,19 +371,19 @@ public final class Day13 {
                     return new Cart(id, position.move(direction), direction, state);
                 case '\\': {
                     Direction nextDirection = switch (direction) {
-                        case NORTH -> Direction.WEST;
-                        case SOUTH -> Direction.EAST;
-                        case WEST -> Direction.NORTH;
-                        case EAST -> Direction.SOUTH;
+                        case UP -> Direction.LEFT;
+                        case DOWN -> Direction.RIGHT;
+                        case LEFT -> Direction.UP;
+                        case RIGHT -> Direction.DOWN;
                     };
                     return new Cart(id, position.move(nextDirection), nextDirection, state);
                 }
                 case '/': {
                     Direction nextDirection = switch (direction) {
-                        case NORTH -> Direction.EAST;
-                        case SOUTH -> Direction.WEST;
-                        case WEST -> Direction.SOUTH;
-                        case EAST -> Direction.NORTH;
+                        case UP -> Direction.RIGHT;
+                        case DOWN -> Direction.LEFT;
+                        case LEFT -> Direction.DOWN;
+                        case RIGHT -> Direction.UP;
                     };
                     return new Cart(id, position.move(nextDirection), nextDirection, state);
                 }

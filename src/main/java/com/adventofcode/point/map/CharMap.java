@@ -161,6 +161,10 @@ public class CharMap {
         return Arrays.stream(map).map(String::valueOf).collect(Collectors.joining("\n"));
     }
 
+    public List<String> values() {
+        return Arrays.stream(map).map(String::valueOf).toList();
+    }
+
     public List<Point2D> points() {
         List<Point2D> points = new ArrayList<>();
         for (int y = 0; y < map.length; y++) {

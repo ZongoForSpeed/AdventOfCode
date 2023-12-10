@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 public final class Day15 {
-    public static final List<Direction> DIRECTIONS = List.of(Direction.NORTH, Direction.WEST, Direction.EAST, Direction.SOUTH);
+    public static final List<Direction> DIRECTIONS = List.of(Direction.UP, Direction.LEFT, Direction.RIGHT, Direction.DOWN);
 
     private Day15() {
         // No-Op

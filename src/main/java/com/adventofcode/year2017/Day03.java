@@ -33,28 +33,28 @@ public final class Day03 {
         }
         for (int s = 1; ; s += 2) {
             for (int d = 0; d < s; ++d) {
-                position = position.move(Direction.EAST);
+                position = position.move(Direction.RIGHT);
                 value = function.apply(position);
                 if (value != null) {
                     return value;
                 }
             }
             for (int d = 0; d < s; ++d) {
-                position = position.move(Direction.NORTH);
+                position = position.move(Direction.UP);
                 value = function.apply(position);
                 if (value != null) {
                     return value;
                 }
             }
             for (int d = 0; d <= s; ++d) {
-                position = position.move(Direction.WEST);
+                position = position.move(Direction.LEFT);
                 value = function.apply(position);
                 if (value != null) {
                     return value;
                 }
             }
             for (int d = 0; d <= s; ++d) {
-                position = position.move(Direction.SOUTH);
+                position = position.move(Direction.DOWN);
                 value = function.apply(position);
                 if (value != null) {
                     return value;
