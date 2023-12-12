@@ -214,5 +214,27 @@ public class CharMap {
         return subMap;
     }
 
+    public void insertLine(int line, char c) {
+        int length = map.length;
+        map = Arrays.copyOf(map, length + 1);
+        System.arraycopy(map, line,
+                map, line + 1,
+                length - line);
+
+        int lineLength = map[line].length;
+        map[line] = new char[lineLength];
+        Arrays.fill(map[line], c);
+    }
+
+    public void insertColumn(int column, char c) {
+        for (int i = 0; i < map.length; i++) {
+            int length = map[i].length;
+            map[i] = Arrays.copyOf(map[i], length + 1);
+            System.arraycopy(map[i], column,
+                    map[i], column + 1,
+                    length - column);
+            map[i][column] = c;
+        }
+    }
 
 }

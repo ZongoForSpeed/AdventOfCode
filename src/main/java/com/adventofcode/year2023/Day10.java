@@ -37,76 +37,6 @@ public final class Day10 {
         // No-Op
     }
 
-    private static List<Pair<Point2D, Direction>> findMaxPath(CharMap pipes, Point2D start) {
-
-        int maxSize = 0;
-        List<Pair<Point2D, Direction>> maxPath = null;
-
-        for (Direction direction : Direction.values()) {
-            List<Pair<Point2D, Direction>> path = findPath(pipes, start, direction);
-
-            if (path == null) {
-                continue;
-            }
-
-            LOGGER.info("Path from {}/{} : {}", start, direction, path);
-            if (path.size() > maxSize) {
-                maxSize = path.size();
-                maxPath = path;
-            }
-        }
-
-        LOGGER.info("max path is = {}", maxPath);
-        LOGGER.info("max size is = {}", maxPath.size());
-
-        return maxPath;
-    }
-
-    private static CharMap readPipes(Scanner scanner) {
-        CharMap pipes = CharMap.read(scanner, c -> true);
-
-        LOGGER.trace("pipes = \n{}", pipes);
-        return pipes;
-    }
-
-    private static List<Pair<Point2D, Direction>> findPath(CharMap pipes, Point2D start, Direction direction) {
-        Point2D current = start.move(direction);
-        if (current.x() < 0 || current.y() < 0) {
-            return null;
-        }
-        char pipe = pipes.get(current);
-        if (pipe == '.') {
-            return null;
-        }
-
-        List<Pair<Point2D, Direction>> path = new ArrayList<>();
-        path.add(Pair.of(start, direction));
-        while (!current.equals(start)) {
-            direction = PIPE_DIRECTIONS.get(Pair.of(pipe, direction));
-            if (direction == null) {
-                LOGGER.error("Cannot find direction");
-                break;
-            }
-
-            path.add(Pair.of(current, direction));
-
-            current = current.move(direction);
-            pipe = pipes.get(current);
-        }
-
-        return path;
-    }
-
-    private static Point2D findStartPoint(CharMap pipes) {
-        for (ObjectCharPair<Point2D> entry : pipes.entries()) {
-            if (entry.rightChar() == 'S') {
-                return entry.left();
-            }
-        }
-
-        throw new IllegalStateException();
-    }
-
     /**
      * --- Day 10: Pipe Maze ---
      *
@@ -375,6 +305,10 @@ public final class Day10 {
      */
     public static final class PartTwo {
 
+        private PartTwo() {
+            // No-Op
+        }
+
         public static int countEnclosedTiles(Scanner scanner) {
             CharMap pipes = readPipes(scanner);
             Point2D start = findStartPoint(pipes);
@@ -413,5 +347,75 @@ public final class Day10 {
 
             return count;
         }
+    }
+
+    private static List<Pair<Point2D, Direction>> findMaxPath(CharMap pipes, Point2D start) {
+
+        int maxSize = 0;
+        List<Pair<Point2D, Direction>> maxPath = null;
+
+        for (Direction direction : Direction.values()) {
+            List<Pair<Point2D, Direction>> path = findPath(pipes, start, direction);
+
+            if (path == null) {
+                continue;
+            }
+
+            LOGGER.info("Path from {}/{} : {}", start, direction, path);
+            if (path.size() > maxSize) {
+                maxSize = path.size();
+                maxPath = path;
+            }
+        }
+
+        LOGGER.info("max path is = {}", maxPath);
+        LOGGER.info("max size is = {}", maxPath.size());
+
+        return maxPath;
+    }
+
+    private static CharMap readPipes(Scanner scanner) {
+        CharMap pipes = CharMap.read(scanner, c -> true);
+
+        LOGGER.trace("pipes = \n{}", pipes);
+        return pipes;
+    }
+
+    private static List<Pair<Point2D, Direction>> findPath(CharMap pipes, Point2D start, Direction direction) {
+        Point2D current = start.move(direction);
+        if (current.x() < 0 || current.y() < 0) {
+            return null;
+        }
+        char pipe = pipes.get(current);
+        if (pipe == '.') {
+            return null;
+        }
+
+        List<Pair<Point2D, Direction>> path = new ArrayList<>();
+        path.add(Pair.of(start, direction));
+        while (!current.equals(start)) {
+            direction = PIPE_DIRECTIONS.get(Pair.of(pipe, direction));
+            if (direction == null) {
+                LOGGER.error("Cannot find direction");
+                break;
+            }
+
+            path.add(Pair.of(current, direction));
+
+            current = current.move(direction);
+            pipe = pipes.get(current);
+        }
+
+        return path;
+    }
+
+    private static Point2D findStartPoint(CharMap pipes) {
+        for (ObjectCharPair<Point2D> entry : pipes.entries()) {
+            if (entry.rightChar() == 'S') {
+                return entry.left();
+            }
+        }
+
+        throw new IllegalStateException();
     }
 }
