@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2CharArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2CharMap;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -263,8 +263,8 @@ public final class Day12 {
                 cache.put(hash, Pair.of(state, i + 1));
             } else {
                 long[] keys = state.keys();
-                long iShift = i + 1 - pair.getRight();
-                long pShift = (keys[0] - pair.getLeft().keys()[0]) * iShift * (generations - i - 1);
+                long iShift = i + 1 - pair.right();
+                long pShift = (keys[0] - pair.left().keys()[0]) * iShift * (generations - i - 1);
                 for (int j = 0; j < keys.length; j++) {
                     keys[j] += pShift;
                 }

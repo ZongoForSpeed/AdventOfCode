@@ -1,7 +1,7 @@
 package com.adventofcode.year2015;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -176,16 +176,16 @@ public final class Day19 {
         int count = 0;
         while (!"e".equals(medicineMolecule)) {
             for (Pair<String, String> rule : rules) {
-                if ("e".equals(rule.getLeft())) {
-                    if (rule.getRight().equals(medicineMolecule)) {
+                if ("e".equals(rule.left())) {
+                    if (rule.right().equals(medicineMolecule)) {
                         medicineMolecule = "e";
                         count++;
                     }
                     continue;
                 }
-                if (medicineMolecule.contains(rule.getRight())) {
-                    int position = medicineMolecule.lastIndexOf(rule.getRight());
-                    medicineMolecule = medicineMolecule.substring(0, position) + rule.getLeft() + medicineMolecule.substring(position + rule.getRight().length());
+                if (medicineMolecule.contains(rule.right())) {
+                    int position = medicineMolecule.lastIndexOf(rule.right());
+                    medicineMolecule = medicineMolecule.substring(0, position) + rule.left() + medicineMolecule.substring(position + rule.right().length());
                     count++;
                 }
             }

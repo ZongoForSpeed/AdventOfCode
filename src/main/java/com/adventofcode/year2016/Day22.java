@@ -4,7 +4,7 @@ import com.adventofcode.graph.AStar;
 import com.adventofcode.point.Direction;
 import com.adventofcode.point.Point2D;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -229,8 +229,8 @@ public final class Day22 {
             }
         }
 
-        Set<Point2D> points = pairs.stream().map(Pair::getLeft).collect(Collectors.toSet());
-        List<Point2D> emptyNodes = pairs.stream().map(Pair::getRight).distinct().toList();
+        Set<Point2D> points = pairs.stream().map(Pair::left).collect(Collectors.toSet());
+        List<Point2D> emptyNodes = pairs.stream().map(Pair::right).distinct().toList();
         if (emptyNodes.size() > 1) {
             throw new IllegalStateException("Cannot use multiple empty nodes");
         }

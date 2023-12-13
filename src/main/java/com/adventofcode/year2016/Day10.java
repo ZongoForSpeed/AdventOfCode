@@ -4,7 +4,7 @@ import com.adventofcode.utils.IntegerPair;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -145,8 +145,8 @@ public final class Day10 {
             }
 
             for (Pair<Integer, Bot> operation : operations) {
-                LOGGER.info("Sending {} to {}", operation.getLeft(), operation.getRight());
-                operation.getRight().accept(operation.getLeft());
+                LOGGER.info("Sending {} to {}", operation.left(), operation.right());
+                operation.right().accept(operation.left());
             }
         }
 

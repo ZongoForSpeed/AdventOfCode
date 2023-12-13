@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -128,8 +128,8 @@ public final class Day07 {
         rules.stream()
                 .map(Day07::readRule)
                 .forEach(r -> {
-                    String color = r.getLeft();
-                    r.getRight().stream().map(Pair::getLeft).forEach(c -> bags.computeIfAbsent(c, ignore -> new ArrayList<>()).add(color));
+                    String color = r.left();
+                    r.right().stream().map(Pair::left).forEach(c -> bags.computeIfAbsent(c, ignore -> new ArrayList<>()).add(color));
                 });
 
         LOGGER.info("Bags {}", bags);
@@ -164,7 +164,7 @@ public final class Day07 {
         List<Pair<String, Integer>> colors = bags.get(color);
         if (CollectionUtils.isNotEmpty(colors)) {
             for (Pair<String, Integer> pair : colors) {
-                count += pair.getRight() * handyHaversacks(bags, pair.getLeft(), cache);
+                count += pair.right() * handyHaversacks(bags, pair.left(), cache);
             }
         }
 
@@ -173,7 +173,7 @@ public final class Day07 {
     }
 
     public static long countHandyHaversacks(List<String> rules) {
-        Map<String, List<Pair<String, Integer>>> bags = rules.stream().map(Day07::readRule).collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
+        Map<String, List<Pair<String, Integer>>> bags = rules.stream().map(Day07::readRule).collect(Collectors.toMap(Pair::left, Pair::right));
 
         return handyHaversacks(bags, "shiny gold", new HashMap<>()) - 1;
     }

@@ -2,7 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.point.Direction;
 import com.adventofcode.point.Point2D;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -4,7 +4,7 @@ import com.adventofcode.point.Direction;
 import com.adventofcode.point.Point2D;
 import com.adventofcode.point.map.CharMap;
 import it.unimi.dsi.fastutil.objects.ObjectCharPair;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -314,7 +314,7 @@ public final class Day10 {
             Point2D start = findStartPoint(pipes);
             List<Pair<Point2D, Direction>> maxPath = findMaxPath(pipes, start);
 
-            Set<Point2D> inPath = maxPath.stream().map(Pair::getLeft).collect(Collectors.toSet());
+            Set<Point2D> inPath = maxPath.stream().map(Pair::left).collect(Collectors.toSet());
             for (ObjectCharPair<Point2D> entry : pipes.entries()) {
                 if (!inPath.contains(entry.left())) {
                     pipes.set(entry.left(), '.');
@@ -324,9 +324,9 @@ public final class Day10 {
             Pair<Point2D, Direction> first = maxPath.get(0);
             Pair<Point2D, Direction> last = maxPath.get(maxPath.size() - 1);
             for (Map.Entry<Pair<Character, Direction>, Direction> entry : PIPE_DIRECTIONS.entrySet()) {
-                if (entry.getValue() == first.getValue() && entry.getKey().getValue() == last.getValue()) {
+                if (entry.getValue() == first.right() && entry.getKey().right() == last.right()) {
                     LOGGER.info("Correct start = {}", entry);
-                    pipes.set(start, entry.getKey().getLeft());
+                    pipes.set(start, entry.getKey().left());
                 }
             }
 

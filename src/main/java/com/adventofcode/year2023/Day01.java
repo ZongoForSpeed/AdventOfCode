@@ -2,7 +2,7 @@ package com.adventofcode.year2023;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -148,14 +148,14 @@ public final class Day01 {
         private static int calibrationValue(String line) {
             Optional<Pair<Integer, Integer>> min = digits.entrySet().stream()
                     .map(e -> Pair.of(line.indexOf(e.getKey()), e.getValue()))
-                    .filter(p -> p.getLeft() != -1)
-                    .min(Comparator.comparingInt(Pair::getLeft));
+                    .filter(p -> p.left() != -1)
+                    .min(Comparator.comparingInt(Pair::left));
             Optional<Pair<Integer, Integer>> max = digits.entrySet().stream()
                     .map(e -> Pair.of(line.lastIndexOf(e.getKey()), e.getValue()))
-                    .filter(p -> p.getLeft() != -1)
-                    .max(Comparator.comparingInt(Pair::getLeft));
+                    .filter(p -> p.left() != -1)
+                    .max(Comparator.comparingInt(Pair::left));
 
-            int value = min.map(Pair::getValue).orElse(0) * 10 + max.map(Pair::getValue).orElse(0);
+            int value = min.map(Pair::value).orElse(0) * 10 + max.map(Pair::right).orElse(0);
             LOGGER.debug("line = {} ==> min = {}, max = {}, value = {}", line, min, max, value);
             return value;
         }

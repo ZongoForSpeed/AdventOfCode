@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import org.apache.commons.collections4.SetUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,16 +112,16 @@ public final class Day21 {
         }
         LOGGER.info("foodIngredientsList: {}", foodIngredientsList);
 
-        Set<String> allAllergens = foodIngredientsList.stream().map(Pair::getKey).flatMap(Set::stream).collect(Collectors.toSet());
+        Set<String> allAllergens = foodIngredientsList.stream().map(Pair::left).flatMap(Set::stream).collect(Collectors.toSet());
         LOGGER.info("allAllergens: {}", allAllergens);
 
-        Set<String> allIngredients = foodIngredientsList.stream().map(Pair::getValue).flatMap(Set::stream).collect(Collectors.toSet());
+        Set<String> allIngredients = foodIngredientsList.stream().map(Pair::right).flatMap(Set::stream).collect(Collectors.toSet());
         LOGGER.info("allIngredients: {}", allIngredients);
 
         Map<String, Set<String>> possibleAllergen = new HashMap<>();
         for (String allergen : allAllergens) {
-            Optional<Set<String>> intersection = foodIngredientsList.stream().filter(p -> p.getLeft().contains(allergen))
-                    .map(Pair::getRight)
+            Optional<Set<String>> intersection = foodIngredientsList.stream().filter(p -> p.left().contains(allergen))
+                    .map(Pair::right)
                     .reduce(SetUtils::intersection);
             intersection.ifPresent(i -> possibleAllergen.put(allergen, new HashSet<>(i)));
         }
@@ -149,14 +149,14 @@ public final class Day21 {
         LOGGER.info("nonAllergenicIngredients: {}", nonAllergenicIngredients);
 
         long occurrence = foodIngredientsList.stream()
-                .map(Pair::getRight)
+                .map(Pair::right)
                 .flatMap(Set::stream)
                 .filter(nonAllergenicIngredients::contains)
                 .count();
 
         String canonical = possibleAllergen.entrySet().stream().map(p -> Pair.of(p.getKey(), p.getValue().iterator().next()))
-                .sorted(Comparator.comparing(Pair::getLeft))
-                .map(Pair::getRight)
+                .sorted(Comparator.comparing(Pair::left))
+                .map(Pair::right)
                 .collect(Collectors.joining(","));
 
         return Pair.of(occurrence, canonical);

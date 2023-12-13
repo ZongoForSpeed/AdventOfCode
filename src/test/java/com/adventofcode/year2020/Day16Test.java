@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.utils.FileUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -47,9 +47,9 @@ class Day16Test {
         Map<String, Integer> ticketTranslation = Day16.ticketTranslation(notes);
         assertThat(ticketTranslation)
                 .containsExactly(
-                        Pair.of("seat", 13),
-                        Pair.of("row", 11),
-                        Pair.of("class", 12)
+                        Map.entry("seat", 13),
+                        Map.entry("row", 11),
+                        Map.entry("class", 12)
                 );
     }
 

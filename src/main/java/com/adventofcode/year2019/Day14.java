@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.maths.Arithmetic;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -115,7 +115,7 @@ public class Day14 {
         Map<String, Long> quantities = new HashMap<>();
         quantities.put("FUEL", fuelQuantity);
 
-        Map<String, Reaction> reactionMap = reactions.stream().collect(Collectors.toMap(k -> k.chemicalOutput().getLeft(), Function.identity()));
+        Map<String, Reaction> reactionMap = reactions.stream().collect(Collectors.toMap(k -> k.chemicalOutput().left(), Function.identity()));
 
         do {
             Optional<Map.Entry<String, Long>> firstChemical = quantities.entrySet().stream()
@@ -127,7 +127,7 @@ public class Day14 {
 
             Reaction reaction = reactionMap.get(firstChemical.get().getKey());
             long needed = firstChemical.get().getValue();
-            long value = reaction.chemicalOutput().getValue();
+            long value = reaction.chemicalOutput().right();
             reaction.apply(quantities, -Arithmetic.ceil(needed, value));
         }
         while (quantities.entrySet().stream().anyMatch(e -> !"ORE".equals(e.getKey()) && e.getValue() > 0));
@@ -191,7 +191,7 @@ public class Day14 {
         }
 
         static String writeChemical(Pair<String, Long> chemical) {
-            return chemical.getRight() + " " + chemical.getLeft();
+            return chemical.right() + " " + chemical.left();
         }
 
         private void apply(Map<String, Long> quantities, long factor) {
@@ -203,7 +203,7 @@ public class Day14 {
         }
 
         private void applyChemicalChange(Map<String, Long> quantities, Pair<String, Long> chemical, long factor) {
-            quantities.merge(chemical.getKey(), factor * chemical.getRight(), Long::sum);
+            quantities.merge(chemical.left(), factor * chemical.right(), Long::sum);
         }
 
         @Override

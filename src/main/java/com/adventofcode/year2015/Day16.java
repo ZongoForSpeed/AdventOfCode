@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -102,7 +102,7 @@ public final class Day16 {
         Integer auntSue = null;
         for (Pair<Integer, Map<Compounds, Integer>> pair : sues) {
             boolean found = true;
-            for (Map.Entry<Compounds, Integer> entry : pair.getRight().entrySet()) {
+            for (Map.Entry<Compounds, Integer> entry : pair.right().entrySet()) {
                 Integer integer = sue.sue.get(entry.getKey());
                 if (!Objects.equals(entry.getValue(), integer)) {
                     found = false;
@@ -110,7 +110,7 @@ public final class Day16 {
                 }
             }
             if (found) {
-                auntSue = pair.getLeft();
+                auntSue = pair.left();
                 LOGGER.info("Found matching sue: {}", pair);
             }
         }
@@ -142,7 +142,7 @@ public final class Day16 {
         Integer auntSue = null;
         for (Pair<Integer, Map<Compounds, Integer>> pair : sues) {
             boolean found = true;
-            for (Map.Entry<Compounds, Integer> entry : pair.getRight().entrySet()) {
+            for (Map.Entry<Compounds, Integer> entry : pair.right().entrySet()) {
                 Integer integer = sue.sue.get(entry.getKey());
                 if (!entry.getKey().compare(entry.getValue(), integer)) {
                     found = false;
@@ -150,7 +150,7 @@ public final class Day16 {
                 }
             }
             if (found) {
-                auntSue = pair.getLeft();
+                auntSue = pair.left();
                 LOGGER.info("Found matching sue: {}", pair);
             }
         }

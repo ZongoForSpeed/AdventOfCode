@@ -3,7 +3,7 @@ package com.adventofcode.year2018;
 import com.adventofcode.point.Direction;
 import com.adventofcode.point.Point2D;
 import com.adventofcode.point.map.CharMap;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -657,11 +657,11 @@ public final class Day15 {
 
             inRange.stream()
                     .map(p -> Pair.of(p, getPath(u, previous, p)))
-                    .filter(t -> t.getRight() != null)
-                    .min(Comparator.comparingInt((Pair<Point2D, List<Point2D>> a) -> a.getRight().size())
-                            .thenComparingInt(a -> a.getLeft().y())
-                            .thenComparingInt(a -> a.getLeft().x()))
-                    .map(Pair::getRight)
+                    .filter(t -> t.right() != null)
+                    .min(Comparator.comparingInt((Pair<Point2D, List<Point2D>> a) -> a.right().size())
+                            .thenComparingInt(a -> a.left().y())
+                            .thenComparingInt(a -> a.left().x()))
+                    .map(Pair::right)
                     .ifPresent(bestPath -> u.move(bestPath.get(0)));
         }
 

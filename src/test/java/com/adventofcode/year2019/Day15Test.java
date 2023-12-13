@@ -5,7 +5,7 @@ import com.adventofcode.graph.Dijkstra;
 import com.adventofcode.point.map.Map2D;
 import com.adventofcode.point.Point2D;
 import com.adventofcode.utils.FileUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

@@ -12,7 +12,7 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.Scanner;
 
-public class Day11 {
+public final class Day11 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day11.class);
 
     private static Pair<BitSet, BitSet> findEmpty(CharMap galaxyMap) {

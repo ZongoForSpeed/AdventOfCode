@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.point.map.BooleanMap;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

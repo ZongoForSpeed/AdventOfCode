@@ -2,7 +2,7 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.point.range.Cuboid;
 import com.adventofcode.point.range.Range;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -252,20 +252,20 @@ public final class Day22 {
         List<Cuboid> sets = new ArrayList<>();
         for (Pair<Boolean, Cuboid> pair : cuboids) {
             if (sets.isEmpty()) {
-                if (pair.getLeft()) {
-                    sets.add(pair.getRight());
+                if (pair.left()) {
+                    sets.add(pair.right());
                 } else {
                     LOGGER.error("Cannot start with 'off' : {}", pair);
                 }
             } else {
                 List<Cuboid> newSets = new ArrayList<>();
                 for (Cuboid c : sets) {
-                    List<Cuboid> difference = Cuboid.difference(c, pair.getRight());
-                    LOGGER.trace("Difference {} & {}: {}", c, pair.getRight(), difference);
+                    List<Cuboid> difference = Cuboid.difference(c, pair.right());
+                    LOGGER.trace("Difference {} & {}: {}", c, pair.right(), difference);
                     newSets.addAll(difference);
                 }
-                if (pair.getLeft()) {
-                    newSets.add(pair.getRight());
+                if (pair.left()) {
+                    newSets.add(pair.right());
                 }
                 sets = newSets;
             }

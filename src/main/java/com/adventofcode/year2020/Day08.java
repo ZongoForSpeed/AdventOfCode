@@ -2,7 +2,7 @@ package com.adventofcode.year2020;
 
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -105,12 +105,12 @@ public final class Day08 {
             Pair<String, Long> command = commands.get(position);
             LOGGER.trace("Running command {}", command);
             if (runCommands.add(position)) {
-                switch (command.getLeft()) {
+                switch (command.left()) {
                     case "acc" -> {
-                        accumulator += command.getValue();
+                        accumulator += command.right();
                         position++;
                     }
-                    case "jmp" -> position += command.getValue();
+                    case "jmp" -> position += command.right();
                     case "nop" -> position++;
                 }
             } else {
@@ -184,16 +184,16 @@ public final class Day08 {
                 List<String> newProgram = new ArrayList<>(program);
                 newProgram.set(i, s);
                 Pair<Long, Boolean> result = runHandheldGameConsole(newProgram);
-                if (Boolean.TRUE.equals(result.getRight())) {
-                    return result.getLeft();
+                if (Boolean.TRUE.equals(result.right())) {
+                    return result.left();
                 }
             } else if (s.startsWith("jmp")) {
                 s = s.replace("jmp", "nop");
                 List<String> newProgram = new ArrayList<>(program);
                 newProgram.set(i, s);
                 Pair<Long, Boolean> result = runHandheldGameConsole(newProgram);
-                if (Boolean.TRUE.equals(result.getRight())) {
-                    return result.getLeft();
+                if (Boolean.TRUE.equals(result.right())) {
+                    return result.left();
                 }
             }
 

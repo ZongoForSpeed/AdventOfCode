@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.point.Point3D;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -156,8 +156,8 @@ class Day19Test {
 
         Pair<Set<Point3D>, Integer> beaconScanner = Day19.beaconScanner(new Scanner(input));
 
-        assertThat(beaconScanner.getLeft()).hasSize(79);
-        assertThat(beaconScanner.getRight()).isEqualTo(3621);
+        assertThat(beaconScanner.left()).hasSize(79);
+        assertThat(beaconScanner.right()).isEqualTo(3621);
 
     }
 

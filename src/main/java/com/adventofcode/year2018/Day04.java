@@ -2,7 +2,7 @@ package com.adventofcode.year2018;
 
 import com.adventofcode.utils.IntegerPair;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -220,15 +221,15 @@ public final class Day04 {
             }
         }
 
-        Collections.sort(records);
+        Collections.sort(records, Comparator.comparing(Pair::left));
 
         LOGGER.info("Records: {}", records);
         Map<Integer, List<LocalDateTime>> sleepingGuards = new HashMap<>();
 
         int guard = 0;
         for (Pair<LocalDateTime, String> pair : records) {
-            LocalDateTime time = pair.getLeft();
-            String group = pair.getRight();
+            LocalDateTime time = pair.left();
+            String group = pair.right();
             if (group.startsWith("Guard ")) {
                 guard = Integer.parseInt(group.split(" ")[1].substring(1));
             } else if (group.equalsIgnoreCase("falls asleep")) {

@@ -2,7 +2,7 @@ package com.adventofcode.year2023;
 
 import com.adventofcode.maths.Arithmetic;
 import it.unimi.dsi.fastutil.ints.IntIntPair;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -211,8 +211,8 @@ public final class Day08 {
         String next(String current, int count) {
             char c = instructions.charAt(count % instructions.length());
             return switch (c) {
-                case 'L' -> map.get(current).getLeft();
-                case 'R' -> map.get(current).getRight();
+                case 'L' -> map.get(current).left();
+                case 'R' -> map.get(current).right();
                 default -> throw new IllegalStateException("Unknown instruction : " + c);
             };
         }

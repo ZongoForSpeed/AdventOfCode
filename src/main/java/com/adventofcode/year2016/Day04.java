@@ -3,7 +3,7 @@ package com.adventofcode.year2016;
 import it.unimi.dsi.fastutil.chars.Char2IntMap;
 import it.unimi.dsi.fastutil.chars.Char2IntOpenHashMap;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,8 +81,8 @@ public final class Day04 {
             return null;
         }
 
-        String name = pair.getLeft();
-        int sectorID = pair.getRight();
+        String name = pair.left();
+        int sectorID = pair.right();
         return Pair.of(decryptRoomName(name, sectorID), sectorID);
     }
 
@@ -119,7 +119,7 @@ public final class Day04 {
         while (scanner.hasNextLine()) {
             Pair<String, Integer> pair = checkRoomName(scanner.nextLine());
             if (pair != null) {
-                sectorIDs += pair.getRight();
+                sectorIDs += pair.right();
             }
         }
         return sectorIDs;
@@ -150,9 +150,9 @@ public final class Day04 {
     static int decryptRoomName(Scanner scanner) {
         while (scanner.hasNextLine()) {
             Pair<String, Integer> pair = decryptRoomName(scanner.nextLine());
-            if (pair != null && "northpole object storage".equals(pair.getLeft())) {
+            if (pair != null && "northpole object storage".equals(pair.left())) {
                 LOGGER.info("{}", pair);
-                return pair.getRight();
+                return pair.right();
             }
         }
         return -1;

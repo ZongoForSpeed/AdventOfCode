@@ -3,7 +3,7 @@ package com.adventofcode.year2017;
 import com.adventofcode.point.map.CharMap;
 import com.adventofcode.point.Direction;
 import com.adventofcode.point.Point2D;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -130,7 +130,7 @@ public final class Day19 {
      * Your puzzle answer was XYFDJNRCQA.
      */
     public static String findPacketsPartOne(Scanner scanner) {
-        return findPackets(scanner).getLeft();
+        return findPackets(scanner).left();
     }
 
     /**
@@ -163,6 +163,6 @@ public final class Day19 {
      * How many steps does the packet need to go?
      */
     public static int findPacketsPartTwo(Scanner scanner) {
-        return findPackets(scanner).getRight();
+        return findPackets(scanner).right();
     }
 }

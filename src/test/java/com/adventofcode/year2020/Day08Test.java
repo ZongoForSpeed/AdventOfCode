@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.utils.FileUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

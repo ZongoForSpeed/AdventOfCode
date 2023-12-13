@@ -1,6 +1,6 @@
 package com.adventofcode.year2020;
 
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -24,16 +24,16 @@ class Day21Test {
 
         Pair<Long, String> result = Day21.findAllergenAssessment(scanner);
 
-        assertThat(result.getLeft()).isEqualTo(5);
-        assertThat(result.getRight()).isEqualTo("mxmxvkd,sqjhc,fvjkl");
+        assertThat(result.left()).isEqualTo(5);
+        assertThat(result.right()).isEqualTo("mxmxvkd,sqjhc,fvjkl");
     }
 
     @Test
     void inputAllergenAssessment() throws IOException {
         try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2020/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
             Pair<Long, String> result = Day21.findAllergenAssessment(scanner);
-            assertThat(result.getLeft()).isEqualTo(2170L);
-            assertThat(result.getRight()).isEqualTo("nfnfk,nbgklf,clvr,fttbhdr,qjxxpr,hdsm,sjhds,xchzh");
+            assertThat(result.left()).isEqualTo(2170L);
+            assertThat(result.right()).isEqualTo("nfnfk,nbgklf,clvr,fttbhdr,qjxxpr,hdsm,sjhds,xchzh");
         }
     }
 }

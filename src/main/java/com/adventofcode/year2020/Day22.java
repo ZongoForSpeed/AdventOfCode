@@ -2,7 +2,7 @@ package com.adventofcode.year2020;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -504,7 +504,7 @@ public final class Day22 {
         readPlayerDecks(scanner, player1deck, player2deck);
 
         Pair<Integer, Long> result = playRecursiveCombat(player1deck, player2deck, 1);
-        return result.getRight();
+        return result.right();
     }
 
     private static void readPlayerDecks(Scanner scanner, Deque<Integer> player1deck, Deque<Integer> player2deck) {
@@ -543,7 +543,7 @@ public final class Day22 {
 
                 LOGGER.debug("Launching sub-game with {} and {}", newPlayer1Deck, newPlayer2Deck);
                 Pair<Integer, Long> subGameResult = playRecursiveCombat(newPlayer1Deck, newPlayer2Deck, depth + 1);
-                if (subGameResult.getLeft() == 1) {
+                if (subGameResult.left() == 1) {
                     LOGGER.trace("Round {}.{} : ({} ; {}), player 1 wins", depth, ++round, card1, card2);
                     player1deck.addLast(card1);
                     player1deck.addLast(card2);

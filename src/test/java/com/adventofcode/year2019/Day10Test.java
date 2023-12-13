@@ -3,7 +3,7 @@ package com.adventofcode.year2019;
 import com.adventofcode.point.Point2D;
 import com.adventofcode.utils.FileUtils;
 import com.google.common.collect.Iterables;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -24,8 +24,8 @@ class Day10Test {
                 "....#",
                 "...##");
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(map);
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(3, 4));
-        assertThat(result.getRight()).hasSize(8);
+        assertThat(result.left()).isEqualTo(Point2D.of(3, 4));
+        assertThat(result.right()).hasSize(8);
     }
 
     @Test
@@ -42,8 +42,8 @@ class Day10Test {
                 "##...#..#.",
                 ".#....####");
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(map);
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(5, 8));
-        assertThat(result.getRight()).hasSize(33);
+        assertThat(result.left()).isEqualTo(Point2D.of(5, 8));
+        assertThat(result.right()).hasSize(33);
     }
 
     @Test
@@ -60,8 +60,8 @@ class Day10Test {
                 "......#...",
                 ".####.###.");
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(map);
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(1, 2));
-        assertThat(result.getRight()).hasSize(35);
+        assertThat(result.left()).isEqualTo(Point2D.of(1, 2));
+        assertThat(result.right()).hasSize(35);
     }
 
     @Test
@@ -78,8 +78,8 @@ class Day10Test {
                 ".##...##.#",
                 ".....#.#..");
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(map);
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(6, 3));
-        assertThat(result.getRight()).hasSize(41);
+        assertThat(result.left()).isEqualTo(Point2D.of(6, 3));
+        assertThat(result.right()).hasSize(41);
     }
 
     @Test
@@ -106,15 +106,15 @@ class Day10Test {
                 "#.#.#.#####.####.###",
                 "###.##.####.##.#..##");
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(map);
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(11, 13));
-        assertThat(result.getRight()).hasSize(210);
+        assertThat(result.left()).isEqualTo(Point2D.of(11, 13));
+        assertThat(result.right()).hasSize(210);
     }
 
     @Test
     void testInputPartOne() throws IOException {
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(FileUtils.readLines("/2019/day/10/input"));
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(26, 29));
-        assertThat(result.getRight()).hasSize(303);
+        assertThat(result.left()).isEqualTo(Point2D.of(26, 29));
+        assertThat(result.right()).hasSize(303);
     }
 
     @Test
@@ -126,10 +126,10 @@ class Day10Test {
                 "..#.....#...###..",
                 "..#.#.....#....##");
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(map);
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(8, 3));
-        assertThat(result.getRight()).hasSize(30);
+        assertThat(result.left()).isEqualTo(Point2D.of(8, 3));
+        assertThat(result.right()).hasSize(30);
 
-        List<Day10.Asteroids> asteroids = Day10.vaporizeAsteroids(result.getRight());
+        List<Day10.Asteroids> asteroids = Day10.vaporizeAsteroids(result.right());
         Day10.Asteroids lastAsteroid = Iterables.getLast(asteroids);
         assertThat(lastAsteroid.position()).isEqualTo(Point2D.of(14, 3));
     }
@@ -158,10 +158,10 @@ class Day10Test {
                 "#.#.#.#####.####.###",
                 "###.##.####.##.#..##");
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(map);
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(11, 13));
-        assertThat(result.getRight()).hasSize(210);
+        assertThat(result.left()).isEqualTo(Point2D.of(11, 13));
+        assertThat(result.right()).hasSize(210);
 
-        List<Day10.Asteroids> asteroids = Day10.vaporizeAsteroids(result.getRight());
+        List<Day10.Asteroids> asteroids = Day10.vaporizeAsteroids(result.right());
 
         assertThat(asteroids).hasSize(299);
 
@@ -175,10 +175,10 @@ class Day10Test {
     @Test
     void testInputPartTwo() throws IOException {
         Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(FileUtils.readLines("/2019/day/10/input"));
-        assertThat(result.getLeft()).isEqualTo(Point2D.of(26, 29));
-        assertThat(result.getRight()).hasSize(303);
+        assertThat(result.left()).isEqualTo(Point2D.of(26, 29));
+        assertThat(result.right()).hasSize(303);
 
-        List<Day10.Asteroids> asteroids = Day10.vaporizeAsteroids(result.getRight());
+        List<Day10.Asteroids> asteroids = Day10.vaporizeAsteroids(result.right());
         Day10.Asteroids asteroid = asteroids.get(199);
         assertThat(asteroid.getCoordinate()).isEqualTo(408);
     }

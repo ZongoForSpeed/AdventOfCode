@@ -2,7 +2,7 @@ package com.adventofcode.year2018;
 
 import com.adventofcode.point.Point2D;
 import com.adventofcode.point.map.InfiniteBooleanMap;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +38,7 @@ public final class Day10 {
     }
 
     static boolean adjacent(List<Pair<Point2D, Point2D>> stars) {
-        Set<Point2D> points = stars.stream().map(Pair::getLeft).collect(Collectors.toSet());
+        Set<Point2D> points = stars.stream().map(Pair::left).collect(Collectors.toSet());
 
         Map<Point2D, List<Point2D>> graph = new HashMap<>();
         for (Point2D point : points) {
@@ -275,7 +275,7 @@ public final class Day10 {
         }
 
         for (int i = 1; ; ++i) {
-            stars = stars.stream().map(p -> Pair.of(p.getLeft().move(p.getRight()), p.getRight())).toList();
+            stars = stars.stream().map(p -> Pair.of(p.left().move(p.right()), p.right())).toList();
 
             if (adjacent(stars)) {
                 String print = print(stars);
@@ -289,7 +289,7 @@ public final class Day10 {
 
     private static String print(List<Pair<Point2D, Point2D>> stars) {
         InfiniteBooleanMap map = new InfiniteBooleanMap();
-        stars.stream().map(Pair::getLeft).forEach(p -> map.put(p, true));
+        stars.stream().map(Pair::left).forEach(p -> map.put(p, true));
 
         return map.toString();
     }

@@ -6,7 +6,7 @@ import com.adventofcode.point.map.EnumMap2D;
 import com.adventofcode.point.map.IntegerMap;
 import com.adventofcode.point.map.LongMap;
 import it.unimi.dsi.fastutil.objects.ObjectIntPair;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -2,7 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.point.Point2D;
 import com.google.common.collect.Lists;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 
 import java.util.ArrayList;
 import java.util.Comparator;

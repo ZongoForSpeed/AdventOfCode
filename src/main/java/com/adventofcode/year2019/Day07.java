@@ -4,7 +4,7 @@ import com.adventofcode.maths.Permutations;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import it.unimi.dsi.fastutil.longs.LongLists;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -148,7 +148,7 @@ public class Day07 {
     public static Pair<LongList, Long> maxThrusterSignal(String program, long... items) {
         Optional<Pair<LongList, Long>> max = Permutations.of(items)
                 .map(settings -> Pair.of(settings, thrusterSignal(program, settings)))
-                .max((o1, o2) -> Comparator.comparingLong((ToLongFunction<Pair<LongList, Long>>) Pair::getRight).compare(o1, o2));
+                .max((o1, o2) -> Comparator.comparingLong((ToLongFunction<Pair<LongList, Long>>) Pair::right).compare(o1, o2));
         return max.orElseGet(() -> Pair.of(LongLists.emptyList(), -1L));
     }
 

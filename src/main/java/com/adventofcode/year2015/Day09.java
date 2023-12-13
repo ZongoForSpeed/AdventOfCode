@@ -2,7 +2,7 @@ package com.adventofcode.year2015;
 
 import com.adventofcode.maths.Permutations;
 import com.adventofcode.utils.IntegerPair;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

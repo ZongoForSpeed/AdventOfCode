@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,7 +117,7 @@ public final class Day04 {
      */
     static int playBingoPartOne(Scanner scanner) {
         Pair<int[], List<List<Integer>>> game = readBingo(scanner);
-        return playBingoPartOne(game.getLeft(), game.getRight());
+        return playBingoPartOne(game.left(), game.right());
     }
 
     /**
@@ -142,7 +142,7 @@ public final class Day04 {
      */
     static int playBingoPartTwo(Scanner scanner) {
         Pair<int[], List<List<Integer>>> game = readBingo(scanner);
-        return playBingoPartTwo(game.getLeft(), game.getRight());
+        return playBingoPartTwo(game.left(), game.right());
     }
 
     private static Pair<int[], List<List<Integer>>> readBingo(Scanner scanner) {

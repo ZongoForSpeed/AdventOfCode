@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.utils.IntegerPair;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.List;
@@ -62,11 +62,11 @@ public final class Day02 {
                 .map(s -> Pair.of(s[0], Integer.valueOf(s[1]))).toList();
 
         for (Pair<String, Integer> pair : pairs) {
-            switch (pair.getLeft()) {
-                case "forward" -> position += pair.getRight();
-                case "down" -> depth += pair.getRight();
-                case "up" -> depth -= pair.getRight();
-                default -> throw new IllegalStateException("Unknown command: " + pair.getLeft());
+            switch (pair.left()) {
+                case "forward" -> position += pair.right();
+                case "down" -> depth += pair.right();
+                case "up" -> depth -= pair.right();
+                default -> throw new IllegalStateException("Unknown command: " + pair.left());
             }
         }
 
@@ -124,14 +124,14 @@ public final class Day02 {
                 .map(s -> Pair.of(s[0], Integer.valueOf(s[1]))).toList();
 
         for (Pair<String, Integer> pair : pairs) {
-            switch (pair.getLeft()) {
+            switch (pair.left()) {
                 case "forward" -> {
-                    position += pair.getRight();
-                    depth += aim * pair.getRight();
+                    position += pair.right();
+                    depth += aim * pair.right();
                 }
-                case "down" -> aim += pair.getRight();
-                case "up" -> aim -= pair.getRight();
-                default -> throw new IllegalStateException("Unknown command: " + pair.getLeft());
+                case "down" -> aim += pair.right();
+                case "up" -> aim -= pair.right();
+                default -> throw new IllegalStateException("Unknown command: " + pair.left());
             }
         }
 

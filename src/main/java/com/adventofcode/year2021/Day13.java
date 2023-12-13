@@ -3,7 +3,7 @@ package com.adventofcode.year2021;
 import com.adventofcode.point.map.BooleanMap;
 import com.adventofcode.point.Point2D;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,8 +48,8 @@ public final class Day13 {
     }
 
     static void applyInstruction(BooleanMap map, Pair<String, Integer> instruction) {
-        String axe = instruction.getLeft();
-        int position = instruction.getRight();
+        String axe = instruction.left();
+        int position = instruction.right();
         switch (axe) {
             case "x" -> {
                 List<Point2D> points = map.points().toList();

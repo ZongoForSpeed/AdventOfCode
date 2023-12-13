@@ -2,7 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.Intcode;
 import com.adventofcode.utils.FileUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,7 +66,7 @@ class Day17Test {
 
         List<Pair<Character, Integer>> commands = Day17.findPath(input);
 
-        String collect = commands.stream().map(p -> p.getLeft() + "," + p.getRight()).collect(Collectors.joining(","));
+        String collect = commands.stream().map(p -> p.left() + "," + p.right()).collect(Collectors.joining(","));
         assertThat(collect).isEqualTo("R,8,R,8,R,4,R,4,R,8,L,6,L,2,R,4,R,4,R,8,R,8,R,8,L,6,L,2");
     }
 
@@ -80,7 +80,7 @@ class Day17Test {
 
         LOGGER.info("{}", commands);
 
-        String collect = commands.stream().map(p -> p.getLeft() + "," + p.getRight()).collect(Collectors.joining(","));
+        String collect = commands.stream().map(p -> p.left() + "," + p.right()).collect(Collectors.joining(","));
         assertThat(collect).isEqualTo("R,10,L,8,R,10,R,4,L,6,L,6,R,10,R,10,L,8,R,10,R,4,L,6,R,12,R,12,R,10,L,6,L,6,R,10,L,6,R,12,R,12,R,10,R,10,L,8,R,10,R,4,L,6,L,6,R,10,R,10,L,8,R,10,R,4,L,6,R,12,R,12,R,10");
         LOGGER.info("{}", collect);
 

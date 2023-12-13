@@ -1,6 +1,6 @@
 package com.adventofcode.graph;
 
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,8 +39,8 @@ public class Dijkstra<E> {
             nodes.remove(next);
 
             for (Pair<E, Integer> edge : graph.getOrDefault(next, Collections.emptyList())) {
-                if (distance.getOrDefault(edge.getKey(), Integer.MAX_VALUE) > minimum + edge.getValue()) {
-                    distance.put(edge.getKey(), minimum + edge.getValue());
+                if (distance.getOrDefault(edge.left(), Integer.MAX_VALUE) > minimum + edge.right()) {
+                    distance.put(edge.left(), minimum + edge.right());
                 }
             }
         }

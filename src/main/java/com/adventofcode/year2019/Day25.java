@@ -21,6 +21,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Day25 {
+    private static final Map<String, Direction> DIRECTIONS = Map.of(
+            "east", Direction.RIGHT,
+            "north", Direction.UP,
+            "south", Direction.DOWN,
+            "west", Direction.LEFT
+    );
+
+    private static final Map<Direction, String> CARDINAL = Map.of(
+            Direction.RIGHT, "east",
+            Direction.UP, "north",
+            Direction.DOWN, "south",
+            Direction.LEFT, "west"
+    );
+
     /**
      * --- Day 25: Cryostasis ---
      * As you approach Santa's ship, your sensors report two important details:
@@ -64,7 +78,7 @@ public class Day25 {
         }
         List<Direction> directions = droid.paths.get("Security Checkpoint");
         for (Direction direction : directions) {
-            droid.doCommand(direction.name().toLowerCase());
+            droid.doCommand(direction);
         }
 
         List<String> items = new ArrayList<>(droid.items);
@@ -77,7 +91,7 @@ public class Day25 {
             List<String> localItems = IntStream.range(0, items.size()).filter(bitSet::get).mapToObj(items::get).toList();
             localItems.forEach(i -> droid.doCommand("take " + i));
 
-            Position doCommand = droid.doCommand(droid.exit.name().toLowerCase());
+            Position doCommand = droid.doCommand(droid.exit);
             if ("Security Checkpoint".equals(doCommand.position())) {
                 localItems.forEach(i -> droid.doCommand("drop " + i));
             } else {
@@ -125,7 +139,11 @@ public class Day25 {
                 } else if (line.startsWith("- ")) {
                     String trim = line.replace("- ", "").trim();
                     if (readDoors) {
-                        directions.add(Direction.valueOf(trim.toUpperCase()));
+                        Direction direction = DIRECTIONS.get(trim);
+                        if (direction == null) {
+                            throw new IllegalStateException();
+                        }
+                        directions.add(direction);
                     } else if (readItems) {
                         items.add(trim);
                     }
@@ -185,6 +203,11 @@ public class Day25 {
             }
         }
 
+        private Position doCommand(Direction direction) {
+            String cardinalDirection = CARDINAL.get(direction);
+            return doCommand(cardinalDirection);
+        }
+
         private Position doCommand(String input) {
             input.chars().mapToLong(t -> t).forEach(instructions::add);
             instructions.add(10L);
@@ -202,7 +225,7 @@ public class Day25 {
         }
 
         public void walk(Position currentPosition, Direction direction, Deque<Direction> path) {
-            Position position = doCommand(direction.name().toLowerCase());
+            Position position = doCommand(direction);
             path.addLast(direction);
             if (seenPosition.add(position)) {
                 for (String item : position.items()) {
@@ -219,7 +242,7 @@ public class Day25 {
 
             if (!currentPosition.equals(position)) {
                 paths.put(position.position, new ArrayList<>(path));
-                doCommand(direction.reverse().name().toLowerCase());
+                doCommand(direction.reverse());
             } else {
                 exit = direction;
             }

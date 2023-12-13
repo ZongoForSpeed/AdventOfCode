@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -50,7 +50,7 @@ class Day10Test {
         Scanner scanner = new Scanner(input);
 
         Pair<String, Integer> result = Day10.decodeStars(scanner);
-        assertThat(result.getLeft()).isEqualTo("""
+        assertThat(result.left()).isEqualTo("""
                 #...#..###
                 #...#...#.
                 #...#...#.
@@ -59,14 +59,14 @@ class Day10Test {
                 #...#...#.
                 #...#...#.
                 #...#..###""");
-        assertThat(result.getRight()).isEqualTo(3);
+        assertThat(result.right()).isEqualTo(3);
     }
 
     @Test
     void input() throws IOException {
         try (InputStream is = Day10Test.class.getResourceAsStream("/2018/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             Pair<String, Integer> result = Day10.decodeStars(scanner);
-            assertThat(result.getLeft()).isEqualTo("""
+            assertThat(result.left()).isEqualTo("""
                     ######..#....#....##....#.......#.......#....#..#.......#####.
                     #.......#...#....#..#...#.......#.......#...#...#.......#....#
                     #.......#..#....#....#..#.......#.......#..#....#.......#....#
@@ -77,7 +77,7 @@ class Day10Test {
                     #.......#..#....#....#..#.......#.......#..#....#.......#....#
                     #.......#...#...#....#..#.......#.......#...#...#.......#....#
                     ######..#....#..#....#..######..######..#....#..######..#####.""");
-            assertThat(result.getRight()).isEqualTo(10227);
+            assertThat(result.right()).isEqualTo(10227);
         }
     }
 

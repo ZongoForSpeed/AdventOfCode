@@ -4,7 +4,7 @@ import com.adventofcode.point.Point3D;
 import com.adventofcode.matrix.Matrix3D;
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -466,7 +466,7 @@ public final class Day19 {
      * Your puzzle answer was 353.
      */
     static Set<Point3D> beaconScannerPartOne(Scanner scanner) {
-        return beaconScanner(scanner).getLeft();
+        return beaconScanner(scanner).left();
     }
 
     /**
@@ -484,7 +484,7 @@ public final class Day19 {
      * Your puzzle answer was 10832.
      */
     static Integer beaconScannerPartTwo(Scanner scanner) {
-        return beaconScanner(scanner).getRight();
+        return beaconScanner(scanner).right();
     }
 
     static Pair<Set<Point3D>, Integer> beaconScanner(Scanner scanner) {
@@ -554,18 +554,18 @@ public final class Day19 {
             for (Matrix3D o : ROTATIONS) {
                 Map<Double, Pair<Point3D, Point3D>> set = new HashMap<>();
                 for (Pair<Point3D, Point3D> value : values) {
-                    set.put(Point3D.distance(value.getLeft(), o.apply(value.getRight())), value);
+                    set.put(Point3D.distance(value.left(), o.apply(value.right())), value);
                 }
                 if (set.size() == 1) {
                     Pair<Point3D, Point3D> value = values.iterator().next();
-                    Point3D A = value.getLeft();
-                    Point3D B = o.apply(value.getRight());
+                    Point3D A = value.left();
+                    Point3D B = o.apply(value.right());
                     LOGGER.trace("Pair: {} {} -> {}, {}", o, pair, A, B);
                     Transformation transformation = Transformation.of(Point3D.minus(A, B), o);
                     LOGGER.trace("Operation {}: {}", pair, transformation);
 
                     transforms.computeIfAbsent(pair, ignore -> new ArrayList<>()).add(transformation);
-                    transforms.computeIfAbsent(Pair.of(pair.getRight(), pair.getLeft()), ignore -> new ArrayList<>()).add(transformation.inverse());
+                    transforms.computeIfAbsent(Pair.of(pair.right(), pair.left()), ignore -> new ArrayList<>()).add(transformation.inverse());
                     break;
                 }
             }
@@ -575,7 +575,7 @@ public final class Day19 {
             LOGGER.trace("Transforms {}: \n{}", entry.getKey(), entry.getValue());
         }
 
-        while (transforms.keySet().stream().map(Pair::getLeft).filter("0"::equals).count() < scanners.size() - 1) {
+        while (transforms.keySet().stream().map(Pair::left).filter("0"::equals).count() < scanners.size() - 1) {
             for (String b : scanners.keySet()) {
                 for (Map.Entry<String, List<Probe>> entry1 : scanners.entrySet()) {
                     String i = entry1.getKey();

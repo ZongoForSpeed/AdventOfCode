@@ -2,7 +2,7 @@ package com.adventofcode.year2015;
 
 import com.adventofcode.maths.IntegerPartition;
 import it.unimi.dsi.fastutil.ints.IntList;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,7 @@ public final class Day15 {
         for (int i = 0; i < partition.size(); i++) {
             int quantity = partition.getInt(i);
             Pair<String, Map<Property, Long>> ingredient = ingredients.get(i);
-            properties = compose(properties, ingredient.getValue(), quantity);
+            properties = compose(properties, ingredient.right(), quantity);
         }
 
         return properties;
