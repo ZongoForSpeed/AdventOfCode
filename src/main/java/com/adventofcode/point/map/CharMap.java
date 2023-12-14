@@ -28,6 +28,14 @@ public class CharMap {
         }
     }
 
+    public CharMap(CharMap o) {
+        this.defaultValue = o.defaultValue;
+        this.map = Arrays.copyOf(o.map, o.map.length);
+        for (int i = 0; i < map.length; i++) {
+            map[i] = Arrays.copyOf(o.map[i], o.map[i].length);
+        }
+    }
+
     public static CharMap read(String input, Predicate<Character> predicate) {
         return read(new Scanner(input), predicate);
     }
