@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.OptionalInt;
 import java.util.Scanner;
 
-public class Day13 {
+public final class Day13 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day13.class);
 
     private Day13() {
