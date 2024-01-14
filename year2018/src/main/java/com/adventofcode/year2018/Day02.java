@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.utils.BooleanPair;
+import com.adventofcode.common.utils.BooleanPair;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 

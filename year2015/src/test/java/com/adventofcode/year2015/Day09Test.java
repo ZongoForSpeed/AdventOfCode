@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

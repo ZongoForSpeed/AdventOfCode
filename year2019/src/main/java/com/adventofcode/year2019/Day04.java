@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.maths.Digits;
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.maths.Digits;
+import com.adventofcode.common.utils.IntegerPair;
 import com.google.common.collect.Ordering;
 import it.unimi.dsi.fastutil.chars.CharList;
 

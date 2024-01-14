@@ -1,9 +1,9 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.hash.KnotHash;
-import com.adventofcode.point.map.BooleanMap;
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.hash.KnotHash;
+import com.adventofcode.common.point.map.BooleanMap;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
 import it.unimi.dsi.fastutil.booleans.BooleanList;
 
 import java.util.BitSet;

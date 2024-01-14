@@ -1,4 +1,4 @@
-package com.adventofcode.point.range;
+package com.adventofcode.common.point.range;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

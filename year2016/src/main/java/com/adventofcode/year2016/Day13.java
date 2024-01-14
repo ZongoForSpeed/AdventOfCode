@@ -1,8 +1,8 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.graph.AStar;
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.graph.AStar;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
 
 import java.util.Arrays;
 import java.util.Collection;

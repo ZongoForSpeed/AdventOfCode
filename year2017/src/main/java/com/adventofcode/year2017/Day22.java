@@ -1,10 +1,10 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.point.map.BooleanMap;
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.map.InfiniteBooleanMap;
-import com.adventofcode.point.map.InfiniteCharMap;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.map.BooleanMap;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.map.InfiniteBooleanMap;
+import com.adventofcode.common.point.map.InfiniteCharMap;
+import com.adventofcode.common.point.Point2D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

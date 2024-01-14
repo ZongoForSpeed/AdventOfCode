@@ -1,7 +1,7 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.point.range.Cuboid;
-import com.adventofcode.point.range.Range;
+import com.adventofcode.common.point.range.Cuboid;
+import com.adventofcode.common.point.range.Range;
 import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

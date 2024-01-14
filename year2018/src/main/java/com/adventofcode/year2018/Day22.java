@@ -1,10 +1,10 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
-import com.adventofcode.point.map.EnumMap2D;
-import com.adventofcode.point.map.IntegerMap;
-import com.adventofcode.point.map.LongMap;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.EnumMap2D;
+import com.adventofcode.common.point.map.IntegerMap;
+import com.adventofcode.common.point.map.LongMap;
 import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;

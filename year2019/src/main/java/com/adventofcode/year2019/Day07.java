@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.maths.Permutations;
+import com.adventofcode.common.maths.Permutations;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import it.unimi.dsi.fastutil.longs.LongLists;

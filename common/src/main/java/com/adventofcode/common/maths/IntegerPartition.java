@@ -1,4 +1,4 @@
-package com.adventofcode.maths;
+package com.adventofcode.common.maths;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;

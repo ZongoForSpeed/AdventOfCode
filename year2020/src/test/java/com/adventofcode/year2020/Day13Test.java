@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.utils.FileUtils;
-import com.adventofcode.utils.LongPair;
+import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.common.utils.LongPair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

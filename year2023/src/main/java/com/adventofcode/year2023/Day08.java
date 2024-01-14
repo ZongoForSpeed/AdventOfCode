@@ -1,6 +1,6 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.maths.Arithmetic;
+import com.adventofcode.common.maths.Arithmetic;
 import it.unimi.dsi.fastutil.ints.IntIntPair;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;

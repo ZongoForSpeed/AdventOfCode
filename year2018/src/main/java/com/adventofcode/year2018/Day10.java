@@ -1,7 +1,7 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.point.Point2D;
-import com.adventofcode.point.map.InfiniteBooleanMap;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.InfiniteBooleanMap;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

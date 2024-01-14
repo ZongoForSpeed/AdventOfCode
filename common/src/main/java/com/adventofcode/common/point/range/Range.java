@@ -1,4 +1,4 @@
-package com.adventofcode.point.range;
+package com.adventofcode.common.point.range;
 
 import java.util.Arrays;
 import java.util.List;

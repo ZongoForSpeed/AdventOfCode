@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.point.Point3D;
-import com.adventofcode.matrix.Matrix3D;
+import com.adventofcode.common.point.Point3D;
+import com.adventofcode.common.matrix.Matrix3D;
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;
 import it.unimi.dsi.fastutil.Pair;

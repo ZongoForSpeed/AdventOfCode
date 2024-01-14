@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.point.map.BooleanMap;
+import com.adventofcode.common.point.map.BooleanMap;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

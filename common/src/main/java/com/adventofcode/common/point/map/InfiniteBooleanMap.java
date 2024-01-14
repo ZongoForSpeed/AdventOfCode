@@ -1,6 +1,6 @@
-package com.adventofcode.point.map;
+package com.adventofcode.common.point.map;
 
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.Point2D;
 import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;

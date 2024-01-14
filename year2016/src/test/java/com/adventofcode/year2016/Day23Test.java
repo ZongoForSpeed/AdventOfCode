@@ -1,7 +1,7 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.Assembunny;
-import com.adventofcode.maths.Permutations;
+import com.adventofcode.common.maths.Permutations;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.point.range.Rectangle;
+import com.adventofcode.common.point.range.Rectangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

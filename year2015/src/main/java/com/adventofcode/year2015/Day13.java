@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.maths.Permutations;
+import com.adventofcode.common.maths.Permutations;
 import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;

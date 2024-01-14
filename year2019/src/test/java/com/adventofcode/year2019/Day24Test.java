@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.utils.FileUtils;
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.common.utils.IntegerPair;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntList;

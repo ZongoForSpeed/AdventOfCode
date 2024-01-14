@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.utils.FileUtils;
+import com.adventofcode.common.utils.FileUtils;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;

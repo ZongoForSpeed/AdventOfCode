@@ -1,6 +1,6 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 import it.unimi.dsi.fastutil.longs.Long2LongMap;
 import it.unimi.dsi.fastutil.longs.Long2LongOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongArrayList;

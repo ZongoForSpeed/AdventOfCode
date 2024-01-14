@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;

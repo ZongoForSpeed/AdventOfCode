@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.Point2D;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.slf4j.Logger;

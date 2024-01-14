@@ -1,4 +1,4 @@
-package com.adventofcode.utils;
+package com.adventofcode.common.utils;
 
 public record BooleanPair(boolean left, boolean right) {
     public static BooleanPair of(boolean left, boolean right) {

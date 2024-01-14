@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.utils.FileUtils;
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.common.utils.IntegerPair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
 

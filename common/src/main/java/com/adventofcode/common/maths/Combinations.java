@@ -1,6 +1,6 @@
-package com.adventofcode.maths;
+package com.adventofcode.common.maths;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 
 import java.util.ArrayList;
 import java.util.Arrays;

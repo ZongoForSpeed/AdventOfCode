@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.point.map.IntegerMap;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.map.IntegerMap;
+import com.adventofcode.common.point.Point2D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

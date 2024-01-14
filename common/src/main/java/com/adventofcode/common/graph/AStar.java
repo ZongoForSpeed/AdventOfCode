@@ -1,4 +1,4 @@
-package com.adventofcode.graph;
+package com.adventofcode.common.graph;
 
 import java.util.Collection;
 import java.util.Comparator;

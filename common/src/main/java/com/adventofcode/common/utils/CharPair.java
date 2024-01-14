@@ -1,4 +1,4 @@
-package com.adventofcode.utils;
+package com.adventofcode.common.utils;
 
 public record CharPair(char left, char right){
     public static CharPair of(char left, char right) {

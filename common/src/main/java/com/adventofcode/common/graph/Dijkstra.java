@@ -1,4 +1,4 @@
-package com.adventofcode.graph;
+package com.adventofcode.common.graph;
 
 import it.unimi.dsi.fastutil.Pair;
 

@@ -1,4 +1,4 @@
-package com.adventofcode.hash;
+package com.adventofcode.common.hash;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;

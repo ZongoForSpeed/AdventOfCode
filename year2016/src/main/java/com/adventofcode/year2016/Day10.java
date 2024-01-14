@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;

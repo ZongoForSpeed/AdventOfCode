@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
 import it.unimi.dsi.fastutil.Pair;
 
 import java.util.ArrayList;

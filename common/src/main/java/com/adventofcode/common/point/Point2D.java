@@ -1,4 +1,4 @@
-package com.adventofcode.point;
+package com.adventofcode.common.point;
 
 import java.util.List;
 

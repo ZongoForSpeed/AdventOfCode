@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.maths.Arithmetic;
-import com.adventofcode.utils.FileUtils;
+import com.adventofcode.common.maths.Arithmetic;
+import com.adventofcode.common.utils.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

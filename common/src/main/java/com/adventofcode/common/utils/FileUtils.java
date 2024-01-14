@@ -1,4 +1,4 @@
-package com.adventofcode.utils;
+package com.adventofcode.common.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.point.Point2D;
-import com.adventofcode.utils.FileUtils;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.utils.FileUtils;
 import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;

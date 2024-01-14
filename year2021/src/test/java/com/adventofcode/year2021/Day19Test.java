@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.point.Point3D;
+import com.adventofcode.common.point.Point3D;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 

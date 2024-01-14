@@ -1,4 +1,4 @@
-package com.adventofcode.utils;
+package com.adventofcode.common.utils;
 
 @FunctionalInterface
 public interface TriConsumer<K, V, S> {

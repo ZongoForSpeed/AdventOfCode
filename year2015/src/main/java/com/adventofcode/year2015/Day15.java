@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.maths.IntegerPartition;
+import com.adventofcode.common.maths.IntegerPartition;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;

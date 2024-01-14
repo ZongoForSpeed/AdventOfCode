@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.point.Point3D;
+import com.adventofcode.common.point.Point3D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

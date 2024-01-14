@@ -1,8 +1,8 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
-import com.adventofcode.point.map.IntegerMap;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.IntegerMap;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

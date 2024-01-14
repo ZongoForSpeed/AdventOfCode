@@ -1,9 +1,9 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.graph.AStar;
-import com.adventofcode.maths.Combinations;
-import com.adventofcode.utils.Bits;
-import com.adventofcode.utils.LongPair;
+import com.adventofcode.common.graph.AStar;
+import com.adventofcode.common.maths.Combinations;
+import com.adventofcode.common.utils.Bits;
+import com.adventofcode.common.utils.LongPair;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

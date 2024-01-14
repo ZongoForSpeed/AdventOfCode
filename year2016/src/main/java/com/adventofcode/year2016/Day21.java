@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.maths.Permutations;
+import com.adventofcode.common.maths.Permutations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

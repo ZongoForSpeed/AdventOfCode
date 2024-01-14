@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.utils.LongPair;
+import com.adventofcode.common.utils.LongPair;
 import com.google.common.collect.Iterables;
 
 import java.util.Arrays;

@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.utils.LongPair;
+import com.adventofcode.common.utils.LongPair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

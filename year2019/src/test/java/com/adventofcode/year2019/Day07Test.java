@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.utils.FileUtils;
+import com.adventofcode.common.utils.FileUtils;
 import it.unimi.dsi.fastutil.longs.LongList;
 import it.unimi.dsi.fastutil.Pair;
 import org.assertj.core.api.Assertions;

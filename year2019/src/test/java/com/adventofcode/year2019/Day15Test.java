@@ -1,10 +1,10 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.Intcode;
-import com.adventofcode.graph.Dijkstra;
-import com.adventofcode.point.map.Map2D;
-import com.adventofcode.point.Point2D;
-import com.adventofcode.utils.FileUtils;
+import com.adventofcode.common.graph.Dijkstra;
+import com.adventofcode.common.point.map.Map2D;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.utils.FileUtils;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 

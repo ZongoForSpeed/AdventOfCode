@@ -1,8 +1,8 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
-import com.adventofcode.point.map.CharMap;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.CharMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.maths.Arithmetic;
+import com.adventofcode.common.maths.Arithmetic;
 import it.unimi.dsi.fastutil.Pair;
 
 import java.util.HashMap;

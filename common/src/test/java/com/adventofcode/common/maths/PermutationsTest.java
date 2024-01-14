@@ -1,6 +1,5 @@
 package com.adventofcode.common.maths;
 
-import com.adventofcode.maths.Permutations;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

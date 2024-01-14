@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.utils.CharPair;
+import com.adventofcode.common.utils.CharPair;
 import it.unimi.dsi.fastutil.chars.Char2LongMap;
 import it.unimi.dsi.fastutil.chars.Char2LongOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2CharMap;

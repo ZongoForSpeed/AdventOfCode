@@ -1,6 +1,6 @@
 package com.adventofcode.common.maths;
 
-import com.adventofcode.maths.IntegerPartition;
+import com.adventofcode.common.maths.IntegerPartition;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

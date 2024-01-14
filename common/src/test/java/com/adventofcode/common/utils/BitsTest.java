@@ -1,6 +1,6 @@
 package com.adventofcode.common.utils;
 
-import com.adventofcode.utils.Bits;
+import com.adventofcode.common.utils.Bits;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

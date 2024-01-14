@@ -1,6 +1,6 @@
-package com.adventofcode.matrix;
+package com.adventofcode.common.matrix;
 
-import com.adventofcode.point.Point3D;
+import com.adventofcode.common.point.Point3D;
 
 import java.util.Arrays;
 

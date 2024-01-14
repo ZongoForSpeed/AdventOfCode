@@ -1,7 +1,7 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
 import org.apache.commons.lang3.function.TriFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

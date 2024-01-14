@@ -1,9 +1,9 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.point.map.BooleanMap;
-import com.adventofcode.point.map.CharMap;
-import com.adventofcode.point.map.IntegerMap;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.map.BooleanMap;
+import com.adventofcode.common.point.map.CharMap;
+import com.adventofcode.common.point.map.IntegerMap;
+import com.adventofcode.common.point.Point2D;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;

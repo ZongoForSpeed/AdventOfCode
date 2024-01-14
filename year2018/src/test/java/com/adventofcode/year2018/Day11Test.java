@@ -1,7 +1,7 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.point.Point2D;
-import com.adventofcode.point.Point3D;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.Point3D;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

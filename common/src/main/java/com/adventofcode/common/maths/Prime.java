@@ -1,4 +1,4 @@
-package com.adventofcode.maths;
+package com.adventofcode.common.maths;
 
 import java.util.BitSet;
 import java.util.stream.IntStream;

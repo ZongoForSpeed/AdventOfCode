@@ -1,4 +1,4 @@
-package com.adventofcode.utils;
+package com.adventofcode.common.utils;
 
 public record IntegerPair(int left, int right) {
     public static IntegerPair of(int left, int right) {

@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.maths.Digits;
+import com.adventofcode.common.maths.Digits;
 import it.unimi.dsi.fastutil.chars.CharArrayList;
 import it.unimi.dsi.fastutil.chars.CharList;
 import it.unimi.dsi.fastutil.ints.IntArrayList;

@@ -1,4 +1,4 @@
-package com.adventofcode.maths;
+package com.adventofcode.common.maths;
 
 import it.unimi.dsi.fastutil.chars.CharArrayList;
 import it.unimi.dsi.fastutil.chars.CharList;

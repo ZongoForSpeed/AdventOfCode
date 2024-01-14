@@ -1,6 +1,6 @@
 package com.adventofcode.common.map;
 
-import com.adventofcode.point.map.BooleanMap;
+import com.adventofcode.common.point.map.BooleanMap;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

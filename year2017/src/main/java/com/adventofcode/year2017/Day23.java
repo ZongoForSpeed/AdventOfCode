@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.maths.Prime;
+import com.adventofcode.common.maths.Prime;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import org.apache.commons.lang3.math.NumberUtils;
 

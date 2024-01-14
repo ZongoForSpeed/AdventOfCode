@@ -1,7 +1,7 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.maths.Arithmetic;
-import com.adventofcode.maths.Prime;
+import com.adventofcode.common.maths.Arithmetic;
+import com.adventofcode.common.maths.Prime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,8 +1,8 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.maths.Arithmetic;
-import com.adventofcode.maths.Prime;
-import com.adventofcode.utils.LongPair;
+import com.adventofcode.common.maths.Arithmetic;
+import com.adventofcode.common.maths.Prime;
+import com.adventofcode.common.utils.LongPair;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 

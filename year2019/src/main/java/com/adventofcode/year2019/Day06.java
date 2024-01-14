@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.utils.FileUtils;
+import com.adventofcode.common.utils.FileUtils;
 import com.google.common.collect.Sets;
 
 import java.io.IOException;

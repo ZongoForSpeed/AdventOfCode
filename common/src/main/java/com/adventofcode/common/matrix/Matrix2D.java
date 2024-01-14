@@ -1,4 +1,4 @@
-package com.adventofcode.matrix;
+package com.adventofcode.common.matrix;
 
 import java.math.BigInteger;
 

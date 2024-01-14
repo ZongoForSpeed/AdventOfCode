@@ -1,8 +1,8 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.Intcode;
-import com.adventofcode.point.map.Map2D;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.map.Map2D;
+import com.adventofcode.common.point.Point2D;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

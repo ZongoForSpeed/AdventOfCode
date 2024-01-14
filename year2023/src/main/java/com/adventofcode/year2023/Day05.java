@@ -1,6 +1,6 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.point.range.Range;
+import com.adventofcode.common.point.range.Range;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.apache.commons.lang3.StringUtils;

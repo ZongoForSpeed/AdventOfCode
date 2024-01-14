@@ -1,6 +1,6 @@
 package com.adventofcode.common.maths;
 
-import com.adventofcode.maths.GaussJordan;
+import com.adventofcode.common.maths.GaussJordan;
 import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

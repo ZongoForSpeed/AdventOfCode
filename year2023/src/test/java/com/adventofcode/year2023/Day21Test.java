@@ -1,6 +1,6 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.Point2D;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

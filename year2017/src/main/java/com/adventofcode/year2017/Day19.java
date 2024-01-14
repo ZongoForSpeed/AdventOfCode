@@ -1,8 +1,8 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.point.map.CharMap;
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.map.CharMap;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

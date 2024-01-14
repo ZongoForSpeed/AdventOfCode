@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.point.Point3D;
+import com.adventofcode.common.point.Point3D;
 
 public final class Day11 {
     private Day11() {

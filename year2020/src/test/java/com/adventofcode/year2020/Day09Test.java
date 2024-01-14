@@ -1,6 +1,6 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.utils.FileUtils;
+import com.adventofcode.common.utils.FileUtils;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;

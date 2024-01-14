@@ -1,9 +1,9 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.graph.AStar;
-import com.adventofcode.point.Direction;
-import com.adventofcode.point.Point2D;
-import com.adventofcode.point.Point3D;
+import com.adventofcode.common.graph.AStar;
+import com.adventofcode.common.point.Direction;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.Point3D;
 
 import java.util.ArrayList;
 import java.util.Arrays;

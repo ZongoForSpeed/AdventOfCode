@@ -1,6 +1,6 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.maths.GaussJordan;
+import com.adventofcode.common.maths.GaussJordan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

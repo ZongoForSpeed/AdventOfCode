@@ -1,8 +1,8 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.point.Point2D;
-import com.adventofcode.point.Point3D;
-import com.adventofcode.point.map.IntegerMap;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.Point3D;
+import com.adventofcode.common.point.map.IntegerMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.adventofcode.utils;
+package com.adventofcode.common.utils;
 
 public record LongPair(long left, long right) {
     public static LongPair of(long left, long right) {

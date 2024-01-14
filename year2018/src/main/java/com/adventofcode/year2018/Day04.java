@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 import org.apache.commons.lang3.ArrayUtils;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;

@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.maths.Arithmetic;
-import com.adventofcode.matrix.Matrix2D;
+import com.adventofcode.common.maths.Arithmetic;
+import com.adventofcode.common.matrix.Matrix2D;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 

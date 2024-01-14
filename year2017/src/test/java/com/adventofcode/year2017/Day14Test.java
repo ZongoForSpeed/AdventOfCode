@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.point.map.BooleanMap;
+import com.adventofcode.common.point.map.BooleanMap;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

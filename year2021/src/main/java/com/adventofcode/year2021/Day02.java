@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.utils.IntegerPair;
+import com.adventofcode.common.utils.IntegerPair;
 import it.unimi.dsi.fastutil.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 

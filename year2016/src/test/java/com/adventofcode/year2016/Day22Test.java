@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.point.Point2D;
+import com.adventofcode.common.point.Point2D;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

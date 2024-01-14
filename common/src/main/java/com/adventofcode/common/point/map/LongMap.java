@@ -1,7 +1,7 @@
-package com.adventofcode.point.map;
+package com.adventofcode.common.point.map;
 
-import com.adventofcode.point.Point2D;
-import com.adventofcode.utils.TriConsumer;
+import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.utils.TriConsumer;
 import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 import it.unimi.dsi.fastutil.objects.ObjectLongPair;
 

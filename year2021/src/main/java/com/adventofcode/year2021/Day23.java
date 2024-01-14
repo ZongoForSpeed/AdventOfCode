@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.graph.AStar;
+import com.adventofcode.common.graph.AStar;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntSet;

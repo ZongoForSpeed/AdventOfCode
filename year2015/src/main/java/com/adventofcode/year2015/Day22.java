@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.graph.AStar;
+import com.adventofcode.common.graph.AStar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

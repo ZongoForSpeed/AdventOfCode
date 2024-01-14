@@ -1,7 +1,7 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.maths.Arithmetic;
-import com.adventofcode.maths.Prime;
+import com.adventofcode.common.maths.Arithmetic;
+import com.adventofcode.common.maths.Prime;
 
 public final class Day20 {
     private final long[] primes;
