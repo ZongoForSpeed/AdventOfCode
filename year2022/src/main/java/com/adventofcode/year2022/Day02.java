@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class Day02 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day02.class);
 
+    private Day02() {
+        // No-Op
+    }
+
     private static final Map<Pair<RockPaperScissors, RockPaperScissors>, Play> RESULTS = Map.ofEntries(
             Map.entry(Pair.of(RockPaperScissors.ROCK, RockPaperScissors.ROCK), Play.DRAW),
             Map.entry(Pair.of(RockPaperScissors.ROCK, RockPaperScissors.PAPER), Play.LOSE),
@@ -129,6 +133,10 @@ public class Day02 {
      */
     static final class PartOne {
 
+        private PartOne() {
+            // No-Op
+        }
+
         static int findScore(Scanner scanner) {
             int score = 0;
 
@@ -177,16 +185,20 @@ public class Day02 {
      */
     static final class PartTwo {
 
+        private PartTwo() {
+            // No-Op
+        }
+
         private static final Map<Pair<RockPaperScissors, Play>, RockPaperScissors> STRATEGY = Map.ofEntries(
-                Map.entry(Pair.of(RockPaperScissors.ROCK, Play.DRAW), RockPaperScissors.ROCK ),
-                Map.entry(Pair.of(RockPaperScissors.PAPER, Play.LOSE), RockPaperScissors.ROCK ),
-                Map.entry(Pair.of(RockPaperScissors.SCISSORS, Play.WIN), RockPaperScissors.ROCK ),
-                Map.entry(Pair.of(RockPaperScissors.ROCK, Play.WIN), RockPaperScissors.PAPER ),
-                Map.entry(Pair.of(RockPaperScissors.PAPER, Play.DRAW), RockPaperScissors.PAPER ),
-                Map.entry(Pair.of(RockPaperScissors.SCISSORS, Play.LOSE), RockPaperScissors.PAPER ),
-                Map.entry(Pair.of(RockPaperScissors.ROCK, Play.LOSE), RockPaperScissors.SCISSORS ),
-                Map.entry(Pair.of(RockPaperScissors.PAPER, Play.WIN), RockPaperScissors.SCISSORS ),
-                Map.entry(Pair.of(RockPaperScissors.SCISSORS, Play.DRAW), RockPaperScissors.SCISSORS )
+                Map.entry(Pair.of(RockPaperScissors.ROCK, Play.DRAW), RockPaperScissors.ROCK),
+                Map.entry(Pair.of(RockPaperScissors.PAPER, Play.LOSE), RockPaperScissors.ROCK),
+                Map.entry(Pair.of(RockPaperScissors.SCISSORS, Play.WIN), RockPaperScissors.ROCK),
+                Map.entry(Pair.of(RockPaperScissors.ROCK, Play.WIN), RockPaperScissors.PAPER),
+                Map.entry(Pair.of(RockPaperScissors.PAPER, Play.DRAW), RockPaperScissors.PAPER),
+                Map.entry(Pair.of(RockPaperScissors.SCISSORS, Play.LOSE), RockPaperScissors.PAPER),
+                Map.entry(Pair.of(RockPaperScissors.ROCK, Play.LOSE), RockPaperScissors.SCISSORS),
+                Map.entry(Pair.of(RockPaperScissors.PAPER, Play.WIN), RockPaperScissors.SCISSORS),
+                Map.entry(Pair.of(RockPaperScissors.SCISSORS, Play.DRAW), RockPaperScissors.SCISSORS)
         );
 
         static int findScore(Scanner scanner) {
