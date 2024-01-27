@@ -234,7 +234,7 @@ public final class Day05 {
     record Move(int count, int from, int to) {
 
     }
-    
+
     private static void readInput(Scanner scanner, Int2ObjectMap<CharStack> stacks, List<Move> moves) {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
