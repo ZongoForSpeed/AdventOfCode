@@ -25,12 +25,16 @@ public final class Day11 {
     private static final Pattern TEST_PATTERN = Pattern.compile("  Test: divisible by (\\d+)");
     private static final Pattern IF_PATTERN = Pattern.compile("    If (\\w+): throw to monkey (\\d+)");
 
-    private static Map<String, Operation> OPERATIONS = Map.of(
+    private static final Map<String, Operation> OPERATIONS = Map.of(
             "*", Operation.MUL,
             "/", Operation.DIV,
             "+", Operation.ADD,
             "-", Operation.SUB
     );
+
+    private Day11() {
+        // No-Op
+    }
 
     /**
      * --- Day 11: Monkey in the Middle ---
