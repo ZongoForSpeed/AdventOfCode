@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Day02 {
+public final class Day02 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day02.class);
 
     private Day02() {
