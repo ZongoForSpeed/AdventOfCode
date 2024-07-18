@@ -185,8 +185,7 @@ public final class Day13 {
         }
 
         LOGGER.info("Indices : {}", indices);
-        Integer sum = indices.stream().reduce(0, Integer::sum);
-        return sum;
+        return indices.stream().reduce(0, Integer::sum);
     }
 
     /**
@@ -272,24 +271,22 @@ public final class Day13 {
     }
 
     private static int compare(Object left, Object right) {
-        if (left instanceof Long leftDouble) {
-            if (right instanceof Long rightDouble) {
-                return Long.compare(leftDouble, rightDouble);
-            } else if (right instanceof List<?> rightList) {
-                return compare(List.of(leftDouble), rightList);
-            } else {
-                throw new IllegalStateException("Cannot manage type of right " + right);
+        switch (left) {
+            case Long leftLong -> {
+                return switch (right) {
+                    case Long rightLong -> Long.compare(leftLong, rightLong);
+                    case List<?> rightList -> compare(List.of(leftLong), rightList);
+                    default -> throw new IllegalStateException("Cannot manage type of right " + right);
+                };
             }
-        } else if (left instanceof List<?> leftList) {
-            if (right instanceof Long rightDouble) {
-                return compare(leftList, List.of(rightDouble));
-            } else if (right instanceof List<?> rightList) {
-                return compare(leftList, rightList);
-            } else {
-                throw new IllegalStateException("Cannot manage type of right " + right);
+            case List<?> leftList -> {
+                return switch (right) {
+                    case Long rightLong -> compare(leftList, List.of(rightLong));
+                    case List<?> rightList -> compare(leftList, rightList);
+                    default -> throw new IllegalStateException("Cannot manage type of right " + right);
+                };
             }
-        } else {
-            throw new IllegalStateException("Cannot manage type of left " + left);
+            default -> throw new IllegalStateException("Cannot manage type of left " + left);
         }
     }
 
