@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.memory.Memory;
-import com.adventofcode.memory.ObjectMemory;
+import com.adventofcode.common.memory.Memory;
+import com.adventofcode.common.memory.ObjectMemory;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

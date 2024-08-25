@@ -41,16 +41,11 @@ public final class Day14 {
         IntList xs = new IntArrayList();
         for (int n = 0; n < mask.length(); ++n) {
             switch (mask.charAt(n)) {
-                case '1':
-                    bitSet.set(n, true);
-                    break;
-                case 'X':
+                case '1' -> bitSet.set(n, true);
+                case 'X' -> {
                     bitSet.set(n, false);
                     xs.add(n);
-                    break;
-                default:
-                case '0':
-                    break;
+                }
             }
         }
 

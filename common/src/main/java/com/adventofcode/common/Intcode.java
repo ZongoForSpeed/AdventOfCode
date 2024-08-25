@@ -145,7 +145,7 @@ public class Intcode {
                 // (or decreases, if the value is negative) by the value of the parameter.
                 case 9: {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
-                    relativeBase += value1;
+                    relativeBase += (int) value1;
                     position += 2;
                     break;
                 }

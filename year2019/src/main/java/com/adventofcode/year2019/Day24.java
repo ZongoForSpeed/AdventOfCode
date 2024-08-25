@@ -15,7 +15,7 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Day24 {
+public final class Day24 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
 
     private Day24() {
@@ -459,7 +459,6 @@ public class Day24 {
             depthBugs = nextState(depthBugs, adjacent);
         }
 
-        // printLayout(depthBugs, true);
         return depthBugs.values().stream().mapToInt(BitSet::cardinality).sum();
     }
 }

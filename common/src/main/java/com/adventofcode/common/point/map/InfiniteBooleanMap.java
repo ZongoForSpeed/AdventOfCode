@@ -125,6 +125,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
+    @Nonnull
     public Set<Point2D> keySet() {
         return map.int2ObjectEntrySet()
                 .stream()
@@ -133,11 +134,13 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
+    @Nonnull
     public Collection<Boolean> values() {
         return map.values().stream().flatMap(t -> t.values().stream()).toList();
     }
 
     @Override
+    @Nonnull
     public Set<Entry<Point2D, Boolean>> entrySet() {
         return map.int2ObjectEntrySet()
                 .stream()

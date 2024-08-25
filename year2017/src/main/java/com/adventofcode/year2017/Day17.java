@@ -1,10 +1,11 @@
 package com.adventofcode.year2017;
 
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -87,7 +88,7 @@ public final class Day17 {
      *
      * Your puzzle input is 303.
      */
-    public static List<Integer> buildBufferPartOne(int values, int steps) {
+    public static IntList buildBufferPartOne(int values, int steps) {
         Deque<Integer> circularBuffer = new ArrayDeque<>();
         circularBuffer.addLast(0);
 
@@ -99,7 +100,7 @@ public final class Day17 {
             circularBuffer.addFirst(i);
             LOGGER.trace("circularBuffer:{}", circularBuffer);
         }
-        return new ArrayList<>(circularBuffer);
+        return new IntArrayList(circularBuffer);
     }
 
     /**
@@ -132,7 +133,7 @@ public final class Day17 {
         return target;
     }
 
-    static class CircularBuffer<E> {
+    public static class CircularBuffer<E> {
         private final List<E> root;
         private int position;
 

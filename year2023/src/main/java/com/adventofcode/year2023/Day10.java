@@ -183,8 +183,8 @@ public final class Day10 {
         public static int findMaxDepth(Scanner scanner) {
             CharMap pipes = readPipes(scanner);
             List<Pair<Point2D, Direction>> maxPath = findMaxPath(pipes, findStartPoint(pipes));
-            Pair<Point2D, Direction> first = maxPath.get(0);
-            Pair<Point2D, Direction> last = maxPath.get(maxPath.size() - 1);
+            Pair<Point2D, Direction> first = maxPath.getFirst();
+            Pair<Point2D, Direction> last = maxPath.getLast();
             LOGGER.info("first = {}, last = {}", first, last);
             return maxPath.size() / 2;
         }
@@ -321,8 +321,8 @@ public final class Day10 {
                 }
             }
 
-            Pair<Point2D, Direction> first = maxPath.get(0);
-            Pair<Point2D, Direction> last = maxPath.get(maxPath.size() - 1);
+            Pair<Point2D, Direction> first = maxPath.getFirst();
+            Pair<Point2D, Direction> last = maxPath.getLast();
             for (Map.Entry<Pair<Character, Direction>, Direction> entry : PIPE_DIRECTIONS.entrySet()) {
                 if (entry.getValue() == first.right() && entry.getKey().right() == last.right()) {
                     LOGGER.info("Correct start = {}", entry);

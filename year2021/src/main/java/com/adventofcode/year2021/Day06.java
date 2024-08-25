@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.memory.LongMemory;
+import com.adventofcode.common.memory.LongMemory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

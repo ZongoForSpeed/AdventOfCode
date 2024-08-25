@@ -20,7 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Day25 {
+public final class Day25 {
     private static final Map<String, Direction> DIRECTIONS = Map.of(
             "east", Direction.RIGHT,
             "north", Direction.UP,
@@ -251,7 +251,7 @@ public class Day25 {
         }
     }
 
-    private record Position(String position, String description,
+    public record Position(String position, String description,
                             List<Direction> directions,
                             List<String> items, String message) {
 

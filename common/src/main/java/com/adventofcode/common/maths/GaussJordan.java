@@ -83,25 +83,22 @@ public class GaussJordan {
     // prints no solution or infinite solutions
     // depending upon the input given.
     double[] getResult(int flag) {
-        if (flag == 2)
-            throw new IllegalStateException("Infinite Solutions Exists");
-        else if (flag == 3)
-            throw new IllegalStateException("No Solution Exists");
-
-
-        else {
-            // Printing the solution by dividing constants by
-            // their respective diagonal elements
-
-            double[] solution = new double[n];
-            for (int i = 0; i < n; i++)
-                solution[i] = a[i][n] / a[i][i];
-            return solution;
+        switch (flag) {
+            case 2 -> throw new IllegalStateException("Infinite Solutions Exists");
+            case 3 -> throw new IllegalStateException("No Solution Exists");
+            default -> {
+                // Printing the solution by dividing constants by
+                // their respective diagonal elements
+                double[] solution = new double[n];
+                for (int i = 0; i < n; i++)
+                    solution[i] = a[i][n] / a[i][i];
+                return solution;
+            }
         }
     }
 
     // To check whether infinite solutions
-// exists or no solution exists
+    // exists or no solution exists
     int checkConsistency() {
 
         // flag == 2 for infinite solution
@@ -112,8 +109,10 @@ public class GaussJordan {
             int j;
             for (j = 0; j < n; j++)
                 sum = sum + a[i][j];
-            if (sum == a[i][j])
+            if (sum == a[i][j]) {
                 flag = 2;
+                break;
+            }
         }
         return flag;
     }

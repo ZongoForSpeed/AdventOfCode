@@ -491,10 +491,10 @@ public final class Day23 {
      */
     static long computeCostPartTwo(Scanner scanner) {
         String input = readInput(scanner);
-        String a = "" + input.charAt(0) + "DD" + input.charAt(4);
-        String b = "" + input.charAt(1) + "CB" + input.charAt(5);
-        String c = "" + input.charAt(2) + "BA" + input.charAt(6);
-        String d = "" + input.charAt(3) + "AC" + input.charAt(7);
+        String a = input.charAt(0) + "DD" + input.charAt(4);
+        String b = input.charAt(1) + "CB" + input.charAt(5);
+        String c = input.charAt(2) + "BA" + input.charAt(6);
+        String d = input.charAt(3) + "AC" + input.charAt(7);
         State start = State.of(a, b, c, d);
         State end = State.of("AAAA", "BBBB", "CCCC", "DDDD");
         long cost = computeCost(start, end, 4);

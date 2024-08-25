@@ -15,6 +15,18 @@ import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public final class Permutations {
+    private static final long[] FACTORIALS;
+
+    static {
+        long[] factorials = new long[21];
+        factorials[0] = 1;
+        factorials[1] = 1;
+        for (int i = 2; i < 21; ++i) {
+            factorials[i] = factorials[i - 1] * i;
+        }
+        FACTORIALS = factorials;
+    }
+
     private Permutations() {
         // No-Op
     }
@@ -29,16 +41,15 @@ public final class Permutations {
         int n = str.length();
         if (n == 0) {
             result.add(prefix);
-        }
-        else {
+        } else {
             for (int i = 0; i < n; i++)
-                permutations(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n), result);
+                permutations(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n), result);
         }
     }
 
     public static long factorial(int n) {
         if (n > 20 || n < 0) throw new IllegalArgumentException(n + " is out of range");
-        return LongStream.rangeClosed(2, n).reduce(1, (a, b) -> a * b);
+        return FACTORIALS[n];
     }
 
     public static <T> List<T> permutation(long no, List<T> items) {

@@ -205,7 +205,7 @@ public final class Day22 {
             Map<Cuboid, Set<Cuboid>> supports = new HashMap<>();
             Map<Cuboid, Set<Cuboid>> supportedBy = new HashMap<>();
 
-            movedBricks.remove(0);
+            movedBricks.removeFirst();
             for (int i = 0; i < movedBricks.size(); i++) {
                 for (int j = 0; j < movedBricks.size(); j++) {
                     if (i != j) {

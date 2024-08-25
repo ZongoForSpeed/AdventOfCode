@@ -5,8 +5,8 @@ import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.EnumMap2D;
 import com.adventofcode.common.point.map.IntegerMap;
 import com.adventofcode.common.point.map.LongMap;
-import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +21,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day22 {
+public final class Day22 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22.class);
     private static final Pattern DEPTH_PATTERN = Pattern.compile("depth: (\\d+)");
     private static final Pattern TARGET_PATTERN = Pattern.compile("target: (\\d+),(\\d+)");
+
+    private Day22() {
+        // No-Op
+    }
 
     /**
      * --- Day 22: Mode Maze ---

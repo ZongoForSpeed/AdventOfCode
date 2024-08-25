@@ -5,7 +5,8 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-public class Day12 {
+public final class Day12 {
+
     private Day12() {
         // No-Op
     }

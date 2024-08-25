@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Day10 {
+public final class Day10 {
     private static int doubleCompare(double a, double b) {
         if (Math.abs(a - b) < 0.000001) {
             return 0;
@@ -149,10 +149,10 @@ public class Day10 {
             Map<Double, List<Asteroids>> beamView = new TreeMap<>(Day10::doubleCompare);
             for (Point2D asteroid : asteroids) {
                 if (!asteroid.equals(location)) {
-                    long dx = location.x() - asteroid.x();
-                    long dy = location.y() - asteroid.y();
+                    long dx = (long) location.x() - asteroid.x();
+                    long dy = (long) location.y() - asteroid.y();
                     double theta = (Math.atan2(-dx, dy) + 2 * Math.PI) % (Math.PI * 2);
-                    double r = Math.sqrt(dx * dx + dy * dy);
+                    double r = Math.sqrt((double) dx * dx + dy * dy);
                     Asteroids asteroids1 = new Asteroids(r, asteroid);
                     beamView.computeIfAbsent(theta, ignore -> Lists.newArrayList()).add(asteroids1);
                 }
@@ -250,7 +250,7 @@ public class Day10 {
         while (!beamView.isEmpty()) {
             for (Double direction : Lists.newArrayList(beamView.keySet())) {
                 List<Asteroids> asteroids = beamView.get(direction);
-                result.add(asteroids.remove(0));
+                result.add(asteroids.removeFirst());
                 if (asteroids.isEmpty()) {
                     beamView.remove(direction);
                 }
@@ -260,7 +260,7 @@ public class Day10 {
         return result;
     }
 
-    record Asteroids(double distance, Point2D position) {
+    public record Asteroids(double distance, Point2D position) {
         public long getCoordinate() {
             return position.x() * 100L + position.y();
         }

@@ -1,7 +1,7 @@
 package com.adventofcode.common.maths;
 
-import com.adventofcode.common.maths.GaussJordan;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +10,9 @@ import java.util.Arrays;
 class GaussJordanTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GaussJordanTest.class);
-    public static void main(String[] args) {
+
+    @Test
+    void gauss_jordan() {
         double[][] a = {
                 {0, 2, 1, 4},
                 {1, 1, 2, 6},

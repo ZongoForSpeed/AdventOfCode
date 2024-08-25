@@ -12,9 +12,13 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day03 {
+public final class Day03 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day03.class);
     private static final Pattern PATTERN = Pattern.compile("#(\\d+) @ (\\d+),(\\d+): (\\d+)x(\\d+)");
+
+    private Day03() {
+        // No-Op
+    }
 
     private static List<Claim> readClaims(Scanner scanner) {
         List<Claim> claims = new ArrayList<>();

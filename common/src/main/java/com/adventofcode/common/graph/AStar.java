@@ -10,10 +10,11 @@ import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+/**
+ * cf. https://fr.wikipedia.org/wiki/Algorithme_A*
+ */
 public class AStar {
-    /**
-     * cf. https://fr.wikipedia.org/wiki/Algorithme_A*
-     */
+
     public static <E> long algorithm(Function<E, Collection<E>> graph, BiFunction<E, E, Long> distance, E start, E end) {
         Set<E> closedList = new HashSet<>();
         Queue<NodeHeuristic<E>> queue = new PriorityQueue<>(Comparator.comparingLong(NodeHeuristic::cost));

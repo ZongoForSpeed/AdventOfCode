@@ -59,7 +59,7 @@ public final class Day04 {
         }
 
         sectorID %= 26;
-        c += sectorID;
+        c += (char) sectorID;
         if (c > 'z') {
             c -= 26;
         }

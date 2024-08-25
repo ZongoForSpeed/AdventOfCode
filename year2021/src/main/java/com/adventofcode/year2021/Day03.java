@@ -72,7 +72,7 @@ public final class Day03 {
      * Your puzzle answer was 738234.
      */
     static IntegerPair binaryDiagnostic(List<String> strings) {
-        int length = strings.iterator().next().length();
+        int length = strings.getFirst().length();
         int[] frequency = new int[length];
         for (String string : strings) {
             char[] charArray = string.toCharArray();
@@ -119,7 +119,7 @@ public final class Day03 {
         }
 
         LOGGER.info("oxygenGeneratorRating : {}", strings);
-        String next = strings.iterator().next();
+        String next = strings.getFirst();
         return Integer.valueOf(next, 2);
     }
 
@@ -218,7 +218,7 @@ public final class Day03 {
 
         LOGGER.info("CO2ScrubberRating : {}", strings);
 
-        String next = strings.iterator().next();
+        String next = strings.getFirst();
         return Integer.valueOf(next, 2);
     }
 }

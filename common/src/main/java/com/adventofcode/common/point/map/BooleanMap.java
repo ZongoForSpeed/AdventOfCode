@@ -1,9 +1,6 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
-import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
-import it.unimi.dsi.fastutil.objects.ObjectCharImmutablePair;
-import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -162,7 +159,7 @@ public class BooleanMap {
         }
 
         while (bitSets.size() > lastLine + 1) {
-            bitSets.remove(bitSets.size() - 1);
+            bitSets.removeLast();
         }
 
         sizeY = lastLine + 1;

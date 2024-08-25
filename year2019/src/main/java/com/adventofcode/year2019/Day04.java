@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Day04 {
+
     private Day04() {
         // No-Op
     }

@@ -181,8 +181,8 @@ public final class Day18 {
             peri += Math.abs(p1.y() - p2.y()) + Math.abs(p1.x() - p2.x());
         }
 
-        Point2D p1 = vertices.get(0);
-        Point2D pn = vertices.get(vertices.size() - 1);
+        Point2D p1 = vertices.getFirst();
+        Point2D pn = vertices.getLast();
 
         area += ((long) pn.y() + p1.y()) * ((long) pn.x() - p1.x());
         peri += Math.abs(pn.y() - p1.y()) + Math.abs(pn.x() - p1.x());

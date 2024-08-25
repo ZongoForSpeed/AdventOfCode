@@ -235,7 +235,7 @@ public final class Day22 {
             throw new IllegalStateException("Cannot use multiple empty nodes");
         }
 
-        Point2D empty = emptyNodes.get(0);
+        Point2D empty = emptyNodes.getFirst();
         LOGGER.info("Empty node is {}", empty);
         points.add(empty);
 

@@ -13,17 +13,14 @@ public final class Day12 {
     }
 
     public static long computeSum(Object object, Predicate<Object> filter) {
-        if (object instanceof List<?> list) {
-            return computeSum(list, filter);
-        } else if (object instanceof Map<?, ?> map) {
-            return computeSum(map, filter);
-        } else if (object instanceof String) {
-            return 0;
-        } else if (object instanceof Number n) {
-            return n.longValue();
-        } else {
-            throw new IllegalStateException("Cannot manage type: " + object.getClass());
-        }
+        return switch (object) {
+            case List<?> list -> computeSum(list, filter);
+            case Map<?, ?> map -> computeSum(map, filter);
+            case String ignored -> 0;
+            case Number n -> n.longValue();
+            case null -> throw new IllegalStateException("Cannot manage null");
+            default -> throw new IllegalStateException("Cannot manage type: " + object.getClass());
+        };
     }
 
     public static long computeSum(List<?> list, Predicate<Object> filter) {

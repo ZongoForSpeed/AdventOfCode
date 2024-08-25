@@ -22,8 +22,8 @@ public final class KnotHash {
 
     public static int sparseHash(String input, int endExclusive) {
         IntStream intStream = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt);
-        List<Integer> integers = sparseHash(IntArrayList.toList(intStream), endExclusive, 1);
-        return integers.get(0) * integers.get(1);
+        IntList integers = sparseHash(IntArrayList.toList(intStream), endExclusive, 1);
+        return integers.getInt(0) * integers.getInt(1);
     }
 
     private static IntList sparseHash(IntList lengths, int endExclusive, int steps) {

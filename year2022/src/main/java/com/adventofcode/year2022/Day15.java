@@ -1,6 +1,9 @@
 package com.adventofcode.year2022;
 
 import com.adventofcode.common.point.Point2D;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntComparators;
+import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -156,13 +159,13 @@ public final class Day15 {
 
         Network network = readInput(scanner);
 
-        List<Integer> xPositions = new ArrayList<>();
+        IntList xPositions = new IntArrayList();
         for (Sensor sensor : network.sensors()) {
             xPositions.add(sensor.position.x() + sensor.radius());
             xPositions.add(sensor.position.x() - sensor.radius());
         }
 
-        xPositions.sort(Comparator.naturalOrder());
+        xPositions.sort(IntComparators.NATURAL_COMPARATOR);
         Integer first = xPositions.getFirst();
         Integer last = xPositions.getLast();
         int count = 0;

@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Day08 {
+
     private static final Pattern PATTERN = Pattern.compile("(\\w+) = \\((\\w+), (\\w+)\\)");
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08.class);
 

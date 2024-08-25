@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Day06 {
+public final class Day06 {
+
     private Day06() {
         // No-Op
     }

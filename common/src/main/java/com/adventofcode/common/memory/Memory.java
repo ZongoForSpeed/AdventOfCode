@@ -1,4 +1,4 @@
-package com.adventofcode.memory;
+package com.adventofcode.common.memory;
 
 import java.util.Collection;
 import java.util.Objects;

@@ -95,10 +95,10 @@ public final class Day20 {
         for (int i = 0; i < 1000; ++i) {
             particles = particles.stream().map(Particle::tick).sorted(Comparator.comparingInt(p -> Point3D.manhattanDistance(Point3D.ORIGIN, p.p()))).toList();
 
-            Particle particle = particles.get(0);
+            Particle particle = particles.getFirst();
             LOGGER.info("nearset particule = {}", particle);
         }
-        return particles.get(0);
+        return particles.getFirst();
     }
 
     /**

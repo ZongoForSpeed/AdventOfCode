@@ -79,7 +79,7 @@ public final class Day03 {
      * 3 and down 1, how many trees would you encounter?
      */
     public static long tobogganTrajectory(List<String> map, int right, int down) {
-        int taille = map.get(0).length();
+        int taille = map.getFirst().length();
         int count = 0;
         int position = 0;
         for (int i = 0; i < map.size(); i += down) {

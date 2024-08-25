@@ -29,7 +29,7 @@ public final class Day19 {
         for (char aChar : chars) {
             if (Character.isLowerCase(aChar)) {
                 currentElement.append(aChar);
-            } else if (currentElement.length() > 0) {
+            } else if (!currentElement.isEmpty()) {
                 chain.add(currentElement.toString());
                 currentElement.setLength(0);
                 currentElement.append(aChar);

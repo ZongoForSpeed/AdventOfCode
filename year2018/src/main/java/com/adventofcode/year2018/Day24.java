@@ -560,7 +560,7 @@ public final class Day24 {
      * How many units does the immune system have left after getting the smallest
      * boost it needs to win?
      */
-    public final class PartTwo {
+    public static final class PartTwo {
 
         private PartTwo() {
             // No-Op

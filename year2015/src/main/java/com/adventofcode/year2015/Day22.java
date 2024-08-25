@@ -28,11 +28,8 @@ public final class Day22 {
     public static List<AStar.Move<State>> nextState(State state, boolean hardMode) {
         if (state instanceof TerminalState) {
             return Collections.emptyList();
-        } else if (state instanceof PlayableState playableState) {
-            Player player = playableState.player();
-            Boss boss = playableState.boss();
-
-            if (playableState.turn()) {
+        } else if (state instanceof PlayableState(Player player, Boss boss, boolean turn)) {
+            if (turn) {
                 // Player's turn
                 if (hardMode) {
                     player = Player.of(player.hitPoints() - 1, player.mana(), player.effects());

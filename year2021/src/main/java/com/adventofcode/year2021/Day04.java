@@ -206,7 +206,7 @@ public final class Day04 {
             }
 
             if (bingos.size() == 1 && !winningSets.isEmpty()) {
-                List<Integer> bingo = bingos.iterator().next();
+                List<Integer> bingo = bingos.getFirst();
                 LOGGER.info("Last bingo: {}, {}", bingo, draw);
                 return draw * bingo.stream().filter(Objects::nonNull).mapToInt(i -> i).sum();
             }

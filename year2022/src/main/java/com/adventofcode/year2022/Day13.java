@@ -3,6 +3,8 @@ package com.adventofcode.year2022;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.ToNumberPolicy;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -167,7 +169,7 @@ public final class Day13 {
         Gson gson = gsonBuilder.create();
 
         int index = 0;
-        List<Integer> indices = new ArrayList<>();
+        IntList indices = new IntArrayList();
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -185,7 +187,7 @@ public final class Day13 {
         }
 
         LOGGER.info("Indices : {}", indices);
-        return indices.stream().reduce(0, Integer::sum);
+        return indices.intStream().reduce(0, Integer::sum);
     }
 
     /**

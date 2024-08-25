@@ -4,13 +4,13 @@ import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.longs.LongList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -171,13 +171,12 @@ public final class Day12 {
         LOGGER.info("graph = {}", graph);
 
         List<Point2D> starts = points.stream().filter(p -> map.get(p) == 'a').toList();
-        List<Long> distances = new ArrayList<>();
+        LongList distances = new LongArrayList();
         for (Point2D d : starts) {
             long algorithm = AStar.algorithm(graph::get, (a, b) -> 1L, d, end);
             distances.add(algorithm);
         }
 
-        return distances.stream().min(Comparator.naturalOrder()).orElseThrow();
-        // return AStar.algorithm(graph::get, (a, b) -> 1L, start, end);
+        return distances.longStream().min().orElseThrow();
     }
 }

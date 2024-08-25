@@ -33,7 +33,7 @@ public final class Day06 {
         int min = Collections.min(distance.keySet());
         List<Point2D> list = distance.get(min);
         if (list.size() == 1) {
-            return Optional.of(list.get(0));
+            return Optional.of(list.getFirst());
         } else {
             return Optional.empty();
         }

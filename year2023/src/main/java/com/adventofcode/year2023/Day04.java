@@ -169,7 +169,7 @@ public final class Day04 {
      * scratchcards are won. Including the original set of scratchcards, how many
      * total scratchcards do you end up with?
      */
-    public class PartTwo {
+    public static class PartTwo {
         public static int scratchcards(Scanner scanner) {
             List<Day04.Scratchcard> scratchcards = Day04.readScratchcards(scanner);
 

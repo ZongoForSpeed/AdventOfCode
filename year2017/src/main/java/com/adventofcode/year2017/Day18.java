@@ -187,12 +187,13 @@ public final class Day18 {
         BlockingCallback callback0 = new BlockingCallback(latch, queue0, queue1, waiting0, waiting1);
         BlockingCallback callback1 = new BlockingCallback(latch, queue1, queue0, waiting1, waiting0);
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.submit(() -> duet(commands, Map.of("p", 0L), callback0, false));
-        executorService.submit(() -> duet(commands, Map.of("p", 1L), callback1, false));
+        try (ExecutorService executorService = Executors.newCachedThreadPool()) {
+            executorService.submit(() -> duet(commands, Map.of("p", 0L), callback0, false));
+            executorService.submit(() -> duet(commands, Map.of("p", 1L), callback1, false));
 
-        latch.await();
-        executorService.shutdown();
+            latch.await();
+            executorService.shutdown();
+        }
         return callback1.getCount();
     }
 
@@ -244,7 +245,7 @@ public final class Day18 {
                 case "jgz" -> {
                     long value = getValue(register, command[1]);
                     if (value > 0) {
-                        position += getValue(register, command[2]);
+                        position += (int) getValue(register, command[2]);
                     } else {
                         ++position;
                     }

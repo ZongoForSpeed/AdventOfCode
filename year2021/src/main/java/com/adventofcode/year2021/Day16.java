@@ -416,27 +416,25 @@ public final class Day16 {
         public long evaluate() {
             LongStream longStream = subpackets.stream().mapToLong(Packet::evaluate);
             long[] longs;
-            switch (type()) {
-                case 0:
-                    return longStream.sum();
-                case 1:
-                    return longStream.reduce(1, (a, b) -> a * b);
-                case 2:
-                    return longStream.min().orElseThrow();
-                case 3:
-                    return longStream.max().orElseThrow();
-                case 5:
+            return switch (type()) {
+                case 0 -> longStream.sum();
+                case 1 -> longStream.reduce(1, (a, b) -> a * b);
+                case 2 -> longStream.min().orElseThrow();
+                case 3 -> longStream.max().orElseThrow();
+                case 5 -> {
                     longs = longStream.toArray();
-                    return longs[0] > longs[1] ? 1 : 0;
-                case 6:
+                    yield longs[0] > longs[1] ? 1 : 0;
+                }
+                case 6 -> {
                     longs = longStream.toArray();
-                    return longs[0] < longs[1] ? 1 : 0;
-                case 7:
+                    yield longs[0] < longs[1] ? 1 : 0;
+                }
+                case 7 -> {
                     longs = longStream.toArray();
-                    return longs[0] == longs[1] ? 1 : 0;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + type());
-            }
+                    yield longs[0] == longs[1] ? 1 : 0;
+                }
+                default -> throw new IllegalStateException("Unexpected value: " + type());
+            };
         }
     }
 }

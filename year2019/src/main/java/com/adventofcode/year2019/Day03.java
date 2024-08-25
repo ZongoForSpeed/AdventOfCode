@@ -8,7 +8,8 @@ import com.google.common.collect.Sets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day03 {
+public final class Day03 {
+
     private Day03() {
         // No-Op
     }

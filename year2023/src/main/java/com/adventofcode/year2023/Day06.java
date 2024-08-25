@@ -46,9 +46,6 @@ public final class Day06 {
         }
 
         LOGGER.info("allRaces: {}", allRaces);
-        // for (Race race : allRaces) {
-        //     LOGGER.info("{} ==> ways {}/{}", race, race.ways(), race.fastWays());
-        // }
         return allRaces;
     }
 
@@ -144,7 +141,11 @@ public final class Day06 {
      * Determine the number of ways you could beat the record in each race. What
      * do you get if you multiply these numbers together?
      */
-    static class PartOne {
+    static final class PartOne {
+
+        private PartOne() {
+            // No-Op
+        }
 
         public static long raceRecord(Scanner scanner) {
             List<Race> allRaces = readRaces(scanner);
@@ -179,7 +180,11 @@ public final class Day06 {
      *
      * How many ways can you beat the record in this one much longer race?
      */
-    public class PartTwo {
+    static final class PartTwo {
+
+        private PartTwo() {
+            // No-Op
+        }
 
         public static long raceRecord(Scanner scanner) {
             List<Day06.Race> allRaces = Day06.readRaces(scanner);
@@ -212,17 +217,6 @@ public final class Day06 {
                 }
             }
             throw new IllegalStateException();
-            // long low = 1;
-            // long high = time - 1;
-            // while (low != high) {
-            //     long mid = (low + high + 1) / 2;
-            //     if (win(mid)) {
-            //         high = mid;
-            //     } else {
-            //         low = mid;
-            //     }
-            // }
-            // return low;
         }
 
         public long findUppedBound() {
@@ -232,17 +226,6 @@ public final class Day06 {
                 }
             }
             throw new IllegalStateException();
-            // long low = 1;
-            // long high = time - 1;
-            // while (low != high) {
-            //     long mid = (low + high + 1) / 2;
-            //     if (win(mid)) {
-            //         high = mid;
-            //     } else {
-            //         low = mid;
-            //     }
-            // }
-            // return low;
         }
 
         public boolean win(long speed) {

@@ -221,7 +221,7 @@ public final class Day04 {
             }
         }
 
-        Collections.sort(records, Comparator.comparing(Pair::left));
+        records.sort(Comparator.comparing(Pair::left));
 
         LOGGER.info("Records: {}", records);
         Map<Integer, List<LocalDateTime>> sleepingGuards = new HashMap<>();

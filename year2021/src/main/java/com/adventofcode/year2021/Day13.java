@@ -223,7 +223,7 @@ public final class Day13 {
         readMap(scanner, map, instructions);
         LOGGER.info("Instructions: {}", instructions);
 
-        applyInstruction(map, instructions.get(0));
+        applyInstruction(map, instructions.getFirst());
         return map;
     }
 

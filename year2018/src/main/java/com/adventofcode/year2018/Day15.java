@@ -662,7 +662,7 @@ public final class Day15 {
                             .thenComparingInt(a -> a.left().y())
                             .thenComparingInt(a -> a.left().x()))
                     .map(Pair::right)
-                    .ifPresent(bestPath -> u.move(bestPath.get(0)));
+                    .ifPresent(bestPath -> u.move(bestPath.getFirst()));
         }
 
         private static List<Point2D> getPath(Unit u, Map<Point2D, Point2D> previous, Point2D dest) {

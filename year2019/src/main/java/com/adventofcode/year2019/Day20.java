@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class Day20 {
+public final class Day20 {
     private Day20() {
         // No-Op
     }
@@ -327,15 +327,15 @@ public class Day20 {
         }
 
         public long solveMaze() {
-            Point3D start = new Point3D(wrap.get("AA").get(0), 0);
-            Point3D end = new Point3D(wrap.get("ZZ").get(0), 0);
+            Point3D start = new Point3D(wrap.get("AA").getFirst(), 0);
+            Point3D end = new Point3D(wrap.get("ZZ").getFirst(), 0);
 
             return AStar.algorithm(this::flatNeighbours, (x, y) -> 1L, start, end);
         }
 
         public long solveRecursiveMaze() {
-            Point3D start = new Point3D(wrap.get("AA").get(0), 0);
-            Point3D end = new Point3D(wrap.get("ZZ").get(0), 0);
+            Point3D start = new Point3D(wrap.get("AA").getFirst(), 0);
+            Point3D end = new Point3D(wrap.get("ZZ").getFirst(), 0);
 
             return AStar.algorithm(this::recursiveNeighbours, (x, y) -> 1L, start, end);
         }

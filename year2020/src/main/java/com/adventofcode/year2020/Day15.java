@@ -1,6 +1,6 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.memory.IntMemory;
+import com.adventofcode.common.memory.IntMemory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

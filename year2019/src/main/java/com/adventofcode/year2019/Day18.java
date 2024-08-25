@@ -14,7 +14,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class Day18 {
+public final class Day18 {
     private static final List<Point2D> DIAGONALS = List.of(
             Point2D.of(-1, -1),
             Point2D.of(-1, 1),
@@ -376,7 +376,7 @@ public class Day18 {
         Door
     }
 
-    record Tile(TileType type, int value) {
+    public record Tile(TileType type, int value) {
         public static final Tile FREE = new Tile(TileType.Free, -1);
 
         @Override
@@ -389,7 +389,7 @@ public class Day18 {
 
     }
 
-    record MazeMap(Map<Point2D, Tile> tiles, Point2D position, long keys) {
+    public record MazeMap(Map<Point2D, Tile> tiles, Point2D position, long keys) {
     }
 
     record MazeState(long missingKeys, Point2D position) {

@@ -791,7 +791,6 @@ public final class Day09 {
                 newList.add(move(newList.get(i - 1), tail));
             }
 
-            // Point2D newTail = move(newHead, tail);
             return new Rope(newList);
         }
 

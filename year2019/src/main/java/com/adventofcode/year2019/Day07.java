@@ -21,7 +21,8 @@ import static com.adventofcode.common.Intcode.intcode;
 import static com.adventofcode.common.Intcode.offer;
 import static com.adventofcode.common.Intcode.take;
 
-public class Day07 {
+public final class Day07 {
+
     private Day07() {
         // No-Op
     }

@@ -359,46 +359,44 @@ public final class Day13 {
             carts = new ArrayList<>(carts.stream().filter(c -> !crashedCarts.contains(c.id())).toList());
         }
 
-        return carts.get(0).position();
+        return carts.getFirst().position();
     }
 
     record Cart(int id, Point2D position, Direction direction, int state) {
 
         public Cart move(CharMap map) {
             char c = map.get(position);
-            switch (c) {
-                case '|', '-':
-                    return new Cart(id, position.move(direction), direction, state);
-                case '\\': {
+            return switch (c) {
+                case '|', '-' -> new Cart(id, position.move(direction), direction, state);
+                case '\\' -> {
                     Direction nextDirection = switch (direction) {
                         case UP -> Direction.LEFT;
                         case DOWN -> Direction.RIGHT;
                         case LEFT -> Direction.UP;
                         case RIGHT -> Direction.DOWN;
                     };
-                    return new Cart(id, position.move(nextDirection), nextDirection, state);
+                    yield new Cart(id, position.move(nextDirection), nextDirection, state);
                 }
-                case '/': {
+                case '/' -> {
                     Direction nextDirection = switch (direction) {
                         case UP -> Direction.RIGHT;
                         case DOWN -> Direction.LEFT;
                         case LEFT -> Direction.DOWN;
                         case RIGHT -> Direction.UP;
                     };
-                    return new Cart(id, position.move(nextDirection), nextDirection, state);
+                    yield new Cart(id, position.move(nextDirection), nextDirection, state);
                 }
-                case '+': {
+                case '+' -> {
                     Direction nextDirection = switch (state % 3) {
                         case 0 -> direction.left();
                         case 1 -> direction;
                         case 2 -> direction.right();
                         default -> throw new IllegalStateException("Cannot happen !");
                     };
-                    return new Cart(id, position.move(nextDirection), nextDirection, state + 1);
+                    yield new Cart(id, position.move(nextDirection), nextDirection, state + 1);
                 }
-                default:
-                    throw new IllegalStateException("Cannot manage tile of type '" + c + "'");
-            }
+                default -> throw new IllegalStateException("Cannot manage tile of type '" + c + "'");
+            };
         }
     }
 }

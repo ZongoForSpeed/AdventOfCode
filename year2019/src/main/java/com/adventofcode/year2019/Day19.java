@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class Day19 {
+
     private Day19() {
         // No-Op
     }

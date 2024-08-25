@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Day15 {
+public final class Day15 {
 
     private Day15() {
         // No-Op

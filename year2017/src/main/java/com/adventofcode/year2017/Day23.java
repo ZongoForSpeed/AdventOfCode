@@ -88,7 +88,7 @@ public final class Day23 {
                     long value1 = getValue(registers, command[1]);
                     long value2 = getValue(registers, command[2]);
                     if (value1 != 0) {
-                        position += value2;
+                        position += (int) value2;
                     } else {
                         ++position;
                     }

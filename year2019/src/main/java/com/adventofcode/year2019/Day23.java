@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class Day23 {
+public final class Day23 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23.class);
 
     /**

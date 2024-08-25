@@ -109,7 +109,7 @@ public final class Day17 {
      */
     static String findShortestPath(String passcode) {
         List<String> paths = findAllPaths(passcode);
-        return paths.get(0);
+        return paths.getFirst();
     }
 
     /**
@@ -133,7 +133,7 @@ public final class Day17 {
      */
     static String findLongestPath(String passcode) {
         List<String> paths = findAllPaths(passcode);
-        return paths.get(paths.size() - 1);
+        return paths.getLast();
     }
 
     private static List<String> findAllPaths(String passcode) {

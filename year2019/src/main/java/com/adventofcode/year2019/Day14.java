@@ -11,7 +11,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Day14 {
+public final class Day14 {
     /**
      * --- Day 14: Space Stoichiometry ---
      * As you approach the rings of Saturn, your ship's low fuel indicator turns on. There isn't any fuel here, but the

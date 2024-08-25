@@ -1,6 +1,6 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.memory.ObjectMemory;
+import com.adventofcode.common.memory.ObjectMemory;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -10,6 +10,10 @@ import org.slf4j.LoggerFactory;
 
 public final class Day23 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23.class);
+
+    private Day23() {
+        // No-Op
+    }
 
     /**
      * --- Day 23: Crab Cups ---

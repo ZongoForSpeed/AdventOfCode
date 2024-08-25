@@ -1,6 +1,5 @@
 package com.adventofcode.common.maths;
 
-import com.adventofcode.common.maths.Prime;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
