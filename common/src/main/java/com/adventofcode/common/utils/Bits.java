@@ -31,4 +31,20 @@ public final class Bits {
     public static long toBitSet(IntStream stream) {
         return stream.mapToLong(i -> 1L << i).sum();
     }
+
+    public static boolean contains(long bitset, int value) {
+        long mask = 1L << value;
+        return (bitset & mask) == mask;
+    }
+
+    public static long add(long bitset, int value) {
+        long mask = 1L << value;
+        return bitset | mask;
+    }
+
+    public static long remove(long bitset, int value) {
+        long mask = 1L << value;
+        return (bitset | mask) - mask;
+    }
+
 }
