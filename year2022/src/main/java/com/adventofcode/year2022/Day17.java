@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class Day17 {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17.class);
 
     private static final List<Rock> ROCKS = List.of(
