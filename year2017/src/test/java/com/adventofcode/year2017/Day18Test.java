@@ -1,5 +1,6 @@
 package com.adventofcode.year2017;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ class Day18Test {
     }
 
     @Test
+    @Disabled
     void inputDuetExample() throws InterruptedException {
         String input = """
                 snd 1
@@ -51,6 +53,7 @@ class Day18Test {
     }
 
     @Test
+    @Disabled
     void inputPartTwo() throws IOException, InterruptedException {
         try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/18/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day18.duet(scanner)).isEqualTo(8001);

@@ -1,6 +1,5 @@
 package com.adventofcode.year2017;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 class Day22Test {
 
 
