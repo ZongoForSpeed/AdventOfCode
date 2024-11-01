@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ class Day21Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2018/day/21/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int result = Day21.PartOne.run(scanner);
             Assertions.assertThat(result).isEqualTo(16134795);
         }
@@ -27,7 +28,7 @@ class Day21Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2018/day/21/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int result = Day21.PartTwo.run(scanner);
             Assertions.assertThat(result).isEqualTo(14254292);
         }

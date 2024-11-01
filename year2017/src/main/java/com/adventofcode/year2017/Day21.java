@@ -1,7 +1,7 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.common.point.map.BooleanMap;
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.BooleanMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,92 +38,92 @@ public final class Day21 {
 
     /**
      * --- Day 21: Fractal Art ---
-     *
+     * <p>
      * You find a program trying to generate some art. It uses a strange process
      * that involves repeatedly enhancing the detail of an image through a set of
      * rules.
-     *
+     * <p>
      * The image consists of a two-dimensional square grid of pixels that are
      * either on (#) or off (.). The program always begins with this pattern:
-     *
+     * <p>
      * .#.
      * ..#
      * ###
-     *
+     * <p>
      * Because the pattern is both 3 pixels wide and 3 pixels tall, it is said to
      * have a size of 3.
-     *
+     * <p>
      * Then, the program repeats the following process:
-     *
-     *   - If the size is evenly divisible by 2, break the pixels up into 2x2
-     *     squares, and convert each 2x2 square into a 3x3 square by following
-     *     the corresponding enhancement rule.
-     *   - Otherwise, the size is evenly divisible by 3; break the pixels up into
-     *     3x3 squares, and convert each 3x3 square into a 4x4 square by
-     *     following the corresponding enhancement rule.
-     *
+     * <p>
+     * - If the size is evenly divisible by 2, break the pixels up into 2x2
+     * squares, and convert each 2x2 square into a 3x3 square by following
+     * the corresponding enhancement rule.
+     * - Otherwise, the size is evenly divisible by 3; break the pixels up into
+     * 3x3 squares, and convert each 3x3 square into a 4x4 square by
+     * following the corresponding enhancement rule.
+     * <p>
      * Because each square of pixels is replaced by a larger one, the image gains
      * pixels and so its size increases.
-     *
+     * <p>
      * The artist's book of enhancement rules is nearby (your puzzle input);
      * however, it seems to be missing rules. The artist explains that sometimes,
      * one must rotate or flip the input pattern to find a match. (Never rotate or
      * flip the output pattern, though.) Each pattern is written concisely: rows
      * are listed as single units, ordered top-down, and separated by slashes. For
      * example, the following rules correspond to the adjacent patterns:
-     *
+     * <p>
      * ../.#  =  ..
-     *           .#
-     *
-     *                 .#.
+     * .#
+     * <p>
+     * .#.
      * .#./..#/###  =  ..#
-     *                 ###
-     *
-     *                         #..#
+     * ###
+     * <p>
+     * #..#
      * #..#/..../#..#/.##.  =  ....
-     *                         #..#
-     *                         .##.
-     *
+     * #..#
+     * .##.
+     * <p>
      * When searching for a rule to use, rotate and flip the pattern as necessary.
      * For example, all of the following patterns match the same rule:
-     *
+     * <p>
      * .#.   .#.   #..   ###
      * ..#   #..   #.#   ..#
      * ###   ###   ##.   .#.
-     *
+     * <p>
      * Suppose the book contained the following two rules:
-     *
+     * <p>
      * ../.# => ##./#../...
      * .#./..#/### => #..#/..../..../#..#
-     *
+     * <p>
      * As before, the program begins with this pattern:
-     *
+     * <p>
      * .#.
      * ..#
      * ###
-     *
+     * <p>
      * The size of the grid (3) is not divisible by 2, but it is divisible by 3.
      * It divides evenly into a single square; the square matches the second rule,
      * which produces:
-     *
+     * <p>
      * #..#
      * ....
      * ....
      * #..#
-     *
+     * <p>
      * The size of this enhanced grid (4) is evenly divisible by 2, so that rule
      * is used. It divides evenly into four squares:
-     *
+     * <p>
      * #.|.#
      * ..|..
      * --+--
      * ..|..
      * #.|.#
-     *
+     * <p>
      * Each of these squares matches the same rule (../.# => ##./#../...), three
      * of which require some flipping and rotation to line up with the rule. The
      * output for the rule is the same in all four cases:
-     *
+     * <p>
      * ##.|##.
      * #..|#..
      * ...|...
@@ -131,22 +131,22 @@ public final class Day21 {
      * ##.|##.
      * #..|#..
      * ...|...
-     *
+     * <p>
      * Finally, the squares are joined into a new grid:
-     *
+     * <p>
      * ##.##.
      * #..#..
      * ......
      * ##.##.
      * #..#..
      * ......
-     *
+     * <p>
      * Thus, after 2 iterations, the grid contains 12 pixels that are on.
-     *
+     * <p>
      * How many pixels stay on after 5 iterations?
-     *
+     * <p>
      * --- Part Two ---
-     *
+     * <p>
      * How many pixels stay on after 18 iterations?
      */
     public static BooleanMap buildFractal(Scanner scanner, int steps) {
@@ -229,7 +229,7 @@ public final class Day21 {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Key key = (Key) o;
-            return Objects.equals(hash, key.hash);
+            return (hash == key.hash);
         }
 
         @Override

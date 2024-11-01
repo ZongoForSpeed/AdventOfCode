@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -41,7 +42,7 @@ class Day01Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day01Test.class.getResourceAsStream("/2023/day/01/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             Assertions.assertThat(Day01.PartOne.sumCalibrationValues(scanner)).isEqualTo(55712);
         }
     }
@@ -49,7 +50,7 @@ class Day01Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day01Test.class.getResourceAsStream("/2023/day/01/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             Assertions.assertThat(Day01.PartTwo.sumCalibrationValues(scanner)).isEqualTo(55413);
         }
     }

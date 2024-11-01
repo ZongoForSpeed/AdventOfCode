@@ -83,7 +83,8 @@ public final class Day01 {
 
         public static int calibrationValue(String line) {
             IntList chars = new IntArrayList();
-            for (char c : line.toCharArray()) {
+            for (int i = 0; i < line.length(); i++) {
+                char c = line.charAt(i);
                 if (c >= '0' && c <= '9') {
                     chars.add(c - '0');
                 }

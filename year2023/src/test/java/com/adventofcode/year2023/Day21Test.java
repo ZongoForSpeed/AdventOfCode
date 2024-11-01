@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -68,7 +69,7 @@ class Day21Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2023/day/21/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             List<Point2D> current = Day21.PartOne.stepCounter(scanner, 64);
             Assertions.assertThat(current).hasSize(3637);
         }
@@ -77,7 +78,7 @@ class Day21Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2023/day/21/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long counter = Day21.PartTwo.infiniteStepCounter(scanner, 26501365);
             Assertions.assertThat(counter).isEqualTo(601113643448699L);
         }

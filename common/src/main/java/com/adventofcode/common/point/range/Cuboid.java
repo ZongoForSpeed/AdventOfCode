@@ -77,6 +77,7 @@ public record Cuboid(Range dx, Range dy, Range dz) {
         return dx.size() * dy.size() * dz.size();
     }
 
+    @Override
     public String toString() {
         return "{x=" + dx + ",y=" + dy + ",z=" + dz + "}";
     }

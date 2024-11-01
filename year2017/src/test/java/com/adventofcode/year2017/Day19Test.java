@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day19Test {
 
     @Test
+    @SuppressWarnings("MisleadingEscapedSpace")
     void inputExample() {
         String input = """
                      |         \s

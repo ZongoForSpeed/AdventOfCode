@@ -60,6 +60,7 @@ public final class Day12 {
             return map.keySet().intStream().max().orElse(0);
         }
 
+        @Override
         public String toString() {
             IntSet keySet = map.keySet();
             StringBuilder sb = new StringBuilder();

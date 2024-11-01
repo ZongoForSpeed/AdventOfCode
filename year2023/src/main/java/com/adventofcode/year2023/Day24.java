@@ -1,6 +1,7 @@
 package com.adventofcode.year2023;
 
 import com.adventofcode.common.maths.GaussJordan;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -291,8 +292,8 @@ public final class Day24 {
 
     public record Hailstorm(Point3D position, Point3D velocity) {
         static Hailstorm of(String line) {
-            String[] split = line.split("@");
-            return new Hailstorm(Point3D.of(split[0]), Point3D.of(split[1]));
+            List<String> split = Splitter.on('@').splitToList(line);
+            return new Hailstorm(Point3D.of(split.get(0)), Point3D.of(split.get(1)));
         }
     }
 }

@@ -70,25 +70,25 @@ public final class Permutations {
                 new IntArrayList());
     }
 
-    private static <T> List<T> permutationHelper(long no, LinkedList<T> in, List<T> out) {
+    private static <T> List<T> permutationHelper(long no, List<T> in, List<T> out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)));
-        return permutationHelper((int) (no % subFactorial), in, out);
+        return permutationHelper(no % subFactorial, in, out);
     }
 
-    private static LongList permutationHelper(long no, LinkedList<Long> in, LongList out) {
+    private static LongList permutationHelper(long no, List<Long> in, LongList out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)).longValue());
-        return permutationHelper((int) (no % subFactorial), in, out);
+        return permutationHelper(no % subFactorial, in, out);
     }
 
-    private static IntList permutationHelper(long no, LinkedList<Integer> in, IntList out) {
+    private static IntList permutationHelper(long no, List<Integer> in, IntList out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)).intValue());
-        return permutationHelper((int) (no % subFactorial), in, out);
+        return permutationHelper(no % subFactorial, in, out);
     }
 
     @SafeVarargs

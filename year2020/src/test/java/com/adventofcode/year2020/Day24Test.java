@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -61,7 +62,7 @@ class Day24Test {
     @Test
     void inputLobbyLayout() throws IOException {
         try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2020/day/24/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(inputStream));
+            Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8);
 
             Map<Point2D, Boolean> grid = Day24.hexGrid(scanner);
             long count = grid.values().stream().filter(v -> v).count();

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -194,7 +195,7 @@ class Day10Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2022/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long signalStrength = Day10.PartOne.getSignalStrength(scanner);
             Assertions.assertThat(signalStrength).isEqualTo(14780L);
         }
@@ -203,7 +204,7 @@ class Day10Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2022/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             String crt = Day10.PartTwo.printCRT(scanner);
             Assertions.assertThat(crt).isEqualTo("""
                     ####.#....###..#....####..##..####.#....

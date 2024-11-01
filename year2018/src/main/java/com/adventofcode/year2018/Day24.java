@@ -612,6 +612,7 @@ public final class Day24 {
             return Integer.compare(-u.init, -v.init);
         }
 
+        @Override
         public String toString() {
             return id + " power=" + power() + " init=" + init;
         }

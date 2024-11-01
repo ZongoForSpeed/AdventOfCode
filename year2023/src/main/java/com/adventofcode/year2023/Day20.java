@@ -1,5 +1,6 @@
 package com.adventofcode.year2023;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -304,14 +305,14 @@ public final class Day20 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split("->");
-            String label = split[0].trim();
+            List<String> split = Splitter.on("->").splitToList(line);
+            String label = split.getFirst().trim();
             char type = label.charAt(0);
             if (type != 'b') {
                 label = label.substring(1);
             }
 
-            List<String> destinations = Arrays.stream(split[1].split(", ")).map(String::trim).toList();
+            List<String> destinations = Arrays.stream(split.get(1).split(", ")).map(String::trim).toList();
             if (destinations.contains("rx")) {
                 rxInputs.add(label);
             }

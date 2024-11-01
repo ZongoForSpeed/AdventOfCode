@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -38,7 +39,7 @@ class Day22Test {
 
     @Test
     void inputCrabCombatPartOne() throws IOException {
-        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2020/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2020/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long point = Day22.playCrabCombat(scanner);
             assertThat(point).isEqualTo(33393);
         }
@@ -46,7 +47,8 @@ class Day22Test {
 
     @Test
     void inputCrabCombatPartTwo() throws IOException {
-        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2020/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2020/day/22/input");
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long recursiveCombat = Day22.playRecursiveCombat(scanner);
             assertThat(recursiveCombat).isEqualTo(31963);
         }

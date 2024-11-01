@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -37,7 +38,7 @@ class Day06Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day06Test.class.getResourceAsStream("/2023/day/06/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long reduce = Day06.PartOne.raceRecord(scanner);
             Assertions.assertThat(reduce).isEqualTo(131376);
         }

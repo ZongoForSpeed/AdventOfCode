@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -37,7 +38,7 @@ class Day25Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day25Test.class.getResourceAsStream("/2023/day/25/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int result = Day25.PartOne.minimumCut(scanner);
             assertThat(result).isEqualTo(546804);
         }

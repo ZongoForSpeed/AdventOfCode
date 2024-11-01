@@ -5,12 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
 class Day05Test {
 
     @Test
+    @SuppressWarnings("MisleadingEscapedSpace")
     void inputExample() {
         String input = """
                     [D]   \s
@@ -39,7 +41,7 @@ class Day05Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day05Test.class.getResourceAsStream("/2022/day/05/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             String topCrate = Day05.PartOne.supplyStacks(scanner);
             Assertions.assertThat(topCrate).isEqualTo("NTWZZWHFV");
         }
@@ -49,7 +51,7 @@ class Day05Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day05Test.class.getResourceAsStream("/2022/day/05/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             String topCrate = Day05.PartTwo.supplyStacks(scanner);
             Assertions.assertThat(topCrate).isEqualTo("BRZGFVBTJ");
         }

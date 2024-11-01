@@ -1,5 +1,6 @@
 package com.adventofcode.year2023;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Function;
 import it.unimi.dsi.fastutil.chars.Char2IntMap;
 import it.unimi.dsi.fastutil.chars.Char2IntOpenHashMap;
@@ -174,9 +175,9 @@ public final class Day07 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" ");
-            String cards = split[0];
-            long bid = Long.parseLong(split[1]);
+            List<String> split = Splitter.on(' ').splitToList(line);
+            String cards = split.get(0);
+            long bid = Long.parseLong(split.get(1));
 
             Hand hand = Hand.of(cards, bid, values, function);
 

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -30,7 +31,8 @@ class Day21Test {
 
     @Test
     void inputAllergenAssessment() throws IOException {
-        try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2020/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+        try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2020/day/21/input");
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             Pair<Long, String> result = Day21.findAllergenAssessment(scanner);
             assertThat(result.left()).isEqualTo(2170L);
             assertThat(result.right()).isEqualTo("nfnfk,nbgklf,clvr,fttbhdr,qjxxpr,hdsm,sjhds,xchzh");

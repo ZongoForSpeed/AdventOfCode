@@ -1,6 +1,7 @@
 package com.adventofcode.year2023;
 
 import com.adventofcode.common.point.range.Range;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.apache.commons.lang3.StringUtils;
@@ -39,8 +40,8 @@ public final class Day05 {
                 sourceCategory = matcher.group(1);
                 destinationCategory = matcher.group(2);
             } else {
-                String[] split = line.split(" ");
-                ranges.add(new FertilizerRanges(Long.parseLong(split[0]), Long.parseLong(split[1]), Long.parseLong(split[2])));
+                List<String> split = Splitter.on(' ').splitToList(line);
+                ranges.add(new FertilizerRanges(Long.parseLong(split.get(0)), Long.parseLong(split.get(1)), Long.parseLong(split.get(2))));
             }
         }
 

@@ -1,8 +1,10 @@
 package com.adventofcode.year2015;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -27,37 +29,37 @@ public final class Day07 {
         if (command == null) {
             throw new IllegalStateException("Unknown wire: " + wire);
         }
-        String[] in = command.split(" ");
-        switch (in.length) {
+        List<String> in = Splitter.on(' ').splitToList(command);
+        switch (in.size()) {
             case 1:
-                value = getWireValue(cache, commands, in[0]);
+                value = getWireValue(cache, commands, in.getFirst());
                 break;
             case 2:
-                if ("NOT".equals(in[0])) {
-                    value = 65535 - getWireValue(cache, commands, in[1]);
+                if ("NOT".equals(in.get(0))) {
+                    value = 65535 - getWireValue(cache, commands, in.get(1));
                 } else {
                     throw new IllegalStateException("Unknown command type: " + command);
                 }
                 break;
             case 3:
-                switch (in[1]) {
+                switch (in.get(1)) {
                     case "AND" -> {
-                        int v1 = getWireValue(cache, commands, in[0]);
-                        int v2 = getWireValue(cache, commands, in[2]);
+                        int v1 = getWireValue(cache, commands, in.get(0));
+                        int v2 = getWireValue(cache, commands, in.get(2));
                         value = v1 & v2;
                     }
                     case "OR" -> {
-                        int v1 = getWireValue(cache, commands, in[0]);
-                        int v2 = getWireValue(cache, commands, in[2]);
+                        int v1 = getWireValue(cache, commands, in.get(0));
+                        int v2 = getWireValue(cache, commands, in.get(2));
                         value = v1 | v2;
                     }
                     case "LSHIFT" -> {
-                        int v1 = getWireValue(cache, commands, in[0]);
-                        value = v1 << Integer.parseInt(in[2]);
+                        int v1 = getWireValue(cache, commands, in.get(0));
+                        value = v1 << Integer.parseInt(in.get(2));
                     }
                     case "RSHIFT" -> {
-                        int v1 = getWireValue(cache, commands, in[0]);
-                        value = v1 >> Integer.parseInt(in[2]);
+                        int v1 = getWireValue(cache, commands, in.get(0));
+                        value = v1 >> Integer.parseInt(in.get(2));
                     }
                     default -> throw new IllegalStateException("Unknown command type: " + command);
                 }
@@ -74,8 +76,8 @@ public final class Day07 {
         Map<String, String> commands = new HashMap<>();
 
         while (scanner.hasNextLine()) {
-            String[] split = scanner.nextLine().split(" -> ");
-            commands.put(split[1], split[0]);
+            List<String> split = Splitter.on(" -> ").splitToList(scanner.nextLine());
+            commands.put(split.get(1), split.get(0));
         }
 
         if (override != null) {

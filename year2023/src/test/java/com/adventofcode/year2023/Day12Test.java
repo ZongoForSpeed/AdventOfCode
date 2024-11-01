@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -43,7 +44,7 @@ class Day12Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day12Test.class.getResourceAsStream("/2023/day/12/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int count = Day12.PartOne.countArrangements(scanner);
 
             Assertions.assertThat(count).isEqualTo(6871);
@@ -53,7 +54,7 @@ class Day12Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day12Test.class.getResourceAsStream("/2023/day/12/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long count = Day12.PartTwo.countArrangements(scanner, 5);
 
             Assertions.assertThat(count).isEqualTo(2043098029844L);

@@ -1,5 +1,6 @@
 package com.adventofcode.year2023;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -133,7 +134,7 @@ public final class Day15 {
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] split = line.split(",");
+                Iterable<String> split = Splitter.on(',').split(line);
                 for (String s : split) {
                     long hash = hash(s);
                     LOGGER.trace("{} becomes {}", s, hash);
@@ -301,7 +302,7 @@ public final class Day15 {
             }
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] split = line.split(",");
+                Iterable<String> split = Splitter.on(',').split(line);
                 for (String s : split) {
                     Matcher matcher = PATTERN_EQUALS.matcher(s);
                     if (matcher.matches()) {
@@ -351,7 +352,7 @@ public final class Day15 {
             for (Box box : boxes) {
                 int slot = 1;
                 for (Map.Entry<String, Integer> entry : box.lenses().entrySet()) {
-                    power += (box.id() + 1) * (slot++) * entry.getValue();
+                    power += (box.id() + 1) * slot++ * entry.getValue();
                 }
             }
             return power;

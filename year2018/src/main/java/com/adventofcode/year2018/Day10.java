@@ -31,6 +31,7 @@ public final class Day10 {
             Point2D.of(-1, -1)
     );
     private static final Logger LOGGER = LoggerFactory.getLogger(Day10.class);
+    @SuppressWarnings("MisleadingEscapedSpace")
     private static final Pattern PATTERN = Pattern.compile("position=<\s*(-??\\d+),\s*(-??\\d+)> velocity=<\s*(-??\\d+),\s*(-??\\d+)>");
 
     private Day10() {

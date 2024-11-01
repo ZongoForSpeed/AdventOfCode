@@ -203,6 +203,7 @@ public final class Day21 {
             return "" + value;
         }
 
+        @Override
         public Expression op(char op, Expression right) {
             return switch (right) {
                 case Linear(long a, long b, long c) -> switch (op) {

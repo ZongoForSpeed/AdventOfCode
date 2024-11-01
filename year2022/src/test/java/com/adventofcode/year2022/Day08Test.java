@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -35,7 +36,7 @@ class Day08Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day08Test.class.getResourceAsStream("/2022/day/08/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long cardinality = Day08.PartOne.countVisibleTrees(scanner);
             Assertions.assertThat(cardinality).isEqualTo(1820);
         }
@@ -44,7 +45,7 @@ class Day08Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day08Test.class.getResourceAsStream("/2022/day/08/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
             Assertions.assertThat(maxScenicScore).isEqualTo(385112);
         }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -37,7 +38,7 @@ class Day24Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2018/day/24/input");
-        Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+        Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             Integer battle = Day24.PartOne.immuneSystemSimulator(scanner);
 
             Assertions.assertThat(battle).isEqualTo(15392);
@@ -47,7 +48,7 @@ class Day24Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2018/day/24/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             Integer battle = Day24.PartTwo.immuneSystemSimulator(scanner);
 
             Assertions.assertThat(battle).isEqualTo(1092);

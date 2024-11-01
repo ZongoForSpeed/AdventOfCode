@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -32,7 +33,7 @@ class Day24Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2023/day/24/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             List<Day24.Hailstorm> hailstorms = Day24.readHailstorms(scanner);
 
             int count = Day24.PartOne.countIntersection(hailstorms, 200000000000000L, 400000000000000L);
@@ -44,7 +45,7 @@ class Day24Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2023/day/24/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             List<Day24.Hailstorm> hailstorms = Day24.readHailstorms(scanner);
 
             long solved = Day24.PartTwo.solveEquation(hailstorms);

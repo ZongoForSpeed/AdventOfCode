@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.OptionalLong;
 import java.util.Scanner;
@@ -68,7 +69,7 @@ class Day05Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day05Test.class.getResourceAsStream("/2023/day/05/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             OptionalLong min = Day05.PartOne.fertilizer(scanner);
             Assertions.assertThat(min).isPresent().hasValue(173706076L);
         }
@@ -78,7 +79,7 @@ class Day05Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day05Test.class.getResourceAsStream("/2023/day/05/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             OptionalLong min = Day05.PartTwo.fertilizer(scanner);
             Assertions.assertThat(min).isPresent().hasValue(11611182L);
         }

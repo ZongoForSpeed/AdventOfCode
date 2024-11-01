@@ -587,47 +587,57 @@ public final class Day22 {
 
     enum Region {
         MOUTH(0) {
+            @Override
             public char toChar() {
                 return 'M';
             }
 
+            @Override
             public boolean accept(Tool tool) {
                 return true;
             }
 
         },
         ROCKY(0) {
+            @Override
             public char toChar() {
                 return '.';
             }
 
+            @Override
             public boolean accept(Tool tool) {
                 return tool == Tool.CLIMBING_GEAR || tool == Tool.TORCH;
             }
         },
         WET(1) {
+            @Override
             public char toChar() {
                 return '=';
             }
 
+            @Override
             public boolean accept(Tool tool) {
                 return tool == Tool.CLIMBING_GEAR || tool == Tool.NEITHER;
             }
         },
         NARROW(2) {
+            @Override
             public char toChar() {
                 return '|';
             }
 
+            @Override
             public boolean accept(Tool tool) {
                 return tool == Tool.NEITHER || tool == Tool.TORCH;
             }
         },
         TARGET(0) {
+            @Override
             public char toChar() {
                 return 'T';
             }
 
+            @Override
             public boolean accept(Tool tool) {
                 return true;
             }

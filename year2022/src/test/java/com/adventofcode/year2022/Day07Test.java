@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.OptionalLong;
 import java.util.Scanner;
@@ -54,7 +55,7 @@ class Day07Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day07Test.class.getResourceAsStream("/2022/day/07/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long sum = Day07.PartOne.findSum(scanner);
             Assertions.assertThat(sum).isEqualTo(1307902);
         }
@@ -63,7 +64,7 @@ class Day07Test {
     @Test
     void inputPartTwp() throws IOException {
         try (InputStream inputStream = Day07Test.class.getResourceAsStream("/2022/day/07/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             OptionalLong min = Day07.PartTwo.findSmallestToDelete(scanner);
             Assertions.assertThat(min).hasValue(7068748);
         }

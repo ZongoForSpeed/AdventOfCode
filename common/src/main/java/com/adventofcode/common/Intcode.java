@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.LongConsumer;
@@ -209,7 +210,7 @@ public class Intcode {
 
         public Robot(String program) {
             executorService = Executors.newSingleThreadExecutor();
-            executorService.submit(() -> intcode(program, take(inputQueue), offer(outputQueue)));
+            var unused = executorService.submit(() -> intcode(program, take(inputQueue), offer(outputQueue)));
         }
 
         public long action(long input) {

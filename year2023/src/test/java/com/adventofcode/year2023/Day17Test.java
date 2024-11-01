@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -60,7 +61,7 @@ class Day17Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day17Test.class.getResourceAsStream("/2023/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(936);
         }
@@ -69,7 +70,7 @@ class Day17Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day17Test.class.getResourceAsStream("/2023/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(1157);
         }

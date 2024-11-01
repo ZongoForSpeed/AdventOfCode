@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -67,7 +68,7 @@ class Day08Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day08Test.class.getResourceAsStream("/2023/day/08/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int count = Day08.PartOne.countSteps(scanner);
             Assertions.assertThat(count).isEqualTo(22411);
         }
@@ -76,7 +77,7 @@ class Day08Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day08Test.class.getResourceAsStream("/2023/day/08/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long count = Day08.PartTwo.countSteps(scanner);
             Assertions.assertThat(count).isEqualTo(11188774513823L);
         }

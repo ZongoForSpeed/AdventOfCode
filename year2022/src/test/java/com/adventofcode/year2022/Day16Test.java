@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -42,7 +43,7 @@ class Day16Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/16/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day16.solvePartOne(scanner)).isEqualTo(2183);
         }
     }
@@ -50,7 +51,7 @@ class Day16Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/16/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day16.solvePartTwo(scanner)).isEqualTo(2911);
         }
     }

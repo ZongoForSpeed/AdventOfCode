@@ -1,5 +1,6 @@
 package com.adventofcode.year2023;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.collections4.SetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -105,9 +107,9 @@ public final class Day25 {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
-                String[] split = line.split(": ");
-                String v = split[0];
-                for (String u : split[1].split(" ")) {
+                List<String> split = Splitter.on(": ").splitToList(line);
+                String v = split.get(0);
+                for (String u : Splitter.on(' ').split(split.get(1))) {
                     graph.computeIfAbsent(u, ignore -> new HashSet<>()).add(v);
                     graph.computeIfAbsent(v, ignore -> new HashSet<>()).add(u);
                 }

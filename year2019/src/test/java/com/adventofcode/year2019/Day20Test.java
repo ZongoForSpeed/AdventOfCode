@@ -1,6 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day20Test {
 
     @Test
+    @SuppressWarnings("MisleadingEscapedSpace")
     void testSimpleExample() {
         String input = """
                          A          \s
@@ -39,6 +41,7 @@ class Day20Test {
 
 
     @Test
+    @SuppressWarnings("MisleadingEscapedSpace")
     void testLargerExample() {
         String input = """
                                    A              \s
@@ -88,6 +91,8 @@ class Day20Test {
         assertThat(steps).isEqualTo(684);
     }
 
+    @SuppressWarnings("MisleadingEscapedSpace")
+    @Disabled
     void testRecursiveDonutMaze() {
         String input = """
                              Z L X W       C                \s

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -36,7 +37,7 @@ class Day04Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day04Test.class.getResourceAsStream("/2022/day/04/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long count = Day04.PartOne.countFullyContained(scanner);
             Assertions.assertThat(count).isEqualTo(444);
         }
@@ -45,7 +46,7 @@ class Day04Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day04Test.class.getResourceAsStream("/2022/day/04/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long count = Day04.PartTwo.countOverlaps(scanner);
             Assertions.assertThat(count).isEqualTo(801);
         }

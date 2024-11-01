@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -34,7 +35,7 @@ class Day09Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day09Test.class.getResourceAsStream("/2023/day/09/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int sum = Day09.PartOne.extrapolatedValues(scanner);
             Assertions.assertThat(sum).isEqualTo(1819125966);
         }
@@ -43,7 +44,7 @@ class Day09Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day09Test.class.getResourceAsStream("/2023/day/09/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int sum = Day09.PartTwo.extrapolatedValues(scanner);
             Assertions.assertThat(sum).isEqualTo(1140);
         }

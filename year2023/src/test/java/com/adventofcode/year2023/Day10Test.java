@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -100,7 +101,7 @@ class Day10Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2023/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int depth = Day10.PartOne.findMaxDepth(scanner);
             Assertions.assertThat(depth).isEqualTo(6613);
         }
@@ -110,7 +111,7 @@ class Day10Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2023/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int depth = Day10.PartTwo.countEnclosedTiles(scanner);
             Assertions.assertThat(depth).isEqualTo(511);
         }

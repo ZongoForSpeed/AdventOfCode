@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -54,7 +55,7 @@ class Day23Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day23Test.class.getResourceAsStream("/2023/day/23/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int cardinality = Day23.PartOne.longestPathLength(scanner);
             Assertions.assertThat(cardinality).isEqualTo(2070);
         }
@@ -63,7 +64,7 @@ class Day23Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day23Test.class.getResourceAsStream("/2023/day/23/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             int cardinality = Day23.PartTwo.longestPathLength(scanner);
             Assertions.assertThat(cardinality).isEqualTo(6498);
         }

@@ -102,6 +102,7 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
         return Arrays.stream(view).map(String::valueOf).toList();
     }
 
+    @Override
     public String toString() {
         List<String> print = print(toCharFunction);
         return String.join(System.lineSeparator(), print);

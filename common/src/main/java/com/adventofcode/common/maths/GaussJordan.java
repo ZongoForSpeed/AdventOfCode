@@ -18,13 +18,13 @@ public class GaussJordan {
         this.n = n;
     }
 
-    public GaussJordan(double[][] A, double[] B) {
-        this.a = new double[A.length][A.length + 1];
-        this.n = A.length;
+    public GaussJordan(double[][] matrixA, double[] vectorB) {
+        this.a = new double[matrixA.length][matrixA.length + 1];
+        this.n = matrixA.length;
 
-        for (int i = 0; i < A.length; i++) {
-            System.arraycopy(A[i], 0, a[i], 0, A[i].length);
-            a[i][A.length] = B[i];
+        for (int i = 0; i < matrixA.length; i++) {
+            System.arraycopy(matrixA[i], 0, a[i], 0, matrixA[i].length);
+            a[i][matrixA.length] = vectorB[i];
         }
     }
 
@@ -70,8 +70,9 @@ public class GaussJordan {
                     // echelon form(diagonal matrix)
                     double p = a[j][i] / a[i][i];
 
-                    for (int k = 0; k <= n; k++)
-                        a[j][k] = a[j][k] - (a[i][k]) * p;
+                    for (int k = 0; k <= n; k++){
+                        a[j][k] = a[j][k] - a[i][k] * p;
+                    }
                 }
             }
         }

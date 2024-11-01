@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -44,7 +45,7 @@ class Day18Test {
     @Test
     void inputPartOne() throws IOException {
         try (InputStream inputStream = Day18Test.class.getResourceAsStream("/2023/day/18/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long digPlan = Day18.PartOne.readDigPlan(scanner);
             Assertions.assertThat(digPlan).isEqualTo(31171);
         }
@@ -53,7 +54,7 @@ class Day18Test {
     @Test
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day18Test.class.getResourceAsStream("/2023/day/18/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             long digPlan = Day18.PartTwo.readDigPlan(scanner);
             Assertions.assertThat(digPlan).isEqualTo(131431655002266L);
         }

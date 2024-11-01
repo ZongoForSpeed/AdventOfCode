@@ -1,10 +1,12 @@
 package com.adventofcode.year2023;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -171,9 +173,9 @@ public final class Day02 {
 
         Map<String, Integer> cubes = new HashMap<>();
         for (String c : array) {
-            String[] draw = c.split(" ");
-            Integer number = Integer.valueOf(draw[0]);
-            String color = draw[1];
+            List<String> draw = Splitter.on(' ').splitToList(c);
+            Integer number = Integer.valueOf(draw.getFirst());
+            String color = draw.get(1);
             LOGGER.debug("{} ==> {}", color, number);
             cubes.merge(color, number, Integer::max);
         }

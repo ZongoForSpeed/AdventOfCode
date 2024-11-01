@@ -37,6 +37,7 @@ public class IntMemory implements Memory<Integer> {
         }
     }
 
+    @Override
     public Integer get(int key) {
         checkKey(key);
 
@@ -104,6 +105,7 @@ public class IntMemory implements Memory<Integer> {
         mem = Arrays.copyOf(mem, newLength);
     }
 
+    @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner("), (", "(", ")");
         for (int i : keySet()) {

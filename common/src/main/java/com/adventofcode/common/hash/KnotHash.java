@@ -26,6 +26,7 @@ public final class KnotHash {
         return integers.getInt(0) * integers.getInt(1);
     }
 
+    @SuppressWarnings("UnusedCollectionModifiedInPlace")
     private static IntList sparseHash(IntList lengths, int endExclusive, int steps) {
         IntList elements = IntArrayList.toList(IntStream.range(0, endExclusive));
 

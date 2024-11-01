@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day13Test {
 
     @Test
+    @SuppressWarnings("MisleadingEscapedSpace")
     void inputExamplePartOne() {
         String input = """
                 /->-\\       \s
@@ -27,6 +28,7 @@ class Day13Test {
     }
 
     @Test
+    @SuppressWarnings("MisleadingEscapedSpace")
     void inputExamplePartTwo() {
         String input = """
                 />-<\\ \s

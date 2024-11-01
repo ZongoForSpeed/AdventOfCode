@@ -155,6 +155,7 @@ public final class Day17 {
             position++;
         }
 
+        @Override
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < root.size(); i++) {

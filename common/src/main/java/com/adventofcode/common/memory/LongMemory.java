@@ -37,6 +37,7 @@ public class LongMemory implements Memory<Long> {
         }
     }
 
+    @Override
     public Long get(int key) {
         checkKey(key);
 
@@ -91,6 +92,7 @@ public class LongMemory implements Memory<Long> {
         mem = Arrays.copyOf(mem, newLength);
     }
 
+    @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner("), (", "(", ")");
         for (int i : keySet()) {

@@ -79,6 +79,7 @@ public record Rectangle(Range dx, Range dy) {
         return dx.size() * dy.size();
     }
 
+    @Override
     public String toString() {
         return "{x=" + dx + ",y=" + dy + "}";
     }

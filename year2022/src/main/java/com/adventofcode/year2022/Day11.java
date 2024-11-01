@@ -1,5 +1,6 @@
 package com.adventofcode.year2022;
 
+import com.google.common.primitives.Longs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -459,7 +460,7 @@ public final class Day11 {
             if (matcher.matches()) {
                 String[] split = matcher.group(1).split(", ");
                 long[] array = Arrays.stream(split).mapToLong(Long::parseLong).toArray();
-                LOGGER.info("Items = {}", Arrays.asList(array));
+                LOGGER.info("Items = {}", Longs.asList(array));
                 ArrayDeque<Long> items = new ArrayDeque<>();
                 for (long l : array) {
                     items.add(l);
