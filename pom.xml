@@ -21,6 +21,7 @@
         <module>year2021</module>
         <module>year2022</module>
         <module>year2023</module>
+        <module>year2024</module>
     </modules>
 
     <properties>
@@ -131,6 +132,12 @@
             <dependency>
                 <groupId>com.github.zongoforspeed</groupId>
                 <artifactId>year2023</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.zongoforspeed</groupId>
+                <artifactId>year2024</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
