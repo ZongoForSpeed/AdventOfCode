@@ -1,5 +1,6 @@
 package com.adventofcode.year2015;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,34 +90,34 @@ public final class Day23 {
         registers.put('b', new AtomicLong(0));
         while (currentLine < instructions.size()) {
             String instruction = instructions.get(currentLine);
-            String[] split = instruction.split(" ");
-            String command = split[0];
+            List<String> split = Splitter.on(' ').splitToList(instruction);;
+            String command = split.get(0);
             switch (command) {
                 case "hlf" -> {
-                    registers.get(split[1].charAt(0)).updateAndGet(l -> l / 2);
+                    registers.get(split.get(1).charAt(0)).updateAndGet(l -> l / 2);
                     currentLine++;
                 }
                 case "tpl" -> {
-                    registers.get(split[1].charAt(0)).updateAndGet(l -> l * 3);
+                    registers.get(split.get(1).charAt(0)).updateAndGet(l -> l * 3);
                     currentLine++;
                 }
                 case "inc" -> {
-                    registers.get(split[1].charAt(0)).incrementAndGet();
+                    registers.get(split.get(1).charAt(0)).incrementAndGet();
                     currentLine++;
                 }
-                case "jmp" -> currentLine += Integer.parseInt(split[1]);
+                case "jmp" -> currentLine += Integer.parseInt(split.get(1));
                 case "jie" -> {
-                    AtomicLong register = registers.get(split[1].charAt(0));
+                    AtomicLong register = registers.get(split.get(1).charAt(0));
                     if (register.get() % 2 == 0) {
-                        currentLine += Integer.parseInt(split[2]);
+                        currentLine += Integer.parseInt(split.get(2));
                     } else {
                         currentLine++;
                     }
                 }
                 case "jio" -> {
-                    AtomicLong register = registers.get(split[1].charAt(0));
+                    AtomicLong register = registers.get(split.get(1).charAt(0));
                     if (register.get() == 1) {
-                        currentLine += Integer.parseInt(split[2]);
+                        currentLine += Integer.parseInt(split.get(2));
                     } else {
                         currentLine++;
                     }
