@@ -53,7 +53,7 @@ public final class KnotHash {
         final int size = sparseHash.size();
         String denseHash = IntStream.range(0, (size + 15) >> 4)
                 .map(i -> hashXOR(sparseHash, i << 4, (i + 1) << 4))
-                .mapToObj(i -> String.format("%02x", i))
+                .mapToObj(i -> "%02x".formatted(i))
                 .collect(Collectors.joining());
 
         LOGGER.info("knotHash of '{}': {}", input, denseHash);

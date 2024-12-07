@@ -28,7 +28,7 @@ class Day03Test {
     @Test
     void testInput() throws IOException {
         List<String> lines = FileUtils.readLines("/2019/day/3/input");
-        assertThat(Day03.intersection(lines.get(0), lines.get(1))).isEqualTo(260);
+        assertThat(Day03.intersection(lines.getFirst(), lines.get(1))).isEqualTo(260);
     }
 
     @Test
@@ -49,6 +49,6 @@ class Day03Test {
     @Test
     void testInputSteps() throws IOException {
         List<String> lines = FileUtils.readLines("/2019/day/3/input");
-        assertThat(Day03.intersectionSteps(lines.get(0), lines.get(1))).isEqualTo(15612);
+        assertThat(Day03.intersectionSteps(lines.getFirst(), lines.get(1))).isEqualTo(15612);
     }
 }

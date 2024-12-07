@@ -154,7 +154,7 @@ public final class Day10 {
     public static IntegerPair jolterAdapter(LongList adapters) {
         adapters = new LongArrayList(adapters);
         Collections.sort(adapters);
-        adapters.add(0, 0L);
+        adapters.addFirst(0L);
         adapters.add(adapters.getLong(adapters.size() - 1) + 3);
 
         int[] diffs = new int[10];
@@ -239,7 +239,7 @@ public final class Day10 {
     public static long adapterArrangements(LongList adapters) {
         adapters = new LongArrayList(adapters);
         Collections.sort(adapters);
-        adapters.add(0, 0L);
+        adapters.addFirst(0L);
         adapters.add(adapters.getLong(adapters.size() - 1) + 3);
 
         Long2LongMap cache = new Long2LongOpenHashMap();

@@ -176,7 +176,7 @@ public final class Day07 {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             List<String> split = Splitter.on(' ').splitToList(line);
-            String cards = split.get(0);
+            String cards = split.getFirst();
             long bid = Long.parseLong(split.get(1));
 
             Hand hand = Hand.of(cards, bid, values, function);

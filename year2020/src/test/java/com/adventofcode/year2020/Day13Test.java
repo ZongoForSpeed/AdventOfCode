@@ -19,7 +19,7 @@ class Day13Test {
                 "7,13,x,x,59,x,31,19"
         );
 
-        long timestamp = Long.parseLong(notes.get(0));
+        long timestamp = Long.parseLong(notes.getFirst());
 
         long[] buses = Arrays.stream(notes.get(1).split(","))
                 .filter(t -> !"x".equals(t))
@@ -48,7 +48,7 @@ class Day13Test {
     void inputShuttleSearch() throws IOException {
         List<String> notes = FileUtils.readLines("/2020/day/13/input");
 
-        long timestamp = Long.parseLong(notes.get(0));
+        long timestamp = Long.parseLong(notes.getFirst());
 
         long[] buses = Arrays.stream(notes.get(1).split(","))
                 .filter(t -> !"x".equals(t))

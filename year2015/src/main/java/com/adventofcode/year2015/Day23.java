@@ -91,7 +91,7 @@ public final class Day23 {
         while (currentLine < instructions.size()) {
             String instruction = instructions.get(currentLine);
             List<String> split = Splitter.on(' ').splitToList(instruction);;
-            String command = split.get(0);
+            String command = split.getFirst();
             switch (command) {
                 case "hlf" -> {
                     registers.get(split.get(1).charAt(0)).updateAndGet(l -> l / 2);

@@ -28,7 +28,7 @@ public final class Day18 {
         if (o instanceof Number i) {
             return new SnailfishNumber(i.intValue());
         } else if (o instanceof List<?> l) {
-            return Snailfish.add(readSnailfish(l.get(0)), readSnailfish(l.get(1)));
+            return Snailfish.add(readSnailfish(l.getFirst()), readSnailfish(l.get(1)));
         }
 
         throw new IllegalStateException("Unknown type of object: " + o.getClass());
@@ -39,7 +39,7 @@ public final class Day18 {
     }
 
     private static Snailfish sumPartOne(List<Snailfish> fishes) {
-        Snailfish result = fishes.get(0);
+        Snailfish result = fishes.getFirst();
         for (int i = 1; i < fishes.size(); i++) {
             result = Snailfish.add(result, fishes.get(i));
             result = result.reduce();

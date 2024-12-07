@@ -35,7 +35,7 @@ public final class Day07 {
                 value = getWireValue(cache, commands, in.getFirst());
                 break;
             case 2:
-                if ("NOT".equals(in.get(0))) {
+                if ("NOT".equals(in.getFirst())) {
                     value = 65535 - getWireValue(cache, commands, in.get(1));
                 } else {
                     throw new IllegalStateException("Unknown command type: " + command);
@@ -44,21 +44,21 @@ public final class Day07 {
             case 3:
                 switch (in.get(1)) {
                     case "AND" -> {
-                        int v1 = getWireValue(cache, commands, in.get(0));
+                        int v1 = getWireValue(cache, commands, in.getFirst());
                         int v2 = getWireValue(cache, commands, in.get(2));
                         value = v1 & v2;
                     }
                     case "OR" -> {
-                        int v1 = getWireValue(cache, commands, in.get(0));
+                        int v1 = getWireValue(cache, commands, in.getFirst());
                         int v2 = getWireValue(cache, commands, in.get(2));
                         value = v1 | v2;
                     }
                     case "LSHIFT" -> {
-                        int v1 = getWireValue(cache, commands, in.get(0));
+                        int v1 = getWireValue(cache, commands, in.getFirst());
                         value = v1 << Integer.parseInt(in.get(2));
                     }
                     case "RSHIFT" -> {
-                        int v1 = getWireValue(cache, commands, in.get(0));
+                        int v1 = getWireValue(cache, commands, in.getFirst());
                         value = v1 >> Integer.parseInt(in.get(2));
                     }
                     default -> throw new IllegalStateException("Unknown command type: " + command);
@@ -77,7 +77,7 @@ public final class Day07 {
 
         while (scanner.hasNextLine()) {
             List<String> split = Splitter.on(" -> ").splitToList(scanner.nextLine());
-            commands.put(split.get(1), split.get(0));
+            commands.put(split.get(1), split.getFirst());
         }
 
         if (override != null) {

@@ -41,7 +41,7 @@ public final class Day05 {
                 destinationCategory = matcher.group(2);
             } else {
                 List<String> split = Splitter.on(' ').splitToList(line);
-                ranges.add(new FertilizerRanges(Long.parseLong(split.get(0)), Long.parseLong(split.get(1)), Long.parseLong(split.get(2))));
+                ranges.add(new FertilizerRanges(Long.parseLong(split.getFirst()), Long.parseLong(split.get(1)), Long.parseLong(split.get(2))));
             }
         }
 

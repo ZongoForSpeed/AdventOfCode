@@ -158,7 +158,7 @@ public final class Day12 {
                 String line = scanner.nextLine();
 
                 List<String> split = Splitter.on(' ').splitToList(line);
-                String pattern = split.get(0);
+                String pattern = split.getFirst();
                 int[] springs = Arrays.stream(split.get(1).split(",")).mapToInt(Integer::parseInt).toArray();
 
                 int countArrangements = countArrangements(pattern, springs);
@@ -281,7 +281,7 @@ public final class Day12 {
                 String line = scanner.nextLine();
 
                 List<String> split = Splitter.on(' ').splitToList(line);
-                String pattern = split.get(0);
+                String pattern = split.getFirst();
                 int[] springs = Arrays.stream(split.get(1).split(",")).mapToInt(Integer::parseInt).toArray();
 
                 long countArrangements = countArrangements(pattern, springs, copy);

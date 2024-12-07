@@ -293,7 +293,7 @@ public final class Day24 {
     public record Hailstorm(Point3D position, Point3D velocity) {
         static Hailstorm of(String line) {
             List<String> split = Splitter.on('@').splitToList(line);
-            return new Hailstorm(Point3D.of(split.get(0)), Point3D.of(split.get(1)));
+            return new Hailstorm(Point3D.of(split.getFirst()), Point3D.of(split.get(1)));
         }
     }
 }

@@ -362,8 +362,8 @@ public final class Day12 {
 
         @Override
         public String toString() {
-            return "pos=" + String.format(FORMAT, positionX, positionY, positionZ)
-                   + ", vel=" + String.format(FORMAT, velocityX, velocityY, velocityZ);
+            return "pos=" + FORMAT.formatted(positionX, positionY, positionZ)
+                   + ", vel=" + FORMAT.formatted(velocityX, velocityY, velocityZ);
         }
 
         @Override

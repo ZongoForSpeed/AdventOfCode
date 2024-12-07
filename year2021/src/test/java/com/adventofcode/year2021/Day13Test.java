@@ -52,7 +52,7 @@ class Day13Test {
         LOGGER.info("Map:\n{}", map);
         LOGGER.info("Instructions: {}", instructions);
 
-        Day13.applyInstruction(map, instructions.get(0));
+        Day13.applyInstruction(map, instructions.getFirst());
         LOGGER.info("Map:\n{}", map);
         Day13.applyInstruction(map, instructions.get(1));
         LOGGER.info("Map:\n{}", map);

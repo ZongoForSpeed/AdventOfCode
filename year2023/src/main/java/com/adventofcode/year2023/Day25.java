@@ -108,7 +108,7 @@ public final class Day25 {
                 String line = scanner.nextLine();
 
                 List<String> split = Splitter.on(": ").splitToList(line);
-                String v = split.get(0);
+                String v = split.getFirst();
                 for (String u : Splitter.on(' ').split(split.get(1))) {
                     graph.computeIfAbsent(u, ignore -> new HashSet<>()).add(v);
                     graph.computeIfAbsent(v, ignore -> new HashSet<>()).add(u);
