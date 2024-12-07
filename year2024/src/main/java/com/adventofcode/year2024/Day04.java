@@ -14,28 +14,33 @@ import java.util.stream.Collectors;
 public final class Day04 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day04.class);
+
     private static final List<Point2D> DIRECTIONS = List.of(
-            Point2D.of(1, 1),
-            Point2D.of(1, 0),
-            Point2D.of(1, -1),
-            Point2D.of(0, 1),
-            Point2D.of(0, -1),
-            Point2D.of(-1, 1),
-            Point2D.of(-1, 0),
-            Point2D.of(-1, -1)
+            Point2D.of(1, 1),   //
+            Point2D.of(1, 0),   //
+            Point2D.of(1, -1),  //
+            Point2D.of(0, 1),   //
+            Point2D.of(0, -1),  //
+            Point2D.of(-1, 1),  //
+            Point2D.of(-1, 0),  //
+            Point2D.of(-1, -1)  //
     );
     private static final List<Point2D> DIAGONALS = List.of(
-            Point2D.of(1, 1),
-            Point2D.of(1, -1),
-            Point2D.of(-1, 1),
-            Point2D.of(-1, -1)
+            Point2D.of(1, 1),   //
+            Point2D.of(1, -1),  //
+            Point2D.of(-1, 1),  //
+            Point2D.of(-1, -1)  //
     );
     private static final Set<String> PATTERNS = Set.of(
-            "SSMM",
-            "MMSS",
-            "MSMS",
-            "SMSM"
+            "SSMM", //
+            "MMSS", //
+            "MSMS", //
+            "SMSM"  //
     );
+
+    private Day04() {
+        // No-Op
+    }
 
     /**
      * --- Day 4: Ceres Search ---

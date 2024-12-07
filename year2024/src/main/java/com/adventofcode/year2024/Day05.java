@@ -22,6 +22,10 @@ public final class Day05 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day05.class);
     private static final Pattern RULES_PATTERN = Pattern.compile("(\\d+)\\|(\\d+)");
 
+    private Day05() {
+        // No-Op
+    }
+
     private static OptionalInt correctlyOrdered(IntList book, List<IntegerPair> rules) {
         if (book.isEmpty()) {
             return OptionalInt.empty();

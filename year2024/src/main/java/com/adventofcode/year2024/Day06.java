@@ -10,6 +10,11 @@ import java.util.Scanner;
 import java.util.Set;
 
 public final class Day06 {
+
+    private Day06() {
+        // No-Op
+    }
+
     private static Set<Point2D> findPath(CharMap map) {
         Point2D guardPosition = null;
         for (ObjectCharPair<Point2D> entry : map.entries()) {
