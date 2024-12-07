@@ -1,10 +1,12 @@
 package com.adventofcode.year2022;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Scanner;
 
 public final class Day10 {
@@ -457,16 +459,16 @@ public final class Day10 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" ");
+            List<String> split = Splitter.on(' ').splitToList(line);
 
-            String command = split[0];
+            String command = split.get(0);
             switch (command) {
                 case "noop": {
                     register.add(register.getLast());
                     break;
                 }
                 case "addx": {
-                    int value = Integer.parseInt(split[1]);
+                    int value = Integer.parseInt(split.get(1));
                     register.add(register.getLast());
                     register.add(register.getLast() + value);
                 }

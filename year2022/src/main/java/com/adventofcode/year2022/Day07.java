@@ -1,5 +1,6 @@
 package com.adventofcode.year2022;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -212,12 +213,12 @@ public final class Day07 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" ");
+            List<String> split = Splitter.on(' ').splitToList(line);
             if (line.startsWith("$")) {
-                String command = split[1];
+                String command = split.get(1);
                 switch (command) {
                     case "cd" -> {
-                        String operand = split[2];
+                        String operand = split.get(2);
                         if ("/".equals(operand)) {
                             current = new Directory("/", null, new ArrayList<>(), new ArrayList<>());
                             root = current;
@@ -234,8 +235,8 @@ public final class Day07 {
                     default -> throw new IllegalStateException("Unknown command: " + command);
                 }
             } else {
-                String left = split[0];
-                String right = split[1];
+                String left = split.get(0);
+                String right = split.get(1);
                 if (NumberUtils.isParsable(left)) {
                     current.files.add(new File(Integer.parseInt(left), right));
                 }

@@ -1,6 +1,7 @@
 package com.adventofcode.year2017;
 
 import com.adventofcode.common.point.Point3D;
+import com.google.common.base.Splitter;
 
 public final class Day11 {
     private Day11() {
@@ -82,8 +83,7 @@ public final class Day11 {
      */
     static int hexGridDistance(String input) {
         Point3D position = Point3D.ORIGIN;
-        String[] split = input.split(",");
-        for (String d : split) {
+        for (String d : Splitter.on(',').split(input)) {
             position = move(position, d);
         }
 
@@ -100,8 +100,7 @@ public final class Day11 {
     static int maxGridDistance(String input) {
         int maxDistance = 0;
         Point3D position = Point3D.ORIGIN;
-        String[] split = input.split(",");
-        for (String d : split) {
+        for (String d : Splitter.on(',').split(input)) {
             position = move(position, d);
             maxDistance = Math.max(maxDistance, hexGridDistance(position));
         }

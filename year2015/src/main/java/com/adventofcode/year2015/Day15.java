@@ -1,6 +1,7 @@
 package com.adventofcode.year2015;
 
 import com.adventofcode.common.maths.IntegerPartition;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
@@ -151,9 +152,9 @@ public final class Day15 {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
 
-            String[] split = line.split(": ");
-            String name = split[0];
-            Map<Property, Long> collect = Arrays.stream(split[1].split(", ")).map(s -> s.split(" ")).collect(Collectors.toMap(s -> Property.valueOf(s[0]), s -> Long.parseLong(s[1])));
+            List<String> split = Splitter.on(": ").splitToList(line);
+            String name = split.getFirst();
+            Map<Property, Long> collect = Arrays.stream(split.get(1).split(", ")).map(s -> s.split(" ")).collect(Collectors.toMap(s -> Property.valueOf(s[0]), s -> Long.parseLong(s[1])));
             LOGGER.debug("Ingredient {}: {}", name, collect);
             ingredients.add(Pair.of(name, collect));
         }

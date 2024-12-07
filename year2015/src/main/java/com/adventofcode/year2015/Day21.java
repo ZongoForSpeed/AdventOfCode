@@ -1,5 +1,6 @@
 package com.adventofcode.year2015;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
@@ -47,9 +48,8 @@ public final class Day21 {
     public static Player readBossStats(Scanner scanner) {
         Map<String, Integer> bossStats = new HashMap<>();
         while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] split = line.split(": ");
-            bossStats.put(split[0], Integer.valueOf(split[1]));
+            List<String> split = Splitter.on(": ").splitToList(scanner.nextLine());
+            bossStats.put(split.getFirst(), Integer.valueOf(split.get(1)));
         }
 
         Player boss = Player.of("boss", bossStats.get("Hit Points"), bossStats.get("Damage"), bossStats.get("Armor"));

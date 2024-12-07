@@ -1,9 +1,11 @@
 package com.adventofcode.year2022;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -143,9 +145,9 @@ public final class Day02 {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
-                String[] split = line.split(" ");
-                RockPaperScissors opponent = RockPaperScissors.read(split[0]);
-                RockPaperScissors elf = RockPaperScissors.read(split[1]);
+                List<String> split = Splitter.on(' ').splitToList(line);
+                RockPaperScissors opponent = RockPaperScissors.read(split.get(0));
+                RockPaperScissors elf = RockPaperScissors.read(split.get(1));
 
                 int playScore = RockPaperScissors.score(opponent, elf);
                 LOGGER.info("{} vs {} ==> {} = {}", opponent, elf, RESULTS.get(Pair.of(elf, opponent)), playScore);
@@ -207,9 +209,9 @@ public final class Day02 {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
-                String[] split = line.split(" ");
-                RockPaperScissors opponent = RockPaperScissors.read(split[0]);
-                Play outcome = Play.read(split[1]);
+                List<String> split = Splitter.on(' ').splitToList(line);
+                RockPaperScissors opponent = RockPaperScissors.read(split.get(0));
+                Play outcome = Play.read(split.get(1));
 
                 RockPaperScissors strategy = STRATEGY.get(Pair.of(opponent, outcome));
 

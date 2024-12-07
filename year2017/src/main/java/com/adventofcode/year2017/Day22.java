@@ -154,7 +154,7 @@ public final class Day22 {
         Direction direction = Direction.UP;
         long bursts = 0;
         for (int step = 1; step <= steps; ++step) {
-            if (Boolean.TRUE == current.getOrDefault(position, false)) {
+            if (Boolean.TRUE.equals(current.getOrDefault(position, false))) {
                 current.remove(position);
                 direction = direction.right();
             } else {

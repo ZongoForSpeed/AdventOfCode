@@ -1,6 +1,7 @@
 package com.adventofcode.year2018;
 
 import com.adventofcode.common.point.Point4D;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
@@ -147,11 +148,11 @@ public final class Day25 {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
 
-            String[] split = line.split(",");
-            int x = Integer.parseInt(split[0].trim());
-            int y = Integer.parseInt(split[1].trim());
-            int z = Integer.parseInt(split[2].trim());
-            int w = Integer.parseInt(split[3].trim());
+            List<String> split = Splitter.on(',').splitToList(line);
+            int x = Integer.parseInt(split.get(0).trim());
+            int y = Integer.parseInt(split.get(1).trim());
+            int z = Integer.parseInt(split.get(2).trim());
+            int w = Integer.parseInt(split.get(3).trim());
 
             Point4D star = new Point4D(x, y, z, w);
             stars.add(star);

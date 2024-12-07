@@ -1,5 +1,6 @@
 package com.adventofcode.year2020;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -47,12 +48,12 @@ public final class Day16 {
             }
 
             if (readRules) {
-                String[] split = note.split(": ");
-                String name = split[0];
+                List<String> split = Splitter.on(": ").splitToList(note);
+                String name = split.get(0);
                 List<IntPredicate> predicates = new ArrayList<>();
-                for (String s : split[1].split(" or ")) {
-                    String[] r = s.split("-");
-                    predicates.add(new SimpleRule(Integer.parseInt(r[0]), Integer.parseInt(r[1])));
+                for (String s : Splitter.on(" or ").split(split.get(1))) {
+                    List<String> r = Splitter.on('-').splitToList(s);
+                    predicates.add(new SimpleRule(Integer.parseInt(r.get(0)), Integer.parseInt(r.get(1))));
                 }
                 Optional<IntPredicate> predicate = predicates.stream().reduce(IntPredicate::or);
                 rules.put(name, predicate.orElseThrow());

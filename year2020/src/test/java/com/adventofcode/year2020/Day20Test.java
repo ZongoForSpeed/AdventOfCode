@@ -2,6 +2,8 @@ package com.adventofcode.year2020;
 
 import com.adventofcode.common.point.map.BooleanMap;
 import com.adventofcode.common.point.map.CharMap;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.junit.jupiter.api.Test;
@@ -16,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class Day20Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20Test.class);
+
     @Test
     void testJurassicJigsaw() {
         Scanner scanner = new Scanner(
@@ -31,7 +34,7 @@ class Day20Test {
                         ..#....#..
                         ###...#.#.
                         ..###..###
-
+                        
                         Tile 1951:
                         #.##...##.
                         #.####...#
@@ -43,7 +46,7 @@ class Day20Test {
                         .###....#.
                         ..#.#..#.#
                         #...##.#..
-
+                        
                         Tile 1171:
                         ####...##.
                         #..##.#..#
@@ -55,7 +58,7 @@ class Day20Test {
                         #.##.####.
                         ####..#...
                         .....##...
-
+                        
                         Tile 1427:
                         ###.##.#..
                         .#..#.##..
@@ -67,7 +70,7 @@ class Day20Test {
                         .#.####.#.
                         ..#..###.#
                         ..##.#..#.
-
+                        
                         Tile 1489:
                         ##.#.#....
                         ..##...#..
@@ -79,7 +82,7 @@ class Day20Test {
                         ##.#...##.
                         ..##.##.##
                         ###.##.#..
-
+                        
                         Tile 2473:
                         #....####.
                         #..#.##...
@@ -91,7 +94,7 @@ class Day20Test {
                         ########.#
                         ##...##.#.
                         ..###.#.#.
-
+                        
                         Tile 2971:
                         ..#.#....#
                         #...###...
@@ -103,7 +106,7 @@ class Day20Test {
                         ..####.###
                         ..#.#.###.
                         ...#.#.#.#
-
+                        
                         Tile 2729:
                         ...#.#.#.#
                         ####.#....
@@ -115,7 +118,7 @@ class Day20Test {
                         ##.####...
                         ##..#.##..
                         #.##...##.
-
+                        
                         Tile 3079:
                         #.#.#####.
                         .#..######
@@ -134,7 +137,7 @@ class Day20Test {
             String line = scanner.nextLine().trim();
             line = line.replace(":", "");
 
-            tiles.put(Integer.parseInt(line.split(" ")[1]), Day20.directions(Day20.readTile(scanner)));
+            tiles.put(Integer.parseInt(Iterables.get(Splitter.on(' ').split(line), 1)), Day20.directions(Day20.readTile(scanner)));
         }
         LOGGER.info("Read tiles: {}", tiles.size());
 
@@ -163,7 +166,7 @@ class Day20Test {
             String line = scanner.nextLine().trim();
             line = line.replace(":", "");
 
-            tiles.put(Integer.parseInt(line.split(" ")[1]), Day20.directions(Day20.readTile(scanner)));
+            tiles.put(Integer.parseInt(Iterables.get(Splitter.on(' ').split(line), 1)), Day20.directions(Day20.readTile(scanner)));
         }
         LOGGER.info("Read tiles: {}", tiles.size());
 

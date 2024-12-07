@@ -1,5 +1,6 @@
 package com.adventofcode.year2017;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public final class Day12 {
@@ -84,9 +86,9 @@ public final class Day12 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" <-> ");
-            int left = Integer.parseInt(split[0]);
-            int[] array = Arrays.stream(split[1].split(", ")).mapToInt(Integer::parseInt).toArray();
+            List<String> split = Splitter.on(" <-> ").splitToList(line);
+            int left = Integer.parseInt(split.get(0));
+            int[] array = Arrays.stream(split.get(1).split(", ")).mapToInt(Integer::parseInt).toArray();
             for (int i : array) {
                 programs.computeIfAbsent(left, k -> new IntArrayList()).add(i);
             }

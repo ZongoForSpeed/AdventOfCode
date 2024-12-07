@@ -2,6 +2,7 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.common.point.map.BooleanMap;
 import com.adventofcode.common.point.Point2D;
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
@@ -39,9 +40,9 @@ public final class Day13 {
                     instructions.add(Pair.of(axe, position));
                 }
             } else {
-                String[] split = line.split(",");
-                int x = Integer.parseInt(split[0]);
-                int y = Integer.parseInt(split[1]);
+                List<String> split = Splitter.on(',').splitToList(line);
+                int x = Integer.parseInt(split.get(0));
+                int y = Integer.parseInt(split.get(1));
                 map.set(x, y);
             }
         }

@@ -1,5 +1,6 @@
 package com.adventofcode.year2021;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -175,9 +176,9 @@ public final class Day12 {
         Map<String, List<String>> graph = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split("-");
-            graph.computeIfAbsent(split[0], ignore -> new ArrayList<>()).add(split[1]);
-            graph.computeIfAbsent(split[1], ignore -> new ArrayList<>()).add(split[0]);
+            List<String> split = Splitter.on('-').splitToList(line);
+            graph.computeIfAbsent(split.get(0), ignore -> new ArrayList<>()).add(split.get(1));
+            graph.computeIfAbsent(split.get(1), ignore -> new ArrayList<>()).add(split.get(0));
         }
 
         LOGGER.info("Graph : {}", graph);
@@ -285,9 +286,9 @@ public final class Day12 {
         Map<String, List<String>> graph = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split("-");
-            String a = split[0];
-            String b = split[1];
+            List<String> split = Splitter.on('-').splitToList(line);
+            String a = split.get(0);
+            String b = split.get(1);
             graph.computeIfAbsent(a, ignore -> new ArrayList<>()).add(b);
             graph.computeIfAbsent(b, ignore -> new ArrayList<>()).add(a);
         }

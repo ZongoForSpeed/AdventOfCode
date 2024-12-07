@@ -1,5 +1,6 @@
 package com.adventofcode.year2017;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import org.apache.commons.collections4.SetUtils;
@@ -33,10 +34,10 @@ public final class Day07 {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.contains("->")) {
-                String[] split = line.split(" -> ");
-                Program program = Program.of(split[0]);
+                List<String> split = Splitter.on(" -> ").splitToList(line);
+                Program program = Program.of(split.get(0));
                 programs.put(program.name(), program);
-                List<String> strings = Arrays.asList(split[1].split(", "));
+                List<String> strings = Arrays.asList(split.get(1).split(", "));
                 map.put(program.name(), strings);
             } else {
                 Program program = Program.of(line);

@@ -1,5 +1,6 @@
 package com.adventofcode.year2018;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.Int2CharArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2CharMap;
 import it.unimi.dsi.fastutil.ints.IntSet;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -231,9 +233,9 @@ public final class Day12 {
                 state = new Plants(line.substring("initial state: ".length()));
                 LOGGER.info("initial state: '{}'", state);
             } else {
-                String[] split = line.split(" => ");
-                LOGGER.info("'{}' => '{}'", split[0], split[1]);
-                moves.put(split[0], split[1].charAt(0));
+                List<String> split = Splitter.on(" => ").splitToList(line);
+                LOGGER.info("'{}' => '{}'", split.get(0), split.get(1));
+                moves.put(split.get(0), split.get(1).charAt(0));
             }
         }
 

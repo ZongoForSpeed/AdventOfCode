@@ -2,6 +2,7 @@ package com.adventofcode.year2022;
 
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.InfiniteCharMap;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -221,11 +222,10 @@ public final class Day14 {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
 
-            String[] split = line.split(" -> ");
             List<Point2D> points = new ArrayList<>();
-            for (String s : split) {
-                String[] strings = s.split(",");
-                points.add(Point2D.of(Integer.parseInt(strings[0]), Integer.parseInt(strings[1])));
+            for (String s : Splitter.on(" -> ").split(line)) {
+                List<String> strings = Splitter.on(',').splitToList(s);
+                points.add(Point2D.of(Integer.parseInt(strings.get(0)), Integer.parseInt(strings.get(1))));
             }
 
             LOGGER.info("Points: {}", points);

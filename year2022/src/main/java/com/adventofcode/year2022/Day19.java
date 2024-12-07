@@ -1,5 +1,6 @@
 package com.adventofcode.year2022;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -473,7 +474,7 @@ public final class Day19 {
             if (matcher.matches()) {
                 int blueprint = Integer.parseInt(matcher.group(1));
                 LOGGER.info("Blueprint = {}", blueprint);
-                String[] split = matcher.group(2).split("\\. ");
+                Iterable<String> split = Splitter.on(". ").split(matcher.group(2));
                 int[][] costs = new int[Resource.values().length][Resource.values().length];
                 for (String s : split) {
                     LOGGER.info("Robot = '{}'", s);

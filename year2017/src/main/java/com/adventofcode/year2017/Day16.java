@@ -1,5 +1,6 @@
 package com.adventofcode.year2017;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,8 +78,7 @@ public final class Day16 {
         }
 
         List<DanceMove> moves = new ArrayList<>();
-        String[] split = input.split(",");
-        for (String command : split) {
+        for (String command : Splitter.on(',').split(input)) {
             switch (command.charAt(0)) {
                 case 's' -> moves.add(Spin.of(command));
                 case 'x' -> moves.add(Exchange.of(command));

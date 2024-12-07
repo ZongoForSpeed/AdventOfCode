@@ -1,6 +1,8 @@
 package com.adventofcode.year2018;
 
 import com.adventofcode.common.utils.IntegerPair;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import org.apache.commons.lang3.ArrayUtils;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
@@ -231,7 +233,7 @@ public final class Day04 {
             LocalDateTime time = pair.left();
             String group = pair.right();
             if (group.startsWith("Guard ")) {
-                guard = Integer.parseInt(group.split(" ")[1].substring(1));
+                guard = Integer.parseInt(Iterables.get(Splitter.on(' ').split(group), 1).substring(1));
             } else if (group.equalsIgnoreCase("falls asleep")) {
                 sleepingGuards.computeIfAbsent(guard, ignore -> new ArrayList<>()).add(time);
             } else if (group.equalsIgnoreCase("wakes up")) {

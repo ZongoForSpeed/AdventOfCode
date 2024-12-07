@@ -1,5 +1,6 @@
 package com.adventofcode.year2022;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import it.unimi.dsi.fastutil.ints.IntSets;
 import org.apache.commons.collections4.SetUtils;
@@ -133,14 +134,14 @@ public final class Day04 {
 
     record ElfAssignment(IntSet elf1, IntSet elf2) {
         private static IntSet readRange(String range) {
-            String[] split = range.split("-");
-            return IntSets.fromTo(Integer.parseInt(split[0]), Integer.parseInt(split[1]) + 1);
+            List<String> split = Splitter.on('-').splitToList(range);
+            return IntSets.fromTo(Integer.parseInt(split.get(0)), Integer.parseInt(split.get(1)) + 1);
         }
 
         private static ElfAssignment readAssignment(String line) {
-            String[] split = line.split(",");
-            IntSet range1 = readRange(split[0]);
-            IntSet range2 = readRange(split[1]);
+            List<String> split = Splitter.on(',').splitToList(line);
+            IntSet range1 = readRange(split.get(0));
+            IntSet range2 = readRange(split.get(1));
 
             return new ElfAssignment(range1, range2);
         }

@@ -2,6 +2,7 @@ package com.adventofcode.year2017;
 
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.BooleanMap;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,9 +26,9 @@ public final class Day21 {
 
     private static BooleanMap readBooleanMap(String input) {
         BooleanMap map = new BooleanMap(0, 0, '/');
-        String[] split = input.split("/");
-        for (int i = 0; i < split.length; i++) {
-            char[] charArray = split[i].toCharArray();
+        List<String> split = Splitter.on('/').splitToList(input);
+        for (int i = 0; i < split.size(); i++) {
+            char[] charArray = split.get(i).toCharArray();
             for (int j = 0; j < charArray.length; j++) {
                 map.set(j, i, charArray[j] == '#');
             }
@@ -154,9 +155,9 @@ public final class Day21 {
         Map<Key, BooleanMap> mapping3 = new HashMap<>();
 
         while (scanner.hasNextLine()) {
-            String[] split = scanner.nextLine().split(" => ");
-            BooleanMap first = readBooleanMap(split[0]);
-            BooleanMap second = readBooleanMap(split[1]);
+            List<String> split = Splitter.on(" => ").splitToList(scanner.nextLine());
+            BooleanMap first = readBooleanMap(split.get(0));
+            BooleanMap second = readBooleanMap(split.get(1));
 
             if (first.xMax() + 1 == 2) {
                 for (int i = 0; i < 4; ++i) {

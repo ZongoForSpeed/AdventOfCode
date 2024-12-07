@@ -283,7 +283,7 @@
                 <configuration>
                     <compilerArgs>
                         <arg>-XDcompilePolicy=simple</arg>
-                        <arg>-Xplugin:ErrorProne -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR</arg>
+                        <arg>-Xplugin:ErrorProne -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR -Xep:StringSplitter:ERROR -Xep:ReferenceEquality:ERROR -Xep:LoopOverCharArray:ERROR</arg>
                     </compilerArgs>
                     <annotationProcessorPaths>
                         <path>

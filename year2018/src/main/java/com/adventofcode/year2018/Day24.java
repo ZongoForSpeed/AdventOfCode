@@ -1,5 +1,6 @@
 package com.adventofcode.year2018;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.slf4j.Logger;
@@ -66,7 +67,7 @@ public final class Day24 {
                 List<String> weakness = new ArrayList<>();
                 List<String> immunities = new ArrayList<>();
                 if (attribute != null) {
-                    for (String s : attribute.split("; ")) {
+                    for (String s : Splitter.on("; ").split(attribute)) {
                         String trim = s.trim();
                         if (trim.startsWith("weak to ")) {
                             weakness.addAll(Arrays.asList(trim.substring("weak to ".length()).split(", ")));

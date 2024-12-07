@@ -113,8 +113,8 @@ public final class Day02 {
      *
      * Your puzzle answer was 113.
      */
-    static int corruptionChecksumPartTwo(Scanner scanner) {
-        int checksum = 0;
+    static long corruptionChecksumPartTwo(Scanner scanner) {
+        long checksum = 0;
         while (scanner.hasNextLine()) {
             checksum += corruptionChecksumPartTwo(scanner.nextLine());
         }

@@ -1,5 +1,6 @@
 package com.adventofcode.year2015;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -200,8 +201,8 @@ public final class Day16 {
                     perfumes: 1""")) {
                 sue = new EnumMap<>(Compounds.class);
                 while (scannerSue.hasNextLine()) {
-                    String[] split = scannerSue.nextLine().split(": ");
-                    sue.put(Compounds.valueOf(split[0]), Integer.parseInt(split[1]));
+                    List<String> split = Splitter.on(": ").splitToList(scannerSue.nextLine());
+                    sue.put(Compounds.valueOf(split.getFirst()), Integer.parseInt(split.get(1)));
                 }
             }
         }

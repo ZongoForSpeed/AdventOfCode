@@ -1,6 +1,8 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.utils.IntegerPair;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
@@ -66,7 +68,7 @@ public final class Day24 {
     }
 
     private static int getCommandArgument(String command) {
-        return Integer.parseInt(command.split(" ")[2]);
+        return Integer.parseInt(Iterables.get(Splitter.on(' ').split(command), 2));
     }
 
     private static long solve(Int2ObjectMap<IntegerPair> criteria, IntList order) {

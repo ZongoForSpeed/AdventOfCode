@@ -1,6 +1,8 @@
 package com.adventofcode.year2018;
 
 import com.adventofcode.common.OpCode;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
@@ -73,7 +75,7 @@ public final class Day21 {
 
         public static int run(Scanner scanner) {
             String s = scanner.nextLine();
-            int ip = Integer.parseInt(s.split(" ")[1]);
+            int ip = readIp(s);
             List<OpCode.Command> commands = OpCode.parseCommands(scanner);
 
             return runOpCode(ip, commands);
@@ -105,6 +107,10 @@ public final class Day21 {
 
     }
 
+    private static int readIp(String s) {
+        return Integer.parseInt(Iterables.get(Splitter.on(' ').split(s), 1));
+    }
+
     /**
      * --- Part Two ---
      *
@@ -123,7 +129,7 @@ public final class Day21 {
 
         public static int run(Scanner scanner) {
             String s = scanner.nextLine();
-            int ip = Integer.parseInt(s.split(" ")[1]);
+            int ip = readIp(s);
             List<OpCode.Command> commands = OpCode.parseCommands(scanner);
 
             return runOpCode(ip, commands);

@@ -2,6 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 
@@ -82,11 +83,10 @@ public final class Day03 {
     }
 
     public static List<Point2D> readPath(String path) {
-        String[] steps = path.split(",");
         List<Point2D> result = new ArrayList<>();
         Point2D position = Point2D.of(0, 0);
         result.add(position);
-        for (String move : steps) {
+        for (String move : Splitter.on(',').split(path)) {
             char direction = move.charAt(0);
             int distance = Integer.parseInt(move.substring(1));
 

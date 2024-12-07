@@ -1,6 +1,7 @@
 package com.adventofcode.year2015;
 
 import com.adventofcode.common.graph.AStar;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,8 +123,8 @@ public final class Day22 {
         Map<String, Integer> bossStats = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(": ");
-            bossStats.put(split[0], Integer.valueOf(split[1]));
+            List<String> split = Splitter.on(": ").splitToList(line);
+            bossStats.put(split.getFirst(), Integer.valueOf(split.get(1)));
         }
 
         Boss boss = Boss.of(bossStats.get("Hit Points"), bossStats.get("Damage"));

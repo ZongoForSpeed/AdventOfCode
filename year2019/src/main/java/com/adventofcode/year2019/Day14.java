@@ -1,6 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.maths.Arithmetic;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 
 import java.util.HashMap;
@@ -179,15 +180,15 @@ public final class Day14 {
     record Reaction(List<Pair<String, Long>> chemicalInputs, Pair<String, Long> chemicalOutput) {
 
         static Reaction parseReaction(String line) {
-            String[] split = line.split(" => ");
-            List<Pair<String, Long>> inputs = Stream.of(split[0].split(", ")).map(Reaction::parseChemical).toList();
-            Pair<String, Long> output = parseChemical(split[1]);
+            List<String> split = Splitter.on(" => ").splitToList(line);
+            List<Pair<String, Long>> inputs = Stream.of(split.get(0).split(", ")).map(Reaction::parseChemical).toList();
+            Pair<String, Long> output = parseChemical(split.get(1));
             return new Reaction(inputs, output);
         }
 
         static Pair<String, Long> parseChemical(String a) {
-            String[] split = a.trim().split(" ");
-            return Pair.of(split[1], Long.valueOf(split[0]));
+            List<String> split = Splitter.on(' ').splitToList(a.trim());
+            return Pair.of(split.get(1), Long.valueOf(split.get(0)));
         }
 
         static String writeChemical(Pair<String, Long> chemical) {

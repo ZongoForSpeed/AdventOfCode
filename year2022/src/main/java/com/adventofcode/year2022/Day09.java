@@ -2,6 +2,7 @@ package com.adventofcode.year2022;
 
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -821,9 +822,9 @@ public final class Day09 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" ");
-            String direction = split[0];
-            int move = Integer.parseInt(split[1]);
+            List<String> split = Splitter.on(' ').splitToList(line);
+            String direction = split.get(0);
+            int move = Integer.parseInt(split.get(1));
 
             LOGGER.trace("direction={}, move={}", direction, move);
             for (int m = 0; m < move; ++m) {

@@ -1,6 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.maths.Permutations;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -173,16 +174,16 @@ public final class Day08 {
     public long count1478(Scanner scanner) {
         long count = 0;
         while (scanner.hasNextLine()) {
-            String[] split = scanner.nextLine().split(" \\| ");
-            count += Arrays.stream(split[1].split(" ")).mapToInt(String::length).filter(i -> i == 2 || i == 3 || i == 4 || i == 7).count();
+            List<String> split = Splitter.on(" | ").splitToList(scanner.nextLine());
+            count += Arrays.stream(split.get(1).split(" ")).mapToInt(String::length).filter(i -> i == 2 || i == 3 || i == 4 || i == 7).count();
         }
         return count;
     }
 
     public int solveMapping(String line) {
-        String[] split = line.split(" \\| ");
-        List<String> left = Arrays.stream(split[0].split(" ")).map(Day08::sort).toList();
-        List<String> right = Arrays.stream(split[1].split(" ")).map(Day08::sort).toList();
+        List<String> split = Splitter.on(" | ").splitToList(line);
+        List<String> left = Arrays.stream(split.get(0).split(" ")).map(Day08::sort).toList();
+        List<String> right = Arrays.stream(split.get(1).split(" ")).map(Day08::sort).toList();
 
         for (Map<String, Integer> mapping : mappings) {
             if (left.stream().allMatch(mapping::containsKey)) {

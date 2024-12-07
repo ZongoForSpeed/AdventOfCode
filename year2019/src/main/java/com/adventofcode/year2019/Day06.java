@@ -1,6 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
 
 import java.io.IOException;
@@ -110,8 +111,8 @@ public final class Day06 {
         Map<String, String> graph = new HashMap<>();
         List<String> lines = FileUtils.readLines(filename);
         for (String line : lines) {
-            String[] orbit = line.split("\\)");
-            graph.put(orbit[1], orbit[0]);
+            List<String> orbit = Splitter.on(')').splitToList(line);
+            graph.put(orbit.get(1), orbit.get(0));
         }
 
         return graph;

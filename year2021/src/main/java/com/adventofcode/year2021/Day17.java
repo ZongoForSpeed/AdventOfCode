@@ -1,10 +1,12 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.point.Point2D;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.OptionalInt;
 
 public final class Day17 {
@@ -235,11 +237,11 @@ public final class Day17 {
     private static Target readTarget(String input) {
         // "target area: x=20..30, y=-10..-5"
         String substring = input.substring("target area: ".length());
-        String[] split = substring.split(", ");
-        int[] xRange = Arrays.stream(split[0].substring(2).split("\\.\\."))
+        List<String> split = Splitter.on(", ").splitToList(substring);
+        int[] xRange = Arrays.stream(split.get(0).substring(2).split("\\.\\."))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-        int[] yRange = Arrays.stream(split[1].substring(2).split("\\.\\."))
+        int[] yRange = Arrays.stream(split.get(1).substring(2).split("\\.\\."))
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
