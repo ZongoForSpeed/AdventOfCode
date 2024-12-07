@@ -214,14 +214,12 @@ public class BooleanMap {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BooleanMap that = (BooleanMap) o;
+        if (!(o instanceof BooleanMap that)) return false;
         return Objects.equals(bitSets, that.bitSets);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bitSets);
+        return Objects.hashCode(bitSets);
     }
 }

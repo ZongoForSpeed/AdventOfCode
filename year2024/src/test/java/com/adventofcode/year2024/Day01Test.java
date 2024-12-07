@@ -45,7 +45,7 @@ class Day01Test {
     void inputPartTwo() throws IOException {
         try (InputStream inputStream = Day01Test.class.getResourceAsStream("/2024/day/01/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
-            assertThat(Day01.partTwo(scanner)).isEqualTo(1941353);
+            assertThat(Day01.partTwo(scanner)).isEqualTo(22539317L);
         }
     }
 

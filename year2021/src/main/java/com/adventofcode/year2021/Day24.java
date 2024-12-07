@@ -244,17 +244,13 @@ public final class Day24 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            State state = (State) o;
-            return position == state.position && Arrays.equals(digits, state.digits);
+            if (!(o instanceof State state)) return false;
+            return position == state.position && Objects.deepEquals(digits, state.digits);
         }
 
         @Override
         public int hashCode() {
-            int result = Objects.hash(position);
-            result = 31 * result + Arrays.hashCode(digits);
-            return result;
+            return Objects.hash(Arrays.hashCode(digits), position);
         }
     }
 

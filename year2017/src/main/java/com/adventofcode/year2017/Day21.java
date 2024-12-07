@@ -226,15 +226,13 @@ public final class Day21 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Key key = (Key) o;
-            return (hash == key.hash);
+            if (!(o instanceof Key key)) return false;
+            return hash == key.hash;
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(hash);
+            return Long.hashCode(hash);
         }
     }
 }

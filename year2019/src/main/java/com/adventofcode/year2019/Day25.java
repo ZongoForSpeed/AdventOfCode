@@ -257,10 +257,8 @@ public final class Day25 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Position position1 = (Position) o;
-            return position.equals(position1.position);
+            if (!(o instanceof Position position1)) return false;
+            return Objects.equals(position, position1.position);
         }
 
         @Override

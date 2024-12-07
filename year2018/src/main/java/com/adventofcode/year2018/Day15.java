@@ -553,9 +553,7 @@ public final class Day15 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Unit unit = (Unit) o;
+            if (!(o instanceof Unit unit)) return false;
             return goblin == unit.goblin
                    && health == unit.health
                    && attackPower == unit.attackPower

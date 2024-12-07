@@ -275,10 +275,9 @@ public final class Day07 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Directory directory = (Directory) o;
-            return Objects.equals(name, directory.name) && Objects.equals(parent, directory.parent);
+            if (!(o instanceof Directory directory)) return false;
+            return Objects.equals(name, directory.name)
+                   && Objects.equals(parent, directory.parent);
         }
 
         @Override

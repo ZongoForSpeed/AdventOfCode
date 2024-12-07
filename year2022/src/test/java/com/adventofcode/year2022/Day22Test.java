@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disable
+@Disabled
 class Day22Test {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22Test.class);

@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -204,10 +205,8 @@ public class CharMap {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CharMap charMap = (CharMap) o;
-        return Arrays.deepEquals(map, charMap.map);
+        if (!(o instanceof CharMap charMap)) return false;
+        return Objects.deepEquals(map, charMap.map);
     }
 
     @Override

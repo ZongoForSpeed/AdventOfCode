@@ -368,15 +368,13 @@ public final class Day12 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Moon moon = (Moon) o;
-            return positionX == moon.positionX &&
-                   positionY == moon.positionY &&
-                   positionZ == moon.positionZ &&
-                   velocityX == moon.velocityX &&
-                   velocityY == moon.velocityY &&
-                   velocityZ == moon.velocityZ;
+            if (!(o instanceof Moon moon)) return false;
+            return positionX == moon.positionX
+                   && positionY == moon.positionY
+                   && positionZ == moon.positionZ
+                   && velocityX == moon.velocityX
+                   && velocityY == moon.velocityY
+                   && velocityZ == moon.velocityZ;
         }
 
         @Override
