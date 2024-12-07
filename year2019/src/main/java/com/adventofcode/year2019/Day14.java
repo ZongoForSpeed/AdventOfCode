@@ -9,31 +9,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public final class Day14 {
+
+    private static final Pattern REACTION_PATTERN = Pattern.compile("^(.*) => (.*)$");
+
     /**
      * --- Day 14: Space Stoichiometry ---
      * As you approach the rings of Saturn, your ship's low fuel indicator turns on. There isn't any fuel here, but the
      * rings have plenty of raw material. Perhaps your ship's Inter-Stellar Refinery Union brand nanofactory can turn
      * these raw materials into fuel.
-     *
+     * <p>
      * You ask the nanofactory to produce a list of the reactions it can perform that are relevant to this process (your
      * puzzle input). Every reaction turns some quantities of specific input chemicals into some quantity of an output
      * chemical. Almost every chemical is produced by exactly one reaction; the only exception, ORE, is the raw material
      * input to the entire process and is not produced by a reaction.
-     *
+     * <p>
      * You just need to know how much ORE you'll need to collect before you can produce one unit of FUEL.
-     *
+     * <p>
      * Each reaction gives specific quantities for its inputs and output; reactions cannot be partially run, so only
      * whole integer multiples of these quantities can be used. (It's okay to have leftover chemicals when you're done,
      * though.) For example, the reaction 1 A, 2 B, 3 C => 2 D means that exactly 2 units of chemical D can be produced
      * by consuming exactly 1 A, 2 B and 3 C. You can run the full reaction as many times as necessary; for example, you
      * could produce 10 D by consuming 5 A, 10 B, and 15 C.
-     *
+     * <p>
      * Suppose your nanofactory produces the following list of reactions:
-     *
+     * <p>
      * 10 ORE => 10 A
      * 1 ORE => 1 B
      * 7 A, 1 B => 1 C
@@ -45,9 +49,9 @@ public final class Day14 {
      * ORE). To produce 1 FUEL, a total of 31 ORE is required: 1 ORE to produce 1 B, then 30 more ORE to produce the
      * 7 + 7 + 7 + 7 = 28 A (with 2 extra A wasted) required in the reactions to convert the B into C, C into D, D into E,
      * and finally E into FUEL. (30 A is produced because its reaction requires that it is created in increments of 10.)
-     *
+     * <p>
      * Or, suppose you have the following list of reactions:
-     *
+     * <p>
      * 9 ORE => 2 A
      * 8 ORE => 3 B
      * 7 ORE => 5 C
@@ -56,7 +60,7 @@ public final class Day14 {
      * 4 C, 1 A => 1 CA
      * 2 AB, 3 BC, 4 CA => 1 FUEL
      * The above list of reactions requires 165 ORE to produce 1 FUEL:
-     *
+     * <p>
      * Consume 45 ORE to produce 10 A.
      * Consume 64 ORE to produce 24 B.
      * Consume 56 ORE to produce 40 C.
@@ -65,9 +69,9 @@ public final class Day14 {
      * Consume 16 C, 4 A to produce 4 CA.
      * Consume 2 AB, 3 BC, 4 CA to produce 1 FUEL.
      * Here are some larger examples:
-     *
+     * <p>
      * 13312 ORE for 1 FUEL:
-     *
+     * <p>
      * 157 ORE => 5 NZVS
      * 165 ORE => 6 DCFZ
      * 44 XJWVT, 5 KHKGT, 1 QDVJ, 29 NZVS, 9 GPVTF, 48 HKGWZ => 1 FUEL
@@ -78,7 +82,7 @@ public final class Day14 {
      * 165 ORE => 2 GPVTF
      * 3 DCFZ, 7 NZVS, 5 HKGWZ, 10 PSHF => 8 KHKGT
      * 180697 ORE for 1 FUEL:
-     *
+     * <p>
      * 2 VPVL, 7 FWMGM, 2 CXFTF, 11 MNCFX => 1 STKFG
      * 17 NVRVD, 3 JNWZP => 8 VPVL
      * 53 STKFG, 6 MNCFX, 46 VJHF, 81 HVMC, 68 CXFTF, 25 GNMV => 1 FUEL
@@ -92,7 +96,7 @@ public final class Day14 {
      * 1 VJHF, 6 MNCFX => 4 RFSQX
      * 176 ORE => 6 VJHF
      * 2210736 ORE for 1 FUEL:
-     *
+     * <p>
      * 171 ORE => 8 CNZTR
      * 7 ZLQW, 3 BMBT, 9 XCVML, 26 XMNCP, 1 WPTQ, 2 MZWV, 1 RJRHP => 4 PLWSL
      * 114 ORE => 4 BHXH
@@ -139,9 +143,9 @@ public final class Day14 {
     /**
      * --- Part Two ---
      * After collecting ORE for a while, you check your cargo hold: 1 trillion (1000000000000) units of ORE.
-     *
+     * <p>
      * With that much ore, given the examples above:
-     *
+     * <p>
      * The 13312 ORE-per-FUEL example could produce 82892753 FUEL.
      * The 180697 ORE-per-FUEL example could produce 5586022 FUEL.
      * The 2210736 ORE-per-FUEL example could produce 460664 FUEL.
@@ -180,10 +184,14 @@ public final class Day14 {
     record Reaction(List<Pair<String, Long>> chemicalInputs, Pair<String, Long> chemicalOutput) {
 
         static Reaction parseReaction(String line) {
-            List<String> split = Splitter.on(" => ").splitToList(line);
-            List<Pair<String, Long>> inputs = Stream.of(split.get(0).split(", ")).map(Reaction::parseChemical).toList();
-            Pair<String, Long> output = parseChemical(split.get(1));
-            return new Reaction(inputs, output);
+            Matcher matcher = REACTION_PATTERN.matcher(line);
+            if (matcher.find()) {
+                List<Pair<String, Long>> inputs = Splitter.on(", ").splitToStream(matcher.group(1)).map(Reaction::parseChemical).toList();
+                Pair<String, Long> output = parseChemical(matcher.group(2));
+                return new Reaction(inputs, output);
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
+            }
         }
 
         static Pair<String, Long> parseChemical(String a) {
@@ -210,7 +218,7 @@ public final class Day14 {
         @Override
         public String toString() {
             return "Reaction[" + chemicalInputs.stream().map(Reaction::writeChemical).collect(Collectors.joining(", "))
-                    + " => " + writeChemical(chemicalOutput) + "]";
+                   + " => " + writeChemical(chemicalOutput) + "]";
         }
     }
 }

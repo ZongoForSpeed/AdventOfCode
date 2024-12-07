@@ -12,7 +12,6 @@ import it.unimi.dsi.fastutil.ints.IntSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,32 +24,32 @@ public final class Day12 {
 
     /**
      * --- Day 12: Digital Plumber ---
-     *
+     * <p>
      * Walking along the memory banks of the stream, you find a small village that
      * is experiencing a little confusion: some programs can't communicate with
      * each other.
-     *
+     * <p>
      * Programs in this village communicate using a fixed system of pipes.
      * Messages are passed between programs using these pipes, but most programs
      * aren't connected to each other directly. Instead, programs pass messages
      * between each other until the message reaches the intended recipient.
-     *
+     * <p>
      * For some reason, though, some of these messages aren't ever reaching their
      * intended recipient, and the programs suspect that some pipes are missing.
      * They would like you to investigate.
-     *
+     * <p>
      * You walk through the village and record the ID of each program and the IDs
      * with which it can communicate directly (your puzzle input). Each program
      * has one or more programs with which it can communicate, and these pipes are
      * bidirectional; if 8 says it can communicate with 11, then 11 will say it
      * can communicate with 8.
-     *
+     * <p>
      * You need to figure out how many programs are in the group that contains
      * program ID 0.
-     *
+     * <p>
      * For example, suppose you go door-to-door like a travelling salesman and
      * record the following list:
-     *
+     * <p>
      * 0 <-> 2
      * 1 <-> 1
      * 2 <-> 0, 3, 4
@@ -58,22 +57,22 @@ public final class Day12 {
      * 4 <-> 2, 3, 6
      * 5 <-> 6
      * 6 <-> 4, 5
-     *
+     * <p>
      * In this example, the following programs are in the group that contains
      * program ID 0:
-     *
-     *   - Program 0 by definition.
-     *   - Program 2, directly connected to program 0.
-     *   - Program 3 via program 2.
-     *   - Program 4 via program 2.
-     *   - Program 5 via programs 6, then 4, then 2.
-     *   - Program 6 via programs 4, then 2.
-     *
+     * <p>
+     * - Program 0 by definition.
+     * - Program 2, directly connected to program 0.
+     * - Program 3 via program 2.
+     * - Program 4 via program 2.
+     * - Program 5 via programs 6, then 4, then 2.
+     * - Program 6 via programs 4, then 2.
+     * <p>
      * Therefore, a total of 6 programs are in this group; all but program 1,
      * which has a pipe that connects it to itself.
-     *
+     * <p>
      * How many programs are in the group that contains program ID 0?
-     *
+     * <p>
      * Your puzzle answer was 130.
      */
     static IntSet digitalPlumberPartOne(Scanner scanner) {
@@ -88,7 +87,7 @@ public final class Day12 {
             String line = scanner.nextLine();
             List<String> split = Splitter.on(" <-> ").splitToList(line);
             int left = Integer.parseInt(split.get(0));
-            int[] array = Arrays.stream(split.get(1).split(", ")).mapToInt(Integer::parseInt).toArray();
+            int[] array = Splitter.on(", ").splitToStream(split.get(1)).mapToInt(Integer::parseInt).toArray();
             for (int i : array) {
                 programs.computeIfAbsent(left, k -> new IntArrayList()).add(i);
             }
@@ -119,21 +118,21 @@ public final class Day12 {
 
     /**
      * --- Part Two ---
-     *
+     * <p>
      * There are more programs than just the ones in the group containing program
      * ID 0. The rest of them have no way of reaching that group, and still might
      * have no way of reaching each other.
-     *
+     * <p>
      * A group is a collection of programs that can all communicate via pipes
      * either directly or indirectly. The programs you identified just a moment
      * ago are all part of the same group. Now, they would like you to determine
      * the total number of groups.
-     *
+     * <p>
      * In the example above, there were 2 groups: one consisting of programs
      * 0,2,3,4,5,6, and the other consisting solely of program 1.
-     *
+     * <p>
      * How many groups are there in total?
-     *
+     * <p>
      * Your puzzle answer was 189.
      */
     static IntSet digitalPlumberPartTwo(Scanner scanner) {

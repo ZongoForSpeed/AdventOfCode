@@ -15,9 +15,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day19 {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day19.class);
+    private static final Pattern REPLACEMENTS_PATTERN = Pattern.compile("^(.*) => (.*)$");
 
     private Day19() {
         // No-Op
@@ -104,8 +108,12 @@ public final class Day19 {
             }
 
             if (!readMolecule) {
-                List<String> split = Splitter.on(" => ").splitToList(line);
-                replacements.computeIfAbsent(split.get(0), ignore -> new ArrayList<>()).add(readMolecule(split.get(1)));
+                Matcher matcher = REPLACEMENTS_PATTERN.matcher(line);
+                if (matcher.find()) {
+                    replacements.computeIfAbsent(matcher.group(1), ignore -> new ArrayList<>()).add(readMolecule(matcher.group(2)));
+                } else {
+                    LOGGER.error("Cannot parse line '{}'", line);
+                }
             } else {
                 medicineMolecule = readMolecule(line);
             }

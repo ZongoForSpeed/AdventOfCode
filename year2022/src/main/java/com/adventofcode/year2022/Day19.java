@@ -474,9 +474,8 @@ public final class Day19 {
             if (matcher.matches()) {
                 int blueprint = Integer.parseInt(matcher.group(1));
                 LOGGER.info("Blueprint = {}", blueprint);
-                Iterable<String> split = Splitter.on(". ").split(matcher.group(2));
                 int[][] costs = new int[Resource.values().length][Resource.values().length];
-                for (String s : split) {
+                for (String s : Splitter.on(". ").split(matcher.group(2))) {
                     LOGGER.info("Robot = '{}'", s);
                     Matcher matcher1 = ROBOTSS_PATTERN.matcher(s);
                     if (matcher1.matches()) {

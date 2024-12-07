@@ -1,14 +1,16 @@
 package com.adventofcode.year2019;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public final class Day12 {
+
+    // <x=5, y=5, z=10>
+    private static final Pattern MOON_PATTERN = Pattern.compile("^<x=(-?\\d+), y=(-?\\d+), z=(-?\\d+)>$");
 
     private Day12() {
         // No-Op
@@ -292,15 +294,15 @@ public final class Day12 {
         }
 
         public static Moon parse(String line) {
-            int i = line.indexOf('<');
-            int j = line.indexOf('>');
-            String substring = line.substring(i + 1, j);
-            List<String> split = Splitter.on(", ").splitToList(substring);
-            return new Moon(readPosition(split, 0), readPosition(split, 1), readPosition(split, 2));
-        }
-
-        private static int readPosition(List<String> split, int index) {
-            return Integer.parseInt(Iterables.get(Splitter.on('=').split(split.get(index)), 1));
+            Matcher matcher = MOON_PATTERN.matcher(line);
+            if (matcher.find()) {
+                int x = Integer.parseInt(matcher.group(1));
+                int y = Integer.parseInt(matcher.group(2));
+                int z = Integer.parseInt(matcher.group(3));
+                return new Moon(x, y, z);
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
+            }
         }
 
         public static void step(List<Moon> moons) {

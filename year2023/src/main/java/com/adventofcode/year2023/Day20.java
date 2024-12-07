@@ -312,7 +312,7 @@ public final class Day20 {
                 label = label.substring(1);
             }
 
-            List<String> destinations = Arrays.stream(split.get(1).split(", ")).map(String::trim).toList();
+            List<String> destinations = Splitter.on(", ").splitToStream(split.get(1)).map(String::trim).toList();
             if (destinations.contains("rx")) {
                 rxInputs.add(label);
             }

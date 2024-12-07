@@ -37,8 +37,7 @@ public final class Day07 {
                 List<String> split = Splitter.on(" -> ").splitToList(line);
                 Program program = Program.of(split.get(0));
                 programs.put(program.name(), program);
-                List<String> strings = Arrays.asList(split.get(1).split(", "));
-                map.put(program.name(), strings);
+                map.put(program.name(), Splitter.on(", ").splitToList(split.get(1)));
             } else {
                 Program program = Program.of(line);
                 programs.put(program.name(), program);

@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -48,7 +48,7 @@ public final class Day19 {
                 StringJoiner stringJoiner = new StringJoiner("|", "(", ")");
 
                 for (String s : Splitter.on(" | ").split(rule)) {
-                    String collect = Arrays.stream(s.split(" "))
+                    String collect = Splitter.on(' ').splitToStream(s)
                             .mapToInt(Integer::parseInt)
                             .mapToObj(i -> buildPattern(i, addLoopRules, rules, cache))
                             .collect(Collectors.joining());
@@ -242,6 +242,9 @@ public final class Day19 {
      * After updating rules 8 and 11, how many messages completely match rule 0?
      */
     static long matchMonsterMessages(List<String> lines, boolean addLoopRules) {
+
+        Pattern MONSTER_PATTERN = Pattern.compile("^(\\d+): (.*)$");
+
         Memory<String> rules = new ObjectMemory<>();
         List<String> messages = new ArrayList<>();
         boolean readRule = true;
@@ -252,8 +255,12 @@ public final class Day19 {
             }
 
             if (readRule) {
-                List<String> s1 = Splitter.on(": ").splitToList(line);
-                rules.put(Integer.parseInt(s1.get(0)), s1.get(1));
+                Matcher matcher = MONSTER_PATTERN.matcher(line);
+                if (matcher.find()) {
+                    rules.put(Integer.parseInt(matcher.group(1)), matcher.group(2));
+                } else {
+                    throw new IllegalStateException("Cannot parse line: " + line);
+                }
             } else {
                 messages.add(line);
             }

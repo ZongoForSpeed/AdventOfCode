@@ -12,11 +12,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day22 {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day22.class);
     private static final TerminalState WINNING_STATE = TerminalState.of(true);
     private static final TerminalState LOOSING_STATE = TerminalState.of(false);
-    private static final Logger LOGGER = LoggerFactory.getLogger(Day22.class);
+    private static final Pattern BOSS_PATTERN = Pattern.compile("^(.*): (\\d+)$");
 
     public static List<AStar.Move<State>> nextStatePartOne(State state) {
         return nextState(state, false);
@@ -119,12 +123,17 @@ public final class Day22 {
         }
     }
 
+
     public static Boss readBossStats(Scanner scanner) {
         Map<String, Integer> bossStats = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            List<String> split = Splitter.on(": ").splitToList(line);
-            bossStats.put(split.getFirst(), Integer.valueOf(split.get(1)));
+            Matcher matcher = BOSS_PATTERN.matcher(line);
+            if (matcher.find()) {
+                bossStats.put(matcher.group(1), Integer.valueOf(matcher.group(2)));
+            } else {
+                LOGGER.error("Cannot parse line '{}'", line);
+            }
         }
 
         Boss boss = Boss.of(bossStats.get("Hit Points"), bossStats.get("Damage"));
