@@ -65,6 +65,9 @@ public class CharMap {
     }
 
     public char get(int x, int y) {
+        if (y < 0 || x < 0) {
+            return defaultValue;
+        }
         if (y < map.length && x < map[y].length) {
             return map[y][x];
         }

@@ -3,6 +3,7 @@ package com.adventofcode.common.point;
 import java.util.List;
 
 public record Point2D(int x, int y) implements Comparable<Point2D> {
+
     public static final List<Point2D> ADJACENT =
             List.of(of(-1, -1),
                     of(-1, 0),
