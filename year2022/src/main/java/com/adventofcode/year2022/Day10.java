@@ -8,10 +8,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day10 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day10.class);
+    private static final Pattern PATTERN = Pattern.compile("(noop)|(addx) (-?\\d+)");
 
     private Day10() {
         // No-Op
@@ -459,20 +462,25 @@ public final class Day10 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            List<String> split = Splitter.on(' ').splitToList(line);
-
-            String command = split.get(0);
-            switch (command) {
-                case "noop": {
-                    register.add(register.getLast());
-                    break;
+            Matcher matcher = PATTERN.matcher(line);
+            if (matcher.find()) {
+                String command = matcher.group(1);
+                switch (command) {
+                    case "noop": {
+                        register.add(register.getLast());
+                        break;
+                    }
+                    case "addx": {
+                        int value = Integer.parseInt(matcher.group(2));
+                        register.add(register.getLast());
+                        register.add(register.getLast() + value);
+                    }
                 }
-                case "addx": {
-                    int value = Integer.parseInt(split.get(1));
-                    register.add(register.getLast());
-                    register.add(register.getLast() + value);
-                }
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
             }
+
+
         }
         return register;
     }

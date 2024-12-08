@@ -19,23 +19,29 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public final class Day07 {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day07.class);
-    private static final Pattern PATTERN = Pattern.compile("(\\d+) (.*) bag");
+
+    // light red bags contain 1 bright white bag, 2 muted yellow bags.
+    private static final Pattern RULE_PATTERN = Pattern.compile("^(.*) bags contain (.*)\\.$");
+    private static final Pattern BAG_PATTERN = Pattern.compile("(\\d+) (.*) bag");
 
     private Day07() {
         // No-Op
     }
 
-    static Pair<String, List<Pair<String, Integer>>> readRule(String rule) {
-        List<String> splitContain = Splitter.on(" contain ").splitToList(rule.replace(".", ""));
-        String leftRule = splitContain.get(0);
-        String rightRule = splitContain.get(1);
 
-        String color = leftRule.replace(" bags", "");
+    static Pair<String, List<Pair<String, Integer>>> readRule(String rule) {
+        Matcher matcher = RULE_PATTERN.matcher(rule);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Cannot parse rule: " + rule);
+        }
+        String color = matcher.group(1);
+        String rightRule = matcher.group(2);
 
         List<Pair<String, Integer>> contain = new ArrayList<>();
         for (String s : Splitter.on(", ").split(rightRule)) {
-            Matcher matcher = PATTERN.matcher(s);
+            matcher = BAG_PATTERN.matcher(s);
             if (matcher.find()) {
                 contain.add(Pair.of(matcher.group(2), Integer.valueOf(matcher.group(1))));
             }

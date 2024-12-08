@@ -12,8 +12,9 @@ import it.unimi.dsi.fastutil.ints.IntSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day12 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12.class);
@@ -80,16 +81,23 @@ public final class Day12 {
         return findGroup(programs, 0);
     }
 
+    private static final Pattern PATTERN = Pattern.compile("^(.*) <-> (.*)$");
+
     private static Int2ObjectMap<IntList> readPrograms(Scanner scanner) {
         Int2ObjectMap<IntList> programs = new Int2ObjectOpenHashMap<>();
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            List<String> split = Splitter.on(" <-> ").splitToList(line);
-            int left = Integer.parseInt(split.get(0));
-            int[] array = Splitter.on(", ").splitToStream(split.get(1)).mapToInt(Integer::parseInt).toArray();
-            for (int i : array) {
-                programs.computeIfAbsent(left, k -> new IntArrayList()).add(i);
+            Matcher matcher = PATTERN.matcher(line);
+            if (matcher.find()) {
+                int left = Integer.parseInt(matcher.group(1));
+                IntList program = programs.computeIfAbsent(left, ignore -> new IntArrayList());
+                Splitter.on(", ")
+                        .splitToStream(matcher.group(2))
+                        .mapToInt(Integer::parseInt)
+                        .forEach(program::add);
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
             }
         }
 

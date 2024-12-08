@@ -2,6 +2,8 @@ package com.adventofcode.year2023;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +13,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 class Day20Test {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day20Test.class);
 
     @Test
     void inputExample1() {
@@ -27,7 +31,7 @@ class Day20Test {
                 Map.entry(Day20.Value.HIGH, 4000L),
                 Map.entry(Day20.Value.LOW, 8000L)
         );
-        Day20.LOGGER.info("counters = {}", counters);
+        LOGGER.info("counters = {}", counters);
     }
 
     @Test
@@ -45,7 +49,7 @@ class Day20Test {
                 Map.entry(Day20.Value.HIGH, 2750L),
                 Map.entry(Day20.Value.LOW, 4250L)
         );
-        Day20.LOGGER.info("counters = {}", counters);
+        LOGGER.info("counters = {}", counters);
     }
 
     @Test

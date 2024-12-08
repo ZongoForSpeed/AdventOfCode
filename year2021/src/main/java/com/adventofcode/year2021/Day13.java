@@ -1,10 +1,9 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.point.map.BooleanMap;
 import com.adventofcode.common.point.Point2D;
-import com.google.common.base.Splitter;
-import org.apache.commons.lang3.StringUtils;
+import com.adventofcode.common.point.map.BooleanMap;
 import it.unimi.dsi.fastutil.Pair;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,13 +15,14 @@ import java.util.regex.Pattern;
 
 public final class Day13 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day13.class);
+    private static final Pattern FOLD_PATTERN = Pattern.compile("fold along (\\w)=(\\d+)");
+    private static final Pattern MAP_PATTERN = Pattern.compile("(\\d+),(\\d+)");
 
     private Day13() {
         // No-Op
     }
 
     static void readMap(Scanner scanner, BooleanMap map, List<Pair<String, Integer>> instructions) {
-        Pattern pattern = Pattern.compile("fold along (\\w)=(\\d+)");
         boolean readFold = false;
 
         while (scanner.hasNextLine()) {
@@ -33,17 +33,23 @@ public final class Day13 {
             }
 
             if (readFold) {
-                Matcher matcher = pattern.matcher(line);
+                Matcher matcher = FOLD_PATTERN.matcher(line);
                 if (matcher.find()) {
                     String axe = matcher.group(1);
                     int position = Integer.parseInt(matcher.group(2));
                     instructions.add(Pair.of(axe, position));
+                } else {
+                    throw new IllegalStateException("Cannot parse line: " + line);
                 }
             } else {
-                List<String> split = Splitter.on(',').splitToList(line);
-                int x = Integer.parseInt(split.get(0));
-                int y = Integer.parseInt(split.get(1));
-                map.set(x, y);
+                Matcher matcher = MAP_PATTERN.matcher(line);
+                if (matcher.find()) {
+                    int x = Integer.parseInt(matcher.group(1));
+                    int y = Integer.parseInt(matcher.group(2));
+                    map.set(x, y);
+                } else {
+                    throw new IllegalStateException("Cannot parse line: " + line);
+                }
             }
         }
     }
@@ -78,23 +84,23 @@ public final class Day13 {
 
     /**
      * --- Day 13: Transparent Origami ---
-     *
+     * <p>
      * You reach another volcanically active part of the cave. It would be nice if
      * you could do some kind of thermal imaging so you could tell ahead of time
      * which caves are too hot to safely enter.
-     *
+     * <p>
      * Fortunately, the submarine seems to be equipped with a thermal camera! When
      * you activate it, you are greeted with:
-     *
+     * <p>
      * Congratulations on your purchase! To activate this infrared thermal imaging
      * camera system, please enter the code found on page 1 of the manual.
-     *
+     * <p>
      * Apparently, the Elves have never used this feature. To your surprise, you
      * manage to find the manual; as you go to open it, page 1 falls out. It's a
      * large sheet of transparent paper! The transparent paper is marked with
      * random dots and includes instructions on how to fold it up (your puzzle
      * input). For example:
-     *
+     * <p>
      * 6,10
      * 0,14
      * 9,10
@@ -113,17 +119,17 @@ public final class Day13 {
      * 2,14
      * 8,10
      * 9,0
-     *
+     * <p>
      * fold along y=7
      * fold along x=5
-     *
+     * <p>
      * The first section is a list of dots on the transparent paper. 0,0
      * represents the top-left coordinate. The first value, x, increases to the
      * right. The second value, y, increases downward. So, the coordinate 3,0 is
      * to the right of 0,0, and the coordinate 0,7 is below 0,0. The coordinates
      * in this example form the following pattern, where # is a dot on the paper
      * and . is an empty, unmarked position:
-     *
+     * <p>
      * ...#..#..#.
      * ....#......
      * ...........
@@ -139,13 +145,13 @@ public final class Day13 {
      * ......#...#
      * #..........
      * #.#........
-     *
+     * <p>
      * Then, there is a list of fold instructions. Each instruction indicates a
      * line on the transparent paper and wants you to fold the paper up (for
      * horizontal y=... lines) or left (for vertical x=... lines). In this
      * example, the first fold instruction is fold along y=7, which designates the
      * line formed by all of the positions where y is 7 (marked here with -):
-     *
+     * <p>
      * ...#..#..#.
      * ....#......
      * ...........
@@ -161,12 +167,12 @@ public final class Day13 {
      * ......#...#
      * #..........
      * #.#........
-     *
+     * <p>
      * Because this is a horizontal line, fold the bottom half up. Some of the
      * dots might end up overlapping after the fold is complete, but dots will
      * never appear exactly on a fold line. The result of doing this fold looks
      * like this:
-     *
+     * <p>
      * #.##..#..#.
      * #...#......
      * ......#...#
@@ -174,20 +180,20 @@ public final class Day13 {
      * .#.#..#.###
      * ...........
      * ...........
-     *
+     * <p>
      * Now, only 17 dots are visible.
-     *
+     * <p>
      * Notice, for example, the two dots in the bottom left corner before the
      * transparent paper is folded; after the fold is complete, those dots appear
      * in the top left corner (at 0,0 and 0,1). Because the paper is transparent,
      * the dot just below them in the result (at 0,3) remains visible, as it can
      * be seen through the transparent paper.
-     *
+     * <p>
      * Also notice that some dots can end up overlapping; in this case, the dots
      * merge together and become a single dot.
-     *
+     * <p>
      * The second fold instruction is fold along x=5, which indicates this line:
-     *
+     * <p>
      * #.##.|#..#.
      * #...#|.....
      * .....|#...#
@@ -195,9 +201,9 @@ public final class Day13 {
      * .#.#.|#.###
      * .....|.....
      * .....|.....
-     *
+     * <p>
      * Because this is a vertical line, fold left:
-     *
+     * <p>
      * #####
      * #...#
      * #...#
@@ -205,17 +211,17 @@ public final class Day13 {
      * #####
      * .....
      * .....
-     *
+     * <p>
      * The instructions made a square!
-     *
+     * <p>
      * The transparent paper is pretty big, so for now, focus on just completing
      * the first fold. After the first fold in the example above, 17 dots are
      * visible - dots that end up overlapping after the fold is completed count as
      * a single dot.
-     *
+     * <p>
      * How many dots are visible after completing just the first fold instruction
      * on your transparent paper?
-     *
+     * <p>
      * Your puzzle answer was 842.
      */
     static BooleanMap transparentOrigamiPartOne(Scanner scanner) {
@@ -230,10 +236,10 @@ public final class Day13 {
 
     /**
      * --- Part Two ---
-     *
+     * <p>
      * Finish folding the transparent paper according to the instructions. The
      * manual says the code is always eight capital letters.
-     *
+     * <p>
      * What code do you use to activate the infrared thermal imaging camera
      * system?
      */

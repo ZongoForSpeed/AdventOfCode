@@ -9,8 +9,9 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day21 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day21.class);
@@ -20,20 +21,21 @@ public final class Day21 {
             Point2D.of(0, 2), Point2D.of(1, 2), Point2D.of(2, 2)
     );
 
+    private static final Pattern PATTERN = Pattern.compile("^(.*) => (.*)$");
+
     private Day21() {
         // No-Op
     }
 
     private static BooleanMap readBooleanMap(String input) {
         BooleanMap map = new BooleanMap(0, 0, '/');
-        List<String> split = Splitter.on('/').splitToList(input);
-        for (int i = 0; i < split.size(); i++) {
-            char[] charArray = split.get(i).toCharArray();
-            for (int j = 0; j < charArray.length; j++) {
-                map.set(j, i, charArray[j] == '#');
+        int i = 0;
+        for (String s : Splitter.on('/').split(input)) {
+            for (int j = 0; j < s.length(); ++j) {
+                map.set(j, i, s.charAt(j) == '#');
             }
+            ++i;
         }
-
         return map;
     }
 
@@ -155,25 +157,31 @@ public final class Day21 {
         Map<Key, BooleanMap> mapping3 = new HashMap<>();
 
         while (scanner.hasNextLine()) {
-            List<String> split = Splitter.on(" => ").splitToList(scanner.nextLine());
-            BooleanMap first = readBooleanMap(split.get(0));
-            BooleanMap second = readBooleanMap(split.get(1));
+            String line = scanner.nextLine();
+            Matcher matcher = PATTERN.matcher(line);
+            if (matcher.find()) {
+                BooleanMap first = readBooleanMap(matcher.group(1));
+                BooleanMap second = readBooleanMap(matcher.group(2));
 
-            if (first.xMax() + 1 == 2) {
-                for (int i = 0; i < 4; ++i) {
-                    mapping2.put(Key.of(first), second);
-                    mapping2.put(Key.of(first.flipX()), second);
-                    mapping2.put(Key.of(first.flipY()), second);
-                    first = first.rotate();
+                if (first.xMax() + 1 == 2) {
+                    for (int i = 0; i < 4; ++i) {
+                        mapping2.put(Key.of(first), second);
+                        mapping2.put(Key.of(first.flipX()), second);
+                        mapping2.put(Key.of(first.flipY()), second);
+                        first = first.rotate();
+                    }
+                } else {
+                    for (int i = 0; i < 4; ++i) {
+                        mapping3.put(Key.of(first), second);
+                        mapping3.put(Key.of(first.flipX()), second);
+                        mapping3.put(Key.of(first.flipY()), second);
+                        first = first.rotate();
+                    }
                 }
             } else {
-                for (int i = 0; i < 4; ++i) {
-                    mapping3.put(Key.of(first), second);
-                    mapping3.put(Key.of(first.flipX()), second);
-                    mapping3.put(Key.of(first.flipY()), second);
-                    first = first.rotate();
-                }
+                throw new IllegalStateException("Cannot parse line: " + line);
             }
+
         }
 
         BooleanMap fractal = BooleanMap.read("""

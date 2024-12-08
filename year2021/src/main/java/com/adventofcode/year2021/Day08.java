@@ -11,9 +11,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day08 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08.class);
+    private static final Pattern PATTERN = Pattern.compile("^(.*) | (.*)$");
+
     public final List<Map<String, Integer>> mappings;
 
     Day08() {
@@ -174,28 +178,37 @@ public final class Day08 {
     public long count1478(Scanner scanner) {
         long count = 0;
         while (scanner.hasNextLine()) {
-            List<String> split = Splitter.on(" | ").splitToList(scanner.nextLine());
-            count += Splitter.on(' ').splitToStream(split.get(1)).mapToInt(String::length).filter(i -> i == 2 || i == 3 || i == 4 || i == 7).count();
+            String line = scanner.nextLine();
+            Matcher matcher = PATTERN.matcher(line);
+            if (matcher.find()) {
+                count += Splitter.on(' ').splitToStream(matcher.group(2)).mapToInt(String::length).filter(i -> i == 2 || i == 3 || i == 4 || i == 7).count();
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
+            }
         }
         return count;
     }
 
     public int solveMapping(String line) {
-        List<String> split = Splitter.on(" | ").splitToList(line);
-        List<String> left = Splitter.on(' ').splitToStream(split.get(0)).map(Day08::sort).toList();
-        List<String> right = Splitter.on(' ').splitToStream(split.get(1)).map(Day08::sort).toList();
+        Matcher matcher = PATTERN.matcher(line);
+        if (matcher.find()) {
+            List<String> left = Splitter.on(' ').splitToStream(matcher.group(1)).map(Day08::sort).toList();
+            List<String> right = Splitter.on(' ').splitToStream(matcher.group(2)).map(Day08::sort).toList();
 
-        for (Map<String, Integer> mapping : mappings) {
-            if (left.stream().allMatch(mapping::containsKey)) {
-                LOGGER.debug("Mapping for line {} is mapping {}", line, mapping);
-                int reduce = right.stream().map(mapping::get).reduce(0, (a, b) -> a * 10 + b);
-                LOGGER.info("Numbers = {}, reduce = {}", right, reduce);
-                return reduce;
+            for (Map<String, Integer> mapping : mappings) {
+                if (left.stream().allMatch(mapping::containsKey)) {
+                    LOGGER.debug("Mapping for line {} is mapping {}", line, mapping);
+                    int reduce = right.stream().map(mapping::get).reduce(0, (a, b) -> a * 10 + b);
+                    LOGGER.info("Numbers = {}, reduce = {}", right, reduce);
+                    return reduce;
+                }
             }
-        }
 
-        LOGGER.error("Cannot find mapping for line = {}", line);
-        return 0;
+            LOGGER.error("Cannot find mapping for line = {}", line);
+            return 0;
+        } else {
+            throw new IllegalStateException("Cannot parse line:" + line);
+        }
     }
 
     /**

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public final class Day14 {
 
     private static final Pattern REACTION_PATTERN = Pattern.compile("^(.*) => (.*)$");
+    private static final Pattern CHEMICAL_PATTERN = Pattern.compile("(\\d+) (\\w+)");
 
     /**
      * --- Day 14: Space Stoichiometry ---
@@ -195,8 +196,12 @@ public final class Day14 {
         }
 
         static Pair<String, Long> parseChemical(String a) {
-            List<String> split = Splitter.on(' ').splitToList(a.trim());
-            return Pair.of(split.get(1), Long.valueOf(split.get(0)));
+            Matcher matcher = CHEMICAL_PATTERN.matcher(a);
+            if (matcher.find()) {
+                return Pair.of(matcher.group(2), Long.valueOf(matcher.group(1)));
+            } else {
+                throw new IllegalStateException("Cannot parse chemical: " + a);
+            }
         }
 
         static String writeChemical(Pair<String, Long> chemical) {

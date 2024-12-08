@@ -13,9 +13,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day12 {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12.class);
+    private static final Pattern PATTERN = Pattern.compile("(.*) ([0-9,]+)");
 
     private Day12() {
         // No-Op
@@ -157,13 +161,17 @@ public final class Day12 {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
-                List<String> split = Splitter.on(' ').splitToList(line);
-                String pattern = split.getFirst();
-                int[] springs = Arrays.stream(split.get(1).split(",")).mapToInt(Integer::parseInt).toArray();
+                Matcher matcher = PATTERN.matcher(line);
+                if (matcher.find()) {
+                    String pattern = matcher.group(1);
+                    int[] springs = Splitter.on(",").splitToStream(matcher.group(2)).mapToInt(Integer::parseInt).toArray();
 
-                int countArrangements = countArrangements(pattern, springs);
-                count += countArrangements;
-                LOGGER.info("'{}' -> {}", line, countArrangements);
+                    int countArrangements = countArrangements(pattern, springs);
+                    count += countArrangements;
+                    LOGGER.info("'{}' -> {}", line, countArrangements);
+                } else {
+                    throw new IllegalStateException("Cannot parse line: " + line);
+                }
             }
             return count;
         }
@@ -280,13 +288,17 @@ public final class Day12 {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
-                List<String> split = Splitter.on(' ').splitToList(line);
-                String pattern = split.getFirst();
-                int[] springs = Arrays.stream(split.get(1).split(",")).mapToInt(Integer::parseInt).toArray();
+                Matcher matcher = PATTERN.matcher(line);
+                if (matcher.find()) {
+                    String pattern = matcher.group(1);
+                    int[] springs = Splitter.on(",").splitToStream(matcher.group(2)).mapToInt(Integer::parseInt).toArray();
 
-                long countArrangements = countArrangements(pattern, springs, copy);
-                count += countArrangements;
-                LOGGER.info("'{}' -> {}", line, countArrangements);
+                    long countArrangements = countArrangements(pattern, springs, copy);
+                    count += countArrangements;
+                    LOGGER.info("'{}' -> {}", line, countArrangements);
+                } else {
+                    throw new IllegalStateException("Cannot parse line: " + line);
+                }
             }
             return count;
         }

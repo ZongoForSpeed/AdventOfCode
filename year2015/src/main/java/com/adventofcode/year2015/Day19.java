@@ -1,6 +1,5 @@
 package com.adventofcode.year2015;
 
-import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -126,6 +125,8 @@ public final class Day19 {
         return findNextMolecules(replacements, medicineMolecule);
     }
 
+    private static final Pattern PATTERN = Pattern.compile("^(\\w+) => (\\w+)$");
+
     /**
      * --- Part Two ---
      * <p>
@@ -171,8 +172,12 @@ public final class Day19 {
             }
 
             if (!readMolecule) {
-                List<String> split = Splitter.on(" => ").splitToList(line);
-                rules.add(Pair.of(split.get(0), split.get(1)));
+                Matcher matcher = PATTERN.matcher(line);
+                if (matcher.find()) {
+                    rules.add(Pair.of(matcher.group(1), matcher.group(2)));
+                } else {
+                    throw new IllegalStateException("Cannot parse line: " + line);
+                }
             } else {
                 medicineMolecule = line;
             }

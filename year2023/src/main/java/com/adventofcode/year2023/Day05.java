@@ -23,6 +23,7 @@ public final class Day05 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day05.class);
     private static final Pattern PATTERN_SEED = Pattern.compile("seeds: (.*)");
     private static final Pattern PATTERN_MAP = Pattern.compile("(\\w+)-to-(\\w+) map:");
+    private static final Pattern PATTERN_FERTILIZER = Pattern.compile("(\\d+) (\\d+) (\\d+)");
 
     private static FertilizerMap readMap(Scanner scanner) {
         String sourceCategory = null;
@@ -39,9 +40,14 @@ public final class Day05 {
             if (matcher.matches()) {
                 sourceCategory = matcher.group(1);
                 destinationCategory = matcher.group(2);
+                continue;
+            }
+
+            matcher = PATTERN_FERTILIZER.matcher(line);
+            if (matcher.matches()) {
+                ranges.add(new FertilizerRanges(Long.parseLong(matcher.group(1)), Long.parseLong(matcher.group(2)), Long.parseLong(matcher.group(3))));
             } else {
-                List<String> split = Splitter.on(' ').splitToList(line);
-                ranges.add(new FertilizerRanges(Long.parseLong(split.getFirst()), Long.parseLong(split.get(1)), Long.parseLong(split.get(2))));
+                throw new IllegalStateException("Cannot parse line: " + line);
             }
         }
 

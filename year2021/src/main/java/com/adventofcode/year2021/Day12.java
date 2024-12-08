@@ -16,10 +16,14 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class Day12 {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12.class);
     private static final String START = "start";
+    private static final Pattern PATTERN = Pattern.compile("^(\\w+)-(\\w+)$");
 
     private Day12() {
         // No-Op
@@ -51,15 +55,15 @@ public final class Day12 {
 
     /**
      * --- Day 12: Passage Pathing ---
-     *
+     * <p>
      * With your submarine's subterranean subsystems subsisting suboptimally, the
      * only way you're getting out of this cave anytime soon is by finding a path
      * yourself. Not just a path - the only way to know if you've found the best
      * path is to find all of them.
-     *
+     * <p>
      * Fortunately, the sensors are still mostly working, and so you build a rough
      * map of the remaining caves (your puzzle input). For example:
-     *
+     * <p>
      * start-A
      * start-b
      * A-c
@@ -67,20 +71,20 @@ public final class Day12 {
      * b-d
      * A-end
      * b-end
-     *
+     * <p>
      * This is a list of how all of the caves are connected. You start in the cave
      * named start, and your destination is the cave named end. An entry like b-d
      * means that cave b is connected to cave d - that is, you can move between
      * them.
-     *
+     * <p>
      * So, the above cave system looks roughly like this:
-     *
-     *     start
-     *     /   \
+     * <p>
+     * start
+     * /   \
      * c--A-----b--d
-     *     \   /
-     *      end
-     *
+     * \   /
+     * end
+     * <p>
      * Your goal is to find the number of distinct paths that start at start, end
      * at end, and don't visit small caves more than once. There are two types of
      * caves: big caves (written in uppercase, like A) and small caves (written
@@ -88,9 +92,9 @@ public final class Day12 {
      * more than once, but big caves are large enough that it might be worth
      * visiting them multiple times. So, all paths you find should visit small
      * caves at most once, and can visit big caves any number of times.
-     *
+     * <p>
      * Given these rules, there are 10 paths through this example cave system:
-     *
+     * <p>
      * start,A,b,A,c,A,end
      * start,A,b,A,end
      * start,A,b,end
@@ -101,18 +105,18 @@ public final class Day12 {
      * start,b,A,c,A,end
      * start,b,A,end
      * start,b,end
-     *
+     * <p>
      * (Each line in the above list corresponds to a single path; the caves
      * visited by that path are listed in the order they are visited and separated
      * by commas.)
-     *
+     * <p>
      * Note that in this cave system, cave d is never visited by any path: to do
      * so, cave b would need to be visited twice (once on the way to cave d and a
      * second time when returning from cave d), and since cave b is small, this
      * is not allowed.
-     *
+     * <p>
      * Here is a slightly larger example:
-     *
+     * <p>
      * dc-end
      * HN-start
      * start-kj
@@ -123,9 +127,9 @@ public final class Day12 {
      * kj-sa
      * kj-HN
      * kj-dc
-     *
+     * <p>
      * The 19 paths through it are as follows:
-     *
+     * <p>
      * start,HN,dc,HN,end
      * start,HN,dc,HN,kj,HN,end
      * start,HN,dc,end
@@ -145,9 +149,9 @@ public final class Day12 {
      * start,kj,HN,end
      * start,kj,dc,HN,end
      * start,kj,dc,end
-     *
+     * <p>
      * Finally, this even larger example has 226 paths through it:
-     *
+     * <p>
      * fs-end
      * he-DX
      * fs-he
@@ -166,19 +170,23 @@ public final class Day12 {
      * zg-he
      * pj-fs
      * start-RW
-     *
+     * <p>
      * How many paths through this cave system are there that visit small caves at
      * most once?
-     *
+     * <p>
      * Your puzzle answer was 5104.
      */
     static Set<List<String>> findAllPathsPartOne(Scanner scanner) {
         Map<String, List<String>> graph = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            List<String> split = Splitter.on('-').splitToList(line);
-            graph.computeIfAbsent(split.get(0), ignore -> new ArrayList<>()).add(split.get(1));
-            graph.computeIfAbsent(split.get(1), ignore -> new ArrayList<>()).add(split.get(0));
+            Matcher matcher = PATTERN.matcher(line);
+            if (matcher.find()) {
+                graph.computeIfAbsent(matcher.group(1), ignore -> new ArrayList<>()).add(matcher.group(2));
+                graph.computeIfAbsent(matcher.group(2), ignore -> new ArrayList<>()).add(matcher.group(1));
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
+            }
         }
 
         LOGGER.info("Graph : {}", graph);
@@ -227,7 +235,7 @@ public final class Day12 {
 
     /**
      * --- Part Two ---
-     *
+     * <p>
      * After reviewing the available paths, you realize you might have time to
      * visit a single small cave twice. Specifically, big caves can be visited any
      * number of times, a single small cave can be visited at most twice, and the
@@ -235,9 +243,9 @@ public final class Day12 {
      * start and end can only be visited exactly once each: once you leave the
      * start cave, you may not return to it, and once you reach the end cave, the
      * path must end immediately.
-     *
+     * <p>
      * Now, the 36 possible paths through the first example above are:
-     *
+     * <p>
      * start,A,b,A,b,A,c,A,end
      * start,A,b,A,b,A,end
      * start,A,b,A,b,end
@@ -274,23 +282,25 @@ public final class Day12 {
      * start,b,d,b,A,end
      * start,b,d,b,end
      * start,b,end
-     *
+     * <p>
      * The slightly larger example above now has 103 paths through it, and the
      * even larger example now has 3509 paths through it.
-     *
+     * <p>
      * Given these new rules, how many paths through this cave system are there?
-     *
+     * <p>
      * Your puzzle answer was 149220.
      */
     static Set<List<String>> findAllPathsPartTwo(Scanner scanner) {
         Map<String, List<String>> graph = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            List<String> split = Splitter.on('-').splitToList(line);
-            String a = split.get(0);
-            String b = split.get(1);
-            graph.computeIfAbsent(a, ignore -> new ArrayList<>()).add(b);
-            graph.computeIfAbsent(b, ignore -> new ArrayList<>()).add(a);
+            Matcher matcher = PATTERN.matcher(line);
+            if (matcher.find()) {
+                graph.computeIfAbsent(matcher.group(1), ignore -> new ArrayList<>()).add(matcher.group(2));
+                graph.computeIfAbsent(matcher.group(2), ignore -> new ArrayList<>()).add(matcher.group(1));
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
+            }
         }
 
         graph.remove("end");
