@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public final class Day08 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08.class);
-    private static final Pattern PATTERN = Pattern.compile("^(.*) | (.*)$");
+    private static final Pattern PATTERN = Pattern.compile("^(.*) \\| (.*)$");
 
     public final List<Map<String, Integer>> mappings;
 
