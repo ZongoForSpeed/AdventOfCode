@@ -415,7 +415,7 @@ public final class Day25 {
         return step;
     }
 
-    /**
+    /*
      * --- Part Two ---
      *
      * Suddenly, the experimental antenna control console lights up:

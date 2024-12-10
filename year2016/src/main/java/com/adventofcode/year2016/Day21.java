@@ -25,19 +25,19 @@ public final class Day21 {
         // No-Op
     }
 
-    private static void rotateLeft(LinkedList<String> message, int steps) {
+    private static void rotateLeft(List<String> message, int steps) {
         for (int step = 0; step < steps; ++step) {
             message.addLast(message.removeFirst());
         }
     }
 
-    private static void rotateRight(LinkedList<String> message, int steps) {
+    private static void rotateRight(List<String> message, int steps) {
         for (int step = 0; step < steps; ++step) {
             message.addFirst(message.removeLast());
         }
     }
 
-    private static void swap(LinkedList<String> message, int position1, int position2) {
+    private static void swap(List<String> message, int position1, int position2) {
         String letter1 = message.get(position1);
         String letter2 = message.get(position2);
         message.set(position1, letter2);

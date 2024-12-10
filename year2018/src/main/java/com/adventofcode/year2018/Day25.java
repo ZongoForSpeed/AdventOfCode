@@ -165,7 +165,7 @@ public final class Day25 {
             }
         }
 
-        IntSet loneStar = new IntArraySet(IntSets.fromTo(0, stars.size()));
+        // IntSet loneStar = new IntArraySet(IntSets.fromTo(0, stars.size()));
 
         Int2ObjectMap<IntSet> constellations = new Int2ObjectArrayMap<>();
 
@@ -174,8 +174,8 @@ public final class Day25 {
             for (int j = i + 1; j < stars.size(); j++) {
                 Point4D star2 = stars.get(j);
                 if (Point4D.manhattanDistance(star1, star2) <= 3) {
-                    loneStar.remove(i);
-                    loneStar.remove(j);
+                    // loneStar.remove(i);
+                    // loneStar.remove(j);
 
                     constellations.computeIfAbsent(i, ignore -> new IntArraySet()).add(j);
                     constellations.computeIfAbsent(j, ignore -> new IntArraySet()).add(i);

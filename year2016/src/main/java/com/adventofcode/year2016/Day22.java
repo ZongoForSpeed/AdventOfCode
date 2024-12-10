@@ -47,8 +47,7 @@ public final class Day22 {
     }
 
     static long distance(State a, State b) {
-        return distance(a.empty(), a.goal()) + distance(a.goal(), b.goal()) + distance(b.empty(), b.goal());
-    }
+        return (long) distance(a.empty(), a.goal()) + distance(a.goal(), b.goal()) + distance(b.empty(), b.goal());    }
 
     /**
      * --- Day 22: Grid Computing ---

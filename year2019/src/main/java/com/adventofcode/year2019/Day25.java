@@ -4,12 +4,12 @@ import com.adventofcode.common.Intcode;
 import com.adventofcode.common.point.Direction;
 import com.google.common.base.Splitter;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -73,7 +73,7 @@ public final class Day25 {
     static String findPassword(String program) {
         Droid droid = new Droid(Set.of("molten lava", "infinite loop", "giant electromagnet", "photons", "escape pod"));
         Position position = droid.start(program);
-        Deque<Direction> path = new LinkedList<>();
+        Deque<Direction> path = new ArrayDeque<>();
         for (Direction direction : position.directions()) {
             droid.walk(position, direction, path);
         }

@@ -465,7 +465,7 @@ public final class Day17 {
             }
         }
 
-        return pile.size() - top;
+        return (long) pile.size() - top;
     }
 
     private static List<Jet> readInput(String input) {

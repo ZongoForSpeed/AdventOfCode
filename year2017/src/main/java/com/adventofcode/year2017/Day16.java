@@ -109,14 +109,14 @@ public final class Day16 {
         return toString(programs);
     }
 
-    private static String toString(LinkedList<Character> programs) {
+    private static String toString(List<Character> programs) {
         StringBuilder sb = new StringBuilder();
         programs.forEach(sb::append);
         return sb.toString();
     }
 
     interface DanceMove {
-        void dance(LinkedList<Character> programs);
+        void dance(List<Character> programs);
     }
 
     record Spin(int x) implements DanceMove {
@@ -126,7 +126,7 @@ public final class Day16 {
         }
 
         @Override
-        public void dance(LinkedList<Character> programs) {
+        public void dance(List<Character> programs) {
             for (int i = 0; i < x; ++i) {
                 Character last = programs.removeLast();
                 programs.addFirst(last);
@@ -143,7 +143,7 @@ public final class Day16 {
         }
 
         @Override
-        public void dance(LinkedList<Character> programs) {
+        public void dance(List<Character> programs) {
             Character firstChar = programs.get(first);
             Character secondChar = programs.get(second);
             programs.set(first, secondChar);
@@ -159,7 +159,7 @@ public final class Day16 {
         }
 
         @Override
-        public void dance(LinkedList<Character> programs) {
+        public void dance(List<Character> programs) {
             programs.replaceAll(this::replace);
         }
 

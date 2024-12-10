@@ -40,7 +40,7 @@ public final class Day23 {
                 char[] data = state.hallway().toCharArray();
                 data[target] = amphipod;
                 State next = state.next(data, i / 2 - 1, newHole);
-                long cost = Math.abs(target - i) + (size - holeLength);
+                long cost = (long) Math.abs(target - i) + (size - holeLength);
                 moves.add(AStar.Move.of(next, cost * computeCost(amphipod)));
             }
         }
@@ -70,7 +70,7 @@ public final class Day23 {
             data[position] = ' ';
             String newHole = StringUtils.leftPad(amphipod + hole, size);
             State next = state.next(data, holeNumber, newHole);
-            long cost = Math.abs(position - (holeNumber + 1) * 2) + (size - hole.length());
+            long cost = (long) Math.abs(position - (holeNumber + 1) * 2) + (size - hole.length());
             moves.add(AStar.Move.of(next, cost * computeCost(amphipod)));
         }
 

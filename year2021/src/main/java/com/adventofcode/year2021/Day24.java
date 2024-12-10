@@ -6,13 +6,13 @@ import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntImmutableList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
@@ -73,23 +73,23 @@ public final class Day24 {
 
     private static long solve(Int2ObjectMap<IntegerPair> criteria, IntList order) {
         Deque<State> queue = new ArrayDeque<>();
-        queue.addLast(State.of(new int[14], 0));
+        queue.addLast(State.of(IntImmutableList.of(new int[14]), 0));
 
         while (!queue.isEmpty()) {
             State first = queue.removeFirst();
-            int[] digits = first.digits();
+            IntList digits = first.digits();
             int position = first.position();
-            while (position < 14 && digits[position] != 0) {
+            while (position < 14 && digits.getInt(position) != 0) {
                 position++;
             }
 
             if (position == 14) {
                 LOGGER.info("Found digits : {}", digits);
-                return Arrays.stream(digits).mapToLong(t -> t).reduce(0L, (a, b) -> a * 10 + b);
+                return digits.intStream().mapToLong(t -> t).reduce(0L, (a, b) -> a * 10 + b);
             }
 
             for (var value : order) {
-                int[] newDigits = Arrays.copyOf(digits, digits.length);
+                int[] newDigits = digits.toIntArray();
                 newDigits[position] = value;
                 if (newDigits[position] <= 0 || newDigits[position] > 9) continue;
 
@@ -102,7 +102,7 @@ public final class Day24 {
                     }
                 }
 
-                queue.addLast(State.of(newDigits, position + 1));
+                queue.addLast(State.of(IntImmutableList.of(newDigits), position + 1));
             }
         }
         return 0;
@@ -110,67 +110,67 @@ public final class Day24 {
 
     /**
      * --- Day 24: Arithmetic Logic Unit ---
-     *
+     * <p>
      * Magic smoke starts leaking from the submarine's arithmetic logic unit
      * (ALU). Without the ability to perform basic arithmetic and logic functions,
      * the submarine can't produce cool patterns with its Christmas lights!
-     *
+     * <p>
      * It also can't navigate. Or run the oxygen system.
-     *
+     * <p>
      * Don't worry, though - you probably have enough oxygen left to give you
      * enough time to build a new ALU.
-     *
+     * <p>
      * The ALU is a four-dimensional processing unit: it has integer variables w,
      * x, y, and z. These variables all start with the value 0. The ALU also
      * supports six instructions:
-     *
-     *   - inp a - Read an input value and write it to variable a.
-     *   - add a b - Add the value of a to the value of b, then store the result
-     *     in variable a.
-     *   - mul a b - Multiply the value of a by the value of b, then store the
-     *     result in variable a.
-     *   - div a b - Divide the value of a by the value of b, truncate the result
-     *     to an integer, then store the result in variable a. (Here, "truncate"
-     *     means to round the value toward zero.)
-     *   - mod a b - Divide the value of a by the value of b, then store the
-     *     remainder in variable a. (This is also called the modulo operation.)
-     *   - eql a b - If the value of a and b are equal, then store the value 1 in
-     *     variable a. Otherwise, store the value 0 in variable a.
-     *
+     * <p>
+     * - inp a - Read an input value and write it to variable a.
+     * - add a b - Add the value of a to the value of b, then store the result
+     * in variable a.
+     * - mul a b - Multiply the value of a by the value of b, then store the
+     * result in variable a.
+     * - div a b - Divide the value of a by the value of b, truncate the result
+     * to an integer, then store the result in variable a. (Here, "truncate"
+     * means to round the value toward zero.)
+     * - mod a b - Divide the value of a by the value of b, then store the
+     * remainder in variable a. (This is also called the modulo operation.)
+     * - eql a b - If the value of a and b are equal, then store the value 1 in
+     * variable a. Otherwise, store the value 0 in variable a.
+     * <p>
      * In all of these instructions, a and b are placeholders; a will always be
      * the variable where the result of the operation is stored (one of w, x, y,
      * or z), while b can be either a variable or a number. Numbers can be
      * positive or negative, but will always be integers.
-     *
+     * <p>
      * The ALU has no jump instructions; in an ALU program, every instruction is
      * run exactly once in order from top to bottom. The program halts after the
      * last instruction has finished executing.
-     *
+     * <p>
      * (Program authors should be especially cautious; attempting to execute div
      * with b=0 or attempting to execute mod with a<0 or b<=0 will cause the
      * program to crash and might even damage the ALU. These operations are never
      * intended in any serious ALU program.)
-     *
+     * <p>
      * For example, here is an ALU program which takes an input number, negates
      * it, and stores it in x:
-     *
+     * <p>
      * inp x
      * mul x -1
-     *
+     * <p>
      * Here is an ALU program which takes two input numbers, then sets z to 1 if
      * the second input number is three times larger than the first input number,
      * or sets z to 0 otherwise:
-     *
+     * <p>
      * inp z
      * inp x
      * mul z 3
      * eql z x
-     *
+     * <p>
      * Here is an ALU program which takes a non-negative integer as input,
      * converts it into binary, and stores the lowest (1's) bit in z, the second-
      * lowest (2's) bit in y, the third-lowest (4's) bit in x, and the fourth-
      * lowest (8's) bit in w:
-     *
+     * <p>
      * inp w
      * add z w
      * mod z 2
@@ -182,15 +182,15 @@ public final class Day24 {
      * mod x 2
      * div w 2
      * mod w 2
-     *
+     * <p>
      * Once you have built a replacement ALU, you can install it in the submarine,
      * which will immediately resume what it was doing when the ALU failed:
      * validating the submarine's model number. To do this, the ALU will run the
      * MOdel Number Automatic Detector program (MONAD, your puzzle input).
-     *
+     * <p>
      * Submarine model numbers are always fourteen-digit numbers consisting only
      * of digits 1 through 9. The digit 0 cannot appear in a model number.
-     *
+     * <p>
      * When MONAD checks a hypothetical fourteen-digit model number, it uses
      * fourteen separate inp instructions, each expecting a single digit of the
      * model number in order of most to least significant. (So, to check the model
@@ -198,20 +198,20 @@ public final class Day24 {
      * the second inp instruction, 5 to the third inp instruction, and so on.)
      * This means that when operating MONAD, each input instruction should only
      * ever be given an integer value of at least 1 and at most 9.
-     *
+     * <p>
      * Then, after MONAD has finished running all of its instructions, it will
      * indicate that the model number was valid by leaving a 0 in variable z.
      * However, if the model number was invalid, it will leave some other non-zero
      * value in z.
-     *
+     * <p>
      * MONAD imposes additional, mysterious restrictions on model numbers, and
      * legend says the last copy of the MONAD documentation was eaten by a tanuki.
      * You'll need to figure out what MONAD does some other way.
-     *
+     * <p>
      * To enable as many submarine features as possible, find the largest valid
      * fourteen-digit model number that contains no 0 digits. What is the largest
      * model number accepted by MONAD?
-     *
+     * <p>
      * Your puzzle answer was 39924989499969.
      */
     static long aluPartOne(Scanner scanner) {
@@ -224,12 +224,12 @@ public final class Day24 {
 
     /**
      * --- Part Two ---
-     *
+     * <p>
      * As the submarine starts booting up things like the Retro Encabulator, you
      * realize that maybe you don't need all these submarine features after all.
-     *
+     * <p>
      * What is the smallest model number accepted by MONAD?
-     *
+     * <p>
      * Your puzzle answer was 16811412161117.
      */
     static long aluPartTwo(Scanner scanner) {
@@ -239,8 +239,8 @@ public final class Day24 {
         return solve(criteria, order);
     }
 
-    record State(int[] digits, int position) {
-        public static State of(int[] digits, int position) {
+    record State(IntList digits, int position) {
+        public static State of(IntList digits, int position) {
             return new State(digits, position);
         }
 
@@ -252,7 +252,7 @@ public final class Day24 {
 
         @Override
         public int hashCode() {
-            return Objects.hash(Arrays.hashCode(digits), position);
+            return Objects.hash(digits, position);
         }
     }
 
