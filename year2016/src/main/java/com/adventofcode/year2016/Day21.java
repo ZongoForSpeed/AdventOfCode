@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -45,7 +44,7 @@ public final class Day21 {
     }
 
     private static String scramblingFunction(List<String> operations, String letters) {
-        LinkedList<String> message = new LinkedList<>();
+        List<String> message = new ArrayList<>();
         for (int i = 0; i < letters.length(); i++) {
             message.add("" + letters.charAt(i));
         }
