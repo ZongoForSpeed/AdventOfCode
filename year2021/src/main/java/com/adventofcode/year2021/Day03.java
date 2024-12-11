@@ -75,9 +75,8 @@ public final class Day03 {
         int length = strings.getFirst().length();
         int[] frequency = new int[length];
         for (String string : strings) {
-            char[] charArray = string.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                char c = charArray[i];
+            for (int i = 0; i < string.length(); i++) {
+                char c = string.charAt(i);
                 if (c == '1') {
                     frequency[i]++;
                 }

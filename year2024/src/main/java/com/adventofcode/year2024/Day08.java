@@ -3,8 +3,8 @@ package com.adventofcode.year2024;
 import com.adventofcode.common.maths.Arithmetic;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
-import it.unimi.dsi.fastutil.chars.Char2ObjectArrayMap;
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap;
+import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 import org.apache.commons.lang3.function.TriFunction;
 import org.slf4j.Logger;
@@ -227,7 +227,7 @@ public final class Day08 {
 
         LOGGER.debug("Map:\n{}", map);
 
-        Char2ObjectMap<List<Point2D>> antennas = new Char2ObjectArrayMap<>();
+        Char2ObjectMap<List<Point2D>> antennas = new Char2ObjectOpenHashMap<>();
 
         Set<Point2D> freeNodes = new HashSet<>();
 

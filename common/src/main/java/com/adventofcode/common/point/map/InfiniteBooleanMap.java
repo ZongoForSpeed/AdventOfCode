@@ -41,9 +41,8 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
             if (stopWhenBlank && StringUtils.isBlank(line)) {
                 break;
             }
-            char[] charArray = line.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                map.put(Point2D.of(i, j), predicate.test(charArray[i]));
+            for (int i = 0; i < line.length(); i++) {
+                map.put(Point2D.of(i, j), predicate.test(line.charAt(i)));
             }
             j++;
         }

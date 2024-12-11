@@ -31,11 +31,10 @@ public final class Day11 {
         }
 
         boolean findSequence = false;
-        char[] charArray = password.toCharArray();
-        for (int i = 2; i < charArray.length; i++) {
-            char c1 = charArray[i - 2];
-            char c2 = charArray[i - 1];
-            char c3 = charArray[i];
+        for (int i = 2; i < password.length(); i++) {
+            char c1 = password.charAt(i - 2);
+            char c2 = password.charAt(i - 1);
+            char c3 = password.charAt(i);
             if (c1 + 1 == c2 && c2 + 1 == c3) {
                 findSequence = true;
                 break;
@@ -48,9 +47,9 @@ public final class Day11 {
 
         Set<String> pairs = new HashSet<>();
 
-        for (int i = 1; i < charArray.length; i++) {
-            char c1 = charArray[i - 1];
-            char c2 = charArray[i];
+        for (int i = 1; i < password.length(); i++) {
+            char c1 = password.charAt(i - 1);
+            char c2 = password.charAt(i);
             if (c1 == c2) {
                 pairs.add("" + c1 + c2);
             }

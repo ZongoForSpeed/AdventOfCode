@@ -28,10 +28,9 @@ public final class Day14 {
 
     private static boolean isKey(IntFunction<String> md5Function, int index) {
         String md5 = md5Function.apply(index);
-        char[] charArray = md5.toCharArray();
-        for (int i = 2; i < charArray.length; i++) {
-            if (charArray[i - 2] == charArray[i] && charArray[i - 1] == charArray[i]) {
-                String quintuple = ("" + charArray[i]).repeat(5);
+        for (int i = 2; i < md5.length(); i++) {
+            if (md5.charAt(i - 2) == md5.charAt(i) && md5.charAt(i - 1) == md5.charAt(i)) {
+                String quintuple = ("" + md5.charAt(i)).repeat(5);
                 for (int j = index + 1; j <= index + 1000; ++j) {
                     String apply = md5Function.apply(j);
                     if (apply.contains(quintuple)) {

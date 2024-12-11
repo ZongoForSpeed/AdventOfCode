@@ -28,9 +28,9 @@ public final class Day19 {
 
     public static List<String> readMolecule(String molecule) {
         List<String> chain = new ArrayList<>();
-        char[] chars = molecule.toCharArray();
         StringBuilder currentElement = new StringBuilder();
-        for (char aChar : chars) {
+        for (int i = 0; i < molecule.length(); ++i) {
+            char aChar = molecule.charAt(i);
             if (Character.isLowerCase(aChar)) {
                 currentElement.append(aChar);
             } else if (!currentElement.isEmpty()) {

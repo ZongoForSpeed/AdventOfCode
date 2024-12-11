@@ -38,9 +38,8 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
             if (stopWhenBlank && StringUtils.isBlank(line)) {
                 break;
             }
-            char[] charArray = line.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                char c = charArray[i];
+            for (int i = 0; i < line.length(); i++) {
+                char c = line.charAt(i);
                 if (predicate.test(c)) {
                     map.put(Point2D.of(i, j), c);
                 }

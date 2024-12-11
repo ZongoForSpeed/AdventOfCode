@@ -23,10 +23,10 @@ class Day17Test {
     void testInputPartOne() throws IOException {
         String line = FileUtils.readLine("/2019/day/17/input");
         StringBuilder sb = new StringBuilder();
-        Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));
+        Intcode.intcode(line, () -> 0, i -> sb.append((char) i));
 
         String map = sb.toString();
-        LOGGER.debug("Map: {}", map);
+        LOGGER.debug("Map:\n{}", map);
 
         assertThat(Day17.computeSumAlignmentParameters(map)).isEqualTo(7280);
     }

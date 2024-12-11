@@ -1,6 +1,5 @@
 package com.adventofcode.year2023;
 
-import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Function;
 import it.unimi.dsi.fastutil.chars.Char2IntMap;
 import it.unimi.dsi.fastutil.chars.Char2IntOpenHashMap;
@@ -164,10 +163,9 @@ public final class Day07 {
 
         public static Type type(String cards) {
             Char2IntMap map = new Char2IntOpenHashMap();
-            char[] charArray = cards.toCharArray();
 
-            for (char c : charArray) {
-                map.merge(c, 1, Integer::sum);
+            for (int i = 0; i < cards.length(); i++) {
+                map.merge(cards.charAt(i), 1, Integer::sum);
             }
 
             return computeTypeSimple(map);
@@ -268,10 +266,9 @@ public final class Day07 {
 
         public static Type type(String cards) {
             Char2IntMap map = new Char2IntOpenHashMap();
-            char[] charArray = cards.toCharArray();
 
-            for (char c : charArray) {
-                map.merge(c, 1, Integer::sum);
+            for (int i = 0; i < cards.length(); i++) {
+                map.merge(cards.charAt(i), 1, Integer::sum);
             }
 
             int joker = map.getOrDefault('J', 0);
@@ -367,9 +364,8 @@ public final class Day07 {
 
         public static Hand of(String cards, long bid, Map<Character, Integer> cardValues, Function<String, Type> function) {
             int[] values = new int[cards.length()];
-            char[] charArray = cards.toCharArray();
-            for (int i = 0, charArrayLength = charArray.length; i < charArrayLength; i++) {
-                values[i] = cardValues.get(charArray[i]);
+            for (int i = 0, charArrayLength = cards.length(); i < charArrayLength; i++) {
+                values[i] = cardValues.get(cards.charAt(i));
             }
             return new Hand(cards, bid, function.apply(cards), IntList.of(values));
         }

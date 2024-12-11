@@ -496,9 +496,9 @@ public final class Day17 {
         Set<Point3D> state = new HashSet<>();
 
         for (int y = 0, initialStateSize = initialState.size(); y < initialStateSize; y++) {
-            char[] line = initialState.get(y).toCharArray();
-            for (int x = 0, lineLength = line.length; x < lineLength; x++) {
-                char c = line[x];
+            String line = initialState.get(y);
+            for (int x = 0, lineLength = line.length(); x < lineLength; x++) {
+                char c = line.charAt(x);
                 if (c == '#') {
                     state.add(Point3D.of(x, y, 0));
                 }
@@ -539,9 +539,9 @@ public final class Day17 {
         Set<Point4D> state = new HashSet<>();
 
         for (int y = 0, initialStateSize = initialState.size(); y < initialStateSize; y++) {
-            char[] line = initialState.get(y).toCharArray();
-            for (int x = 0, lineLength = line.length; x < lineLength; x++) {
-                char c = line[x];
+            String line = initialState.get(y);
+            for (int x = 0, lineLength = line.length(); x < lineLength; x++) {
+                char c = line.charAt(x);
                 if (c == '#') {
                     state.add(Point4D.of(x, y, 0, 0));
                 }

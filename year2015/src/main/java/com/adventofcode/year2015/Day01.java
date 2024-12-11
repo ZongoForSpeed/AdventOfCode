@@ -76,11 +76,10 @@ public final class Day01 {
     public static int findBasement(String input) {
         int floor = 0;
 
-        char[] charArray = input.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            if (charArray[i] == '(') {
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == '(') {
                 floor++;
-            } else if (charArray[i] == ')') {
+            } else if (input.charAt(i) == ')') {
                 floor--;
             }
             if (floor == -1) {

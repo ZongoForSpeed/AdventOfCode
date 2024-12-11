@@ -1,7 +1,7 @@
 package com.adventofcode.year2024;
 
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -162,7 +162,7 @@ public final class Day01 {
      */
     public static long partTwo(Scanner scanner) {
         IntList leftLeft = new IntArrayList();
-        Int2IntMap right = new Int2IntArrayMap();
+        Int2IntMap right = new Int2IntOpenHashMap();
 
         while (scanner.hasNextInt()) {
             leftLeft.add(scanner.nextInt());

@@ -162,9 +162,8 @@ public final class Day24 {
     static BitSet parseLayout(String initialState) {
         initialState = String.join("", initialState.split("\\n"));
         BitSet bugs = new BitSet(25);
-        char[] charArray = initialState.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            if (charArray[i] == '#') {
+        for (int i = 0; i < initialState.length(); i++) {
+            if (initialState.charAt(i) == '#') {
                 bugs.set(i);
             }
         }

@@ -22,10 +22,10 @@ class CharMapTest {
         CharMap map = new CharMap();
 
         for (int i = 0; i < input.size(); i++) {
-            char[] line = input.get(i).toCharArray();
-            for (int j = 0; j < line.length; j++) {
-                if (line[j] == '#') {
-                    map.set(j, i, line[j]);
+            String line = input.get(i);
+            for (int j = 0; j < line.length(); j++) {
+                if (line.charAt(j) == '#') {
+                    map.set(j, i, line.charAt(j));
                 }
             }
         }

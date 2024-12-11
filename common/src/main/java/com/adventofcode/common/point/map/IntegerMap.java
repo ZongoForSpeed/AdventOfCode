@@ -40,9 +40,8 @@ public class IntegerMap {
         int j = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            char[] charArray = line.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                map.set(i, j, charArray[i] - '0');
+            for (int i = 0; i < line.length(); i++) {
+                map.set(i, j, line.charAt(i) - '0');
             }
             ++j;
         }

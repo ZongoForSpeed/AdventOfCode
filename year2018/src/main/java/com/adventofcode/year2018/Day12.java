@@ -1,8 +1,8 @@
 package com.adventofcode.year2018;
 
 import it.unimi.dsi.fastutil.Pair;
-import it.unimi.dsi.fastutil.ints.Int2CharArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2CharMap;
+import it.unimi.dsi.fastutil.ints.Int2CharOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -29,14 +29,13 @@ public final class Day12 {
         private final Int2CharMap map;
 
         Plants(Plants op) {
-            map = new Int2CharArrayMap(op.map);
+            map = new Int2CharOpenHashMap(op.map);
         }
 
         Plants(String state) {
-            map = new Int2CharArrayMap();
-            char[] charArray = state.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                map.put(i, charArray[i]);
+            map = new Int2CharOpenHashMap();
+            for (int i = 0; i < state.length(); i++) {
+                map.put(i, state.charAt(i));
             }
         }
 

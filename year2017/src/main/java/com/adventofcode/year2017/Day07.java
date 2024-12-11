@@ -1,8 +1,8 @@
 package com.adventofcode.year2017;
 
 import com.google.common.base.Splitter;
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import org.apache.commons.collections4.SetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,10 +71,10 @@ public final class Day07 {
         }
 
         Map<Program, Integer> collect = programs.stream().collect(Collectors.toMap(p -> p, p -> weight(graph, p)));
-        Int2IntMap counts = new Int2IntArrayMap();
+        Int2IntMap counts = new Int2IntOpenHashMap();
         collect.values().forEach(v -> counts.mergeInt(v, 1, Integer::sum));
 
-        Int2IntMap values = new Int2IntArrayMap();
+        Int2IntMap values = new Int2IntOpenHashMap();
         counts.int2IntEntrySet().forEach(e -> values.put(e.getIntValue(), e.getIntKey()));
         LOGGER.debug("balanceWeight for {}: {}", node, values);
         if (values.size() == 1) {

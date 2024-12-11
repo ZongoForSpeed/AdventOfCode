@@ -19,9 +19,10 @@ public final class Day07 {
     }
 
     static boolean abba(String input) {
-        char[] chars = input.toCharArray();
-        for (int i = 3; i < chars.length; i++) {
-            if (chars[i - 3] == chars[i] && chars[i - 1] == chars[i - 2] && chars[i - 3] != chars[i - 2]) {
+        for (int i = 3; i < input.length(); i++) {
+            if (input.charAt(i - 3) == input.charAt(i)
+                && input.charAt(i - 1) == input.charAt(i - 2)
+                && input.charAt(i - 3) != input.charAt(i - 2)) {
                 return true;
             }
         }
@@ -31,9 +32,8 @@ public final class Day07 {
 
     static List<String> findABA(String input) {
         List<String> aba = new ArrayList<>();
-        char[] chars = input.toCharArray();
-        for (int i = 2; i < chars.length; i++) {
-            if (chars[i - 2] == chars[i] && chars[i - 1] != chars[i - 2]) {
+        for (int i = 2; i < input.length(); i++) {
+            if (input.charAt(i - 2) == input.charAt(i) && input.charAt(i - 1) != input.charAt(i - 2)) {
                 aba.add(input.substring(i - 2, i + 1));
 
             }

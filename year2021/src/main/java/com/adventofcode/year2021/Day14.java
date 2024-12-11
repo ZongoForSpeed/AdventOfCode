@@ -159,13 +159,12 @@ public final class Day14 {
                     rules.put(CharPair.of(left.charAt(0), left.charAt(1)), right.charAt(0));
                 }
             } else {
-                char[] chars = line.toCharArray();
-                for (int i = 1; i < chars.length; i++) {
-                    template.mergeLong(CharPair.of(chars[i - 1], chars[i]), 1L, Long::sum);
+                for (int i = 1; i < line.length(); i++) {
+                    template.mergeLong(CharPair.of(line.charAt(i - 1), line.charAt(i)), 1L, Long::sum);
                 }
 
-                frequency.mergeLong(chars[0], 1L, Long::sum);
-                frequency.mergeLong(chars[chars.length - 1], 1L, Long::sum);
+                frequency.mergeLong(line.charAt(0), 1L, Long::sum);
+                frequency.mergeLong(line.charAt(line.length() - 1), 1L, Long::sum);
             }
         }
 

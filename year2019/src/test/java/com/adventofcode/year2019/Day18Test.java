@@ -1,10 +1,10 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.google.common.base.Splitter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +17,7 @@ class Day18Test {
                 #########
                 #b.A.@.a#
                 #########""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartOne(lines)).isEqualTo(8);
     }
 
@@ -29,7 +29,7 @@ class Day18Test {
                 ######################.#
                 #d.....................#
                 ########################""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartOne(lines)).isEqualTo(86);
     }
 
@@ -41,7 +41,7 @@ class Day18Test {
                 #.######################
                 #.....@.a.B.c.d.A.e.F.g#
                 ########################""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartOne(lines)).isEqualTo(132);
     }
 
@@ -57,7 +57,7 @@ class Day18Test {
                 ########.########
                 #l.F..d...h..C.m#
                 #################""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartOne(lines)).isEqualTo(136);
     }
 
@@ -70,7 +70,7 @@ class Day18Test {
                 ###A#B#C################
                 ###g#h#i################
                 ########################""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartOne(lines)).isEqualTo(81);
     }
 
@@ -90,7 +90,7 @@ class Day18Test {
                 ##...##
                 #cB#Ab#
                 #######""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(8);
     }
 
@@ -104,7 +104,7 @@ class Day18Test {
                 ######...######
                 #b.....#.....c#
                 ###############""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(24);
     }
 
@@ -118,7 +118,7 @@ class Day18Test {
                 ###C#...###J#
                 #fEbA.#.FgHi#
                 #############""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(32);
     }
 
@@ -134,7 +134,7 @@ class Day18Test {
                 #M###N#H###.#
                 #o#m..#i#jk.#
                 #############""";
-        Stream<String> lines = Arrays.stream(input.split("\\n"));
+        Stream<String> lines = Splitter.on('\n').splitToStream(input);
         assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(70);
     }
 

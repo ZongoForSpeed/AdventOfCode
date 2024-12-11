@@ -24,6 +24,7 @@ public final class Day23 {
             return moves;
         }
         moves = new ArrayList<>();
+        String hallway = state.hallway();
         for (int i : ENTRIES) {
             String hole = state.get(i / 2 - 1);
             if (StringUtils.isBlank(hole)) {
@@ -37,7 +38,7 @@ public final class Day23 {
                 if (ENTRIES.contains(target)) {
                     continue;
                 }
-                char[] data = state.hallway().toCharArray();
+                char[] data = hallway.toCharArray();
                 data[target] = amphipod;
                 State next = state.next(data, i / 2 - 1, newHole);
                 long cost = (long) Math.abs(target - i) + (size - holeLength);
@@ -45,9 +46,8 @@ public final class Day23 {
             }
         }
 
-        char[] charHallway = state.hallway().toCharArray();
-        for (int position = 0; position < charHallway.length; position++) {
-            char amphipod = charHallway[position];
+        for (int position = 0; position < hallway.length(); position++) {
+            char amphipod = hallway.charAt(position);
             if (amphipod < 'A' || amphipod > 'D') {
                 continue;
             }
@@ -66,7 +66,7 @@ public final class Day23 {
                 continue;
             }
 
-            char[] data = state.hallway().toCharArray();
+            char[] data = hallway.toCharArray();
             data[position] = ' ';
             String newHole = StringUtils.leftPad(amphipod + hole, size);
             State next = state.next(data, holeNumber, newHole);

@@ -80,9 +80,8 @@ public final class Day03 {
         Point2D santasPosition = Point2D.of(0, 0);
         Point2D robosPosition = Point2D.of(0, 0);
         houses.add(santasPosition);
-        char[] charArray = input.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            char c = charArray[i];
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
             if (i % 2 == 0) {
                 santasPosition = move(santasPosition, c);
                 houses.add(santasPosition);

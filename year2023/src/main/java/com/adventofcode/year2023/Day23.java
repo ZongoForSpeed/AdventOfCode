@@ -3,8 +3,8 @@ package com.adventofcode.year2023;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntIntPair;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -30,7 +30,7 @@ public final class Day23 {
     }
 
     public static Int2ObjectMap<List<IntIntPair>> collapse(Int2ObjectMap<IntList> neighbours) {
-        Int2ObjectMap<List<IntIntPair>> result = new Int2ObjectArrayMap<>();
+        Int2ObjectMap<List<IntIntPair>> result = new Int2ObjectOpenHashMap<>();
         for (Int2ObjectMap.Entry<IntList> entry : neighbours.int2ObjectEntrySet()) {
             int p = entry.getIntKey();
             List<IntIntPair> pairs = result.computeIfAbsent(p, ignore -> new ArrayList<>());
@@ -86,25 +86,25 @@ public final class Day23 {
 
     /**
      * --- Day 23: A Long Walk ---
-     *
+     * <p>
      * The Elves resume water filtering operations! Clean water starts flowing
      * over the edge of Island Island.
-     *
+     * <p>
      * They offer to help you go over the edge of Island Island, too! Just hold on
      * tight to one end of this impossibly long rope and they'll lower you down a
      * safe distance from the massive waterfall you just created.
-     *
+     * <p>
      * As you finally reach Snow Island, you see that the water isn't really
      * reaching the ground: it's being absorbed by the air itself. It looks like
      * you'll finally have a little downtime while the moisture builds up to snow-
      * producing levels. Snow Island is pretty scenic, even without any snow; why
      * not take a walk?
-     *
+     * <p>
      * There's a map of nearby hiking trails (your puzzle input) that indicates
      * paths (.), forest (#), and steep slopes (^, >, v, and <).
-     *
+     * <p>
      * For example:
-     *
+     * <p>
      * #.#####################
      * #.......#########...###
      * #######.#########.#.###
@@ -128,17 +128,17 @@ public final class Day23 {
      * #.###.###.#.###.#.#v###
      * #.....###...###...#...#
      * #####################.#
-     *
+     * <p>
      * You're currently on the single path tile in the top row; your goal is to
      * reach the single path tile in the bottom row. Because of all the mist from
      * the waterfall, the slopes are probably quite icy; if you step onto a slope
      * tile, your next step must be downhill (in the direction the arrow is
      * pointing). To make sure you have the most scenic hike possible, never step
      * onto the same tile twice. What is the longest hike you can take?
-     *
+     * <p>
      * In the example above, the longest hike you can take is marked with O, and
      * your starting position is marked S:
-     *
+     * <p>
      * #S#####################
      * #OOOOOOO#########...###
      * #######O#########.#.###
@@ -162,10 +162,10 @@ public final class Day23 {
      * #.###.###.#.###.#.#O###
      * #.....###...###...#OOO#
      * #####################O#
-     *
+     * <p>
      * This hike contains 94 steps. (The other possible hikes you could have taken
      * were 90, 86, 82, 82, and 74 steps long.)
-     *
+     * <p>
      * Find the longest hike you can take through the hiking trails listed on your
      * map. How many steps long is the longest hike?
      */
@@ -189,7 +189,7 @@ public final class Day23 {
 
             LOGGER.info("first = {}, last = {}", points.getFirst(), points.getLast());
 
-            Int2ObjectMap<IntList> neighbours = new Int2ObjectArrayMap<>();
+            Int2ObjectMap<IntList> neighbours = new Int2ObjectOpenHashMap<>();
 
             for (int i = 0; i < points.size(); i++) {
                 Point2D point = points.get(i);
@@ -221,17 +221,17 @@ public final class Day23 {
 
     /**
      * --- Part Two ---
-     *
+     * <p>
      * As you reach the trailhead, you realize that the ground isn't as slippery
      * as you expected; you'll have no problem climbing up the steep slopes.
-     *
+     * <p>
      * Now, treat all slopes as if they were normal paths (.). You still want to
      * make sure you have the most scenic hike possible, so continue to ensure
      * that you never step onto the same tile twice. What is the longest hike you
      * can take?
-     *
+     * <p>
      * In the example above, this increases the longest hike to 154 steps:
-     *
+     * <p>
      * #S#####################
      * #OOOOOOO#########OOO###
      * #######O#########O#O###
@@ -255,7 +255,7 @@ public final class Day23 {
      * #O###O###O#O###.#.#O###
      * #OOOOO###OOO###...#OOO#
      * #####################O#
-     *
+     * <p>
      * Find the longest hike you can take through the surprisingly dry hiking
      * trails listed on your map. How many steps long is the longest hike?
      */
@@ -281,7 +281,7 @@ public final class Day23 {
 
             LOGGER.info("first = {}, last = {}", first, last);
 
-            Int2ObjectMap<IntList> neighbours = new Int2ObjectArrayMap<>();
+            Int2ObjectMap<IntList> neighbours = new Int2ObjectOpenHashMap<>();
 
             for (int i = 0; i < points.size(); i++) {
                 Point2D point = points.get(i);

@@ -1,11 +1,10 @@
 package com.adventofcode.year2018;
 
 import com.adventofcode.common.point.Point4D;
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.ints.IntSet;
-import it.unimi.dsi.fastutil.ints.IntSets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -167,7 +166,7 @@ public final class Day25 {
 
         // IntSet loneStar = new IntArraySet(IntSets.fromTo(0, stars.size()));
 
-        Int2ObjectMap<IntSet> constellations = new Int2ObjectArrayMap<>();
+        Int2ObjectMap<IntSet> constellations = new Int2ObjectOpenHashMap<>();
 
         for (int i = 0; i < stars.size(); i++) {
             Point4D star1 = stars.get(i);

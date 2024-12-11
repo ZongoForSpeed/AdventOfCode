@@ -22,11 +22,10 @@ public final class Day06 {
         Int2ObjectMap<Char2IntMap> frequencies = new Int2ObjectOpenHashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            char[] chars = line.toCharArray();
-            for (int i = 0; i < chars.length; i++) {
+            for (int i = 0; i < line.length(); i++) {
                 frequencies
                         .computeIfAbsent(i, ignore -> new Char2IntOpenHashMap())
-                        .mergeInt(chars[i], 1, Integer::sum);
+                        .mergeInt(line.charAt(i), 1, Integer::sum);
             }
         }
 

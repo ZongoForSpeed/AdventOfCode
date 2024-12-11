@@ -2,8 +2,8 @@ package com.adventofcode.year2024;
 
 import com.adventofcode.common.utils.IntegerPair;
 import com.google.common.base.Splitter;
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public final class Day05 {
             return OptionalInt.empty();
         }
 
-        Int2IntMap map = new Int2IntArrayMap();
+        Int2IntMap map = new Int2IntOpenHashMap();
         for (int i = 0; i < book.size(); i++) {
             int page = book.getInt(i);
             map.put(page, i);
