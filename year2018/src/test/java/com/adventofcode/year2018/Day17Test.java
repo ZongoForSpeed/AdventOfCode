@@ -31,7 +31,7 @@ class Day17Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/17/input");
+        try (InputStream is = Day17Test.class.getResourceAsStream("/2018/day/17/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
 
             Day17 day17 = new Day17(scanner);
@@ -41,7 +41,7 @@ class Day17Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/17/input");
+        try (InputStream is = Day17Test.class.getResourceAsStream("/2018/day/17/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
 
             Day17 day17 = new Day17(scanner);

@@ -38,7 +38,7 @@ class Day11Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day10Test.class.getResourceAsStream("/2024/day/11/input");
+        try (InputStream is = Day11Test.class.getResourceAsStream("/2024/day/11/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day11.plutonianPebbles(scanner, 25)).isEqualTo(185205L);
         }
@@ -46,7 +46,7 @@ class Day11Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day10Test.class.getResourceAsStream("/2024/day/11/input");
+        try (InputStream is = Day11Test.class.getResourceAsStream("/2024/day/11/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day11.plutonianPebbles(scanner, 75)).isEqualTo(221280540398419L);
         }

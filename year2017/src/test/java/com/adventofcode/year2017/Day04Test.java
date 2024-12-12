@@ -27,14 +27,14 @@ class Day04Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/2017/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day04.validPassphrasePartOne(scanner)).isEqualTo(466);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day04Test.class.getResourceAsStream("/2017/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day04.validPassphrasePartTwo(scanner)).isEqualTo(251);
         }
     }

@@ -101,7 +101,7 @@ class Day10Test {
      */
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day10Test.class.getResourceAsStream("/2017/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             int hash = KnotHash.sparseHash(scanner.nextLine(), 256);
             assertThat(hash).isEqualTo(23715);
         }
@@ -178,7 +178,7 @@ class Day10Test {
      */
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day10Test.class.getResourceAsStream("/2017/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(KnotHash.knotHash(scanner.nextLine())).isEqualTo("541dc3180fd4b72881e39cf925a50253");
         }
     }

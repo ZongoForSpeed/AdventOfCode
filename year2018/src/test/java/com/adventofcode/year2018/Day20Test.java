@@ -37,7 +37,7 @@ class Day20Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/20/input");
+        try (InputStream is = Day20Test.class.getResourceAsStream("/2018/day/20/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             OptionalInt max = Day20.PartOne.furthestDistance(scanner.nextLine());
             Assertions.assertThat(max)
@@ -48,7 +48,7 @@ class Day20Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/20/input");
+        try (InputStream is = Day20Test.class.getResourceAsStream("/2018/day/20/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             long door1000 = Day20.PartTwo.door1000(scanner.nextLine());
             Assertions.assertThat(door1000).isEqualTo(8784);

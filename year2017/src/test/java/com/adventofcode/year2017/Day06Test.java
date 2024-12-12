@@ -20,14 +20,14 @@ class Day06Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day06Test.class.getResourceAsStream("/2017/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day06.memoryReallocationPartOne(scanner.nextLine())).isEqualTo(11137);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day06Test.class.getResourceAsStream("/2017/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day06.memoryReallocationPartTwo(scanner.nextLine())).isEqualTo(1037);
         }
     }

@@ -29,14 +29,14 @@ class Day13Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/13/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day13Test.class.getResourceAsStream("/2017/day/13/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day13.getTripSeverity(scanner)).isEqualTo(2164);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/13/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day13Test.class.getResourceAsStream("/2017/day/13/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day13.findBestDelay(scanner)).isEqualTo(3861798);
         }
     }

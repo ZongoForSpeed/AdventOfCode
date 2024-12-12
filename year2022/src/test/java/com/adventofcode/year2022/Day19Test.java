@@ -34,7 +34,7 @@ class Day19Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/19/input");
+        try (InputStream inputStream = Day19Test.class.getResourceAsStream("/2022/day/19/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day19.computeQualityLevelPartOne(scanner)).isEqualTo(851);
         }
@@ -42,7 +42,7 @@ class Day19Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/19/input");
+        try (InputStream inputStream = Day19Test.class.getResourceAsStream("/2022/day/19/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day19.computeQualityLevelPartTwo(scanner)).isEqualTo(12160);
         }

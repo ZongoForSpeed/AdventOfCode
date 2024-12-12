@@ -27,14 +27,14 @@ class Day05Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/5/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day05Test.class.getResourceAsStream("/2017/day/5/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day05.countStepsPartOne(scanner)).isEqualTo(378980);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/5/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day05Test.class.getResourceAsStream("/2017/day/5/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day05.countStepsPartTwo(scanner)).isEqualTo(26889114);
         }
     }

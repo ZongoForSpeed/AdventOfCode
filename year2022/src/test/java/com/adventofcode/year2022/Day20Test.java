@@ -38,7 +38,7 @@ class Day20Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/20/input");
+        try (InputStream inputStream = Day20Test.class.getResourceAsStream("/2022/day/20/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day20.decryptPartOne(scanner)).isEqualTo(23321);
         }
@@ -46,7 +46,7 @@ class Day20Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/20/input");
+        try (InputStream inputStream = Day20Test.class.getResourceAsStream("/2022/day/20/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day20.decryptPartTwo(scanner)).isEqualTo(1428396909280L);
         }

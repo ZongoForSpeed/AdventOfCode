@@ -410,7 +410,7 @@ class Day22Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/22/input");
+        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2022/day/22/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(monkeyMap(scanner)).isEqualTo(117102);
         }
@@ -419,7 +419,7 @@ class Day22Test {
     @Test
     @Disabled
     void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/22/input");
+        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2022/day/22/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(monkeyCube(scanner)).isEqualTo(117102);
         }

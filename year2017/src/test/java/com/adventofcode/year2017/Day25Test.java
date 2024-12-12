@@ -46,7 +46,7 @@ class Day25Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/25/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day25Test.class.getResourceAsStream("/2017/day/25/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day25.diagnosticChecksum(scanner)).isEqualTo(3099);
         }
     }

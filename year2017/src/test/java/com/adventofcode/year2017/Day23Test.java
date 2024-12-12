@@ -116,7 +116,7 @@ class Day23Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/23/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day23Test.class.getResourceAsStream("/2017/day/23/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             List<String[]> commands = Day23.readCommands(scanner);
 
             Map<String, Long> registers = new HashMap<>(Map.of(

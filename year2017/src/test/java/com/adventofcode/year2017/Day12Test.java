@@ -29,14 +29,14 @@ class Day12Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/12/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day12Test.class.getResourceAsStream("/2017/day/12/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day12.digitalPlumberPartOne(scanner)).hasSize(130);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/12/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day12Test.class.getResourceAsStream("/2017/day/12/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day12.digitalPlumberPartTwo(scanner)).hasSize(189);
         }
     }

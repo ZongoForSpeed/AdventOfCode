@@ -42,7 +42,7 @@ class Day16Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/16/input");
+        try (InputStream inputStream = Day16Test.class.getResourceAsStream("/2022/day/16/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day16.solvePartOne(scanner)).isEqualTo(2183);
         }
@@ -50,7 +50,7 @@ class Day16Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day14Test.class.getResourceAsStream("/2022/day/16/input");
+        try (InputStream inputStream = Day16Test.class.getResourceAsStream("/2022/day/16/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
             assertThat(Day16.solvePartTwo(scanner)).isEqualTo(2911);
         }

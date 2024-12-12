@@ -22,14 +22,14 @@ class Day11Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/11/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day11Test.class.getResourceAsStream("/2017/day/11/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day11.hexGridDistance(scanner.nextLine())).isEqualTo(824);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/11/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day11Test.class.getResourceAsStream("/2017/day/11/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day11.maxGridDistance(scanner.nextLine())).isEqualTo(1548);
         }
     }

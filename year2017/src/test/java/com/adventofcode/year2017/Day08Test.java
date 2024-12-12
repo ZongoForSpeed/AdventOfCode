@@ -143,14 +143,14 @@ class Day08Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/8/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day08Test.class.getResourceAsStream("/2017/day/8/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(maxRegistersPartOne(scanner)).isPresent().hasValue(4448);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/8/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day08Test.class.getResourceAsStream("/2017/day/8/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(maxRegistersPartTwo(scanner)).isPresent().hasValue(6582);
         }
     }

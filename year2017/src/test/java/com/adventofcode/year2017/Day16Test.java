@@ -22,14 +22,14 @@ class Day16Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/16/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day14Test.class.getResourceAsStream("/2017/day/16/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day16.danceMoves(scanner.nextLine(), 16, 1)).isEqualTo("dcmlhejnifpokgba");
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/16/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day14Test.class.getResourceAsStream("/2017/day/16/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day16.danceMoves(scanner.nextLine(), 16, 1_000_000_000)).isEqualTo("ifocbejpdnklamhg");
         }
     }

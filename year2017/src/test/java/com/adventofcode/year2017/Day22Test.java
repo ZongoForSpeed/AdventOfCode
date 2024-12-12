@@ -29,14 +29,14 @@ class Day22Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day22Test.class.getResourceAsStream("/2017/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day22.sporificaVirusPartOne(scanner, 10000)).isEqualTo(5575);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day22Test.class.getResourceAsStream("/2017/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day22.sporificaVirusPartTwo(scanner, 10_000_000)).isEqualTo(2511991);
         }
     }

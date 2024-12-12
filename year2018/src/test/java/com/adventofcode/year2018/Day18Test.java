@@ -32,7 +32,7 @@ class Day18Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/18/input");
+        try (InputStream is = Day18Test.class.getResourceAsStream("/2018/day/18/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
 
             long value = Day18.treesAndLumberyards(scanner, 10);
@@ -42,7 +42,7 @@ class Day18Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2018/day/18/input");
+        try (InputStream is = Day18Test.class.getResourceAsStream("/2018/day/18/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
 
             long value = Day18.treesAndLumberyards(scanner, 1_000_000_000);

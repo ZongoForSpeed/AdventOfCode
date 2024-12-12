@@ -26,14 +26,14 @@ class Day21Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day21Test.class.getResourceAsStream("/2017/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day21.buildFractal(scanner, 5)).extracting(BooleanMap::cardinality).isEqualTo(152L);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day21Test.class.getResourceAsStream("/2017/day/21/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day21.buildFractal(scanner, 18)).extracting(BooleanMap::cardinality).isEqualTo(1956174L);
         }
     }

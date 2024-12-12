@@ -47,7 +47,7 @@ class Day18Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/18/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day18Test.class.getResourceAsStream("/2017/day/18/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day18.playSound(scanner)).isEqualTo(7071);
         }
     }
@@ -55,7 +55,7 @@ class Day18Test {
     @Test
     @Disabled
     void inputPartTwo() throws IOException, InterruptedException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/18/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day18Test.class.getResourceAsStream("/2017/day/18/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day18.duet(scanner)).isEqualTo(8001);
         }
     }

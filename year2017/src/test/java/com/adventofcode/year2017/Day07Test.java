@@ -36,14 +36,14 @@ class Day07Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day07Test.class.getResourceAsStream("/2017/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day07.getBottomProgram(scanner)).hasSize(1).contains("vvsvez");
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day07Test.class.getResourceAsStream("/2017/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day07.balanceWeight(scanner)).isPresent().hasValue(362);
         }
     }

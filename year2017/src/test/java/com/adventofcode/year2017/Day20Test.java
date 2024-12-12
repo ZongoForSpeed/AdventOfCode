@@ -40,14 +40,14 @@ class Day20Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/20/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day20Test.class.getResourceAsStream("/2017/day/20/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day20.nearestParticle(scanner)).extracting(Day20.Particle::id).isEqualTo(125);
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/20/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day20Test.class.getResourceAsStream("/2017/day/20/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day20.particlesCollision(scanner)).isEqualTo(461);
         }
     }

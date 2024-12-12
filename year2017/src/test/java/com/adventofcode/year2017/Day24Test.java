@@ -43,7 +43,7 @@ class Day24Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/24/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day24Test.class.getResourceAsStream("/2017/day/24/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             List<IntegerPair> strongestBridge = Day24.findStrongestBridgePartOne(scanner);
 
             assertThat(Day24.strength(strongestBridge)).isEqualTo(2006);
@@ -52,7 +52,7 @@ class Day24Test {
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/24/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day24Test.class.getResourceAsStream("/2017/day/24/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             List<IntegerPair> strongestBridge = Day24.findStrongestBridgePartTwo(scanner);
 
             assertThat(Day24.strength(strongestBridge)).isEqualTo(1994);

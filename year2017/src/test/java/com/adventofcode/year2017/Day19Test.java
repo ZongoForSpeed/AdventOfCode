@@ -30,14 +30,14 @@ class Day19Test {
 
     @Test
     void inputPartOne() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/19/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day19Test.class.getResourceAsStream("/2017/day/19/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day19.findPacketsPartOne(scanner)).isEqualTo("XYFDJNRCQA");
         }
     }
 
     @Test
     void inputPartTwo() throws IOException {
-        try (InputStream is = Day02Test.class.getResourceAsStream("/2017/day/19/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+        try (InputStream is = Day19Test.class.getResourceAsStream("/2017/day/19/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
             assertThat(Day19.findPacketsPartTwo(scanner)).isEqualTo(17450);
         }
     }
