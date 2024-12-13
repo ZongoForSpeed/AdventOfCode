@@ -45,6 +45,9 @@
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <commons-io.version>2.18.0</commons-io.version>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
+        <commons-math3.version>3.6.1</commons-math3.version>
+
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <guava.version>33.3.1-jre</guava.version>
 
@@ -191,6 +194,12 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-math3</artifactId>
+                <version>${commons-math3.version}</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
