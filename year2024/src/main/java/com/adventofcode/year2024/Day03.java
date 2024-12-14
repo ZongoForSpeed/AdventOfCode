@@ -1,5 +1,6 @@
 package com.adventofcode.year2024;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,8 +47,12 @@ public final class Day03 {
      * Scan the corrupted memory for uncorrupted mul instructions. What do you get
      * if you add up all of the results of the multiplications?
      */
-    public static long partOne(String input) {
-        Matcher matcher = MUL_PATTERN_PART_1.matcher(input);
+    public static long partOne(Scanner scanner) {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (scanner.hasNextLine()) {
+            stringBuilder.append(scanner.nextLine());
+        }
+        Matcher matcher = MUL_PATTERN_PART_1.matcher(stringBuilder.toString());
 
         long results = 0;
         while (matcher.find()) {
@@ -90,8 +95,12 @@ public final class Day03 {
      * Handle the new instructions; what do you get if you add up all of the
      * results of just the enabled multiplications?
      */
-    public static long partTwo(String input) {
-        Matcher matcher = MUL_PATTERN_PART_2.matcher(input);
+    public static long partTwo(Scanner scanner) {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (scanner.hasNextLine()) {
+            stringBuilder.append(scanner.nextLine());
+        }
+        Matcher matcher = MUL_PATTERN_PART_2.matcher(stringBuilder.toString());
 
         long results = 0;
 

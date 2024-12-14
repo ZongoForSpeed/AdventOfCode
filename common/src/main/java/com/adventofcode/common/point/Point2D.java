@@ -68,6 +68,22 @@ public record Point2D(int x, int y) implements Comparable<Point2D> {
         return Point2D.of(x + d.x, y + d.y);
     }
 
+    public Point2D moveLoop(Point2D d, int xMax, int yMax) {
+        int moveX = x + d.x;
+        int moveY = y + d.y;
+        if (moveX >= xMax) {
+            moveX -= xMax;
+        } else if (moveX < 0) {
+            moveX += xMax;
+        }
+        if (moveY >= yMax) {
+            moveY -= yMax;
+        } else if (moveY < 0) {
+            moveY += yMax;
+        }
+        return new Point2D(moveX, moveY);
+    }
+
     @Override
     public int compareTo(Point2D o) {
         int compare = Integer.compare(y, o.y);

@@ -1,17 +1,19 @@
 package com.adventofcode.year2024;
 
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day08Test {
+class Day08Test extends AbstractTest {
+
+    protected Day08Test() {
+        super(2024, 8);
+    }
 
     @Test
     void inputExample() {
@@ -40,22 +42,14 @@ class Day08Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day07Test.class.getResourceAsStream("/2024/day/08/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
-            assertThat(Day08.partOne(scanner)).hasSize(394);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day08.partOne(scanner)).hasSize(394);
     }
 
-
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day07Test.class.getResourceAsStream("/2024/day/08/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream))) {
-            assertThat(Day08.partTwo(scanner)).hasSize(1277);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day08.partTwo(scanner)).hasSize(1277);
     }
-
 
 }

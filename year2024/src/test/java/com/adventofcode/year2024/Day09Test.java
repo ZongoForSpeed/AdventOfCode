@@ -1,16 +1,17 @@
 package com.adventofcode.year2024;
 
-import org.apache.commons.io.IOUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.Objects;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day09Test {
+class Day09Test extends AbstractTest {
+
+    protected Day09Test() {
+        super(2024, 9);
+    }
 
     @Test
     void inputExample1() {
@@ -28,20 +29,14 @@ class Day09Test {
         assertThat(Day09.partTwo(input)).isEqualTo(2858);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/2024/day/09/input")) {
-            String input = IOUtils.toString(Objects.requireNonNull(is), Charset.defaultCharset());
-            assertThat(Day09.partOne(input)).isEqualTo(6360094256423L);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day09.partOne(scanner.nextLine())).isEqualTo(6360094256423L);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/2024/day/09/input")) {
-            String input = IOUtils.toString(Objects.requireNonNull(is), Charset.defaultCharset());
-            assertThat(Day09.partTwo(input)).isEqualTo(6379677752410L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day09.partTwo(scanner.nextLine())).isEqualTo(6379677752410L);
     }
 
 }

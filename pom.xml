@@ -12,6 +12,7 @@
     <name>Advent Of Code</name>
     <modules>
         <module>common</module>
+        <module>common-test</module>
         <module>year2015</module>
         <module>year2016</module>
         <module>year2017</module>
@@ -82,10 +83,18 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>com.github.zongoforspeed</groupId>
                 <artifactId>common</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.zongoforspeed</groupId>
+                <artifactId>common-test</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
             </dependency>
 
             <dependency>
@@ -292,7 +301,10 @@
                 <configuration>
                     <compilerArgs>
                         <arg>-XDcompilePolicy=simple</arg>
-                        <arg>-Xplugin:ErrorProne -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR -Xep:StringSplitter:ERROR -Xep:ReferenceEquality:ERROR -Xep:LoopOverCharArray:ERROR -Xep:DefaultCharset:OFF -Xep:IntLongMath:ERROR</arg>
+                        <arg>-Xplugin:ErrorProne -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR
+                            -Xep:StringSplitter:ERROR -Xep:ReferenceEquality:ERROR -Xep:LoopOverCharArray:ERROR
+                            -Xep:DefaultCharset:OFF -Xep:IntLongMath:ERROR
+                        </arg>
                     </compilerArgs>
                     <annotationProcessorPaths>
                         <path>
