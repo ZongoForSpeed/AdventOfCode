@@ -6,7 +6,6 @@ import com.adventofcode.test.AbstractTest;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 

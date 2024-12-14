@@ -1,10 +1,8 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,13 +45,12 @@ class Day03Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
-        assertThat(Day03.intersection(lines.getFirst(), lines.get(1))).isEqualTo(260);
+        assertThat(Day03.intersection(scanner.nextLine(), scanner.nextLine())).isEqualTo(260);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
-        assertThat(Day03.intersectionSteps(lines.getFirst(), lines.get(1))).isEqualTo(15612);
+        assertThat(Day03.intersectionSteps(scanner.nextLine(), scanner.nextLine())).isEqualTo(15612);
     }
+
 }

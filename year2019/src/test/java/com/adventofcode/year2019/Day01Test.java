@@ -1,10 +1,8 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,14 +38,13 @@ class Day01Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
-        assertThat(lines.stream().mapToLong(Long::valueOf).map(Day01::fuelRequirements).sum()).isEqualTo(3369286);
+        assertThat(Day01.fuelRequirements(scanner)).isEqualTo(3369286);
 
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
-        assertThat(lines.stream().mapToLong(Long::valueOf).map(Day01::sumFuelRequirements).sum()).isEqualTo(5051054);
+        assertThat(Day01.sumFuelRequirements(scanner)).isEqualTo(5051054);
     }
+
 }

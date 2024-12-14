@@ -1,13 +1,9 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
-import com.google.common.base.Splitter;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,8 +18,9 @@ class Day18Test extends AbstractTest {
                 #########
                 #b.A.@.a#
                 #########""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(8);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(8);
+        }
     }
 
     @Test
@@ -34,8 +31,9 @@ class Day18Test extends AbstractTest {
                 ######################.#
                 #d.....................#
                 ########################""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(86);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(86);
+        }
     }
 
     @Test
@@ -46,8 +44,10 @@ class Day18Test extends AbstractTest {
                 #.######################
                 #.....@.a.B.c.d.A.e.F.g#
                 ########################""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(132);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(132);
+        }
+
     }
 
     @Test
@@ -62,8 +62,9 @@ class Day18Test extends AbstractTest {
                 ########.########
                 #l.F..d...h..C.m#
                 #################""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(136);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(136);
+        }
     }
 
     @Test
@@ -75,8 +76,9 @@ class Day18Test extends AbstractTest {
                 ###A#B#C################
                 ###g#h#i################
                 ########################""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(81);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(81);
+        }
     }
 
     @Test
@@ -89,8 +91,10 @@ class Day18Test extends AbstractTest {
                 ##...##
                 #cB#Ab#
                 #######""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(8);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(8);
+        }
+
     }
 
     @Test
@@ -103,8 +107,9 @@ class Day18Test extends AbstractTest {
                 ######...######
                 #b.....#.....c#
                 ###############""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(24);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(24);
+        }
     }
 
     @Test
@@ -117,8 +122,10 @@ class Day18Test extends AbstractTest {
                 ###C#...###J#
                 #fEbA.#.FgHi#
                 #############""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(32);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(32);
+        }
+
     }
 
     @Test
@@ -133,23 +140,18 @@ class Day18Test extends AbstractTest {
                 #M###N#H###.#
                 #o#m..#i#jk.#
                 #############""";
-        Stream<String> lines = Splitter.on('\n').splitToStream(input);
-        assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(70);
-    }
-
-    @Test
-    void testInputPartTwo() throws IOException {
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(70);
+        }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        Stream<String> lines = FileUtils.readLines(scanner).stream();
-        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(4590);
+        assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(4590);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        Stream<String> lines = FileUtils.readLines(scanner).stream();
-        assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(2086);
+        assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(2086);
     }
 }

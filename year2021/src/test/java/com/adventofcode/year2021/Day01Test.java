@@ -1,7 +1,8 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -27,15 +28,21 @@ class Day01Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        int[] array = FileUtils.readLines(scanner).stream().mapToInt(Integer::valueOf).toArray();
-        assertThat(Day01.measurementIncreases(array)).isEqualTo(1713);
+        IntList list = new IntArrayList();
+        while (scanner.hasNextInt()) {
+            list.add(scanner.nextInt());
+        }
+        assertThat(Day01.measurementIncreases(list.toIntArray())).isEqualTo(1713);
 
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int[] array = FileUtils.readLines(scanner).stream().mapToInt(Integer::valueOf).toArray();
-        assertThat(Day01.measurementIncreases(array, 3)).isEqualTo(1734);
+        IntList list = new IntArrayList();
+        while (scanner.hasNextInt()) {
+            list.add(scanner.nextInt());
+        }
+        assertThat(Day01.measurementIncreases(list.toIntArray(), 3)).isEqualTo(1734);
     }
 
 }

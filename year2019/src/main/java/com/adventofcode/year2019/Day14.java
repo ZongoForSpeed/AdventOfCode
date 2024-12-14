@@ -4,10 +4,12 @@ import com.adventofcode.common.maths.Arithmetic;
 import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -182,7 +184,15 @@ public final class Day14 {
         return quantity.getOrDefault("ORE", 0L) < oreQuantity;
     }
 
-    record Reaction(List<Pair<String, Long>> chemicalInputs, Pair<String, Long> chemicalOutput) {
+    public static List<Reaction> readReactions(Scanner scanner) {
+        List<Reaction> reactions = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            reactions.add(Reaction.parseReaction(scanner.nextLine()));
+        }
+        return reactions;
+    }
+
+    public record Reaction(List<Pair<String, Long>> chemicalInputs, Pair<String, Long> chemicalOutput) {
 
         static Reaction parseReaction(String line) {
             Matcher matcher = REACTION_PATTERN.matcher(line);

@@ -1,10 +1,8 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -174,13 +172,9 @@ class Day14Test extends AbstractTest {
         assertThat(Day14.solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(460664L);
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-    }
-
     @Override
     public void partOne(Scanner scanner) {
-        List<Day14.Reaction> reactions = FileUtils.readLines(scanner).stream().map(Day14.Reaction::parseReaction).toList();
+        List<Day14.Reaction> reactions = Day14.readReactions(scanner);
 
         Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 337075L));
@@ -188,7 +182,8 @@ class Day14Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<Day14.Reaction> reactions = FileUtils.readLines(scanner).stream().map(Day14.Reaction::parseReaction).toList();
+        List<Day14.Reaction> reactions = Day14.readReactions(scanner);
+
         assertThat(Day14.solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5194174L);
     }
 }

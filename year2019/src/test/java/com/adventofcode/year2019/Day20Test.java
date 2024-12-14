@@ -1,13 +1,10 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,10 +36,11 @@ class Day20Test extends AbstractTest {
                   ###########.##### \s
                              Z      \s
                              Z      \s""";
-        long steps = Day20.solveMaze(Arrays.stream(input.split("\\n")));
-        assertThat(steps).isEqualTo(23);
+        try (Scanner scanner = new Scanner(input)) {
+            long steps = Day20.solveMaze(scanner);
+            assertThat(steps).isEqualTo(23);
+        }
     }
-
 
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
@@ -85,8 +83,11 @@ class Day20Test extends AbstractTest {
                   #########.###.###.############# \s
                            B   J   C              \s
                            U   P   P              \s""";
-        long steps = Day20.solveMaze(Arrays.stream(input.split("\\n")));
-        assertThat(steps).isEqualTo(58);
+        try (Scanner scanner = new Scanner(input)) {
+            long steps = Day20.solveMaze(scanner);
+            assertThat(steps).isEqualTo(58);
+        }
+
     }
 
     @SuppressWarnings("MisleadingEscapedSpace")
@@ -130,22 +131,22 @@ class Day20Test extends AbstractTest {
                   #############.#.#.###.################### \s
                                A O F   N                    \s
                                A A D   M                    \s""";
-        Stream<String> stream = Arrays.stream(input.split("\\n"));
-        long steps = Day20.solveRecursiveMaze(stream);
-        assertThat(steps).isEqualTo(396);
+        try (Scanner scanner = new Scanner(input)) {
+            long steps = Day20.solveRecursiveMaze(scanner);
+            assertThat(steps).isEqualTo(396);
+        }
+
     }
 
     @Override
     public void partOne(Scanner scanner) {
-
-        long steps = Day20.solveMaze(FileUtils.readLines(scanner).stream());
+        long steps = Day20.solveMaze(scanner);
         assertThat(steps).isEqualTo(684);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-
-        Stream<String> stream = FileUtils.readLines(scanner).stream();
-        assertThat(Day20.solveRecursiveMaze(stream)).isEqualTo(7758L);
+        long steps = Day20.solveRecursiveMaze(scanner);
+        assertThat(steps).isEqualTo(7758L);
     }
 }

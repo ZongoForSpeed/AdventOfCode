@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public final class Day18 {
     private static final List<Point2D> DIAGONALS = List.of(
@@ -55,56 +55,56 @@ public final class Day18 {
      * --- Day 18: Many-Worlds Interpretation ---
      * As you approach Neptune, a planetary security system detects you and activates a giant tractor beam on Triton!
      * You have no choice but to land.
-     *
+     * <p>
      * A scan of the local area reveals only one interesting feature: a massive underground vault. You generate a map of
      * the tunnels (your puzzle input). The tunnels are too narrow to move diagonally.
-     *
+     * <p>
      * Only one entrance (marked @) is present among the open passages (marked .) and stone walls (#), but you also
      * detect an assortment of keys (shown as lowercase letters) and doors (shown as uppercase letters). Keys of a given
      * letter open the door of the same letter: a opens A, b opens B, and so on. You aren't sure which key you need to
      * disable the tractor beam, so you'll need to collect all of them.
-     *
+     * <p>
      * For example, suppose you have the following map:
-     *
+     * <p>
      * #########
      * #b.A.@.a#
      * #########
      * Starting from the entrance (@), you can only access a large door (A) and a key (a). Moving toward the door doesn't
      * help you, but you can move 2 steps to collect the key, unlocking A in the process:
-     *
+     * <p>
      * #########
      * #b.....@#
      * #########
      * Then, you can move 6 steps to collect the only other key, b:
-     *
+     * <p>
      * #########
      * #@......#
      * #########
      * So, collecting every key took a total of 8 steps.
-     *
+     * <p>
      * Here is a larger example:
-     *
+     * <p>
      * ########################
      * #f.D.E.e.C.b.A.@.a.B.c.#
      * ######################.#
      * #d.....................#
      * ########################
      * The only reasonable move is to take key a and unlock door A:
-     *
+     * <p>
      * ########################
      * #f.D.E.e.C.b.....@.B.c.#
      * ######################.#
      * #d.....................#
      * ########################
      * Then, do the same with key b:
-     *
+     * <p>
      * ########################
      * #f.D.E.e.C.@.........c.#
      * ######################.#
      * #d.....................#
      * ########################
      * ...and the same with key c:
-     *
+     * <p>
      * ########################
      * #f.D.E.e.............@.#
      * ######################.#
@@ -112,23 +112,23 @@ public final class Day18 {
      * ########################
      * Now, you have a choice between keys d and e. While key e is closer, collecting it now would be slower in the long
      * run than collecting key d first, so that's the best choice:
-     *
+     * <p>
      * ########################
      * #f...E.e...............#
      * ######################.#
      * #@.....................#
      * ########################
      * Finally, collect key e to unlock door E, then collect key f, taking a grand total of 86 steps.
-     *
+     * <p>
      * Here are a few more examples:
-     *
+     * <p>
      * ########################
      * #...............b.C.D.f#
      * #.######################
      * #.....@.a.B.c.d.A.e.F.g#
      * ########################
      * Shortest path is 132 steps: b, a, c, d, f, e, g
-     *
+     * <p>
      * #################
      * #i.G..c...e..H.p#
      * ########.########
@@ -140,7 +140,7 @@ public final class Day18 {
      * #################
      * Shortest paths are 136 steps;
      * one is: a, f, b, j, g, n, h, d, l, o, e, p, c, i, k, m
-     *
+     * <p>
      * ########################
      * #@..............ac.GI.b#
      * ###d#e#f################
@@ -148,21 +148,50 @@ public final class Day18 {
      * ###g#h#i################
      * ########################
      * Shortest paths are 81 steps; one is: a, c, f, i, d, g, b, e, h
-     *
+     * <p>
      * How many steps is the shortest path that collects all of the keys?
      */
-    public static long algorithmPartOne(Stream<String> lines) {
-        char[][] map = lines.map(String::toCharArray).toArray(char[][]::new);
-        MazeMap mazeMap = buildMaze(map);
+    public static long algorithmPartOne(Scanner scanner) {
+        MazeMap mazeMap = buildMaze(scanner);
         return countSteps(mazeMap).orElse(0L);
+    }
+
+    private static MazeMap buildMaze(Scanner scanner) {
+        Map<Point2D, Tile> tiles = new HashMap<>();
+        Point2D position = Point2D.of(-1, -1);
+        long keys = 0;
+
+        int i = 0;
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            for (int j = 0; j < line.length(); j++) {
+                char codePoint = line.charAt(j);
+                Point2D d = Point2D.of(i, j);
+                if (codePoint == '@') {
+                    tiles.put(d, Tile.FREE);
+                    position = d;
+                } else if (Character.isUpperCase(codePoint)) {
+                    tiles.put(d, new Tile(TileType.Door, codePoint - 'A'));
+                } else if (Character.isLowerCase(codePoint)) {
+                    int key = codePoint - 'a';
+                    keys |= (1L << key);
+                    tiles.put(d, new Tile(TileType.Key, key));
+                } else if (codePoint == '.') {
+                    tiles.put(d, Tile.FREE);
+                }
+            }
+
+            ++i;
+        }
+        return new MazeMap(tiles, position, keys);
     }
 
     /**
      * --- Part Two ---
      * You arrive at the vault only to discover that there is not one vault, but four - each with its own entrance.
-     *
+     * <p>
      * On your map, find the area in the middle that looks like this:
-     *
+     * <p>
      * ...
      * .@.
      * ...
@@ -170,7 +199,7 @@ public final class Day18 {
      *
      * @#@ ###
      * @#@ This change will split your map into four separate sections, each with its own entrance:
-     *
+     * <p>
      * #######       #######
      * #a.#Cd#       #a.#Cd#
      * ##...##       ##@#@##
@@ -180,14 +209,14 @@ public final class Day18 {
      * #######       #######
      * Because some of the keys are for doors in other vaults, it would take much too long to collect all of the keys by
      * yourself. Instead, you deploy four remote-controlled robots. Each starts at one of the entrances (@).
-     *
+     * <p>
      * Your goal is still to collect all of the keys in the fewest steps, but now, each robot has its own position and
      * can move independently. You can only remotely control a single robot at a time. Collecting a key instantly unlocks
      * any corresponding doors, regardless of the vault in which the key or door is found.
-     *
+     * <p>
      * For example, in the map above, the top-left robot first collects key a, unlocking door A in the bottom-right
      * vault:
-     *
+     * <p>
      * #######
      * #@.#Cd#
      * ##.#@##
@@ -196,7 +225,7 @@ public final class Day18 {
      * #cB#.b#
      * #######
      * Then, the bottom-right robot collects key b, unlocking door B in the bottom-left vault:
-     *
+     * <p>
      * #######
      * #@.#Cd#
      * ##.#@##
@@ -205,7 +234,7 @@ public final class Day18 {
      * #c.#.@#
      * #######
      * Then, the bottom-left robot collects key c:
-     *
+     * <p>
      * #######
      * #@.#.d#
      * ##.#@##
@@ -214,7 +243,7 @@ public final class Day18 {
      * #@.#.@#
      * #######
      * Finally, the top-right robot collects key d:
-     *
+     * <p>
      * #######
      * #@.#.@#
      * ##.#.##
@@ -223,10 +252,10 @@ public final class Day18 {
      * #@.#.@#
      * #######
      * In this example, it only took 8 steps to collect all of the keys.
-     *
+     * <p>
      * Sometimes, multiple robots might have keys available, or a robot might have to wait for multiple keys to be
      * collected:
-     *
+     * <p>
      * ###############
      * #d.ABC.#.....a#
      * ######@#@######
@@ -237,9 +266,9 @@ public final class Day18 {
      * First, the top-right, bottom-left, and bottom-right robots take turns collecting keys a, b, and c, a total of
      * 6 + 6 + 6 = 18 steps. Then, the top-left robot can access key d, spending another 6 steps; collecting all of the
      * keys here takes a minimum of 24 steps.
-     *
+     * <p>
      * Here's a more complex example:
-     *
+     * <p>
      * #############
      * #DcBa.#.GhKl#
      * #.###@#@#I###
@@ -260,9 +289,9 @@ public final class Day18 {
      * Bottom-right robot collects key k.
      * Top-right robot collects key l.
      * In the above example, the fewest steps to collect all of the keys is 32.
-     *
+     * <p>
      * Here's an example with more choices:
-     *
+     * <p>
      * #############
      * #g#f.D#..h#l#
      * #F###e#E###.#
@@ -273,7 +302,7 @@ public final class Day18 {
      * #o#m..#i#jk.#
      * #############
      * One solution with the fewest steps is:
-     *
+     * <p>
      * Top-left robot collects key e.
      * Top-right robot collects key h.
      * Bottom-right robot collects key i.
@@ -290,45 +319,18 @@ public final class Day18 {
      * Bottom-left robot collects key m.
      * Bottom-left robot collects key o.
      * This example requires at least 72 steps to collect all keys.
-     *
+     * <p>
      * After updating your map and using the remote-controlled robots, what is the fewest steps necessary to collect all
      * of the keys?
      */
-    public static long algorithmPartTwo(Stream<String> lines) {
-        char[][] map = lines.map(String::toCharArray).toArray(char[][]::new);
-        MazeMap mazeMap = buildMaze(map);
+    public static long algorithmPartTwo(Scanner scanner) {
+        MazeMap mazeMap = buildMaze(scanner);
         long steps = 0;
         for (MazeMap maze : partition(mazeMap)) {
             steps += countSteps(maze).orElse(0L);
         }
 
         return steps;
-    }
-
-    public static MazeMap buildMaze(char[][] map) {
-        Map<Point2D, Tile> tiles = new HashMap<>();
-        Point2D position = Point2D.of(-1, -1);
-        long keys = 0;
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                char codePoint = map[i][j];
-                Point2D d = Point2D.of(i, j);
-                if (codePoint == '@') {
-                    tiles.put(d, Tile.FREE);
-                    position = d;
-                } else if (Character.isUpperCase(codePoint)) {
-                    tiles.put(d, new Tile(TileType.Door, codePoint - 'A'));
-                } else if (Character.isLowerCase(codePoint)) {
-                    int key = codePoint - 'a';
-                    keys |= (1L << key);
-                    tiles.put(d, new Tile(TileType.Key, key));
-                } else if (codePoint == '.') {
-                    tiles.put(d, Tile.FREE);
-                }
-            }
-        }
-
-        return new MazeMap(tiles, position, keys);
     }
 
     public static long findKeys(Map<Point2D, Tile> map, Set<Point2D> seen, Point2D pos, long keys) {

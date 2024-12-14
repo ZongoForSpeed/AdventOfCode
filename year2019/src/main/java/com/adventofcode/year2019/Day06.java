@@ -1,11 +1,9 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.google.common.collect.Sets;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -112,8 +110,8 @@ public final class Day06 {
 
     public static Map<String, String> readGraph(Scanner scanner) {
         Map<String, String> graph = new HashMap<>();
-        List<String> lines = FileUtils.readLines(scanner);
-        for (String line : lines) {
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
                 graph.put(matcher.group(2), matcher.group(1));

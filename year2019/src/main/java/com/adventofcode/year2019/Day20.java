@@ -4,16 +4,16 @@ import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.Point3D;
+import com.adventofcode.common.point.map.CharMap;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public final class Day20 {
     private Day20() {
@@ -24,14 +24,14 @@ public final class Day20 {
      * --- Day 20: Donut Maze ---
      * You notice a strange pattern on the surface of Pluto and land nearby to get a closer look. Upon closer inspection,
      * you realize you've come across one of the famous space-warping mazes of the long-lost Pluto civilization!
-     *
+     * <p>
      * Because there isn't much space on Pluto, the civilization that used to live here thrived by inventing a method for
      * folding spacetime. Although the technology is no longer understood, mazes like this one provide a small glimpse
      * into the daily life of an ancient Pluto citizen.
-     *
+     * <p>
      * This maze is shaped like a donut. Portals along the inner and outer edge of the donut can instantly teleport you
      * from one side to the other. For example:
-     *
+     * <p>
      * A
      * A
      * #######.#########
@@ -55,16 +55,16 @@ public final class Day20 {
      * next to AA) and an end (the open tile next to ZZ). Mazes on Pluto also have portals; this maze has three pairs of
      * portals: BC, DE, and FG. When on an open tile next to one of these labels, a single step can take you to the other
      * tile with the same label. (You can only walk on . tiles; labels and empty space are not traversable.)
-     *
+     * <p>
      * One path through the maze doesn't require any portals. Starting at AA, you could go down 1, right 8, down 12,
      * left 4, and down 1 to reach ZZ, a total of 26 steps.
-     *
+     * <p>
      * However, there is a shorter path: You could walk from AA to the inner BC portal (4 steps), warp to the outer BC
      * portal (1 step), walk to the inner DE (6 steps), warp to the outer DE (1 step), walk to the outer FG (4 steps),
      * warp to the inner FG (1 step), and finally walk to ZZ (6 steps). In total, this is only 23 steps.
-     *
+     * <p>
      * Here is a larger example:
-     *
+     * <p>
      * A
      * A
      * #################.#############
@@ -104,30 +104,30 @@ public final class Day20 {
      * U   P   P
      * Here, AA has no direct path to ZZ, but it does connect to AS and CP. By passing through AS, QG, BU, and JO, you
      * can reach ZZ in 58 steps.
-     *
+     * <p>
      * In your maze, how many steps does it take to get from the open tile marked AA to the open tile marked ZZ?
      */
-    public static long solveMaze(Stream<String> input) {
-        char[][] map = input.map(String::toCharArray).toArray(char[][]::new);
+    public static long solveMaze(Scanner scanner) {
+        CharMap map = CharMap.read(scanner, ignore -> true);
         return new DonutMaze(map).solveMaze();
     }
 
     /**
      * --- Part Two ---
      * Strangely, the exit isn't open when you reach it. Then, you remember: the ancient Plutonians were famous for building recursive spaces.
-     *
+     * <p>
      * The marked connections in the maze aren't portals: they physically connect to a larger or smaller copy of the maze. Specifically, the labeled tiles around the inside edge actually connect to a smaller copy of the same maze, and the smaller copy's inner labeled tiles connect to yet a smaller copy, and so on.
-     *
+     * <p>
      * When you enter the maze, you are at the outermost level; when at the outermost level, only the outer labels AA and ZZ function (as the start and end, respectively); all other outer labeled tiles are effectively walls. At any other level, AA and ZZ count as walls, but the other outer labeled tiles bring you one level outward.
-     *
+     * <p>
      * Your goal is to find a path through the maze that brings you back to ZZ at the outermost level of the maze.
-     *
+     * <p>
      * In the first example above, the shortest path is now the loop around the right side. If the starting level is 0, then taking the previously-shortest path would pass through BC (to level 1), DE (to level 2), and FG (back to level 1). Because this is not the outermost level, ZZ is a wall, and the only option is to go back around to BC, which would only send you even deeper into the recursive maze.
-     *
+     * <p>
      * In the second example above, there is no path that brings you to ZZ at the outermost level.
-     *
+     * <p>
      * Here is a more interesting example:
-     *
+     * <p>
      * Z L X W       C
      * Z P Q B       K
      * ###########.#.#.#.#######.###############
@@ -166,7 +166,7 @@ public final class Day20 {
      * A O F   N
      * A A D   M
      * One shortest path through the maze is the following:
-     *
+     * <p>
      * Walk from AA to XF (16 steps)
      * Recurse into level 1 through XF (1 step)
      * Walk from XF to CK (10 steps)
@@ -233,11 +233,11 @@ public final class Day20 {
      * Return to level 0 through FD (1 step)
      * Walk from FD to ZZ (18 steps)
      * This path takes a total of 396 steps to move from AA at the outermost layer to ZZ at the outermost layer.
-     *
+     * <p>
      * In your maze, when accounting for recursion, how many steps does it take to get from the open tile marked AA to the open tile marked ZZ, both at the outermost layer?
      */
-    public static long solveRecursiveMaze(Stream<String> stream) {
-        char[][] map = stream.map(String::toCharArray).toArray(char[][]::new);
+    public static long solveRecursiveMaze(Scanner scanner) {
+        CharMap map = CharMap.read(scanner, ignore -> true);
         DonutMaze donutMaze = new DonutMaze(map);
         return donutMaze.solveRecursiveMaze();
     }
@@ -249,24 +249,25 @@ public final class Day20 {
         private final Map<Point2D, Point2D> innerWraps = new HashMap<>();
         private final Map<Point2D, Point2D> outerWraps = new HashMap<>();
 
-        public DonutMaze(char[][] map) {
-            int lineLength = Arrays.stream(map).mapToInt(s -> s.length).max().orElse(0);
+        public DonutMaze(CharMap map) {
+            int yMax = map.yMax();
+            int xMax = map.xMax();
             Set<Point2D> innerDoors = new HashSet<>();
             Set<Point2D> outerDoors = new HashSet<>();
-            for (int y = 2; y < map.length - 2; y++) {
-                for (int x = 2; x < lineLength - 2; x++) {
-                    if (map[y][x] == '.') {
+            for (int y = 2; y <= yMax - 2; y++) {
+                for (int x = 2; x <= xMax - 2; x++) {
+                    if (map.get(x, y) == '.') {
                         Point2D d = Point2D.of(x, y);
                         for (Direction direction : Direction.values()) {
                             Point2D move = d.move(direction);
-                            char c = map[move.y()][move.x()];
+                            char c = map.get(move);
                             if (c == '.') {
                                 graph.computeIfAbsent(d, ignore -> new ArrayList<>()).add(move);
                             } else if (Character.isAlphabetic(c)) {
                                 Point2D shift = move.move(direction);
-                                char cc = map[shift.y()][shift.x()];
+                                char cc = map.get(shift);
                                 String name = getWrapName(direction, c, cc);
-                                if (shift.x() < 2 || shift.x() > lineLength - 2 || shift.y() < 2 || shift.y() > lineLength - 2) {
+                                if (shift.x() < 2 || shift.x() > xMax - 2 || shift.y() < 2 || shift.y() > yMax - 2) {
                                     outerDoors.add(d);
                                 } else {
                                     innerDoors.add(d);

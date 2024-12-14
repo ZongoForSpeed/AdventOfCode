@@ -1,11 +1,7 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
