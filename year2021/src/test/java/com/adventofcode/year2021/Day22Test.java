@@ -1,15 +1,16 @@
 package com.adventofcode.year2021;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day22Test {
+class Day22Test extends AbstractTest {
+    Day22Test() {
+        super(2021, 22);
+    }
 
     @Test
     void largerExample() {
@@ -119,18 +120,14 @@ class Day22Test {
         assertThat(Day22.computeSize(new Scanner(input), Day22.LIMIT)).isEqualTo(590784L);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day22Test.class.getResourceAsStream("/2021/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day22.computeSize(scanner, Day22.LIMIT)).isEqualTo(652209L);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day22.computeSize(scanner, Day22.LIMIT)).isEqualTo(652209L);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day22Test.class.getResourceAsStream("/2021/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day22.computeSize(scanner, null)).isEqualTo(1217808640648260L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day22.computeSize(scanner, null)).isEqualTo(1217808640648260L);
     }
 
 }

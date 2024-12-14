@@ -1,15 +1,19 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day08Test {
+class Day08Test extends AbstractTest {
+    Day08Test() {
+        super(2020, 8);
+    }
 
     @Test
     void testHandheldGameConsole() {
@@ -28,11 +32,17 @@ class Day08Test {
         assertThat(Day08.fixHandheldGameConsole(program)).isEqualTo(8);
     }
 
-    @Test
-    void inputHandheldGameConsole() throws IOException {
-        List<String> program = FileUtils.readLines("/2020/day/8/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> program = FileUtils.readLines(scanner);
 
         assertThat(Day08.runHandheldGameConsole(program)).isEqualTo(Pair.of(1217L, false));
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> program = FileUtils.readLines(scanner);
+
         assertThat(Day08.fixHandheldGameConsole(program)).isEqualTo(501);
     }
 }

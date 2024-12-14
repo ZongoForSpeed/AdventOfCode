@@ -1,15 +1,15 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day12Test {
+class Day12Test extends AbstractTest {
+    Day12Test() {
+        super(2023, 12);
+    }
 
     @Test
     void inputExample() {
@@ -41,24 +41,16 @@ class Day12Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day12Test.class.getResourceAsStream("/2023/day/12/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int count = Day12.PartOne.countArrangements(scanner);
-
-            Assertions.assertThat(count).isEqualTo(6871);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int count = Day12.PartOne.countArrangements(scanner);
+        Assertions.assertThat(count).isEqualTo(6871);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day12Test.class.getResourceAsStream("/2023/day/12/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long count = Day12.PartTwo.countArrangements(scanner, 5);
-
-            Assertions.assertThat(count).isEqualTo(2043098029844L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long count = Day12.PartTwo.countArrangements(scanner, 5);
+        Assertions.assertThat(count).isEqualTo(2043098029844L);
     }
 
 }

@@ -3,11 +3,11 @@ package com.adventofcode.year2019;
 import com.adventofcode.common.utils.FileUtils;
 import com.google.common.collect.Sets;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -110,9 +110,9 @@ public final class Day06 {
 
     private static final Pattern PATTERN = Pattern.compile("(\\w+)\\)(\\w+)");
 
-    static Map<String, String> readGraph(String filename) throws IOException {
+    public static Map<String, String> readGraph(Scanner scanner) {
         Map<String, String> graph = new HashMap<>();
-        List<String> lines = FileUtils.readLines(filename);
+        List<String> lines = FileUtils.readLines(scanner);
         for (String line : lines) {
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {

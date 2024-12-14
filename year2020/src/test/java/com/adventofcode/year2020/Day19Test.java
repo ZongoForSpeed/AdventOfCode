@@ -1,14 +1,18 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day19Test {
+class Day19Test extends AbstractTest {
+    Day19Test() {
+        super(2020, 19);
+    }
 
     @Test
     void testMatchRules() {
@@ -97,11 +101,19 @@ class Day19Test {
 
     }
 
-    @Test
-    void inputMatchRules() throws IOException {
-        List<String> input = FileUtils.readLines("/2020/day/19/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> input = FileUtils.readLines(scanner);
 
         assertThat(Day19.matchMonsterMessages(input, false)).isEqualTo(176);
+
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> input = FileUtils.readLines(scanner);
+
         assertThat(Day19.matchMonsterMessages(input, true)).isEqualTo(352);
+
     }
 }

@@ -1,15 +1,16 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day01Test {
+class Day01Test extends AbstractTest {
+
+    protected Day01Test() {
+        super(2023, 1);
+    }
 
     @Test
     void testExamplePartOne() {
@@ -38,20 +39,13 @@ class Day01Test {
         Assertions.assertThat(Day01.PartTwo.sumCalibrationValues(scanner)).isEqualTo(281);
     }
 
-
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day01Test.class.getResourceAsStream("/2023/day/01/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            Assertions.assertThat(Day01.PartOne.sumCalibrationValues(scanner)).isEqualTo(55712);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        Assertions.assertThat(Day01.PartOne.sumCalibrationValues(scanner)).isEqualTo(55712);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day01Test.class.getResourceAsStream("/2023/day/01/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            Assertions.assertThat(Day01.PartTwo.sumCalibrationValues(scanner)).isEqualTo(55413);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        Assertions.assertThat(Day01.PartTwo.sumCalibrationValues(scanner)).isEqualTo(55413);
     }
 }

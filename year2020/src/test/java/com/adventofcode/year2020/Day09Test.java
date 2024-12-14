@@ -1,17 +1,21 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.OptionalLong;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day09Test {
+class Day09Test extends AbstractTest {
+    Day09Test() {
+        super(2020, 9);
+    }
 
     @Test
     void testEncodingError() {
@@ -49,10 +53,10 @@ class Day09Test {
         assertThat(weakness).isEqualTo(62);
     }
 
-    @Test
-    void inputEncodingError() throws IOException {
+    @Override
+    public void partOne(Scanner scanner) {
         LongList codes = LongArrayList.toList(
-                FileUtils.readLines("/2020/day/9/input").stream().mapToLong(Long::parseLong)
+                FileUtils.readLines(scanner).stream().mapToLong(Long::parseLong)
         );
 
         OptionalLong encodingError = Day09.findEncodingError(codes, 25);
@@ -82,5 +86,10 @@ class Day09Test {
 
         long weakness = Collections.max(contiguousSet) + Collections.min(contiguousSet);
         assertThat(weakness).isEqualTo(438559930L);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        // No-Op
     }
 }

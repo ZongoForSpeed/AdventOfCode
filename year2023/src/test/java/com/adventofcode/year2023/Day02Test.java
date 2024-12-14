@@ -1,15 +1,17 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day02Test {
+class Day02Test extends AbstractTest {
+
+    protected Day02Test() {
+        super(2023, 2);
+    }
+
     @Test
     void testExamplePartOne() {
         String input = """
@@ -39,21 +41,14 @@ class Day02Test {
         Assertions.assertThat(Day02.PartTwo.cubeConundrum(scanner)).isEqualTo(2286);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day02Test.class.getResourceAsStream("/2023/day/02/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            Assertions.assertThat(Day02.PartOne.cubeConundrum(scanner)).isEqualTo(2683);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        Assertions.assertThat(Day02.PartOne.cubeConundrum(scanner)).isEqualTo(2683);
     }
 
-
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day02Test.class.getResourceAsStream("/2023/day/02/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            Assertions.assertThat(Day02.PartTwo.cubeConundrum(scanner)).isEqualTo(49710);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        Assertions.assertThat(Day02.PartTwo.cubeConundrum(scanner)).isEqualTo(49710);
     }
 
 }

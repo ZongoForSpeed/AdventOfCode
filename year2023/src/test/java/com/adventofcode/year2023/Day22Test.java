@@ -1,15 +1,16 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day22Test {
+class Day22Test extends AbstractTest {
+
+    Day22Test() {
+        super(2023, 22);
+    }
 
     @Test
     void inputExample() {
@@ -35,21 +36,15 @@ class Day22Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2023/day/22/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int count = Day22.PartOne.countSupports(scanner);
-            Assertions.assertThat(count).isEqualTo(403);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int count = Day22.PartOne.countSupports(scanner);
+        Assertions.assertThat(count).isEqualTo(403);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2023/day/22/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long count = Day22.PartTwo.countFalling(scanner);
-            Assertions.assertThat(count).isEqualTo(70189);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long count = Day22.PartTwo.countFalling(scanner);
+        Assertions.assertThat(count).isEqualTo(70189);
     }
 }

@@ -1,17 +1,17 @@
 package com.adventofcode.year2023;
 
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day21Test {
+class Day21Test extends AbstractTest {
+    Day21Test() {
+        super(2023, 21);
+    }
 
     @Test
     void inputExample() {
@@ -65,23 +65,16 @@ class Day21Test {
         // }
     }
 
-
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2023/day/21/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            List<Point2D> current = Day21.PartOne.stepCounter(scanner, 64);
-            Assertions.assertThat(current).hasSize(3637);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        List<Point2D> current = Day21.PartOne.stepCounter(scanner, 64);
+        Assertions.assertThat(current).hasSize(3637);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day21Test.class.getResourceAsStream("/2023/day/21/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long counter = Day21.PartTwo.infiniteStepCounter(scanner, 26501365);
-            Assertions.assertThat(counter).isEqualTo(601113643448699L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long counter = Day21.PartTwo.infiniteStepCounter(scanner, 26501365);
+        Assertions.assertThat(counter).isEqualTo(601113643448699L);
     }
 
 }

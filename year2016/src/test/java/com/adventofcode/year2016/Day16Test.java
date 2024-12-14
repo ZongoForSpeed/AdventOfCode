@@ -2,13 +2,10 @@ package com.adventofcode.year2016;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 class Day16Test {
-
     @Test
     void inputExample() {
         assertThat(Day16.dragonChecksum("10000", 20)).isEqualTo("01100");

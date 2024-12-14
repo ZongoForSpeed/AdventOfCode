@@ -1,23 +1,24 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day25Test {
+class Day25Test extends AbstractTest {
+    Day25Test() {
+        super(2017, 25);
+    }
 
     @Test
     void inputExample() {
         String input = """
                 Begin in state A.
                 Perform a diagnostic checksum after 6 steps.
-                                
+                
                 In state A:
                   If the current value is 0:
                     - Write the value 1.
@@ -27,7 +28,7 @@ class Day25Test {
                     - Write the value 0.
                     - Move one slot to the left.
                     - Continue with state B.
-                                
+                
                 In state B:
                   If the current value is 0:
                     - Write the value 1.
@@ -44,11 +45,14 @@ class Day25Test {
         assertThat(diagnosticChecksum).isEqualTo(3);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day25Test.class.getResourceAsStream("/2017/day/25/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day25.diagnosticChecksum(scanner)).isEqualTo(3099);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day25.diagnosticChecksum(scanner)).isEqualTo(3099);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        // No-Op
     }
 
 }

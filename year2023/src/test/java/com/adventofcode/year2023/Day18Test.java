@@ -1,15 +1,15 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day18Test {
+class Day18Test extends AbstractTest {
+    Day18Test() {
+        super(2023, 18);
+    }
 
     @Test
     void inputExample() {
@@ -42,22 +42,16 @@ class Day18Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day18Test.class.getResourceAsStream("/2023/day/18/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long digPlan = Day18.PartOne.readDigPlan(scanner);
-            Assertions.assertThat(digPlan).isEqualTo(31171);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long digPlan = Day18.PartOne.readDigPlan(scanner);
+        Assertions.assertThat(digPlan).isEqualTo(31171);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day18Test.class.getResourceAsStream("/2023/day/18/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long digPlan = Day18.PartTwo.readDigPlan(scanner);
-            Assertions.assertThat(digPlan).isEqualTo(131431655002266L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long digPlan = Day18.PartTwo.readDigPlan(scanner);
+        Assertions.assertThat(digPlan).isEqualTo(131431655002266L);
     }
 
 }

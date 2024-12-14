@@ -1,17 +1,18 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day18Test {
+class Day18Test extends AbstractTest {
+    Day18Test() {
+        super(2017, 18);
+    }
 
     @Test
     void inputExample() {
@@ -45,19 +46,15 @@ class Day18Test {
         assertThat(Day18.duet(new Scanner(input))).isEqualTo(3);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day18Test.class.getResourceAsStream("/2017/day/18/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day18.playSound(scanner)).isEqualTo(7071);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day18.playSound(scanner)).isEqualTo(7071);
     }
 
-    @Test
-    @Disabled
-    void inputPartTwo() throws IOException, InterruptedException {
-        try (InputStream is = Day18Test.class.getResourceAsStream("/2017/day/18/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day18.duet(scanner)).isEqualTo(8001);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        // TODO disabled
+        // assertThat(Day18.duet(scanner)).isEqualTo(8001);
     }
 
 }

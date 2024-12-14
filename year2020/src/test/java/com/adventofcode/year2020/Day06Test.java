@@ -1,14 +1,20 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day06Test {
+class Day06Test extends AbstractTest {
+
+    Day06Test() {
+        super(2020, 6);
+    }
 
     @Test
     void testCountUniqueQuestions() {
@@ -32,10 +38,18 @@ class Day06Test {
 
     @Test
     void inputCustomCustoms() throws IOException {
-        List<List<String>> groups = Day06.readGroups(FileUtils.readLines("/2020/day/6/input"));
+    }
+
+    @Override
+    public void partOne(Scanner scanner) {
+        List<List<String>> groups = Day06.readGroups(FileUtils.readLines(scanner));
         long countUniqueQuestions = groups.stream().map(Day06::countUniqueQuestions).mapToLong(t -> t).sum();
         assertThat(countUniqueQuestions).isEqualTo(6799);
+    }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<List<String>> groups = Day06.readGroups(FileUtils.readLines(scanner));
         long countAllResponded = groups.stream().map(Day06::countAllResponded).mapToLong(t -> t).sum();
         assertThat(countAllResponded).isEqualTo(3354);
     }

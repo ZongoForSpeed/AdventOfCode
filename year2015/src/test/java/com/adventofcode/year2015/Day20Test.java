@@ -2,13 +2,10 @@ package com.adventofcode.year2015;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 class Day20Test {
-
     private final Day20 day20;
 
     Day20Test() {

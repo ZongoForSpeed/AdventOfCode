@@ -1,15 +1,15 @@
 package com.adventofcode.year2022;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day10Test {
+class Day10Test extends AbstractTest {
+    Day10Test() {
+        super(2022, 10);
+    }
 
     @Test
     void inputExample1() {
@@ -192,29 +192,23 @@ class Day10Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2022/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long signalStrength = Day10.PartOne.getSignalStrength(scanner);
-            Assertions.assertThat(signalStrength).isEqualTo(14780L);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long signalStrength = Day10.PartOne.getSignalStrength(scanner);
+        Assertions.assertThat(signalStrength).isEqualTo(14780L);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2022/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            String crt = Day10.PartTwo.printCRT(scanner);
-            Assertions.assertThat(crt).isEqualTo("""
-                    ####.#....###..#....####..##..####.#....
-                    #....#....#..#.#.......#.#..#....#.#....
-                    ###..#....#..#.#......#..#......#..#....
-                    #....#....###..#.....#...#.##..#...#....
-                    #....#....#....#....#....#..#.#....#....
-                    ####.####.#....####.####..###.####.####.""");
-            // ELPLZGZL
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        String crt = Day10.PartTwo.printCRT(scanner);
+        Assertions.assertThat(crt).isEqualTo("""
+                ####.#....###..#....####..##..####.#....
+                #....#....#..#.#.......#.#..#....#.#....
+                ###..#....#..#.#......#..#......#..#....
+                #....#....###..#.....#...#.##..#...#....
+                #....#....#....#....#....#..#.#....#....
+                ####.####.#....####.####..###.####.####.""");
+        // ELPLZGZL
     }
 
 }

@@ -1,15 +1,16 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day19Test {
+class Day19Test extends AbstractTest {
+
+    Day19Test() {
+        super(2023, 19);
+    }
 
     @Test
     void inputExample() {
@@ -25,7 +26,7 @@ class Day19Test {
                 qqz{s>2770:qs,m<1801:hdj,R}
                 gd{a>3333:R,R}
                 hdj{m>838:A,pv}
-                                
+                
                 {x=787,m=2655,a=1222,s=2876}
                 {x=1679,m=44,a=2067,s=496}
                 {x=2036,m=264,a=79,s=2244}
@@ -45,22 +46,16 @@ class Day19Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day19Test.class.getResourceAsStream("/2023/day/19/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long sum = Day19.PartOne.sumAccepted(scanner);
-            Assertions.assertThat(sum).isEqualTo(319295);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long sum = Day19.PartOne.sumAccepted(scanner);
+        Assertions.assertThat(sum).isEqualTo(319295);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day19Test.class.getResourceAsStream("/2023/day/19/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long combinations = Day19.PartTwo.combinations(scanner);
-            Assertions.assertThat(combinations).isEqualTo(110807725108076L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long combinations = Day19.PartTwo.combinations(scanner);
+        Assertions.assertThat(combinations).isEqualTo(110807725108076L);
     }
 
 }

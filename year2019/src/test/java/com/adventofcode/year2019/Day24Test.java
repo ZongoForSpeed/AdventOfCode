@@ -2,6 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.IntegerPair;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -14,13 +15,17 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.BitSet;
 import java.util.List;
-
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day24Test {
+class Day24Test extends AbstractTest {
+    Day24Test() {
+        super(2019, 24);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
     @Test
@@ -107,30 +112,6 @@ class Day24Test {
     }
 
     @Test
-    void testInputPartOne() throws IOException {
-        List<IntList> adjacent = Day24.buildAdjacent(5);
-
-        List<String> lines = FileUtils.readLines("/2019/day/24/input");
-        String layout = String.join("\n", lines);
-
-        BitSet bugs = Day24.parseLayout(layout);
-
-        LongSet layouts = new LongOpenHashSet();
-        while (layouts.add(bugs.toLongArray()[0])) {
-            bugs = Day24.nextState(bugs, adjacent);
-        }
-
-        assertThat(Day24.printLayout(bugs)).isEqualTo("""
-                ....#
-                ....#
-                ##..#
-                ##..#
-                .#..#""");
-
-        assertThat(Day24.biodiversityPoints(bugs)).isEqualTo(19516944);
-    }
-
-    @Test
     void testBuildDepthAdjacent() {
         List<List<IntegerPair>> adjacent = Day24.buildDepthAdjacent(5);
         assertThat(adjacent.get(18)).hasSize(4).contains(
@@ -187,77 +168,77 @@ class Day24Test {
                 ..?.#
                 .#.#.
                 ..#..
-
+                
                 Depth -4:
                 ...#.
                 ...##
                 ..?..
                 ...##
                 ...#.
-
+                
                 Depth -3:
                 #.#..
                 .#...
                 ..?..
                 .#...
                 #.#..
-
+                
                 Depth -2:
                 .#.##
                 ....#
                 ..?.#
                 ...##
                 .###.
-
+                
                 Depth -1:
                 #..##
                 ...##
                 ..?..
                 ...#.
                 .####
-
+                
                 Depth 0:
                 .#...
                 .#.##
                 .#?..
                 .....
                 .....
-
+                
                 Depth 1:
                 .##..
                 #..##
                 ..?.#
                 ##.##
                 #####
-
+                
                 Depth 2:
                 ###..
                 ##.#.
                 #.?..
                 .#.##
                 #.#..
-
+                
                 Depth 3:
                 ..###
                 .....
                 #.?..
                 #....
                 #...#
-
+                
                 Depth 4:
                 .###.
                 #..#.
                 #.?..
                 ##.#.
                 .....
-
+                
                 Depth 5:
                 ####.
                 #..#.
                 #.?#.
                 ####.
                 .....
-
+                
                 """);
         long totalBugs = depthBugs.values().stream().mapToInt(BitSet::cardinality).sum();
         assertThat(totalBugs).isEqualTo(99);
@@ -265,8 +246,35 @@ class Day24Test {
 
     @Test
     void testInputPartTwo() throws IOException {
-        List<String> lines = FileUtils.readLines("/2019/day/24/input");
-        assertThat(Day24.getTotalBugsPartTwo(lines)).isEqualTo(2006);
     }
 
+    @Override
+    public void partOne(Scanner scanner) throws Exception {
+        List<IntList> adjacent = Day24.buildAdjacent(5);
+
+        List<String> lines = FileUtils.readLines(scanner);
+        String layout = String.join("\n", lines);
+
+        BitSet bugs = Day24.parseLayout(layout);
+
+        LongSet layouts = new LongOpenHashSet();
+        while (layouts.add(bugs.toLongArray()[0])) {
+            bugs = Day24.nextState(bugs, adjacent);
+        }
+
+        assertThat(Day24.printLayout(bugs)).isEqualTo("""
+                ....#
+                ....#
+                ##..#
+                ##..#
+                .#..#""");
+
+        assertThat(Day24.biodiversityPoints(bugs)).isEqualTo(19516944);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) throws Exception {
+        List<String> lines = FileUtils.readLines(scanner);
+        assertThat(Day24.getTotalBugsPartTwo(lines)).isEqualTo(2006);
+    }
 }

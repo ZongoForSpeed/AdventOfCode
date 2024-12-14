@@ -1,16 +1,18 @@
 package com.adventofcode.year2016;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day09Test {
+class Day09Test extends AbstractTest {
+    Day09Test() {
+        super(2016, 9);
+    }
 
     @Test
     void inputExample() throws IOException {
@@ -27,17 +29,13 @@ class Day09Test {
         assertThat(Day09.decompressV2("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN")).isEqualTo(445);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/2016/day/9/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day09.decompressV1(scanner.nextLine())).hasSize(150914);
-        }
+    @Override
+    public void partOne(Scanner scanner) throws IOException {
+        assertThat(Day09.decompressV1(scanner.nextLine())).hasSize(150914);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/2016/day/9/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day09.decompressV2(scanner.nextLine())).isEqualTo(11052855125L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) throws IOException {
+        assertThat(Day09.decompressV2(scanner.nextLine())).isEqualTo(11052855125L);
     }
 }

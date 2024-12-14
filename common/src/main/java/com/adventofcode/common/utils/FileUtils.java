@@ -31,4 +31,12 @@ public final class FileUtils {
             return scanner.nextLine();
         }
     }
+
+    public static List<String> readLines(Scanner scanner) {
+        List<String> lines = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            lines.add(scanner.nextLine());
+        }
+        return lines;
+    }
 }

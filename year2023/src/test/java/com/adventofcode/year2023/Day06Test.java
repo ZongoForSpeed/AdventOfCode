@@ -1,15 +1,15 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day06Test {
+class Day06Test extends AbstractTest {
+    Day06Test() {
+        super(2023, 6);
+    }
 
     @Test
     void examplePartOne() {
@@ -35,26 +35,23 @@ class Day06Test {
         Assertions.assertThat(reduce).isEqualTo(71503);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day06Test.class.getResourceAsStream("/2023/day/06/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long reduce = Day06.PartOne.raceRecord(scanner);
-            Assertions.assertThat(reduce).isEqualTo(131376);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long reduce = Day06.PartOne.raceRecord(scanner);
+        Assertions.assertThat(reduce).isEqualTo(131376);
     }
 
-    @Test
-    void inputPartTwo() {
+    @Override
+    public void partTwo(Scanner ignored) {
         String input = """
                 Time:       51699878
                 Distance:   377117112241505
                 """;
 
-        Scanner scanner = new Scanner(input);
-
-        long reduce = Day06.PartTwo.raceRecord(scanner);
-        Assertions.assertThat(reduce).isEqualTo(34123437L);
+        try (Scanner scanner = new Scanner(input)) {
+            long reduce = Day06.PartTwo.raceRecord(scanner);
+            Assertions.assertThat(reduce).isEqualTo(34123437L);
+        }
     }
 
 }

@@ -1,14 +1,19 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day01Test {
+class Day01Test extends AbstractTest {
+
+    Day01Test() {
+        super(2021, 1);
+    }
 
     @Test
     void inputExample() {
@@ -20,17 +25,16 @@ class Day01Test {
         assertThat(Day01.measurementIncreases(array, 3)).isEqualTo(5);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        List<String> input = FileUtils.readLines("/2021/day/1/input");
-        int[] array = input.stream().mapToInt(Integer::valueOf).toArray();
+    @Override
+    public void partOne(Scanner scanner) {
+        int[] array = FileUtils.readLines(scanner).stream().mapToInt(Integer::valueOf).toArray();
         assertThat(Day01.measurementIncreases(array)).isEqualTo(1713);
+
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        List<String> input = FileUtils.readLines("/2021/day/1/input");
-        int[] array = input.stream().mapToInt(Integer::valueOf).toArray();
+    @Override
+    public void partTwo(Scanner scanner) {
+        int[] array = FileUtils.readLines(scanner).stream().mapToInt(Integer::valueOf).toArray();
         assertThat(Day01.measurementIncreases(array, 3)).isEqualTo(1734);
     }
 

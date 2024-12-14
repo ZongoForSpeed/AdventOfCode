@@ -1,14 +1,18 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day17Test {
+class Day17Test extends AbstractTest {
+    Day17Test() {
+        super(2020, 17);
+    }
 
     @Test
     void testConwayCubes() {
@@ -20,11 +24,17 @@ class Day17Test {
         assertThat(Day17.runConwayHyperCubes(initialState, 6)).isEqualTo(848);
     }
 
-    @Test
-    void inputConwayCubes() throws IOException {
-        List<String> initialState = FileUtils.readLines("/2020/day/17/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> initialState = FileUtils.readLines(scanner);
 
         assertThat(Day17.runConwayCubes(initialState, 6)).isEqualTo(215);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> initialState = FileUtils.readLines(scanner);
+
         assertThat(Day17.runConwayHyperCubes(initialState, 6)).isEqualTo(1728);
     }
 }

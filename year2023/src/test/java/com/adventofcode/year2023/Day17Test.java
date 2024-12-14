@@ -1,15 +1,16 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day17Test {
+class Day17Test extends AbstractTest {
+
+    Day17Test() {
+        super(2023, 17);
+    }
 
     @Test
     void inputExample1() {
@@ -58,22 +59,16 @@ class Day17Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day17Test.class.getResourceAsStream("/2023/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
-            Assertions.assertThat(heatLoss).isEqualTo(936);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
+        Assertions.assertThat(heatLoss).isEqualTo(936);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day17Test.class.getResourceAsStream("/2023/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
-            Assertions.assertThat(heatLoss).isEqualTo(1157);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
+        Assertions.assertThat(heatLoss).isEqualTo(1157);
     }
 
 }

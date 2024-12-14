@@ -2,15 +2,20 @@ package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.IntegerPair;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day10Test {
+class Day10Test extends AbstractTest {
+
+    Day10Test() {
+        super(2020, 10);
+    }
 
     @Test
     void testAdapterArray1() {
@@ -78,10 +83,10 @@ class Day10Test {
         assertThat(Day10.adapterArrangements(adapters)).isEqualTo(19208);
     }
 
-    @Test
-    void inputAdapterArray() throws IOException {
+    @Override
+    public void partOne(Scanner scanner) {
         LongList adapters = LongArrayList.toList(
-                FileUtils.readLines("/2020/day/10/input").stream().mapToLong(Long::parseLong)
+                FileUtils.readLines(scanner).stream().mapToLong(Long::parseLong)
         );
 
         IntegerPair adapter = Day10.jolterAdapter(adapters);
@@ -90,6 +95,13 @@ class Day10Test {
 
         long result = (long) adapter.left() * adapter.right();
         assertThat(result).isEqualTo(2232);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        LongList adapters = LongArrayList.toList(
+                FileUtils.readLines(scanner).stream().mapToLong(Long::parseLong)
+        );
 
         assertThat(Day10.adapterArrangements(adapters)).isEqualTo(173625106649344L);
     }

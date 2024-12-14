@@ -1,14 +1,18 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day12Test {
+class Day12Test extends AbstractTest {
+    Day12Test() {
+        super(2020, 12);
+    }
 
     @Test
     void testRainRisk1() {
@@ -34,19 +38,18 @@ class Day12Test {
         assertThat(manhattanDistance).isEqualTo(286);
     }
 
-    @Test
-    void inputRainRisk1() throws IOException {
-        List<String> actions = FileUtils.readLines("/2020/day/12/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> actions = FileUtils.readLines(scanner);
 
         assertThat(Day12.moveWithDirectionDistance(actions)).isEqualTo(590);
     }
 
-    @Test
-    void inputRainRisk2() throws IOException {
-        List<String> actions = FileUtils.readLines("/2020/day/12/input");
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> actions = FileUtils.readLines(scanner);
 
         int manhattanDistance = Day12.moveWithWaypointDistance(actions);
         assertThat(manhattanDistance).isEqualTo(42013);
     }
-
 }

@@ -1,18 +1,19 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.utils.IntegerPair;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day10Test {
+class Day10Test extends AbstractTest {
+    Day10Test() {
+        super(2016, 10);
+    }
 
     @Test
     void inputExample() {
@@ -31,18 +32,14 @@ class Day10Test {
         assertThat(balanceBots.getOutputs()).containsAllEntriesOf(Map.of(0, 5, 1, 2, 2, 3));
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day10Test.class.getResourceAsStream("/2016/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day10.findChips(scanner, IntegerPair.of(17, 61))).isEqualTo(56);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day10.findChips(scanner, IntegerPair.of(17, 61))).isEqualTo(56);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day10Test.class.getResourceAsStream("/2016/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day10.getOutput012(scanner)).isEqualTo(7847);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day10.getOutput012(scanner)).isEqualTo(7847);
     }
 
 }

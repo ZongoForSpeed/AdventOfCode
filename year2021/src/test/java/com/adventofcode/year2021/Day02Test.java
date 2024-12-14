@@ -2,15 +2,20 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.IntegerPair;
+import com.adventofcode.test.AbstractTest;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day02Test {
+class Day02Test extends AbstractTest {
+    Day02Test() {
+        super(2021, 2);
+    }
 
     @Test
     void inputExample() {
@@ -31,18 +36,17 @@ class Day02Test {
 
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        List<String> input = FileUtils.readLines("/2021/day/2/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> input = FileUtils.readLines(scanner);
 
         IntegerPair p = Day02.divePartOne(input);
-
         assertThat(p.left() * p.right()).isEqualTo(1561344);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        List<String> input = FileUtils.readLines("/2021/day/2/input");
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> input = FileUtils.readLines(scanner);
 
         Triple<Integer, Integer, Integer> triple = Day02.divePartTwo(input);
         assertThat(triple).isEqualTo(Triple.of(2033, 909225, 768));

@@ -2,6 +2,7 @@ package com.adventofcode.year2020;
 
 import com.adventofcode.common.point.map.BooleanMap;
 import com.adventofcode.common.point.map.CharMap;
+import com.adventofcode.test.AbstractTest;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -11,12 +12,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day20Test {
+class Day20Test extends AbstractTest {
+    Day20Test() {
+        super(2020, 20);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20Test.class);
 
     @Test
@@ -157,10 +161,13 @@ class Day20Test {
         assertThat(monster).isEqualTo(273L);
     }
 
-    @Test
-    void inputJurassicJigsaw() {
-        Scanner scanner = new Scanner(Objects.requireNonNull(Day20Test.class.getResourceAsStream("/2020/day/20/input")));
+    @Override
+    public void partOne(Scanner scanner) {
+        // No-Op
+    }
 
+    @Override
+    public void partTwo(Scanner scanner) {
         Int2ObjectMap<List<CharMap>> tiles = new Int2ObjectOpenHashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();

@@ -1,13 +1,16 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day16Test {
+class Day16Test extends AbstractTest {
+    Day16Test() {
+        super(2019, 16);
+    }
 
 
     @Test
@@ -26,12 +29,6 @@ class Day16Test {
     }
 
     @Test
-    void testInputPartOne() throws IOException {
-        String line = FileUtils.readLine("/2019/day/16/input");
-        assertThat(Day16.flawedFrequencyTransmission(line, 100)).startsWith("32002835");
-    }
-
-    @Test
     void testPattern() {
         assertThat(Day16.pattern(1)).startsWith(1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1);
         assertThat(Day16.pattern(2)).startsWith(0, 1, 1, 0, 0, -1, -1, 0, 0, 1, 1, 0, 0, -1, -1, 0, 0, 1, 1, 0, 0);
@@ -46,10 +43,16 @@ class Day16Test {
         assertThat(Day16.decode("03081770884921959731165446850517")).isEqualTo("53553731");
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        String line = FileUtils.readLine("/2019/day/16/input");
-        assertThat(Day16.decode(line)).isEqualTo("69732268");
+    @Override
+    public void partOne(Scanner scanner) {
+        String line = scanner.nextLine();
+        assertThat(Day16.flawedFrequencyTransmission(line, 100)).startsWith("32002835");
+
     }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        String line = scanner.nextLine();
+        assertThat(Day16.decode(line)).isEqualTo("69732268");
+    }
 }

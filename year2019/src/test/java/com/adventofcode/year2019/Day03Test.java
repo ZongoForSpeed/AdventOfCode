@@ -1,14 +1,19 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day03Test {
+class Day03Test extends AbstractTest {
+
+    Day03Test() {
+        super(2019, 3);
+    }
 
     @Test
     void testSimplePath1() {
@@ -26,12 +31,6 @@ class Day03Test {
     }
 
     @Test
-    void testInput() throws IOException {
-        List<String> lines = FileUtils.readLines("/2019/day/3/input");
-        assertThat(Day03.intersection(lines.getFirst(), lines.get(1))).isEqualTo(260);
-    }
-
-    @Test
     void testSimpleSteps1() {
         assertThat(Day03.intersectionSteps("R8,U5,L5,D3", "U7,R6,D4,L4")).isEqualTo(30);
     }
@@ -46,9 +45,15 @@ class Day03Test {
         assertThat(Day03.intersectionSteps("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51", "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")).isEqualTo(410);
     }
 
-    @Test
-    void testInputSteps() throws IOException {
-        List<String> lines = FileUtils.readLines("/2019/day/3/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> lines = FileUtils.readLines(scanner);
+        assertThat(Day03.intersection(lines.getFirst(), lines.get(1))).isEqualTo(260);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> lines = FileUtils.readLines(scanner);
         assertThat(Day03.intersectionSteps(lines.getFirst(), lines.get(1))).isEqualTo(15612);
     }
 }

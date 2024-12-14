@@ -1,15 +1,16 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day22Test {
+class Day22Test extends AbstractTest {
+    Day22Test() {
+        super(2017, 22);
+    }
 
 
     @Test
@@ -27,18 +28,14 @@ class Day22Test {
     }
 
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day22Test.class.getResourceAsStream("/2017/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day22.sporificaVirusPartOne(scanner, 10000)).isEqualTo(5575);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day22.sporificaVirusPartOne(scanner, 10000)).isEqualTo(5575);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day22Test.class.getResourceAsStream("/2017/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day22.sporificaVirusPartTwo(scanner, 10_000_000)).isEqualTo(2511991);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day22.sporificaVirusPartTwo(scanner, 10_000_000)).isEqualTo(2511991);
     }
 
 }

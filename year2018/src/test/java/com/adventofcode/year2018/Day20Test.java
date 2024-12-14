@@ -1,15 +1,16 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Scanner;
 
-class Day20Test {
+class Day20Test extends AbstractTest {
+    Day20Test() {
+        super(2018, 20);
+    }
 
     @Test
     void example() {
@@ -35,24 +36,18 @@ class Day20Test {
                 .hasValue(31);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day20Test.class.getResourceAsStream("/2018/day/20/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            OptionalInt max = Day20.PartOne.furthestDistance(scanner.nextLine());
-            Assertions.assertThat(max)
-                    .isPresent()
-                    .hasValue(3151);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        OptionalInt max = Day20.PartOne.furthestDistance(scanner.nextLine());
+        Assertions.assertThat(max)
+                .isPresent()
+                .hasValue(3151);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day20Test.class.getResourceAsStream("/2018/day/20/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            long door1000 = Day20.PartTwo.door1000(scanner.nextLine());
-            Assertions.assertThat(door1000).isEqualTo(8784);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long door1000 = Day20.PartTwo.door1000(scanner.nextLine());
+        Assertions.assertThat(door1000).isEqualTo(8784);
     }
 
 }

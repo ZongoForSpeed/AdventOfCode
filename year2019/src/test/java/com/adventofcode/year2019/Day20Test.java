@@ -1,16 +1,20 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day20Test {
+class Day20Test extends AbstractTest {
+    Day20Test() {
+        super(2019, 20);
+    }
 
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
@@ -85,12 +89,6 @@ class Day20Test {
         assertThat(steps).isEqualTo(58);
     }
 
-    @Test
-    void testInputPartOne() throws IOException {
-        long steps = Day20.solveMaze(FileUtils.readLines("/2019/day/20/input").stream());
-        assertThat(steps).isEqualTo(684);
-    }
-
     @SuppressWarnings("MisleadingEscapedSpace")
     @Disabled
     void testRecursiveDonutMaze() {
@@ -137,10 +135,17 @@ class Day20Test {
         assertThat(steps).isEqualTo(396);
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        Stream<String> stream = FileUtils.readLines("/2019/day/20/input").stream();
-        assertThat(Day20.solveRecursiveMaze(stream)).isEqualTo(7758L);
+    @Override
+    public void partOne(Scanner scanner) {
+
+        long steps = Day20.solveMaze(FileUtils.readLines(scanner).stream());
+        assertThat(steps).isEqualTo(684);
     }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+
+        Stream<String> stream = FileUtils.readLines(scanner).stream();
+        assertThat(Day20.solveRecursiveMaze(stream)).isEqualTo(7758L);
+    }
 }

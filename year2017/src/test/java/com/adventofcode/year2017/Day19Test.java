@@ -1,16 +1,17 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day19Test {
+class Day19Test extends AbstractTest {
+    Day19Test() {
+        super(2017, 19);
+    }
 
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
@@ -28,17 +29,13 @@ class Day19Test {
         assertThat(Day19.findPacketsPartTwo(new Scanner(input))).isEqualTo(38);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day19Test.class.getResourceAsStream("/2017/day/19/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day19.findPacketsPartOne(scanner)).isEqualTo("XYFDJNRCQA");
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day19.findPacketsPartOne(scanner)).isEqualTo("XYFDJNRCQA");
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day19Test.class.getResourceAsStream("/2017/day/19/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day19.findPacketsPartTwo(scanner)).isEqualTo(17450);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day19.findPacketsPartTwo(scanner)).isEqualTo(17450);
     }
 }

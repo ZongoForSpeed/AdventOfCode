@@ -1,15 +1,16 @@
 package com.adventofcode.year2021;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day05Test {
+class Day05Test extends AbstractTest {
+    Day05Test() {
+        super(2021, 5);
+    }
 
     @Test
     void inputExample() {
@@ -31,21 +32,15 @@ class Day05Test {
 
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/2021/day/5/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            int overlaps = Day05.countOverlapsPartOne(scanner);
-            assertThat(overlaps).isEqualTo(6572);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int overlaps = Day05.countOverlapsPartOne(scanner);
+        assertThat(overlaps).isEqualTo(6572);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/2021/day/5/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            int overlaps = Day05.countOverlapsPartTwo(scanner);
-            assertThat(overlaps).isEqualTo(21466);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        int overlaps = Day05.countOverlapsPartTwo(scanner);
+        assertThat(overlaps).isEqualTo(21466);
     }
 }

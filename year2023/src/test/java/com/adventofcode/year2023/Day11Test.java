@@ -1,15 +1,15 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day11Test {
+class Day11Test extends AbstractTest {
+    Day11Test() {
+        super(2023, 11);
+    }
 
     @Test
     void inputExample() {
@@ -47,25 +47,15 @@ class Day11Test {
         }
     }
 
-
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day11Test.class.getResourceAsStream("/2023/day/11/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long sumLength = Day11.PartOne.computeGalaxyLength(scanner);
-            Assertions.assertThat(sumLength).isEqualTo(9608724);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long sumLength = Day11.PartOne.computeGalaxyLength(scanner);
+        Assertions.assertThat(sumLength).isEqualTo(9608724);
     }
 
-
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day11Test.class.getResourceAsStream("/2023/day/11/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 1_000_000);
-
-            Assertions.assertThat(sumLength).isEqualTo(904633799472L);
-
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 1_000_000);
+        Assertions.assertThat(sumLength).isEqualTo(904633799472L);
     }
 }

@@ -1,16 +1,17 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day07Test {
+class Day07Test extends AbstractTest {
+    Day07Test() {
+        super(2018, 7);
+    }
 
     @Test
     void inputExample() {
@@ -28,18 +29,14 @@ class Day07Test {
         assertThat(Day07.getCompletionTime(new Scanner(input), 2, 0)).isEqualTo(15);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/2018/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day07.getCorrectOrder(scanner)).isEqualTo("GNJOCHKSWTFMXLYDZABIREPVUQ");
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day07.getCorrectOrder(scanner)).isEqualTo("GNJOCHKSWTFMXLYDZABIREPVUQ");
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/2018/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day07.getCompletionTime(scanner, 5, 60)).isEqualTo(886);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day07.getCompletionTime(scanner, 5, 60)).isEqualTo(886);
     }
 
 }

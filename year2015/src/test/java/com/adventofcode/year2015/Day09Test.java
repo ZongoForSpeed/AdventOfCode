@@ -1,17 +1,19 @@
 package com.adventofcode.year2015;
 
 import com.adventofcode.common.utils.IntegerPair;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day09Test {
+class Day09Test extends AbstractTest {
+
+    Day09Test() {
+        super(2015, 9);
+    }
 
     @Test
     void inputExample() {
@@ -27,17 +29,13 @@ class Day09Test {
         assertThat(bestDistance.right()).isEqualTo(982);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/2015/day/9/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day09.computeBestDistance(scanner).left()).isEqualTo(141);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day09.computeBestDistance(scanner).left()).isEqualTo(141);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day09Test.class.getResourceAsStream("/2015/day/9/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day09.computeBestDistance(scanner).right()).isEqualTo(736);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day09.computeBestDistance(scanner).right()).isEqualTo(736);
     }
 }

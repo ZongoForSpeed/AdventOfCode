@@ -1,15 +1,20 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import com.google.common.base.Splitter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day18Test {
+class Day18Test extends AbstractTest {
+    Day18Test() {
+        super(2019, 18);
+    }
 
     @Test
     void testSimple() {
@@ -75,12 +80,6 @@ class Day18Test {
     }
 
     @Test
-    void testInputPartOne() throws IOException {
-        Stream<String> lines = FileUtils.readLines("/2019/day/18/input").stream();
-        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(4590);
-    }
-
-    @Test
     void testSimpleVault() {
         String input = """
                 #######
@@ -140,8 +139,17 @@ class Day18Test {
 
     @Test
     void testInputPartTwo() throws IOException {
-        Stream<String> lines = FileUtils.readLines("/2019/day/18/input").stream();
-        assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(2086);
     }
 
+    @Override
+    public void partOne(Scanner scanner) {
+        Stream<String> lines = FileUtils.readLines(scanner).stream();
+        assertThat(Day18.algorithmPartOne(lines)).isEqualTo(4590);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        Stream<String> lines = FileUtils.readLines(scanner).stream();
+        assertThat(Day18.algorithmPartTwo(lines)).isEqualTo(2086);
+    }
 }

@@ -1,17 +1,18 @@
 package com.adventofcode.year2015;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day14Test {
+class Day14Test extends AbstractTest {
+    Day14Test() {
+        super(2015, 14);
+    }
 
     @Test
     void inputExample() {
@@ -23,18 +24,14 @@ class Day14Test {
         assertThat(Day14.raceReindeerPartTwo(new Scanner(input), 1000)).containsAllEntriesOf(Map.of("Comet", 312, "Dancer", 689));
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day14Test.class.getResourceAsStream("/2015/day/14/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day14.raceReindeerPartOne(scanner, 2503)).isEqualTo(2696);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day14.raceReindeerPartOne(scanner, 2503)).isEqualTo(2696);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day14Test.class.getResourceAsStream("/2015/day/14/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day14.raceReindeerPartTwo(scanner, 2503)).containsEntry("Rudolph", 1084);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day14.raceReindeerPartTwo(scanner, 2503)).containsEntry("Rudolph", 1084);
     }
 
 }

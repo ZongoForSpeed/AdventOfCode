@@ -1,16 +1,16 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day24Test {
+class Day24Test extends AbstractTest {
+    Day24Test() {
+        super(2023, 24);
+    }
 
     @Test
     void inputExample() {
@@ -30,28 +30,22 @@ class Day24Test {
         Assertions.assertThat(solved).isEqualTo(47);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2023/day/24/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            List<Day24.Hailstorm> hailstorms = Day24.readHailstorms(scanner);
+    @Override
+    public void partOne(Scanner scanner) {
+        List<Day24.Hailstorm> hailstorms = Day24.readHailstorms(scanner);
 
-            int count = Day24.PartOne.countIntersection(hailstorms, 200000000000000L, 400000000000000L);
+        int count = Day24.PartOne.countIntersection(hailstorms, 200000000000000L, 400000000000000L);
 
-            Assertions.assertThat(count).isEqualTo(19976);
-        }
+        Assertions.assertThat(count).isEqualTo(19976);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2023/day/24/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            List<Day24.Hailstorm> hailstorms = Day24.readHailstorms(scanner);
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<Day24.Hailstorm> hailstorms = Day24.readHailstorms(scanner);
 
-            long solved = Day24.PartTwo.solveEquation(hailstorms);
-            Assertions.assertThat(solved).isEqualTo(849377770236905L);
-            // 849377770236905
-        }
+        long solved = Day24.PartTwo.solveEquation(hailstorms);
+        Assertions.assertThat(solved).isEqualTo(849377770236905L);
+        // 849377770236905
     }
 
 }

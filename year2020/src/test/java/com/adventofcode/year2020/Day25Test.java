@@ -1,14 +1,16 @@
 package com.adventofcode.year2020;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day25Test {
+class Day25Test extends AbstractTest {
+    Day25Test() {
+        super(2020, 25);
+    }
 
     @Test
     void testComboBreaker() {
@@ -16,14 +18,16 @@ class Day25Test {
         assertThat(cardEncryptionKey).isEqualTo(14897079);
     }
 
-    @Test
-    void inputComboBreaker() throws IOException {
-        try (InputStream inputStream = Day25Test.class.getResourceAsStream("/2020/day/25/input"); Scanner scanner = new Scanner(inputStream)) {
-            long cardPublicKey = Long.parseLong(scanner.nextLine());
-            long doorPublicKey = Long.parseLong(scanner.nextLine());
-            long encryptionKey = Day25.comboBreaker(cardPublicKey, doorPublicKey);
-            assertThat(encryptionKey).isEqualTo(16933668);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long cardPublicKey = Long.parseLong(scanner.nextLine());
+        long doorPublicKey = Long.parseLong(scanner.nextLine());
+        long encryptionKey = Day25.comboBreaker(cardPublicKey, doorPublicKey);
+        assertThat(encryptionKey).isEqualTo(16933668);
+    }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        // No-Op
     }
 }

@@ -1,17 +1,19 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day10Test {
+class Day10Test extends AbstractTest {
+
+    Day10Test() {
+        super(2018, 10);
+    }
 
     @Test
     void inputExample() {
@@ -62,23 +64,25 @@ class Day10Test {
         assertThat(result.right()).isEqualTo(3);
     }
 
-    @Test
-    void input() throws IOException {
-        try (InputStream is = Day10Test.class.getResourceAsStream("/2018/day/10/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            Pair<String, Integer> result = Day10.decodeStars(scanner);
-            assertThat(result.left()).isEqualTo("""
-                    ######..#....#....##....#.......#.......#....#..#.......#####.
-                    #.......#...#....#..#...#.......#.......#...#...#.......#....#
-                    #.......#..#....#....#..#.......#.......#..#....#.......#....#
-                    #.......#.#.....#....#..#.......#.......#.#.....#.......#....#
-                    #####...##......#....#..#.......#.......##......#.......#####.
-                    #.......##......######..#.......#.......##......#.......#....#
-                    #.......#.#.....#....#..#.......#.......#.#.....#.......#....#
-                    #.......#..#....#....#..#.......#.......#..#....#.......#....#
-                    #.......#...#...#....#..#.......#.......#...#...#.......#....#
-                    ######..#....#..#....#..######..######..#....#..######..#####.""");
-            assertThat(result.right()).isEqualTo(10227);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        // TODO
     }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        Pair<String, Integer> result = Day10.decodeStars(scanner);
+        assertThat(result.left()).isEqualTo("""
+                ######..#....#....##....#.......#.......#....#..#.......#####.
+                #.......#...#....#..#...#.......#.......#...#...#.......#....#
+                #.......#..#....#....#..#.......#.......#..#....#.......#....#
+                #.......#.#.....#....#..#.......#.......#.#.....#.......#....#
+                #####...##......#....#..#.......#.......##......#.......#####.
+                #.......##......######..#.......#.......##......#.......#....#
+                #.......#.#.....#....#..#.......#.......#.#.....#.......#....#
+                #.......#..#....#....#..#.......#.......#..#....#.......#....#
+                #.......#...#...#....#..#.......#.......#...#...#.......#....#
+                ######..#....#..#....#..######..######..#....#..######..#####.""");
+        assertThat(result.right()).isEqualTo(10227);
+    }
 }

@@ -1,14 +1,18 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day04Test {
+class Day04Test extends AbstractTest {
+    Day04Test() {
+        super(2020, 4);
+    }
 
     @Test
     void testPassportProcessing() {
@@ -96,12 +100,15 @@ class Day04Test {
 
     }
 
-    @Test
-    void inputPassportProcessing() throws IOException {
-        List<String> batch = FileUtils.readLines("/2020/day/4/input");
-
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> batch = FileUtils.readLines(scanner);
         assertThat(Day04.passportProcessing(batch)).isEqualTo(210);
-        assertThat(Day04.runBatch(batch)).isEqualTo(131);
     }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> batch = FileUtils.readLines(scanner);
+        assertThat(Day04.runBatch(batch)).isEqualTo(131);
+    }
 }

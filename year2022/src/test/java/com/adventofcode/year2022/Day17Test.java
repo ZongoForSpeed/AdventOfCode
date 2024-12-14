@@ -1,16 +1,16 @@
 package com.adventofcode.year2022;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day17Test {
+class Day17Test extends AbstractTest {
+    Day17Test() {
+        super(2022, 17);
+    }
 
     @Test
     void testExample() {
@@ -22,20 +22,14 @@ class Day17Test {
         assertThat(Day17.pyroclasticFlow(input, 1_000_000_000_000L, false)).isEqualTo(1514285714288L);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day17Test.class.getResourceAsStream("/2022/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            assertThat(Day17.pyroclasticFlow(scanner.nextLine(), 2022, false)).isEqualTo(3227);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day17.pyroclasticFlow(scanner.nextLine(), 2022, false)).isEqualTo(3227);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day17Test.class.getResourceAsStream("/2022/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            assertThat(Day17.pyroclasticFlow(scanner.nextLine(), 1_000_000_000_000L, false)).isEqualTo(1597714285698L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day17.pyroclasticFlow(scanner.nextLine(), 1_000_000_000_000L, false)).isEqualTo(1597714285698L);
     }
 
 }

@@ -1,15 +1,15 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day13Test {
+class Day13Test extends AbstractTest {
+    Day13Test() {
+        super(2023, 13);
+    }
 
     @Test
     void inputExample() {
@@ -21,7 +21,7 @@ class Day13Test {
                 ..#.##.#.
                 ..##..##.
                 #.#.##.#.
-                                
+                
                 #...##..#
                 #....#..#
                 ..##..###
@@ -47,22 +47,15 @@ class Day13Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day13Test.class.getResourceAsStream("/2023/day/13/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long reflection = Day13.PartOne.findReflection(scanner);
-            Assertions.assertThat(reflection).isEqualTo(34993);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long reflection = Day13.PartOne.findReflection(scanner);
+        Assertions.assertThat(reflection).isEqualTo(34993);
     }
 
-
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day13Test.class.getResourceAsStream("/2023/day/13/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long reflection = Day13.PartTwo.findSmudge(scanner);
-            Assertions.assertThat(reflection).isEqualTo(29341);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long reflection = Day13.PartTwo.findSmudge(scanner);
+        Assertions.assertThat(reflection).isEqualTo(29341);
     }
 }

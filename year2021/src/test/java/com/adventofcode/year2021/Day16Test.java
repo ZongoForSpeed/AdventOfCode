@@ -1,15 +1,16 @@
 package com.adventofcode.year2021;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day16Test {
+class Day16Test extends AbstractTest {
+    Day16Test() {
+        super(2021, 16);
+    }
 
     @Test
     void inputExample() {
@@ -33,20 +34,14 @@ class Day16Test {
 
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2021/day/16/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(Day16.version(scanner.nextLine())).isEqualTo(879);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day16.version(scanner.nextLine())).isEqualTo(879);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day16Test.class.getResourceAsStream("/2021/day/16/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(Day16.evaluate(scanner.nextLine())).isEqualTo(539051801941L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day16.evaluate(scanner.nextLine())).isEqualTo(539051801941L);
     }
 
 }

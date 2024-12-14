@@ -1,17 +1,18 @@
 package com.adventofcode.year2015;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day23Test {
+class Day23Test extends AbstractTest {
+    Day23Test() {
+        super(2015, 23);
+    }
 
     @Test
     void inputExample() {
@@ -27,19 +28,15 @@ class Day23Test {
 
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day23Test.class.getResourceAsStream("/2015/day/23/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            Map<Character, Long> registers = Day23.runInstructions(scanner, 0);
-            assertThat(registers).containsEntry('b', 255L);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        Map<Character, Long> registers = Day23.runInstructions(scanner, 0);
+        assertThat(registers).containsEntry('b', 255L);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day23Test.class.getResourceAsStream("/2015/day/23/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            Map<Character, Long> registers = Day23.runInstructions(scanner, 1);
-            assertThat(registers).containsEntry('b', 334L);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        Map<Character, Long> registers = Day23.runInstructions(scanner, 1);
+        assertThat(registers).containsEntry('b', 334L);
     }
 }

@@ -1,18 +1,22 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.Intcode;
-import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day09Test {
+class Day09Test extends AbstractTest {
+    Day09Test() {
+        super(2019, 9);
+    }
+
     @Test
     void testQuine() {
         LongList output = new LongArrayList();
@@ -33,19 +37,16 @@ class Day09Test {
         assertThat(result).isEqualTo(1125899906842624L);
     }
 
-    @Test
-    void testInputPartOne() throws IOException {
-        String line = FileUtils.readLine("/2019/day/9/input");
-        long result = Day09.sensorBoostPartOne(line);
+    @Override
+    public void partOne(Scanner scanner) {
+        long result = Day09.sensorBoostPartOne(scanner.nextLine());
         assertThat(result).isEqualTo(3533056970L);
+
     }
 
-
-    @Test
-    void testInputPartTwo() throws IOException {
-        String line = FileUtils.readLine("/2019/day/9/input");
-        long result = Day09.sensorBoostPartTwo(line);
+    @Override
+    public void partTwo(Scanner scanner) {
+        long result = Day09.sensorBoostPartTwo(scanner.nextLine());
         assertThat(result).isEqualTo(72852L);
     }
-
 }

@@ -1,16 +1,17 @@
 package com.adventofcode.year2016;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day07Test {
+class Day07Test extends AbstractTest {
+    Day07Test() {
+        super(2016, 7);
+    }
 
     @Test
     void inputExample() {
@@ -29,17 +30,13 @@ class Day07Test {
         assertThat(Day07.supportSSL("zazbz[bzb]cdb")).isTrue();
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/2016/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day07.supportTLS(scanner)).isEqualTo(118);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day07.supportTLS(scanner)).isEqualTo(118);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/2016/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day07.supportSSL(scanner)).isEqualTo(260);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day07.supportSSL(scanner)).isEqualTo(260);
     }
 }

@@ -1,15 +1,16 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day18Test {
+class Day18Test extends AbstractTest {
+    Day18Test() {
+        super(2018, 18);
+    }
 
     @Test
     void example() {
@@ -30,24 +31,16 @@ class Day18Test {
 
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day18Test.class.getResourceAsStream("/2018/day/18/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-
-            long value = Day18.treesAndLumberyards(scanner, 10);
-            assertThat(value).isEqualTo(519552);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long value = Day18.treesAndLumberyards(scanner, 10);
+        assertThat(value).isEqualTo(519552);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day18Test.class.getResourceAsStream("/2018/day/18/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-
-            long value = Day18.treesAndLumberyards(scanner, 1_000_000_000);
-            assertThat(value).isEqualTo(165376);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long value = Day18.treesAndLumberyards(scanner, 1_000_000_000);
+        assertThat(value).isEqualTo(165376);
     }
 
 }

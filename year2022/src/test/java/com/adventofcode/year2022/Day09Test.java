@@ -1,15 +1,15 @@
 package com.adventofcode.year2022;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day09Test {
+class Day09Test extends AbstractTest {
+    Day09Test() {
+        super(2022, 9);
+    }
 
     @Test
     void inputExample1() {
@@ -55,22 +55,16 @@ class Day09Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day09Test.class.getResourceAsStream("/2022/day/09/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int size = Day09.PartOne.countTailPositions(scanner);
-            Assertions.assertThat(size).isEqualTo(5858);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int size = Day09.PartOne.countTailPositions(scanner);
+        Assertions.assertThat(size).isEqualTo(5858);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day09Test.class.getResourceAsStream("/2022/day/09/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int size = Day09.PartTwo.countTailPositions(scanner);
-            Assertions.assertThat(size).isEqualTo(2602);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        int size = Day09.PartTwo.countTailPositions(scanner);
+        Assertions.assertThat(size).isEqualTo(2602);
     }
 
 }

@@ -1,16 +1,17 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day16Test {
+class Day16Test extends AbstractTest {
+    Day16Test() {
+        super(2017, 16);
+    }
 
     @Test
     void inputExample() {
@@ -20,18 +21,14 @@ class Day16Test {
         assertThat(Day16.danceMoves(input, 5, 2)).isEqualTo("ceadb");
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day14Test.class.getResourceAsStream("/2017/day/16/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day16.danceMoves(scanner.nextLine(), 16, 1)).isEqualTo("dcmlhejnifpokgba");
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day16.danceMoves(scanner.nextLine(), 16, 1)).isEqualTo("dcmlhejnifpokgba");
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day14Test.class.getResourceAsStream("/2017/day/16/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day16.danceMoves(scanner.nextLine(), 16, 1_000_000_000)).isEqualTo("ifocbejpdnklamhg");
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day16.danceMoves(scanner.nextLine(), 16, 1_000_000_000)).isEqualTo("ifocbejpdnklamhg");
     }
 
 }

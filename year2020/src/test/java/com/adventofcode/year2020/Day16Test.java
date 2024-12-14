@@ -1,15 +1,20 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day16Test {
+class Day16Test extends AbstractTest {
+    Day16Test() {
+        super(2020, 16);
+    }
 
     @Test
     void testInvalidNearbyTickets() {
@@ -54,9 +59,19 @@ class Day16Test {
 
     @Test
     void inputInvalidNearbyTickets() throws IOException {
-        List<String> notes = FileUtils.readLines("/2020/day/16/input");
+
+    }
+
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> notes = FileUtils.readLines(scanner);
 
         assertThat(Day16.invalidNearbyTickets(notes)).isEqualTo(21081);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> notes = FileUtils.readLines(scanner);
 
         Map<String, Integer> ticketTranslation = Day16.ticketTranslation(notes);
         assertThat(ticketTranslation)
@@ -88,5 +103,4 @@ class Day16Test {
                 .reduce(1, (a, b) -> a * b);
         assertThat(departure).isEqualTo(314360510573L);
     }
-
 }

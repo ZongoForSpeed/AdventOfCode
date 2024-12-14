@@ -2,14 +2,18 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.IntegerPair;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day03Test {
+class Day03Test extends AbstractTest {
+    Day03Test() {
+        super(2021, 3);
+    }
 
     @Test
     void inputExample() {
@@ -37,18 +41,18 @@ class Day03Test {
         assertThat(co2).isEqualTo(10);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        List<String> input = FileUtils.readLines("/2021/day/3/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> input = FileUtils.readLines(scanner);
 
         IntegerPair p = Day03.binaryDiagnostic(input);
 
         assertThat(p.left() * p.right()).isEqualTo(738234);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        List<String> input = FileUtils.readLines("/2021/day/3/input");
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> input = FileUtils.readLines(scanner);
 
         int oxygen = Day03.oxygenGeneratorRating(input);
         int co2 = Day03.co2ScrubberRating(input);

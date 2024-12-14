@@ -1,15 +1,16 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day25Test {
+class Day25Test extends AbstractTest {
+
+    Day25Test() {
+        super(2018, 25);
+    }
 
     @Test
     void inputExample1() {
@@ -85,13 +86,14 @@ class Day25Test {
         Assertions.assertThat(size).isEqualTo(8);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day25Test.class.getResourceAsStream("/2018/day/25/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
+    @Override
+    public void partOne(Scanner scanner) {
+        int size = Day25.countConstellations(scanner);
+        Assertions.assertThat(size).isEqualTo(428);
+    }
 
-            int size = Day25.countConstellations(scanner);
-            Assertions.assertThat(size).isEqualTo(428);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        // No-Op
     }
 }

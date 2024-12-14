@@ -1,15 +1,16 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day04Test {
+class Day04Test extends AbstractTest {
+    Day04Test() {
+        super(2023, 4);
+    }
+
     @Test
     void exampleInput() {
         String input = """
@@ -29,22 +30,16 @@ class Day04Test {
         Assertions.assertThat(cards).isEqualTo(30);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day04Test.class.getResourceAsStream("/2023/day/04/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int score = Day04.PartOne.scratchcards(scanner);
-            Assertions.assertThat(score).isEqualTo(32001);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int score = Day04.PartOne.scratchcards(scanner);
+        Assertions.assertThat(score).isEqualTo(32001);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day04Test.class.getResourceAsStream("/2023/day/04/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int score = Day04.PartTwo.scratchcards(scanner);
-            Assertions.assertThat(score).isEqualTo(5037841);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        int score = Day04.PartTwo.scratchcards(scanner);
+        Assertions.assertThat(score).isEqualTo(5037841);
     }
 
 }

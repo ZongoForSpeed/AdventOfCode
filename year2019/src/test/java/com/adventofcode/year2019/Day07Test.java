@@ -1,16 +1,20 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
-import it.unimi.dsi.fastutil.longs.LongList;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.longs.LongList;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day07Test {
+class Day07Test extends AbstractTest {
+    Day07Test() {
+        super(2019, 7);
+    }
+
     @Test
     void testExample() {
         Assertions.assertThat(Day07.thrusterSignal("3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0", LongList.of(4L, 3L, 2L, 1L, 0L))).isEqualTo(43210);
@@ -35,13 +39,6 @@ class Day07Test {
         Pair<LongList, Long> max = Day07.maxThrusterSignal("3,31,3,32,1002,32,10,32,1001,31,-2,31,1007,31,0,33,1002,33,7,33,1,33,31,31,1,32,31,31,4,31,99,0,0,0", 0L, 1L, 2L, 3L, 4L);
         assertThat(max.left().toLongArray()).containsExactly(1L, 0L, 4L, 3L, 2L);
         assertThat(max.right()).isEqualTo(65210);
-    }
-
-    @Test
-    void testInputPartOne() throws IOException {
-        Pair<LongList, Long> max = Day07.maxThrusterSignal(FileUtils.readLine("/2019/day/7/input"), 0L, 1L, 2L, 3L, 4L);
-        assertThat(max.left().toLongArray()).containsExactly(1L, 3L, 0L, 4L, 2L);
-        assertThat(max.right()).isEqualTo(24625);
     }
 
     @Test
@@ -70,9 +67,16 @@ class Day07Test {
         assertThat(thrusterSignal.left().toLongArray()).containsExactly(9L, 7L, 8L, 5L, 6L);
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        Pair<LongList, Long> max = Day07.maxThrusterSignal(FileUtils.readLine("/2019/day/7/input"), 9L, 8L, 7L, 6L, 5L);
+    @Override
+    public void partOne(Scanner scanner) {
+        Pair<LongList, Long> max = Day07.maxThrusterSignal(scanner.nextLine(), 0L, 1L, 2L, 3L, 4L);
+        assertThat(max.left().toLongArray()).containsExactly(1L, 3L, 0L, 4L, 2L);
+        assertThat(max.right()).isEqualTo(24625);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        Pair<LongList, Long> max = Day07.maxThrusterSignal(scanner.nextLine(), 9L, 8L, 7L, 6L, 5L);
         assertThat(max.left().toLongArray()).containsExactly(5L, 8L, 6L, 9L, 7L);
         assertThat(max.right()).isEqualTo(36497698);
     }

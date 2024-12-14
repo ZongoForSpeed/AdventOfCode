@@ -1,16 +1,17 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day20Test {
+class Day20Test extends AbstractTest {
+    Day20Test() {
+        super(2017, 20);
+    }
 
     @Test
     void inputExample() {
@@ -38,17 +39,13 @@ class Day20Test {
         assertThat(size).isEqualTo(1);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day20Test.class.getResourceAsStream("/2017/day/20/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day20.nearestParticle(scanner)).extracting(Day20.Particle::id).isEqualTo(125);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day20.nearestParticle(scanner)).extracting(Day20.Particle::id).isEqualTo(125);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day20Test.class.getResourceAsStream("/2017/day/20/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day20.particlesCollision(scanner)).isEqualTo(461);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day20.particlesCollision(scanner)).isEqualTo(461);
     }
 }

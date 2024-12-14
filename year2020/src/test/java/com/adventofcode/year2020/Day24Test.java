@@ -1,21 +1,22 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day24Test {
+class Day24Test extends AbstractTest {
+    Day24Test() {
+        super(2020, 24);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
     @Test
@@ -59,17 +60,19 @@ class Day24Test {
         assertThat(blackTiles).hasSize(2208);
     }
 
-    @Test
-    void inputLobbyLayout() throws IOException {
-        try (InputStream inputStream = Day24Test.class.getResourceAsStream("/2020/day/24/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8);
+    @Override
+    public void partOne(Scanner scanner) {
 
-            Map<Point2D, Boolean> grid = Day24.hexGrid(scanner);
-            long count = grid.values().stream().filter(v -> v).count();
-            assertThat(count).isEqualTo(244);
+        Map<Point2D, Boolean> grid = Day24.hexGrid(scanner);
+        long count = grid.values().stream().filter(v -> v).count();
+        assertThat(count).isEqualTo(244);
+    }
 
-            Set<Point2D> blackTiles = Day24.runLobbyLayout(grid, 100);
-            assertThat(blackTiles).hasSize(3665);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        Map<Point2D, Boolean> grid = Day24.hexGrid(scanner);
+
+        Set<Point2D> blackTiles = Day24.runLobbyLayout(grid, 100);
+        assertThat(blackTiles).hasSize(3665);
     }
 }

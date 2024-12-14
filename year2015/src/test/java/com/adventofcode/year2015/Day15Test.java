@@ -1,16 +1,17 @@
 package com.adventofcode.year2015;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day15Test {
+class Day15Test extends AbstractTest {
+    Day15Test() {
+        super(2015, 15);
+    }
 
     @Test
     void inputExample() {
@@ -22,18 +23,14 @@ class Day15Test {
         assertThat(Day15.highestCookieScore(new Scanner(input), true)).isEqualTo(57600000);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day15Test.class.getResourceAsStream("/2015/day/15/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day15.highestCookieScore(scanner, false)).isEqualTo(222870);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day15.highestCookieScore(scanner, false)).isEqualTo(222870);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day15Test.class.getResourceAsStream("/2015/day/15/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day15.highestCookieScore(scanner, true)).isEqualTo(117936);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day15.highestCookieScore(scanner, true)).isEqualTo(117936);
     }
 
 }

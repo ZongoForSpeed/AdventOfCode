@@ -1,5 +1,6 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
-class Day10Test {
+class Day10Test extends AbstractTest {
+    Day10Test() {
+        super(2023, 10);
+    }
 
     @Test
     void inputExample1() {
@@ -98,23 +102,16 @@ class Day10Test {
         Assertions.assertThat(count).isEqualTo(10);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2023/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int depth = Day10.PartOne.findMaxDepth(scanner);
-            Assertions.assertThat(depth).isEqualTo(6613);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int depth = Day10.PartOne.findMaxDepth(scanner);
+        Assertions.assertThat(depth).isEqualTo(6613);
     }
 
-
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day10Test.class.getResourceAsStream("/2023/day/10/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int depth = Day10.PartTwo.countEnclosedTiles(scanner);
-            Assertions.assertThat(depth).isEqualTo(511);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        int depth = Day10.PartTwo.countEnclosedTiles(scanner);
+        Assertions.assertThat(depth).isEqualTo(511);
     }
 
 

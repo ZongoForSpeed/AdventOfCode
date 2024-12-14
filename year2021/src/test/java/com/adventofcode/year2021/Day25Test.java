@@ -1,19 +1,21 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.point.map.CharMap;
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.CharMap;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day25Test {
+class Day25Test extends AbstractTest {
+    Day25Test() {
+        super(2021, 25);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day25Test.class);
 
     @Test
@@ -64,12 +66,14 @@ class Day25Test {
         assertThat(step).isEqualTo(58);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day25Test.class.getResourceAsStream("/2021/day/25/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(Day25.findLastStep(scanner)).isEqualTo(367);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day25.findLastStep(scanner)).isEqualTo(367);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        // No-Op
     }
 
 }

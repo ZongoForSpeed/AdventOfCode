@@ -1,17 +1,22 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
-class Day14Test {
+class Day14Test extends AbstractTest {
+    Day14Test() {
+        super(2019, 14);
+    }
 
     @Test
     void testSimpleNanofactory1() {
@@ -108,14 +113,6 @@ class Day14Test {
     }
 
     @Test
-    void testInputPartOne() throws IOException {
-        List<Day14.Reaction> reactions = FileUtils.readLines("/2019/day/14/input").stream().map(Day14.Reaction::parseReaction).toList();
-
-        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
-        assertThat(fuelReaction).contains(entry("ORE", 337075L));
-    }
-
-    @Test
     void testLargerTrillion1() {
         List<Day14.Reaction> reactions = Stream.of(
                 "157 ORE => 5 NZVS",
@@ -179,8 +176,19 @@ class Day14Test {
 
     @Test
     void testInputPartTwo() throws IOException {
-        List<Day14.Reaction> reactions = FileUtils.readLines("/2019/day/14/input").stream().map(Day14.Reaction::parseReaction).toList();
-        assertThat(Day14.solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5194174L);
     }
 
+    @Override
+    public void partOne(Scanner scanner) {
+        List<Day14.Reaction> reactions = FileUtils.readLines(scanner).stream().map(Day14.Reaction::parseReaction).toList();
+
+        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
+        assertThat(fuelReaction).contains(entry("ORE", 337075L));
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<Day14.Reaction> reactions = FileUtils.readLines(scanner).stream().map(Day14.Reaction::parseReaction).toList();
+        assertThat(Day14.solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5194174L);
+    }
 }

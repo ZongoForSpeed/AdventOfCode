@@ -1,16 +1,17 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day05Test {
+class Day05Test extends AbstractTest {
+    Day05Test() {
+        super(2018, 5);
+    }
 
     @Test
     void inputExample() {
@@ -23,18 +24,14 @@ class Day05Test {
         assertThat(minSize).isEqualTo(4);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/2018/day/5/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day05.getReductionSize(scanner.nextLine(), ignore -> true)).isEqualTo(11310);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day05.getReductionSize(scanner.nextLine(), ignore -> true)).isEqualTo(11310);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/2018/day/5/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day05.minReductionSize(scanner.nextLine())).isEqualTo(6020);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day05.minReductionSize(scanner.nextLine())).isEqualTo(6020);
     }
 
 }

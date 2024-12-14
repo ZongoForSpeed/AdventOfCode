@@ -1,17 +1,18 @@
 package com.adventofcode.year2015;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day03Test {
+class Day03Test extends AbstractTest {
 
+    protected Day03Test() {
+        super(2015, 3);
+    }
 
     @Test
     void inputExample() {
@@ -24,19 +25,13 @@ class Day03Test {
         assertThat(Day03.countDeliveriesPartTwo("^v^v^v^v^v")).isEqualTo(11);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day03Test.class.getResourceAsStream("/2015/day/3/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day03.countDeliveriesPartOne(scanner.nextLine())).isEqualTo(2565);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day03.countDeliveriesPartOne(scanner.nextLine())).isEqualTo(2565);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day03Test.class.getResourceAsStream("/2015/day/3/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day03.countDeliveriesPartTwo(scanner.nextLine())).isEqualTo(2639);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day03.countDeliveriesPartTwo(scanner.nextLine())).isEqualTo(2639);
     }
 }

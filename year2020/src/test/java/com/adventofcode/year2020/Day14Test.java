@@ -1,14 +1,18 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day14Test {
+class Day14Test extends AbstractTest {
+    Day14Test() {
+        super(2020, 14);
+    }
 
     @Test
     void testDockingData1() {
@@ -20,7 +24,6 @@ class Day14Test {
         assertThat(Day14.runDockingDataProgram1(programs)).isEqualTo(165);
     }
 
-
     @Test
     void testDockingData2() {
         List<String> programs = List.of("mask = 000000000000000000000000000000X1001X",
@@ -31,11 +34,16 @@ class Day14Test {
         assertThat(Day14.runDockingDataProgram2(programs)).isEqualTo(208);
     }
 
-    @Test
-    void inputDockingData() throws IOException {
-        List<String> programs = FileUtils.readLines("/2020/day/14/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> programs = FileUtils.readLines(scanner);
 
         assertThat(Day14.runDockingDataProgram1(programs)).isEqualTo(15403588588538L);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> programs = FileUtils.readLines(scanner);
 
         assertThat(Day14.runDockingDataProgram2(programs)).isEqualTo(3260587250457L);
     }

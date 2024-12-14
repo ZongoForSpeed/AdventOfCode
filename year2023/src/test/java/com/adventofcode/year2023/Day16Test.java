@@ -1,15 +1,15 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day16Test {
+class Day16Test extends AbstractTest {
+    Day16Test() {
+        super(2023, 16);
+    }
 
     @Test
     void inputExample() {
@@ -38,22 +38,16 @@ class Day16Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day16Test.class.getResourceAsStream("/2023/day/16/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long count = Day16.PartOne.countEnergizedTiles(scanner);
-            Assertions.assertThat(count).isEqualTo(6816);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long count = Day16.PartOne.countEnergizedTiles(scanner);
+        Assertions.assertThat(count).isEqualTo(6816);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day16Test.class.getResourceAsStream("/2023/day/16/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long max = Day16.PartTwo.maxEnergizedTiles(scanner);
-            Assertions.assertThat(max).isEqualTo(8163);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        long max = Day16.PartTwo.maxEnergizedTiles(scanner);
+        Assertions.assertThat(max).isEqualTo(8163);
     }
 
 }

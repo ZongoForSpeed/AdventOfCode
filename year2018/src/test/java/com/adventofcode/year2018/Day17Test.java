@@ -1,17 +1,16 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day17Test {
+class Day17Test extends AbstractTest {
+    Day17Test() {
+        super(2018, 17);
+    }
 
     @Test
     void example() {
@@ -29,24 +28,16 @@ class Day17Test {
         assertThat(day17.partTwo()).isEqualTo(29);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day17Test.class.getResourceAsStream("/2018/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-
-            Day17 day17 = new Day17(scanner);
-            assertThat(day17.partOne()).isEqualTo(31861);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        Day17 day17 = new Day17(scanner);
+        assertThat(day17.partOne()).isEqualTo(31861);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day17Test.class.getResourceAsStream("/2018/day/17/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-
-            Day17 day17 = new Day17(scanner);
-            assertThat(day17.partTwo()).isEqualTo(26030);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        Day17 day17 = new Day17(scanner);
+        assertThat(day17.partTwo()).isEqualTo(26030);
     }
 
 }

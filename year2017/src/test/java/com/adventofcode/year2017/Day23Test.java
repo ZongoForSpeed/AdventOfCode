@@ -1,21 +1,23 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day23Test {
+class Day23Test extends AbstractTest {
+    Day23Test() {
+        super(2017, 23);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
 
 
@@ -94,48 +96,26 @@ class Day23Test {
         Scanner scanner = new Scanner(input);
         List<String[]> commands = Day23.readCommands(scanner);
 
-        Map<String, Long> registers = new HashMap<>(Map.of(
-                "a", 1L,
-                "b", 0L,
-                "c", 0L,
-                "d", 0L,
-                "e", 0L,
-                "f", 0L,
-                "g", 0L,
-                "h", 0L
-        ));
+        Map<String, Long> registers = new HashMap<>(Map.of("a", 1L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
         Day23.runProgram(commands, registers);
 
         LOGGER.info("registers: {}", registers);
 
-        assertThat(registers)
-                .containsEntry("b", 105700L)
-                .containsEntry("c", 122700L);
+        assertThat(registers).containsEntry("b", 105700L).containsEntry("c", 122700L);
 
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day23Test.class.getResourceAsStream("/2017/day/23/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            List<String[]> commands = Day23.readCommands(scanner);
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String[]> commands = Day23.readCommands(scanner);
 
-            Map<String, Long> registers = new HashMap<>(Map.of(
-                    "a", 0L,
-                    "b", 0L,
-                    "c", 0L,
-                    "d", 0L,
-                    "e", 0L,
-                    "f", 0L,
-                    "g", 0L,
-                    "h", 0L
-            ));
+        Map<String, Long> registers = new HashMap<>(Map.of("a", 0L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
 
-            assertThat(Day23.runProgram(commands, registers)).isEqualTo(3025);
-        }
+        assertThat(Day23.runProgram(commands, registers)).isEqualTo(3025);
     }
 
-    @Test
-    void inputPartTwo() {
+    @Override
+    public void partTwo(Scanner ignore) {
         assertThat(Day23.runProgramFast(105700, 122700)).isEqualTo(915L);
     }
 

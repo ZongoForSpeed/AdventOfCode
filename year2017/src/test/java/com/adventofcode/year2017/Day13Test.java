@@ -1,16 +1,17 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day13Test {
+class Day13Test extends AbstractTest {
+    Day13Test() {
+        super(2017, 13);
+    }
 
     @Test
     void inputExample() {
@@ -27,18 +28,14 @@ class Day13Test {
         assertThat(findBestDelay).isEqualTo(10);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day13Test.class.getResourceAsStream("/2017/day/13/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day13.getTripSeverity(scanner)).isEqualTo(2164);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day13.getTripSeverity(scanner)).isEqualTo(2164);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day13Test.class.getResourceAsStream("/2017/day/13/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day13.findBestDelay(scanner)).isEqualTo(3861798);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day13.findBestDelay(scanner)).isEqualTo(3861798);
     }
 
 }

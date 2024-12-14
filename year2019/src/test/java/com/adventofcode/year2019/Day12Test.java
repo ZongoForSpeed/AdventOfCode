@@ -2,18 +2,24 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.common.maths.Arithmetic;
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day12Test {
+class Day12Test extends AbstractTest {
+    Day12Test() {
+        super(2019, 12);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12Test.class);
+
     @Test
     void testFirstExample() {
         List<Day12.Moon> moons = Stream.of(
@@ -55,14 +61,6 @@ class Day12Test {
 
         long totalEnergy = moons.stream().mapToLong(Day12.Moon::energy).sum();
         assertThat(totalEnergy).isEqualTo(1940);
-    }
-
-    @Test
-    void testInputPartOne() throws IOException {
-        List<Day12.Moon> moons = FileUtils.readLines("/2019/day/12/input").stream().map(Day12.Moon::parse).toList();
-
-        long totalEnergy = Day12.computeTotalEnergy(moons);
-        assertThat(totalEnergy).isEqualTo(12053);
     }
 
     @Test
@@ -116,9 +114,18 @@ class Day12Test {
         assertThat(result).isEqualTo(4686774924L);
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        List<Day12.Moon> moons = FileUtils.readLines("/2019/day/12/input").stream().map(Day12.Moon::parse).toList();
+    @Override
+    public void partOne(Scanner scanner) {
+
+        List<Day12.Moon> moons = FileUtils.readLines(scanner).stream().map(Day12.Moon::parse).toList();
+
+        long totalEnergy = Day12.computeTotalEnergy(moons);
+        assertThat(totalEnergy).isEqualTo(12053);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<Day12.Moon> moons = FileUtils.readLines(scanner).stream().map(Day12.Moon::parse).toList();
 
         long loopX = Day12.findLoop(moons, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);
         long loopY = Day12.findLoop(moons, Day12.Moon::getPositionY, Day12.Moon::getVelocityY);
@@ -131,5 +138,4 @@ class Day12Test {
         long result = Arithmetic.lcm(loopX, loopY, loopZ);
         assertThat(result).isEqualTo(320380285873116L);
     }
-
 }

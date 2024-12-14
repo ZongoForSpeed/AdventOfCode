@@ -1,17 +1,19 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
-import org.junit.jupiter.api.Test;
+import com.adventofcode.test.AbstractTest;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day21Test {
+class Day21Test extends AbstractTest {
+    Day21Test() {
+        super(2019, 21);
+    }
 
-    @Test
-    void testPartOne() throws IOException {
-        String line = FileUtils.readLine("/2019/day/21/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        String line = scanner.nextLine();
         String command = """
                 NOT A T
                 NOT B J
@@ -24,9 +26,9 @@ class Day21Test {
         assertThat(Day21.runSpringscript(line, command)).isEqualTo(19361023);
     }
 
-    @Test
-    void testPartTwo() throws IOException {
-        String line = FileUtils.readLine("/2019/day/21/input");
+    @Override
+    public void partTwo(Scanner scanner) {
+        String line = scanner.nextLine();
         String command = """
                 NOT F J
                 OR E J

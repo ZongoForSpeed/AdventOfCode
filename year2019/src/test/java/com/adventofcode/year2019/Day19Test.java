@@ -1,24 +1,23 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.utils.FileUtils;
-import org.junit.jupiter.api.Test;
+import com.adventofcode.test.AbstractTest;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day19Test {
-
-    @Test
-    void testInputPartOne() throws IOException {
-        String line = FileUtils.readLine("/2019/day/19/input");
-        assertThat(Day19.countPartOne(line)).isEqualTo(166);
+class Day19Test extends AbstractTest {
+    Day19Test() {
+        super(2019, 19);
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        String line = FileUtils.readLine("/2019/day/19/input");
-        assertThat(Day19.countPartTwo(line)).isEqualTo(3790981);
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day19.countPartOne(scanner.nextLine())).isEqualTo(166);
     }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day19.countPartTwo(scanner.nextLine())).isEqualTo(3790981);
+    }
 }

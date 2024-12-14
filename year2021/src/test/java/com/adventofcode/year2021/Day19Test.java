@@ -1,18 +1,19 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.point.Point3D;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day19Test {
+class Day19Test extends AbstractTest {
+    Day19Test() {
+        super(2021, 19);
+    }
 
     @Test
     void inputExample() {
@@ -43,7 +44,7 @@ class Day19Test {
                 443,580,662
                 -789,900,-551
                 459,-707,401
-
+                
                 --- scanner 1 ---
                 686,422,578
                 605,423,415
@@ -70,7 +71,7 @@ class Day19Test {
                 807,-499,-711
                 755,-354,-619
                 553,889,-390
-
+                
                 --- scanner 2 ---
                 649,640,665
                 682,-795,504
@@ -98,7 +99,7 @@ class Day19Test {
                 673,-379,-804
                 -742,-814,-386
                 577,-820,562
-
+                
                 --- scanner 3 ---
                 -589,542,597
                 605,-692,669
@@ -125,7 +126,7 @@ class Day19Test {
                 -868,-804,481
                 614,-800,639
                 595,780,-596
-
+                
                 --- scanner 4 ---
                 727,592,562
                 -293,-554,779
@@ -161,20 +162,14 @@ class Day19Test {
 
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day19Test.class.getResourceAsStream("/2021/day/19/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(Day19.beaconScannerPartOne(scanner)).hasSize(353);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day19.beaconScannerPartOne(scanner)).hasSize(353);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day19Test.class.getResourceAsStream("/2021/day/19/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(Day19.beaconScannerPartTwo(scanner)).isEqualTo(10832);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day19.beaconScannerPartTwo(scanner)).isEqualTo(10832);
     }
 
 }

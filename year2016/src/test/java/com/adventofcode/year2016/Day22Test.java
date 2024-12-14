@@ -1,17 +1,18 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day22Test {
+class Day22Test extends AbstractTest {
+    Day22Test() {
+        super(2016, 22);
+    }
 
     @Test
     void inputExample() {
@@ -33,18 +34,14 @@ class Day22Test {
         assertThat(steps).isEqualTo(7);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day22Test.class.getResourceAsStream("/2016/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day22.countViablePairs(scanner)).isEqualTo(1034);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day22.countViablePairs(scanner)).isEqualTo(1034);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day22Test.class.getResourceAsStream("/2016/day/22/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day22.countSteps(scanner, Point2D.of(37, 0))).isEqualTo(261);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day22.countSteps(scanner, Point2D.of(37, 0))).isEqualTo(261);
     }
 
 }

@@ -1,15 +1,15 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day23Test {
+class Day23Test extends AbstractTest {
+    Day23Test() {
+        super(2018, 23);
+    }
 
     @Test
     void inputExample1() {
@@ -46,25 +46,16 @@ class Day23Test {
         Assertions.assertThat(distance).isEqualTo(36);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day23Test.class.getResourceAsStream("/2018/day/23/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            long count = Day23.PartOne.countNanobots(scanner);
-
-            Assertions.assertThat(count).isEqualTo(943);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        long count = Day23.PartOne.countNanobots(scanner);
+        Assertions.assertThat(count).isEqualTo(943);
     }
 
-
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day23Test.class.getResourceAsStream("/2018/day/23/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int distance = Day23.PartTwo.bestPositionDistance(scanner);
-
-            Assertions.assertThat(distance).isEqualTo(84087816);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        int distance = Day23.PartTwo.bestPositionDistance(scanner);
+        Assertions.assertThat(distance).isEqualTo(84087816);
     }
 
 }

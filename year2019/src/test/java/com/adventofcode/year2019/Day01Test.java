@@ -1,15 +1,19 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day01Test {
+class Day01Test extends AbstractTest {
+    Day01Test() {
+        super(2019, 1);
+    }
 
     @Test
     void massOf12() {
@@ -34,10 +38,16 @@ class Day01Test {
         assertThat(Day01.sumFuelRequirements(100756)).isEqualTo(50346);
     }
 
-    @Test
-    void massOfInput() throws IOException {
-        List<String> lines = FileUtils.readLines("/2019/day/1/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> lines = FileUtils.readLines(scanner);
         assertThat(lines.stream().mapToLong(Long::valueOf).map(Day01::fuelRequirements).sum()).isEqualTo(3369286);
+
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> lines = FileUtils.readLines(scanner);
         assertThat(lines.stream().mapToLong(Long::valueOf).map(Day01::sumFuelRequirements).sum()).isEqualTo(5051054);
     }
 }

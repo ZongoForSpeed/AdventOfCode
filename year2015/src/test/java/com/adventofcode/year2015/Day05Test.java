@@ -1,17 +1,18 @@
 package com.adventofcode.year2015;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day05Test {
+class Day05Test extends AbstractTest {
 
+    Day05Test() {
+        super(2015, 5);
+    }
 
     @Test
     void inputExample() {
@@ -28,19 +29,13 @@ class Day05Test {
         assertThat(Day05.niceStringPartTwo("ieodomkazucvgmuy")).isFalse();
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/2015/day/5/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day05.niceStrings(scanner, Day05::niceStringPartOne)).isEqualTo(238);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day05.niceStrings(scanner, Day05::niceStringPartOne)).isEqualTo(238);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day05Test.class.getResourceAsStream("/2015/day/5/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day05.niceStrings(scanner, Day05::niceStringPartTwo)).isEqualTo(69);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day05.niceStrings(scanner, Day05::niceStringPartTwo)).isEqualTo(69);
     }
 }

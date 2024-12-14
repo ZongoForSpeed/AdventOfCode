@@ -1,14 +1,14 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.Intcode;
-import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
@@ -16,20 +16,12 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day17Test {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
-
-    @Test
-    void testInputPartOne() throws IOException {
-        String line = FileUtils.readLine("/2019/day/17/input");
-        StringBuilder sb = new StringBuilder();
-        Intcode.intcode(line, () -> 0, i -> sb.append((char) i));
-
-        String map = sb.toString();
-        LOGGER.debug("Map:\n{}", map);
-
-        assertThat(Day17.computeSumAlignmentParameters(map)).isEqualTo(7280);
+class Day17Test extends AbstractTest {
+    Day17Test() {
+        super(2019, 17);
     }
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
 
     @Test
     void testExample() {
@@ -70,9 +62,21 @@ class Day17Test {
         assertThat(collect).isEqualTo("R,8,R,8,R,4,R,4,R,8,L,6,L,2,R,4,R,4,R,8,R,8,R,8,L,6,L,2");
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        String line = FileUtils.readLine("/2019/day/17/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        String line = scanner.nextLine();
+        StringBuilder sb = new StringBuilder();
+        Intcode.intcode(line, () -> 0, i -> sb.append((char) i));
+
+        String map = sb.toString();
+        LOGGER.debug("Map:\n{}", map);
+
+        assertThat(Day17.computeSumAlignmentParameters(map)).isEqualTo(7280);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        String line = scanner.nextLine();
         StringBuilder sb = new StringBuilder();
         Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));
         LOGGER.debug("{}", sb);

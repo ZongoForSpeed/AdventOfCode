@@ -35,7 +35,6 @@ class Day04Test {
         assertThat(total).isEqualTo(1172);
     }
 
-
     @Test
     void test112233() {
         assertThat(Day04.matchPartTwo(112233)).isTrue();
@@ -50,4 +49,5 @@ class Day04Test {
     void test111122() {
         assertThat(Day04.matchPartTwo(111122)).isTrue();
     }
+
 }

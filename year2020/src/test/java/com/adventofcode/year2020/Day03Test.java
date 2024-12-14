@@ -1,14 +1,18 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day03Test {
+class Day03Test extends AbstractTest {
+    Day03Test() {
+        super(2020, 3);
+    }
 
     @Test
     void testTobogganTrajectory() {
@@ -34,12 +38,15 @@ class Day03Test {
 
     }
 
-    @Test
-    void inputTobogganTrajectory() throws IOException {
-        List<String> lines = FileUtils.readLines("/2020/day/3/input");
-
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> lines = FileUtils.readLines(scanner);
         assertThat(Day03.tobogganTrajectory(lines, 3, 1)).isEqualTo(234);
+    }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> lines = FileUtils.readLines(scanner);
         assertThat(Day03.checkAllTobogganTrajectories(lines)).isEqualTo(5813773056L);
     }
 }

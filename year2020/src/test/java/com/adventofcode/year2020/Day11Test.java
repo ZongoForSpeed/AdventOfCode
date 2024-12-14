@@ -1,14 +1,18 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day11Test {
+class Day11Test extends AbstractTest {
+    Day11Test() {
+        super(2020, 11);
+    }
 
     @Test
     void testSeatingSystem() {
@@ -74,13 +78,21 @@ class Day11Test {
         assertThat(occupiedSeats).isZero();
     }
 
-    @Test
-    void inputSeatingSystem() throws IOException {
-        List<String> inputGrid = FileUtils.readLines("/2020/day/11/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> inputGrid = FileUtils.readLines(scanner);
 
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
 
         assertThat(Day11.simulationSeatingSystem(grid, false)).isEqualTo(2472);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> inputGrid = FileUtils.readLines(scanner);
+
+        char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
+
         assertThat(Day11.simulationSeatingSystem(grid, true)).isEqualTo(2197);
     }
 }

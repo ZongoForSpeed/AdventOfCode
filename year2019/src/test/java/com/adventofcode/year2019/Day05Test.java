@@ -1,15 +1,18 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.Intcode;
-import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day05Test {
+class Day05Test extends AbstractTest {
+    Day05Test() {
+        super(2019, 5);
+    }
 
     @Test
     void testSimple() {
@@ -28,13 +31,6 @@ class Day05Test {
     void testNegative() {
         String intcode = Intcode.intcode("1101,100,-1,4,0");
         assertThat(intcode).isEqualTo("1101,100,-1,4,99");
-    }
-
-    @Test
-    void testInputPartOne() throws IOException {
-        String line = FileUtils.readLine("/2019/day/5/input");
-        long result = Day05.diagnosticPartOne(line);
-        assertThat(result).isEqualTo(16209841);
     }
 
     @Test
@@ -81,10 +77,14 @@ class Day05Test {
         assertThat(Intcode.ioIntcode(codes, 8)).isEqualTo(1000);
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        String line = FileUtils.readLine("/2019/day/5/input");
-        assertThat(Day05.diagnosticPartTwo(line)).isEqualTo(8834787);
+    @Override
+    public void partOne(Scanner scanner) {
+        long result = Day05.diagnosticPartOne(scanner.nextLine());
+        assertThat(result).isEqualTo(16209841);
     }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day05.diagnosticPartTwo(scanner.nextLine())).isEqualTo(8834787);
+    }
 }

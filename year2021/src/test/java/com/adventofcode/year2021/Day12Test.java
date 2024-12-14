@@ -1,19 +1,21 @@
 package com.adventofcode.year2021;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day12Test {
+class Day12Test extends AbstractTest {
+    Day12Test() {
+        super(2021, 12);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12Test.class);
 
     @Test
@@ -110,21 +112,14 @@ class Day12Test {
         assertThat(Day12.findAllPathsPartTwo(new Scanner(input))).hasSize(3509);
     }
 
-
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day12Test.class.getResourceAsStream("/2021/day/12/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(Day12.findAllPathsPartOne(scanner)).hasSize(5104);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day12.findAllPathsPartOne(scanner)).hasSize(5104);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day12Test.class.getResourceAsStream("/2021/day/12/input")) {
-            Scanner scanner = new Scanner(Objects.requireNonNull(is));
-            assertThat(Day12.findAllPathsPartTwo(scanner)).hasSize(149220);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day12.findAllPathsPartTwo(scanner)).hasSize(149220);
     }
 
 }

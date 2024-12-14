@@ -1,16 +1,17 @@
 package com.adventofcode.year2016;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day06Test {
+class Day06Test extends AbstractTest {
+    Day06Test() {
+        super(2016, 6);
+    }
 
     @Test
     void inputExample() {
@@ -36,17 +37,13 @@ class Day06Test {
         assertThat(Day06.decodePasswordLeastCommon(new Scanner(input))).isEqualTo("advent");
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day06Test.class.getResourceAsStream("/2016/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day06.decodePasswordMostCommon(scanner)).isEqualTo("mlncjgdg");
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day06.decodePasswordMostCommon(scanner)).isEqualTo("mlncjgdg");
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day06Test.class.getResourceAsStream("/2016/day/6/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day06.decodePasswordLeastCommon(scanner)).isEqualTo("bipjaytb");
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day06.decodePasswordLeastCommon(scanner)).isEqualTo("bipjaytb");
     }
 }

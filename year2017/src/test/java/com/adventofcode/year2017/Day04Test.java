@@ -1,16 +1,17 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day04Test {
+class Day04Test extends AbstractTest {
+    Day04Test() {
+        super(2017, 4);
+    }
 
     @Test
     void inputExample() {
@@ -25,18 +26,14 @@ class Day04Test {
         assertThat(Day04.validPassphrasePartTwo("oiii ioii iioi iiio")).isFalse();
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day04Test.class.getResourceAsStream("/2017/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day04.validPassphrasePartOne(scanner)).isEqualTo(466);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day04.validPassphrasePartOne(scanner)).isEqualTo(466);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day04Test.class.getResourceAsStream("/2017/day/4/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day04.validPassphrasePartTwo(scanner)).isEqualTo(251);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day04.validPassphrasePartTwo(scanner)).isEqualTo(251);
     }
 
 }

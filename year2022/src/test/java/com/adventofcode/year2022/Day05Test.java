@@ -1,15 +1,15 @@
 package com.adventofcode.year2022;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day05Test {
+class Day05Test extends AbstractTest {
+    Day05Test() {
+        super(2022, 5);
+    }
 
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
@@ -19,7 +19,7 @@ class Day05Test {
                 [N] [C]   \s
                 [Z] [M] [P]
                  1   2   3\s
-                                
+                
                 move 1 from 2 to 1
                 move 3 from 1 to 3
                 move 2 from 2 to 1
@@ -38,23 +38,17 @@ class Day05Test {
         }
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day05Test.class.getResourceAsStream("/2022/day/05/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            String topCrate = Day05.PartOne.supplyStacks(scanner);
-            Assertions.assertThat(topCrate).isEqualTo("NTWZZWHFV");
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        String topCrate = Day05.PartOne.supplyStacks(scanner);
+        Assertions.assertThat(topCrate).isEqualTo("NTWZZWHFV");
     }
 
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day05Test.class.getResourceAsStream("/2022/day/05/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            String topCrate = Day05.PartTwo.supplyStacks(scanner);
-            Assertions.assertThat(topCrate).isEqualTo("BRZGFVBTJ");
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        String topCrate = Day05.PartTwo.supplyStacks(scanner);
+        Assertions.assertThat(topCrate).isEqualTo("BRZGFVBTJ");
     }
 
 }

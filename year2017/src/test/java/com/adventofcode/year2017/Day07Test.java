@@ -1,16 +1,17 @@
 package com.adventofcode.year2017;
 
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day07Test {
+class Day07Test extends AbstractTest {
+    Day07Test() {
+        super(2017, 7);
+    }
 
     @Test
     void inputExample() {
@@ -34,18 +35,14 @@ class Day07Test {
         assertThat(Day07.balanceWeight(new Scanner(input))).isPresent().hasValue(60);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/2017/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day07.getBottomProgram(scanner)).hasSize(1).contains("vvsvez");
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day07.getBottomProgram(scanner)).hasSize(1).contains("vvsvez");
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day07Test.class.getResourceAsStream("/2017/day/7/input"); Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day07.balanceWeight(scanner)).isPresent().hasValue(362);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day07.balanceWeight(scanner)).isPresent().hasValue(362);
     }
 
 }

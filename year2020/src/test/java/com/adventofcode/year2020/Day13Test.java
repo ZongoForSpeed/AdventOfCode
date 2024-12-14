@@ -2,15 +2,19 @@ package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.LongPair;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day13Test {
+class Day13Test extends AbstractTest {
+    Day13Test() {
+        super(2020, 13);
+    }
 
     @Test
     void testShuttleSearch() {
@@ -44,9 +48,9 @@ class Day13Test {
 
     }
 
-    @Test
-    void inputShuttleSearch() throws IOException {
-        List<String> notes = FileUtils.readLines("/2020/day/13/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> notes = FileUtils.readLines(scanner);
 
         long timestamp = Long.parseLong(notes.getFirst());
 
@@ -58,6 +62,12 @@ class Day13Test {
         LongPair bus = Day13.findBus(timestamp, buses);
         assertThat(bus.left()).isEqualTo(29);
         assertThat(bus.right()).isEqualTo(6);
+
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> notes = FileUtils.readLines(scanner);
 
         assertThat(Day13.solveShuttleSearch(notes.get(1))).isEqualTo(780601154795940L);
     }

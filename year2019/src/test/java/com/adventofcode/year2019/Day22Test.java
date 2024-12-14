@@ -1,18 +1,22 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day22Test {
+class Day22Test extends AbstractTest {
+    Day22Test() {
+        super(2019, 22);
+    }
 
     @Test
     void testDealIntoNewStack() {
@@ -81,9 +85,9 @@ class Day22Test {
         assertThat(Day22.slamShuffle(cards, commands).toIntArray()).containsExactly(9, 2, 5, 8, 1, 4, 7, 0, 3, 6);
     }
 
-    @Test
-    void testInputPartOne() throws IOException {
-        List<String> commands = FileUtils.readLines("/2019/day/22/input");
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> commands = FileUtils.readLines(scanner);
         IntList cards = IntArrayList.toList(IntStream.range(0, 10007));
         IntList shuffle = Day22.slamShuffle(cards, commands);
         assertThat(shuffle.indexOf(2019)).isEqualTo(4775);
@@ -91,9 +95,9 @@ class Day22Test {
         assertThat(Day22.inverseSlamShuffle(commands, 4775, 10007)).isEqualTo(2019);
     }
 
-    @Test
-    void testSolvePartTwo() throws IOException {
-        List<String> commands = FileUtils.readLines("/2019/day/22/input");
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> commands = FileUtils.readLines(scanner);
         long result = Day22.inverseSlamShuffle(commands, 2020, 119315717514047L, 101741582076661L);
         assertThat(result).isEqualTo(37889219674304L);
     }

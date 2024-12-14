@@ -1,16 +1,22 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day07Test {
+class Day07Test extends AbstractTest {
+    Day07Test() {
+        super(2020, 7);
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Day07Test.class);
 
     @Test
@@ -47,10 +53,18 @@ class Day07Test {
 
     @Test
     void inputHandyHaversacks() throws IOException {
-        List<String> rules = FileUtils.readLines("/2020/day/7/input");
 
+    }
+
+    @Override
+    public void partOne(Scanner scanner) {
+        List<String> rules = FileUtils.readLines(scanner);
         assertThat(Day07.countShinyGold(rules)).isEqualTo(224);
+    }
 
+    @Override
+    public void partTwo(Scanner scanner) {
+        List<String> rules = FileUtils.readLines(scanner);
         assertThat(Day07.countHandyHaversacks(rules)).isEqualTo(1488);
     }
 }

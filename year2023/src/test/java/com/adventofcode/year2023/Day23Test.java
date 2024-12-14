@@ -1,15 +1,15 @@
 package com.adventofcode.year2023;
 
+import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Scanner;
 
-class Day23Test {
+class Day23Test extends AbstractTest {
+    Day23Test() {
+        super(2023, 23);
+    }
 
     @Test
     void inputExample() {
@@ -51,23 +51,16 @@ class Day23Test {
         }
     }
 
-
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day23Test.class.getResourceAsStream("/2023/day/23/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int cardinality = Day23.PartOne.longestPathLength(scanner);
-            Assertions.assertThat(cardinality).isEqualTo(2070);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        int cardinality = Day23.PartOne.longestPathLength(scanner);
+        Assertions.assertThat(cardinality).isEqualTo(2070);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day23Test.class.getResourceAsStream("/2023/day/23/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            int cardinality = Day23.PartTwo.longestPathLength(scanner);
-            Assertions.assertThat(cardinality).isEqualTo(6498);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        int cardinality = Day23.PartTwo.longestPathLength(scanner);
+        Assertions.assertThat(cardinality).isEqualTo(6498);
     }
 
 }

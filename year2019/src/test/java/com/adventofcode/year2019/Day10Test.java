@@ -2,18 +2,22 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.utils.FileUtils;
+import com.adventofcode.test.AbstractTest;
 import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day10Test {
+class Day10Test extends AbstractTest {
+    Day10Test() {
+        super(2019, 10);
+    }
 
     @Test
     void testSimpleExample() {
@@ -111,13 +115,6 @@ class Day10Test {
     }
 
     @Test
-    void testInputPartOne() throws IOException {
-        Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(FileUtils.readLines("/2019/day/10/input"));
-        assertThat(result.left()).isEqualTo(Point2D.of(26, 29));
-        assertThat(result.right()).hasSize(303);
-    }
-
-    @Test
     void testVaporizeSimpleExample() {
         List<String> map = Arrays.asList(
                 ".#....#####...#..",
@@ -172,9 +169,16 @@ class Day10Test {
         assertThat(asteroid.getCoordinate()).isEqualTo(802);
     }
 
-    @Test
-    void testInputPartTwo() throws IOException {
-        Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(FileUtils.readLines("/2019/day/10/input"));
+    @Override
+    public void partOne(Scanner scanner) {
+        Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(FileUtils.readLines(scanner));
+        assertThat(result.left()).isEqualTo(Point2D.of(26, 29));
+        assertThat(result.right()).hasSize(303);
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        Pair<Point2D, Map<Double, List<Day10.Asteroids>>> result = Day10.findBestLocation(FileUtils.readLines(scanner));
         assertThat(result.left()).isEqualTo(Point2D.of(26, 29));
         assertThat(result.right()).hasSize(303);
 
@@ -182,5 +186,4 @@ class Day10Test {
         Day10.Asteroids asteroid = asteroids.get(199);
         assertThat(asteroid.getCoordinate()).isEqualTo(408);
     }
-
 }

@@ -1,16 +1,17 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day19Test {
+class Day19Test extends AbstractTest {
+    Day19Test() {
+        super(2018, 19);
+    }
 
     @Test
     void example() {
@@ -29,20 +30,14 @@ class Day19Test {
         assertThat(register.toIntArray()).containsExactly(6, 5, 6, 0, 0, 9);
     }
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream is = Day19Test.class.getResourceAsStream("/2018/day/19/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day19.executePartOne(scanner).toIntArray()).startsWith(878);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(Day19.executePartOne(scanner).toIntArray()).startsWith(878);
     }
 
-    @Test
-    void inputPartTwo() throws IOException {
-        try (InputStream is = Day19Test.class.getResourceAsStream("/2018/day/19/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
-            assertThat(Day19.executePartTwo(scanner)).isEqualTo(11510496);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(Day19.executePartTwo(scanner)).isEqualTo(11510496);
     }
 
 }

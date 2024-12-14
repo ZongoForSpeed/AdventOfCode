@@ -3,17 +3,14 @@ package com.adventofcode.year2022;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
+import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +18,10 @@ import java.util.regex.Pattern;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled
-class Day22Test {
+class Day22Test extends AbstractTest {
+    Day22Test() {
+        super(2022, 22);
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22Test.class);
 
@@ -408,21 +408,14 @@ class Day22Test {
     }
 
 
-    @Test
-    void inputPartOne() throws IOException {
-        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2022/day/22/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            assertThat(monkeyMap(scanner)).isEqualTo(117102);
-        }
+    @Override
+    public void partOne(Scanner scanner) {
+        assertThat(monkeyMap(scanner)).isEqualTo(117102);
     }
 
-    @Test
-    @Disabled
-    void inputPartTwo() throws IOException {
-        try (InputStream inputStream = Day22Test.class.getResourceAsStream("/2022/day/22/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
-            assertThat(monkeyCube(scanner)).isEqualTo(117102);
-        }
+    @Override
+    public void partTwo(Scanner scanner) {
+        assertThat(monkeyCube(scanner)).isEqualTo(117102);
     }
 
     record Position(int x, int y, Direction direction) {
