@@ -374,7 +374,7 @@ public final class Day15 {
     }
 
     private static int gpsCoordinates(Point2D box) {
-        return (box.y()) * 100 + (box.x());
+        return box.y() * 100 + box.x();
     }
 
     private static void print(Set<Point2D> walls, Set<Point2D> boxes, Point2D robot) {

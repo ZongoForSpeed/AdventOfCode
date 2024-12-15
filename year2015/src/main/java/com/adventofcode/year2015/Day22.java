@@ -84,7 +84,7 @@ public final class Day22 {
                     }
                 }
 
-                return nextState;
+                return Collections.unmodifiableList(nextState);
             } else {
                 // Boss's turn
                 int armor = 0;

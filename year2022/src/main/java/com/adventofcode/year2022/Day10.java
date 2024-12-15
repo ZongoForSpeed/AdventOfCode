@@ -257,7 +257,7 @@ public final class Day10 {
             long signalStrength = 0;
             for (int cycle = 20; cycle <= register.size(); cycle += 40) {
                 LOGGER.info("During cycle {}, signal is {}", cycle, register.getInt(cycle));
-                signalStrength += (long) (cycle) * register.getInt(cycle);
+                signalStrength += (long) cycle * register.getInt(cycle);
             }
             return signalStrength;
         }
