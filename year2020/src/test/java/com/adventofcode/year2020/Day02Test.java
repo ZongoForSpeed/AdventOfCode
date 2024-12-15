@@ -1,10 +1,8 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,15 +25,25 @@ class Day02Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
-        assertThat(lines.stream().filter(Day02::passwordPolicy1).count())
-                .isEqualTo(655);
+        long count = 0;
+        while (scanner.hasNextLine()) {
+            if (Day02.passwordPolicy1(scanner.nextLine())) {
+                count++;
+            }
+        }
+
+        assertThat(count).isEqualTo(655);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
-        assertThat(lines.stream().filter(Day02::passwordPolicy2).count())
-                .isEqualTo(673);
+        long count = 0;
+        while (scanner.hasNextLine()) {
+            if (Day02.passwordPolicy2(scanner.nextLine())) {
+                count++;
+            }
+        }
+
+        assertThat(count).isEqualTo(673);
     }
 }

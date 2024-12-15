@@ -17,7 +17,8 @@ class Day03Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        List<String> strings = List.of("00100",
+        List<String> strings = List.of(
+                "00100",
                 "11110",
                 "10110",
                 "10111",
