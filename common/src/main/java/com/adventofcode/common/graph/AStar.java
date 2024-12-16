@@ -1,5 +1,7 @@
 package com.adventofcode.common.graph;
 
+import it.unimi.dsi.fastutil.Pair;
+
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -9,6 +11,8 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.ToLongFunction;
 
 /**
  * cf. https://fr.wikipedia.org/wiki/Algorithme_A*
@@ -41,7 +45,7 @@ public class AStar {
     public static <E> long algorithmHeuristic(Function<E, List<E>> graph, BiFunction<E, E, Long> distance, BiFunction<E, E, Long> heuristic, E start, E end) {
         Set<E> closedList = new HashSet<>();
         Queue<NodeHeuristic<E>> queue = new PriorityQueue<>(Comparator.comparingLong(NodeHeuristic::heuristic));
-        queue.add(new NodeHeuristic<>(start, 0L, distance.apply(start, end)));
+        queue.add(new NodeHeuristic<>(start, 0L, heuristic.apply(start, end)));
         while (!queue.isEmpty()) {
             NodeHeuristic<E> node = queue.poll();
             if (node.vertex().equals(end)) {
@@ -61,22 +65,21 @@ public class AStar {
         return Long.MAX_VALUE;
     }
 
-    public static <E> long algorithm(Function<E, Collection<Move<E>>> graph, E start, E end) {
-        Set<E> closedList = new HashSet<>();
-        Queue<NodeHeuristic<E>> queue = new PriorityQueue<>(Comparator.comparingLong(NodeHeuristic::cost));
-        queue.add(new NodeHeuristic<>(start, 0L, 0L));
+    public static <T> long algorithmHeuristic(Function<T, List<Pair<T, Long>>> graph, ToLongFunction<T> heuristic, T start, Predicate<T> ending) {
+        Set<T> closedList = new HashSet<>();
+        Queue<NodeHeuristic<T>> queue = new PriorityQueue<>(Comparator.comparingLong(NodeHeuristic::heuristic));
+        queue.add(new NodeHeuristic<>(start, 0L, heuristic.applyAsLong(start)));
         while (!queue.isEmpty()) {
-            NodeHeuristic<E> node = queue.poll();
-            if (node.vertex().equals(end)) {
+            NodeHeuristic<T> node = queue.poll();
+            if (ending.test(node.vertex())) {
                 return node.cost();
             }
             if (closedList.add(node.vertex())) {
-                Collection<Move<E>> moves = graph.apply(node.vertex());
-                for (Move<E> move : moves) {
-                    E vertex = move.vertex();
-                    if (!closedList.contains(vertex)) {
-                        long cost = node.cost() + move.cost();
-                        queue.add(new NodeHeuristic<>(vertex, cost, cost));
+                List<Pair<T, Long>> moves = graph.apply(node.vertex());
+                for (Pair<T, Long> move : moves) {
+                    if (!closedList.contains(move.left())) {
+                        NodeHeuristic<T> suivant = new NodeHeuristic<>(move.left(), node.cost() + move.right(), node.cost() + heuristic.applyAsLong(move.left()) + 1);
+                        queue.add(suivant);
                     }
                 }
             }
@@ -84,6 +87,7 @@ public class AStar {
 
         return Long.MAX_VALUE;
     }
+
 
     private record NodeHeuristic<E>(E vertex, long cost, long heuristic) {
     }
