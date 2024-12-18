@@ -42,6 +42,30 @@ public class AStar {
         return Long.MAX_VALUE;
     }
 
+    public static <E> long algorithm(Function<E, Collection<Move<E>>> graph, E start, E end) {
+        Set<E> closedList = new HashSet<>();
+        Queue<NodeHeuristic<E>> queue = new PriorityQueue<>(Comparator.comparingLong(NodeHeuristic::cost));
+        queue.add(new NodeHeuristic<>(start, 0L, 0L));
+        while (!queue.isEmpty()) {
+            NodeHeuristic<E> node = queue.poll();
+            if (node.vertex().equals(end)) {
+                return node.cost();
+            }
+            if (closedList.add(node.vertex())) {
+                Collection<Move<E>> moves = graph.apply(node.vertex());
+                for (Move<E> move : moves) {
+                    E vertex = move.vertex();
+                    if (!closedList.contains(vertex)) {
+                        long cost = node.cost() + move.cost();
+                        queue.add(new NodeHeuristic<>(vertex, cost, cost));
+                    }
+                }
+            }
+        }
+
+        return Long.MAX_VALUE;
+    }
+
     public static <E> long algorithmHeuristic(Function<E, List<E>> graph, BiFunction<E, E, Long> distance, BiFunction<E, E, Long> heuristic, E start, E end) {
         Set<E> closedList = new HashSet<>();
         Queue<NodeHeuristic<E>> queue = new PriorityQueue<>(Comparator.comparingLong(NodeHeuristic::heuristic));
