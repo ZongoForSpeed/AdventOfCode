@@ -171,7 +171,7 @@ public final class Day12 {
         LOGGER.info("graph = {}", graph);
 
         List<Point2D> starts = points.stream().filter(p -> map.get(p) == 'a').toList();
-        LongList distances = new LongArrayList();
+        LongList distances = new LongArrayList(starts.size());
         for (Point2D d : starts) {
             long algorithm = AStar.algorithm(graph::get, (a, b) -> 1L, d, end);
             distances.add(algorithm);
