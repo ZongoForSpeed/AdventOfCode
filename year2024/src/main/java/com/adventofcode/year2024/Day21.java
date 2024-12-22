@@ -251,7 +251,7 @@ public final class Day21 {
         return length * numericPart;
     }
 
-    enum KeyPad {
+    private enum KeyPad {
         NUMERIC(NUMERIC_KEYPAD, Point2D.of(0, 3)),
         DIRECTIONAL(DIRECTIONAL_KEYPAD, Point2D.of(0, 0));
 
@@ -315,10 +315,10 @@ public final class Day21 {
 
     }
 
-    record Key(Point2D current, Point2D destination, int robots) {
+    private record Key(Point2D current, Point2D destination, int robots) {
     }
 
-    record State(Point2D p, String presses) {
+    private record State(Point2D p, String presses) {
 
         int x() {
             return p.x();
