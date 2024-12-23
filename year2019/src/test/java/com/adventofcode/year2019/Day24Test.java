@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Objects;
@@ -242,10 +241,6 @@ class Day24Test extends AbstractTest {
                 """);
         long totalBugs = depthBugs.values().stream().mapToInt(BitSet::cardinality).sum();
         assertThat(totalBugs).isEqualTo(99);
-    }
-
-    @Test
-    void testInputPartTwo() throws IOException {
     }
 
     @Override

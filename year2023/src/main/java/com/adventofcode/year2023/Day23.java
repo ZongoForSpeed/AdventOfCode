@@ -3,8 +3,7 @@ package com.adventofcode.year2023;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import com.adventofcode.common.utils.IntSets;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntIntPair;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -29,19 +28,20 @@ public final class Day23 {
         // No-Op
     }
 
-    public static Int2ObjectMap<List<IntIntPair>> collapse(Int2ObjectMap<IntList> neighbours) {
-        Int2ObjectMap<List<IntIntPair>> result = new Int2ObjectOpenHashMap<>();
-        for (Int2ObjectMap.Entry<IntList> entry : neighbours.int2ObjectEntrySet()) {
-            int p = entry.getIntKey();
-            List<IntIntPair> pairs = result.computeIfAbsent(p, ignore -> new ArrayList<>());
-            for (Integer n : entry.getValue()) {
-                pairs.add(collapse(neighbours, p, n));
+    public static List<List<IntIntPair>> collapse(List<IntList> neighbours) {
+        List<List<IntIntPair>> result = new ArrayList<>();
+        for (int i = 0; i < neighbours.size(); i++) {
+            IntList neighbour = neighbours.get(i);
+            List<IntIntPair> pairs = new ArrayList<>();
+            for (int n : neighbour) {
+                pairs.add(collapse(neighbours, i, n));
             }
+            result.add(pairs);
         }
         return result;
     }
 
-    public static IntIntPair collapse(Int2ObjectMap<IntList> neighbours, int p, int n) {
+    public static IntIntPair collapse(List<IntList> neighbours, int p, int n) {
         int d = 1;
         while (neighbours.get(n).size() == 2) {
             IntList moves = neighbours.get(n);
@@ -57,7 +57,7 @@ public final class Day23 {
         return IntIntPair.of(n, d);
     }
 
-    private static int findLongestPath(int current, int end, BitSet path, Int2ObjectMap<List<IntIntPair>> collapseGraph, int cost) {
+    private static int findLongestPath(int current, int end, BitSet path, List<List<IntIntPair>> collapseGraph, int cost) {
         if (current == end) {
             return cost;
         }
@@ -76,12 +76,10 @@ public final class Day23 {
         return longestPath;
     }
 
-    private static int findLongestPath(int indexStart, int indexEnd, Int2ObjectMap<IntList> neighbours) {
-        Int2ObjectMap<List<IntIntPair>> collapseGraph = collapse(neighbours);
+    private static int findLongestPath(int indexStart, int indexEnd, List<IntList> neighbours) {
+        List<List<IntIntPair>> collapseGraph = collapse(neighbours);
 
-        BitSet path = new BitSet();
-        path.set(0);
-        return findLongestPath(indexStart, indexEnd, path, collapseGraph, 0);
+        return findLongestPath(indexStart, indexEnd, IntSets.of(0), collapseGraph, 0);
     }
 
     /**
@@ -189,10 +187,9 @@ public final class Day23 {
 
             LOGGER.info("first = {}, last = {}", points.getFirst(), points.getLast());
 
-            Int2ObjectMap<IntList> neighbours = new Int2ObjectOpenHashMap<>();
+            List<IntList> neighbours = new ArrayList<>();
 
-            for (int i = 0; i < points.size(); i++) {
-                Point2D point = points.get(i);
+            for (Point2D point : points) {
                 char c = map.get(point);
                 Stream<Direction> directions = switch (c) {
                     case '.' -> Arrays.stream(Direction.values());
@@ -207,7 +204,7 @@ public final class Day23 {
                         .filter(Objects::nonNull)
                         .mapToInt(idx -> idx)
                         .toArray();
-                neighbours.computeIfAbsent(i, ignore -> new IntArrayList()).addElements(0, moves);
+                neighbours.add(new IntArrayList(moves));
             }
 
             LOGGER.info("neighbours = {}", neighbours);
@@ -281,10 +278,9 @@ public final class Day23 {
 
             LOGGER.info("first = {}, last = {}", first, last);
 
-            Int2ObjectMap<IntList> neighbours = new Int2ObjectOpenHashMap<>();
+            List<IntList> neighbours = new ArrayList<>();
 
-            for (int i = 0; i < points.size(); i++) {
-                Point2D point = points.get(i);
+            for (Point2D point : points) {
                 char c = map.get(point);
                 Stream<Direction> directions = switch (c) {
                     case '.', 'v', '>', '<', '^' -> Arrays.stream(Direction.values());
@@ -295,7 +291,7 @@ public final class Day23 {
                         .filter(Objects::nonNull)
                         .mapToInt(idx -> idx)
                         .toArray();
-                neighbours.computeIfAbsent(i, ignore -> new IntArrayList()).addElements(0, moves);
+                neighbours.add(new IntArrayList(moves));
             }
 
             LOGGER.info("neighbours = {}", neighbours);

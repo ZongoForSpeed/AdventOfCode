@@ -1,14 +1,13 @@
 package com.adventofcode.year2018;
 
+import com.adventofcode.common.graph.Connectivity;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.InfiniteBooleanMap;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,8 +52,7 @@ public final class Day10 {
         Set<Point2D> visited = new HashSet<>();
         for (Point2D point : points) {
             if (!visited.contains(point)) {
-                Set<Point2D> connected = new HashSet<>();
-                connectedPoints(graph, point, connected);
+                Set<Point2D> connected = Connectivity.connectedPoints(graph, point);
                 visited.addAll(connected);
 
                 if (connected.size() < 5) {
@@ -66,47 +64,30 @@ public final class Day10 {
         return true;
     }
 
-    static void connectedPoints(Map<Point2D, List<Point2D>> graph, Point2D point, Set<Point2D> visited) {
-        visited.add(point);
-
-        Deque<Point2D> nodes = new ArrayDeque<>();
-        nodes.add(point);
-
-        while (!nodes.isEmpty()) {
-            Point2D d = nodes.remove();
-            List<Point2D> list = graph.get(d);
-            for (Point2D p : list) {
-                if (visited.add(p)) {
-                    nodes.add(p);
-                }
-            }
-        }
-    }
-
     /**
      * --- Day 10: The Stars Align ---
-     *
+     * <p>
      * It's no use; your navigation system simply isn't capable of providing
      * walking directions in the arctic circle, and certainly not in 1018.
-     *
+     * <p>
      * The Elves suggest an alternative. In times like these, North Pole rescue
      * operations will arrange points of light in the sky to guide missing Elves
      * back to base. Unfortunately, the message is easy to miss: the points move
      * slowly enough that it takes hours to align them, but have so much momentum
      * that they only stay aligned for a second. If you blink at the wrong time,
      * it might be hours before another message appears.
-     *
+     * <p>
      * You can see these points of light floating in the distance, and record
      * their position in the sky and their velocity, the relative change in
      * position per second (your puzzle input). The coordinates are all given from
      * your perspective; given enough time, those positions and velocities will
      * move the points into a cohesive message!
-     *
+     * <p>
      * Rather than wait, you decide to fast-forward the process and calculate what
      * the points will eventually spell.
-     *
+     * <p>
      * For example, suppose you note the following points:
-     *
+     * <p>
      * position=< 9,  1> velocity=< 0,  2>
      * position=< 7,  0> velocity=<-1,  0>
      * position=< 3, -2> velocity=<-1,  1>
@@ -138,20 +119,20 @@ public final class Day10 {
      * position=< 5,  9> velocity=< 1, -2>
      * position=<14,  7> velocity=<-2,  0>
      * position=<-3,  6> velocity=< 2, -1>
-     *
+     * <p>
      * Each line represents one point. Positions are given as <X, Y> pairs: X
      * represents how far left (negative) or right (positive) the point appears,
      * while Y represents how far up (negative) or down (positive) the point
      * appears.
-     *
+     * <p>
      * At 0 seconds, each point has the position given. Each second, each point's
      * velocity is added to its position. So, a point with velocity <1, -2> is
      * moving to the right, but is moving upward twice as quickly. If this point's
      * initial position were <3, 9>, after 3 seconds, its position would become
      * <6, 3>.
-     *
+     * <p>
      * Over time, the points listed above would move like this:
-     *
+     * <p>
      * Initially:
      * ........#.............
      * ................#.....
@@ -169,7 +150,7 @@ public final class Day10 {
      * ...........#..#.......
      * #...........#.........
      * ...#.......#..........
-     *
+     * <p>
      * After 1 second:
      * ......................
      * ......................
@@ -187,7 +168,7 @@ public final class Day10 {
      * ....#.....#.#.........
      * ......................
      * ......................
-     *
+     * <p>
      * After 2 seconds:
      * ......................
      * ......................
@@ -205,7 +186,7 @@ public final class Day10 {
      * ......................
      * ......................
      * ......................
-     *
+     * <p>
      * After 3 seconds:
      * ......................
      * ......................
@@ -223,7 +204,7 @@ public final class Day10 {
      * ......................
      * ......................
      * ......................
-     *
+     * <p>
      * After 4 seconds:
      * ......................
      * ......................
@@ -241,17 +222,17 @@ public final class Day10 {
      * ...............#......
      * ......................
      * ......................
-     *
+     * <p>
      * After 3 seconds, the message appeared briefly: HI. Of course, your message
      * will be much longer and will take many more seconds to appear.
-     *
+     * <p>
      * What message will eventually appear in the sky?
-     **
+     * *
      * --- Part Two ---
-     *
+     * <p>
      * Good thing you didn't have to wait, because that would have taken a long
      * time - much longer than the 3 seconds in the example above.
-     *
+     * <p>
      * Impressed by your sub-hour communication capabilities, the Elves are
      * curious: exactly how many seconds would they have needed to wait for that
      * message to appear?

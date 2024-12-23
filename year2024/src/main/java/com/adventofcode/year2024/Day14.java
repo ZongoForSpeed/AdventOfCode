@@ -1,17 +1,15 @@
 package com.adventofcode.year2024;
 
+import com.adventofcode.common.graph.Connectivity;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -284,37 +282,7 @@ public final class Day14 {
             graph.put(point, neighbors);
         }
 
-        Map<Point2D, Set<Point2D>> region = new HashMap<>();
-
-        Set<Point2D> visited = new HashSet<>();
-        for (Point2D point : points) {
-            if (!visited.contains(point)) {
-                Set<Point2D> connected = connectedPoints(point, graph);
-                visited.addAll(connected);
-
-                region.put(point, connected);
-            }
-        }
-        return region;
-    }
-
-    private static Set<Point2D> connectedPoints(Point2D point, Map<Point2D, List<Point2D>> graph) {
-        Set<Point2D> connected = new HashSet<>();
-        connected.add(point);
-
-        Deque<Point2D> nodes = new ArrayDeque<>();
-        nodes.add(point);
-
-        while (!nodes.isEmpty()) {
-            Point2D d = nodes.remove();
-            List<Point2D> list = graph.get(d);
-            for (Point2D p : list) {
-                if (connected.add(p)) {
-                    nodes.add(p);
-                }
-            }
-        }
-        return connected;
+        return Connectivity.findRegion(points, graph);
     }
 
     record Robot(Point2D p, Point2D v) {
