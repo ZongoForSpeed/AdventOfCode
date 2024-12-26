@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-public class GaussJordan {
+public final class GaussJordan {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GaussJordan.class);
 

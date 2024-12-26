@@ -49,28 +49,23 @@ class Day10Test extends AbstractTest {
                 position=< 5,  9> velocity=< 1, -2>
                 position=<14,  7> velocity=<-2,  0>
                 position=<-3,  6> velocity=< 2, -1>""";
-        Scanner scanner = new Scanner(input);
-
-        Pair<String, Integer> result = Day10.decodeStars(scanner);
-        assertThat(result.left()).isEqualTo("""
-                #...#..###
-                #...#...#.
-                #...#...#.
-                #####...#.
-                #...#...#.
-                #...#...#.
-                #...#...#.
-                #...#..###""");
-        assertThat(result.right()).isEqualTo(3);
+        try (Scanner scanner = new Scanner(input)) {
+            Pair<String, Integer> result = Day10.decodeStars(scanner);
+            assertThat(result.left()).isEqualTo("""
+                    #...#..###
+                    #...#...#.
+                    #...#...#.
+                    #####...#.
+                    #...#...#.
+                    #...#...#.
+                    #...#...#.
+                    #...#..###""");
+            assertThat(result.right()).isEqualTo(3);
+        }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        // TODO
-    }
-
-    @Override
-    public void partTwo(Scanner scanner) {
         Pair<String, Integer> result = Day10.decodeStars(scanner);
         assertThat(result.left()).isEqualTo("""
                 ######..#....#....##....#.......#.......#....#..#.......#####.
@@ -83,6 +78,11 @@ class Day10Test extends AbstractTest {
                 #.......#..#....#....#..#.......#.......#..#....#.......#....#
                 #.......#...#...#....#..#.......#.......#...#...#.......#....#
                 ######..#....#..#....#..######..######..#....#..######..#####.""");
+    }
+
+    @Override
+    public void partTwo(Scanner scanner) {
+        Pair<String, Integer> result = Day10.decodeStars(scanner);
         assertThat(result.right()).isEqualTo(10227);
     }
 }

@@ -304,6 +304,7 @@ public final class Day16 {
     }
 
     private record State(Point2D position, Direction direction) {
+        // TODO replace with Position2D
         State turnLeft() {
             return new State(position, direction.left());
         }

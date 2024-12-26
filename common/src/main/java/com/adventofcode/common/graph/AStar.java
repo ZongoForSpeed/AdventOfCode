@@ -17,7 +17,11 @@ import java.util.function.ToLongFunction;
 /**
  * cf. https://fr.wikipedia.org/wiki/Algorithme_A*
  */
-public class AStar {
+public final class AStar {
+
+    private AStar() {
+        // No-Op
+    }
 
     public static <E> long algorithm(Function<E, Collection<E>> graph, BiFunction<E, E, Long> distance, E start, E end) {
         Set<E> closedList = new HashSet<>();

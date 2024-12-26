@@ -4,7 +4,7 @@ import com.adventofcode.common.point.Point3D;
 
 import java.util.Arrays;
 
-public class Matrix3D {
+public final class Matrix3D {
     private final int[][] m;
 
     public Matrix3D() {

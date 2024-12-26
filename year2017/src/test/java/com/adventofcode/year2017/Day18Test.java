@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 class Day18Test extends AbstractTest {
+
     Day18Test() {
         super(2017, 18);
     }
@@ -52,7 +53,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Override
-    public void partTwo(Scanner scanner) {
+    public void partTwo(Scanner scanner) throws InterruptedException {
         // TODO disabled
         // assertThat(Day18.duet(scanner)).isEqualTo(8001);
     }

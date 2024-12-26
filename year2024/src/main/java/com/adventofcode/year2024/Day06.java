@@ -338,6 +338,7 @@ public final class Day06 {
     }
 
     private record Guard(Point2D position, Direction direction) {
+        // TODO replace with Position2D
         Guard move() {
             return new Guard(position.move(direction), direction);
         }

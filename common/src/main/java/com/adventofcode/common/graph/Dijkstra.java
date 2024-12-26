@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Dijkstra<E> {
+public final class Dijkstra<E> {
     private final Map<E, List<Pair<E, Integer>>> graph;
 
     public Dijkstra(Map<E, List<Pair<E, Integer>>> graph) {
