@@ -4,7 +4,6 @@ import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
-import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.function.ToLongFunction;
 
 public final class Day24 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
@@ -332,11 +330,44 @@ public final class Day24 {
         Elf start = new Elf(Point2D.of(1, 0), 0);
         Point2D end = Point2D.of(basin.xMax() - 1, basin.yMax());
 
-        ToLongFunction<Elf> heuristic = elf -> Point2D.manhattanDistance(end, elf.position());
-
-        long path = AStar.algorithmHeuristic(basin::next, heuristic, start, elf -> elf.position(end));
+        long path = new BlizzardPath(basin, end).algorithm(start, elf -> elf.position(end));
         LOGGER.info("path: {}", path);
         return path;
+    }
+
+    private static final class BlizzardPath extends AStar<Elf> {
+        private final Basin basin;
+        private final Point2D objective;
+
+        private BlizzardPath(Basin basin, Point2D objective) {
+            this.basin = basin;
+            this.objective = objective;
+        }
+
+        @Override
+        public Iterable<Move<Elf>> next(Elf node) {
+            Map<Direction, Set<Point2D>> blizzard = basin.blizzard(node.minutes() + 1);
+            List<Move<Elf>> moves = new ArrayList<>();
+            for (Direction direction : Direction.values()) {
+                Elf move = node.move(direction);
+                Point2D position = move.position();
+                if (position.x() < 0 || position.y() < 0 || position.x() > basin.xMax || position.y() > basin.yMax) {
+                    continue;
+                }
+                if (!basin.walls.contains(position) && blizzard.values().stream().noneMatch(s -> s.contains(position))) {
+                    moves.add(AStar.Move.of(move));
+                }
+            }
+            if (blizzard.values().stream().noneMatch(s -> s.contains(node.position()))) {
+                moves.add(AStar.Move.of(new Elf(node.position(), node.minutes() + 1), 1L));
+            }
+            return moves;
+        }
+
+        @Override
+        public long heuristic(Elf node) {
+            return Point2D.manhattanDistance(objective, node.position());
+        }
     }
 
     /**
@@ -366,16 +397,14 @@ public final class Day24 {
         Point2D start = Point2D.of(1, 0);
         Point2D end = Point2D.of(basin.xMax() - 1, basin.yMax());
 
-        ToLongFunction<Elf> heuristicEnd = elf -> Point2D.manhattanDistance(end, elf.position());
-        ToLongFunction<Elf> heuristicStart = elf -> Point2D.manhattanDistance(start, elf.position());
         Predicate<Elf> ending = elf -> elf.position(end);
         Predicate<Elf> backToStart = elf -> elf.position(start);
 
-        long firstTrip = AStar.algorithmHeuristic(basin::next, heuristicEnd, new Elf(start, 0), ending);
+        long firstTrip = new BlizzardPath(basin, end).algorithm(new Elf(start, 0), ending);
         LOGGER.info("firstTrip: {}", firstTrip);
-        long secondTrip = AStar.algorithmHeuristic(basin::next, heuristicStart, new Elf(end, (int) firstTrip), backToStart);
+        long secondTrip = new BlizzardPath(basin, start).algorithm(new Elf(end, (int) firstTrip), backToStart);
         LOGGER.info("secondTrip: {}", secondTrip);
-        long thirdTrip = AStar.algorithmHeuristic(basin::next, heuristicEnd, new Elf(start, (int) (firstTrip + secondTrip)), ending);
+        long thirdTrip = new BlizzardPath(basin, end).algorithm(new Elf(start, (int) (firstTrip + secondTrip)), ending);
         LOGGER.info("thirdTrip: {}", thirdTrip);
         return firstTrip + secondTrip + thirdTrip;
     }
@@ -414,24 +443,6 @@ public final class Day24 {
             return next;
         }
 
-        List<Pair<Elf, Long>> next(Elf elf) {
-            Map<Direction, Set<Point2D>> blizzard = blizzard(elf.minutes() + 1);
-            List<Pair<Elf, Long>> moves = new ArrayList<>();
-            for (Direction direction : Direction.values()) {
-                Elf move = elf.move(direction);
-                Point2D position = move.position();
-                if (position.x() < 0 || position.y() < 0 || position.x() > xMax || position.y() > yMax) {
-                    continue;
-                }
-                if (!walls.contains(position) && blizzard.values().stream().noneMatch(s -> s.contains(position))) {
-                    moves.add(Pair.of(move, 1L));
-                }
-            }
-            if (blizzard.values().stream().noneMatch(s -> s.contains(elf.position()))) {
-                moves.add(Pair.of(new Elf(elf.position(), elf.minutes() + 1), 1L));
-            }
-            return moves;
-        }
     }
 
     record Elf(Point2D position, int minutes) {
@@ -443,4 +454,5 @@ public final class Day24 {
             return position.equals(p);
         }
     }
+
 }

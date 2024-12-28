@@ -3,8 +3,8 @@ package com.adventofcode.year2016;
 import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
-import org.apache.commons.lang3.StringUtils;
 import it.unimi.dsi.fastutil.Pair;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +47,8 @@ public final class Day22 {
     }
 
     static long distance(State a, State b) {
-        return (long) distance(a.empty(), a.goal()) + distance(a.goal(), b.goal()) + distance(b.empty(), b.goal());    }
+        return (long) distance(a.empty(), a.goal()) + distance(a.goal(), b.goal()) + distance(b.empty(), b.goal());
+    }
 
     /**
      * --- Day 22: Grid Computing ---
@@ -59,11 +60,11 @@ public final class Day22 {
      * You can directly access data only on node /dev/grid/node-x0-y0, but you can
      * perform some limited actions on the other nodes:
      *
-     *   - You can get the disk usage of all nodes (via df). The result of doing
-     *     this is in your puzzle input.
-     *   - You can instruct a node to move (not copy) all of its data to an
-     *     adjacent node (if the destination node has enough space to receive the
-     *     data). The sending node is left empty after this operation.
+     * - You can get the disk usage of all nodes (via df). The result of doing
+     * this is in your puzzle input.
+     * - You can instruct a node to move (not copy) all of its data to an
+     * adjacent node (if the destination node has enough space to receive the
+     * data). The sending node is left empty after this operation.
      *
      * Nodes are named by their position: the node named node-x10-y10 is adjacent
      * to nodes node-x9-y10, node-x11-y10, node-x10-y9, and node-x10-y11.
@@ -78,9 +79,9 @@ public final class Day22 {
      * viable pair is any two nodes (A,B), regardless of whether they are directly
      * connected, such that:
      *
-     *   - Node A is not empty (its Used is not zero).
-     *   - Nodes A and B are not the same node.
-     *   - The data on node A (its Used) would fit on node B (its Avail).
+     * - Node A is not empty (its Used is not zero).
+     * - Nodes A and B are not the same node.
+     * - The data on node A (its Used) would fit on node B (its Avail).
      *
      * How many viable pairs of nodes are there?
      *
@@ -137,10 +138,10 @@ public final class Day22 {
      * capacities and connections look like this:
      *
      * ( 8T/10T) --  7T/ 9T -- [ 6T/10T]
-     *     |           |           |
-     *   6T/11T  --  0T/ 8T --   8T/ 9T
-     *     |           |           |
-     *  28T/32T  --  7T/11T --   6T/ 9T
+     * |           |           |
+     * 6T/11T  --  0T/ 8T --   8T/ 9T
+     * |           |           |
+     * 28T/32T  --  7T/11T --   6T/ 9T
      *
      * The node you can access directly is in parentheses; the data you want
      * starts in the node marked by square brackets.
@@ -153,58 +154,58 @@ public final class Day22 {
      * this:
      *
      * (.) .  G
-     *  .  _  .
-     *  #  .  .
+     * .  _  .
+     * #  .  .
      *
      * The goal is to move the data in the top right, G, to the node in
      * parentheses. To do this, we can issue some commands to the grid and
      * rearrange the data:
      *
-     *   - Move data from node-y0-x1 to node-y1-x1, leaving node node-y0-x1
-     *     empty:
+     * - Move data from node-y0-x1 to node-y1-x1, leaving node node-y0-x1
+     * empty:
      *
-     *     (.) _  G
-     *      .  .  .
-     *      #  .  .
+     * (.) _  G
+     * .  .  .
+     * #  .  .
      *
-     *   - Move the goal data from node-y0-x2 to node-y0-x1:
+     * - Move the goal data from node-y0-x2 to node-y0-x1:
      *
-     *     (.) G  _
-     *      .  .  .
-     *      #  .  .
+     * (.) G  _
+     * .  .  .
+     * #  .  .
      *
-     *   - At this point, we're quite close. However, we have no deletion
-     *     command, so we have to move some more data around. So, next, we move
-     *     the data from node-y1-x2 to node-y0-x2:
+     * - At this point, we're quite close. However, we have no deletion
+     * command, so we have to move some more data around. So, next, we move
+     * the data from node-y1-x2 to node-y0-x2:
      *
-     *     (.) G  .
-     *      .  .  _
-     *      #  .  .
+     * (.) G  .
+     * .  .  _
+     * #  .  .
      *
-     *   - Move the data from node-y1-x1 to node-y1-x2:
+     * - Move the data from node-y1-x1 to node-y1-x2:
      *
-     *     (.) G  .
-     *      .  _  .
-     *      #  .  .
+     * (.) G  .
+     * .  _  .
+     * #  .  .
      *
-     *   - Move the data from node-y1-x0 to node-y1-x1:
+     * - Move the data from node-y1-x0 to node-y1-x1:
      *
-     *     (.) G  .
-     *      _  .  .
-     *      #  .  .
+     * (.) G  .
+     * _  .  .
+     * #  .  .
      *
-     *   - Next, we can free up space on our node by moving the data from
-     *     node-y0-x0 to node-y1-x0:
+     * - Next, we can free up space on our node by moving the data from
+     * node-y0-x0 to node-y1-x0:
      *
-     *     (_) G  .
-     *      .  .  .
-     *      #  .  .
+     * (_) G  .
+     * .  .  .
+     * #  .  .
      *
-     *   - Finally, we can access the goal data by moving the it from node-y0-x1 to node-y0-x0:
+     * - Finally, we can access the goal data by moving the it from node-y0-x1 to node-y0-x0:
      *
-     *     (G) _  .
-     *      .  .  .
-     *      #  .  .
+     * (G) _  .
+     * .  .  .
+     * #  .  .
      *
      * So, after 7 steps, we've accessed the data we want. Unfortunately, each of
      * these moves takes time, and we need to be efficient:
@@ -244,7 +245,38 @@ public final class Day22 {
             graph.put(point, neighbours);
         }
 
-        return AStar.algorithmHeuristic(state -> state.nextStates(graph), (a, b) -> 1L, Day22::distance, State.of(goal, empty), State.of(Point2D.of(0, 0), Point2D.of(1, 0)));
+        State end = State.of(Point2D.of(0, 0), Point2D.of(1, 0));
+        return new GridComputing(graph, end).algorithm(State.of(goal, empty), end);
+    }
+
+    private static final class GridComputing extends AStar<State> {
+
+        private final Map<Point2D, List<Point2D>> graph;
+        private final State end;
+
+        private GridComputing(Map<Point2D, List<Point2D>> graph, State end) {
+            this.graph = graph;
+            this.end = end;
+        }
+
+        @Override
+        public Iterable<Move<State>> next(State node) {
+            List<Move<State>> next = new ArrayList<>();
+            List<Point2D> neighbours = graph.get(node.empty);
+            for (Point2D neighbour : neighbours) {
+                if (node.goal.equals(neighbour)) {
+                    next.add(AStar.Move.of(State.of(node.empty, neighbour)));
+                } else {
+                    next.add(AStar.Move.of(State.of(node.goal, neighbour)));
+                }
+            }
+            return next;
+        }
+
+        @Override
+        public long heuristic(State node) {
+            return distance(node, end);
+        }
     }
 
     private record State(Point2D goal, Point2D empty) {
@@ -252,18 +284,6 @@ public final class Day22 {
             return new State(goal, empty);
         }
 
-        public List<State> nextStates(Map<Point2D, List<Point2D>> graph) {
-            List<Point2D> neighbours = graph.get(empty);
-            List<State> next = new ArrayList<>();
-            for (Point2D neighbour : neighbours) {
-                if (goal.equals(neighbour)) {
-                    next.add(State.of(empty, neighbour));
-                } else {
-                    next.add(State.of(goal, neighbour));
-                }
-            }
-            return next;
-        }
     }
 
     record GridNode(Point2D position, short size, short used, short available, short pct) {

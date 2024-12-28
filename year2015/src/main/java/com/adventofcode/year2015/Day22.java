@@ -21,108 +21,109 @@ public final class Day22 {
     private static final TerminalState LOOSING_STATE = TerminalState.of(false);
     private static final Pattern BOSS_PATTERN = Pattern.compile("^(.*): (\\d+)$");
 
-    public static List<AStar.Move<State>> nextStatePartOne(State state) {
-        return nextState(state, false);
-    }
+    private static final class WizardSimulator extends AStar<State> {
 
-    public static List<AStar.Move<State>> nextStatePartTwo(State state) {
-        return nextState(state, true);
-    }
+        private final boolean hardMode;
 
-    public static List<AStar.Move<State>> nextState(State state, boolean hardMode) {
-        if (state instanceof TerminalState) {
-            return Collections.emptyList();
-        } else if (state instanceof PlayableState(Player player, Boss boss, boolean turn)) {
-            if (turn) {
-                // Player's turn
-                if (hardMode) {
-                    player = Player.of(player.hitPoints() - 1, player.mana(), player.effects());
+        private WizardSimulator(boolean hardMode) {
+            this.hardMode = hardMode;
+        }
+
+        @Override
+        public Iterable<Move<State>> next(State node) {
+            if (node instanceof TerminalState) {
+                return Collections.emptyList();
+            } else if (node instanceof PlayableState(Player player, Boss boss, boolean turn)) {
+                if (turn) {
+                    // Player's turn
+                    if (hardMode) {
+                        player = Player.of(player.hitPoints() - 1, player.mana(), player.effects());
+                        if (player.hitPoints() <= 0) {
+                            return List.of(AStar.Move.of(LOOSING_STATE, Integer.MAX_VALUE));
+                        }
+                    }
+
+                    List<Move<State>> nextState = new ArrayList<>();
+                    Map<Spells, Integer> currentEffects = new EnumMap<>(Spells.class);
+                    for (Map.Entry<Spells, Integer> entry : player.effects().entrySet()) {
+                        if (entry.getValue() > 1) {
+                            currentEffects.put(entry.getKey(), entry.getValue() - 1);
+                        }
+
+                        switch (entry.getKey()) {
+                            case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
+                            case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
+                        }
+                    }
+
+                    if (boss.hitPoints() <= 0) {
+                        return List.of(AStar.Move.of(WINNING_STATE, 0));
+                    }
+
+                    for (Spells spell : Spells.values()) {
+                        if (spell.getCost() > player.mana()) {
+                            continue;
+                        }
+                        Map<Spells, Integer> newEffects = new EnumMap<>(currentEffects);
+                        newEffects.put(spell, spell.getDuration());
+                        Player newPlayer = switch (spell) {
+                            case Drain -> Player.of(player.hitPoints() + 2, player.mana() - spell.getCost(), newEffects);
+                            case MagicMissile, Shield, Recharge, Poison ->
+                                    Player.of(player.hitPoints(), player.mana() - spell.getCost(), newEffects);
+                        };
+                        Boss newBoss = switch (spell) {
+                            case MagicMissile -> Boss.of(boss.hitPoints() - 4, boss.damage());
+                            case Drain -> Boss.of(boss.hitPoints() - 2, boss.damage());
+                            case Shield, Recharge, Poison -> Boss.of(boss.hitPoints(), boss.damage());
+                        };
+                        if (newBoss.hitPoints() <= 0) {
+                            nextState.add(AStar.Move.of(WINNING_STATE, spell.getCost()));
+                        } else {
+                            nextState.add(AStar.Move.of(PlayableState.of(
+                                    newPlayer, newBoss, false
+                            ), spell.getCost()));
+                        }
+                    }
+
+                    return Collections.unmodifiableList(nextState);
+                } else {
+                    // Boss's turn
+                    int armor = 0;
+                    Map<Spells, Integer> currentEffects = new EnumMap<>(Spells.class);
+                    for (Map.Entry<Spells, Integer> entry : player.effects().entrySet()) {
+                        if (entry.getValue() > 1) {
+                            currentEffects.put(entry.getKey(), entry.getValue() - 1);
+                        }
+
+                        switch (entry.getKey()) {
+                            case Shield -> armor += 7;
+                            case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
+                            case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
+                        }
+                    }
+
+                    player = Player.of(player.hitPoints(), player.mana(), currentEffects);
+                    if (boss.hitPoints() <= 0) {
+                        return List.of(AStar.Move.of(WINNING_STATE, 0));
+                    }
+
+                    int damage = boss.damage() - armor;
+                    if (damage <= 0) {
+                        damage = 1;
+                    }
+
+                    player = Player.of(player.hitPoints() - damage, player.mana(), player.effects());
                     if (player.hitPoints() <= 0) {
                         return List.of(AStar.Move.of(LOOSING_STATE, Integer.MAX_VALUE));
                     }
+
+                    return List.of(AStar.Move.of(PlayableState.of(player, boss, true), 0));
                 }
-
-                List<AStar.Move<State>> nextState = new ArrayList<>();
-                Map<Spells, Integer> currentEffects = new EnumMap<>(Spells.class);
-                for (Map.Entry<Spells, Integer> entry : player.effects().entrySet()) {
-                    if (entry.getValue() > 1) {
-                        currentEffects.put(entry.getKey(), entry.getValue() - 1);
-                    }
-
-                    switch (entry.getKey()) {
-                        case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
-                        case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
-                    }
-                }
-
-                if (boss.hitPoints() <= 0) {
-                    return List.of(AStar.Move.of(WINNING_STATE, 0));
-                }
-
-                for (Spells spell : Spells.values()) {
-                    if (spell.getCost() > player.mana()) {
-                        continue;
-                    }
-                    Map<Spells, Integer> newEffects = new EnumMap<>(currentEffects);
-                    newEffects.put(spell, spell.getDuration());
-                    Player newPlayer = switch (spell) {
-                        case Drain -> Player.of(player.hitPoints() + 2, player.mana() - spell.getCost(), newEffects);
-                        case MagicMissile, Shield, Recharge, Poison ->
-                                Player.of(player.hitPoints(), player.mana() - spell.getCost(), newEffects);
-                    };
-                    Boss newBoss = switch (spell) {
-                        case MagicMissile -> Boss.of(boss.hitPoints() - 4, boss.damage());
-                        case Drain -> Boss.of(boss.hitPoints() - 2, boss.damage());
-                        case Shield, Recharge, Poison -> Boss.of(boss.hitPoints(), boss.damage());
-                    };
-                    if (newBoss.hitPoints() <= 0) {
-                        nextState.add(AStar.Move.of(WINNING_STATE, spell.getCost()));
-                    } else {
-                        nextState.add(AStar.Move.of(PlayableState.of(
-                                newPlayer, newBoss, false
-                        ), spell.getCost()));
-                    }
-                }
-
-                return Collections.unmodifiableList(nextState);
             } else {
-                // Boss's turn
-                int armor = 0;
-                Map<Spells, Integer> currentEffects = new EnumMap<>(Spells.class);
-                for (Map.Entry<Spells, Integer> entry : player.effects().entrySet()) {
-                    if (entry.getValue() > 1) {
-                        currentEffects.put(entry.getKey(), entry.getValue() - 1);
-                    }
-
-                    switch (entry.getKey()) {
-                        case Shield -> armor += 7;
-                        case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
-                        case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
-                    }
-                }
-
-                player = Player.of(player.hitPoints(), player.mana(), currentEffects);
-                if (boss.hitPoints() <= 0) {
-                    return List.of(AStar.Move.of(WINNING_STATE, 0));
-                }
-
-                int damage = boss.damage() - armor;
-                if (damage <= 0) {
-                    damage = 1;
-                }
-
-                player = Player.of(player.hitPoints() - damage, player.mana(), player.effects());
-                if (player.hitPoints() <= 0) {
-                    return List.of(AStar.Move.of(LOOSING_STATE, Integer.MAX_VALUE));
-                }
-
-                return List.of(AStar.Move.of(PlayableState.of(player, boss, true), 0));
+                throw new IllegalStateException("Unknown type of state: " + node.getClass());
             }
-        } else {
-            throw new IllegalStateException("Unknown type of state: " + state.getClass());
         }
     }
-
 
     public static Boss readBossStats(Scanner scanner) {
         Map<String, Integer> bossStats = new HashMap<>();
@@ -290,7 +291,8 @@ public final class Day22 {
     }
 
     public static long gamePartOne(Player player, Boss boss) {
-        return AStar.algorithm(Day22::nextStatePartOne, PlayableState.of(player, boss, true), WINNING_STATE);
+        WizardSimulator game = new WizardSimulator(false);
+        return game.algorithm(PlayableState.of(player, boss, true), WINNING_STATE);
     }
 
     /**
@@ -313,7 +315,8 @@ public final class Day22 {
     }
 
     public static long gamePartTwo(Player player, Boss boss) {
-        return AStar.algorithm(Day22::nextStatePartTwo, PlayableState.of(player, boss, true), WINNING_STATE);
+        WizardSimulator game = new WizardSimulator(true);
+        return game.algorithm(PlayableState.of(player, boss, true), WINNING_STATE);
     }
 
 

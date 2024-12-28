@@ -36,10 +36,64 @@ public final class Day11 {
                 Floor.of(IntList.of(1, 3), IntList.of(1, 3))
         );
 
-        List<State> nextStates = start.nextStates();
+        Floor currentFloor = start.getFloor();
+        IntList microchips = currentFloor.getMicrochips();
+        IntList generators1 = currentFloor.getGenerators();
+
+        List<Item> items = Stream.concat(microchips.intStream().mapToObj(i -> Item.of(i, true)), generators1.intStream().mapToObj(i -> Item.of(i, false))).toList();
+
+        List<LongPair> movedItems = Stream.concat(items.stream().map(List::of), Combinations.generate(items, 2)).map(m -> {
+            long movedMicrochips = Bits.toBitSet(m.stream().filter(Item::type).mapToInt(Item::number));
+            long movedGenerators = Bits.toBitSet(m.stream().filter(i -> !i.type()).mapToInt(Item::number));
+            return LongPair.of(movedMicrochips, movedGenerators);
+        }).filter(p -> currentFloor.validIfRemove(p.left(), p.right())).toList();
+
+        List<AStar.Move<State>> nextStates = Stream.of(start.elevator - 1, start.elevator + 1)
+                .filter(i -> i > 0 && i < 5)
+                .flatMap(destination -> movedItems.stream().map(p -> start.nextState(destination, p)))
+                .filter(State::valid)
+                .map(AStar.Move::of)
+                .toList();
         nextStates.forEach(s -> LOGGER.info("State: {}", s));
 
-        return AStar.algorithmHeuristic(State::nextStates, (a, b) -> 1L, State::heuristic, start, endState);
+        RadioisotopeThermoelectricGenerators generators = new RadioisotopeThermoelectricGenerators(endState);
+        return generators.algorithm(start, endState);
+    }
+
+    private static final class RadioisotopeThermoelectricGenerators extends AStar<State> {
+
+        private final State end;
+
+        private RadioisotopeThermoelectricGenerators(State end) {
+            this.end = end;
+        }
+
+        @Override
+        public Iterable<Move<State>> next(State current) {
+            Floor currentFloor = current.getFloor();
+            IntList microchips = currentFloor.getMicrochips();
+            IntList generators = currentFloor.getGenerators();
+
+            List<Item> items = Stream.concat(microchips.intStream().mapToObj(i -> Item.of(i, true)), generators.intStream().mapToObj(i -> Item.of(i, false))).toList();
+
+            List<LongPair> movedItems = Stream.concat(items.stream().map(List::of), Combinations.generate(items, 2)).map(m -> {
+                long movedMicrochips = Bits.toBitSet(m.stream().filter(Item::type).mapToInt(Item::number));
+                long movedGenerators = Bits.toBitSet(m.stream().filter(i -> !i.type()).mapToInt(Item::number));
+                return LongPair.of(movedMicrochips, movedGenerators);
+            }).filter(p -> currentFloor.validIfRemove(p.left(), p.right())).toList();
+
+            return Stream.of(current.elevator() - 1, current.elevator() + 1)
+                    .filter(i -> i > 0 && i < 5)
+                    .flatMap(destination -> movedItems.stream().map(p -> current.nextState(destination, p)))
+                    .filter(State::valid)
+                    .map(AStar.Move::of)
+                    .toList();
+        }
+
+        @Override
+        public long heuristic(State node) {
+            return State.heuristic(node, end);
+        }
     }
 
     /**
@@ -114,98 +168,98 @@ public final class Day11 {
      * Then, to get everything up to the assembling machine on the fourth floor,
      * the following steps could be taken:
      *
-     *   - Bring the Hydrogen-compatible Microchip to the second floor, which is
-     *     safe because it can get power from the Hydrogen Generator:
+     * - Bring the Hydrogen-compatible Microchip to the second floor, which is
+     * safe because it can get power from the Hydrogen Generator:
      *
-     *     F4 .  .  .  .  .
-     *     F3 .  .  .  LG .
-     *     F2 E  HG HM .  .
-     *     F1 .  .  .  .  LM
+     * F4 .  .  .  .  .
+     * F3 .  .  .  LG .
+     * F2 E  HG HM .  .
+     * F1 .  .  .  .  LM
      *
-     *   - Bring both Hydrogen-related items to the third floor, which is safe
-     *     because the Hydrogen-compatible microchip is getting power from its
-     *     generator:
+     * - Bring both Hydrogen-related items to the third floor, which is safe
+     * because the Hydrogen-compatible microchip is getting power from its
+     * generator:
      *
-     *     F4 .  .  .  .  .
-     *     F3 E  HG HM LG .
-     *     F2 .  .  .  .  .
-     *     F1 .  .  .  .  LM
+     * F4 .  .  .  .  .
+     * F3 E  HG HM LG .
+     * F2 .  .  .  .  .
+     * F1 .  .  .  .  LM
      *
-     *   - Leave the Hydrogen Generator on floor three, but bring the Hydrogen-
-     *     compatible Microchip back down with you so you can still use the
-     *     elevator:
+     * - Leave the Hydrogen Generator on floor three, but bring the Hydrogen-
+     * compatible Microchip back down with you so you can still use the
+     * elevator:
      *
-     *     F4 .  .  .  .  .
-     *     F3 .  HG .  LG .
-     *     F2 E  .  HM .  .
-     *     F1 .  .  .  .  LM
+     * F4 .  .  .  .  .
+     * F3 .  HG .  LG .
+     * F2 E  .  HM .  .
+     * F1 .  .  .  .  LM
      *
-     *   - At the first floor, grab the Lithium-compatible Microchip, which is
-     *     safe because Microchips don't affect each other:
+     * - At the first floor, grab the Lithium-compatible Microchip, which is
+     * safe because Microchips don't affect each other:
      *
-     *     F4 .  .  .  .  .
-     *     F3 .  HG .  LG .
-     *     F2 .  .  .  .  .
-     *     F1 E  .  HM .  LM
+     * F4 .  .  .  .  .
+     * F3 .  HG .  LG .
+     * F2 .  .  .  .  .
+     * F1 E  .  HM .  LM
      *
-     *   - Bring both Microchips up one floor, where there is nothing to fry
-     *     them:
+     * - Bring both Microchips up one floor, where there is nothing to fry
+     * them:
      *
-     *     F4 .  .  .  .  .
-     *     F3 .  HG .  LG .
-     *     F2 E  .  HM .  LM
-     *     F1 .  .  .  .  .
+     * F4 .  .  .  .  .
+     * F3 .  HG .  LG .
+     * F2 E  .  HM .  LM
+     * F1 .  .  .  .  .
      *
-     *   - Bring both Microchips up again to floor three, where they can be
-     *     temporarily connected to their corresponding generators while the
-     *     elevator recharges, preventing either of them from being fried:
+     * - Bring both Microchips up again to floor three, where they can be
+     * temporarily connected to their corresponding generators while the
+     * elevator recharges, preventing either of them from being fried:
      *
-     *     F4 .  .  .  .  .
-     *     F3 E  HG HM LG LM
-     *     F2 .  .  .  .  .
-     *     F1 .  .  .  .  .
+     * F4 .  .  .  .  .
+     * F3 E  HG HM LG LM
+     * F2 .  .  .  .  .
+     * F1 .  .  .  .  .
      *
-     *   - Bring both Microchips to the fourth floor:
+     * - Bring both Microchips to the fourth floor:
      *
-     *     F4 E  .  HM .  LM
-     *     F3 .  HG .  LG .
-     *     F2 .  .  .  .  .
-     *     F1 .  .  .  .  .
+     * F4 E  .  HM .  LM
+     * F3 .  HG .  LG .
+     * F2 .  .  .  .  .
+     * F1 .  .  .  .  .
      *
-     *   - Leave the Lithium-compatible microchip on the fourth floor, but bring the
-     *     Hydrogen-compatible one so you can still use the elevator; this is
-     *     safe because although the Lithium Generator is on the destination
-     *     floor, you can connect Hydrogen-compatible microchip to the Hydrogen
-     *     Generator there:
+     * - Leave the Lithium-compatible microchip on the fourth floor, but bring the
+     * Hydrogen-compatible one so you can still use the elevator; this is
+     * safe because although the Lithium Generator is on the destination
+     * floor, you can connect Hydrogen-compatible microchip to the Hydrogen
+     * Generator there:
      *
-     *     F4 .  .  .  .  LM
-     *     F3 E  HG HM LG .
-     *     F2 .  .  .  .  .
-     *     F1 .  .  .  .  .
+     * F4 .  .  .  .  LM
+     * F3 E  HG HM LG .
+     * F2 .  .  .  .  .
+     * F1 .  .  .  .  .
      *
-     *   - Bring both Generators up to the fourth floor, which is safe because
-     *     you can connect the Lithium-compatible Microchip to the Lithium
-     *     Generator upon arrival:
+     * - Bring both Generators up to the fourth floor, which is safe because
+     * you can connect the Lithium-compatible Microchip to the Lithium
+     * Generator upon arrival:
      *
-     *     F4 E  HG .  LG LM
-     *     F3 .  .  HM .  .
-     *     F2 .  .  .  .  .
-     *     F1 .  .  .  .  .
+     * F4 E  HG .  LG LM
+     * F3 .  .  HM .  .
+     * F2 .  .  .  .  .
+     * F1 .  .  .  .  .
      *
-     *   - Bring the Lithium Microchip with you to the third floor so you can use
-     *     the elevator:
+     * - Bring the Lithium Microchip with you to the third floor so you can use
+     * the elevator:
      *
-     *     F4 .  HG .  LG .
-     *     F3 E  .  HM .  LM
-     *     F2 .  .  .  .  .
-     *     F1 .  .  .  .  .
+     * F4 .  HG .  LG .
+     * F3 E  .  HM .  LM
+     * F2 .  .  .  .  .
+     * F1 .  .  .  .  .
      *
-     *   - Bring both Microchips to the fourth floor:
+     * - Bring both Microchips to the fourth floor:
      *
-     *     F4 E  HG HM LG LM
-     *     F3 .  .  .  .  .
-     *     F2 .  .  .  .  .
-     *     F1 .  .  .  .  .
+     * F4 E  HG HM LG LM
+     * F3 .  .  .  .  .
+     * F2 .  .  .  .  .
+     * F1 .  .  .  .  .
      *
      * In this arrangement, it takes 11 steps to collect all of the objects at the
      * fourth floor for assembly. (Each elevator stop counts as one step, even if
@@ -243,7 +297,8 @@ public final class Day11 {
                 Floor.of(IntList.of(1, 2, 3, 4, 5), IntList.of(1, 2, 3, 4, 5))
         );
 
-        return AStar.algorithmHeuristic(State::nextStates, (a, b) -> 1L, State::heuristic, start, endState);
+        RadioisotopeThermoelectricGenerators generators = new RadioisotopeThermoelectricGenerators(endState);
+        return generators.algorithm(start, endState);
     }
 
     /**
@@ -255,10 +310,10 @@ public final class Day11 {
      * Upon entering the isolated containment area, however, you notice some extra
      * parts on the first floor that weren't listed on the record outside:
      *
-     *   - An elerium generator.
-     *   - An elerium-compatible microchip.
-     *   - A dilithium generator.
-     *   - A dilithium-compatible microchip.
+     * - An elerium generator.
+     * - An elerium-compatible microchip.
+     * - A dilithium generator.
+     * - A dilithium-compatible microchip.
      *
      * These work just like the other generators and microchips. You'll have to
      * get them up to assembly as well.
@@ -297,7 +352,8 @@ public final class Day11 {
                 Floor.of(IntList.of(1, 2, 3, 4, 5, 6, 7), IntList.of(1, 2, 3, 4, 5, 6, 7))
         );
 
-        return AStar.algorithmHeuristic(State::nextStates, (a, b) -> 1L, State::heuristic, start, endState);
+        RadioisotopeThermoelectricGenerators generators = new RadioisotopeThermoelectricGenerators(endState);
+        return generators.algorithm(start, endState);
     }
 
     record Floor(long microchips, long generators) {
@@ -387,29 +443,13 @@ public final class Day11 {
             };
         }
 
-        public List<State> nextStates() {
-            Floor currentFloor = getFloor(elevator);
-            IntList microchips = currentFloor.getMicrochips();
-            IntList generators = currentFloor.getGenerators();
-
-            List<Item> items = Stream.concat(microchips.intStream().mapToObj(i -> Item.of(i, true)), generators.intStream().mapToObj(i -> Item.of(i, false))).toList();
-
-            List<LongPair> movedItems = Stream.concat(items.stream().map(List::of), Combinations.generate(items, 2)).map(m -> {
-                long movedMicrochips = Bits.toBitSet(m.stream().filter(Item::type).mapToInt(Item::number));
-                long movedGenerators = Bits.toBitSet(m.stream().filter(i -> !i.type()).mapToInt(Item::number));
-                return LongPair.of(movedMicrochips, movedGenerators);
-            }).filter(p -> currentFloor.validIfRemove(p.left(), p.right())).toList();
-
-            return Stream.of(elevator - 1, elevator + 1)
-                    .filter(i -> i > 0 && i < 5)
-                    .flatMap(destination -> movedItems.stream().map(p -> nextState(destination, p)))
-                    .filter(State::valid)
-                    .toList();
+        public Floor getFloor() {
+            return getFloor(elevator);
         }
 
         private State nextState(int destination, LongPair moved) {
             Floor newDestination = getFloor(destination).addItems(moved.left(), moved.right());
-            Floor newCurrent = getFloor(elevator).removeItems(moved.left(), moved.right());
+            Floor newCurrent = getFloor().removeItems(moved.left(), moved.right());
             return new State(
                     destination,
                     floor(destination, 1, newDestination, newCurrent, first),

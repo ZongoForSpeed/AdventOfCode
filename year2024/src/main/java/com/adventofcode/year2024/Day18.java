@@ -3,7 +3,6 @@ package com.adventofcode.year2024;
 import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
-import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -213,26 +212,38 @@ public final class Day18 {
         return corruptedMemory;
     }
 
-    private record PathFinder(Set<Point2D> accessible, Point2D start, Point2D end) {
+    private static final class PathFinder extends AStar<Point2D> {
+
+        private final Set<Point2D> accessible;
+        private final Point2D start;
+        private final Point2D end;
+
+        private PathFinder(Set<Point2D> accessible, Point2D start, Point2D end) {
+            this.accessible = accessible;
+            this.start = start;
+            this.end = end;
+        }
 
         private boolean remove(Point2D memory) {
             return accessible.remove(memory);
         }
 
-        private List<Pair<Point2D, Long>> graph(Point2D p) {
+        @Override
+        public Iterable<Move<Point2D>> next(Point2D node) {
             return Arrays.stream(Direction.values())
-                    .map(p::move)
+                    .map(node::move)
                     .filter(accessible::contains)
-                    .map(m -> Pair.of(m, 1L))
+                    .map(AStar.Move::of)
                     .toList();
         }
 
-        private long heuristic(Point2D p) {
-            return Point2D.manhattanDistance(p, end);
+        @Override
+        public long heuristic(Point2D node) {
+            return Point2D.manhattanDistance(node, end);
         }
 
         private long findPath() {
-            return AStar.algorithmHeuristic(this::graph, this::heuristic, start, end::equals);
+            return algorithm(start, end);
         }
 
     }

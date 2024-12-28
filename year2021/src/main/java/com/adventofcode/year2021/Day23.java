@@ -18,64 +18,75 @@ public final class Day23 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23.class);
     private static final IntSet ENTRIES = IntSet.of(2, 4, 6, 8);
 
-    private static List<AStar.Move<State>> getPossibleMoves(Map<State, List<AStar.Move<State>>> cache, int size, State state) {
-        List<AStar.Move<State>> moves = cache.get(state);
-        if (moves != null) {
-            return moves;
+    private static final class AmphipodAlgorithm extends AStar<State> {
+
+        private final Map<State, List<Move<State>>> cache = new HashMap<>();
+        private final int size;
+
+        private AmphipodAlgorithm(int size) {
+            this.size = size;
         }
-        moves = new ArrayList<>();
-        String hallway = state.hallway();
-        for (int i : ENTRIES) {
-            String hole = state.get(i / 2 - 1);
-            if (StringUtils.isBlank(hole)) {
-                continue;
+
+        @Override
+        public Iterable<Move<State>> next(State node) {
+            List<Move<State>> moves = cache.get(node);
+            if (moves != null) {
+                return moves;
             }
-            hole = hole.trim();
-            char amphipod = hole.charAt(0);
-            String newHole = StringUtils.leftPad(hole.substring(1), size);
-            int holeLength = hole.length() - 1;
-            for (int target : state.availablePositions(i)) {
-                if (ENTRIES.contains(target)) {
+            moves = new ArrayList<>();
+            String hallway = node.hallway();
+            for (int i : ENTRIES) {
+                String hole = node.get(i / 2 - 1);
+                if (StringUtils.isBlank(hole)) {
                     continue;
                 }
+                hole = hole.trim();
+                char amphipod = hole.charAt(0);
+                String newHole = StringUtils.leftPad(hole.substring(1), size);
+                int holeLength = hole.length() - 1;
+                for (int target : node.availablePositions(i)) {
+                    if (ENTRIES.contains(target)) {
+                        continue;
+                    }
+                    char[] data = hallway.toCharArray();
+                    data[target] = amphipod;
+                    State next = node.next(data, i / 2 - 1, newHole);
+                    long cost = (long) Math.abs(target - i) + (size - holeLength);
+                    moves.add(AStar.Move.of(next, cost * computeCost(amphipod)));
+                }
+            }
+
+            for (int position = 0; position < hallway.length(); position++) {
+                char amphipod = hallway.charAt(position);
+                if (amphipod < 'A' || amphipod > 'D') {
+                    continue;
+                }
+
+                int holeNumber = amphipod - 'A';
+
+                if (node.availablePositions(position)
+                        .intStream()
+                        .filter(ENTRIES::contains)
+                        .map(j -> j / 2 - 1)
+                        .noneMatch(j -> j == holeNumber)) {
+                    continue;
+                }
+                String hole = node.get(holeNumber).trim();
+                if (!StringUtils.containsOnly(hole, amphipod)) {
+                    continue;
+                }
+
                 char[] data = hallway.toCharArray();
-                data[target] = amphipod;
-                State next = state.next(data, i / 2 - 1, newHole);
-                long cost = (long) Math.abs(target - i) + (size - holeLength);
+                data[position] = ' ';
+                String newHole = StringUtils.leftPad(amphipod + hole, size);
+                State next = node.next(data, holeNumber, newHole);
+                long cost = (long) Math.abs(position - (holeNumber + 1) * 2) + (size - hole.length());
                 moves.add(AStar.Move.of(next, cost * computeCost(amphipod)));
             }
+
+            cache.put(node, moves);
+            return moves;
         }
-
-        for (int position = 0; position < hallway.length(); position++) {
-            char amphipod = hallway.charAt(position);
-            if (amphipod < 'A' || amphipod > 'D') {
-                continue;
-            }
-
-            int holeNumber = amphipod - 'A';
-
-            if (state.availablePositions(position)
-                    .intStream()
-                    .filter(ENTRIES::contains)
-                    .map(j -> j / 2 - 1)
-                    .noneMatch(j -> j == holeNumber)) {
-                continue;
-            }
-            String hole = state.get(holeNumber).trim();
-            if (!StringUtils.containsOnly(hole, amphipod)) {
-                continue;
-            }
-
-            char[] data = hallway.toCharArray();
-            data[position] = ' ';
-            String newHole = StringUtils.leftPad(amphipod + hole, size);
-            State next = state.next(data, holeNumber, newHole);
-            long cost = (long) Math.abs(position - (holeNumber + 1) * 2) + (size - hole.length());
-            moves.add(AStar.Move.of(next, cost * computeCost(amphipod)));
-        }
-
-        cache.put(state, moves);
-        return moves;
     }
 
     private static long computeCost(char c) {
@@ -86,11 +97,6 @@ public final class Day23 {
             case 'D' -> 1000;
             default -> throw new IllegalStateException("Invalid cost " + c);
         };
-    }
-
-    private static long computeCost(State start, State end, int size) {
-        Map<State, List<AStar.Move<State>>> cache = new HashMap<>();
-        return AStar.algorithm(state -> getPossibleMoves(cache, size, state), start, end);
     }
 
     private static String readInput(Scanner scanner) {
@@ -253,7 +259,7 @@ public final class Day23 {
         String d = "" + input.charAt(3) + input.charAt(7);
         State start = State.of(a, b, c, d);
         State end = State.of("AA", "BB", "CC", "DD");
-        long cost = computeCost(start, end, 2);
+        long cost = new AmphipodAlgorithm(2).algorithm(start, end);
         LOGGER.info("Cost {}", cost);
         return cost;
     }
@@ -498,7 +504,7 @@ public final class Day23 {
         String d = input.charAt(3) + "AC" + input.charAt(7);
         State start = State.of(a, b, c, d);
         State end = State.of("AAAA", "BBBB", "CCCC", "DDDD");
-        long cost = computeCost(start, end, 4);
+        long cost = new AmphipodAlgorithm(4).algorithm(start, end);
         LOGGER.info("Cost {}", cost);
         return cost;
     }

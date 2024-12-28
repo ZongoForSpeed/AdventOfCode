@@ -151,7 +151,7 @@ public final class Day21 {
                 LOGGER.trace("Register before: {} -> {}", register, command);
                 OpCode.executeInstruction(register, command.code(), command.a(), command.b(), command.c());
                 if ("eqrr".equals(command.code())) {
-                    LOGGER.info("Command: {}, register: {}", command, register);
+                    LOGGER.trace("Command: {}, register: {}", command, register);
 
                     int value = register.getInt(3);
                     if (seen.add(value)) {

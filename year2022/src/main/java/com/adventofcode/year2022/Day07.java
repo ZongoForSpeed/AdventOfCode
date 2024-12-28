@@ -235,7 +235,7 @@ public final class Day07 {
                     default -> throw new IllegalStateException("Unknown command: " + command);
                 }
             } else {
-                String left = split.get(0);
+                String left = split.getFirst();
                 String right = split.get(1);
                 if (NumberUtils.isParsable(left)) {
                     current.files.add(new File(Integer.parseInt(left), right));

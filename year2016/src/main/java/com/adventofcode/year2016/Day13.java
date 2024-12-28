@@ -5,13 +5,13 @@ import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public final class Day13 {
     private static boolean isOpenSpace(Point2D p, int favoriteNumber) {
@@ -21,12 +21,24 @@ public final class Day13 {
         return Long.bitCount(d) % 2 == 0;
     }
 
-    static List<Point2D> neighbours(Point2D p, int favoriteNumber) {
+    static Stream<Point2D> neighbours(Point2D p, int favoriteNumber) {
         return Arrays.stream(Direction.values())
                 .map(p::move)
                 .filter(o -> o.x() >= 0 && o.y() >= 0)
-                .filter(o -> isOpenSpace(o, favoriteNumber))
-                .toList();
+                .filter(o -> isOpenSpace(o, favoriteNumber));
+    }
+
+    private static final class MazeAlgorithm extends AStar<Point2D> {
+        private final int favoriteNumber;
+
+        private MazeAlgorithm(int favoriteNumber) {
+            this.favoriteNumber = favoriteNumber;
+        }
+
+        @Override
+        public Iterable<Move<Point2D>> next(Point2D node) {
+            return neighbours(node, favoriteNumber).map(AStar.Move::of).toList();
+        }
     }
 
     /**
@@ -46,18 +58,18 @@ public final class Day13 {
      * layout is actually quite logical. You can determine whether a given x,y
      * coordinate will be a wall or an open space using a simple system:
      *
-     *   - Find x*x + 3*x + 2*x*y + y + y*y.
-     *   - Add the office designer's favorite number (your puzzle input).
-     *   - Find the binary representation of that sum; count the number of bits
-     *     that are 1.
-     *       - If the number of bits that are 1 is even, it's an open space.
-     *       - If the number of bits that are 1 is odd, it's a wall.
+     * - Find x*x + 3*x + 2*x*y + y + y*y.
+     * - Add the office designer's favorite number (your puzzle input).
+     * - Find the binary representation of that sum; count the number of bits
+     * that are 1.
+     * - If the number of bits that are 1 is even, it's an open space.
+     * - If the number of bits that are 1 is odd, it's a wall.
      *
      * For example, if the office designer's favorite number were 10, drawing
      * walls as # and open spaces as ., the corner of the building containing 0,0
      * would look like this:
      *
-     *   0123456789
+     * 0123456789
      * 0 .#.####.##
      * 1 ..#..#...#
      * 2 #....##...
@@ -69,7 +81,7 @@ public final class Day13 {
      * Now, suppose you wanted to reach 7,4. The shortest route you could take is
      * marked as O:
      *
-     *   0123456789
+     * 0123456789
      * 0 .#.####.##
      * 1 .O#..#...#
      * 2 #OOO.##...
@@ -88,7 +100,7 @@ public final class Day13 {
      * Your puzzle answer was 86.
      */
     static long findPath(int favoriteNumber, Point2D start, Point2D end) {
-        return AStar.algorithm(p -> neighbours(p, favoriteNumber), (a, b) -> 1L, start, end);
+        return new MazeAlgorithm(favoriteNumber).algorithm(start, end);
     }
 
     /**
@@ -106,7 +118,7 @@ public final class Day13 {
         while (!queue.isEmpty()) {
             Node<Point2D> node = queue.poll();
             if (closedList.add(node.vertex())) {
-                Collection<Point2D> moves = neighbours(node.vertex(), favoriteNumber);
+                List<Point2D> moves = neighbours(node.vertex(), favoriteNumber).toList();
                 for (Point2D move : moves) {
                     if (!closedList.contains(move)) {
                         long cost = node.cost() + 1;

@@ -7,6 +7,7 @@ import com.adventofcode.common.point.Point3D;
 import com.adventofcode.common.point.map.CharMap;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.function.Function;
 
 public final class Day20 {
     private Day20() {
@@ -299,30 +301,37 @@ public final class Day20 {
 
         }
 
-        private List<Point3D> flatNeighbours(Point3D node) {
-            List<Point3D> neighbours = new ArrayList<>();
-            graph.getOrDefault(node.project(), Collections.emptyList()).stream().map(p -> new Point3D(p, node.z())).forEach(neighbours::add);
+        private List<AStar.Move<Point3D>> flatNeighbours(Point3D node) {
+            List<AStar.Move<Point3D>> neighbours = new ArrayList<>();
+            graph.getOrDefault(node.project(), Collections.emptyList())
+                    .stream()
+                    .map(p -> new Point3D(p, node.z()))
+                    .map(AStar.Move::of)
+                    .forEach(neighbours::add);
             Point2D innerWrap = innerWraps.get(node.project());
             if (innerWrap != null) {
-                neighbours.add(new Point3D(innerWrap, node.z()));
+                neighbours.add(AStar.Move.of(new Point3D(innerWrap, node.z())));
             }
             Point2D outerWrap = outerWraps.get(node.project());
             if (outerWrap != null) {
-                neighbours.add(new Point3D(outerWrap, node.z()));
+                neighbours.add(AStar.Move.of(new Point3D(outerWrap, node.z())));
             }
             return neighbours;
         }
 
-        private List<Point3D> recursiveNeighbours(Point3D node) {
-            List<Point3D> neighbours = new ArrayList<>();
-            graph.getOrDefault(node.project(), Collections.emptyList()).stream().map(p -> new Point3D(p, node.z())).forEach(neighbours::add);
+        private List<AStar.Move<Point3D>> recursiveNeighbours(Point3D node) {
+            List<AStar.Move<Point3D>> neighbours = new ArrayList<>();
+            graph.getOrDefault(node.project(), Collections.emptyList()).stream()
+                    .map(p -> new Point3D(p, node.z()))
+                    .map(AStar.Move::of)
+                    .forEach(neighbours::add);
             Point2D innerWrap = innerWraps.get(node.project());
             if (innerWrap != null) {
-                neighbours.add(new Point3D(innerWrap, node.z() + 1));
+                neighbours.add(AStar.Move.of(new Point3D(innerWrap, node.z() + 1)));
             }
             Point2D outerWrap = outerWraps.get(node.project());
             if (outerWrap != null && node.z() > 0) {
-                neighbours.add(new Point3D(outerWrap, node.z() - 1));
+                neighbours.add(AStar.Move.of(new Point3D(outerWrap, node.z() - 1)));
             }
             return neighbours;
         }
@@ -331,14 +340,30 @@ public final class Day20 {
             Point3D start = new Point3D(wrap.get("AA").getFirst(), 0);
             Point3D end = new Point3D(wrap.get("ZZ").getFirst(), 0);
 
-            return AStar.algorithm(this::flatNeighbours, (x, y) -> 1L, start, end);
+            return new MazeAlgorithm(this::flatNeighbours).algorithm(start, end);
         }
 
         public long solveRecursiveMaze() {
             Point3D start = new Point3D(wrap.get("AA").getFirst(), 0);
             Point3D end = new Point3D(wrap.get("ZZ").getFirst(), 0);
 
-            return AStar.algorithm(this::recursiveNeighbours, (x, y) -> 1L, start, end);
+            return new MazeAlgorithm(this::recursiveNeighbours).algorithm(start, end);
         }
     }
+
+    private static final class MazeAlgorithm extends AStar<Point3D> {
+
+        private final Function<Point3D, Collection<Move<Point3D>>> graph;
+
+        private MazeAlgorithm(Function<Point3D, Collection<Move<Point3D>>> graph) {
+            this.graph = graph;
+        }
+
+        @Override
+        public Iterable<Move<Point3D>> next(Point3D node) {
+            return graph.apply(node);
+        }
+
+    }
+
 }

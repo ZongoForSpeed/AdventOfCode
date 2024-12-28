@@ -1,8 +1,8 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.graph.AStar;
-import com.adventofcode.common.point.map.IntegerMap;
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.IntegerMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -264,7 +264,24 @@ public final class Day15 {
         Point2D start = Point2D.of(0, 0);
         Point2D end = Point2D.of(xMax, yMax);
 
-        IntegerMap finalMap = map;
-        return AStar.algorithm(p -> adjacent(finalMap, p, xMax, yMax), start, end);
+        return new ChitonAlgorithm(map, xMax, yMax).algorithm(start, end);
+    }
+
+    private static final class ChitonAlgorithm extends AStar<Point2D> {
+
+        private final IntegerMap map;
+        private final int xMax;
+        private final int yMax;
+
+        private ChitonAlgorithm(IntegerMap map, int xMax, int yMax) {
+            this.map = map;
+            this.xMax = xMax;
+            this.yMax = yMax;
+        }
+
+        @Override
+        public Iterable<Move<Point2D>> next(Point2D node) {
+            return adjacent(map, node, xMax, yMax);
+        }
     }
 }

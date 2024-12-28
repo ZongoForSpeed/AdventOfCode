@@ -25,6 +25,21 @@ public final class Day12 {
         // No-Op
     }
 
+    private static final class HillClimbingAlgorithm extends AStar<Point2D> {
+
+        private final Map<Point2D, Collection<Point2D>> graph;
+
+        private HillClimbingAlgorithm(Map<Point2D, Collection<Point2D>> graph) {
+            this.graph = graph;
+        }
+
+        @Override
+        public Iterable<Move<Point2D>> next(Point2D node) {
+            return graph.get(node).stream().map(AStar.Move::of).toList();
+        }
+
+    }
+
     /**
      * --- Day 12: Hill Climbing Algorithm ---
      *
@@ -104,7 +119,7 @@ public final class Day12 {
         }
 
         LOGGER.info("graph = {}", graph);
-        return AStar.algorithm(graph::get, (a, b) -> 1L, start, end);
+        return new HillClimbingAlgorithm(graph).algorithm(start, end);
     }
 
     /**
@@ -170,13 +185,16 @@ public final class Day12 {
 
         LOGGER.info("graph = {}", graph);
 
+        HillClimbingAlgorithm astar = new HillClimbingAlgorithm(graph);
+
         List<Point2D> starts = points.stream().filter(p -> map.get(p) == 'a').toList();
         LongList distances = new LongArrayList(starts.size());
         for (Point2D d : starts) {
-            long algorithm = AStar.algorithm(graph::get, (a, b) -> 1L, d, end);
+            long algorithm = astar.algorithm(d, end);
             distances.add(algorithm);
         }
 
         return distances.longStream().min().orElseThrow();
     }
+
 }

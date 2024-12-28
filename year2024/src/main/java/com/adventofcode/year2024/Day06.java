@@ -2,6 +2,7 @@ package com.adventofcode.year2024;
 
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.Position2D;
 import com.adventofcode.common.point.map.CharMap;
 import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 
@@ -26,16 +27,16 @@ public final class Day06 {
 
         Set<Point2D> allPoints = new HashSet<>(map.points());
         Set<Point2D> path = new HashSet<>();
-        Guard current = new Guard(guardPosition, Direction.UP);
+        Position2D current = new Position2D(guardPosition, Direction.UP);
         while (true) {
-            path.add(current.position());
-            Guard move = current.move();
-            if (map.get(move.position()) == '#') {
-                current = current.turn();
+            path.add(current.p());
+            Position2D move = current.move();
+            if (map.get(move.p()) == '#') {
+                current = current.right();
             } else {
                 current = move;
             }
-            if (!allPoints.contains(current.position())) {
+            if (!allPoints.contains(current.p())) {
                 break;
             }
         }
@@ -297,7 +298,7 @@ public final class Day06 {
             }
         }
 
-        Guard guard = new Guard(guardPosition, Direction.UP);
+        Position2D guard = new Position2D(guardPosition, Direction.UP);
         int countCycle = 0;
         for (Point2D inPath : findPath(map)) {
             if (inPath.equals(guardPosition)) {
@@ -314,19 +315,19 @@ public final class Day06 {
         return countCycle;
     }
 
-    private static boolean cycle(Guard guard, CharMap map) {
+    private static boolean cycle(Position2D guard, CharMap map) {
         Set<Point2D> allPoints = new HashSet<>(map.points());
-        Guard current = guard;
-        Set<Guard> states = new HashSet<>();
+        Position2D current = guard;
+        Set<Position2D> states = new HashSet<>();
         while (true) {
             if (states.add(current)) {
-                Guard move = current.move();
-                if (map.get(move.position()) == '#') {
-                    current = current.turn();
+                Position2D move = current.move();
+                if (map.get(move.p()) == '#') {
+                    current = current.right();
                 } else {
                     current = move;
                 }
-                if (!allPoints.contains(current.position())) {
+                if (!allPoints.contains(current.p())) {
                     break;
                 }
             } else {
@@ -335,16 +336,5 @@ public final class Day06 {
 
         }
         return false;
-    }
-
-    private record Guard(Point2D position, Direction direction) {
-        // TODO replace with Position2D
-        Guard move() {
-            return new Guard(position.move(direction), direction);
-        }
-
-        Guard turn() {
-            return new Guard(position, direction.right());
-        }
     }
 }
