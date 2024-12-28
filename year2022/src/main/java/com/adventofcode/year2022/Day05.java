@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.chars.CharList;
 import it.unimi.dsi.fastutil.chars.CharStack;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -238,6 +239,9 @@ public final class Day05 {
     private static void readInput(Scanner scanner, Int2ObjectMap<CharStack> stacks, List<Move> moves) {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
+            if (StringUtils.isBlank(line)) {
+                break;
+            }
             if (line.contains("[")) {
                 for (int i = 1; i <= line.length(); i += 4) {
                     char c = line.charAt(i);
@@ -246,9 +250,10 @@ public final class Day05 {
                         stacks.computeIfAbsent(stack, ignore -> new CharArrayList()).push(c);
                     }
                 }
-                continue;
             }
-
+        }
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
                 int count = Integer.parseInt(matcher.group(1));
@@ -257,6 +262,8 @@ public final class Day05 {
 
                 LOGGER.trace("count={}, from={}, to={}", count, from, to);
                 moves.add(new Move(count, from, to));
+            } else {
+                throw new IllegalStateException("Cannot parse line: " + line);
             }
         }
 

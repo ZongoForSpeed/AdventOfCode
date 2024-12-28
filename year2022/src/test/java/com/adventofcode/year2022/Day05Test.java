@@ -20,19 +20,17 @@ class Day05Test extends AbstractTest {
                 [Z] [M] [P]
                  1   2   3\s
                 
-                path 1 from 2 to 1
-                path 3 from 1 to 3
-                path 2 from 2 to 1
-                path 1 from 1 to 2""";
+                move 1 from 2 to 1
+                move 3 from 1 to 3
+                move 2 from 2 to 1
+                move 1 from 1 to 2""";
 
-        {
-            Scanner scanner = new Scanner(input);
+        try (Scanner scanner = new Scanner(input)) {
             String topCrate = Day05.PartOne.supplyStacks(scanner);
             Assertions.assertThat(topCrate).isEqualTo("CMZ");
         }
 
-        {
-            Scanner scanner = new Scanner(input);
+        try (Scanner scanner = new Scanner(input)) {
             String topCrate = Day05.PartTwo.supplyStacks(scanner);
             Assertions.assertThat(topCrate).isEqualTo("MCD");
         }
