@@ -117,7 +117,7 @@ public final class Day25 {
 
         public Droid(Set<String> forbiddenItems) {
             this.forbiddenItems = forbiddenItems;
-            executor = Executors.newSingleThreadExecutor();
+            executor = Executors.newVirtualThreadPerTaskExecutor();
         }
 
         private static Position parseOutput(String output) {

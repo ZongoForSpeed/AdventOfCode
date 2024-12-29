@@ -181,7 +181,7 @@ public final class Day23 {
 
         NetworkComputer(String program, long address) {
             this.address = address;
-            this.executor = Executors.newSingleThreadExecutor();
+            this.executor = Executors.newVirtualThreadPerTaskExecutor();
             this.queue = new LinkedBlockingQueue<>();
             this.receivedPackets = new LongArrayList();
             executor.submit(() -> Intcode.intcode(program, this::input, this::output));

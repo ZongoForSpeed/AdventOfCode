@@ -15,6 +15,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -36,14 +37,15 @@ public final class Day18 {
         List<String[]> commands = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" ");
-            commands.add(split);
+            commands.add(line.split(" "));
         }
         return commands;
     }
 
     /**
+     * <pre>
      * --- Day 18: Duet ---
+     *
      * You discover a tablet containing some strange assembly code labeled simply
      * "Duet". Rather than bother the sound card with it, you decide to run the
      * code yourself. Unfortunately, you don't see any documentation, so you're
@@ -108,9 +110,9 @@ public final class Day18 {
      * What is the value of the recovered frequency (the value of the most
      * recently played sound) the first time a rcv instruction is executed with a
      * non-zero value?
-     *
+     * </pre>
      */
-    static long playSound(Scanner scanner) {
+    public static long partOne(Scanner scanner) {
         List<String[]> commands = readCommands(scanner);
 
         SimpleCallback callback = new SimpleCallback();
@@ -119,6 +121,7 @@ public final class Day18 {
     }
 
     /**
+     * <pre>
      * --- Part Two ---
      *
      * As you congratulate yourself for a job well done, you notice that the
@@ -172,8 +175,9 @@ public final class Day18 {
      *
      * Once both of your programs have terminated (regardless of what caused them
      * to do so), how many times did program 1 send a value?
+     * </pre>
      */
-    static long duet(Scanner scanner) throws InterruptedException {
+    public static long partTwo(Scanner scanner) throws InterruptedException {
         List<String[]> commands = readCommands(scanner);
 
         CountDownLatch latch = new CountDownLatch(1);
@@ -187,14 +191,15 @@ public final class Day18 {
         BlockingCallback callback0 = new BlockingCallback(latch, queue0, queue1, waiting0, waiting1);
         BlockingCallback callback1 = new BlockingCallback(latch, queue1, queue0, waiting1, waiting0);
 
-        try (ExecutorService executorService = Executors.newCachedThreadPool()) {
-            executorService.submit(() -> duet(commands, Map.of("p", 0L), callback0, false));
-            executorService.submit(() -> duet(commands, Map.of("p", 1L), callback1, false));
+        try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor()) {
+            Future<?> t1 = executorService.submit(() -> duet(commands, Map.of("p", 0L), callback0, false));
+            Future<?> t2 = executorService.submit(() -> duet(commands, Map.of("p", 1L), callback1, false));
 
             latch.await();
-            executorService.shutdown();
+            t1.cancel(true);
+            t2.cancel(true);
+            return callback1.getCount();
         }
-        return callback1.getCount();
     }
 
     private static void duet(List<String[]> commands, Map<String, Long> startingRegister, Callback callback, boolean doBreak) {
@@ -206,7 +211,7 @@ public final class Day18 {
             switch (command[0]) {
                 case "snd" -> {
                     long value = getValue(register, command[1]);
-                    LOGGER.trace("{} Playing sound {}", startingRegister, value);
+                    LOGGER.debug("{} Playing sound {}", startingRegister, value);
                     callback.send(value);
                     ++position;
                 }
@@ -252,7 +257,7 @@ public final class Day18 {
                 }
                 default -> throw new IllegalStateException("Unknown command type: " + Arrays.toString(command));
             }
-            LOGGER.trace("Register after command '{}' : {}", command, register);
+            LOGGER.trace("{} Register after command '{}' : {}", startingRegister, command, register);
         }
     }
 

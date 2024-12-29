@@ -1,10 +1,10 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.maths.Permutations;
+import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import it.unimi.dsi.fastutil.longs.LongLists;
-import it.unimi.dsi.fastutil.Pair;
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -37,9 +37,9 @@ public final class Day07 {
      * amplifier's output leads to the third amplifier's input, and so on. The first amplifier's input value is 0, and
      * the last amplifier's output leads to your ship's thrusters.
      *
-     *     O-------O  O-------O  O-------O  O-------O  O-------O
+     * O-------O  O-------O  O-------O  O-------O  O-------O
      * 0 ->| Amp A |->| Amp B |->| Amp C |->| Amp D |->| Amp E |-> (to thrusters)
-     *     O-------O  O-------O  O-------O  O-------O  O-------O
+     * O-------O  O-------O  O-------O  O-------O  O-------O
      * The Elves have sent you some Amplifier Controller Software (your puzzle input), a program that should run on your
      * existing Intcode computer. Each amplifier will need to run a copy of the program.
      *
@@ -103,14 +103,14 @@ public final class Day07 {
      * It's no good - in this configuration, the amplifiers can't generate a large enough output signal to produce the
      * thrust you'll need. The Elves quickly talk you through rewiring the amplifiers into a feedback loop:
      *
-     *       O-------O  O-------O  O-------O  O-------O  O-------O
+     * O-------O  O-------O  O-------O  O-------O  O-------O
      * 0 -+->| Amp A |->| Amp B |->| Amp C |->| Amp D |->| Amp E |-.
-     *    |  O-------O  O-------O  O-------O  O-------O  O-------O |
-     *    |                                                        |
-     *    '--------------------------------------------------------+
-     *                                                             |
-     *                                                             v
-     *                                                      (to thrusters)
+     * |  O-------O  O-------O  O-------O  O-------O  O-------O |
+     * |                                                        |
+     * '--------------------------------------------------------+
+     * |
+     * v
+     * (to thrusters)
      * Most of the amplifiers are connected as they were before; amplifier A's output is connected to amplifier B's
      * input, and so on. However, the output from amplifier E is now connected into amplifier A's input. This creates
      * the feedback loop: the signal will be sent through the amplifiers many times.
@@ -154,7 +154,7 @@ public final class Day07 {
     }
 
     private static long internalThrusterSignal(String stringCodes, LongList settings) throws ExecutionException, InterruptedException {
-        try (ExecutorService executorService = Executors.newFixedThreadPool(settings.size())) {
+        try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor()) {
             BlockingQueue<Long> queue1 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(0, 1)));
             BlockingQueue<Long> queue2 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(1, 2)));
             BlockingQueue<Long> queue3 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(2, 3)));

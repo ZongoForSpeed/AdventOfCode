@@ -208,7 +208,7 @@ public class Intcode {
         private final BlockingQueue<Long> outputQueue = new LinkedBlockingQueue<>();
 
         public Robot(String program) {
-            executorService = Executors.newSingleThreadExecutor();
+            executorService = Executors.newVirtualThreadPerTaskExecutor();
             var unused = executorService.submit(() -> intcode(program, take(inputQueue), offer(outputQueue)));
         }
 

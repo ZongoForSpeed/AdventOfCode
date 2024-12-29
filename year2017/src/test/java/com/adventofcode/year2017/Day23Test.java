@@ -12,14 +12,13 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 class Day23Test extends AbstractTest {
+
     Day23Test() {
         super(2017, 23);
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
-
 
     static long runTest(long b, long c, long o) {
         long mul = 0;
@@ -75,7 +74,7 @@ class Day23Test extends AbstractTest {
     }
 
     @Test
-    void testAssembly1() {
+    void testAssembly() {
         assertThat(runTest(57, 57, 3025)).isEqualTo(1);
         assertThat(runTest(57, 57 + 10 * 17, 247390)).isEqualTo(9);
         assertThat(Day23.runProgramFast(57, 57 + 10 * 17)).isEqualTo(10);
@@ -93,15 +92,15 @@ class Day23Test extends AbstractTest {
                 set c b
                 sub c -17000""";
 
-        Scanner scanner = new Scanner(input);
-        List<String[]> commands = Day23.readCommands(scanner);
+        try (Scanner scanner = new Scanner(input)) {
+            List<String[]> commands = Day23.readCommands(scanner);
+            Map<String, Long> registers = new HashMap<>(Map.of("a", 1L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
+            Day23.runProgram(commands, registers);
 
-        Map<String, Long> registers = new HashMap<>(Map.of("a", 1L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
-        Day23.runProgram(commands, registers);
+            LOGGER.info("registers: {}", registers);
 
-        LOGGER.info("registers: {}", registers);
-
-        assertThat(registers).containsEntry("b", 105700L).containsEntry("c", 122700L);
+            assertThat(registers).containsEntry("b", 105700L).containsEntry("c", 122700L);
+        }
 
     }
 

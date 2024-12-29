@@ -1,16 +1,20 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.Intcode;
+import com.adventofcode.common.graph.Dijkstra;
 import com.adventofcode.common.point.Direction;
-import com.adventofcode.common.point.map.Map2D;
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.Map2D;
 import it.unimi.dsi.fastutil.Pair;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 public final class Day15 {
@@ -19,7 +23,7 @@ public final class Day15 {
         // No-Op
     }
 
-    public static void cartography(Intcode.Robot robot, Map2D map, Deque<Direction> paths, Set<Point2D> visited, Point2D position) {
+    private static void cartography(Intcode.Robot robot, Map2D map, Deque<Direction> paths, Set<Point2D> visited, Point2D position) {
         if (visited.add(position)) {
             for (Direction d : Direction.values()) {
                 long move = robot.action(convertDirection(d));
@@ -39,7 +43,7 @@ public final class Day15 {
         return d.ordinal() + 1;
     }
 
-    public static char print(long move) {
+    private static char print(long move) {
         return switch ((int) move) {
             case 0 -> '#';
             case 1 -> '.';
@@ -49,7 +53,9 @@ public final class Day15 {
     }
 
     /**
+     * <pre>
      * --- Day 15: Oxygen System ---
+     *
      * Out here in deep space, many things can go wrong. Fortunately, many of those things have indicator lights.
      * Unfortunately, one of those lights is lit: the oxygen system for part of the ship has failed!
      *
@@ -132,8 +138,30 @@ public final class Day15 {
      * the location of the oxygen system?
      *
      * Your puzzle answer was 240.
-     *
+     * </pre>
+     */
+    public static Integer partOne(Scanner scanner) {
+        String line = scanner.nextLine();
+        Intcode.Robot robot = new Intcode.Robot(line);
+        Point2D origin = Point2D.of(0, 0);
+
+        Map2D map = new Map2D();
+        cartography(robot, map, new ArrayDeque<>(), new HashSet<>(), origin);
+
+        map.print(Day15::print);
+
+        Point2D oxygen = map.entrySet().stream().filter(e -> e.getValue() == 2).map(Map.Entry::getKey).findFirst().orElseThrow();
+        Map<Point2D, List<Pair<Point2D, Integer>>> graph = createGraph(map);
+
+        Dijkstra<Point2D> dijkstra = new Dijkstra<>(graph);
+        Map<Point2D, Integer> distance = dijkstra.computeDistance(origin);
+        return distance.get(oxygen);
+    }
+
+    /**
+     * <pre>
      * --- Part Two ---
+     *
      * You quickly repair the oxygen system; oxygen gradually fills the area.
      *
      * Oxygen starts in the location containing the repaired oxygen system. It takes one minute for oxygen to spread to
@@ -179,8 +207,28 @@ public final class Day15 {
      * So, in this example, all locations contain oxygen after 4 minutes.
      *
      * Use the repair droid to get a complete map of the area. How many minutes will it take to fill with oxygen?
+     * </pre>
      */
-    public static Map<Point2D, List<Pair<Point2D, Integer>>> createGraph(Map2D map) {
+    public static int partTwo(Scanner scanner) {
+        String line = scanner.nextLine();
+        Intcode.Robot robot = new Intcode.Robot(line);
+        Point2D origin = Point2D.of(0, 0);
+
+        Map2D map = new Map2D();
+        cartography(robot, map, new ArrayDeque<>(), new HashSet<>(), origin);
+
+        map.print(Day15::print);
+
+        Point2D oxygen = map.entrySet().stream().filter(e -> e.getValue() == 2).map(Map.Entry::getKey).findFirst().orElseThrow();
+        Map<Point2D, List<Pair<Point2D, Integer>>> graph = createGraph(map);
+
+        Dijkstra<Point2D> dijkstra = new Dijkstra<>(graph);
+
+        Map<Point2D, Integer> oxygenFill = dijkstra.computeDistance(oxygen);
+        return oxygenFill.values().stream().mapToInt(x -> x).max().orElse(0);
+    }
+
+    private static Map<Point2D, List<Pair<Point2D, Integer>>> createGraph(Map2D map) {
         Map<Point2D, List<Pair<Point2D, Integer>>> graph = new HashMap<>();
         for (Map.Entry<Point2D, Long> entry : map.entrySet()) {
             Point2D point = entry.getKey();
@@ -195,4 +243,5 @@ public final class Day15 {
         }
         return graph;
     }
+
 }

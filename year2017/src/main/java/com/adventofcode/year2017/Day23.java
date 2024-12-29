@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public final class Day23 {
+
     private Day23() {
         // No-Op
     }
@@ -22,7 +23,7 @@ public final class Day23 {
         return register.getOrDefault(key, 0L);
     }
 
-    static List<String[]> readCommands(Scanner scanner) {
+    public static List<String[]> readCommands(Scanner scanner) {
         List<String[]> commands = new ArrayList<>();
         while (scanner.hasNextLine()) {
             commands.add(scanner.nextLine().split(" "));
@@ -31,6 +32,7 @@ public final class Day23 {
     }
 
     /**
+     * <pre>
      * --- Day 23: Coprocessor Conflagration ---
      *
      * You decide to head directly to the CPU and fix the printer from there. As
@@ -61,8 +63,9 @@ public final class Day23 {
      * instruction invoked?
      *
      * Your puzzle answer was 3025.
+     * </pre>
      */
-    static int runProgram(List<String[]> commands, Map<String, Long> registers) {
+    public static int runProgram(List<String[]> commands, Map<String, Long> registers) {
         int position = 0;
         int mul = 0;
         while (position < commands.size()) {
@@ -100,6 +103,7 @@ public final class Day23 {
     }
 
     /**
+     * <pre>
      * --- Part Two ---
      *
      * Now, it's time to fix the problem.
@@ -120,8 +124,9 @@ public final class Day23 {
      * what value would be left in register h?
      *
      * Your puzzle answer was 915.
+     * </pre>
      */
-    static long runProgramFast(int b, int c) {
+    public static long runProgramFast(int b, int c) {
         long h = 0;
         LongSet primes = LongSet.of(Prime.sieve(c));
         for (long d = b; d <= c; d += 17) {
@@ -131,4 +136,5 @@ public final class Day23 {
         }
         return h;
     }
+
 }

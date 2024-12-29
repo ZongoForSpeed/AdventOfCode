@@ -1,12 +1,16 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.test.AbstractTest;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Execution(ExecutionMode.SAME_THREAD)
 class Day23Test extends AbstractTest {
+
     Day23Test() {
         super(2019, 23);
     }

@@ -1,7 +1,6 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.test.AbstractTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -91,7 +90,7 @@ class Day20Test extends AbstractTest {
     }
 
     @SuppressWarnings("MisleadingEscapedSpace")
-    @Disabled
+    @Test
     void testRecursiveDonutMaze() {
         String input = """
                              Z L X W       C                \s

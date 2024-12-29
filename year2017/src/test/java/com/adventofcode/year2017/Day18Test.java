@@ -1,7 +1,6 @@
 package com.adventofcode.year2017;
 
 import com.adventofcode.test.AbstractTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -9,9 +8,7 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@Disabled
 class Day18Test extends AbstractTest {
-    // TODO doesn't work anymore
 
     Day18Test() {
         super(2017, 18);
@@ -31,7 +28,7 @@ class Day18Test extends AbstractTest {
                 set a 1
                 jgz a -2""";
 
-        assertThat(Day18.playSound(new Scanner(input))).isEqualTo(4);
+        assertThat(Day18.partOne(new Scanner(input))).isEqualTo(4);
     }
 
     @Test
@@ -45,17 +42,19 @@ class Day18Test extends AbstractTest {
                 rcv c
                 rcv d""";
 
-        assertThat(Day18.duet(new Scanner(input))).isEqualTo(3);
+        try (Scanner scanner = new Scanner(input)) {
+            assertThat(Day18.partTwo(scanner)).isEqualTo(3);
+        }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        assertThat(Day18.playSound(scanner)).isEqualTo(7071);
+        assertThat(Day18.partOne(scanner)).isEqualTo(7071);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws InterruptedException {
-        assertThat(Day18.duet(scanner)).isEqualTo(8001);
+        assertThat(Day18.partTwo(scanner)).isEqualTo(8001);
     }
 
 }
