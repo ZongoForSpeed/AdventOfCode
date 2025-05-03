@@ -325,7 +325,6 @@ public final class Day15 {
 
                         // LOGGER.info("After \"{}\"", s);
                         // printBox(boxes);
-                        continue;
                     } else {
                         LOGGER.error("Cannot parse '{}'", line);
                     }

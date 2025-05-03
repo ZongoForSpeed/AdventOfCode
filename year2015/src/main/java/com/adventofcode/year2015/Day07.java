@@ -39,17 +39,15 @@ public final class Day07 {
         }
         List<String> in = Splitter.on(' ').splitToList(command);
         switch (in.size()) {
-            case 1:
-                value = getWireValue(cache, commands, in.getFirst());
-                break;
-            case 2:
+            case 1 -> value = getWireValue(cache, commands, in.getFirst());
+            case 2 -> {
                 if ("NOT".equals(in.getFirst())) {
                     value = 65535 - getWireValue(cache, commands, in.get(1));
                 } else {
                     throw new IllegalStateException("Unknown command type: " + command);
                 }
-                break;
-            case 3:
+            }
+            case 3 -> {
                 switch (in.get(1)) {
                     case "AND" -> {
                         int v1 = getWireValue(cache, commands, in.getFirst());
@@ -71,9 +69,8 @@ public final class Day07 {
                     }
                     default -> throw new IllegalStateException("Unknown command type: " + command);
                 }
-                break;
-            default:
-                throw new IllegalStateException("Unknown command type: " + command);
+            }
+            default -> throw new IllegalStateException("Unknown command type: " + command);
         }
 
         cache.put(wire, value);

@@ -270,54 +270,45 @@ public final class Day17 {
                 LOGGER.trace("instruction: {}, operand: {}, combo: {}", instruction, operand, combo);
 
                 switch (instruction) {
-                    case 0: { // adv
+                    case 0 -> { // adv
                         regA /= (1L << combo);
                         instructionPointer += 2;
-                        break;
                     }
-                    case 1: { // bxl
+                    case 1 -> { // bxl
                         regB ^= operand;
                         instructionPointer += 2;
-                        break;
                     }
-                    case 2: { // bst
+                    case 2 -> { // bst
                         regB = combo % 8;
                         instructionPointer += 2;
-                        break;
                     }
-                    case 3: { // jnz
+                    case 3 -> { // jnz
                         if (regA == 0) {
                             instructionPointer += 2;
                         } else {
                             LOGGER.trace("instruction pointer jump to {}", combo);
                             instructionPointer = (int) combo;
                         }
-                        break;
                     }
-                    case 4: { // bxc
+                    case 4 -> { // bxc
                         regB ^= regC;
                         instructionPointer += 2;
-                        break;
                     }
-                    case 5: { // out
+                    case 5 -> { // out
                         int output = (int) (combo % 8);
                         LOGGER.trace("Out << {}", output);
                         out.add(output);
                         instructionPointer += 2;
-                        break;
                     }
-                    case 6: { // bdv
+                    case 6 -> { // bdv
                         regB = regA / (1L << combo);
                         instructionPointer += 2;
-                        break;
                     }
-                    case 7: { // cdv
+                    case 7 -> { // cdv
                         regC = regA / (1L << combo);
                         instructionPointer += 2;
-                        break;
                     }
-                    default:
-                        throw new IllegalStateException("Unknown command " + instruction);
+                    default -> throw new IllegalStateException("Unknown command " + instruction);
                 }
                 LOGGER.trace("A={}, B={}, C={}", regA, regB, regC);
             }

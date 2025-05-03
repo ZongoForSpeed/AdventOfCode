@@ -111,40 +111,31 @@ public final class Day10 {
         for (int i = 0; i < line.length(); i++) {
             char c = line.charAt(i);
             switch (c) {
-                case '(':
-                    openedBrackets.addLast(Brackets.ROUND);
-                    break;
-                case ')':
+                case '(' -> openedBrackets.addLast(Brackets.ROUND);
+                case ')' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.ROUND) {
                         return 3;
                     }
-                    break;
-                case '[':
-                    openedBrackets.addLast(Brackets.SQUARE);
-                    break;
-                case ']':
+                }
+                case '[' -> openedBrackets.addLast(Brackets.SQUARE);
+                case ']' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.SQUARE) {
                         return 57;
                     }
-                    break;
-                case '{':
-                    openedBrackets.addLast(Brackets.CURLY);
-                    break;
-                case '}':
+                }
+                case '{' -> openedBrackets.addLast(Brackets.CURLY);
+                case '}' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.CURLY) {
                         return 1197;
                     }
-                    break;
-                case '<':
-                    openedBrackets.addLast(Brackets.ANGLE);
-                    break;
-                case '>':
+                }
+                case '<' -> openedBrackets.addLast(Brackets.ANGLE);
+                case '>' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.ANGLE) {
                         return 25137;
                     }
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown character: '" + c + "'");
+                }
+                default -> throw new IllegalStateException("Unknown character: '" + c + "'");
             }
         }
 
@@ -233,40 +224,31 @@ public final class Day10 {
         for (int i = 0; i < line.length(); i++) {
             char c = line.charAt(i);
             switch (c) {
-                case '(':
-                    openedBrackets.addLast(Brackets.ROUND);
-                    break;
-                case ')':
+                case '(' -> openedBrackets.addLast(Brackets.ROUND);
+                case ')' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.ROUND) {
                         return 0;
                     }
-                    break;
-                case '[':
-                    openedBrackets.addLast(Brackets.SQUARE);
-                    break;
-                case ']':
+                }
+                case '[' -> openedBrackets.addLast(Brackets.SQUARE);
+                case ']' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.SQUARE) {
                         return 0;
                     }
-                    break;
-                case '{':
-                    openedBrackets.addLast(Brackets.CURLY);
-                    break;
-                case '}':
+                }
+                case '{' -> openedBrackets.addLast(Brackets.CURLY);
+                case '}' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.CURLY) {
                         return 0;
                     }
-                    break;
-                case '<':
-                    openedBrackets.addLast(Brackets.ANGLE);
-                    break;
-                case '>':
+                }
+                case '<' -> openedBrackets.addLast(Brackets.ANGLE);
+                case '>' -> {
                     if (openedBrackets.isEmpty() || openedBrackets.removeLast() != Brackets.ANGLE) {
                         return 0;
                     }
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown character: '" + c + "'");
+                }
+                default -> throw new IllegalStateException("Unknown character: '" + c + "'");
             }
         }
 

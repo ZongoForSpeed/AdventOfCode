@@ -279,22 +279,20 @@ public final class Day16 {
             List<Beam> next = new ArrayList<>(2);
             char tile = map.get(position);
             switch (tile) {
-                case '.':
-                    next.add(move());
-                    break;
-                case '/':
+                case '.' -> next.add(move());
+                case '/' -> {
                     switch (direction) {
                         case UP, DOWN -> next.add(turnRight());
                         case LEFT, RIGHT -> next.add(turnLeft());
                     }
-                    break;
-                case '\\':
+                }
+                case '\\' -> {
                     switch (direction) {
                         case UP, DOWN -> next.add(turnLeft());
                         case LEFT, RIGHT -> next.add(turnRight());
                     }
-                    break;
-                case '-':
+                }
+                case '-' -> {
                     switch (direction) {
                         case UP, DOWN -> {
                             next.add(turnLeft());
@@ -302,8 +300,8 @@ public final class Day16 {
                         }
                         case LEFT, RIGHT -> next.add(move());
                     }
-                    break;
-                case '|':
+                }
+                case '|' -> {
                     switch (direction) {
                         case UP, DOWN -> next.add(move());
                         case LEFT, RIGHT -> {
@@ -311,9 +309,8 @@ public final class Day16 {
                             next.add(turnRight());
                         }
                     }
-                    break;
-                default:
-                    throw new IllegalStateException();
+                }
+                default -> throw new IllegalStateException();
             }
 
             return next.stream().filter(b -> b.position.x() >= 0

@@ -464,18 +464,13 @@ public final class Day10 {
             if (matcher.find()) {
                 String command = matcher.group(1);
                 switch (command) {
-                    case "noop": {
-                        register.add(register.getLast());
-                        break;
-                    }
-                    case "addx": {
+                    case "noop" -> register.add(register.getLast());
+                    case "addx" -> {
                         int value = Integer.parseInt(matcher.group(2));
                         register.add(register.getLast());
                         register.add(register.getLast() + value);
-                        break;
                     }
-                    default:
-                        throw new IllegalStateException("Unknown command: '" + command + "'");
+                    default -> throw new IllegalStateException("Unknown command: '" + command + "'");
                 }
             } else {
                 throw new IllegalStateException("Cannot parse line: '" + line + "'");

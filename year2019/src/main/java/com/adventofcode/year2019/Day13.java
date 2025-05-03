@@ -90,19 +90,15 @@ public final class Day13 {
         public void gameOutput(long output) {
             ++count;
             switch (count % 3) {
-                case 1:
-                    x = (int) output;
-                    break;
-                case 2:
-                    y = (int) output;
-                    break;
-                case 0:
+                case 1 -> x = (int) output;
+                case 2 -> y = (int) output;
+                case 0 -> {
                     if (x == -1 && y == 0) {
                         score = output;
                     } else {
                         squares.put(Point2D.of(x, y), output);
                     }
-                    break;
+                }
             }
         }
 

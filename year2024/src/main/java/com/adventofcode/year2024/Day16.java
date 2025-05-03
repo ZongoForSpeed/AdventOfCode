@@ -345,10 +345,6 @@ public final class Day16 {
             return state.p();
         }
 
-        Direction direction() {
-            return state.direction();
-        }
-
         List<Path> moves(CharMap maze) {
             List<Path> paths = new ArrayList<>(3);
 

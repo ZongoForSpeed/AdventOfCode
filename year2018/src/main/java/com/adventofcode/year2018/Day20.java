@@ -270,16 +270,10 @@ public final class Day20 {
 
             LOGGER.trace("{} -> {}", c, positions.size());
             switch (c) {
-                case '(':
-                    positions.addLast(current);
-                    break;
-                case ')':
-                    current = positions.pollLast();
-                    break;
-                case '|':
-                    current = positions.peekLast();
-                    break;
-                default: {
+                case '(' -> positions.addLast(current);
+                case ')' -> current = positions.pollLast();
+                case '|' -> current = positions.peekLast();
+                default -> {
                     Direction direction = DIRECTIONS.get(c);
                     current = current.move(direction);
                     m.computeIfAbsent(current, ignore -> new HashSet<>()).add(previous);

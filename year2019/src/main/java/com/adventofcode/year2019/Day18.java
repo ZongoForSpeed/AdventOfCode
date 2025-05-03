@@ -404,21 +404,19 @@ public final class Day18 {
                     continue;
                 }
                 switch (tile.type()) {
-                    case Free:
-                        result.add(new MazeState(missingKeys, move));
-                        break;
-                    case Key:
+                    case Free -> result.add(new MazeState(missingKeys, move));
+                    case Key -> {
                         if (((missingKeys >> tile.value()) & 1L) == 1L) {
                             result.add(new MazeState(missingKeys - (1L << tile.value()), move));
                         } else {
                             result.add(new MazeState(missingKeys, move));
                         }
-                        break;
-                    case Door:
+                    }
+                    case Door -> {
                         if (((missingKeys >> tile.value()) & 1L) == 0L) {
                             result.add(new MazeState(missingKeys, move));
                         }
-                        break;
+                    }
                 }
             }
 

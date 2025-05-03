@@ -47,23 +47,21 @@ public final class Day11 {
         for (int x = 0; x < lengthX; ++x) {
             for (int y = 0; y < lengthY; ++y) {
                 switch (grid[x][y]) {
-                    case '.':
-                        nextGrid[x][y] = '.';
-                        break;
-                    case 'L':
+                    case '.' -> nextGrid[x][y] = '.';
+                    case 'L' -> {
                         if (adjacentOccupiedSeats(grid, x, y, deepSearch) == 0) {
                             nextGrid[x][y] = '#';
                         } else {
                             nextGrid[x][y] = 'L';
                         }
-                        break;
-                    case '#':
+                    }
+                    case '#' -> {
                         if (adjacentOccupiedSeats(grid, x, y, deepSearch) >= 4 + (deepSearch ? 1 : 0)) {
                             nextGrid[x][y] = 'L';
                         } else {
                             nextGrid[x][y] = '#';
                         }
-                        break;
+                    }
                 }
             }
 

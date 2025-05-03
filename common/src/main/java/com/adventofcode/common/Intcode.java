@@ -73,35 +73,32 @@ public class Intcode {
             int[] mode = parseCode(memory.getLong(position));
 
             switch (mode[0]) {
-                case 1: {
+                case 1 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     long value2 = readParameter(memory, mode, relativeBase, position, 2);
                     setValue(memory, mode, position, relativeBase, 3, value1 + value2);
                     position += 4;
-                    break;
                 }
-                case 2: {
+                case 2 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     long value2 = readParameter(memory, mode, relativeBase, position, 2);
                     setValue(memory, mode, position, relativeBase, 3, value1 * value2);
                     position += 4;
-                    break;
                 }
-                case 3: {
+                case 3 -> {
                     long stackInput = input.getAsLong();
                     setValue(memory, mode, position, relativeBase, 1, stackInput);
                     position += 2;
-                    break;
                 }
-                case 4: {
+                case 4 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     output.accept(value1);
                     position += 2;
-                    break;
                 }
+
                 // Opcode 5 is jump-if-true: if the first parameter is non-zero, it sets the instruction pointer to the
                 // value from the second parameter. Otherwise, it does nothing.
-                case 5: {
+                case 5 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     long value2 = readParameter(memory, mode, relativeBase, position, 2);
                     if (value1 != 0) {
@@ -109,11 +106,11 @@ public class Intcode {
                     } else {
                         position += 3;
                     }
-                    break;
                 }
+
                 // Opcode 6 is jump-if-false: if the first parameter is zero, it sets the instruction pointer to the
                 // value from the second parameter. Otherwise, it does nothing.
-                case 6: {
+                case 6 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     long value2 = readParameter(memory, mode, relativeBase, position, 2);
                     if (value1 == 0) {
@@ -121,38 +118,37 @@ public class Intcode {
                     } else {
                         position += 3;
                     }
-                    break;
                 }
+
                 // Opcode 7 is less than: if the first parameter is less than the second parameter, it stores 1 in the
                 // position given by the third parameter. Otherwise, it stores 0.
-                case 7: {
+                case 7 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     long value2 = readParameter(memory, mode, relativeBase, position, 2);
                     setValue(memory, mode, position, relativeBase, 3, value1 < value2 ? 1 : 0);
                     position += 4;
-                    break;
                 }
+
                 // Opcode 8 is equals: if the first parameter is equal to the second parameter, it stores 1 in the
                 // position given by the third parameter. Otherwise, it stores 0.
-                case 8: {
+                case 8 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     long value2 = readParameter(memory, mode, relativeBase, position, 2);
                     setValue(memory, mode, position, relativeBase, 3, value1 == value2 ? 1 : 0);
                     position += 4;
-                    break;
                 }
+
                 // Opcode 9 adjusts the relative base by the value of its only parameter. The relative base increases
                 // (or decreases, if the value is negative) by the value of the parameter.
-                case 9: {
+                case 9 -> {
                     long value1 = readParameter(memory, mode, relativeBase, position, 1);
                     relativeBase += (int) value1;
                     position += 2;
-                    break;
                 }
-                case 99:
+                case 99 -> {
                     return memory.toLongArray();
-                default:
-                    throw new IllegalStateException("unknown code (" + mode[0] + ")");
+                }
+                default -> throw new IllegalStateException("unknown code (" + mode[0] + ")");
             }
         }
 
