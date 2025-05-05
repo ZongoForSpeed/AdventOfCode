@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public final class Day15 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day15.class);
@@ -88,6 +89,7 @@ public final class Day15 {
      * Given your starting numbers, what will be the 30000000th number spoken?
      */
     public static long memoryGame(String input, int turn) {
+        // TODO Replace to Int2IntMap
         IntMemory lastMemory = new IntMemory(turn * 2);
         IntMemory previousMemory = new IntMemory(turn * 2);
 
@@ -110,7 +112,8 @@ public final class Day15 {
             if (newNumber) {
                 lastNumberSpoken = 0;
             } else {
-                lastNumberSpoken = lastMemory.get(lastNumberSpoken) - previousMemory.get(lastNumberSpoken);
+                lastNumberSpoken = Objects.requireNonNull(lastMemory.get(lastNumberSpoken), "Cannot find lastNumberSpoken")
+                                   - Objects.requireNonNull(previousMemory.get(lastNumberSpoken), "Cannot find lastNumberSpoken");
             }
 
             LOGGER.trace("Turn {}, spoken number {}", n, lastNumberSpoken);

@@ -4,6 +4,8 @@ import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
 import it.unimi.dsi.fastutil.Pair;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -50,13 +52,13 @@ public final class Day15 {
      * positions in that round, regardless of the type of unit or whether other
      * units have moved after the round started. For example:
      *
-     *                  would take their
+     * would take their
      * These units:   turns in this order:
-     *   #######           #######
-     *   #.G.E.#           #.1.2.#
-     *   #E.G.E#           #3.4.5#
-     *   #.G.E.#           #.6.7.#
-     *   #######           #######
+     * #######           #######
+     * #.G.E.#           #.1.2.#
+     * #E.G.E#           #3.4.5#
+     * #.G.E.#           #.6.7.#
+     * #######           #######
      *
      * Each unit begins its turn by identifying all possible targets (enemy
      * units). If no targets remain, combat ends.
@@ -92,13 +94,13 @@ public final class Day15 {
      *
      * In the above scenario, the Elf has three targets (the three Goblins):
      *
-     *   - Each of the Goblins has open, adjacent squares which are in range
-     *     (marked with a ? on the map).
-     *   - Of those squares, four are reachable (marked @); the other two (on the
-     *     right) would require moving through a wall or unit to reach.
-     *   - Three of these reachable squares are nearest, requiring the fewest
-     *     steps (only 2) to reach (marked !).
-     *   - Of those, the square which is first in reading order is chosen (+).
+     * - Each of the Goblins has open, adjacent squares which are in range
+     * (marked with a ? on the map).
+     * - Of those squares, four are reachable (marked @); the other two (on the
+     * right) would require moving through a wall or unit to reach.
+     * - Three of these reachable squares are nearest, requiring the fewest
+     * steps (only 2) to reach (marked !).
+     * - Of those, the square which is first in reading order is chosen (+).
      *
      * The unit then takes a single step toward the chosen square along the
      * shortest path to that square. If multiple steps would put the unit equally
@@ -191,7 +193,7 @@ public final class Day15 {
      *
      * For example, suppose the only Elf is about to attack:
      *
-     *        HP:            HP:
+     * HP:            HP:
      * G....  9       G....  9
      * ..G..  4       ..G..  4
      * ..EG.  2  -->  ..E..
@@ -663,7 +665,8 @@ public final class Day15 {
                     .ifPresent(bestPath -> u.move(bestPath.getFirst()));
         }
 
-        private static List<Point2D> getPath(Unit u, Map<Point2D, Point2D> previous, Point2D dest) {
+        @Nullable
+        private static List<Point2D> getPath(Unit u, Map<Point2D, Point2D> previous, @Nonnull Point2D dest) {
             if (!previous.containsKey(dest)) {
                 return null;
             }
@@ -672,7 +675,7 @@ public final class Day15 {
             Point2D p = dest;
             while (!p.equals(u.position())) {
                 path.add(p);
-                p = previous.get(p);
+                p = Objects.requireNonNull(previous.get(p), "Cannot find previous of " + p);
             }
 
             Collections.reverse(path);

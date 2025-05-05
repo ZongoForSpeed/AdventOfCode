@@ -1,5 +1,7 @@
 package com.adventofcode.common.memory;
 
+import jakarta.annotation.Nullable;
+
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
@@ -38,6 +40,7 @@ public class IntMemory implements Memory<Integer> {
     }
 
     @Override
+    @Nullable
     public Integer get(int key) {
         checkKey(key);
 
@@ -49,6 +52,7 @@ public class IntMemory implements Memory<Integer> {
     }
 
     @Override
+    @Nullable
     public Integer put(int key, Integer value) {
         if (value == null) {
             throw new IllegalStateException("Null value are not allowed");
@@ -72,6 +76,7 @@ public class IntMemory implements Memory<Integer> {
         return bitSet.stream().map(i -> mem[i]).boxed().toList();
     }
 
+    @Nullable
     public Integer put(int key, int value) {
         checkKey(key);
 
@@ -85,6 +90,7 @@ public class IntMemory implements Memory<Integer> {
         return last;
     }
 
+    @Nullable
     public Integer increment(int key, int value) {
         checkKey(key);
 

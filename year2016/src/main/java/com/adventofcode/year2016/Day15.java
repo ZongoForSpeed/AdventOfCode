@@ -2,6 +2,7 @@ package com.adventofcode.year2016;
 
 import com.adventofcode.common.maths.Arithmetic;
 import com.adventofcode.common.maths.Prime;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,7 @@ public final class Day15 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day15.class);
     private static final Pattern PATTERN = Pattern.compile("Disc #(\\d+) has (\\d+) positions; at time=0, it is at position (\\d+)\\.");
 
-    static long findTime(Scanner scanner, Disc additionalDisc) {
+    static long findTime(Scanner scanner, @Nullable Disc additionalDisc) {
         List<Disc> discs = new ArrayList<>();
 
         while (scanner.hasNextLine()) {

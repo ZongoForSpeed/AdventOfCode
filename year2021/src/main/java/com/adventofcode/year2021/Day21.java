@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
@@ -65,21 +66,21 @@ public final class Day21 {
      *
      * This is how the game would go:
      *
-     *   - Player 1 rolls 1+2+3 and moves to space 10 for a total score of 10.
-     *   - Player 2 rolls 4+5+6 and moves to space 3 for a total score of 3.
-     *   - Player 1 rolls 7+8+9 and moves to space 4 for a total score of 14.
-     *   - Player 2 rolls 10+11+12 and moves to space 6 for a total score of 9.
-     *   - Player 1 rolls 13+14+15 and moves to space 6 for a total score of 20.
-     *   - Player 2 rolls 16+17+18 and moves to space 7 for a total score of 16.
-     *   - Player 1 rolls 19+20+21 and moves to space 6 for a total score of 26.
-     *   - Player 2 rolls 22+23+24 and moves to space 6 for a total score of 22.
+     * - Player 1 rolls 1+2+3 and moves to space 10 for a total score of 10.
+     * - Player 2 rolls 4+5+6 and moves to space 3 for a total score of 3.
+     * - Player 1 rolls 7+8+9 and moves to space 4 for a total score of 14.
+     * - Player 2 rolls 10+11+12 and moves to space 6 for a total score of 9.
+     * - Player 1 rolls 13+14+15 and moves to space 6 for a total score of 20.
+     * - Player 2 rolls 16+17+18 and moves to space 7 for a total score of 16.
+     * - Player 1 rolls 19+20+21 and moves to space 6 for a total score of 26.
+     * - Player 2 rolls 22+23+24 and moves to space 6 for a total score of 22.
      *
      * ...after many turns...
      *
-     *   - Player 2 rolls 82+83+84 and moves to space 6 for a total score of 742.
-     *   - Player 1 rolls 85+86+87 and moves to space 4 for a total score of 990.
-     *   - Player 2 rolls 88+89+90 and moves to space 3 for a total score of 745.
-     *   - Player 1 rolls 91+92+93 and moves to space 10 for a final score, 1000.
+     * - Player 2 rolls 82+83+84 and moves to space 6 for a total score of 742.
+     * - Player 1 rolls 85+86+87 and moves to space 4 for a total score of 990.
+     * - Player 2 rolls 88+89+90 and moves to space 3 for a total score of 745.
+     * - Player 1 rolls 91+92+93 and moves to space 10 for a final score, 1000.
      *
      * Since player 1 has at least 1000 points, player 1 wins and the game ends.
      * At this point, the losing player had 745 points and the die had been rolled
@@ -94,8 +95,8 @@ public final class Day21 {
     static long playPartOne(Scanner scanner) {
         Map<String, Player> players = readPlayer(scanner);
 
-        Player player1 = players.get("1");
-        Player player2 = players.get("2");
+        Player player1 = Objects.requireNonNull(players.get("1"));
+        Player player2 = Objects.requireNonNull(players.get("2"));
 
         long result;
 
@@ -150,8 +151,8 @@ public final class Day21 {
     static long playPartTwo(Scanner scanner) {
         Map<String, Player> players = readPlayer(scanner);
 
-        Player player1 = players.get("1");
-        Player player2 = players.get("2");
+        Player player1 = Objects.requireNonNull(players.get("1"));
+        Player player2 = Objects.requireNonNull(players.get("2"));
 
         LongPair result = playPartTwo(new HashMap<>(), true, player1, player2);
         return Math.max(result.left(), result.right());

@@ -1,6 +1,7 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 
 import jakarta.annotation.Nonnull;
@@ -74,28 +75,34 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
     }
 
     @Override
+    @Nullable
     public Character get(Object key) {
         return map.get(key);
     }
 
+    @Nullable
     public Character get(int x, int y) {
         return get(Point2D.of(x, y));
     }
 
     @Override
+    @Nullable
     public Character put(Point2D key, Character value) {
         return map.put(key, value);
     }
 
+    @Nullable
     public Character put(int x, int y, Character value) {
         return put(Point2D.of(x, y), value);
     }
 
     @Override
+    @Nullable
     public Character remove(Object key) {
         return map.remove(key);
     }
 
+    @Nullable
     public Character remove(int x, int y) {
         return remove(Point2D.of(x, y));
     }

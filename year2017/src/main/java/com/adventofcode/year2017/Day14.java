@@ -10,6 +10,7 @@ import java.util.BitSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public final class Day14 {
@@ -40,7 +41,7 @@ public final class Day14 {
         BitSet bitSet = new BitSet();
         int count = 0;
         for (int i = 0; i < input.length(); i++) {
-            BooleanList booleans = MAPPING.get(input.charAt(i));
+            BooleanList booleans = Objects.requireNonNull(MAPPING.get(input.charAt(i)), "Cannot find mapping for '" + input + "'");
             for (Boolean aBoolean : booleans) {
                 bitSet.set(count++, aBoolean);
             }

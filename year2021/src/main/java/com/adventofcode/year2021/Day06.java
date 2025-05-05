@@ -13,6 +13,7 @@ public final class Day06 {
         // No-Op
     }
 
+    @SuppressWarnings("NullAway")
     private static LongMemory nextDay(LongMemory lanternfish) {
         LongMemory next = new LongMemory(9);
         for (int key : lanternfish.keySet()) {
@@ -120,6 +121,7 @@ public final class Day06 {
      *
      * Your puzzle answer was 1733403626279.
      */
+    @SuppressWarnings("NullAway")
     static long nextDays(String input, int days) {
         int[] lanternfish = Arrays.stream(input.split(",")).mapToInt(Integer::valueOf).toArray();
         LongMemory memory = new LongMemory(9);

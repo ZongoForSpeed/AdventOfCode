@@ -56,20 +56,20 @@ public final class Day09 {
      *
      * For example:
      *
-     *   - ADVENT contains no markers and decompresses to itself with no changes,
-     *     resulting in a decompressed length of 6.
-     *   - A(1x5)BC repeats only the B a total of 5 times, becoming ABBBBBC for a
-     *     decompressed length of 7.
-     *   - (3x3)XYZ becomes XYZXYZXYZ for a decompressed length of 9.
-     *   - A(2x2)BCD(2x2)EFG doubles the BC and EF, becoming ABCBCDEFEFG for a
-     *     decompressed length of 11.
-     *   - (6x1)(1x3)A simply becomes (1x3)A - the (1x3) looks like a marker, but
-     *     because it's within a data section of another marker, it is not
-     *     treated any differently from the A that comes after it. It has a
-     *     decompressed length of 6.
-     *   - X(8x2)(3x3)ABCY becomes X(3x3)ABC(3x3)ABCY (for a decompressed length
-     *     of 18), because the decompressed data from the (8x2) marker (the
-     *     (3x3)ABC) is skipped and not processed further.
+     * - ADVENT contains no markers and decompresses to itself with no changes,
+     * resulting in a decompressed length of 6.
+     * - A(1x5)BC repeats only the B a total of 5 times, becoming ABBBBBC for a
+     * decompressed length of 7.
+     * - (3x3)XYZ becomes XYZXYZXYZ for a decompressed length of 9.
+     * - A(2x2)BCD(2x2)EFG doubles the BC and EF, becoming ABCBCDEFEFG for a
+     * decompressed length of 11.
+     * - (6x1)(1x3)A simply becomes (1x3)A - the (1x3) looks like a marker, but
+     * because it's within a data section of another marker, it is not
+     * treated any differently from the A that comes after it. It has a
+     * decompressed length of 6.
+     * - X(8x2)(3x3)ABCY becomes X(3x3)ABC(3x3)ABCY (for a decompressed length
+     * of 18), because the decompressed data from the (8x2) marker (the
+     * (3x3)ABC) is skipped and not processed further.
      *
      * What is the decompressed length of the file (your puzzle input)? Don't
      * count whitespace.
@@ -77,27 +77,25 @@ public final class Day09 {
      * Your puzzle answer was 150914.
      */
     static String decompressV1(String input) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
         try (StringReader reader = new StringReader(input)) {
-            mainloop:
+            StringBuilder stringBuilder = new StringBuilder();
             while (true) {
                 int read = reader.read();
                 switch (read) {
-                    case -1:
-                        break mainloop;
-                    case '(':
+                    case -1 -> {
+                        LOGGER.trace("Result: {}", stringBuilder);
+                        return stringBuilder.toString();
+                    }
+                    case '(' -> {
                         IntegerPair pair = readCompression(reader);
                         String toCopy = readChar(reader, pair.left());
                         stringBuilder.append(toCopy.repeat(pair.right()));
-                        break;
-                    default:
-                        stringBuilder.append((char) read);
-                        break;
+                    }
+                    default -> stringBuilder.append((char) read);
                 }
             }
+
         }
-        LOGGER.trace("Result: {}", stringBuilder);
-        return stringBuilder.toString();
     }
 
     /**
@@ -112,15 +110,15 @@ public final class Day09 {
      *
      * For example:
      *
-     *   - (3x3)XYZ still becomes XYZXYZXYZ, as the decompressed section contains
-     *     no markers.
-     *   - X(8x2)(3x3)ABCY becomes XABCABCABCABCABCABCY, because the decompressed
-     *     data from the (8x2) marker is then further decompressed, thus
-     *     triggering the (3x3) marker twice for a total of six ABC sequences.
-     *   - (27x12)(20x12)(13x14)(7x10)(1x12)A decompresses into a string of A
-     *     repeated 241920 times.
-     *   - (25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN becomes 445
-     *     characters long.
+     * - (3x3)XYZ still becomes XYZXYZXYZ, as the decompressed section contains
+     * no markers.
+     * - X(8x2)(3x3)ABCY becomes XABCABCABCABCABCABCY, because the decompressed
+     * data from the (8x2) marker is then further decompressed, thus
+     * triggering the (3x3) marker twice for a total of six ABC sequences.
+     * - (27x12)(20x12)(13x14)(7x10)(1x12)A decompresses into a string of A
+     * repeated 241920 times.
+     * - (25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN becomes 445
+     * characters long.
      *
      * Unfortunately, the computer you brought probably doesn't have enough memory
      * to actually decompress the file; you'll have to come up with another way to
@@ -129,24 +127,22 @@ public final class Day09 {
      * Your puzzle answer was 11052855125.
      */
     static long decompressV2(String input) throws IOException {
-        long result = 0;
         try (StringReader reader = new StringReader(input)) {
-            mainloop:
+            long result = 0;
             while (true) {
                 int read = reader.read();
                 switch (read) {
-                    case -1:
-                        break mainloop;
-                    case '(':
+                    case -1 -> {
+                        return result;
+                    }
+                    case '(' -> {
                         IntegerPair pair = readCompression(reader);
                         result += pair.right() * decompressV2(readChar(reader, pair.left()));
-                        break;
-                    default:
-                        result++;
-                        break;
+                    }
+                    default -> result++;
                 }
             }
         }
-        return result;
+
     }
 }

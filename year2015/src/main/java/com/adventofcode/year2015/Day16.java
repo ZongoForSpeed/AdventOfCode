@@ -1,6 +1,7 @@
 package com.adventofcode.year2015;
 
 import it.unimi.dsi.fastutil.Pair;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,6 +98,7 @@ public final class Day16 {
      * <p>
      * Your puzzle answer was 103.
      */
+    @Nullable
     public static Integer findAuntSuePartOne(Scanner scanner) {
         AuntSue sue = new AuntSue();
         List<Pair<Integer, Map<Compounds, Integer>>> sues = readInput(scanner);
@@ -137,6 +139,7 @@ public final class Day16 {
      * <p>
      * Your puzzle answer was 405.
      */
+    @Nullable
     public static Integer findAuntSuePartTwo(Scanner scanner) {
         AuntSue sue = new AuntSue();
         List<Pair<Integer, Map<Compounds, Integer>>> sues = readInput(scanner);
@@ -145,7 +148,7 @@ public final class Day16 {
         for (Pair<Integer, Map<Compounds, Integer>> pair : sues) {
             boolean found = true;
             for (Map.Entry<Compounds, Integer> entry : pair.right().entrySet()) {
-                Integer integer = sue.sue.get(entry.getKey());
+                Integer integer = Objects.requireNonNull(sue.sue.get(entry.getKey()));
                 if (!entry.getKey().compare(entry.getValue(), integer)) {
                     found = false;
                     break;

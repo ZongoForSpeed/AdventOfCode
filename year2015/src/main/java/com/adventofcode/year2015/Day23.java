@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
@@ -106,20 +107,23 @@ public final class Day23 {
                 String operand = matcher.group(2);
                 switch (command) {
                     case "hlf" -> {
-                        registers.get(operand.charAt(0)).updateAndGet(l -> l / 2);
+                        AtomicLong register = Objects.requireNonNull(registers.get(operand.charAt(0)), () -> "Cannot find value in register: " + instruction);
+                        register.updateAndGet(l -> l / 2);
                         currentLine++;
                     }
                     case "tpl" -> {
-                        registers.get(operand.charAt(0)).updateAndGet(l -> l * 3);
+                        AtomicLong register = Objects.requireNonNull(registers.get(operand.charAt(0)), () -> "Cannot find value in register: " + instruction);
+                        register.updateAndGet(l -> l * 3);
                         currentLine++;
                     }
                     case "inc" -> {
-                        registers.get(operand.charAt(0)).incrementAndGet();
+                        AtomicLong register = Objects.requireNonNull(registers.get(operand.charAt(0)), () -> "Cannot find value in register: " + instruction);
+                        register.incrementAndGet();
                         currentLine++;
                     }
                     case "jmp" -> currentLine += Integer.parseInt(operand);
                     case "jie" -> {
-                        AtomicLong register = registers.get(operand.charAt(0));
+                        AtomicLong register = Objects.requireNonNull(registers.get(operand.charAt(0)), () -> "Cannot find value in register: " + instruction);
                         if (register.get() % 2 == 0) {
                             currentLine += Integer.parseInt(matcher.group(3));
                         } else {
@@ -127,7 +131,7 @@ public final class Day23 {
                         }
                     }
                     case "jio" -> {
-                        AtomicLong register = registers.get(operand.charAt(0));
+                        AtomicLong register = Objects.requireNonNull(registers.get(operand.charAt(0)), () -> "Cannot find value in register: " + instruction);
                         if (register.get() == 1) {
                             currentLine += Integer.parseInt(matcher.group(3));
                         } else {

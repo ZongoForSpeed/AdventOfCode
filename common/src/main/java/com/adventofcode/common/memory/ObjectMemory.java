@@ -1,5 +1,8 @@
 package com.adventofcode.common.memory;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
@@ -41,6 +44,7 @@ public class ObjectMemory<V> implements Memory<V> {
     }
 
     @Override
+    @Nullable
     @SuppressWarnings("unchecked")
     public V get(int key) {
         checkKey(key);
@@ -52,7 +56,20 @@ public class ObjectMemory<V> implements Memory<V> {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
+    @Nonnull
+    public V getNonNull(int key) {
+        checkKey(key);
+
+        if (key < mem.length && bitSet.get(key)) {
+            return (V) mem[key];
+        }
+
+        throw new IllegalStateException("Cannot find key: " + key);
+    }
+
     @Override
+    @Nullable
     public V put(int key, V value) {
         checkKey(key);
 

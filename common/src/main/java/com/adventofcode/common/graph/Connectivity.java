@@ -6,6 +6,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public final class Connectivity {
@@ -23,7 +24,7 @@ public final class Connectivity {
 
         while (!nodes.isEmpty()) {
             T d = nodes.remove();
-            Collection<T> list = graph.get(d);
+            Collection<T> list = Objects.requireNonNull(graph.get(d), "Cannot find node '" + d + "' in graph");
             for (T p : list) {
                 if (connected.add(p)) {
                     nodes.add(p);

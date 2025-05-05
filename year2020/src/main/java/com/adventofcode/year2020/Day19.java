@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 public final class Day19 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day19.class);
+    private static final Pattern MONSTER_PATTERN = Pattern.compile("^(\\d+): (.*)$");
 
     private Day19() {
         // No-Op
@@ -41,7 +43,7 @@ public final class Day19 {
             }
             pattern = sj.toString();
         } else {
-            String rule = rules.get(rulesNumber);
+            String rule = Objects.requireNonNull(rules.get(rulesNumber));
             if (rule.startsWith("\"")) {
                 pattern = rule.replace("\"", "");
             } else {
@@ -242,8 +244,6 @@ public final class Day19 {
      * After updating rules 8 and 11, how many messages completely match rule 0?
      */
     static long matchMonsterMessages(List<String> lines, boolean addLoopRules) {
-
-        Pattern MONSTER_PATTERN = Pattern.compile("^(\\d+): (.*)$");
 
         Memory<String> rules = new ObjectMemory<>();
         List<String> messages = new ArrayList<>();

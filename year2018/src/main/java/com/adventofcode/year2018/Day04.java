@@ -3,8 +3,8 @@ package com.adventofcode.year2018;
 import com.adventofcode.common.utils.IntegerPair;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-import org.apache.commons.lang3.ArrayUtils;
 import it.unimi.dsi.fastutil.Pair;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,8 +76,8 @@ public final class Day04 {
      * Visually, these records show that the guards are asleep at these times:
      *
      * Date   ID   Minute
-     *             000000000011111111112222222222333333333344444444445555555555
-     *             012345678901234567890123456789012345678901234567890123456789
+     * 000000000011111111112222222222333333333344444444445555555555
+     * 012345678901234567890123456789012345678901234567890123456789
      * 11-01  #10  .....####################.....#########################.....
      * 11-02  #99  ........................................##########..........
      * 11-03  #10  ........................#####...............................
@@ -143,7 +143,7 @@ public final class Day04 {
         }
 
         LOGGER.info("Worst guard is {}: {}", worstGuard, maxDuration);
-        List<LocalDateTime> timeList = sleepingGuards.get(worstGuard);
+        List<LocalDateTime> timeList = Objects.requireNonNull(sleepingGuards.get(worstGuard), "Cannot find times for guard " + worstGuard);
         int[] minutes = getMinutes(timeList);
         int max = Arrays.stream(minutes).max().orElseThrow();
         int indexOf1 = ArrayUtils.indexOf(minutes, max);
@@ -233,7 +233,11 @@ public final class Day04 {
             LocalDateTime time = pair.left();
             String group = pair.right();
             if (group.startsWith("Guard ")) {
-                guard = Integer.parseInt(Iterables.get(Splitter.on(' ').split(group), 1).substring(1));
+                String line = Iterables.get(Splitter.on(' ').split(group), 1);
+                if (line == null) {
+                    throw new IllegalStateException("Cannot parse group: " + group);
+                }
+                guard = Integer.parseInt(line.substring(1));
             } else if (group.equalsIgnoreCase("falls asleep")) {
                 sleepingGuards.computeIfAbsent(guard, ignore -> new ArrayList<>()).add(time);
             } else if (group.equalsIgnoreCase("wakes up")) {

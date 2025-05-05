@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Scanner;
 import java.util.Set;
@@ -89,7 +90,7 @@ public final class Day07 {
         }
 
         int objectiveWeight = collect.entrySet().stream().filter(e -> !program.equals(e.getKey())).mapToInt(Map.Entry::getValue).findFirst().orElseThrow();
-        int currentWeight = collect.get(program);
+        Integer currentWeight = Objects.requireNonNull(collect.get(program), "Cannot find current weight of program");
 
         return OptionalInt.of(program.weight() + objectiveWeight - currentWeight);
 

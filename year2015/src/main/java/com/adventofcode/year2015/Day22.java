@@ -39,7 +39,7 @@ public final class Day22 {
                     if (hardMode) {
                         player = Player.of(player.hitPoints() - 1, player.mana(), player.effects());
                         if (player.hitPoints() <= 0) {
-                            return List.of(AStar.Move.of(LOOSING_STATE, Integer.MAX_VALUE));
+                            return List.of(Move.of(LOOSING_STATE, Integer.MAX_VALUE));
                         }
                     }
 
@@ -53,11 +53,13 @@ public final class Day22 {
                         switch (entry.getKey()) {
                             case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
                             case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
+                            default -> {
+                            }
                         }
                     }
 
                     if (boss.hitPoints() <= 0) {
-                        return List.of(AStar.Move.of(WINNING_STATE, 0));
+                        return List.of(Move.of(WINNING_STATE, 0));
                     }
 
                     for (Spells spell : Spells.values()) {
@@ -77,9 +79,9 @@ public final class Day22 {
                             case Shield, Recharge, Poison -> Boss.of(boss.hitPoints(), boss.damage());
                         };
                         if (newBoss.hitPoints() <= 0) {
-                            nextState.add(AStar.Move.of(WINNING_STATE, spell.getCost()));
+                            nextState.add(Move.of(WINNING_STATE, spell.getCost()));
                         } else {
-                            nextState.add(AStar.Move.of(PlayableState.of(
+                            nextState.add(Move.of(PlayableState.of(
                                     newPlayer, newBoss, false
                             ), spell.getCost()));
                         }
@@ -99,12 +101,14 @@ public final class Day22 {
                             case Shield -> armor += 7;
                             case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
                             case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
+                            default -> {
+                            }
                         }
                     }
 
                     player = Player.of(player.hitPoints(), player.mana(), currentEffects);
                     if (boss.hitPoints() <= 0) {
-                        return List.of(AStar.Move.of(WINNING_STATE, 0));
+                        return List.of(Move.of(WINNING_STATE, 0));
                     }
 
                     int damage = boss.damage() - armor;
@@ -114,10 +118,10 @@ public final class Day22 {
 
                     player = Player.of(player.hitPoints() - damage, player.mana(), player.effects());
                     if (player.hitPoints() <= 0) {
-                        return List.of(AStar.Move.of(LOOSING_STATE, Integer.MAX_VALUE));
+                        return List.of(Move.of(LOOSING_STATE, Integer.MAX_VALUE));
                     }
 
-                    return List.of(AStar.Move.of(PlayableState.of(player, boss, true), 0));
+                    return List.of(Move.of(PlayableState.of(player, boss, true), 0));
                 }
             } else {
                 throw new IllegalStateException("Unknown type of state: " + node.getClass());
@@ -125,6 +129,7 @@ public final class Day22 {
         }
     }
 
+    @SuppressWarnings("NullAway")
     public static Boss readBossStats(Scanner scanner) {
         Map<String, Integer> bossStats = new HashMap<>();
         while (scanner.hasNextLine()) {

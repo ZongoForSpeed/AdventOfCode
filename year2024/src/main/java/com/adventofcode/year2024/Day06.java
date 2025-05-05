@@ -7,6 +7,7 @@ import com.adventofcode.common.point.map.CharMap;
 import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -15,15 +16,21 @@ public final class Day06 {
     private Day06() {
         // No-Op
     }
-
-    private static Set<Point2D> findPath(CharMap map) {
-        Point2D guardPosition = null;
+    
+    private static Point2D findGuard(CharMap map) {
+        Optional<Point2D> guardPosition = Optional.empty();
         for (ObjectCharPair<Point2D> entry : map.entries()) {
             if (entry.rightChar() == '^') {
-                guardPosition = entry.left();
+                guardPosition = Optional.ofNullable(entry.left());
                 break;
             }
         }
+
+        return guardPosition.orElseThrow();
+    }
+
+    private static Set<Point2D> findPath(CharMap map) {
+        Point2D guardPosition = findGuard(map);
 
         Set<Point2D> allPoints = new HashSet<>(map.points());
         Set<Point2D> path = new HashSet<>();
@@ -290,14 +297,7 @@ public final class Day06 {
     public static int partTwo(Scanner scanner) {
         CharMap map = CharMap.read(scanner, ignore -> true);
 
-        Point2D guardPosition = null;
-        for (ObjectCharPair<Point2D> entry : map.entries()) {
-            if (entry.rightChar() == '^') {
-                guardPosition = entry.left();
-                break;
-            }
-        }
-
+        Point2D guardPosition = findGuard(map);
         Position2D guard = new Position2D(guardPosition, Direction.UP);
         int countCycle = 0;
         for (Point2D inPath : findPath(map)) {

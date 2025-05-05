@@ -6,6 +6,7 @@ import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.Map2D;
 import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -140,7 +141,7 @@ public final class Day15 {
      * Your puzzle answer was 240.
      * </pre>
      */
-    public static Integer partOne(Scanner scanner) {
+    public static int partOne(Scanner scanner) {
         String line = scanner.nextLine();
         Intcode.Robot robot = new Intcode.Robot(line);
         Point2D origin = Point2D.of(0, 0);
@@ -154,8 +155,8 @@ public final class Day15 {
         Map<Point2D, List<Pair<Point2D, Integer>>> graph = createGraph(map);
 
         Dijkstra<Point2D> dijkstra = new Dijkstra<>(graph);
-        Map<Point2D, Integer> distance = dijkstra.computeDistance(origin);
-        return distance.get(oxygen);
+        Object2IntMap<Point2D> distance = dijkstra.computeDistance(origin);
+        return distance.getInt(oxygen);
     }
 
     /**
@@ -224,8 +225,8 @@ public final class Day15 {
 
         Dijkstra<Point2D> dijkstra = new Dijkstra<>(graph);
 
-        Map<Point2D, Integer> oxygenFill = dijkstra.computeDistance(oxygen);
-        return oxygenFill.values().stream().mapToInt(x -> x).max().orElse(0);
+        Object2IntMap<Point2D> oxygenFill = dijkstra.computeDistance(oxygen);
+        return oxygenFill.values().intStream().max().orElse(0);
     }
 
     private static Map<Point2D, List<Pair<Point2D, Integer>>> createGraph(Map2D map) {

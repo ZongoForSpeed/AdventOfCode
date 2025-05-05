@@ -1,10 +1,11 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.utils.IntegerPair;
+import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
-import it.unimi.dsi.fastutil.Pair;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,14 +59,14 @@ public final class Day10 {
      * bot 0 gives low to output 2 and high to output 0
      * value 2 goes to bot 2
      *
-     *   - Initially, bot 1 starts with a value-3 chip, and bot 2 starts with a
-     *     value-2 chip and a value-5 chip.
-     *   - Because bot 2 has two microchips, it gives its lower one (2) to bot 1
-     *     and its higher one (5) to bot 0.
-     *   - Then, bot 1 has two microchips; it puts the value-2 chip in output 1
-     *     and gives the value-3 chip to bot 0.
-     *   - Finally, bot 0 has two microchips; it puts the 3 in output 2 and the 5
-     *     in output 0.
+     * - Initially, bot 1 starts with a value-3 chip, and bot 2 starts with a
+     * value-2 chip and a value-5 chip.
+     * - Because bot 2 has two microchips, it gives its lower one (2) to bot 1
+     * and its higher one (5) to bot 0.
+     * - Then, bot 1 has two microchips; it puts the value-2 chip in output 1
+     * and gives the value-3 chip to bot 0.
+     * - Finally, bot 0 has two microchips; it puts the 3 in output 2 and the 5
+     * in output 0.
      *
      * In the end, output bin 0 contains a value-5 microchip, output bin 1
      * contains a value-2 microchip, and output bin 2 contains a value-3
@@ -175,7 +176,9 @@ public final class Day10 {
         private final IntList chips;
         private final Set<IntegerPair> operations;
 
+        @Nullable
         private IntConsumer lowConsumer;
+        @Nullable
         private IntConsumer highConsumer;
 
         private Bot(int number) {
@@ -203,6 +206,9 @@ public final class Day10 {
                 operations.add(pair);
                 LOGGER.info("{}: sending {} to {} and {} to {}", this, lowValue, lowConsumer, highValue, highConsumer);
                 chips.clear();
+                if (lowConsumer == null || highConsumer == null) {
+                    throw new IllegalStateException("Cannot call null consumers");
+                }
                 lowConsumer.accept(lowValue);
                 highConsumer.accept(highValue);
             }

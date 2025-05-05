@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -342,7 +343,7 @@ public final class Day23 {
 
             Direction proposed = null;
             for (Direction move : moves) {
-                List<Point2D> directions = DIRECTIONS.get(move);
+                List<Point2D> directions = Objects.requireNonNull(DIRECTIONS.get(move));
                 if (directions.stream().map(elf::move).noneMatch(elves::contains)) {
                     proposed = move;
                     break;

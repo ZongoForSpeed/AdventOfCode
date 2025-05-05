@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -71,7 +72,7 @@ public final class Day02 {
         }
 
         static int score(RockPaperScissors player1, RockPaperScissors player2) {
-            Play play = RESULTS.get(Pair.of(player2, player1));
+            Play play = Objects.requireNonNull(RESULTS.get(Pair.of(player2, player1)));
             return play.value + player2.value;
         }
 
@@ -219,7 +220,7 @@ public final class Day02 {
                     RockPaperScissors opponent = RockPaperScissors.read(matcher.group(1));
                     Play outcome = Play.read(matcher.group(2));
 
-                    RockPaperScissors strategy = STRATEGY.get(Pair.of(opponent, outcome));
+                    RockPaperScissors strategy = Objects.requireNonNull(STRATEGY.get(Pair.of(opponent, outcome)));
 
                     int playScore = RockPaperScissors.score(opponent, strategy);
 

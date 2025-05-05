@@ -3,7 +3,6 @@ package com.adventofcode.year2019;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
@@ -100,7 +99,7 @@ public final class Day03 {
                 };
                 result.add(position);
             }
-            position = Iterables.getLast(result);
+            position = result.getLast();
         }
         return result;
     }

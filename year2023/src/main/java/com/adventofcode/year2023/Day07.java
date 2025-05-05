@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -365,7 +366,7 @@ public final class Day07 {
         public static Hand of(String cards, long bid, Map<Character, Integer> cardValues, Function<String, Type> function) {
             int[] values = new int[cards.length()];
             for (int i = 0, charArrayLength = cards.length(); i < charArrayLength; i++) {
-                values[i] = cardValues.get(cards.charAt(i));
+                values[i] = Objects.requireNonNull(cardValues.get(cards.charAt(i)));
             }
             return new Hand(cards, bid, function.apply(cards), IntList.of(values));
         }

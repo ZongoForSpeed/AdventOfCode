@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 
 import jakarta.annotation.Nonnull;
@@ -80,6 +81,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
+    @Nullable
     public Boolean get(Object key) {
         if (key instanceof Point2D point) {
             Int2BooleanMap booleanMap = map.get(point.x());
@@ -91,6 +93,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
+    @Nullable
     public Boolean put(Point2D key, Boolean value) {
         if (value == null) {
             return null;
@@ -99,13 +102,14 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
+    @Nullable
     public Boolean remove(Object key) {
-        if (key instanceof Point2D point) {
-            Int2BooleanMap booleanMap = map.get(point.x());
+        if (key instanceof Point2D(int x, int y)) {
+            Int2BooleanMap booleanMap = map.get(x);
             if (booleanMap != null) {
-                boolean remove = booleanMap.remove(point.y());
+                boolean remove = booleanMap.remove(y);
                 if (booleanMap.isEmpty()) {
-                    map.remove(point.x());
+                    map.remove(x);
                 }
                 return remove;
             }

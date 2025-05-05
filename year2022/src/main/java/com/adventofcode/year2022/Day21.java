@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 public final class Day21 {
@@ -53,13 +54,13 @@ public final class Day21 {
      * Each line contains the name of a monkey, a colon, and then the job of that
      * monkey:
      *
-     *   - A lone number means the monkey's job is simply to yell that number.
-     *   - A job like aaaa + bbbb means the monkey waits for monkeys aaaa and
-     *     bbbb to yell each of their numbers; the monkey then yells the sum of
-     *     those two numbers.
-     *   - aaaa - bbbb means the monkey yells aaaa's number minus bbbb's number.
-     *   - Job aaaa * bbbb will yell aaaa's number multiplied by bbbb's number.
-     *   - Job aaaa / bbbb will yell aaaa's number divided by bbbb's number.
+     * - A lone number means the monkey's job is simply to yell that number.
+     * - A job like aaaa + bbbb means the monkey waits for monkeys aaaa and
+     * bbbb to yell each of their numbers; the monkey then yells the sum of
+     * those two numbers.
+     * - aaaa - bbbb means the monkey yells aaaa's number minus bbbb's number.
+     * - Job aaaa * bbbb will yell aaaa's number multiplied by bbbb's number.
+     * - Job aaaa / bbbb will yell aaaa's number divided by bbbb's number.
      *
      * So, in the above example, monkey drzm has to wait for monkeys hmdt and zczc
      * to yell their numbers. Fortunately, both hmdt and zczc have jobs that
@@ -79,7 +80,7 @@ public final class Day21 {
         Map<String, Monkey> monkeys = readInput(scanner);
 
         LOGGER.info("Monkeys = {}", monkeys);
-        Monkey root = monkeys.get("root");
+        Monkey root = Objects.requireNonNull(monkeys.get("root"));
         LOGGER.info("Root = {}", root);
 
         Const expression = (Const) root.shout(new HashMap<>(), monkeys);
@@ -115,7 +116,7 @@ public final class Day21 {
         monkeys.put("humn", new Human("x"));
 
         LOGGER.info("Monkeys = {}", monkeys);
-        CompositeMonkey root = (CompositeMonkey) monkeys.get("root");
+        CompositeMonkey root = Objects.requireNonNull((CompositeMonkey) monkeys.get("root"));
         root = new CompositeMonkey("root", root.leftMonkey, '=', root.rightMonkey);
         LOGGER.info("Root = {}", root);
 
@@ -188,8 +189,8 @@ public final class Day21 {
                 return value;
             }
 
-            Expression leftShout = monkeys.get(leftMonkey).shout(cache, monkeys);
-            Expression rightShout = monkeys.get(rightMonkey).shout(cache, monkeys);
+            Expression leftShout = Objects.requireNonNull(monkeys.get(leftMonkey)).shout(cache, monkeys);
+            Expression rightShout = Objects.requireNonNull(monkeys.get(rightMonkey)).shout(cache, monkeys);
             value = leftShout.op(op, rightShout);
             cache.put(name, value);
             return value;

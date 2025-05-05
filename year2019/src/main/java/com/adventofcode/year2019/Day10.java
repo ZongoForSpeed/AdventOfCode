@@ -3,13 +3,15 @@ package com.adventofcode.year2019;
 import com.adventofcode.common.point.Point2D;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.doubles.Double2ObjectAVLTreeMap;
+import it.unimi.dsi.fastutil.doubles.Double2ObjectMap;
+import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
+import it.unimi.dsi.fastutil.doubles.DoubleList;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public final class Day10 {
     private static int doubleCompare(double a, double b) {
@@ -132,7 +134,7 @@ public final class Day10 {
      * ###.##.####.##.#..##
      * Find the best location for a new monitoring station. How many other asteroids can be detected from that location?
      */
-    public static Pair<Point2D, Map<Double, List<Asteroids>>> findBestLocation(Scanner scanner) {
+    public static Pair<Point2D, Double2ObjectMap<List<Asteroids>>> findBestLocation(Scanner scanner) {
         List<Point2D> asteroids = new ArrayList<>();
         int i = 0;
         while (scanner.hasNextLine()) {
@@ -146,10 +148,10 @@ public final class Day10 {
         }
 
         Point2D bestLocation = null;
-        Map<Double, List<Asteroids>> bestBeamView = null;
+        Double2ObjectMap<List<Asteroids>> bestBeamView = null;
         int count = 0;
         for (Point2D location : asteroids) {
-            Map<Double, List<Asteroids>> beamView = new TreeMap<>(Day10::doubleCompare);
+            Double2ObjectMap<List<Asteroids>> beamView = new Double2ObjectAVLTreeMap<>(Day10::doubleCompare);
             for (Point2D asteroid : asteroids) {
                 if (!asteroid.equals(location)) {
                     long dx = (long) location.x() - asteroid.x();
@@ -169,7 +171,7 @@ public final class Day10 {
         }
 
         if (bestBeamView != null) {
-            for (Map.Entry<Double, List<Asteroids>> entry : bestBeamView.entrySet()) {
+            for (Double2ObjectMap.Entry<List<Asteroids>> entry : bestBeamView.double2ObjectEntrySet()) {
                 entry.getValue().sort(Comparator.comparingDouble(Asteroids::distance));
             }
         }
@@ -248,16 +250,18 @@ public final class Day10 {
      * The Elves are placing bets on which will be the 200th asteroid to be vaporized. Win the bet by determining which
      * asteroid that will be; what do you get if you multiply its X coordinate by 100 and then add its Y coordinate? (For example, 8,2 becomes 802.)
      */
-    public static List<Asteroids> vaporizeAsteroids(Map<Double, List<Asteroids>> beamView) {
+    public static List<Asteroids> vaporizeAsteroids(Double2ObjectMap<List<Asteroids>> beamView) {
         List<Asteroids> result = new ArrayList<>();
         while (!beamView.isEmpty()) {
-            for (Double direction : Lists.newArrayList(beamView.keySet())) {
-                List<Asteroids> asteroids = beamView.get(direction);
+            DoubleList keys = new DoubleArrayList();
+            for (Double2ObjectMap.Entry<List<Asteroids>> entry : beamView.double2ObjectEntrySet()) {
+                List<Asteroids> asteroids = entry.getValue();
                 result.add(asteroids.removeFirst());
                 if (asteroids.isEmpty()) {
-                    beamView.remove(direction);
+                    keys.add(entry.getDoubleKey());
                 }
             }
+            keys.forEach(beamView::remove);
         }
 
         return result;

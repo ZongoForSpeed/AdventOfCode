@@ -31,6 +31,7 @@ public final class Day04 {
         return passports;
     }
 
+    @SuppressWarnings("NullAway")
     public static boolean checkPassportFields(Map<String, String> fields) {
         for (PassportFields passportFields : PassportFields.values()) {
             String value = fields.get(passportFields.name());

@@ -11,6 +11,7 @@ import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
@@ -48,6 +49,7 @@ public final class Day21 {
         }
     }
 
+    @SuppressWarnings("NullAway")
     public static Player readBossStats(Scanner scanner) {
         Map<String, Integer> bossStats = new HashMap<>();
         while (scanner.hasNextLine()) {
@@ -267,15 +269,15 @@ public final class Day21 {
         }
 
         private List<Item> getWeapons() {
-            return items.get("Weapons");
+            return Objects.requireNonNull(items.get("Weapons"));
         }
 
         private List<Item> getArmor() {
-            return items.get("Armor");
+            return Objects.requireNonNull(items.get("Armor"));
         }
 
         private List<Item> getRings() {
-            return items.get("Rings");
+            return Objects.requireNonNull(items.get("Rings"));
         }
     }
 

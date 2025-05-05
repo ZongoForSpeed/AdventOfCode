@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
@@ -289,7 +290,7 @@ public final class Day16 {
             Path node = queue.poll();
 
             for (Path path : node.moves(maze)) {
-                Long cost = costs.get(path.state());
+                long cost = Objects.requireNonNull(costs.get(path.state()));
                 if (cost == path.cost()) {
                     previous.computeIfAbsent(path.state(), ignore -> new ArrayList<>()).add(node.state());
                     queue.add(path);

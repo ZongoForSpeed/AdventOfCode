@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -262,7 +263,7 @@ public final class Day22 {
         @Override
         public Iterable<Move<State>> next(State node) {
             List<Move<State>> next = new ArrayList<>();
-            List<Point2D> neighbours = graph.get(node.empty);
+            List<Point2D> neighbours = Objects.requireNonNull(graph.get(node.empty), "Cannot find node in graph: " + node);
             for (Point2D neighbour : neighbours) {
                 if (node.goal.equals(neighbour)) {
                     next.add(AStar.Move.of(State.of(node.empty, neighbour)));

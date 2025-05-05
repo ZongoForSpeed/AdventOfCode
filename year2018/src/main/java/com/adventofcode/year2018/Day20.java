@@ -10,6 +10,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Set;
 
@@ -89,8 +90,8 @@ public final class Day20 {
      * #?#?#?#?#
      * ?.|.|.|.?
      * #?#?#?#-#
-     *     ?X|.?
-     *     #?#?#
+     * ?X|.?
+     * #?#?#
      *
      * After this point, there is (NEEE|SSE(EE|N)). This gives you exactly two
      * options: NEEE and SSE(EE|N). By following NEEE, the map now looks like
@@ -101,8 +102,8 @@ public final class Day20 {
      * #-#?#?#?#
      * ?.|.|.|.?
      * #?#?#?#-#
-     *     ?X|.?
-     *     #?#?#
+     * ?X|.?
+     * #?#?#
      *
      * Now, only SSE(EE|N) remains. Because it is in the same parenthesized group
      * as NEEE, it starts from the same room NEEE started in. It states that
@@ -159,10 +160,10 @@ public final class Day20 {
      * it is left at after taking those steps. So, for example, this regex matches
      * all of the following routes (and more that aren't listed here):
      *
-     *   - ENNWSWWSSSEENEENNN
-     *   - ENNWSWWNEWSSSSEENEENNN
-     *   - ENNWSWWNEWSSSSEENEESWENNNN
-     *   - ENNWSWWSSSEENWNSEEENNN
+     * - ENNWSWWSSSEENEENNN
+     * - ENNWSWWNEWSSSSEENEENNN
+     * - ENNWSWWNEWSSSSEENEESWENNNN
+     * - ENNWSWWSSSEENWNSEEENNN
      *
      * By following the various routes the regex matches, a full map of all of the
      * doors and rooms in the facility can be assembled.
@@ -172,12 +173,12 @@ public final class Day20 {
      * for which the shortest path to that room would require passing through the
      * most doors.
      *
-     *   - In the first example (^WNE$), this would be the north-east corner 3
-     *     doors away.
-     *   - In the second example (^ENWWW(NEEE|SSE(EE|N))$), this would be the
-     *     south-east corner 10 doors away.
-     *   - In the third example (^ENNWSWW(NEWS|)SSSEEN(WNSE|)EE(SWEN|)NNN$), this
-     *     would be the north-east corner 18 doors away.
+     * - In the first example (^WNE$), this would be the north-east corner 3
+     * doors away.
+     * - In the second example (^ENWWW(NEEE|SSE(EE|N))$), this would be the
+     * south-east corner 10 doors away.
+     * - In the third example (^ENNWSWW(NEWS|)SSSEEN(WNSE|)EE(SWEN|)NNN$), this
+     * would be the north-east corner 18 doors away.
      *
      * Here are a few more examples:
      *
@@ -274,7 +275,7 @@ public final class Day20 {
                 case ')' -> current = positions.pollLast();
                 case '|' -> current = positions.peekLast();
                 default -> {
-                    Direction direction = DIRECTIONS.get(c);
+                    Direction direction = Objects.requireNonNull(DIRECTIONS.get(c), () -> "Cannot find direction for " + c);
                     current = current.move(direction);
                     m.computeIfAbsent(current, ignore -> new HashSet<>()).add(previous);
                     int previousDistance = distances.getOrDefault(previous, 0) + 1;

@@ -79,6 +79,8 @@
         <!-- https://mvnrepository.com/artifact/com.google.errorprone/error_prone_core -->
         <error-prone.version>2.38.0</error-prone.version>
 
+        <!-- https://mvnrepository.com/artifact/com.uber.nullaway/nullaway -->
+        <nullaway.version>0.12.7</nullaway.version>
     </properties>
 
     <dependencyManagement>
@@ -307,7 +309,8 @@
                     <compilerArgs>
                         <arg>-XDcompilePolicy=simple</arg>
                         <arg>--should-stop=ifError=FLOW</arg>
-                        <arg>-Xplugin:ErrorProne -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR
+                        <arg>-Xplugin:ErrorProne -XepOpt:NullAway:AnnotatedPackages=com.adventofcode
+                            -Xep:NullAway:ERROR -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR
                             -Xep:StringSplitter:ERROR -Xep:ReferenceEquality:ERROR -Xep:LoopOverCharArray:ERROR
                             -Xep:DefaultCharset:OFF -Xep:IntLongMath:ERROR -Xep:FutureReturnValueIgnored:OFF
                         </arg>
@@ -317,6 +320,11 @@
                             <groupId>com.google.errorprone</groupId>
                             <artifactId>error_prone_core</artifactId>
                             <version>${error-prone.version}</version>
+                        </path>
+                        <path>
+                            <groupId>com.uber.nullaway</groupId>
+                            <artifactId>nullaway</artifactId>
+                            <version>${nullaway.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

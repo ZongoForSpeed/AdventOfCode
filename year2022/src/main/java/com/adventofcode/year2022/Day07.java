@@ -1,6 +1,7 @@
 package com.adventofcode.year2022;
 
 import com.google.common.base.Splitter;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,38 +69,38 @@ public final class Day07 {
      * Within the terminal output, lines that begin with $ are commands you
      * executed, very much like some modern computers:
      *
-     *   - cd means change directory. This changes which directory is the current
-     *     directory, but the specific result depends on the argument:
-     *       - cd x moves in one level: it looks in the current directory for the
-     *         directory named x and makes it the current directory.
-     *       - cd .. moves out one level: it finds the directory that contains
-     *         the current directory, then makes that directory the current
-     *         directory.
-     *       - cd / switches the current directory to the outermost directory, /.
-     *   - ls means list. It prints out all of the files and directories
-     *     immediately contained by the current directory:
-     *       - 123 abc means that the current directory contains a file named abc
-     *         with size 123.
-     *       - dir xyz means that the current directory contains a directory
-     *         named xyz.
+     * - cd means change directory. This changes which directory is the current
+     * directory, but the specific result depends on the argument:
+     * - cd x moves in one level: it looks in the current directory for the
+     * directory named x and makes it the current directory.
+     * - cd .. moves out one level: it finds the directory that contains
+     * the current directory, then makes that directory the current
+     * directory.
+     * - cd / switches the current directory to the outermost directory, /.
+     * - ls means list. It prints out all of the files and directories
+     * immediately contained by the current directory:
+     * - 123 abc means that the current directory contains a file named abc
+     * with size 123.
+     * - dir xyz means that the current directory contains a directory
+     * named xyz.
      *
      * Given the commands and output in the example above, you can determine that
      * the filesystem looks visually like this:
      *
      * - / (dir)
-     *   - a (dir)
-     *     - e (dir)
-     *       - i (file, size=584)
-     *     - f (file, size=29116)
-     *     - g (file, size=2557)
-     *     - h.lst (file, size=62596)
-     *   - b.txt (file, size=14848514)
-     *   - c.dat (file, size=8504156)
-     *   - d (dir)
-     *     - j (file, size=4060174)
-     *     - d.log (file, size=8033020)
-     *     - d.ext (file, size=5626152)
-     *     - k (file, size=7214296)
+     * - a (dir)
+     * - e (dir)
+     * - i (file, size=584)
+     * - f (file, size=29116)
+     * - g (file, size=2557)
+     * - h.lst (file, size=62596)
+     * - b.txt (file, size=14848514)
+     * - c.dat (file, size=8504156)
+     * - d (dir)
+     * - j (file, size=4060174)
+     * - d.log (file, size=8033020)
+     * - d.ext (file, size=5626152)
+     * - k (file, size=7214296)
      *
      * Here, there are four directories: / (the outermost directory), a and d
      * (which are in /), and e (which is in a). These directories also contain
@@ -113,14 +114,14 @@ public final class Day07 {
      *
      * The total sizes of the directories above can be found as follows:
      *
-     *   - The total size of directory e is 584 because it contains a single file
-     *     i of size 584 and no other directories.
-     *   - The directory a has total size 94853 because it contains files f (size
-     *     29116), g (size 2557), and h.lst (size 62596), plus file i indirectly
-     *     (a contains e which contains i).
-     *   - Directory d has total size 24933642.
-     *   - As the outermost directory, / contains every file. Its total size is
-     *     48381165, the sum of the size of every file.
+     * - The total size of directory e is 584 because it contains a single file
+     * i of size 584 and no other directories.
+     * - The directory a has total size 94853 because it contains files f (size
+     * 29116), g (size 2557), and h.lst (size 62596), plus file i indirectly
+     * (a contains e which contains i).
+     * - Directory d has total size 24933642.
+     * - As the outermost directory, / contains every file. Its total size is
+     * 48381165, the sum of the size of every file.
      *
      * To begin, find all of the directories with a total size of at most 100000,
      * then calculate the sum of their total sizes. In the example above, these
@@ -160,10 +161,10 @@ public final class Day07 {
      *
      * To achieve this, you have the following options:
      *
-     *   - Delete directory e, which would increase unused space by 584.
-     *   - Delete directory a, which would increase unused space by 94853.
-     *   - Delete directory d, which would increase unused space by 24933642.
-     *   - Delete directory /, which would increase unused space by 48381165.
+     * - Delete directory e, which would increase unused space by 584.
+     * - Delete directory a, which would increase unused space by 94853.
+     * - Delete directory d, which would increase unused space by 24933642.
+     * - Delete directory /, which would increase unused space by 48381165.
      *
      * Directories e and a are both too small; deleting them would not free up
      * enough space. However, directories d and / are both big enough! Between
@@ -219,15 +220,17 @@ public final class Day07 {
                 switch (command) {
                     case "cd" -> {
                         String operand = split.get(2);
-                        if ("/".equals(operand)) {
-                            current = new Directory("/", null, new ArrayList<>(), new ArrayList<>());
-                            root = current;
-                        } else if ("..".equals(operand)) {
-                            current = current.parent;
-                        } else {
-                            Directory cd = new Directory(operand, current, new ArrayList<>(), new ArrayList<>());
-                            current.subdirectory.add(cd);
-                            current = cd;
+                        switch (operand) {
+                            case "/" -> {
+                                current = new Directory("/", null, new ArrayList<>(), new ArrayList<>());
+                                root = current;
+                            }
+                            case ".." -> current = Objects.requireNonNull(current).parent;
+                            default -> {
+                                Directory cd = new Directory(operand, current, new ArrayList<>(), new ArrayList<>());
+                                Objects.requireNonNull(current).subdirectory.add(cd);
+                                current = cd;
+                            }
                         }
                     }
                     case "ls" -> {
@@ -238,9 +241,13 @@ public final class Day07 {
                 String left = split.getFirst();
                 String right = split.get(1);
                 if (NumberUtils.isParsable(left)) {
-                    current.files.add(new File(Integer.parseInt(left), right));
+                    Objects.requireNonNull(current).files.add(new File(Integer.parseInt(left), right));
                 }
             }
+        }
+
+        if (root == null) {
+            throw new IllegalStateException("Cannot find root directory");
         }
 
         printDirectory(root, 0);
@@ -263,7 +270,7 @@ public final class Day07 {
 
     }
 
-    record Directory(String name, Directory parent, List<File> files, List<Directory> subdirectory) {
+    record Directory(String name, @Nullable Directory parent, List<File> files, List<Directory> subdirectory) {
         @Override
         public String toString() {
             return name;

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -35,7 +36,7 @@ public final class Day12 {
 
         @Override
         public Iterable<Move<Point2D>> next(Point2D node) {
-            return graph.get(node).stream().map(AStar.Move::of).toList();
+            return Objects.requireNonNull(graph.get(node)).stream().map(AStar.Move::of).toList();
         }
 
     }

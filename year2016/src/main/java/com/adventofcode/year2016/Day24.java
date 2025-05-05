@@ -1,14 +1,15 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.graph.Dijkstra;
-import com.adventofcode.common.point.map.CharMap;
+import com.adventofcode.common.maths.Permutations;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
-import com.adventofcode.common.maths.Permutations;
+import com.adventofcode.common.point.map.CharMap;
+import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntList;
-import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -114,10 +115,9 @@ public final class Day24 {
         for (Int2ObjectMap.Entry<Point2D> entry : neededPoints.int2ObjectEntrySet()) {
             int key = entry.getIntKey();
             LOGGER.info("Searching for paths stating at {}", key);
-            Map<Point2D, Integer> distances = dijkstra.computeDistance(entry.getValue());
+            Object2IntMap<Point2D> distances = dijkstra.computeDistance(entry.getValue());
             for (Int2ObjectMap.Entry<Point2D> dEntry : neededPoints.int2ObjectEntrySet()) {
-                Integer distance = distances.get(dEntry.getValue());
-                fullDistances[key][dEntry.getIntKey()] = distance;
+                fullDistances[key][dEntry.getIntKey()] = distances.getInt(dEntry.getValue());
             }
         }
 

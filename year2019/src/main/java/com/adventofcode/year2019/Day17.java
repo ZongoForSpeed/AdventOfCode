@@ -208,7 +208,7 @@ public final class Day17 {
         char[][] map = Splitter.on('\n').splitToStream(input).map(String::toCharArray).toArray(char[][]::new);
 
         Point2D position = null;
-        Direction direction = null;
+        Direction direction = Direction.UP;
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 switch (map[i][j]) {

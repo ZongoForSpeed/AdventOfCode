@@ -1,6 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.google.gson.Gson;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -98,10 +99,10 @@ public final class Day18 {
      * To reduce a snailfish number, you must repeatedly do the first action in
      * this list that applies to the snailfish number:
      *
-     *   - If any pair is nested inside four pairs, the leftmost such pair
-     *     explodes.
-     *   - If any regular number is 10 or greater, the leftmost such regular
-     *     number splits.
+     * - If any pair is nested inside four pairs, the leftmost such pair
+     * explodes.
+     * - If any regular number is 10 or greater, the leftmost such regular
+     * number splits.
      *
      * Once no action in the above list applies, the snailfish number is reduced.
      *
@@ -118,17 +119,17 @@ public final class Day18 {
      *
      * Here are some examples of a single explode action:
      *
-     *   - [[[[[9,8],1],2],3],4] becomes [[[[0,9],2],3],4] (the 9 has no regular
-     *     number to its left, so it is not added to any regular number).
-     *   - [7,[6,[5,[4,[3,2]]]]] becomes [7,[6,[5,[7,0]]]] (the 2 has no regular
-     *     number to its right, and so it is not added to any regular number).
-     *   - [[6,[5,[4,[3,2]]]],1] becomes [[6,[5,[7,0]]],3].
-     *   - [[3,[2,[1,[7,3]]]],[6,[5,[4,[3,2]]]]] becomes
-     *     [[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]] (the pair [3,2] is unaffected
-     *     because the pair [7,3] is further to the left; [3,2] would explode on
-     *     the next action).
-     *   - [[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]] becomes
-     *     [[3,[2,[8,0]]],[9,[5,[7,0]]]].
+     * - [[[[[9,8],1],2],3],4] becomes [[[[0,9],2],3],4] (the 9 has no regular
+     * number to its left, so it is not added to any regular number).
+     * - [7,[6,[5,[4,[3,2]]]]] becomes [7,[6,[5,[7,0]]]] (the 2 has no regular
+     * number to its right, and so it is not added to any regular number).
+     * - [[6,[5,[4,[3,2]]]],1] becomes [[6,[5,[7,0]]],3].
+     * - [[3,[2,[1,[7,3]]]],[6,[5,[4,[3,2]]]]] becomes
+     * [[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]] (the pair [3,2] is unaffected
+     * because the pair [7,3] is further to the left; [3,2] would explode on
+     * the next action).
+     * - [[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]] becomes
+     * [[3,[2,[8,0]]],[9,[5,[7,0]]]].
      *
      * To split a regular number, replace it with a pair; the left element of the
      * pair should be the regular number divided by two and rounded down, while
@@ -194,39 +195,39 @@ public final class Day18 {
      * The final sum [[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]] is
      * found after adding up the above snailfish numbers:
      *
-     *   [[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]
+     * [[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]
      * + [7,[[[3,7],[4,3]],[[6,3],[8,8]]]]
      * = [[[[4,0],[5,4]],[[7,7],[6,0]]],[[8,[7,7]],[[7,9],[5,0]]]]
      *
-     *   [[[[4,0],[5,4]],[[7,7],[6,0]]],[[8,[7,7]],[[7,9],[5,0]]]]
+     * [[[[4,0],[5,4]],[[7,7],[6,0]]],[[8,[7,7]],[[7,9],[5,0]]]]
      * + [[2,[[0,8],[3,4]]],[[[6,7],1],[7,[1,6]]]]
      * = [[[[6,7],[6,7]],[[7,7],[0,7]]],[[[8,7],[7,7]],[[8,8],[8,0]]]]
      *
-     *   [[[[6,7],[6,7]],[[7,7],[0,7]]],[[[8,7],[7,7]],[[8,8],[8,0]]]]
+     * [[[[6,7],[6,7]],[[7,7],[0,7]]],[[[8,7],[7,7]],[[8,8],[8,0]]]]
      * + [[[[2,4],7],[6,[0,5]]],[[[6,8],[2,8]],[[2,1],[4,5]]]]
      * = [[[[7,0],[7,7]],[[7,7],[7,8]]],[[[7,7],[8,8]],[[7,7],[8,7]]]]
      *
-     *   [[[[7,0],[7,7]],[[7,7],[7,8]]],[[[7,7],[8,8]],[[7,7],[8,7]]]]
+     * [[[[7,0],[7,7]],[[7,7],[7,8]]],[[[7,7],[8,8]],[[7,7],[8,7]]]]
      * + [7,[5,[[3,8],[1,4]]]]
      * = [[[[7,7],[7,8]],[[9,5],[8,7]]],[[[6,8],[0,8]],[[9,9],[9,0]]]]
      *
-     *   [[[[7,7],[7,8]],[[9,5],[8,7]]],[[[6,8],[0,8]],[[9,9],[9,0]]]]
+     * [[[[7,7],[7,8]],[[9,5],[8,7]]],[[[6,8],[0,8]],[[9,9],[9,0]]]]
      * + [[2,[2,2]],[8,[8,1]]]
      * = [[[[6,6],[6,6]],[[6,0],[6,7]]],[[[7,7],[8,9]],[8,[8,1]]]]
      *
-     *   [[[[6,6],[6,6]],[[6,0],[6,7]]],[[[7,7],[8,9]],[8,[8,1]]]]
+     * [[[[6,6],[6,6]],[[6,0],[6,7]]],[[[7,7],[8,9]],[8,[8,1]]]]
      * + [2,9]
      * = [[[[6,6],[7,7]],[[0,7],[7,7]]],[[[5,5],[5,6]],9]]
      *
-     *   [[[[6,6],[7,7]],[[0,7],[7,7]]],[[[5,5],[5,6]],9]]
+     * [[[[6,6],[7,7]],[[0,7],[7,7]]],[[[5,5],[5,6]],9]]
      * + [1,[[[9,3],9],[[9,0],[0,7]]]]
      * = [[[[7,8],[6,7]],[[6,8],[0,8]]],[[[7,7],[5,0]],[[5,5],[5,6]]]]
      *
-     *   [[[[7,8],[6,7]],[[6,8],[0,8]]],[[[7,7],[5,0]],[[5,5],[5,6]]]]
+     * [[[[7,8],[6,7]],[[6,8],[0,8]]],[[[7,7],[5,0]],[[5,5],[5,6]]]]
      * + [[[5,[7,4]],7],1]
      * = [[[[7,7],[7,7]],[[8,7],[8,7]]],[[[7,0],[7,7]],9]]
      *
-     *   [[[[7,7],[7,7]],[[8,7],[8,7]]],[[[7,0],[7,7]],9]]
+     * [[[[7,7],[7,7]],[[8,7],[8,7]]],[[[7,0],[7,7]],9]]
      * + [[[[4,2],2],6],[8,7]]
      * = [[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]
      *
@@ -241,12 +242,12 @@ public final class Day18 {
      *
      * Here are a few more magnitude examples:
      *
-     *   - [[1,2],[[3,4],5]] becomes 143.
-     *   - [[[[0,7],4],[[7,8],[6,0]]],[8,1]] becomes 1384.
-     *   - [[[[1,1],[2,2]],[3,3]],[4,4]] becomes 445.
-     *   - [[[[3,0],[5,3]],[4,4]],[5,5]] becomes 791.
-     *   - [[[[5,0],[7,4]],[5,5]],[6,6]] becomes 1137.
-     *   - [[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]] becomes 3488.
+     * - [[1,2],[[3,4],5]] becomes 143.
+     * - [[[[0,7],4],[[7,8],[6,0]]],[8,1]] becomes 1384.
+     * - [[[[1,1],[2,2]],[3,3]],[4,4]] becomes 445.
+     * - [[[[3,0],[5,3]],[4,4]],[5,5]] becomes 791.
+     * - [[[[5,0],[7,4]],[5,5]],[6,6]] becomes 1137.
+     * - [[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]] becomes 3488.
      *
      * So, given this example homework assignment:
      *
@@ -361,12 +362,12 @@ public final class Day18 {
 
         public abstract Snailfish addRightmost(int value);
 
-        record Explode(boolean exploded, Snailfish result, Integer addLeft, Integer addRight) {
+        record Explode(boolean exploded, Snailfish result, @Nullable Integer addLeft, @Nullable Integer addRight) {
             public static Explode of(boolean exploded, Snailfish result) {
                 return new Explode(exploded, result, null, null);
             }
 
-            public static Explode of(boolean exploded, Snailfish result, Integer addLeft, Integer addRight) {
+            public static Explode of(boolean exploded, Snailfish result, @Nullable Integer addLeft, @Nullable Integer addRight) {
                 return new Explode(exploded, result, addLeft, addRight);
             }
         }

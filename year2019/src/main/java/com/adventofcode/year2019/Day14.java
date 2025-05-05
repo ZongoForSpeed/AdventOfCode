@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -133,7 +134,7 @@ public final class Day14 {
                 break;
             }
 
-            Reaction reaction = reactionMap.get(firstChemical.get().getKey());
+            Reaction reaction = Objects.requireNonNull(reactionMap.get(firstChemical.get().getKey()), "Cannot find reaction: " + firstChemical);
             long needed = firstChemical.get().getValue();
             long value = reaction.chemicalOutput().right();
             reaction.apply(quantities, -Arithmetic.ceil(needed, value));

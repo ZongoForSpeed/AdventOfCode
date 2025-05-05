@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -81,54 +82,54 @@ public final class Day16 {
      *
      * Addition:
      *
-     *   - addr (add register) stores into register C the result of adding
-     *     register A and register B.
-     *   - addi (add immediate) stores into register C the result of adding
-     *     register A and value B.
+     * - addr (add register) stores into register C the result of adding
+     * register A and register B.
+     * - addi (add immediate) stores into register C the result of adding
+     * register A and value B.
      *
      * Multiplication:
      *
-     *   - mulr (multiply register) stores into register C the result of
-     *     multiplying register A and register B.
-     *   - muli (multiply immediate) stores into register C the result of
-     *     multiplying register A and value B.
+     * - mulr (multiply register) stores into register C the result of
+     * multiplying register A and register B.
+     * - muli (multiply immediate) stores into register C the result of
+     * multiplying register A and value B.
      *
      * Bitwise AND:
      *
-     *   - banr (bitwise AND register) stores into register C the result of the
-     *     bitwise AND of register A and register B.
-     *   - bani (bitwise AND immediate) stores into register C the result of the
-     *     bitwise AND of register A and value B.
+     * - banr (bitwise AND register) stores into register C the result of the
+     * bitwise AND of register A and register B.
+     * - bani (bitwise AND immediate) stores into register C the result of the
+     * bitwise AND of register A and value B.
      *
      * Bitwise OR:
      *
-     *   - borr (bitwise OR register) stores into register C the result of the bitwise OR of register A and register B.
-     *   - bori (bitwise OR immediate) stores into register C the result of the bitwise OR of register A and value B.
+     * - borr (bitwise OR register) stores into register C the result of the bitwise OR of register A and register B.
+     * - bori (bitwise OR immediate) stores into register C the result of the bitwise OR of register A and value B.
      *
      * Assignment:
      *
-     *   - setr (set register) copies the contents of register A into register C.
-     *     (Input B is ignored.)
-     *   - seti (set immediate) stores value A into register C. (Input B is
-     *     ignored.)
+     * - setr (set register) copies the contents of register A into register C.
+     * (Input B is ignored.)
+     * - seti (set immediate) stores value A into register C. (Input B is
+     * ignored.)
      *
      * Greater-than testing:
      *
-     *   - gtir (greater-than immediate/register) sets register C to 1 if value A
-     *     is greater than register B. Otherwise, register C is set to 0.
-     *   - gtri (greater-than register/immediate) sets register C to 1 if
-     *     register A is greater than value B. Otherwise, register C is set to 0.
-     *   - gtrr (greater-than register/register) sets register C to 1 if register
-     *     A is greater than register B. Otherwise, register C is set to 0.
+     * - gtir (greater-than immediate/register) sets register C to 1 if value A
+     * is greater than register B. Otherwise, register C is set to 0.
+     * - gtri (greater-than register/immediate) sets register C to 1 if
+     * register A is greater than value B. Otherwise, register C is set to 0.
+     * - gtrr (greater-than register/register) sets register C to 1 if register
+     * A is greater than register B. Otherwise, register C is set to 0.
      *
      * Equality testing:
      *
-     *   - eqir (equal immediate/register) sets register C to 1 if value A is
-     *     equal to register B. Otherwise, register C is set to 0.
-     *   - eqri (equal register/immediate) sets register C to 1 if register A is
-     *     equal to value B. Otherwise, register C is set to 0.
-     *   - eqrr (equal register/register) sets register C to 1 if register A is
-     *     equal to register B. Otherwise, register C is set to 0.
+     * - eqir (equal immediate/register) sets register C to 1 if value A is
+     * equal to register B. Otherwise, register C is set to 0.
+     * - eqri (equal register/immediate) sets register C to 1 if register A is
+     * equal to value B. Otherwise, register C is set to 0.
+     * - eqrr (equal register/register) sets register C to 1 if register A is
+     * equal to register B. Otherwise, register C is set to 0.
      *
      * Unfortunately, while the manual gives the name of each opcode, it doesn't
      * seem to indicate the number. However, you can monitor the CPU to see the
@@ -151,14 +152,14 @@ public final class Day16 {
      * only three of them behave in a way that would cause the result shown in the
      * sample:
      *
-     *   - Opcode 9 could be mulr: register 2 (which has a value of 1) times
-     *     register 1 (which has a value of 2) produces 2, which matches the
-     *     value stored in the output register, register 2.
-     *   - Opcode 9 could be addi: register 2 (which has a value of 1) plus value
-     *     1 produces 2, which matches the value stored in the output register,
-     *     register 2.
-     *   - Opcode 9 could be seti: value 2 matches the value stored in the output
-     *     register, register 2; the number given for B is irrelevant.
+     * - Opcode 9 could be mulr: register 2 (which has a value of 1) times
+     * register 1 (which has a value of 2) produces 2, which matches the
+     * value stored in the output register, register 2.
+     * - Opcode 9 could be addi: register 2 (which has a value of 1) plus value
+     * 1 produces 2, which matches the value stored in the output register,
+     * register 2.
+     * - Opcode 9 could be seti: value 2 matches the value stored in the output
+     * register, register 2; the number given for B is irrelevant.
      *
      * None of the other opcodes produce the result captured in the sample.
      * Because of this, the sample above behaves like three opcodes.
@@ -241,7 +242,8 @@ public final class Day16 {
 
         IntList register = new IntArrayList(Collections.nCopies(100, 0));
         for (int[] command : inputs) {
-            OpCode.executeInstruction(register, mapping.get(command[0]), command[1], command[2], command[3]);
+            String opcode = Objects.requireNonNull(mapping.get(command[0]), "Cannot find opcode for command " + Arrays.toString(command));
+            OpCode.executeInstruction(register, opcode, command[1], command[2], command[3]);
         }
 
         LOGGER.info("Register: {}", register);

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -269,9 +270,9 @@ public final class Day21 {
 
             long result = 0;
 
-            Point2D current = keys.get('A');
+            Point2D current = Objects.requireNonNull(keys.get('A'));
             for (int i = 0; i < presses.length(); i++) {
-                Point2D next = keys.get(presses.charAt(i));
+                Point2D next = Objects.requireNonNull(keys.get(presses.charAt(i)));
                 result += doCheapest(cache, current, next, robots);
                 current = next;
             }

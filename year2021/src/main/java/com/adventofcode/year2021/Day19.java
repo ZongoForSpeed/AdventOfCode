@@ -1,10 +1,10 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.point.Point3D;
 import com.adventofcode.common.matrix.Matrix3D;
+import com.adventofcode.common.point.Point3D;
+import it.unimi.dsi.fastutil.Pair;
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;
-import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -615,7 +616,7 @@ public final class Day19 {
         Map<String, Point3D> positions = new HashMap<>();
         positions.put("0", Point3D.ORIGIN);
         Set<Point3D> points = new HashSet<>();
-        scanners.get("0").forEach(probe -> points.add(probe.point()));
+        Objects.requireNonNull(scanners.get("0")).forEach(probe -> points.add(probe.point()));
 
         for (Map.Entry<String, List<Probe>> entry : scanners.entrySet()) {
             String key = entry.getKey();
@@ -625,7 +626,7 @@ public final class Day19 {
             for (Probe probe : entry.getValue()) {
                 Point3D scannerPosition = Point3D.ORIGIN;
                 Point3D point = probe.point();
-                for (Transformation transform : transforms.get(Pair.of("0", key))) {
+                for (Transformation transform : Objects.requireNonNull(transforms.get(Pair.of("0", key)))) {
                     scannerPosition = transform.apply(scannerPosition);
                     point = transform.apply(point);
                 }

@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
@@ -125,7 +126,7 @@ public final class Day23 {
                     String node1 = nodes.get(i);
                     for (int j = i + 1; j < nodesSize; ++j) {
                         String node2 = nodes.get(j);
-                        if (graph.get(node1).contains(node2)) {
+                        if (Objects.requireNonNull(graph.get(node1)).contains(node2)) {
                             triplets.add(Set.of(key, node1, node2));
                         }
                     }
@@ -201,7 +202,7 @@ public final class Day23 {
         for (Map.Entry<String, Set<String>> entry : graph.entrySet()) {
             Integer key = ids.get(entry.getKey());
             BitSet nv = intGraph.get(key);
-            entry.getValue().stream().mapToInt(ids::get).forEach(nv::set);
+            Objects.requireNonNull(entry).getValue().stream().mapToInt(ids::get).forEach(nv::set);
         }
 
         LOGGER.info("intGraph: {}", intGraph);

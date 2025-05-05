@@ -1,6 +1,7 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,11 +50,13 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
     }
 
     @Override
+    @Nullable
     public E get(Object key) {
         return map.get(key);
     }
 
     @Override
+    @Nullable
     public E put(Point2D key, E value) {
         return map.put(key, value);
     }

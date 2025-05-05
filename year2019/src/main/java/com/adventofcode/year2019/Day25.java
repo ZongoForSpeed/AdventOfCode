@@ -3,6 +3,8 @@ package com.adventofcode.year2019;
 import com.adventofcode.common.Intcode;
 import com.adventofcode.common.point.Direction;
 import com.google.common.base.Splitter;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -72,12 +75,12 @@ public final class Day25 {
      */
     static String findPassword(String program) {
         Droid droid = new Droid(Set.of("molten lava", "infinite loop", "giant electromagnet", "photons", "escape pod"));
-        Position position = droid.start(program);
+        Position position = Objects.requireNonNull(droid.start(program), "Cannot run program: " + program);
         Deque<Direction> path = new ArrayDeque<>();
         for (Direction direction : position.directions()) {
             droid.walk(position, direction, path);
         }
-        List<Direction> directions = droid.paths.get("Security Checkpoint");
+        List<Direction> directions = Objects.requireNonNull(droid.paths.get("Security Checkpoint"));
         for (Direction direction : directions) {
             droid.doCommand(direction);
         }
@@ -113,6 +116,7 @@ public final class Day25 {
         private final Set<String> items = new HashSet<>();
         private final Set<Position> seenPosition = new HashSet<>();
         private final Map<String, List<Direction>> paths = new HashMap<>();
+        @Nullable
         private Direction exit;
 
         public Droid(Set<String> forbiddenItems) {
@@ -120,6 +124,7 @@ public final class Day25 {
             executor = Executors.newVirtualThreadPerTaskExecutor();
         }
 
+        @Nullable
         private static Position parseOutput(String output) {
             if (output.contains("You take the ") || output.contains("You drop the ")) {
                 return null;
@@ -128,15 +133,15 @@ public final class Day25 {
             if (indexOf == -1) {
                 throw new IllegalStateException(output);
             }
-            String position = null;
-            String description = null;
+            Optional<String> position = Optional.empty();
+            Optional<String> description = Optional.empty();
             boolean readDoors = false;
             boolean readItems = false;
             List<Direction> directions = new ArrayList<>();
             List<String> items = new ArrayList<>();
             for (String line : Splitter.on('\n').split(output)) {
                 if (line.startsWith("== ")) {
-                    position = line.replace("==", "").trim();
+                    position = Optional.of(line.replace("==", "").trim());
                 } else if (line.startsWith("- ")) {
                     String trim = line.replace("- ", "").trim();
                     if (readDoors) {
@@ -155,17 +160,18 @@ public final class Day25 {
                     readDoors = false;
                     readItems = true;
                 } else {
-                    if (position != null && description == null) {
-                        description = line;
+                    if (position.isPresent() && description.isEmpty()) {
+                        description = Optional.of(line);
                     }
                     readDoors = false;
                     readItems = false;
                 }
             }
 
-            return new Position(position, description, directions, items, output);
+            return new Position(position.orElseThrow(), description.orElseThrow(), directions, items, output);
         }
 
+        @Nullable
         public Position start(String program) {
             executor.submit(() -> {
                 Intcode.intcode(program, this::input, this::output);
@@ -204,11 +210,13 @@ public final class Day25 {
             }
         }
 
-        private Position doCommand(Direction direction) {
-            String cardinalDirection = CARDINAL.get(direction);
-            return doCommand(cardinalDirection);
+        @Nonnull
+        private Position doCommand(@Nullable Direction direction) {
+            String cardinalDirection = Objects.requireNonNull(CARDINAL.get(direction), "Cannot find direction: " + direction);
+            return Objects.requireNonNull(doCommand(cardinalDirection), "Cannot run command on " + direction);
         }
 
+        @Nullable
         private Position doCommand(String input) {
             input.chars().mapToLong(t -> t).forEach(instructions::add);
             instructions.add(10L);
@@ -216,6 +224,7 @@ public final class Day25 {
             return getConsoleOutput();
         }
 
+        @Nullable
         private Position getConsoleOutput() {
             try {
                 return parseOutput(consoleOutput.take());

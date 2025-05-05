@@ -12,6 +12,7 @@ import it.unimi.dsi.fastutil.ints.IntIntPair;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.longs.Long2IntMap;
 import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -362,10 +363,10 @@ public final class Day16 {
         }
         Dijkstra<Integer> dijkstra = new Dijkstra<>(graph);
         for (int i = 0; i < size; ++i) {
-            Map<Integer, Integer> distance = dijkstra.computeDistance(i);
-            for (Map.Entry<Integer, Integer> entry : distance.entrySet()) {
-                if (rates.get(entry.getKey()) > 0) {
-                    distances[i][entry.getKey()] = entry.getValue();
+            Object2IntMap<Integer> distance = dijkstra.computeDistance(i);
+            for (Object2IntMap.Entry<Integer> entry : distance.object2IntEntrySet()) {
+                if (rates.get((int) entry.getKey()) > 0) {
+                    distances[i][entry.getKey()] = entry.getIntValue();
                 }
             }
         }

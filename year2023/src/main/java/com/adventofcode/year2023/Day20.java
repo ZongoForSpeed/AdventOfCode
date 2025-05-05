@@ -1,6 +1,7 @@
 package com.adventofcode.year2023;
 
 import com.google.common.base.Splitter;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +13,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
@@ -273,7 +275,7 @@ public final class Day20 {
                     Pulse pulse = pulses.pollFirst();
 
                     for (String input : rxInputs) {
-                        Map<String, Integer> counter = inputCycles.get(input);
+                        Map<String, Integer> counter = Objects.requireNonNull(inputCycles.get(input));
                         if (pulse.value == Value.HIGH
                             && pulse.to.equals(input)
                             && counter.containsKey(pulse.from)
@@ -363,6 +365,7 @@ public final class Day20 {
             this(label, type, new AtomicBoolean(true), new HashMap<>(), destinations);
         }
 
+        @Nullable
         Value propagate(Pulse pulse) {
             return switch (type) {
                 case 'b' -> pulse.value;

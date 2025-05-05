@@ -1,5 +1,7 @@
 package com.adventofcode.common.memory;
 
+import jakarta.annotation.Nullable;
+
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
@@ -38,6 +40,7 @@ public class LongMemory implements Memory<Long> {
     }
 
     @Override
+    @Nullable
     public Long get(int key) {
         checkKey(key);
 
@@ -49,6 +52,7 @@ public class LongMemory implements Memory<Long> {
     }
 
     @Override
+    @Nullable
     public Long put(int key, Long value) {
         if (value == null) {
             throw new IllegalStateException("Null value are not allowed");
@@ -72,6 +76,7 @@ public class LongMemory implements Memory<Long> {
         return bitSet.stream().mapToLong(i -> mem[i]).boxed().toList();
     }
 
+    @Nullable
     public Long put(int key, long value) {
         checkKey(key);
 

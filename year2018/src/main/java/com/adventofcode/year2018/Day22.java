@@ -15,6 +15,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Set;
@@ -63,42 +64,42 @@ public final class Day22 {
      * geologic index can be determined using the first rule that applies from the
      * list below:
      *
-     *   - The region at 0,0 (the mouth of the cave) has a geologic index of 0.
-     *   - The region at the coordinates of the target has a geologic index of 0.
-     *   - If the region's Y coordinate is 0, the geologic index is its X
-     *     coordinate times 16807.
-     *   - If the region's X coordinate is 0, the geologic index is its Y
-     *     coordinate times 48271.
-     *   - Otherwise, the region's geologic index is the result of multiplying
-     *     the erosion levels of the regions at X-1,Y and X,Y-1.
+     * - The region at 0,0 (the mouth of the cave) has a geologic index of 0.
+     * - The region at the coordinates of the target has a geologic index of 0.
+     * - If the region's Y coordinate is 0, the geologic index is its X
+     * coordinate times 16807.
+     * - If the region's X coordinate is 0, the geologic index is its Y
+     * coordinate times 48271.
+     * - Otherwise, the region's geologic index is the result of multiplying
+     * the erosion levels of the regions at X-1,Y and X,Y-1.
      *
      * A region's erosion level is its geologic index plus the cave system's
      * depth, all modulo 20183. Then:
      *
-     *   - If the erosion level modulo 3 is 0, the region's type is rocky.
-     *   - If the erosion level modulo 3 is 1, the region's type is wet.
-     *   - If the erosion level modulo 3 is 2, the region's type is narrow.
+     * - If the erosion level modulo 3 is 0, the region's type is rocky.
+     * - If the erosion level modulo 3 is 1, the region's type is wet.
+     * - If the erosion level modulo 3 is 2, the region's type is narrow.
      *
      * For example, suppose the cave system's depth is 510 and the target's
      * coordinates are 10,10. Using % to represent the modulo operator, the cavern
      * would look as follows:
      *
-     *   - At 0,0, the geologic index is 0. The erosion level is
-     *     (0 + 510) % 20183 = 510. The type is 510 % 3 = 0, rocky.
-     *   - At 1,0, because the Y coordinate is 0, the geologic index is
-     *     1 * 16807 = 16807. The erosion level is (16807 + 510) % 20183 = 17317.
-     *     The type is 17317 % 3 = 1, wet.
-     *   - At 0,1, because the X coordinate is 0, the geologic index is
-     *     1 * 48271 = 48271. The erosion level is (48271 + 510) % 20183 = 8415.
-     *     The type is 8415 % 3 = 0, rocky.
-     *   - At 1,1, neither coordinate is 0 and it is not the coordinate of the
-     *     target, so the geologic index is the erosion level of 0,1 (8415) times
-     *     the erosion level of 1,0 (17317), 8415 * 17317 = 145722555. The
-     *     erosion level is (145722555 + 510) % 20183 = 1805. The type is
-     *     1805 % 3 = 2, narrow.
-     *   - At 10,10, because they are the target's coordinates, the geologic
-     *     index is 0. The erosion level is (0 + 510) % 20183 = 510. The type is
-     *     510 % 3 = 0, rocky.
+     * - At 0,0, the geologic index is 0. The erosion level is
+     * (0 + 510) % 20183 = 510. The type is 510 % 3 = 0, rocky.
+     * - At 1,0, because the Y coordinate is 0, the geologic index is
+     * 1 * 16807 = 16807. The erosion level is (16807 + 510) % 20183 = 17317.
+     * The type is 17317 % 3 = 1, wet.
+     * - At 0,1, because the X coordinate is 0, the geologic index is
+     * 1 * 48271 = 48271. The erosion level is (48271 + 510) % 20183 = 8415.
+     * The type is 8415 % 3 = 0, rocky.
+     * - At 1,1, neither coordinate is 0 and it is not the coordinate of the
+     * target, so the geologic index is the erosion level of 0,1 (8415) times
+     * the erosion level of 1,0 (17317), 8415 * 17317 = 145722555. The
+     * erosion level is (145722555 + 510) % 20183 = 1805. The type is
+     * 1805 % 3 = 2, narrow.
+     * - At 10,10, because they are the target's coordinates, the geologic
+     * index is 0. The erosion level is (0 + 510) % 20183 = 510. The type is
+     * 510 % 3 = 0, rocky.
      *
      * Drawing this same cave system with rocky as ., wet as =, narrow as |, the
      * mouth as M, the target as T, with 0,0 in the top-left corner, X increasing
@@ -173,12 +174,12 @@ public final class Day22 {
      *
      * Tools can only be used in certain regions:
      *
-     *   - In rocky regions, you can use the climbing gear or the torch. You
-     *     cannot use neither (you'll likely slip and fall).
-     *   - In wet regions, you can use the climbing gear or neither tool. You
-     *     cannot use the torch (if it gets wet, you won't have a light source).
-     *   - In narrow regions, you can use the torch or neither tool. You cannot
-     *     use the climbing gear (it's too bulky to fit).
+     * - In rocky regions, you can use the climbing gear or the torch. You
+     * cannot use neither (you'll likely slip and fall).
+     * - In wet regions, you can use the climbing gear or neither tool. You
+     * cannot use the torch (if it gets wet, you won't have a light source).
+     * - In narrow regions, you can use the torch or neither tool. You cannot
+     * use the climbing gear (it's too bulky to fit).
      *
      * You start at 0,0 (the mouth of the cave) with the torch equipped and must
      * reach the target coordinates as quickly as possible. The regions with
@@ -663,7 +664,7 @@ public final class Day22 {
 
     record State(int time, Point2D position, Tool currentTool, int heuristic) {
         List<State> possibleMoves(Map<Point2D, Region> mazeMap, Point2D target) {
-            Region region = mazeMap.get(position);
+            Region region = Objects.requireNonNull(mazeMap.get(position), "Cannot find region");
             List<State> moves = new ArrayList<>();
             for (Tool newTool : Tool.values()) {
                 if (region.accept(newTool)) {

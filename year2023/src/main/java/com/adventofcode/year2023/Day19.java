@@ -12,6 +12,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -136,7 +138,7 @@ public final class Day19 {
             for (Part part : parts) {
                 String nameLabel = "in";
                 while (!END_LABELS.contains(nameLabel)) {
-                    Label currentLabel = labels.get(nameLabel);
+                    Label currentLabel = Objects.requireNonNull(labels.get(nameLabel));
                     nameLabel = currentLabel.matches(part);
                 }
 
@@ -194,7 +196,7 @@ public final class Day19 {
                     if (END_LABELS.contains(value)) {
                         newRanges.put(entry.getKey(), value);
                     } else {
-                        Map<PartRange, String> matches = labels.get(value).matches(entry.getKey());
+                        Map<PartRange, String> matches = Objects.requireNonNull(labels.get(value)).matches(entry.getKey());
                         newRanges.putAll(matches);
                     }
                 }
@@ -299,7 +301,7 @@ public final class Day19 {
                 String nameLabel = matcher.group(1);
                 String rules = matcher.group(2);
                 Iterable<String> split = Splitter.on(',').split(rules);
-                String defaultLabel = null;
+                Optional<String> defaultLabel = Optional.empty();
                 List<Rule> ruleList = new ArrayList<>();
                 for (String r : split) {
                     matcher = PATTERN_RULE.matcher(r);
@@ -310,10 +312,10 @@ public final class Day19 {
                         String output = matcher.group(4);
                         ruleList.add(new Rule(category, value, greater, output));
                     } else {
-                        defaultLabel = r;
+                        defaultLabel = Optional.of(r);
                     }
                 }
-                labels.put(nameLabel, new Label(nameLabel, ruleList, defaultLabel));
+                labels.put(nameLabel, new Label(nameLabel, ruleList, defaultLabel.orElseThrow()));
                 continue;
             }
             matcher = PATTERN_PART.matcher(line);

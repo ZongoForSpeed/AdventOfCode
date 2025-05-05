@@ -96,6 +96,7 @@ public final class Day24 {
         return units;
     }
 
+    @SuppressWarnings("NullAway")
     private static Pair<Side, Integer> battle(List<Unit> originalUnits, int boost) {
         List<Unit> units = new ArrayList<>();
         for (Unit unit : originalUnits) {

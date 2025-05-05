@@ -3,6 +3,7 @@ package com.adventofcode.year2016;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.chars.Char2IntMap;
 import it.unimi.dsi.fastutil.chars.Char2IntOpenHashMap;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ public final class Day04 {
         // No-Op
     }
 
+    @Nullable
     private static Pair<String, Integer> checkRoomName(String name) {
         Matcher matcher = PATTERN.matcher(name);
         if (!matcher.matches()) {
@@ -77,6 +79,7 @@ public final class Day04 {
         return sb.toString();
     }
 
+    @Nullable
     private static Pair<String, Integer> decryptRoomName(String input) {
         Pair<String, Integer> pair = checkRoomName(input);
         if (pair == null) {

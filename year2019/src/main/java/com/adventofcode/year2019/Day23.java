@@ -133,7 +133,7 @@ public final class Day23 {
                     computers[0].inputQueue().put(natPacket.x());
                     computers[0].inputQueue().put(natPacket.y());
                     if (Objects.equals(prevY, natPacket.y())) {
-                        return prevY;
+                        return Objects.requireNonNull(prevY);
                     }
 
                     prevY = natPacket.y();

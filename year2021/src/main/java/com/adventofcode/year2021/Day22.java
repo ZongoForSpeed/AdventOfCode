@@ -3,6 +3,7 @@ package com.adventofcode.year2021;
 import com.adventofcode.common.point.range.Cuboid;
 import com.adventofcode.common.point.range.Range;
 import it.unimi.dsi.fastutil.Pair;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,70 +49,70 @@ public final class Day22 {
      * The first step (on x=10..12,y=10..12,z=10..12) turns on a 3x3x3 cuboid
      * consisting of 27 cubes:
      *
-     *   - 10,10,10
-     *   - 10,10,11
-     *   - 10,10,12
-     *   - 10,11,10
-     *   - 10,11,11
-     *   - 10,11,12
-     *   - 10,12,10
-     *   - 10,12,11
-     *   - 10,12,12
-     *   - 11,10,10
-     *   - 11,10,11
-     *   - 11,10,12
-     *   - 11,11,10
-     *   - 11,11,11
-     *   - 11,11,12
-     *   - 11,12,10
-     *   - 11,12,11
-     *   - 11,12,12
-     *   - 12,10,10
-     *   - 12,10,11
-     *   - 12,10,12
-     *   - 12,11,10
-     *   - 12,11,11
-     *   - 12,11,12
-     *   - 12,12,10
-     *   - 12,12,11
-     *   - 12,12,12
+     * - 10,10,10
+     * - 10,10,11
+     * - 10,10,12
+     * - 10,11,10
+     * - 10,11,11
+     * - 10,11,12
+     * - 10,12,10
+     * - 10,12,11
+     * - 10,12,12
+     * - 11,10,10
+     * - 11,10,11
+     * - 11,10,12
+     * - 11,11,10
+     * - 11,11,11
+     * - 11,11,12
+     * - 11,12,10
+     * - 11,12,11
+     * - 11,12,12
+     * - 12,10,10
+     * - 12,10,11
+     * - 12,10,12
+     * - 12,11,10
+     * - 12,11,11
+     * - 12,11,12
+     * - 12,12,10
+     * - 12,12,11
+     * - 12,12,12
      *
      * The second step (on x=11..13,y=11..13,z=11..13) turns on a 3x3x3 cuboid
      * that overlaps with the first. As a result, only 19 additional cubes turn
      * on; the rest are already on from the previous step:
      *
-     *   - 11,11,13
-     *   - 11,12,13
-     *   - 11,13,11
-     *   - 11,13,12
-     *   - 11,13,13
-     *   - 12,11,13
-     *   - 12,12,13
-     *   - 12,13,11
-     *   - 12,13,12
-     *   - 12,13,13
-     *   - 13,11,11
-     *   - 13,11,12
-     *   - 13,11,13
-     *   - 13,12,11
-     *   - 13,12,12
-     *   - 13,12,13
-     *   - 13,13,11
-     *   - 13,13,12
-     *   - 13,13,13
+     * - 11,11,13
+     * - 11,12,13
+     * - 11,13,11
+     * - 11,13,12
+     * - 11,13,13
+     * - 12,11,13
+     * - 12,12,13
+     * - 12,13,11
+     * - 12,13,12
+     * - 12,13,13
+     * - 13,11,11
+     * - 13,11,12
+     * - 13,11,13
+     * - 13,12,11
+     * - 13,12,12
+     * - 13,12,13
+     * - 13,13,11
+     * - 13,13,12
+     * - 13,13,13
      *
      * The third step (off x=9..11,y=9..11,z=9..11) turns off a 3x3x3 cuboid that
      * overlaps partially with some cubes that are on, ultimately turning off 8
      * cubes:
      *
-     *   - 10,10,10
-     *   - 10,10,11
-     *   - 10,11,10
-     *   - 10,11,11
-     *   - 11,10,10
-     *   - 11,10,11
-     *   - 11,11,10
-     *   - 11,11,11
+     * - 10,10,10
+     * - 10,10,11
+     * - 10,11,10
+     * - 10,11,11
+     * - 11,10,10
+     * - 11,10,11
+     * - 11,11,10
+     * - 11,11,11
      *
      * The final step (on x=10..10,y=10..10,z=10..10) turns on a single cube,
      * 10,10,10. After this last step, 39 cubes are on.
@@ -229,7 +230,7 @@ public final class Day22 {
      *
      * Your puzzle answer was 1217808640648260.
      */
-    static long computeSize(Scanner scanner, Cuboid limit) {
+    static long computeSize(Scanner scanner, @Nullable Cuboid limit) {
         List<Pair<Boolean, Cuboid>> cuboids = new ArrayList<>();
 
         while (scanner.hasNextLine()) {

@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.point.map.IntegerMap;
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.IntegerMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +11,7 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -63,15 +64,15 @@ public final class Day11 {
      * You can model the energy levels and flashes of light in steps. During a
      * single step, the following occurs:
      *
-     *   - First, the energy level of each octopus increases by 1.
-     *   - Then, any octopus with an energy level greater than 9 flashes. This
-     *     increases the energy level of all adjacent octopuses by 1, including
-     *     octopuses that are diagonally adjacent. If this causes an octopus to
-     *     have an energy level greater than 9, it also flashes. This process
-     *     continues as long as new octopuses keep having their energy level
-     *     increased beyond 9. (An octopus can only flash at most once per step.)
-     *   - Finally, any octopus that flashed during this step has its energy
-     *     level set to 0, as it used all of its energy to flash.
+     * - First, the energy level of each octopus increases by 1.
+     * - Then, any octopus with an energy level greater than 9 flashes. This
+     * increases the energy level of all adjacent octopuses by 1, including
+     * octopuses that are diagonally adjacent. If this causes an octopus to
+     * have an energy level greater than 9, it also flashes. This process
+     * continues as long as new octopuses keep having their energy level
+     * increased beyond 9. (An octopus can only flash at most once per step.)
+     * - Finally, any octopus that flashed during this step has its energy
+     * level set to 0, as it used all of its energy to flash.
      *
      * Adjacent flashes can cause an octopus to flash on a step even if it begins
      * that step with very little energy. Consider the middle octopus with 1
@@ -457,7 +458,7 @@ public final class Day11 {
         flashes.forEach(queue::addLast);
         while (!queue.isEmpty()) {
             Point2D point = queue.removeFirst();
-            for (Point2D adjacent : adjacents.get(point)) {
+            for (Point2D adjacent : Objects.requireNonNull(adjacents.get(point))) {
                 if (map.increment(adjacent, 1) > 9 && flashes.add(adjacent)) {
                     queue.addLast(adjacent);
                 }

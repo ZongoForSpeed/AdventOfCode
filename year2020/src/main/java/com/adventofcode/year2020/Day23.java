@@ -5,8 +5,11 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 public final class Day23 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23.class);
@@ -178,6 +181,7 @@ public final class Day23 {
 
     private static class Cup {
         private final int id;
+        @Nullable
         private Cup next = null;
 
         public Cup(int id) {
@@ -188,6 +192,7 @@ public final class Day23 {
             return id;
         }
 
+        @SuppressWarnings("NullAway")
         public Cup next() {
             return next;
         }
@@ -213,11 +218,11 @@ public final class Day23 {
             }
 
             for (int i = 0, cupIndexesLength = cupIndexes.length - 1; i < cupIndexesLength; i++) {
-                cups.get(cupIndexes[i]).next(cups.get(cupIndexes[i + 1]));
+                cups.getNonNull(cupIndexes[i]).next(cups.getNonNull(cupIndexes[i + 1]));
             }
 
-            head = cups.get(cupIndexes[0]);
-            cups.get(cupIndexes[cupIndexes.length - 1]).next(head);
+            head = cups.getNonNull(cupIndexes[0]);
+            cups.getNonNull(cupIndexes[cupIndexes.length - 1]).next(head);
         }
 
         public void performStep() {
@@ -239,7 +244,7 @@ public final class Day23 {
                     destination = max;
             } while (forbidden.contains(destination));
 
-            Cup destinationCup = cups.get(destination);
+            Cup destinationCup = cups.getNonNull(destination);
 
             moveEnd.next(destinationCup.next());
             destinationCup.next(moveStart);
@@ -248,7 +253,7 @@ public final class Day23 {
 
         public String resultPart1() {
             StringBuilder stringBuilder = new StringBuilder();
-            for (Cup current = cups.get(1).next(); current.id() != 1; current = current.next()) {
+            for (Cup current = cups.getNonNull(1).next(); current.id() != 1; current = current.next()) {
                 stringBuilder.append(current.id());
             }
             return stringBuilder.toString();
@@ -256,7 +261,7 @@ public final class Day23 {
 
         public long resultPart2() {
             long result = 1;
-            Cup current = cups.get(1).next();
+            Cup current = cups.getNonNull(1).next();
             result *= current.id();
             current = current.next();
             result *= current.id();

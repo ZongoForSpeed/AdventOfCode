@@ -3,6 +3,7 @@ package com.adventofcode.year2024;
 import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -170,6 +171,7 @@ public final class Day18 {
      * being reachable from your starting position? (Provide the answer as two
      * integers separated by a comma with no other characters.)
      */
+    @Nullable
     public static String partTwo(Scanner scanner, int size) {
         List<Point2D> corruptedMemory = readCorruptedMemory(scanner);
 

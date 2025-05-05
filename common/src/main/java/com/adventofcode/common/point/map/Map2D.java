@@ -1,6 +1,7 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
+import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,16 +43,19 @@ public class Map2D implements Map<Point2D, Long> {
     }
 
     @Override
+    @Nullable
     public Long get(Object key) {
         return map.get(key);
     }
 
     @Override
+    @Nullable
     public Long put(Point2D key, Long value) {
         return map.put(key, value);
     }
 
     @Override
+    @Nullable
     public Long remove(Object key) {
         return map.remove(key);
     }

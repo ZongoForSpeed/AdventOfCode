@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,7 +81,7 @@ public final class Day15 {
                 bestComposition = cookieComposition;
             }
         }
-        return bestComposition;
+        return Objects.requireNonNull(bestComposition, "Cannot find bestComposition");
     }
 
     /**

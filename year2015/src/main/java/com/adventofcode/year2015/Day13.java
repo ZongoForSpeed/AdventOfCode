@@ -23,6 +23,7 @@ public final class Day13 {
         // No-Op
     }
 
+    @SuppressWarnings("NullAway")
     public static long computeHappiness(Map<Pair<String, String>, Long> graph, List<String> table, boolean seatYourself) {
         long happiness = 0;
         if (!seatYourself) {

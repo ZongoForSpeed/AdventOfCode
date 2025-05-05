@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -212,8 +213,8 @@ public final class Day08 {
         String next(String current, int count) {
             char c = instructions.charAt(count % instructions.length());
             return switch (c) {
-                case 'L' -> map.get(current).left();
-                case 'R' -> map.get(current).right();
+                case 'L' -> Objects.requireNonNull(map.get(current)).left();
+                case 'R' -> Objects.requireNonNull(map.get(current)).right();
                 default -> throw new IllegalStateException("Unknown instruction : " + c);
             };
         }

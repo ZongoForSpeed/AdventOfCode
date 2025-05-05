@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.point.map.IntegerMap;
 import com.adventofcode.common.point.Point2D;
+import com.adventofcode.common.point.map.IntegerMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
@@ -175,7 +176,7 @@ public final class Day09 {
         List<Point2D> lowPoints = new ArrayList<>();
         for (Point2D point : points) {
             int height = map.get(point);
-            if (adjacent.get(point).stream().map(map::get).allMatch(h -> h > height)) {
+            if (Objects.requireNonNull(adjacent.get(point)).stream().map(map::get).allMatch(h -> h > height)) {
                 lowPoints.add(point);
             }
         }
@@ -192,7 +193,7 @@ public final class Day09 {
             while (!queue.isEmpty()) {
                 Point2D point = queue.poll();
                 if (basin.add(point)) {
-                    adjacent.get(point).stream().filter(p -> map.get(p) < 9).forEach(queue::offer);
+                    Objects.requireNonNull(adjacent.get(point)).stream().filter(p -> map.get(p) < 9).forEach(queue::offer);
                 }
             }
 

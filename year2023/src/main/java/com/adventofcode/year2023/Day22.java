@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -100,7 +101,7 @@ public final class Day22 {
      * At the time of the snapshot, from the side so the x axis goes left to
      * right, these bricks are arranged like this:
      *
-     *  x
+     * x
      * 012
      * .G. 9
      * .G. 8
@@ -116,7 +117,7 @@ public final class Day22 {
      * Rotating the perspective 90 degrees so the y axis now goes left to right,
      * the same bricks are arranged like this:
      *
-     *  y
+     * y
      * 012
      * .G. 9
      * .G. 8
@@ -133,7 +134,7 @@ public final class Day22 {
      * like this, where ? means bricks are hidden behind other bricks at that
      * location:
      *
-     *  x
+     * x
      * 012
      * .G. 6
      * .G. 5
@@ -145,7 +146,7 @@ public final class Day22 {
      *
      * Again from the side:
      *
-     *  y
+     * y
      * 012
      * .G. 6
      * .G. 5
@@ -158,13 +159,13 @@ public final class Day22 {
      * Now that all of the bricks have settled, it becomes easier to tell which
      * bricks are supporting which other bricks:
      *
-     *   - Brick A is the only brick supporting bricks B and C.
-     *   - Brick B is one of two bricks supporting brick D and brick E.
-     *   - Brick C is the other brick supporting brick D and brick E.
-     *   - Brick D supports brick F.
-     *   - Brick E also supports brick F.
-     *   - Brick F supports brick G.
-     *   - Brick G isn't supporting any bricks.
+     * - Brick A is the only brick supporting bricks B and C.
+     * - Brick B is one of two bricks supporting brick D and brick E.
+     * - Brick C is the other brick supporting brick D and brick E.
+     * - Brick D supports brick F.
+     * - Brick E also supports brick F.
+     * - Brick F supports brick G.
+     * - Brick G isn't supporting any bricks.
      *
      * Your first task is to figure out which bricks are safe to disintegrate. A
      * brick can be safely disintegrated if, after removing it, no other bricks
@@ -176,13 +177,13 @@ public final class Day22 {
      *
      * In this example, the bricks can be disintegrated as follows:
      *
-     *   - Brick A cannot be disintegrated safely; if it were disintegrated, bricks B and C would both fall.
-     *   - Brick B can be disintegrated; the bricks above it (D and E) would still be supported by brick C.
-     *   - Brick C can be disintegrated; the bricks above it (D and E) would still be supported by brick B.
-     *   - Brick D can be disintegrated; the brick above it (F) would still be supported by brick E.
-     *   - Brick E can be disintegrated; the brick above it (F) would still be supported by brick D.
-     *   - Brick F cannot be disintegrated; the brick above it (G) would fall.
-     *   - Brick G can be disintegrated; it does not support any other bricks.
+     * - Brick A cannot be disintegrated safely; if it were disintegrated, bricks B and C would both fall.
+     * - Brick B can be disintegrated; the bricks above it (D and E) would still be supported by brick C.
+     * - Brick C can be disintegrated; the bricks above it (D and E) would still be supported by brick B.
+     * - Brick D can be disintegrated; the brick above it (F) would still be supported by brick E.
+     * - Brick E can be disintegrated; the brick above it (F) would still be supported by brick D.
+     * - Brick F cannot be disintegrated; the brick above it (G) would fall.
+     * - Brick G can be disintegrated; it does not support any other bricks.
      *
      * So, in this example, 5 bricks can be safely disintegrated.
      *
@@ -223,7 +224,7 @@ public final class Day22 {
             int count = 0;
             for (Cuboid brick : movedBricks) {
                 Set<Cuboid> cuboids = supports.get(brick);
-                if (cuboids == null || cuboids.stream().allMatch(c -> supportedBy.get(c).size() > 1)) {
+                if (cuboids == null || cuboids.stream().allMatch(c -> Objects.requireNonNull(supportedBy.get(c)).size() > 1)) {
                     count++;
                 }
             }
@@ -262,8 +263,8 @@ public final class Day22 {
      *
      * Using the same example as above:
      *
-     *   - Disintegrating brick A would cause all 6 other bricks to fall.
-     *   - Disintegrating brick F would cause only 1 other brick, G, to fall.
+     * - Disintegrating brick A would cause all 6 other bricks to fall.
+     * - Disintegrating brick F would cause only 1 other brick, G, to fall.
      *
      * Disintegrating any other brick would cause no other bricks to fall. So, in
      * this example, the sum of the number of other bricks that would fall as a

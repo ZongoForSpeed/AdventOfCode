@@ -336,6 +336,7 @@ public final class Day20 {
             return neighbours;
         }
 
+        @SuppressWarnings("NullAway")
         public long solveMaze() {
             Point3D start = new Point3D(wrap.get("AA").getFirst(), 0);
             Point3D end = new Point3D(wrap.get("ZZ").getFirst(), 0);
@@ -343,6 +344,7 @@ public final class Day20 {
             return new MazeAlgorithm(this::flatNeighbours).algorithm(start, end);
         }
 
+        @SuppressWarnings("NullAway")
         public long solveRecursiveMaze() {
             Point3D start = new Point3D(wrap.get("AA").getFirst(), 0);
             Point3D end = new Point3D(wrap.get("ZZ").getFirst(), 0);

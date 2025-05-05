@@ -1,9 +1,10 @@
 package com.adventofcode.common.graph;
 
 import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,8 @@ public final class Dijkstra<E> {
         this.graph = graph;
     }
 
-    public Map<E, Integer> computeDistance(E start) {
-        Map<E, Integer> distance = new HashMap<>();
+    public Object2IntMap<E> computeDistance(E start) {
+        Object2IntMap<E> distance = new Object2IntOpenHashMap<>();
         distance.put(start, 0);
 
         Set<E> nodes = new HashSet<>(graph.keySet());
@@ -28,7 +29,7 @@ public final class Dijkstra<E> {
             for (E node : nodes) {
                 if (distance.getOrDefault(node, Integer.MAX_VALUE) < minimum) {
                     next = node;
-                    minimum = distance.get(node);
+                    minimum = distance.getOrDefault(node, Integer.MAX_VALUE);
                 }
             }
 

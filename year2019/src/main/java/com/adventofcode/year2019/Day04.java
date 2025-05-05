@@ -65,6 +65,7 @@ public final class Day04 {
      *
      * Your puzzle input is still 153517-630395.
      */
+    @SuppressWarnings("NullAway")
     public static boolean matchPartTwo(int n) {
         CharList digits = Digits.digits(n);
         boolean sorted = Ordering.natural().isOrdered(digits);

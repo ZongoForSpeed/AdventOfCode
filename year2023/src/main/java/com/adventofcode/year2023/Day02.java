@@ -189,11 +189,11 @@ public final class Day02 {
         return cubes;
     }
 
+
     private static Game readGame(String line) {
         Matcher matcher = PATTERN_GAME.matcher(line);
         if (!matcher.matches()) {
-            LOGGER.error("Cannot parse line '{}'", line);
-            return null;
+            throw new IllegalStateException("Cannot parse line: " + line);
         }
 
         int gameId = Integer.parseInt(matcher.group(1));

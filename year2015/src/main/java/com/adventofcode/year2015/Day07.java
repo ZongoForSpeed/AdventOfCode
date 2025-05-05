@@ -1,6 +1,7 @@
 package com.adventofcode.year2015;
 
 import com.google.common.base.Splitter;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -33,10 +35,7 @@ public final class Day07 {
             return value;
         }
 
-        String command = commands.get(wire);
-        if (command == null) {
-            throw new IllegalStateException("Unknown wire: " + wire);
-        }
+        String command = Objects.requireNonNull(commands.get(wire), "Unknown wire: " + wire);
         List<String> in = Splitter.on(' ').splitToList(command);
         switch (in.size()) {
             case 1 -> value = getWireValue(cache, commands, in.getFirst());
@@ -77,7 +76,7 @@ public final class Day07 {
         return value;
     }
 
-    public static Map<String, Integer> runAssembly(Scanner scanner, Consumer<Map<String, String>> override) {
+    public static Map<String, Integer> runAssembly(Scanner scanner, @Nullable Consumer<Map<String, String>> override) {
         Map<String, String> commands = new HashMap<>();
 
         while (scanner.hasNextLine()) {
