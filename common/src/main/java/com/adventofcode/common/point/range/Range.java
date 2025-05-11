@@ -1,9 +1,12 @@
 package com.adventofcode.common.point.range;
 
+import com.google.errorprone.annotations.Immutable;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@Immutable
 public record Range(long lower, long upper) {
     public static Range of(long lower, long upper) {
         return new Range(lower, upper);

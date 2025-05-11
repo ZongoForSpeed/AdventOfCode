@@ -20,30 +20,30 @@ public final class Day18 {
     private static long evalExpressionLR(Iterator<Character> iterator) {
         Deque<Long> stack = new ArrayDeque<>();
         BinaryOperator<Long> operation = null;
-        mainLoop:
         while (iterator.hasNext()) {
             char currentToken = iterator.next();
             switch (currentToken) {
-                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9':
-                    stack.add((long) (currentToken - '0'));
-                    break;
-                case '(':
-                    stack.add(evalExpressionLR(iterator));
-                    break;
-                case ')':
-                    break mainLoop;
-                case '+':
+                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> stack.add((long) (currentToken - '0'));
+                case '(' -> stack.add(evalExpressionLR(iterator));
+                case ')' -> {
+                    if (operation != null) {
+                        stack.add(operation.apply(stack.removeLast(), stack.removeLast()));
+                    }
+
+                    return stack.removeLast();
+                }
+                case '+' -> {
                     if (operation != null) {
                         stack.add(operation.apply(stack.removeLast(), stack.removeLast()));
                     }
                     operation = Long::sum;
-                    break;
-                case '*':
+                }
+                case '*' -> {
                     if (operation != null) {
                         stack.add(operation.apply(stack.removeLast(), stack.removeLast()));
                     }
                     operation = (a, b) -> a * b;
-                    break;
+                }
             }
         }
 
@@ -150,30 +150,30 @@ public final class Day18 {
     private static long evalExpressionAdditionFirst(Iterator<Character> iterator) {
         Deque<Long> stack = new ArrayDeque<>();
         BinaryOperator<Long> operation = null;
-        mainLoop:
         while (iterator.hasNext()) {
             char currentToken = iterator.next();
             switch (currentToken) {
-                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9':
-                    stack.add((long) (currentToken - '0'));
-                    break;
-                case '(':
-                    stack.add(evalExpressionAdditionFirst(iterator));
-                    break;
-                case ')':
-                    break mainLoop;
-                case '+':
+                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> stack.add((long) (currentToken - '0'));
+                case '(' -> stack.add(evalExpressionAdditionFirst(iterator));
+                case ')' -> {
+                    if (operation != null) {
+                        stack.add(operation.apply(stack.removeLast(), stack.removeLast()));
+                    }
+
+                    return stack.stream().mapToLong(t -> t).reduce(1, (a, b) -> a * b);
+                }
+                case '+' -> {
                     if (operation != null) {
                         stack.add(operation.apply(stack.removeLast(), stack.removeLast()));
                     }
                     operation = Long::sum;
-                    break;
-                case '*':
+                }
+                case '*' -> {
                     if (operation != null) {
                         stack.add(operation.apply(stack.removeLast(), stack.removeLast()));
                     }
                     operation = null;
-                    break;
+                }
             }
         }
 

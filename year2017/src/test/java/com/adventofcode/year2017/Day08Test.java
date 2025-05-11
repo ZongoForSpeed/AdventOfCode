@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.OptionalInt;
 import java.util.Scanner;
-import java.util.function.Consumer;
+import java.util.function.IntConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,7 +47,7 @@ class Day08Test extends AbstractTest {
         }
     }
 
-    private static Map<String, Integer> executeProgram(Scanner scanner, Consumer<Integer> consumer) {
+    private static Map<String, Integer> executeProgram(Scanner scanner, IntConsumer consumer) {
         Map<String, Integer> registers = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -57,7 +57,7 @@ class Day08Test extends AbstractTest {
                     command(registers, matcher.group(1), matcher.group(2), Integer.parseInt(matcher.group(3)));
                 }
                 LOGGER.debug("After line '{}': {}", line, registers);
-                registers.values().forEach(consumer);
+                registers.values().stream().mapToInt(i -> i).forEach(consumer);
             } else {
                 throw new IllegalStateException("Cannot parse line: " + line);
             }

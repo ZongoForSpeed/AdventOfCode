@@ -1,7 +1,10 @@
 package com.adventofcode.common.point;
 
+import com.google.errorprone.annotations.Immutable;
+
 import java.util.StringJoiner;
 
+@Immutable
 public record Point3D(int x, int y, int z) {
     public static final Point3D ORIGIN = of(0, 0, 0);
 
@@ -14,7 +17,10 @@ public record Point3D(int x, int y, int z) {
     }
 
     public static double distance(Point3D p1, Point3D p2) {
-        return p1.distance(p2);
+        double dx = (p1.x - p2.x);
+        double dy = (p1.y - p2.y);
+        double dz = (p1.z - p2.z);
+        return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
     public static Point3D add(Point3D p1, Point3D p2) {
@@ -35,13 +41,6 @@ public record Point3D(int x, int y, int z) {
 
     public Point2D project() {
         return Point2D.of(x, y);
-    }
-
-    public double distance(Point3D p) {
-        double dx = (x - p.x);
-        double dy = (y - p.y);
-        double dz = (z - p.z);
-        return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
     @Override

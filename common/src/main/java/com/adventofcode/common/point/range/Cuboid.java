@@ -1,5 +1,6 @@
 package com.adventofcode.common.point.range;
 
+import com.google.errorprone.annotations.Immutable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Immutable
 public record Cuboid(Range dx, Range dy, Range dz) {
     private static final Logger LOGGER = LoggerFactory.getLogger(Cuboid.class);
 

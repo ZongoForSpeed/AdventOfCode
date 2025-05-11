@@ -1,7 +1,10 @@
 package com.adventofcode.common.matrix;
 
+import com.google.errorprone.annotations.Immutable;
+
 import java.math.BigInteger;
 
+@Immutable
 public record Matrix2D(long a11, long a12, long a21, long a22) {
 
     private static long multiplyMod(long a, long b, long modulus) {

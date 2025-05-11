@@ -1,7 +1,10 @@
 package com.adventofcode.common.point;
 
+import com.google.errorprone.annotations.Immutable;
+
 import java.util.List;
 
+@Immutable
 public record Point2D(int x, int y) implements Comparable<Point2D> {
 
     public static final List<Point2D> ADJACENT =

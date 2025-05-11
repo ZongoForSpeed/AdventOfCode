@@ -1,5 +1,8 @@
 package com.adventofcode.common.point;
 
+import com.google.errorprone.annotations.Immutable;
+
+@Immutable
 public record Position2D(Point2D p, Direction direction) {
     public static Position2D of(Point2D p, Direction direction) {
         return new Position2D(p, direction);

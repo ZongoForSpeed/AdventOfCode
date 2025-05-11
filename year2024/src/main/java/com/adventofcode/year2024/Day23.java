@@ -200,9 +200,9 @@ public final class Day23 {
         }
 
         for (Map.Entry<String, Set<String>> entry : graph.entrySet()) {
-            Integer key = ids.get(entry.getKey());
+            Integer key = Objects.requireNonNull(ids.get(entry.getKey()));
             BitSet nv = intGraph.get(key);
-            Objects.requireNonNull(entry).getValue().stream().mapToInt(ids::get).forEach(nv::set);
+            entry.getValue().stream().mapToInt(ids::get).forEach(nv::set);
         }
 
         LOGGER.info("intGraph: {}", intGraph);

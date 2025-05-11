@@ -34,6 +34,9 @@ public final class Matrix3D {
 
     public Matrix3D inverse() {
         int det = determinant();
+        if (det == 0) {
+            throw new IllegalStateException("Matrix is not invertible");
+        }
         Matrix3D inverse = new Matrix3D();
         inverse.m[0][0] = ((m[1][1] * m[2][2]) - (m[1][2] * m[2][1])) / det;
         inverse.m[0][1] = -((m[0][1] * m[2][2]) - (m[0][2] * m[2][1])) / det;
