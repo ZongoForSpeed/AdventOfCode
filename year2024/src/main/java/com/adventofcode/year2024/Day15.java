@@ -308,7 +308,7 @@ public final class Day15 {
      * is finished moving, what is the sum of all boxes' GPS coordinates?
      */
     public static int partOne(Scanner scanner, boolean debug) {
-        CharMap map = CharMap.read(scanner, ignore -> true, true);
+        CharMap map = CharMap.read(scanner, _ -> true, true);
 
         LOGGER.info("map :\n{}", map);
         Set<Point2D> walls = new HashSet<>();
@@ -577,7 +577,7 @@ public final class Day15 {
      * What is the sum of all boxes' final GPS coordinates?
      */
     public static int partTwo(Scanner scanner, boolean debug) {
-        CharMap map = CharMap.read(scanner, ignore -> true, true);
+        CharMap map = CharMap.read(scanner, _ -> true, true);
 
         Map<Point2D, Obstacle> obstacles = new HashMap<>();
 

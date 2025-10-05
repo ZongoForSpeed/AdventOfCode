@@ -98,7 +98,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
         if (value == null) {
             return null;
         }
-        return map.computeIfAbsent(key.x(), ignore -> new Int2BooleanOpenHashMap()).put(key.y(), value.booleanValue());
+        return map.computeIfAbsent(key.x(), _ -> new Int2BooleanOpenHashMap()).put(key.y(), value.booleanValue());
     }
 
     @Override

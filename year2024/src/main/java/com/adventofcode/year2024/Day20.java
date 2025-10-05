@@ -49,7 +49,7 @@ public final class Day20 {
     }
 
     private static List<Point2D> findPath(Scanner scanner) {
-        CharMap maze = CharMap.read(scanner, ignore -> true);
+        CharMap maze = CharMap.read(scanner, _ -> true);
 
         LOGGER.info("maze:\n{}", maze);
 

@@ -153,7 +153,7 @@ public final class Day12 {
         enum Position {
             OPERATIONAL,
             DAMAGED,
-            UNKNOWN;
+            UNKNOWN
         }
 
         public static int countArrangements(Scanner scanner) {

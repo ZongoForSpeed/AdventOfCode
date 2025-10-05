@@ -37,7 +37,7 @@ public final class Day11 {
     }
 
     private static CharMap readGalaxyMap(Scanner scanner) {
-        CharMap galaxyMap = CharMap.read(scanner, c -> true);
+        CharMap galaxyMap = CharMap.read(scanner, _ -> true);
 
         LOGGER.info("galaxyMap:\n{}", galaxyMap);
         return galaxyMap;

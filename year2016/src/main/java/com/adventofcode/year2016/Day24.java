@@ -86,7 +86,7 @@ public final class Day24 {
      * Your puzzle answer was 1034.
      */
     static long computeMinSteps(Scanner scanner, boolean addOrigin) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
         LOGGER.debug("Map is: \n{}", map);
 
         Set<Point2D> points = map.points().stream().filter(p -> map.get(p) != '#').collect(Collectors.toSet());

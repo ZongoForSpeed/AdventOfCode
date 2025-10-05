@@ -28,7 +28,7 @@ public final class Combinations {
     }
 
     public static List<int[]> generate(int n, int r) {
-        return CACHE.computeIfAbsent(IntegerPair.of(n, r), ignore -> {
+        return CACHE.computeIfAbsent(IntegerPair.of(n, r), _ -> {
             List<int[]> combinations = new ArrayList<>();
             helper(combinations, new int[r], 0, n - 1, 0);
             return combinations;

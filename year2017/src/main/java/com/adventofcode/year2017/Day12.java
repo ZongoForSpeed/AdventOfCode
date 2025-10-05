@@ -91,7 +91,7 @@ public final class Day12 {
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
                 int left = Integer.parseInt(matcher.group(1));
-                IntList program = programs.computeIfAbsent(left, ignore -> new IntArrayList());
+                IntList program = programs.computeIfAbsent(left, _ -> new IntArrayList());
                 Splitter.on(", ")
                         .splitToStream(matcher.group(2))
                         .mapToInt(Integer::parseInt)

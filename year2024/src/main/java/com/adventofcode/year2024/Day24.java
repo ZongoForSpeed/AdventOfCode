@@ -200,8 +200,8 @@ public final class Day24 {
 
         Map<String, List<String>> dependencies = new HashMap<>();
         for (Gate gate : gates.values()) {
-            dependencies.computeIfAbsent(gate.input1(), ignore -> new ArrayList<>()).add(gate.output());
-            dependencies.computeIfAbsent(gate.input2(), ignore -> new ArrayList<>()).add(gate.output());
+            dependencies.computeIfAbsent(gate.input1(), _ -> new ArrayList<>()).add(gate.output());
+            dependencies.computeIfAbsent(gate.input2(), _ -> new ArrayList<>()).add(gate.output());
         }
 
         Queue<Gate> gateQueue = new ArrayDeque<>();

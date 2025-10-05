@@ -214,7 +214,7 @@ public final class Day16 {
             if (testInstructions.size() == 1) {
                 testMapping.put(command[0], testInstructions);
             } else {
-                testMapping.compute(command[0], (ignore, instructions) -> {
+                testMapping.compute(command[0], (_, instructions) -> {
                     if (instructions == null) {
                         return testInstructions;
                     } else {

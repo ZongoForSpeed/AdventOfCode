@@ -79,7 +79,7 @@ public final class Day24 {
 
     static List<IntList> buildAdjacent(int size) {
         List<IntList> adjacent = new ArrayList<>();
-        IntStream.range(0, size * size).forEach(ignore -> adjacent.add(new IntArrayList()));
+        IntStream.range(0, size * size).forEach(_ -> adjacent.add(new IntArrayList()));
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int n = size * i + j;
@@ -103,7 +103,7 @@ public final class Day24 {
     static List<List<IntegerPair>> buildDepthAdjacent(int size) {
         List<List<IntegerPair>> adjacent = new ArrayList<>();
         int middle = (size / 2) * size + (size / 2);
-        IntStream.range(0, size * size).forEach(ignore -> adjacent.add(new ArrayList<>()));
+        IntStream.range(0, size * size).forEach(_ -> adjacent.add(new ArrayList<>()));
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int n = size * i + j;

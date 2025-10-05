@@ -381,7 +381,7 @@ public final class Day10 {
     }
 
     private static CharMap readPipes(Scanner scanner) {
-        CharMap pipes = CharMap.read(scanner, c -> true);
+        CharMap pipes = CharMap.read(scanner, _ -> true);
 
         LOGGER.trace("pipes = \n{}", pipes);
         return pipes;

@@ -134,7 +134,7 @@ public final class Day16 {
      * possibly get?
      */
     public static long partOne(Scanner scanner) {
-        CharMap maze = CharMap.read(scanner, ignore -> true);
+        CharMap maze = CharMap.read(scanner, _ -> true);
 
         LOGGER.info("maze:\n{}", maze);
 
@@ -249,7 +249,7 @@ public final class Day16 {
      * best paths through the maze?
      */
     public static long partTwo(Scanner scanner) {
-        CharMap maze = CharMap.read(scanner, ignore -> true);
+        CharMap maze = CharMap.read(scanner, _ -> true);
 
         Point2D startPoint = null;
         Point2D endPoint = null;
@@ -292,12 +292,12 @@ public final class Day16 {
             for (Path path : node.moves(maze)) {
                 long cost = Objects.requireNonNull(costs.get(path.state()));
                 if (cost == path.cost()) {
-                    previous.computeIfAbsent(path.state(), ignore -> new ArrayList<>()).add(node.state());
+                    previous.computeIfAbsent(path.state(), _ -> new ArrayList<>()).add(node.state());
                     queue.add(path);
                 } else if (cost > path.cost()) {
                     costs.put(path.state(), path.cost());
                     previous.remove(path.state());
-                    previous.computeIfAbsent(path.state(), ignore -> new ArrayList<>()).add(node.state());
+                    previous.computeIfAbsent(path.state(), _ -> new ArrayList<>()).add(node.state());
                     queue.add(path);
                 }
             }

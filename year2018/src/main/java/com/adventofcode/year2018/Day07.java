@@ -31,7 +31,7 @@ public final class Day07 {
             String s = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(s);
             if (matcher.matches()) {
-                steps.computeIfAbsent(matcher.group(1), ignore -> new ArrayList<>()).add(matcher.group(2));
+                steps.computeIfAbsent(matcher.group(1), _ -> new ArrayList<>()).add(matcher.group(2));
             }
         }
 
@@ -222,7 +222,7 @@ public final class Day07 {
             LOGGER.info("Second {}: {}", second, workingElf);
 
             for (String step : Set.copyOf(workingElf)) {
-                Integer newValue = times.compute(step, (ignore, value) -> value == null ? 0 : value - 1);
+                Integer newValue = times.compute(step, (_, value) -> value == null ? 0 : value - 1);
                 if (newValue == 0) {
                     workingElf.remove(step);
                     steps.remove(step);

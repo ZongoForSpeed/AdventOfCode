@@ -135,7 +135,7 @@ public final class Day07 {
                 .map(Day07::readRule)
                 .forEach(r -> {
                     String color = r.left();
-                    r.right().stream().map(Pair::left).forEach(c -> bags.computeIfAbsent(c, ignore -> new ArrayList<>()).add(color));
+                    r.right().stream().map(Pair::left).forEach(c -> bags.computeIfAbsent(c, _ -> new ArrayList<>()).add(color));
                 });
 
         LOGGER.info("Bags {}", bags);

@@ -110,7 +110,7 @@ public final class Day20 {
      * In your maze, how many steps does it take to get from the open tile marked AA to the open tile marked ZZ?
      */
     public static long solveMaze(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
         return new DonutMaze(map).solveMaze();
     }
 
@@ -239,7 +239,7 @@ public final class Day20 {
      * In your maze, when accounting for recursion, how many steps does it take to get from the open tile marked AA to the open tile marked ZZ, both at the outermost layer?
      */
     public static long solveRecursiveMaze(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
         DonutMaze donutMaze = new DonutMaze(map);
         return donutMaze.solveRecursiveMaze();
     }
@@ -264,7 +264,7 @@ public final class Day20 {
                             Point2D move = d.move(direction);
                             char c = map.get(move);
                             if (c == '.') {
-                                graph.computeIfAbsent(d, ignore -> new ArrayList<>()).add(move);
+                                graph.computeIfAbsent(d, _ -> new ArrayList<>()).add(move);
                             } else if (Character.isAlphabetic(c)) {
                                 Point2D shift = move.move(direction);
                                 char cc = map.get(shift);
@@ -274,7 +274,7 @@ public final class Day20 {
                                 } else {
                                     innerDoors.add(d);
                                 }
-                                wrap.computeIfAbsent(name, ignore -> new ArrayList<>()).add(d);
+                                wrap.computeIfAbsent(name, _ -> new ArrayList<>()).add(d);
                             }
                         }
                     }

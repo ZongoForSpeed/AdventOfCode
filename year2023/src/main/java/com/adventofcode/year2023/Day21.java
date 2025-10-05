@@ -299,7 +299,7 @@ public final class Day21 {
     }
 
     private static Input readInput(Scanner scanner) {
-        CharMap charMap = CharMap.read(scanner, ignore -> true);
+        CharMap charMap = CharMap.read(scanner, _ -> true);
         Point2D start = charMap.entries().stream().filter(p -> p.rightChar() == 'S').map(Pair::left).findAny().orElseThrow();
         Set<Point2D> gardenPlots = new HashSet<>();
         for (ObjectCharPair<Point2D> entry : charMap.entries()) {

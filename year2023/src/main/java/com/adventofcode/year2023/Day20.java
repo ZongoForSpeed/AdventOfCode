@@ -259,7 +259,7 @@ public final class Day20 {
 
             Map<String, Map<String, Integer>> inputCycles = new HashMap<>();
             for (String input : rxInputs) {
-                Map<String, Integer> cycle = inputCycles.computeIfAbsent(input, ignore -> new HashMap<>());
+                Map<String, Integer> cycle = inputCycles.computeIfAbsent(input, _ -> new HashMap<>());
                 for (Module module : modules.values()) {
                     if (module.destinations.contains(input)) {
                         cycle.put(module.label, 1);
@@ -323,7 +323,7 @@ public final class Day20 {
                     rxInputs.add(label);
                 }
                 for (String d : destinations) {
-                    inputs.computeIfAbsent(d, ignore -> new ArrayList<>()).add(label);
+                    inputs.computeIfAbsent(d, _ -> new ArrayList<>()).add(label);
                 }
 
                 Module module = new Module(label, type, destinations);
@@ -342,7 +342,7 @@ public final class Day20 {
             Module module = modules.get(label);
             if (module != null && module.type == '&') {
                 List<String> list = entry.getValue();
-                Map<String, Value> collect = list.stream().collect(Collectors.toMap(p -> p, ignore -> Value.LOW));
+                Map<String, Value> collect = list.stream().collect(Collectors.toMap(p -> p, _ -> Value.LOW));
                 module.inputs.putAll(collect);
             }
         }
@@ -351,7 +351,7 @@ public final class Day20 {
     }
 
     public enum Value {
-        HIGH, LOW;
+        HIGH, LOW
     }
 
     record Inputs(Map<String, Module> modules, List<String> rxInputs) {

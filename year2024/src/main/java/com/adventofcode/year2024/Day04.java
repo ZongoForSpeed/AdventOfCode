@@ -97,7 +97,7 @@ public final class Day04 {
      * appear?
      */
     public static int xmasPartOne(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
         LOGGER.trace("Map: \n{}", map);
 
         int count = 0;
@@ -158,7 +158,7 @@ public final class Day04 {
      * side and try again. How many times does an X-MAS appear?
      */
     public static int xmasPartTwo(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
         LOGGER.trace("Map: \n{}", map);
 
         int count = 0;

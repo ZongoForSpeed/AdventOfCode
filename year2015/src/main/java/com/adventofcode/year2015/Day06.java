@@ -56,7 +56,7 @@ public final class Day06 {
      */
     public static long computeLights(Scanner scanner) {
         List<BitSet> lights = new ArrayList<>(1000);
-        IntStream.range(0, 1000).mapToObj(ignore -> new BitSet(1000)).forEach(lights::add);
+        IntStream.range(0, 1000).mapToObj(_ -> new BitSet(1000)).forEach(lights::add);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);

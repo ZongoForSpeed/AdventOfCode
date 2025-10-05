@@ -48,7 +48,7 @@ public final class Day14 {
     static int find64thKey(String salt, UnaryOperator<String> hashingFunction) {
         Int2ObjectMap<String> cache = new Int2ObjectOpenHashMap<>();
         IntFunction<String> md5Function = index ->
-                cache.computeIfAbsent(index, ignore -> hashingFunction.apply(salt + index));
+                cache.computeIfAbsent(index, _ -> hashingFunction.apply(salt + index));
 
         int key = -1;
         int count = 0;

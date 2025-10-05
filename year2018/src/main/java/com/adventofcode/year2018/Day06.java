@@ -28,7 +28,7 @@ public final class Day06 {
         Int2ObjectMap<List<Point2D>> distance = new Int2ObjectOpenHashMap<>();
         for (Point2D point : points) {
             int manhattanDistance = Point2D.manhattanDistance(point, p);
-            distance.computeIfAbsent(manhattanDistance, ignore -> new ArrayList<>()).add(point);
+            distance.computeIfAbsent(manhattanDistance, _ -> new ArrayList<>()).add(point);
         }
         int min = Collections.min(distance.keySet());
         List<Point2D> list = distance.get(min);

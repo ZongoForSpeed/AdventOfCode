@@ -32,7 +32,7 @@ public class Intcode {
             memory.set(1, noun);
             memory.set(2, verb);
         }
-        return internalIntcode(memory, () -> 0, n -> {
+        return internalIntcode(memory, () -> 0, _ -> {
         });
     }
 

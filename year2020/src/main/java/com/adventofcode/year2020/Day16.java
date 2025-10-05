@@ -242,7 +242,7 @@ public final class Day16 {
                 int finalI = i;
                 int[] nearbyTicket = validTickets.stream().mapToInt(t -> t[finalI]).toArray();
                 if (Arrays.stream(nearbyTicket).allMatch(value)) {
-                    ticketFields.computeIfAbsent(key, ignore -> new IntOpenHashSet()).add(i);
+                    ticketFields.computeIfAbsent(key, _ -> new IntOpenHashSet()).add(i);
                 }
             }
         }

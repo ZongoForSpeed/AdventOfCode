@@ -62,7 +62,7 @@ public final class Assembunny {
                 }
                 case "dec" -> {
                     if (StringUtils.isAlpha(command[1])) {
-                        register.compute(command[1], (ignore, value) -> value == null ? -1 : value - 1);
+                        register.compute(command[1], (_, value) -> value == null ? -1 : value - 1);
                     } else {
                         LOGGER.warn("Invalid command at {}: {}", current, command);
                     }

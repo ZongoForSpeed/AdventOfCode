@@ -109,7 +109,7 @@ public final class Day19 {
             if (!readMolecule) {
                 Matcher matcher = REPLACEMENTS_PATTERN.matcher(line);
                 if (matcher.find()) {
-                    replacements.computeIfAbsent(matcher.group(1), ignore -> new ArrayList<>()).add(readMolecule(matcher.group(2)));
+                    replacements.computeIfAbsent(matcher.group(1), _ -> new ArrayList<>()).add(readMolecule(matcher.group(2)));
                 } else {
                     LOGGER.error("Cannot parse line '{}'", line);
                 }

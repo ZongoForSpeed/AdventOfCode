@@ -95,7 +95,7 @@ public final class Day12 {
      * location that should get the best signal?
      */
     static long partOne(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
 
         LOGGER.info("map =\n{}", map);
 
@@ -160,7 +160,7 @@ public final class Day12 {
      * elevation a to the location that should get the best signal?
      */
     static long partTwo(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
 
         LOGGER.info("map =\n{}", map);
 

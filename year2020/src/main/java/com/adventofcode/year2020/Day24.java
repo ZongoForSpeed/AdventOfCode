@@ -207,7 +207,7 @@ public final class Day24 {
 
         while (scanner.hasNextLine()) {
             Point2D move = move(scanner.nextLine());
-            grid.compute(move, (p, v) -> v == null || !v);
+            grid.compute(move, (_, v) -> v == null || !v);
         }
 
         LOGGER.trace("Grid: {}", grid);

@@ -182,8 +182,8 @@ public final class Day12 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
-                graph.computeIfAbsent(matcher.group(1), ignore -> new ArrayList<>()).add(matcher.group(2));
-                graph.computeIfAbsent(matcher.group(2), ignore -> new ArrayList<>()).add(matcher.group(1));
+                graph.computeIfAbsent(matcher.group(1), _ -> new ArrayList<>()).add(matcher.group(2));
+                graph.computeIfAbsent(matcher.group(2), _ -> new ArrayList<>()).add(matcher.group(1));
             } else {
                 throw new IllegalStateException("Cannot parse line: " + line);
             }
@@ -296,15 +296,15 @@ public final class Day12 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
-                graph.computeIfAbsent(matcher.group(1), ignore -> new ArrayList<>()).add(matcher.group(2));
-                graph.computeIfAbsent(matcher.group(2), ignore -> new ArrayList<>()).add(matcher.group(1));
+                graph.computeIfAbsent(matcher.group(1), _ -> new ArrayList<>()).add(matcher.group(2));
+                graph.computeIfAbsent(matcher.group(2), _ -> new ArrayList<>()).add(matcher.group(1));
             } else {
                 throw new IllegalStateException("Cannot parse line: " + line);
             }
         }
 
         graph.remove("end");
-        graph.forEach((key, value) -> value.remove(START));
+        graph.forEach((_, value) -> value.remove(START));
 
         LOGGER.info("Graph : {}", graph);
 

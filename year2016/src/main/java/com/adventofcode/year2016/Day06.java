@@ -24,7 +24,7 @@ public final class Day06 {
             String line = scanner.nextLine();
             for (int i = 0; i < line.length(); i++) {
                 frequencies
-                        .computeIfAbsent(i, ignore -> new Char2IntOpenHashMap())
+                        .computeIfAbsent(i, _ -> new Char2IntOpenHashMap())
                         .mergeInt(line.charAt(i), 1, Integer::sum);
             }
         }

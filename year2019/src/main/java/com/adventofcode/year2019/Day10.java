@@ -159,7 +159,7 @@ public final class Day10 {
                     double theta = (Math.atan2(-dx, dy) + 2 * Math.PI) % (Math.PI * 2);
                     double r = Math.sqrt((double) dx * dx + dy * dy);
                     Asteroids asteroids1 = new Asteroids(r, asteroid);
-                    beamView.computeIfAbsent(theta, ignore -> Lists.newArrayList()).add(asteroids1);
+                    beamView.computeIfAbsent(theta, _ -> Lists.newArrayList()).add(asteroids1);
                 }
             }
 

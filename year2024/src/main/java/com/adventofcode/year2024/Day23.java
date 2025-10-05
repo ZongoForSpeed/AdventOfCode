@@ -146,8 +146,8 @@ public final class Day23 {
             if (matcher.matches()) {
                 String group1 = matcher.group(1);
                 String group2 = matcher.group(2);
-                graph.computeIfAbsent(group1, ignore -> new HashSet<>()).add(group2);
-                graph.computeIfAbsent(group2, ignore -> new HashSet<>()).add(group1);
+                graph.computeIfAbsent(group1, _ -> new HashSet<>()).add(group2);
+                graph.computeIfAbsent(group2, _ -> new HashSet<>()).add(group1);
             } else {
                 throw new IllegalStateException("Cannot parse line: " + line);
             }

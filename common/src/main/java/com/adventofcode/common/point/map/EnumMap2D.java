@@ -21,7 +21,7 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
 
     public EnumMap2D() {
         this.map = new HashMap<>();
-        this.toCharFunction = ignore -> ' ';
+        this.toCharFunction = _ -> ' ';
     }
 
     public EnumMap2D(Function<E, Character> toCharFunction) {

@@ -178,7 +178,7 @@ public final class Day24 {
 
     enum Side {
         IMMUNE_SYSTEM,
-        INFECTION;
+        INFECTION
     }
 
     /**

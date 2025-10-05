@@ -105,7 +105,7 @@ class Day08Test extends AbstractTest {
      * Your puzzle answer was 4448.
      */
     private static OptionalInt maxRegistersPartOne(Scanner scanner) {
-        Map<String, Integer> registers = executeProgram(scanner, i -> {
+        Map<String, Integer> registers = executeProgram(scanner, _ -> {
         });
         return registers.values().stream().mapToInt(t -> t).max();
     }
@@ -135,7 +135,7 @@ class Day08Test extends AbstractTest {
                 c dec -10 if a >= 1
                 c inc -20 if c == 10""";
 
-        Map<String, Integer> registers = executeProgram(new Scanner(input), i -> {
+        Map<String, Integer> registers = executeProgram(new Scanner(input), _ -> {
         });
         assertThat(registers).hasSize(2).containsEntry("a", 1).containsEntry("c", -10);
 

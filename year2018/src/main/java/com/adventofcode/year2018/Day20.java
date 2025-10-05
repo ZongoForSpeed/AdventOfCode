@@ -277,7 +277,7 @@ public final class Day20 {
                 default -> {
                     Direction direction = Objects.requireNonNull(DIRECTIONS.get(c), () -> "Cannot find direction for " + c);
                     current = current.move(direction);
-                    m.computeIfAbsent(current, ignore -> new HashSet<>()).add(previous);
+                    m.computeIfAbsent(current, _ -> new HashSet<>()).add(previous);
                     int previousDistance = distances.getOrDefault(previous, 0) + 1;
                     distances.merge(current, previousDistance, Math::min);
                 }

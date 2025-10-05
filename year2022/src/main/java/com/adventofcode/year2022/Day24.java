@@ -38,7 +38,7 @@ public final class Day24 {
                 default -> null;
             };
             if (direction != null) {
-                blizzard.computeIfAbsent(direction, ignore -> new HashSet<>()).add(entry.left());
+                blizzard.computeIfAbsent(direction, _ -> new HashSet<>()).add(entry.left());
             }
             if (entry.rightChar() == '#') {
                 walls.add(entry.left());

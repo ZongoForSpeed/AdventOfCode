@@ -237,7 +237,7 @@ public final class Day15 {
                 for (Direction value : Direction.values()) {
                     Point2D move = point.move(value);
                     if (map.getOrDefault(move, 0L) != 0L) {
-                        graph.computeIfAbsent(point, ignore -> new ArrayList<>()).add(Pair.of(move, 1));
+                        graph.computeIfAbsent(point, _ -> new ArrayList<>()).add(Pair.of(move, 1));
                     }
                 }
             }

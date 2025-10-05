@@ -114,8 +114,8 @@ public final class Day25 {
                 if (matcher.find()) {
                     String v = matcher.group(1);
                     for (String u : Splitter.on(' ').split(matcher.group(2))) {
-                        graph.computeIfAbsent(u, ignore -> new HashSet<>()).add(v);
-                        graph.computeIfAbsent(v, ignore -> new HashSet<>()).add(u);
+                        graph.computeIfAbsent(u, _ -> new HashSet<>()).add(v);
+                        graph.computeIfAbsent(v, _ -> new HashSet<>()).add(u);
                     }
                 }
             }

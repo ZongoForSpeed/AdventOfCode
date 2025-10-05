@@ -146,7 +146,7 @@ public final class Day20 {
         for (int i = 0; i < 1000; ++i) {
             Map<Point3D, List<Particle>> collisions = new HashMap<>();
             particles.stream().map(Particle::tick).forEach(
-                    p -> collisions.computeIfAbsent(p.p(), ignore -> new ArrayList<>()).add(p)
+                    p -> collisions.computeIfAbsent(p.p(), _ -> new ArrayList<>()).add(p)
             );
 
             particles = collisions.values().stream().filter(l -> l.size() == 1)

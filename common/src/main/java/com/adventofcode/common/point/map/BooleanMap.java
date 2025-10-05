@@ -31,7 +31,7 @@ public class BooleanMap {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.bitSets = new ArrayList<>();
-        IntStream.range(0, sizeY).forEach(i -> bitSets.add(new BitSet(sizeX)));
+        IntStream.range(0, sizeY).forEach(_ -> bitSets.add(new BitSet(sizeX)));
     }
 
     public static BooleanMap read(String input, Predicate<Character> predicate) {

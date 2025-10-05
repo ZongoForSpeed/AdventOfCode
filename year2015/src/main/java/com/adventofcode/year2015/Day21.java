@@ -260,7 +260,7 @@ public final class Day21 {
                         int[] stats = Arrays.stream(line.substring(12).split(" ")).filter(NumberUtils::isParsable).mapToInt(Integer::parseInt).toArray();
                         Item item = Item.of(name, stats[0], stats[1], stats[2]);
                         LOGGER.debug("Object: {}", item);
-                        items.computeIfAbsent(currentType, ignore -> new ArrayList<>()).add(item);
+                        items.computeIfAbsent(currentType, _ -> new ArrayList<>()).add(item);
                     }
                 }
             }

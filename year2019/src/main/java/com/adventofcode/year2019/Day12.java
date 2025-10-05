@@ -208,7 +208,7 @@ public final class Day12 {
      * What is the total energy in the system after simulating the moons given in your scan for 1000 steps?
      */
     static long computeTotalEnergy(List<Moon> moons) {
-        IntStream.range(0, 1000).mapToObj(i -> moons).forEach(Moon::step);
+        IntStream.range(0, 1000).mapToObj(_ -> moons).forEach(Moon::step);
         return moons.stream().mapToLong(Moon::energy).sum();
     }
 

@@ -583,7 +583,7 @@ public final class Day22 {
     enum Tool {
         CLIMBING_GEAR, // rocky, wet
         TORCH, // rocky, narrow
-        NEITHER; // narrow, wet
+        NEITHER // narrow, wet
     }
 
     enum Region {

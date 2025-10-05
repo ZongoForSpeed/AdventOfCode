@@ -17,7 +17,7 @@ class Day05Test extends AbstractTest {
     void inputExample() {
         String input = "dabAcCaCBAcCcaDA";
 
-        assertThat(Day05.getReductionSize(input, ignore -> true)).isEqualTo(10);
+        assertThat(Day05.getReductionSize(input, _ -> true)).isEqualTo(10);
 
         int minSize = Day05.minReductionSize(input);
 
@@ -26,7 +26,7 @@ class Day05Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        assertThat(Day05.getReductionSize(scanner.nextLine(), ignore -> true)).isEqualTo(11310);
+        assertThat(Day05.getReductionSize(scanner.nextLine(), _ -> true)).isEqualTo(11310);
     }
 
     @Override

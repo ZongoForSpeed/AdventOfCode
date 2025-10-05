@@ -46,7 +46,7 @@ public final class Day24 {
 
         LOGGER.info("Blocks: {}", blocks);
 
-        List<IntList> layers = IntStream.range(0, 7).mapToObj(i -> new IntArrayList()).collect(Collectors.toList());
+        List<IntList> layers = IntStream.range(0, 7).mapToObj(_ -> new IntArrayList()).collect(Collectors.toList());
         int level = 0;
         for (int i = 0; i < 14; i++) {
             Block block = blocks.get(i);

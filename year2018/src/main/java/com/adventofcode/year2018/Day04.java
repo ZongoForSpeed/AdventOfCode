@@ -239,9 +239,9 @@ public final class Day04 {
                 }
                 guard = Integer.parseInt(line.substring(1));
             } else if (group.equalsIgnoreCase("falls asleep")) {
-                sleepingGuards.computeIfAbsent(guard, ignore -> new ArrayList<>()).add(time);
+                sleepingGuards.computeIfAbsent(guard, _ -> new ArrayList<>()).add(time);
             } else if (group.equalsIgnoreCase("wakes up")) {
-                sleepingGuards.computeIfAbsent(guard, ignore -> new ArrayList<>()).add(time);
+                sleepingGuards.computeIfAbsent(guard, _ -> new ArrayList<>()).add(time);
             }
         }
         return sleepingGuards;

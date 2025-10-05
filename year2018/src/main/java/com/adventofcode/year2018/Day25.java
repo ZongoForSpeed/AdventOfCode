@@ -176,8 +176,8 @@ public final class Day25 {
                     // loneStar.remove(i);
                     // loneStar.remove(j);
 
-                    constellations.computeIfAbsent(i, ignore -> new IntArraySet()).add(j);
-                    constellations.computeIfAbsent(j, ignore -> new IntArraySet()).add(i);
+                    constellations.computeIfAbsent(i, _ -> new IntArraySet()).add(j);
+                    constellations.computeIfAbsent(j, _ -> new IntArraySet()).add(i);
                 }
             }
         }

@@ -55,8 +55,8 @@ public final class Day24 {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             int[] array = Arrays.stream(line.split("/")).mapToInt(Integer::parseInt).toArray();
-            components.computeIfAbsent(array[0], ignore -> new IntArrayList()).add(array[1]);
-            components.computeIfAbsent(array[1], ignore -> new IntArrayList()).add(array[0]);
+            components.computeIfAbsent(array[0], _ -> new IntArrayList()).add(array[1]);
+            components.computeIfAbsent(array[1], _ -> new IntArrayList()).add(array[0]);
         }
 
         LOGGER.info("components: {}", components);

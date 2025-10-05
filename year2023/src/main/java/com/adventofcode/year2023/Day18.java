@@ -98,7 +98,7 @@ public final class Day18 {
         }
 
         public static long readDigPlan(Scanner scanner) {
-            List<DiggerCommand> commandList = readDiggerCommands(scanner, (d, m, ignore) -> DiggerCommand.of(d, m));
+            List<DiggerCommand> commandList = readDiggerCommands(scanner, (d, m, _) -> DiggerCommand.of(d, m));
             return findArea(commandList);
         }
     }
@@ -151,7 +151,7 @@ public final class Day18 {
         }
 
         public static long readDigPlan(Scanner scanner) {
-            List<DiggerCommand> commandList = readDiggerCommands(scanner, (d, m, hex) -> DiggerCommand.of(hex));
+            List<DiggerCommand> commandList = readDiggerCommands(scanner, (_, _, hex) -> DiggerCommand.of(hex));
             return findArea(commandList);
         }
     }

@@ -352,7 +352,7 @@ public final class Day23 {
 
             if (proposed != null) {
                 Point2D move = elf.move(proposed);
-                proposition.computeIfAbsent(move, ignore -> new ArrayList<>()).add(elf);
+                proposition.computeIfAbsent(move, _ -> new ArrayList<>()).add(elf);
             }
         }
         int count = 0;

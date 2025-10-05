@@ -165,7 +165,7 @@ public final class Day12 {
      * What is the total price of fencing all regions on your map?
      */
     public static long partOne(Scanner scanner) {
-        CharMap garden = CharMap.read(scanner, ignore -> true);
+        CharMap garden = CharMap.read(scanner, _ -> true);
 
         Map<Point2D, Set<Point2D>> regions = findRegions(garden);
 
@@ -268,7 +268,7 @@ public final class Day12 {
      * What is the new total price of fencing all regions on your map?
      */
     public static long partTwo(Scanner scanner) {
-        CharMap garden = CharMap.read(scanner, ignore -> true);
+        CharMap garden = CharMap.read(scanner, _ -> true);
 
         Map<Point2D, Set<Point2D>> regions = findRegions(garden);
 

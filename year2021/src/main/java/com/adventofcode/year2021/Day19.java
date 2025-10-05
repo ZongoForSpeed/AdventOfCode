@@ -504,7 +504,7 @@ public final class Day19 {
                 scannerName = matcher.group(1);
             } else {
                 int[] coord = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();
-                scanners.computeIfAbsent(scannerName, ignore -> new ArrayList<>()).add(Probe.of(Point3D.of(coord[0], coord[1], coord[2])));
+                scanners.computeIfAbsent(scannerName, _ -> new ArrayList<>()).add(Probe.of(Point3D.of(coord[0], coord[1], coord[2])));
             }
         }
 
@@ -535,7 +535,7 @@ public final class Day19 {
                         for (Probe probe2 : entryJ.getValue()) {
                             SetUtils.SetView<Double> intersection = SetUtils.intersection(probe1.distances(), probe2.distances());
                             if (intersection.size() >= 12) {
-                                beaconmap.computeIfAbsent(Pair.of(entryI.getKey(), entryJ.getKey()), ignore -> new HashSet<>())
+                                beaconmap.computeIfAbsent(Pair.of(entryI.getKey(), entryJ.getKey()), _ -> new HashSet<>())
                                         .add(Pair.of(probe1.point(), probe2.point()));
                             }
                         }
@@ -565,8 +565,8 @@ public final class Day19 {
                     Transformation transformation = Transformation.of(Point3D.minus(A, B), o);
                     LOGGER.trace("Operation {}: {}", pair, transformation);
 
-                    transforms.computeIfAbsent(pair, ignore -> new ArrayList<>()).add(transformation);
-                    transforms.computeIfAbsent(Pair.of(pair.right(), pair.left()), ignore -> new ArrayList<>()).add(transformation.inverse());
+                    transforms.computeIfAbsent(pair, _ -> new ArrayList<>()).add(transformation);
+                    transforms.computeIfAbsent(Pair.of(pair.right(), pair.left()), _ -> new ArrayList<>()).add(transformation.inverse());
                     break;
                 }
             }

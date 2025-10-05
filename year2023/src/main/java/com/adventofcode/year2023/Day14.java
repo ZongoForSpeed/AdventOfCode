@@ -67,7 +67,7 @@ public final class Day14 {
         tiltedDish.entries().stream()
                 .filter(e -> e.rightChar() == 'O')
                 .map(Pair::left)
-                .forEach(p -> roundedRocks.computeIfAbsent(direction.projection(p), ignore -> new ArrayList<>()).add(p));
+                .forEach(p -> roundedRocks.computeIfAbsent(direction.projection(p), _ -> new ArrayList<>()).add(p));
 
         int xMax = tiltedDish.xMax();
         int yMax = tiltedDish.yMax();

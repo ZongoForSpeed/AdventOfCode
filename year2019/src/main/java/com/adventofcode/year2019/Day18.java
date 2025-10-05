@@ -40,7 +40,7 @@ public final class Day18 {
                 }
 
                 for (MazeState next : state.next(map)) {
-                    steps_to.computeIfAbsent(next, ignore -> {
+                    steps_to.computeIfAbsent(next, _ -> {
                         queue.add(next);
                         return steps + 1;
                     });

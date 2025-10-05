@@ -167,7 +167,7 @@ public final class Day06 {
      * visit before leaving the mapped area?
      */
     public static int partOne(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
 
         return findPath(map).size();
     }
@@ -295,7 +295,7 @@ public final class Day06 {
      * obstruction?
      */
     public static int partTwo(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
 
         Point2D guardPosition = findGuard(map);
         Position2D guard = new Position2D(guardPosition, Direction.UP);

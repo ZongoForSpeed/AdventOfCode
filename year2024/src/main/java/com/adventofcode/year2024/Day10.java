@@ -119,7 +119,7 @@ public final class Day10 {
      * What is the sum of the scores of all trailheads on your topographic map?
      */
     public static int partOne(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
 
         Map<Trail, Set<Point2D>> trailheads = new HashMap<>();
 
@@ -148,7 +148,7 @@ public final class Day10 {
                 int c = map.get(move) - '0';
                 if (c == trail.height() + 1) {
                     Trail newTrail = new Trail(move, c);
-                    trailheads.computeIfAbsent(newTrail, ignore -> new HashSet<>()).addAll(path);
+                    trailheads.computeIfAbsent(newTrail, _ -> new HashSet<>()).addAll(path);
                     if (visited.add(newTrail)) {
                         queue.add(newTrail);
                     }
@@ -236,7 +236,7 @@ public final class Day10 {
      * your topographic map. What is the sum of the ratings of all trailheads?
      */
     public static int partTwo(Scanner scanner) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
 
         Map<Trail, Integer> trailheads = new HashMap<>();
 

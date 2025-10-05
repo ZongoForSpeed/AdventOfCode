@@ -148,7 +148,7 @@ public final class Day20 {
     }
 
     public static CharMap readTile(Scanner scan) {
-        return CharMap.read(scan, c -> true, true);
+        return CharMap.read(scan, _ -> true, true);
     }
 
     public static int countAndMark(BooleanMap seamonster, CharMap map) {

@@ -214,8 +214,8 @@ public final class Day22 {
                         Cuboid brick2 = movedBricks.get(j);
 
                         if (support(brick1, brick2)) {
-                            supports.computeIfAbsent(brick1, ignore -> new HashSet<>()).add(brick2);
-                            supportedBy.computeIfAbsent(brick2, ignore -> new HashSet<>()).add(brick1);
+                            supports.computeIfAbsent(brick1, _ -> new HashSet<>()).add(brick2);
+                            supportedBy.computeIfAbsent(brick2, _ -> new HashSet<>()).add(brick1);
                         }
                     }
                 }

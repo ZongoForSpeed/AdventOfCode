@@ -507,7 +507,7 @@ public final class Day19 {
         ore,
         clay,
         obsidian,
-        geode;
+        geode
     }
 
     private record Blueprint(long id, int[][] costs) {

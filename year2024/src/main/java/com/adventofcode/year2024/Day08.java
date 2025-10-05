@@ -223,7 +223,7 @@ public final class Day08 {
     }
 
     private static Set<Point2D> findAntinodes(Scanner scanner, TriFunction<Point2D, Point2D, Set<Point2D>, List<Point2D>> function) {
-        CharMap map = CharMap.read(scanner, ignore -> true);
+        CharMap map = CharMap.read(scanner, _ -> true);
 
         LOGGER.debug("Map:\n{}", map);
 
@@ -234,7 +234,7 @@ public final class Day08 {
         for (ObjectCharPair<Point2D> entry : map.entries()) {
             freeNodes.add(entry.left());
             if (entry.rightChar() != '.') {
-                antennas.computeIfAbsent(entry.rightChar(), ignore -> new ArrayList<>()).add(entry.left());
+                antennas.computeIfAbsent(entry.rightChar(), _ -> new ArrayList<>()).add(entry.left());
             }
         }
 

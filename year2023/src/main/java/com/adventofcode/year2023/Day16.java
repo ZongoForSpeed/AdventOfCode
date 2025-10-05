@@ -126,7 +126,7 @@ public final class Day16 {
         }
 
         public static long countEnergizedTiles(Scanner scanner) {
-            CharMap map = CharMap.read(scanner, ignore -> true);
+            CharMap map = CharMap.read(scanner, _ -> true);
 
             LOGGER.info("map:\n{}", map);
 
@@ -192,7 +192,7 @@ public final class Day16 {
         }
 
         public static long maxEnergizedTiles(Scanner scanner) {
-            CharMap map = CharMap.read(scanner, ignore -> true);
+            CharMap map = CharMap.read(scanner, _ -> true);
 
             LOGGER.info("map:\n{}", map);
 

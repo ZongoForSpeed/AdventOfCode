@@ -358,7 +358,7 @@ public final class Day16 {
             IntList link = links.getOrDefault(i, IntList.of());
 
             for (int j : link) {
-                graph.computeIfAbsent(i, ignore -> new ArrayList<>()).add(Pair.of(j, 1));
+                graph.computeIfAbsent(i, _ -> new ArrayList<>()).add(Pair.of(j, 1));
             }
         }
         Dijkstra<Integer> dijkstra = new Dijkstra<>(graph);
@@ -407,9 +407,9 @@ public final class Day16 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
-                int index = indexes.computeIfAbsent(matcher.group(1), ignored -> id.getAndIncrement());
+                int index = indexes.computeIfAbsent(matcher.group(1), _ -> id.getAndIncrement());
                 rates.put(index, Integer.parseInt(matcher.group(2)));
-                IntStream intStream = Arrays.stream(matcher.group(3).split(", ")).mapToInt(v -> indexes.computeIfAbsent(v, ignored -> id.getAndIncrement()));
+                IntStream intStream = Arrays.stream(matcher.group(3).split(", ")).mapToInt(v -> indexes.computeIfAbsent(v, _ -> id.getAndIncrement()));
                 links.put(index, IntArrayList.toList(intStream));
             } else {
                 LOGGER.error("Cannot parse line '{}'", line);

@@ -247,7 +247,7 @@ public final class Day05 {
                     char c = line.charAt(i);
                     if (c != ' ') {
                         int stack = (i / 4) + 1;
-                        stacks.computeIfAbsent(stack, ignore -> new CharArrayList()).push(c);
+                        stacks.computeIfAbsent(stack, _ -> new CharArrayList()).push(c);
                     }
                 }
             }
