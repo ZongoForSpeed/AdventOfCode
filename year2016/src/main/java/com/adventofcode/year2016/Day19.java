@@ -137,7 +137,7 @@ public final class Day19 {
         private final Deque<T> firstHalf;
         private final Deque<T> secondHalf;
 
-        public ElvesTable() {
+        private ElvesTable() {
             firstHalf = new ArrayDeque<>();
             secondHalf = new ArrayDeque<>();
         }
@@ -157,18 +157,18 @@ public final class Day19 {
             }
         }
 
-        public void addLast(T element) {
+        private void addLast(T element) {
             secondHalf.addLast(element);
             equilibrate();
         }
 
-        public T removeFirst() {
+        private T removeFirst() {
             T first = firstHalf.removeFirst();
             equilibrate();
             return first;
         }
 
-        public T removeMiddle() {
+        private T removeMiddle() {
             T middle;
             if (firstHalf.size() > secondHalf.size()) {
                 middle = firstHalf.removeLast();
@@ -179,7 +179,7 @@ public final class Day19 {
             return middle;
         }
 
-        public int size() {
+        private int size() {
             return firstHalf.size() + secondHalf.size();
         }
     }

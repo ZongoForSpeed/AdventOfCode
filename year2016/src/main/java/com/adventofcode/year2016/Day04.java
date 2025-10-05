@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.chars.Char2IntMap;
 import it.unimi.dsi.fastutil.chars.Char2IntOpenHashMap;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +50,7 @@ public final class Day04 {
                 .collect(Collectors.joining());
         LOGGER.trace("Counts: {}", hash);
 
-        if (!StringUtils.equals(checksum, hash)) {
+        if (!Strings.CS.equals(checksum, hash)) {
             return null;
         }
 

@@ -1,6 +1,7 @@
 package com.adventofcode.year2015;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -110,7 +111,7 @@ public final class Day05 {
         boolean foundRule = false;
         for (int i = 1; i < input.length(); i++) {
             String s = "" + input.charAt(i - 1) + input.charAt(i);
-            int indexOf = StringUtils.indexOf(input, s, i + 1);
+            int indexOf = Strings.CS.indexOf(input, s, i + 1);
             if (indexOf > 0) {
                 LOGGER.info("Rule validated with {} and {}/{}", input, s, indexOf);
                 foundRule = true;

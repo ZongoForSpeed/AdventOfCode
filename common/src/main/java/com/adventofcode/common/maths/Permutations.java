@@ -4,13 +4,12 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
+import jakarta.annotation.Nonnull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -52,39 +51,39 @@ public final class Permutations {
         return FACTORIALS[n];
     }
 
-    public static <T> List<T> permutation(long no, List<T> items) {
+    public static <T> List<T> permutation(long no, @Nonnull List<T> items) {
         return permutationHelper(no,
-                new LinkedList<>(Objects.requireNonNull(items)),
+                new ArrayList<>(items),
                 new ArrayList<>());
     }
 
-    public static LongList permutation(long no, LongList items) {
+    public static LongList permutation(long no, @Nonnull LongList items) {
         return permutationHelper(no,
-                new LinkedList<>(Objects.requireNonNull(items)),
+                new LongArrayList(items),
                 new LongArrayList());
     }
 
-    public static IntList permutation(long no, IntList items) {
+    public static IntList permutation(long no, @Nonnull IntList items) {
         return permutationHelper(no,
-                new LinkedList<>(Objects.requireNonNull(items)),
+                new IntArrayList(items),
                 new IntArrayList());
     }
 
-    private static <T> List<T> permutationHelper(long no, List<T> in, List<T> out) {
+    static <T> List<T> permutationHelper(long no, List<T> in, List<T> out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)));
         return permutationHelper(no % subFactorial, in, out);
     }
 
-    private static LongList permutationHelper(long no, List<Long> in, LongList out) {
+    static LongList permutationHelper(long no, List<Long> in, LongList out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)).longValue());
         return permutationHelper(no % subFactorial, in, out);
     }
 
-    private static IntList permutationHelper(long no, List<Integer> in, IntList out) {
+    static IntList permutationHelper(long no, List<Integer> in, IntList out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
         out.add(in.remove((int) (no / subFactorial)).intValue());

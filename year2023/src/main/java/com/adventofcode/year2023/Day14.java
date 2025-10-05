@@ -24,25 +24,25 @@ public final class Day14 {
     private enum TiltDirection {
         NORTH(Direction.UP) {
             @Override
-            public int projection(Point2D p) {
+            int projection(Point2D p) {
                 return p.y();
             }
         },
         WEST(Direction.LEFT) {
             @Override
-            public int projection(Point2D p) {
+            int projection(Point2D p) {
                 return p.x();
             }
         },
         SOUTH(Direction.DOWN) {
             @Override
-            public int projection(Point2D p) {
+            int projection(Point2D p) {
                 return -p.y();
             }
         },
         EAST(Direction.RIGHT) {
             @Override
-            public int projection(Point2D p) {
+            int projection(Point2D p) {
                 return -p.x();
             }
         };
@@ -53,9 +53,9 @@ public final class Day14 {
             this.direction = direction;
         }
 
-        public abstract int projection(Point2D p);
+        abstract int projection(Point2D p);
 
-        public Direction getDirection() {
+        Direction getDirection() {
             return direction;
         }
     }

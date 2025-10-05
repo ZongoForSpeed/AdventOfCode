@@ -281,14 +281,14 @@ public final class Day22 {
     }
 
     private record State(Point2D goal, Point2D empty) {
-        public static State of(Point2D goal, Point2D empty) {
+        private static State of(Point2D goal, Point2D empty) {
             return new State(goal, empty);
         }
 
     }
 
-    record GridNode(Point2D position, short size, short used, short available, short pct) {
-        public static GridNode of(String line) {
+    private record GridNode(Point2D position, short size, short used, short available, short pct) {
+        private static GridNode of(String line) {
 
             String[] array = Arrays.stream(line.split(" "))
                     .filter(StringUtils::isNotBlank)

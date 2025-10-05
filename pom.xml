@@ -32,13 +32,13 @@
         <maven.compiler.target>25</maven.compiler.target>
 
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-        <logback-classic.version>1.5.18</logback-classic.version>
+        <logback-classic.version>1.5.19</logback-classic.version>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <slf4j.version>2.0.17</slf4j.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <commons-lang3.version>3.18.0</commons-lang3.version>
+        <commons-lang3.version>3.19.0</commons-lang3.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
         <commons-collections4.version>4.5.0</commons-collections4.version>
@@ -50,13 +50,13 @@
         <commons-math3.version>3.6.1</commons-math3.version>
 
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <guava.version>33.4.8-jre</guava.version>
+        <guava.version>33.5.0-jre</guava.version>
 
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <gson.version>2.13.2</gson.version>
 
         <!-- https://mvnrepository.com/artifact/it.unimi.dsi/fastutil -->
-        <fastutil.version>8.5.16</fastutil.version>
+        <fastutil.version>8.5.17</fastutil.version>
 
         <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
         <commons-codec.version>1.19.0</commons-codec.version>
@@ -65,22 +65,25 @@
         <jakarta.annotation-api.version>3.0.0</jakarta.annotation-api.version>
 
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
-        <junit-jupiter.version>5.13.4</junit-jupiter.version>
+        <junit-jupiter.version>5.14.0</junit-jupiter.version>
 
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <assertj.version>3.27.3</assertj.version>
+        <assertj.version>3.27.6</assertj.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
         <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
 
         <!-- https://mvnrepository.com/artifact/com.google.errorprone/error_prone_core -->
-        <error-prone.version>2.41.0</error-prone.version>
+        <error-prone.version>2.42.0</error-prone.version>
 
         <!-- https://mvnrepository.com/artifact/com.uber.nullaway/nullaway -->
-        <nullaway.version>0.12.9</nullaway.version>
+        <nullaway.version>0.12.10</nullaway.version>
+
+        <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
+        <jmh.version>1.37</jmh.version>
     </properties>
 
     <dependencyManagement>
@@ -256,6 +259,20 @@
                 <version>${commons-io.version}</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${jmh.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>${jmh.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -312,7 +329,7 @@
                         <arg>-XDcompilePolicy=simple</arg>
                         <arg>--should-stop=ifError=FLOW</arg>
                         <arg>-Xplugin:ErrorProne -XepOpt:NullAway:AnnotatedPackages=com.adventofcode
-                            -Xep:NullAway:ERROR -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR
+                            -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR
                             -Xep:StringSplitter:ERROR -Xep:ReferenceEquality:ERROR -Xep:LoopOverCharArray:ERROR
                             -Xep:DefaultCharset:OFF -Xep:IntLongMath:ERROR -Xep:FutureReturnValueIgnored:OFF
                         </arg>
@@ -327,6 +344,11 @@
                             <groupId>com.uber.nullaway</groupId>
                             <artifactId>nullaway</artifactId>
                             <version>${nullaway.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.openjdk.jmh</groupId>
+                            <artifactId>jmh-generator-annprocess</artifactId>
+                            <version>${jmh.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

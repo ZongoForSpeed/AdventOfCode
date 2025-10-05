@@ -261,21 +261,21 @@ public final class Day16 {
 
 
     private record Beam(Point2D position, Direction direction) {
-        public Beam move() {
+        private Beam move() {
             return new Beam(position.move(direction), direction);
         }
 
-        public Beam turnLeft() {
+        private Beam turnLeft() {
             Direction left = direction.left();
             return new Beam(position.move(left), left);
         }
 
-        public Beam turnRight() {
+        private Beam turnRight() {
             Direction right = direction.right();
             return new Beam(position.move(right), right);
         }
 
-        public List<Beam> nextBeam(CharMap map, int xMax, int yMax) {
+        private List<Beam> nextBeam(CharMap map, int xMax, int yMax) {
             List<Beam> next = new ArrayList<>(2);
             char tile = map.get(position);
             switch (tile) {

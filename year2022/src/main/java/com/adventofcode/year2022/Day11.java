@@ -567,30 +567,30 @@ public final class Day11 {
     private enum Operation {
         ADD {
             @Override
-            public long operation(long op1, long op2) {
+            long operation(long op1, long op2) {
                 return op1 + op2;
             }
         },
         SUB {
             @Override
-            public long operation(long op1, long op2) {
+            long operation(long op1, long op2) {
                 return op1 - op2;
             }
         },
         MUL {
             @Override
-            public long operation(long op1, long op2) {
+            long operation(long op1, long op2) {
                 return op1 * op2;
             }
         },
         DIV {
             @Override
-            public long operation(long op1, long op2) {
+            long operation(long op1, long op2) {
                 return op1 / op2;
             }
         };
 
-        public abstract long operation(long op1, long op2);
+        abstract long operation(long op1, long op2);
     }
 
     private static final class Monkey {

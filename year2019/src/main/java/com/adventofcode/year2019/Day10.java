@@ -154,10 +154,10 @@ public final class Day10 {
             Double2ObjectMap<List<Asteroids>> beamView = new Double2ObjectAVLTreeMap<>(Day10::doubleCompare);
             for (Point2D asteroid : asteroids) {
                 if (!asteroid.equals(location)) {
-                    long dx = (long) location.x() - asteroid.x();
-                    long dy = (long) location.y() - asteroid.y();
+                    double dx = (double) location.x() - asteroid.x();
+                    double dy = (double) location.y() - asteroid.y();
                     double theta = (Math.atan2(-dx, dy) + 2 * Math.PI) % (Math.PI * 2);
-                    double r = Math.sqrt((double) dx * dx + dy * dy);
+                    double r = Math.sqrt(dx * dx + dy * dy);
                     Asteroids asteroids1 = new Asteroids(r, asteroid);
                     beamView.computeIfAbsent(theta, _ -> Lists.newArrayList()).add(asteroids1);
                 }

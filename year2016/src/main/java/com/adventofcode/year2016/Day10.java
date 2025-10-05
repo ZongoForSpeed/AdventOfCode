@@ -187,7 +187,7 @@ public final class Day10 {
             operations = new HashSet<>();
         }
 
-        public void setConsumers(IntConsumer lowConsumer, IntConsumer highConsumer) {
+        private void setConsumers(IntConsumer lowConsumer, IntConsumer highConsumer) {
             if (this.lowConsumer != null || this.highConsumer != null) {
                 throw new IllegalStateException("Cannot set consumers twice");
             }

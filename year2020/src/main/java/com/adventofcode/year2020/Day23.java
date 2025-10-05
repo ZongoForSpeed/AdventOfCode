@@ -184,20 +184,20 @@ public final class Day23 {
         @Nullable
         private Cup next = null;
 
-        public Cup(int id) {
+        private Cup(int id) {
             this.id = id;
         }
 
-        public int id() {
+        private int id() {
             return id;
         }
 
         @SuppressWarnings("NullAway")
-        public Cup next() {
+        private Cup next() {
             return next;
         }
 
-        public void next(Cup next) {
+        private void next(Cup next) {
             this.next = next;
         }
     }
@@ -208,7 +208,7 @@ public final class Day23 {
         private final int max;
         private Cup head;
 
-        public CupCircle(int[] cupIndexes) {
+        private CupCircle(int[] cupIndexes) {
             max = cupIndexes.length;
             min = 1;
 
@@ -225,7 +225,7 @@ public final class Day23 {
             cups.getNonNull(cupIndexes[cupIndexes.length - 1]).next(head);
         }
 
-        public void performStep() {
+        private void performStep() {
             IntSet forbidden = new IntOpenHashSet();
             Cup moveStart = head.next();
             forbidden.add(moveStart.id());
@@ -251,7 +251,7 @@ public final class Day23 {
             head = head.next();
         }
 
-        public String resultPart1() {
+        private String resultPart1() {
             StringBuilder stringBuilder = new StringBuilder();
             for (Cup current = cups.getNonNull(1).next(); current.id() != 1; current = current.next()) {
                 stringBuilder.append(current.id());
@@ -259,7 +259,7 @@ public final class Day23 {
             return stringBuilder.toString();
         }
 
-        public long resultPart2() {
+        private long resultPart2() {
             long result = 1;
             Cup current = cups.getNonNull(1).next();
             result *= current.id();

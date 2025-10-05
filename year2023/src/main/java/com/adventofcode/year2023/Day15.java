@@ -358,7 +358,7 @@ public final class Day15 {
         }
 
         private record Box(int id, Map<String, Integer> lenses) {
-            public Box(int id) {
+            private Box(int id) {
                 this(id, new LinkedHashMap<>());
             }
         }

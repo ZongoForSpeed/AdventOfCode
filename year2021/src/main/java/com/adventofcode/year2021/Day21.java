@@ -214,7 +214,7 @@ public final class Day21 {
             this.rolls = 0;
         }
 
-        public int next() {
+        private int next() {
             ++rolls;
             return dice.getAndUpdate(i -> {
                 i++;

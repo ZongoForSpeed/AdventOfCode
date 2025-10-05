@@ -512,7 +512,7 @@ public final class Day19 {
 
     private record Blueprint(long id, int[][] costs) {
 
-        public List<Resource> canBuild(ResourceState resources) {
+        private List<Resource> canBuild(ResourceState resources) {
             List<Resource> robots = new ArrayList<>();
             for (Resource value : Resource.values()) {
                 if (canBuild(resources, costs[value.ordinal()])) {
@@ -522,7 +522,7 @@ public final class Day19 {
             return robots;
         }
 
-        public ResourceState build(ResourceState resources, Resource robot) {
+        private ResourceState build(ResourceState resources, Resource robot) {
             int[] cost = costs[robot.ordinal()];
             return new ResourceState(
                     resources.ore - cost[Resource.ore.ordinal()],

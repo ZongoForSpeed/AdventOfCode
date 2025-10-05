@@ -250,7 +250,7 @@ public final class Day04 {
             }
         },
         hcl(false) {
-            public static final Pattern PATTERN = Pattern.compile("#[0-9a-f]{6}");
+            private static final Pattern PATTERN = Pattern.compile("#[0-9a-f]{6}");
 
             // (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
             @Override
@@ -268,7 +268,7 @@ public final class Day04 {
             }
         },
         pid(false) {
-            public static final Pattern PATTERN = Pattern.compile("\\d{9}");
+            private static final Pattern PATTERN = Pattern.compile("\\d{9}");
 
             // (Passport ID) - a nine-digit number, including leading zeroes.
             @Override

@@ -5,6 +5,7 @@ import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -363,7 +364,7 @@ public final class Day05 {
         public List<CategoryRange> map(String sourceCategory, String destinationCategory, List<CategoryRange> input) {
             List<CategoryRange> result = new ArrayList<>();
             for (CategoryRange categoryRange : input) {
-                if (StringUtils.equals(sourceCategory, categoryRange.category())) {
+                if (Strings.CS.equals(sourceCategory, categoryRange.category())) {
                     result.addAll(map(sourceCategory, destinationCategory, categoryRange));
                 } else {
                     result.add(categoryRange);
