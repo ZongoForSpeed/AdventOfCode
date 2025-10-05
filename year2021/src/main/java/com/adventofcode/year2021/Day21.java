@@ -225,7 +225,7 @@ public final class Day21 {
             });
         }
 
-        public int getRolls() {
+        private int getRolls() {
             return rolls;
         }
     }

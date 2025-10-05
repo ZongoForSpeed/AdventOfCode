@@ -205,7 +205,7 @@ public class Intcode {
 
         public Robot(String program) {
             executorService = Executors.newVirtualThreadPerTaskExecutor();
-            var unused = executorService.submit(() -> intcode(program, take(inputQueue), offer(outputQueue)));
+            var _ = executorService.submit(() -> intcode(program, take(inputQueue), offer(outputQueue)));
         }
 
         public long action(long input) {

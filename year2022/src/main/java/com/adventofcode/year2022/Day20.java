@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.ints.IntLongPair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -204,7 +204,7 @@ public final class Day20 {
     }
 
     private static List<IntLongPair> readInitialList(Scanner scanner, int key) {
-        List<IntLongPair> file = new LinkedList<>();
+        List<IntLongPair> file = new ArrayList<>();
 
         int position = 0;
         while (scanner.hasNextLine()) {

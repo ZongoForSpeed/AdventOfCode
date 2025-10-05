@@ -329,7 +329,8 @@
                         <arg>-XDcompilePolicy=simple</arg>
                         <arg>--should-stop=ifError=FLOW</arg>
                         <arg>-Xplugin:ErrorProne -XepOpt:NullAway:AnnotatedPackages=com.adventofcode
-                            -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR
+                            -XepOpt:NullAway:UnannotatedSubPackages=com.adventofcode.common.maths.jmh_generated
+                            -Xep:NullAway:ERROR -Xep:MissingOverride:ERROR -Xep:EqualsGetClass:ERROR
                             -Xep:StringSplitter:ERROR -Xep:ReferenceEquality:ERROR -Xep:LoopOverCharArray:ERROR
                             -Xep:DefaultCharset:OFF -Xep:IntLongMath:ERROR -Xep:FutureReturnValueIgnored:OFF
                         </arg>
