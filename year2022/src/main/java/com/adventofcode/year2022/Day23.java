@@ -3,6 +3,8 @@ package com.adventofcode.year2022;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.InfiniteCharMap;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

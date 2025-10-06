@@ -1,5 +1,6 @@
 package com.adventofcode.common;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 
@@ -62,11 +63,13 @@ public class Intcode {
         };
     }
 
+    @CanIgnoreReturnValue
     public static long[] intcode(String stringCodes, LongSupplier input, LongConsumer output) {
         LongList memory = LongArrayList.toList(Stream.of(stringCodes.split(",")).mapToLong(Long::valueOf));
         return internalIntcode(memory, input, output);
     }
 
+    @CanIgnoreReturnValue
     private static long[] internalIntcode(LongList memory, LongSupplier input, LongConsumer output) {
         int relativeBase = 0;
         for (int position = 0; position < memory.size(); ) {
@@ -208,6 +211,7 @@ public class Intcode {
             var _ = executorService.submit(() -> intcode(program, take(inputQueue), offer(outputQueue)));
         }
 
+        @CanIgnoreReturnValue
         public long action(long input) {
             offer(inputQueue).accept(input);
             return take(outputQueue).getAsLong();

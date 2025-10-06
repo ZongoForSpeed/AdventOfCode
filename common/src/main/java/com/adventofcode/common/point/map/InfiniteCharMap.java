@@ -1,10 +1,11 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 
-import jakarta.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -87,22 +88,26 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
 
     @Override
     @Nullable
+    @CanIgnoreReturnValue
     public Character put(Point2D key, Character value) {
         return map.put(key, value);
     }
 
     @Nullable
+    @CanIgnoreReturnValue
     public Character put(int x, int y, Character value) {
         return put(Point2D.of(x, y), value);
     }
 
     @Override
     @Nullable
+    @CanIgnoreReturnValue
     public Character remove(Object key) {
         return map.remove(key);
     }
 
     @Nullable
+    @CanIgnoreReturnValue
     public Character remove(int x, int y) {
         return remove(Point2D.of(x, y));
     }

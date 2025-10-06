@@ -1,5 +1,6 @@
 package com.adventofcode.common.memory;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import jakarta.annotation.Nullable;
 
 import java.util.Arrays;
@@ -77,6 +78,7 @@ public class LongMemory implements Memory<Long> {
     }
 
     @Nullable
+    @CanIgnoreReturnValue
     public Long put(int key, long value) {
         checkKey(key);
 

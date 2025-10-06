@@ -2,6 +2,7 @@ package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.utils.TriConsumer;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 
 import java.util.ArrayList;
@@ -69,10 +70,12 @@ public class IntegerMap {
         map[y][x] = value;
     }
 
+    @CanIgnoreReturnValue
     public int increment(Point2D p, int value) {
         return increment(p.x(), p.y(), value);
     }
 
+    @CanIgnoreReturnValue
     public int increment(int x, int y, int value) {
         ensure(x, y);
 
@@ -93,10 +96,12 @@ public class IntegerMap {
         }
     }
 
+    @CanIgnoreReturnValue
     public int compute(Point2D p, IntUnaryOperator operation) {
         return compute(p.x(), p.y(), operation);
     }
 
+    @CanIgnoreReturnValue
     public int compute(int x, int y, IntUnaryOperator operation) {
         ensure(x, y);
 

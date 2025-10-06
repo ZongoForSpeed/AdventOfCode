@@ -1,5 +1,6 @@
 package com.adventofcode.common;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
@@ -35,6 +36,7 @@ public final class Assembunny {
         });
     }
 
+    @CanIgnoreReturnValue
     public static Map<String, Integer> run(List<String[]> commands, Map<String, Integer> initialize, IntPredicate output) {
         Map<String, Integer> register = new HashMap<>(initialize);
 

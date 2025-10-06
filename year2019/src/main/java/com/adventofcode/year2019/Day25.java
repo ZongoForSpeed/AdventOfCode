@@ -3,6 +3,7 @@ package com.adventofcode.year2019;
 import com.adventofcode.common.Intcode;
 import com.adventofcode.common.point.Direction;
 import com.google.common.base.Splitter;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
@@ -211,12 +212,14 @@ public final class Day25 {
         }
 
         @Nonnull
+        @CanIgnoreReturnValue
         private Position doCommand(@Nullable Direction direction) {
             String cardinalDirection = Objects.requireNonNull(CARDINAL.get(direction), "Cannot find direction: " + direction);
             return Objects.requireNonNull(doCommand(cardinalDirection), "Cannot run command on " + direction);
         }
 
         @Nullable
+        @CanIgnoreReturnValue
         private Position doCommand(String input) {
             input.chars().mapToLong(t -> t).forEach(instructions::add);
             instructions.add(10L);

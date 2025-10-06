@@ -123,7 +123,7 @@ class Day08Test extends AbstractTest {
      */
     private static OptionalInt maxRegistersPartTwo(Scanner scanner) {
         IntList values = new IntArrayList();
-        executeProgram(scanner, values::add);
+        var _ = executeProgram(scanner, values::add);
         return values.intStream().max();
     }
 

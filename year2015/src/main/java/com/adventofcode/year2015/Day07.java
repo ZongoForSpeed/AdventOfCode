@@ -1,6 +1,7 @@
 package com.adventofcode.year2015;
 
 import com.google.common.base.Splitter;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ public final class Day07 {
         // No-Op
     }
 
+    @CanIgnoreReturnValue
     public static int getWireValue(Map<String, Integer> cache, Map<String, String> commands, String wire) {
         if (NumberUtils.isParsable(wire)) {
             return Integer.parseInt(wire);

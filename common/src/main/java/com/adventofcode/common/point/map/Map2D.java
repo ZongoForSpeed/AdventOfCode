@@ -1,6 +1,7 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,12 +51,14 @@ public class Map2D implements Map<Point2D, Long> {
 
     @Override
     @Nullable
+    @CanIgnoreReturnValue
     public Long put(Point2D key, Long value) {
         return map.put(key, value);
     }
 
     @Override
     @Nullable
+    @CanIgnoreReturnValue
     public Long remove(Object key) {
         return map.remove(key);
     }
@@ -88,6 +91,7 @@ public class Map2D implements Map<Point2D, Long> {
         return map.entrySet();
     }
 
+    @CanIgnoreReturnValue
     public List<String> print(char[][] view, LongFunction<Character> supplier) {
         for (Map.Entry<Point2D, Long> entry : map.entrySet()) {
             view[entry.getKey().y()][entry.getKey().x()] = supplier.apply(entry.getValue());
@@ -99,6 +103,7 @@ public class Map2D implements Map<Point2D, Long> {
         return Arrays.stream(view).map(String::valueOf).toList();
     }
 
+    @CanIgnoreReturnValue
     public List<String> print(LongFunction<Character> supplier) {
         int maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
         int minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);

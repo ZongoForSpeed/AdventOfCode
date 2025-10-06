@@ -15,7 +15,7 @@ class Day14Test extends AbstractTest {
                 p=2,4 v=2,-3""";
 
         try (Scanner scanner = new Scanner(input)) {
-            Day14.partOne(scanner, 11, 7, 5, true);
+            assertThat(Day14.partOne(scanner, 11, 7, 5, true)).isEqualTo(1);
         }
     }
 

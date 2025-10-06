@@ -1,6 +1,7 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -83,10 +84,10 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     @Override
     @Nullable
     public Boolean get(Object key) {
-        if (key instanceof Point2D point) {
-            Int2BooleanMap booleanMap = map.get(point.x());
+        if (key instanceof Point2D(int x, int y)) {
+            Int2BooleanMap booleanMap = map.get(x);
             if (booleanMap != null) {
-                return booleanMap.get(point.y());
+                return booleanMap.get(y);
             }
         }
         return null;
@@ -94,6 +95,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
 
     @Override
     @Nullable
+    @CanIgnoreReturnValue
     public Boolean put(Point2D key, Boolean value) {
         if (value == null) {
             return null;
@@ -103,6 +105,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
 
     @Override
     @Nullable
+    @CanIgnoreReturnValue
     public Boolean remove(Object key) {
         if (key instanceof Point2D(int x, int y)) {
             Int2BooleanMap booleanMap = map.get(x);

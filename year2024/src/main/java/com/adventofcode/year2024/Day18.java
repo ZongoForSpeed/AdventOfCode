@@ -3,6 +3,7 @@ package com.adventofcode.year2024;
 import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -226,6 +227,7 @@ public final class Day18 {
             this.end = end;
         }
 
+        @CanIgnoreReturnValue
         private boolean remove(Point2D memory) {
             return accessible.remove(memory);
         }

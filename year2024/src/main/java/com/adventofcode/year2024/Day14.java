@@ -4,6 +4,8 @@ import com.adventofcode.common.graph.Connectivity;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -4,6 +4,7 @@ import com.adventofcode.common.point.map.BooleanMap;
 import com.adventofcode.common.point.map.CharMap;
 import com.adventofcode.common.point.map.IntegerMap;
 import com.adventofcode.common.point.Point2D;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
@@ -30,6 +31,7 @@ public final class Day20 {
         return BooleanMap.read(input, c -> c == '#');
     }
 
+    @CanIgnoreReturnValue
     public static boolean assembleJurassicJigsaw(Int2ObjectMap<List<CharMap>> tiles, IntegerMap position, int gridX, int gridY, IntSet used, int gridSize, int size, CharMap fullGrid) {
         if (gridY == gridSize) return true;
 

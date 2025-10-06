@@ -21,7 +21,7 @@ public class PermutationsBenchmark {
     public void permutation_ArrayList(Blackhole bh) {
         List<Integer> integers = new ArrayList<>(INPUT);
         IntList ouput = new IntArrayList();
-        Permutations.permutationHelper(10, integers, ouput);
+        var _ = Permutations.permutationHelper(10, integers, ouput);
 
         bh.consume(ouput);
     }
@@ -30,7 +30,7 @@ public class PermutationsBenchmark {
     public void permutation_LinkedList(Blackhole bh) {
         List<Integer> integers = new LinkedList<>(INPUT);
         IntList ouput = new IntArrayList();
-        Permutations.permutationHelper(10, integers, ouput);
+        var _ = Permutations.permutationHelper(10, integers, ouput);
 
         bh.consume(ouput);
     }

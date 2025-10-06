@@ -2,6 +2,7 @@ package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.utils.TriConsumer;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import it.unimi.dsi.fastutil.objects.ObjectLongPair;
 
 import java.util.ArrayList;
@@ -69,10 +70,12 @@ public class LongMap {
         map[y][x] = value;
     }
 
+    @CanIgnoreReturnValue
     public long increment(Point2D p, int value) {
         return increment(p.x(), p.y(), value);
     }
 
+    @CanIgnoreReturnValue
     public long increment(int x, int y, int value) {
         ensure(x, y);
 
@@ -93,10 +96,12 @@ public class LongMap {
         }
     }
 
+    @CanIgnoreReturnValue
     public long compute(Point2D p, LongUnaryOperator operation) {
         return compute(p.x(), p.y(), operation);
     }
 
+    @CanIgnoreReturnValue
     public long compute(int x, int y, LongUnaryOperator operation) {
         ensure(x, y);
 

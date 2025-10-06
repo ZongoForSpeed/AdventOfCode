@@ -1,6 +1,7 @@
 package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import jakarta.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,11 +58,13 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
 
     @Override
     @Nullable
+    @CanIgnoreReturnValue
     public E put(Point2D key, E value) {
         return map.put(key, value);
     }
 
     @Override
+    @CanIgnoreReturnValue
     public E remove(Object key) {
         return map.remove(key);
     }
@@ -111,6 +114,7 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
         return String.join(System.lineSeparator(), print);
     }
 
+    @CanIgnoreReturnValue
     public List<String> print(Function<E, Character> supplier) {
         int maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
         int minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);

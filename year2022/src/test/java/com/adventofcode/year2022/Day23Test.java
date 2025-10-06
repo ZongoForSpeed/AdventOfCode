@@ -36,7 +36,7 @@ class Day23Test extends AbstractTest {
                 .....""";
 
         try (Scanner scanner = new Scanner(input)) {
-            Day23.partOne(scanner);
+            assertThat(Day23.partOne(scanner)).isEqualTo(25);
         }
     }
 

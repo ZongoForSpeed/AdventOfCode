@@ -1,5 +1,6 @@
 package com.adventofcode.common.memory;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
@@ -18,6 +19,7 @@ public interface Memory<V> {
     V get(int key);
 
     @Nullable
+    @CanIgnoreReturnValue
     V put(int key, V value);
 
     void clear();
