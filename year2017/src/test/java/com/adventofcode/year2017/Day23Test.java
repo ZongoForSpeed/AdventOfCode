@@ -95,7 +95,7 @@ class Day23Test extends AbstractTest {
         try (Scanner scanner = new Scanner(input)) {
             List<String[]> commands = Day23.readCommands(scanner);
             Map<String, Long> registers = new HashMap<>(Map.of("a", 1L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
-            var _ = Day23.runProgram(commands, registers);
+            assertThat(Day23.runProgram(commands, registers)).isEqualTo(1);
 
             LOGGER.info("registers: {}", registers);
 

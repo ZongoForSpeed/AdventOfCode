@@ -1,6 +1,7 @@
 package com.adventofcode.year2017;
 
 import com.adventofcode.test.AbstractTest;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,7 @@ class Day08Test extends AbstractTest {
         }
     }
 
+    @CanIgnoreReturnValue
     private static Map<String, Integer> executeProgram(Scanner scanner, IntConsumer consumer) {
         Map<String, Integer> registers = new HashMap<>();
         while (scanner.hasNextLine()) {
@@ -123,7 +125,7 @@ class Day08Test extends AbstractTest {
      */
     private static OptionalInt maxRegistersPartTwo(Scanner scanner) {
         IntList values = new IntArrayList();
-        var _ = executeProgram(scanner, values::add);
+        executeProgram(scanner, values::add);
         return values.intStream().max();
     }
 

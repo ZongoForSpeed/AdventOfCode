@@ -10,7 +10,6 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.SAME_THREAD)
-@Disabled
 class Day23Test extends AbstractTest {
 
     Day23Test() {

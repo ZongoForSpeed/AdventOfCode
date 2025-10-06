@@ -85,11 +85,13 @@ public final class Day23 {
     }
 
     static class NetworkInterfaceController implements AutoCloseable {
+        private final ExecutorService executor;
         private final NetworkComputer[] computers = new NetworkComputer[50];
 
         public NetworkInterfaceController(String program) {
+            this.executor = Executors.newFixedThreadPool(50);
             for (int i = 0; i < 50; i++) {
-                computers[i] = new NetworkComputer(program, i);
+                computers[i] = new NetworkComputer(executor, program, i);
             }
         }
 
@@ -164,24 +166,18 @@ public final class Day23 {
 
         @Override
         public void close() {
-            for (NetworkComputer computer : computers) {
-                if (computer != null) {
-                    computer.close();
-                }
-            }
+            executor.shutdownNow();
         }
     }
 
-    static class NetworkComputer implements AutoCloseable {
-        private final ExecutorService executor;
+    static class NetworkComputer {
         private final long address;
         private final BlockingQueue<Long> queue;
         private final LongList receivedPackets;
         private final BlockingQueue<Packet> outputQueue = new LinkedBlockingQueue<>();
 
-        NetworkComputer(String program, long address) {
+        NetworkComputer(ExecutorService executor, String program, long address) {
             this.address = address;
-            this.executor = Executors.newVirtualThreadPerTaskExecutor();
             this.queue = new LinkedBlockingQueue<>();
             this.receivedPackets = new LongArrayList();
             executor.submit(() -> Intcode.intcode(program, this::input, this::output));
@@ -236,10 +232,6 @@ public final class Day23 {
             }
         }
 
-        @Override
-        public void close() {
-            executor.shutdown();
-        }
     }
 
     record Packet(long address, long x, long y) {
