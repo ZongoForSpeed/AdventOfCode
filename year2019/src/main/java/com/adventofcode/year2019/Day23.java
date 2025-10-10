@@ -86,10 +86,11 @@ public final class Day23 {
 
     static class NetworkInterfaceController implements AutoCloseable {
         private final ExecutorService executor;
-        private final NetworkComputer[] computers = new NetworkComputer[50];
+        private final NetworkComputer[] computers;
 
         public NetworkInterfaceController(String program) {
             this.executor = Executors.newFixedThreadPool(50);
+            computers = new NetworkComputer[50];
             for (int i = 0; i < 50; i++) {
                 computers[i] = new NetworkComputer(executor, program, i);
             }
