@@ -588,7 +588,7 @@ public final class Day17 {
 
         @Override
         public T next() {
-            return list.get((position++) % size);
+            return list.get(position++ % size);
         }
     }
 }

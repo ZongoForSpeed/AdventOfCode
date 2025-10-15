@@ -27,6 +27,7 @@ public class PermutationsBenchmark {
     }
 
     @Benchmark
+    @SuppressWarnings("JdkObsolete")
     public void permutation_LinkedList(Blackhole bh) {
         List<Integer> integers = new LinkedList<>(INPUT);
         IntList ouput = new IntArrayList();
