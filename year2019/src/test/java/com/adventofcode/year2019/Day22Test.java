@@ -19,26 +19,26 @@ class Day22Test extends AbstractTest {
     }
 
     @Test
-    void testDealIntoNewStack() {
+    void dealIntoNewStack() {
         IntList cards = IntArrayList.toList(IntStream.range(0, 10));
         assertThat(Day22.dealIntoNewStack(cards).toIntArray()).containsExactly(9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
     }
 
     @Test
-    void testCutCards() {
+    void cutCards() {
         IntList cards = IntArrayList.toList(IntStream.range(0, 10));
         assertThat(Day22.cutCards(cards, 3).toIntArray()).containsExactly(3, 4, 5, 6, 7, 8, 9, 0, 1, 2);
         assertThat(Day22.cutCards(cards, -4).toIntArray()).containsExactly(6, 7, 8, 9, 0, 1, 2, 3, 4, 5);
     }
 
     @Test
-    void testDealWithIncrement() {
+    void dealWithIncrement() {
         IntList cards = IntArrayList.toList(IntStream.range(0, 10));
         assertThat(Day22.dealWithIncrement(cards, 3).toIntArray()).containsExactly(0, 7, 4, 1, 8, 5, 2, 9, 6, 3);
     }
 
     @Test
-    void testSimpleExample1() {
+    void simpleExample1() {
         List<String> commands = Arrays.asList("deal with increment 7",
                 Day22.DEAL_INTO_NEW_STACK,
                 Day22.DEAL_INTO_NEW_STACK);
@@ -49,7 +49,7 @@ class Day22Test extends AbstractTest {
     }
 
     @Test
-    void testSimpleExample2() {
+    void simpleExample2() {
         List<String> commands = Arrays.asList("cut 6",
                 "deal with increment 7",
                 Day22.DEAL_INTO_NEW_STACK);
@@ -59,7 +59,7 @@ class Day22Test extends AbstractTest {
     }
 
     @Test
-    void testSimpleExample3() {
+    void simpleExample3() {
         List<String> commands = Arrays.asList("deal with increment 7",
                 "deal with increment 9",
                 "cut -2");
@@ -69,7 +69,7 @@ class Day22Test extends AbstractTest {
     }
 
     @Test
-    void testSimpleExample4() {
+    void simpleExample4() {
         List<String> commands = Arrays.asList(Day22.DEAL_INTO_NEW_STACK,
                 "cut -2",
                 "deal with increment 7",

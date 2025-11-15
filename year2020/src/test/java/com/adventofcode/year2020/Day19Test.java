@@ -15,7 +15,7 @@ class Day19Test extends AbstractTest {
     }
 
     @Test
-    void testMatchRules() {
+    void matchRules() {
         List<String> simpleInput = List.of("0: 1 2",
                 "1: \"a\"",
                 "2: 1 3 | 3 1",
@@ -47,7 +47,7 @@ class Day19Test extends AbstractTest {
     }
 
     @Test
-    void testMonsterMessages() {
+    void monsterMessages() {
         List<String> input = List.of("42: 9 14 | 10 1",
                 "9: 14 27 | 1 26",
                 "10: 23 14 | 28 1",

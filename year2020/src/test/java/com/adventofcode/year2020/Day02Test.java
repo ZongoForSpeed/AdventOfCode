@@ -13,7 +13,7 @@ class Day02Test extends AbstractTest {
     }
 
     @Test
-    void testPasswordPolicy() {
+    void passwordPolicy() {
         assertThat(Day02.passwordPolicy1("1-3 a: abcde")).isTrue();
         assertThat(Day02.passwordPolicy1("1-3 b: cdefg")).isFalse();
         assertThat(Day02.passwordPolicy1("2-9 c: ccccccccc")).isTrue();

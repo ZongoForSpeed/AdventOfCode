@@ -15,7 +15,7 @@ class Day09Test extends AbstractTest {
     }
 
     @Test
-    void inputExample() throws IOException {
+    void inputExample() throws Exception {
         assertThat(Day09.decompressV1("ADVENT")).isEqualTo("ADVENT");
         assertThat(Day09.decompressV1("A(1x5)BC")).isEqualTo("ABBBBBC");
         assertThat(Day09.decompressV1("(3x3)XYZ")).isEqualTo("XYZXYZXYZ");

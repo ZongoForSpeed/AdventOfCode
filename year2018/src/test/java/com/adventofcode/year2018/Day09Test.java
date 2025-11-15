@@ -2,8 +2,6 @@ package com.adventofcode.year2018;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -20,13 +18,13 @@ class Day09Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() throws Exception {
         // 464 players; last marble is worth 71730 points
         assertThat(Day09.playMarblesMania(464, 71730)).hasValue(380705);
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() throws Exception {
         assertThat(Day09.playMarblesMania(464, 71730 * 100)).hasValue(3171801582L);
     }
 

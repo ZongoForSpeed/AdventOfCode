@@ -11,7 +11,7 @@ class BooleanMapTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(BooleanMapTest.class);
 
     @Test
-    void testBooleanMap() {
+    void booleanMap() {
         BooleanMap map = BooleanMap.read("""
                                   #
                 #    ##    ##    ###

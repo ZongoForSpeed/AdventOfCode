@@ -14,7 +14,7 @@ class Day15Test extends AbstractTest {
     }
 
     @Test
-    void testMemoryGame() {
+    void memoryGame() {
         assertThat(Day15.memoryGame("0,3,6", 2020)).isEqualTo(436);
         assertThat(Day15.memoryGame("1,3,2", 2020)).isEqualTo(1);
         assertThat(Day15.memoryGame("2,1,3", 2020)).isEqualTo(10);

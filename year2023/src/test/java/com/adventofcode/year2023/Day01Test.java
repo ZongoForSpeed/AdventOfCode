@@ -13,7 +13,7 @@ class Day01Test extends AbstractTest {
     }
 
     @Test
-    void testExamplePartOne() {
+    void examplePartOne() {
         String input = """
                 1abc2
                 pqr3stu8vwx
@@ -25,7 +25,7 @@ class Day01Test extends AbstractTest {
     }
 
     @Test
-    void testExamplePartTwo() {
+    void examplePartTwo() {
         String input = """
                 two1nine
                 eightwothree

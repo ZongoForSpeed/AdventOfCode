@@ -18,7 +18,7 @@ class Day09Test extends AbstractTest {
     }
 
     @Test
-    void testEncodingError() {
+    void encodingError() {
         LongList codes = LongList.of(
                 35L,
                 20L,

@@ -15,7 +15,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testReadExpression() {
+    void readExpression() {
         assertThat(Day18.evalExpressionLR("1 + 2 * 3 + 4 * 5 + 6")).isEqualTo(71);
         assertThat(Day18.evalExpressionLR("1 + (2 * 3) + (4 * (5 + 6))")).isEqualTo(51);
         assertThat(Day18.evalExpressionLR("2 * 3 + (4 * 5)")).isEqualTo(26);

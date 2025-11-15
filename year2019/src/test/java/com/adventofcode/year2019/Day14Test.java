@@ -17,7 +17,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testSimpleNanofactory1() {
+    void simpleNanofactory1() {
         List<Day14.Reaction> reactions = Stream.of(
                 "10 ORE => 10 A",
                 "1 ORE => 1 B",
@@ -31,7 +31,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testSimpleNanofactory2() {
+    void simpleNanofactory2() {
         List<Day14.Reaction> reactions = Stream.of(
                 "9 ORE => 2 A",
                 "8 ORE => 3 B",
@@ -46,7 +46,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testLargerNanofactory1() {
+    void largerNanofactory1() {
         List<Day14.Reaction> reactions = Stream.of(
                 "157 ORE => 5 NZVS",
                 "165 ORE => 6 DCFZ",
@@ -64,7 +64,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testLargerNanofactory2() {
+    void largerNanofactory2() {
         List<Day14.Reaction> reactions = Stream.of(
                 "2 VPVL, 7 FWMGM, 2 CXFTF, 11 MNCFX => 1 STKFG",
                 "17 NVRVD, 3 JNWZP => 8 VPVL",
@@ -85,7 +85,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testLargerNanofactory3() {
+    void largerNanofactory3() {
         List<Day14.Reaction> reactions = Stream.of(
                 "171 ORE => 8 CNZTR",
                 "7 ZLQW, 3 BMBT, 9 XCVML, 26 XMNCP, 1 WPTQ, 2 MZWV, 1 RJRHP => 4 PLWSL",
@@ -111,7 +111,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testLargerTrillion1() {
+    void largerTrillion1() {
         List<Day14.Reaction> reactions = Stream.of(
                 "157 ORE => 5 NZVS",
                 "165 ORE => 6 DCFZ",
@@ -128,7 +128,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testLargerTrillion2() {
+    void largerTrillion2() {
         List<Day14.Reaction> reactions = Stream.of(
                 "2 VPVL, 7 FWMGM, 2 CXFTF, 11 MNCFX => 1 STKFG",
                 "17 NVRVD, 3 JNWZP => 8 VPVL",
@@ -148,7 +148,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testLargerTrillion3() {
+    void largerTrillion3() {
         List<Day14.Reaction> reactions = Stream.of(
                 "171 ORE => 8 CNZTR",
                 "7 ZLQW, 3 BMBT, 9 XCVML, 26 XMNCP, 1 WPTQ, 2 MZWV, 1 RJRHP => 4 PLWSL",

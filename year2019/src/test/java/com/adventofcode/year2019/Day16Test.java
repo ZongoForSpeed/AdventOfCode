@@ -14,7 +14,7 @@ class Day16Test extends AbstractTest {
 
 
     @Test
-    void testSimple() {
+    void simple() {
         assertThat(Day16.flawedFrequencyTransmission("12345678", 1)).isEqualTo("48226158");
         assertThat(Day16.flawedFrequencyTransmission("12345678", 2)).isEqualTo("34040438");
         assertThat(Day16.flawedFrequencyTransmission("12345678", 3)).isEqualTo("03415518");
@@ -22,14 +22,14 @@ class Day16Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample() {
+    void largerExample() {
         assertThat(Day16.flawedFrequencyTransmission("80871224585914546619083218645595", 100)).startsWith("24176176");
         assertThat(Day16.flawedFrequencyTransmission("19617804207202209144916044189917", 100)).startsWith("73745418");
         assertThat(Day16.flawedFrequencyTransmission("69317163492948606335995924319873", 100)).startsWith("52432133");
     }
 
     @Test
-    void testPattern() {
+    void pattern() {
         assertThat(Day16.pattern(1)).startsWith(1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1);
         assertThat(Day16.pattern(2)).startsWith(0, 1, 1, 0, 0, -1, -1, 0, 0, 1, 1, 0, 0, -1, -1, 0, 0, 1, 1, 0, 0);
         assertThat(Day16.pattern(3)).startsWith(0, 0, 1, 1, 1, 0, 0, 0, -1, -1, -1, 0, 0, 0, 1, 1, 1, 0, 0, 0, -1);
@@ -37,7 +37,7 @@ class Day16Test extends AbstractTest {
     }
 
     @Test
-    void testDecode() {
+    void decode() {
         assertThat(Day16.decode("03036732577212944063491565474664")).isEqualTo("84462026");
         assertThat(Day16.decode("02935109699940807407585447034323")).isEqualTo("78725270");
         assertThat(Day16.decode("03081770884921959731165446850517")).isEqualTo("53553731");

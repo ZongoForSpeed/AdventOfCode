@@ -20,7 +20,7 @@ class Day24Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
     @Test
-    void testHexGrid() {
+    void hexGrid() {
         LOGGER.info("Move esenee: {}", Day24.move("esenee"));
 
         Point2D nwwswee = Day24.move("nwwswee");
@@ -29,7 +29,7 @@ class Day24Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample() {
+    void largerExample() {
         String input = """
                 sesenwnenenewseeswwswswwnenewsewsw
                 neeenesenwnwwswnenewnwwsewnenwseswesw

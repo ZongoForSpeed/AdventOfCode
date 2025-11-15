@@ -74,7 +74,7 @@ class Day23Test extends AbstractTest {
     }
 
     @Test
-    void testAssembly() {
+    void assembly() {
         assertThat(runTest(57, 57, 3025)).isEqualTo(1);
         assertThat(runTest(57, 57 + 10 * 17, 247390)).isEqualTo(9);
         assertThat(Day23.runProgramFast(57, 57 + 10 * 17)).isEqualTo(10);

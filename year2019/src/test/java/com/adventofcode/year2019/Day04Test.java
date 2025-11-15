@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day04Test {
 
     @Test
-    void testInput() {
+    void input() {
         long total = IntStream.range(153517, 630395).filter(Day04::matchPartOne).count();
         assertThat(total).isEqualTo(1729);
     }
@@ -30,7 +30,7 @@ class Day04Test {
     }
 
     @Test
-    void testInput2() {
+    void input2() {
         long total = IntStream.range(153517, 630395).filter(Day04::matchPartTwo).count();
         assertThat(total).isEqualTo(1172);
     }

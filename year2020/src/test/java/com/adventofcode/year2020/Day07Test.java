@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,7 +19,7 @@ class Day07Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day07Test.class);
 
     @Test
-    void testHandyHaversacks1() {
+    void handyHaversacks1() {
         List<String> rules = List.of("light red bags contain 1 bright white bag, 2 muted yellow bags.",
                 "dark orange bags contain 3 bright white bags, 4 muted yellow bags.",
                 "bright white bags contain 1 shiny gold bag.",
@@ -39,7 +38,7 @@ class Day07Test extends AbstractTest {
     }
 
     @Test
-    void testHandyHaversacks2() {
+    void handyHaversacks2() {
         List<String> rules = List.of("shiny gold bags contain 2 dark red bags.",
                 "dark red bags contain 2 dark orange bags.",
                 "dark orange bags contain 2 dark yellow bags.",
@@ -52,7 +51,7 @@ class Day07Test extends AbstractTest {
     }
 
     @Test
-    void inputHandyHaversacks() throws IOException {
+    void inputHandyHaversacks() throws Exception {
 
     }
 

@@ -13,7 +13,7 @@ class Day21Test extends AbstractTest {
     }
 
     @Test
-    void testExample() {
+    void example() {
         String input = """
                 root: pppw + sjmn
                 dbpl: 5

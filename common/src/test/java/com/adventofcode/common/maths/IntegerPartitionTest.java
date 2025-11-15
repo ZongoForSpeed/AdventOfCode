@@ -12,7 +12,7 @@ class IntegerPartitionTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(IntegerPartitionTest.class);
 
     @Test
-    void testPartition_10_3() {
+    void partition103() {
         List<IntList> partition = IntegerPartition.partitions(10, 3);
         partition.forEach(p -> LOGGER.info("{}", p));
         Assertions.assertThat(partition)
@@ -58,7 +58,7 @@ class IntegerPartitionTest {
 
 
     @Test
-    void testPartition_4_4() {
+    void partition44() {
         List<IntList> partition = IntegerPartition.partitions(4, 4);
         partition.forEach(p -> LOGGER.info("{}", p));
         Assertions.assertThat(partition)
@@ -68,7 +68,7 @@ class IntegerPartitionTest {
     }
 
     @Test
-    void testPartition_5_4() {
+    void partition54() {
         List<IntList> partition = IntegerPartition.partitions(5, 4);
         partition.forEach(p -> LOGGER.info("{}", p));
         Assertions.assertThat(partition)
@@ -81,7 +81,7 @@ class IntegerPartitionTest {
     }
 
     @Test
-    void testPartition_10_4() {
+    void partition104() {
         List<IntList> partition = IntegerPartition.partitions(10, 4);
         partition.forEach(p -> LOGGER.info("{}", p));
         Assertions.assertThat(partition).hasSize(84);

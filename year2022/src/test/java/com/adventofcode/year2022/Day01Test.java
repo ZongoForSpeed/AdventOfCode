@@ -13,7 +13,7 @@ class Day01Test extends AbstractTest {
     }
 
     @Test
-    void testSampleInput() {
+    void sampleInput() {
         String input = """
                 1000
                 2000

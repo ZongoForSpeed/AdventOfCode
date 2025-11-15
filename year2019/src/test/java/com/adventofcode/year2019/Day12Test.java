@@ -21,7 +21,7 @@ class Day12Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12Test.class);
 
     @Test
-    void testFirstExample() {
+    void firstExample() {
         List<Day12.Moon> moons = Stream.of(
                 "<x=-1, y=0, z=2>",
                 "<x=2, y=-10, z=-7>",
@@ -41,7 +41,7 @@ class Day12Test extends AbstractTest {
     }
 
     @Test
-    void testSecondExample() {
+    void secondExample() {
         List<Day12.Moon> moons = Stream.of(
                 "<x=-8, y=-10, z=0>",
                 "<x=5, y=5, z=10>",
@@ -64,7 +64,7 @@ class Day12Test extends AbstractTest {
     }
 
     @Test
-    void testDriftingFirstExample() {
+    void driftingFirstExample() {
         List<Day12.Moon> moons = Stream.of(
                 "<x=-1, y=0, z=2>",
                 "<x=2, y=-10, z=-7>",
@@ -94,7 +94,7 @@ class Day12Test extends AbstractTest {
     }
 
     @Test
-    void testDriftingSecondExample() {
+    void driftingSecondExample() {
         List<Day12.Moon> moons = Stream.of(
                 "<x=-8, y=-10, z=0>",
                 "<x=5, y=5, z=10>",

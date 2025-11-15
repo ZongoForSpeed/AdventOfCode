@@ -18,7 +18,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testAdapterArray1() {
+    void adapterArray1() {
         LongList adapters = LongList.of(
                 16L,
                 10L,
@@ -41,7 +41,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testAdapterArray2() {
+    void adapterArray2() {
         LongList adapters = LongList.of(
                 28L,
                 33L,

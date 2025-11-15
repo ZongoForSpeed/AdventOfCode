@@ -18,7 +18,7 @@ class Day09Test extends AbstractTest {
     }
 
     @Test
-    void testQuine() {
+    void quine() {
         LongList output = new LongArrayList();
         Intcode.intcode("109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99", () -> 0, output::add);
         String result = output.longStream().mapToObj(Objects::toString).collect(Collectors.joining(","));
@@ -32,7 +32,7 @@ class Day09Test extends AbstractTest {
     }
 
     @Test
-    void testOutput() {
+    void output() {
         long result = Intcode.ioIntcode("104,1125899906842624,99", 0);
         assertThat(result).isEqualTo(1125899906842624L);
     }

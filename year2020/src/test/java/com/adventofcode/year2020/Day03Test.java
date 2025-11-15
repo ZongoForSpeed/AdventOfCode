@@ -15,7 +15,7 @@ class Day03Test extends AbstractTest {
     }
 
     @Test
-    void testTobogganTrajectory() {
+    void tobogganTrajectory() {
         List<String> map = List.of("..##.......",
                 "#...#...#..",
                 ".#....#..#.",

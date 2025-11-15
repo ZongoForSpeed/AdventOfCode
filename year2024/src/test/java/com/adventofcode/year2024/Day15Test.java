@@ -14,7 +14,7 @@ class Day15Test extends AbstractTest {
     }
 
     @Test
-    void testExample1() {
+    void example1() {
         String input = """
                 ########
                 #..O.O.#
@@ -40,7 +40,7 @@ class Day15Test extends AbstractTest {
 
 
     @Test
-    void testExample2() {
+    void example2() {
         String input = """
                 ##########
                 #..O..O.O#
@@ -76,7 +76,7 @@ class Day15Test extends AbstractTest {
     }
 
     @Test
-    void testExample3() {
+    void example3() {
         String input = """
                 #######
                 #...#.#

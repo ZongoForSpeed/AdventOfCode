@@ -28,7 +28,7 @@ class Day24Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
     @Test
-    void testSimpleExample() {
+    void simpleExample() {
         List<IntList> adjacent = Day24.buildAdjacent(5);
         LOGGER.info("adjacent: {}", adjacent);
 
@@ -86,7 +86,7 @@ class Day24Test extends AbstractTest {
     }
 
     @Test
-    void testFindRepeatingLayout() {
+    void findRepeatingLayout() {
         List<IntList> adjacent = Day24.buildAdjacent(5);
         String initialState = """
                 ....#
@@ -111,7 +111,7 @@ class Day24Test extends AbstractTest {
     }
 
     @Test
-    void testBuildDepthAdjacent() {
+    void buildDepthAdjacent() {
         List<List<IntegerPair>> adjacent = Day24.buildDepthAdjacent(5);
         assertThat(adjacent.get(18)).hasSize(4).contains(
                 IntegerPair.of(13, 0),
@@ -143,7 +143,7 @@ class Day24Test extends AbstractTest {
     }
 
     @Test
-    void testDepthExample() {
+    void depthExample() {
         List<List<IntegerPair>> adjacent = Day24.buildDepthAdjacent(5);
         String layout = """
                 ....#

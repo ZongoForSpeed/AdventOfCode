@@ -17,7 +17,7 @@ class Day13Test extends AbstractTest {
     }
 
     @Test
-    void testShuttleSearch() {
+    void shuttleSearch() {
         List<String> notes = List.of(
                 "939",
                 "7,13,x,x,59,x,31,19"
@@ -38,7 +38,7 @@ class Day13Test extends AbstractTest {
     }
 
     @Test
-    void testSolveShuttleSearch() {
+    void solveShuttleSearch() {
         assertThat(Day13.solveShuttleSearch("17,x,13,19")).isEqualTo(3417);
         assertThat(Day13.solveShuttleSearch("67,7,59,61")).isEqualTo(754018);
         assertThat(Day13.solveShuttleSearch("67,x,7,59,61")).isEqualTo(779210);

@@ -4,7 +4,6 @@ import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
@@ -40,7 +39,7 @@ class Day03Test extends AbstractTest {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() throws Exception {
         try (InputStream inputStream = Day03Test.class.getResourceAsStream("/2023/day/03/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
         }
@@ -48,7 +47,7 @@ class Day03Test extends AbstractTest {
 
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() throws Exception {
         try (InputStream inputStream = Day03Test.class.getResourceAsStream("/2023/day/03/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
         }

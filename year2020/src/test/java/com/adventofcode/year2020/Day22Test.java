@@ -13,7 +13,7 @@ class Day22Test extends AbstractTest {
     }
 
     @Test
-    void testCrabCombat() {
+    void crabCombat() {
         String input = """
                 Player 1:
                 9

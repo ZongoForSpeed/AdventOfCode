@@ -15,7 +15,7 @@ class Day12Test extends AbstractTest {
     }
 
     @Test
-    void testRainRisk1() {
+    void rainRisk1() {
         List<String> actions = List.of("F10",
                 "N3",
                 "F7",
@@ -27,7 +27,7 @@ class Day12Test extends AbstractTest {
     }
 
     @Test
-    void testRainRisk2() {
+    void rainRisk2() {
         List<String> actions = List.of("F10",
                 "N3",
                 "F7",

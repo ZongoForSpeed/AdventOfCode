@@ -15,7 +15,7 @@ class Day04Test extends AbstractTest {
     }
 
     @Test
-    void testPassportProcessing() {
+    void passportProcessing() {
         List<String> batch = List.of(
                 "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd",
                 "byr:1937 iyr:2017 cid:147 hgt:183cm",
@@ -36,7 +36,7 @@ class Day04Test extends AbstractTest {
     }
 
     @Test
-    void testInvalidPassports() {
+    void invalidPassports() {
         List<String> batch = List.of("eyr:1972 cid:100",
                 "hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926",
                 "",
@@ -58,7 +58,7 @@ class Day04Test extends AbstractTest {
     }
 
     @Test
-    void testValidPassports() {
+    void validPassports() {
         List<String> batch = List.of("pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980",
                 "hcl:#623a2f",
                 "",
@@ -79,7 +79,7 @@ class Day04Test extends AbstractTest {
     }
 
     @Test
-    void testPassportFields() {
+    void passportFields() {
         assertThat(Day04.PassportFields.byr.validField("2002")).isTrue();
         assertThat(Day04.PassportFields.byr.validField("2003")).isFalse();
 

@@ -16,7 +16,7 @@ class Day08Test extends AbstractTest {
     }
 
     @Test
-    void testHandheldGameConsole() {
+    void handheldGameConsole() {
         List<String> program = List.of("nop +0",
                 "acc +1",
                 "jmp +4",

@@ -20,7 +20,7 @@ class Day08Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
 
     @Test
-    void testExample() {
+    void example() {
         int[] image = Day08.readImagePartTwo("0222112222120000", 4);
         assertThat(image).containsExactly(0, 1, 1, 0);
         printImage(image, 2, 2);

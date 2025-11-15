@@ -14,7 +14,7 @@ class Day11Test extends AbstractTest {
     }
 
     @Test
-    void testExample1() {
+    void example1() {
         String input = "0 1 10 99 999";
 
         try (Scanner scanner = new Scanner(input)) {
@@ -24,7 +24,7 @@ class Day11Test extends AbstractTest {
     }
 
     @Test
-    void testExample2() {
+    void example2() {
         String input = "125 17";
 
         try (Scanner scanner = new Scanner(input)) {

@@ -24,7 +24,7 @@ class Day20Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20Test.class);
 
     @Test
-    void testJurassicJigsaw() {
+    void jurassicJigsaw() {
         Scanner scanner = new Scanner(
                 """
                         Tile 2311:

@@ -15,7 +15,7 @@ class Day11Test extends AbstractTest {
     }
 
     @Test
-    void testSeatingSystem() {
+    void seatingSystem() {
         List<String> inputGrid = List.of(
                 "L.LL.LL.LL",
                 "LLLLLLL.LL",
@@ -35,7 +35,7 @@ class Day11Test extends AbstractTest {
     }
 
     @Test
-    void testAdjacentOccupiedSeats1() {
+    void adjacentOccupiedSeats1() {
         List<String> inputGrid = List.of(
                 ".......#.",
                 "...#.....",
@@ -52,7 +52,7 @@ class Day11Test extends AbstractTest {
     }
 
     @Test
-    void testAdjacentOccupiedSeats2() {
+    void adjacentOccupiedSeats2() {
         List<String> inputGrid = List.of(
                 ".............",
                 ".L.L.#.#.#.#.",
@@ -63,7 +63,7 @@ class Day11Test extends AbstractTest {
     }
 
     @Test
-    void testAdjacentOccupiedSeats3() {
+    void adjacentOccupiedSeats3() {
         List<String> inputGrid1 = List.of(
                 ".##.##.",
                 "#.#.#.#",

@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CliqueTest {
 
     @Test
-    void testBronKerbosch() {
+    void bronKerbosch() {
         Map<String, Set<String>> graph = Map.ofEntries(
                 Map.entry("de", Set.of("cg", "ka", "co", "ta")),
                 Map.entry("cg", Set.of("aq", "de", "yn", "tb")),

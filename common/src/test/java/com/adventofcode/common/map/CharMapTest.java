@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CharMapTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(CharMapTest.class);
     @Test
-    void testCharMap() {
+    void charMap() {
         List<String> input = List.of(
                 "                  # ",
                 "#    ##    ##    ###",

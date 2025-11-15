@@ -12,7 +12,7 @@ class ArithmeticTest {
     };
 
     @Test
-    void testPhi() {
+    void phi() {
         Assertions.assertThat(Arithmetic.phi(3246999210L, PRIMES))
                 .isEqualTo(640120320L);
 
@@ -21,7 +21,7 @@ class ArithmeticTest {
     }
 
     @Test
-    void testPowerMod() {
+    void powerMod() {
         Assertions.assertThat(Arithmetic.powerMod(2, 10, 100))
                 .isEqualTo(24);
 
@@ -30,7 +30,7 @@ class ArithmeticTest {
     }
 
     @Test
-    void testModularInverse() {
+    void modularInverse() {
         Assertions.assertThat(Arithmetic.modularInverse(3, 11, PRIMES))
                 .isEqualTo(4);
 
@@ -42,7 +42,7 @@ class ArithmeticTest {
     }
 
     @Test
-    void testCRT() {
+    void crt() {
         long crt1 = Arithmetic.chineseRemainderTheorem(new long[]{3, 5, 7}, new long[]{2, 3, 2}, PRIMES);
         Assertions.assertThat(crt1).isEqualTo(23);
 

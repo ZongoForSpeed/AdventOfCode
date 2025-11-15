@@ -13,7 +13,7 @@ class Day17Test extends AbstractTest {
     }
 
     @Test
-    void testExample() {
+    void example() {
         String input = ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>";
 
         assertThat(Day17.pyroclasticFlow(input, 10, true)).isEqualTo(17);

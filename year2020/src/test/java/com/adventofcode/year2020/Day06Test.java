@@ -4,7 +4,6 @@ import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +16,7 @@ class Day06Test extends AbstractTest {
     }
 
     @Test
-    void testCountUniqueQuestions() {
+    void countUniqueQuestions() {
         List<String> group = List.of("abcx", "abcy", "abcz");
 
         assertThat(Day06.countUniqueQuestions(group)).isEqualTo(6);
@@ -29,7 +28,7 @@ class Day06Test extends AbstractTest {
     }
 
     @Test
-    void testCountAllResponded() {
+    void countAllResponded() {
         List<String> batch = List.of("abc", "", "a", "b", "c", "", "ab", "ac", "", "a", "a", "a", "a", "", "b");
 
         long sum = Day06.readGroups(batch).stream().map(Day06::countAllResponded).mapToLong(t -> t).sum();
@@ -37,7 +36,7 @@ class Day06Test extends AbstractTest {
     }
 
     @Test
-    void inputCustomCustoms() throws IOException {
+    void inputCustomCustoms() throws Exception {
     }
 
     @Override

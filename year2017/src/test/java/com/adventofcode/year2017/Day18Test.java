@@ -32,7 +32,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void inputDuetExample() throws InterruptedException {
+    void inputDuetExample() throws Exception {
         String input = """
                 snd 1
                 snd 2

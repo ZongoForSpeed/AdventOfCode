@@ -4,7 +4,6 @@ import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -17,7 +16,7 @@ class Day16Test extends AbstractTest {
     }
 
     @Test
-    void testInvalidNearbyTickets() {
+    void invalidNearbyTickets() {
         List<String> notes = List.of("class: 1-3 or 5-7",
                 "row: 6-11 or 33-44",
                 "seat: 13-40 or 45-50",
@@ -35,7 +34,7 @@ class Day16Test extends AbstractTest {
     }
 
     @Test
-    void testTicketTranslation() {
+    void ticketTranslation() {
         List<String> notes = List.of("class: 0-1 or 4-19",
                 "row: 0-5 or 8-19",
                 "seat: 0-13 or 16-19",
@@ -58,7 +57,7 @@ class Day16Test extends AbstractTest {
     }
 
     @Test
-    void inputInvalidNearbyTickets() throws IOException {
+    void inputInvalidNearbyTickets() throws Exception {
 
     }
 

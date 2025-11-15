@@ -4,15 +4,13 @@ import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.Point3D;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 class Day11Test {
 
     @Test
-    void testExample() {
+    void example() {
         assertThat(Day11.powerLevel(122, 79, 57)).isEqualTo(-5);
         assertThat(Day11.powerLevel(217, 196, 39)).isZero();
         assertThat(Day11.powerLevel(101, 153, 71)).isEqualTo(4);
@@ -25,12 +23,12 @@ class Day11Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() throws Exception {
         assertThat(Day11.findLargestPartOne(7672, 3)).isEqualTo(Point2D.of(22, 18));
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() throws Exception {
         assertThat(Day11.findLargestPartTwo(7672)).isEqualTo(Point3D.of(234, 197, 14));
     }
 

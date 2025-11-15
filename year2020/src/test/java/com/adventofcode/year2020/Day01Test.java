@@ -15,7 +15,7 @@ class Day01Test extends AbstractTest {
     }
 
     @Test
-    void testReportRepair() {
+    void reportRepair() {
         long[] report = new long[]{
                 1721L, 979L, 366L, 299L, 675L, 1456L
         };

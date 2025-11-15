@@ -15,7 +15,7 @@ class Day17Test extends AbstractTest {
     }
 
     @Test
-    void testConwayCubes() {
+    void conwayCubes() {
         List<String> initialState = List.of(".#.",
                 "..#",
                 "###");

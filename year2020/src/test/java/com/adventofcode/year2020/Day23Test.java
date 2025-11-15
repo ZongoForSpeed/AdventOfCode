@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day23Test {
 
     @Test
-    void testCrabCups() {
+    void crabCups() {
         String input = "389125467";
         assertThat(Day23.crabCupsPart1(input, 10)).isEqualTo("92658374");
         assertThat(Day23.crabCupsPart1(input, 100)).isEqualTo("67384529");

@@ -14,7 +14,7 @@ class Day20Test extends AbstractTest {
 
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
-    void testSimpleExample() {
+    void simpleExample() {
         String input = """
                          A          \s
                          A          \s
@@ -43,7 +43,7 @@ class Day20Test extends AbstractTest {
 
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
-    void testLargerExample() {
+    void largerExample() {
         String input = """
                                    A              \s
                                    A              \s
@@ -91,7 +91,7 @@ class Day20Test extends AbstractTest {
 
     @SuppressWarnings("MisleadingEscapedSpace")
     @Test
-    void testRecursiveDonutMaze() {
+    void recursiveDonutMaze() {
         String input = """
                              Z L X W       C                \s
                              Z P Q B       K                \s

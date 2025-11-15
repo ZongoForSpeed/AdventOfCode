@@ -19,7 +19,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testSimpleExample() {
+    void simpleExample() {
         String input = """
                 .#..#
                 .....
@@ -36,7 +36,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample1() {
+    void largerExample1() {
         String input = """
                 ......#.#.
                 #..#.#....
@@ -57,7 +57,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample2() {
+    void largerExample2() {
         String input = """
                 #.#...#.#.
                 .###....#.
@@ -78,7 +78,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample3() {
+    void largerExample3() {
         String input = """               
                 .#..#..###
                 ####.###.#
@@ -99,7 +99,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample4() {
+    void largerExample4() {
         String input = """
                 .#..##.###...#######
                 ##.############..##.
@@ -130,7 +130,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testVaporizeSimpleExample() {
+    void vaporizeSimpleExample() {
         String input = """
                 .#....#####...#..
                 ##...##.#####..##
@@ -150,7 +150,7 @@ class Day10Test extends AbstractTest {
     }
 
     @Test
-    void testVaporizeLargerExample() {
+    void vaporizeLargerExample() {
         String input = """
                 .#..##.###...#######
                 ##.############..##.

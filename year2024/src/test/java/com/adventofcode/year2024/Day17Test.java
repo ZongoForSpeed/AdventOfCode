@@ -14,7 +14,7 @@ class Day17Test extends AbstractTest {
     }
 
     @Test
-    void testExample1() {
+    void example1() {
         String input = """
                 Register A: 729
                 Register B: 0
@@ -29,7 +29,7 @@ class Day17Test extends AbstractTest {
     }
 
     @Test
-    void testExample2() {
+    void example2() {
         String input = """
                 Register A: 2024
                 Register B: 0
@@ -44,7 +44,7 @@ class Day17Test extends AbstractTest {
     }
 
     @Test
-    void testExample3() {
+    void example3() {
         String input = """
                 Register A: 2024
                 Register B: 0

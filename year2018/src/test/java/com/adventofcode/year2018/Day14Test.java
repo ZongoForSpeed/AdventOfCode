@@ -2,8 +2,6 @@ package com.adventofcode.year2018;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -24,12 +22,12 @@ class Day14Test {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() throws Exception {
         assertThat(Day14.chocolateChartsPartOne(846021).toIntArray()).containsExactly(5, 4, 8, 2, 3, 2, 6, 1, 1, 9);
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() throws Exception {
         assertThat(Day14.chocolateChartsPartTwo(846021)).isEqualTo(20368140);
     }
 }

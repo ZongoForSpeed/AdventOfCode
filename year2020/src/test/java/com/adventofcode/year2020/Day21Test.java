@@ -14,7 +14,7 @@ class Day21Test extends AbstractTest {
     }
 
     @Test
-    void testAllergenAssessment() {
+    void allergenAssessment() {
         String input = """
                 mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
                 trh fvjkl sbzzf mxmxvkd (contains dairy)

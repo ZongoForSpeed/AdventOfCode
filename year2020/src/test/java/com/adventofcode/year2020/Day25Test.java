@@ -13,7 +13,7 @@ class Day25Test extends AbstractTest {
     }
 
     @Test
-    void testComboBreaker() {
+    void comboBreaker() {
         long cardEncryptionKey = Day25.comboBreaker(5764801, 17807724);
         assertThat(cardEncryptionKey).isEqualTo(14897079);
     }

@@ -3,7 +3,6 @@ package com.adventofcode.year2019;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,7 +15,7 @@ class Day06Test extends AbstractTest {
     }
 
     @Test
-    void testExamplePartOne() throws IOException {
+    void examplePartOne() throws Exception {
         String input = """
                 COM)B
                 B)C

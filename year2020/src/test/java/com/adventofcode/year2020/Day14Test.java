@@ -15,7 +15,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testDockingData1() {
+    void dockingData1() {
         List<String> programs = List.of("mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X",
                 "mem[8] = 11",
                 "mem[7] = 101",
@@ -25,7 +25,7 @@ class Day14Test extends AbstractTest {
     }
 
     @Test
-    void testDockingData2() {
+    void dockingData2() {
         List<String> programs = List.of("mask = 000000000000000000000000000000X1001X",
                 "mem[42] = 100",
                 "mask = 00000000000000000000000000000000X0XX",

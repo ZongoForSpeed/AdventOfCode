@@ -24,7 +24,7 @@ class Day17Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
 
     @Test
-    void testExample() {
+    void example() {
         String example = """
                 ..#..........
                 ..#..........
@@ -38,7 +38,7 @@ class Day17Test extends AbstractTest {
     }
 
     @Test
-    void testPath() {
+    void path() {
         String input = """
                 #######...#####
                 #.....#...#...#

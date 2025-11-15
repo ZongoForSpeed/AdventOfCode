@@ -15,7 +15,7 @@ class Day05Test extends AbstractTest {
     }
 
     @Test
-    void testBinaryBoarding() {
+    void binaryBoarding() {
         assertThat(Day05.binaryBoarding("FBFBBFFRLR")).isEqualTo(357);
         assertThat(Day05.binaryBoarding("BFFFBBFRRR")).isEqualTo(567);
         assertThat(Day05.binaryBoarding("FFFBBBFRRR")).isEqualTo(119);

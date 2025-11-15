@@ -13,7 +13,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testSimple() {
+    void simple() {
         String input = """
                 #########
                 #b.A.@.a#
@@ -24,7 +24,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample1() {
+    void largerExample1() {
         String input = """
                 ########################
                 #f.D.E.e.C.b.A.@.a.B.c.#
@@ -37,7 +37,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample2() {
+    void largerExample2() {
         String input = """
                 ########################
                 #...............b.C.D.f#
@@ -51,7 +51,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample3() {
+    void largerExample3() {
         String input = """
                 #################
                 #i.G..c...e..H.p#
@@ -68,7 +68,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testLargerExample4() {
+    void largerExample4() {
         String input = """
                 ########################
                 #@..............ac.GI.b#
@@ -82,7 +82,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testSimpleVault() {
+    void simpleVault() {
         String input = """
                 #######
                 #a.#Cd#
@@ -98,7 +98,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testLargerVault() {
+    void largerVault() {
         String input = """
                 ###############
                 #d.ABC.#.....a#
@@ -113,7 +113,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testComplexVault1() {
+    void complexVault1() {
         String input = """
                 #############
                 #DcBa.#.GhKl#
@@ -129,7 +129,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void testComplexVault2() {
+    void complexVault2() {
         String input = """
                 #############
                 #g#f.D#..h#l#

@@ -13,7 +13,7 @@ class Day11Test extends AbstractTest {
     }
 
     @Test
-    void testExample() {
+    void example() {
         String input = """
                 Monkey 0:
                   Starting items: 79, 98

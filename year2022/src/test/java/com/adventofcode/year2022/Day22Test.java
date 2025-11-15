@@ -14,7 +14,7 @@ class Day22Test extends AbstractTest {
     }
 
     @Test
-    void testExample() {
+    void example() {
         String input = """
                         ...#
                         .#..

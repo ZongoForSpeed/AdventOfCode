@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -58,7 +57,7 @@ class Day20Test extends AbstractTest {
     }
 
     @Test
-    void inputPartOne() throws IOException {
+    void inputPartOne() throws Exception {
         try (InputStream inputStream = Day20Test.class.getResourceAsStream("/2023/day/20/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
 
@@ -66,7 +65,7 @@ class Day20Test extends AbstractTest {
     }
 
     @Test
-    void inputPartTwo() throws IOException {
+    void inputPartTwo() throws Exception {
         try (InputStream inputStream = Day20Test.class.getResourceAsStream("/2023/day/20/input");
              Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
 
