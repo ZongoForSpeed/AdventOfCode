@@ -4,7 +4,7 @@ import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -132,6 +132,7 @@ public final class Day18 {
         return new PathFinder(accessible, start, end).findPath();
     }
 
+
     /**
      * --- Part Two ---
      * <p>
@@ -172,8 +173,7 @@ public final class Day18 {
      * being reachable from your starting position? (Provide the answer as two
      * integers separated by a comma with no other characters.)
      */
-    @Nullable
-    public static String partTwo(Scanner scanner, int size) {
+    public static @Nullable String partTwo(Scanner scanner, int size) {
         List<Point2D> corruptedMemory = readCorruptedMemory(scanner);
 
         Set<Point2D> accessible = new HashSet<>();

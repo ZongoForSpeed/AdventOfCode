@@ -1,7 +1,7 @@
 package com.adventofcode.year2015;
 
 import it.unimi.dsi.fastutil.Pair;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +45,7 @@ public final class Day16 {
         }
         return sues;
     }
+
 
     /**
      * --- Day 16: Aunt Sue ---
@@ -98,8 +99,7 @@ public final class Day16 {
      * <p>
      * Your puzzle answer was 103.
      */
-    @Nullable
-    public static Integer findAuntSuePartOne(Scanner scanner) {
+    public static @Nullable Integer findAuntSuePartOne(Scanner scanner) {
         AuntSue sue = new AuntSue();
         List<Pair<Integer, Map<Compounds, Integer>>> sues = readInput(scanner);
 
@@ -121,6 +121,7 @@ public final class Day16 {
         return auntSue;
     }
 
+
     /**
      * --- Part Two ---
      * <p>
@@ -139,8 +140,7 @@ public final class Day16 {
      * <p>
      * Your puzzle answer was 405.
      */
-    @Nullable
-    public static Integer findAuntSuePartTwo(Scanner scanner) {
+    public static @Nullable Integer findAuntSuePartTwo(Scanner scanner) {
         AuntSue sue = new AuntSue();
         List<Pair<Integer, Map<Compounds, Integer>>> sues = readInput(scanner);
 
@@ -180,7 +180,7 @@ public final class Day16 {
             this.comparator = comparator;
         }
 
-        boolean compare(Integer a, Integer b) {
+        boolean compare(@Nullable Integer a, @Nullable Integer b) {
             if (a == null || b == null) {
                 return false;
             }

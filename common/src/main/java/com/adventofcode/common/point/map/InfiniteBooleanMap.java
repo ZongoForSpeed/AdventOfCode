@@ -6,16 +6,10 @@ import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
+import org.jspecify.annotations.Nullable;
 
-import jakarta.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -63,10 +57,10 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
 
     @Override
     public boolean containsKey(Object key) {
-        if (key instanceof Point2D point) {
-            Int2BooleanMap booleanMap = map.get(point.x());
+        if (key instanceof Point2D(int x, int y)) {
+            Int2BooleanMap booleanMap = map.get(x);
             if (booleanMap != null) {
-                return booleanMap.containsKey(point.y());
+                return booleanMap.containsKey(y);
             }
         }
         return false;
@@ -82,8 +76,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
-    @Nullable
-    public Boolean get(Object key) {
+    public @Nullable Boolean get(Object key) {
         if (key instanceof Point2D(int x, int y)) {
             Int2BooleanMap booleanMap = map.get(x);
             if (booleanMap != null) {
@@ -94,9 +87,8 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
-    @Nullable
     @CanIgnoreReturnValue
-    public Boolean put(Point2D key, Boolean value) {
+    public @Nullable Boolean put(Point2D key, @Nullable Boolean value) {
         if (value == null) {
             return null;
         }
@@ -104,11 +96,10 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
-    @Nullable
     @CanIgnoreReturnValue
-    public Boolean remove(Object key) {
+    public @Nullable Boolean remove(Object key) {
         if (key instanceof Point2D(int x, int y)) {
-            Int2BooleanMap booleanMap = map.get(x);
+            Int2BooleanMap booleanMap = map.getOrDefault(x, null);
             if (booleanMap != null) {
                 boolean remove = booleanMap.remove(y);
                 if (booleanMap.isEmpty()) {
@@ -121,7 +112,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
-    public void putAll(@Nonnull Map<? extends Point2D, ? extends Boolean> m) {
+    public void putAll(Map<? extends Point2D, ? extends Boolean> m) {
         m.forEach(this::put);
     }
 
@@ -131,7 +122,6 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
-    @Nonnull
     public Set<Point2D> keySet() {
         return map.int2ObjectEntrySet()
                 .stream()
@@ -140,13 +130,11 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     @Override
-    @Nonnull
     public Collection<Boolean> values() {
         return map.values().stream().flatMap(t -> t.values().stream()).toList();
     }
 
     @Override
-    @Nonnull
     public Set<Entry<Point2D, Boolean>> entrySet() {
         return map.int2ObjectEntrySet()
                 .stream()
@@ -157,7 +145,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
                 .collect(Collectors.toSet());
     }
 
-    private List<String> print(Function<Boolean, Character> supplier) {
+    private List<String> print(Function<@Nullable Boolean, Character> supplier) {
         int maxX = map.keySet().intStream().max().orElse(0);
         int minX = map.keySet().intStream().min().orElse(0);
         int maxY = map.values().stream().flatMapToInt(m -> m.keySet().intStream()).max().orElse(0);

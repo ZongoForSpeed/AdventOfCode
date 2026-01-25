@@ -2,9 +2,8 @@ package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -76,44 +75,41 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
     }
 
     @Override
-    @Nullable
-    public Character get(Object key) {
+    public @Nullable Character get(Object key) {
         return map.get(key);
     }
 
-    @Nullable
-    public Character get(int x, int y) {
+
+    public @Nullable Character get(int x, int y) {
         return get(Point2D.of(x, y));
     }
 
     @Override
-    @Nullable
     @CanIgnoreReturnValue
-    public Character put(Point2D key, Character value) {
+    public @Nullable Character put(Point2D key, Character value) {
         return map.put(key, value);
     }
 
-    @Nullable
+
     @CanIgnoreReturnValue
-    public Character put(int x, int y, Character value) {
+    public @Nullable Character put(int x, int y, Character value) {
         return put(Point2D.of(x, y), value);
     }
 
     @Override
-    @Nullable
     @CanIgnoreReturnValue
-    public Character remove(Object key) {
+    public @Nullable Character remove(Object key) {
         return map.remove(key);
     }
 
-    @Nullable
+
     @CanIgnoreReturnValue
-    public Character remove(int x, int y) {
+    public @Nullable Character remove(int x, int y) {
         return remove(Point2D.of(x, y));
     }
 
     @Override
-    public void putAll(@Nonnull Map<? extends Point2D, ? extends Character> m) {
+    public void putAll(Map<? extends Point2D, ? extends Character> m) {
         map.putAll(m);
     }
 
@@ -123,19 +119,16 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
     }
 
     @Override
-    @Nonnull
     public Set<Point2D> keySet() {
         return map.keySet();
     }
 
     @Override
-    @Nonnull
     public Collection<Character> values() {
         return map.values();
     }
 
     @Override
-    @Nonnull
     public Set<Entry<Point2D, Character>> entrySet() {
         return map.entrySet();
     }

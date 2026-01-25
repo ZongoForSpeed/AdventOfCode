@@ -3,7 +3,7 @@ package com.adventofcode.year2018;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.Point3D;
 import com.adventofcode.common.point.map.IntegerMap;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +46,7 @@ public final class Day11 {
         }
         return map;
     }
+
 
     /**
      * --- Day 11: Chronal Charge ---
@@ -126,8 +127,7 @@ public final class Day11 {
      *
      * Your puzzle input is 7672.
      */
-    @Nullable
-    public static Point2D findLargestPartOne(int serialId, int size) {
+    public static @Nullable Point2D findLargestPartOne(int serialId, int size) {
         IntegerMap map = buildMap(serialId);
 
         IntegerMap sum = buildSum(map);
@@ -151,6 +151,7 @@ public final class Day11 {
         return maxCorner;
     }
 
+
     /**
      * --- Part Two ---
      *
@@ -173,8 +174,7 @@ public final class Day11 {
      *
      * What is the X,Y,size identifier of the square with the largest total power?
      */
-    @Nullable
-    public static Point3D findLargestPartTwo(int serialId) {
+    public static @Nullable Point3D findLargestPartTwo(int serialId) {
         IntegerMap map = buildMap(serialId);
 
         IntegerMap sum = buildSum(map);

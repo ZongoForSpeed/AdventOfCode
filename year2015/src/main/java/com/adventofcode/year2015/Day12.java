@@ -1,7 +1,7 @@
 package com.adventofcode.year2015;
 
 import com.google.gson.Gson;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;

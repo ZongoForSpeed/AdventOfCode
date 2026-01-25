@@ -5,7 +5,6 @@ import org.apache.commons.collections4.SetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -105,7 +104,7 @@ public final class Day25 {
 
         private static final Pattern PATTERN = Pattern.compile("^(\\w+): (.*)$");
 
-        public static int minimumCut(@Nonnull Scanner scanner) {
+        public static int minimumCut(Scanner scanner) {
             Map<String, Set<String>> graph = new HashMap<>();
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -148,7 +147,7 @@ public final class Day25 {
             return difference.size() * cut.size();
         }
 
-        static int count(Map<String, Set<String>> graph, @Nonnull Set<String> cut) {
+        static int count(Map<String, Set<String>> graph, Set<String> cut) {
             int count = 0;
             for (String v : cut) {
                 count += count(graph, cut, v);
@@ -156,7 +155,7 @@ public final class Day25 {
             return count;
         }
 
-        static int count(@Nonnull Map<String, Set<String>> graph, Set<String> cut, String v) {
+        static int count(Map<String, Set<String>> graph, Set<String> cut, String v) {
             return SetUtils.difference(graph.get(v), cut).size();
         }
     }

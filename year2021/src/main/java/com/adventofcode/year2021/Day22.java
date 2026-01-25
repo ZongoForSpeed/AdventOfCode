@@ -3,7 +3,7 @@ package com.adventofcode.year2021;
 import com.adventofcode.common.point.range.Cuboid;
 import com.adventofcode.common.point.range.Range;
 import it.unimi.dsi.fastutil.Pair;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

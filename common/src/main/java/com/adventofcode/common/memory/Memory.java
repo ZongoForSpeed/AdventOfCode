@@ -1,8 +1,7 @@
 package com.adventofcode.common.memory;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -28,16 +27,16 @@ public interface Memory<V> {
 
     Collection<V> values();
 
-    @Nullable
-    default V getOrDefault(int key, @Nonnull V defaultValue) {
+
+    default @Nullable V getOrDefault(int key, V defaultValue) {
         V v;
         return (((v = get(key)) != null) || containsKey(key))
                 ? v
                 : defaultValue;
     }
 
-    @Nullable
-    default V putIfAbsent(int key, V value) {
+
+    default @Nullable V putIfAbsent(int key, V value) {
         V v = get(key);
         if (v == null) {
             v = put(key, value);
@@ -46,7 +45,7 @@ public interface Memory<V> {
         return v;
     }
 
-    default boolean replace(int key, V oldValue, V newValue) {
+    default boolean replace(int key, @Nullable V oldValue, V newValue) {
         Object curValue = get(key);
         if (!Objects.equals(curValue, oldValue) ||
                 (curValue == null && !containsKey(key))) {
@@ -56,9 +55,8 @@ public interface Memory<V> {
         return true;
     }
 
-    @Nullable
-    default V computeIfAbsent(int key,
-                              IntFunction<? extends V> mappingFunction) {
+    default @Nullable V computeIfAbsent(int key,
+                                        IntFunction<? extends @Nullable V> mappingFunction) {
         Objects.requireNonNull(mappingFunction);
         V v;
         if ((v = get(key)) == null) {

@@ -22,8 +22,8 @@ public record Cuboid(Range dx, Range dy, Range dz) {
 
     public static boolean intersect(Cuboid c1, Cuboid c2) {
         return Range.intersect(c1.dx, c2.dx)
-               && Range.intersect(c1.dy, c2.dy)
-               && Range.intersect(c1.dz, c2.dz);
+                && Range.intersect(c1.dy, c2.dy)
+                && Range.intersect(c1.dz, c2.dz);
     }
 
     public static Optional<Cuboid> intersection(Cuboid c1, Cuboid c2) {
@@ -67,8 +67,8 @@ public record Cuboid(Range dx, Range dy, Range dz) {
 
     public boolean contains(Cuboid c) {
         return dx.contains(c.dx)
-               && dy.contains(c.dy)
-               && dz.contains(c.dz);
+                && dy.contains(c.dy)
+                && dz.contains(c.dz);
     }
 
     public boolean valid() {

@@ -6,6 +6,7 @@ import com.adventofcode.common.point.Point2D;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
@@ -25,39 +26,39 @@ public final class Day03 {
         // No-Op
     }
 
-    private static <T> T spiral(Function<Point2D, T> function) {
+    private static <T> T spiral(Function<Point2D, Optional<T>> function) {
         Point2D position = Point2D.of(0, 0);
-        T value = function.apply(position);
-        if (value != null) {
-            return value;
+        Optional<T> value = function.apply(position);
+        if (value.isPresent()) {
+            return value.get();
         }
         for (int s = 1; ; s += 2) {
             for (int d = 0; d < s; ++d) {
                 position = position.move(Direction.RIGHT);
                 value = function.apply(position);
-                if (value != null) {
-                    return value;
+                if (value.isPresent()) {
+                    return value.get();
                 }
             }
             for (int d = 0; d < s; ++d) {
                 position = position.move(Direction.UP);
                 value = function.apply(position);
-                if (value != null) {
-                    return value;
+                if (value.isPresent()) {
+                    return value.get();
                 }
             }
             for (int d = 0; d <= s; ++d) {
                 position = position.move(Direction.LEFT);
                 value = function.apply(position);
-                if (value != null) {
-                    return value;
+                if (value.isPresent()) {
+                    return value.get();
                 }
             }
             for (int d = 0; d <= s; ++d) {
                 position = position.move(Direction.DOWN);
                 value = function.apply(position);
-                if (value != null) {
-                    return value;
+                if (value.isPresent()) {
+                    return value.get();
                 }
             }
         }
@@ -67,74 +68,74 @@ public final class Day03 {
      * --- Day 3: Spiral Memory ---
      * You come across an experimental new kind of memory stored on an infinite
      * two-dimensional grid.
-     *
+     * <p>
      * Each square on the grid is allocated in a spiral pattern starting at a
      * location marked 1 and then counting up while spiraling outward. For
      * example, the first few squares are allocated like this:
-     *
+     * <p>
      * 17  16  15  14  13
      * 18   5   4   3  12
      * 19   6   1   2  11
      * 20   7   8   9  10
      * 21  22  23---> ...
-     *
+     * <p>
      * While this is very space-efficient (no squares are skipped), requested data
      * must be carried back to square 1 (the location of the only access port for
      * this memory system) by programs that can only move up, down, left, or
      * right. They always take the shortest path: the Manhattan Distance between
      * the location of the data and square 1.
-     *
+     * <p>
      * For example:
-     *
-     *   - Data from square 1 is carried 0 steps, since it's at the access port.
-     *   - Data from square 12 is carried 3 steps, such as: down, left, left.
-     *   - Data from square 23 is carried only 2 steps: up twice.
-     *   - Data from square 1024 must be carried 31 steps.
-     *
+     * <p>
+     * - Data from square 1 is carried 0 steps, since it's at the access port.
+     * - Data from square 12 is carried 3 steps, such as: down, left, left.
+     * - Data from square 23 is carried only 2 steps: up twice.
+     * - Data from square 1024 must be carried 31 steps.
+     * <p>
      * How many steps are required to carry the data from the square identified in
      * your puzzle input all the way to the access port?
-     *
+     * <p>
      * Your puzzle input is 265149.
-     *
+     * <p>
      * Your puzzle answer was 438.
      */
     static int spiralMemory(int input) {
         AtomicInteger count = new AtomicInteger(0);
-        Point2D position = spiral(p -> count.incrementAndGet() == input ? p : null);
+        Point2D position = spiral(p -> count.incrementAndGet() == input ? Optional.of(p) : Optional.empty());
         return Math.abs(position.x()) + Math.abs(position.y());
     }
 
     /**
      * --- Part Two ---
-     *
+     * <p>
      * As a stress test on the system, the programs here clear the grid and then
      * store the value 1 in square 1. Then, in the same allocation order as shown
      * above, they store the sum of the values in all adjacent squares, including
      * diagonals.
-     *
+     * <p>
      * So, the first few squares' values are chosen as follows:
-     *
-     *   - Square 1 starts with the value 1.
-     *   - Square 2 has only one adjacent filled square (with value 1), so it
-     *     also stores 1.
-     *   - Square 3 has both of the above squares as neighbors and stores the sum
-     *     of their values, 2.
-     *   - Square 4 has all three of the aforementioned squares as neighbors and
-     *     stores the sum of their values, 4.
-     *   - Square 5 only has the first and fourth squares as neighbors, so it
-     *     gets the value 5.
-     *
+     * <p>
+     * - Square 1 starts with the value 1.
+     * - Square 2 has only one adjacent filled square (with value 1), so it
+     * also stores 1.
+     * - Square 3 has both of the above squares as neighbors and stores the sum
+     * of their values, 2.
+     * - Square 4 has all three of the aforementioned squares as neighbors and
+     * stores the sum of their values, 4.
+     * - Square 5 only has the first and fourth squares as neighbors, so it
+     * gets the value 5.
+     * <p>
      * Once a square is written, its value does not change. Therefore, the first
      * few squares would receive the following values:
-     *
+     * <p>
      * 147  142  133  122   59
      * 304    5    4    2   57
      * 330   10    1    1   54
      * 351   11   23   25   26
      * 362  747  806--->   ...
-     *
+     * <p>
      * What is the first value written that is larger than your puzzle input?
-     *
+     * <p>
      * Your puzzle answer was 113.
      */
     static int spiralSum(int input) {
@@ -146,13 +147,13 @@ public final class Day03 {
         return spiral(position -> {
             int sum = NEIGHBOURS.stream().map(position::move).mapToInt(p -> memory.getOrDefault(p, 0)).sum();
             if (sum > input) {
-                return sum;
+                return Optional.of(sum);
             }
             if (sum == 0) {
                 sum = 1;
             }
             memory.put(position, sum);
-            return null;
+            return Optional.empty();
         });
     }
 }

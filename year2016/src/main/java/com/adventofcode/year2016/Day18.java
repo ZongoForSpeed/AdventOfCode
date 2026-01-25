@@ -25,7 +25,7 @@ public final class Day18 {
         return ABOVE_TILES.stream()
                 .map(p::move)
                 .map(t -> t.x() >= 0 && map.get(t))
-                .mapToInt(b -> Boolean.TRUE.equals(b) ? 1 : 0)
+                .mapToInt(b -> b ? 1 : 0)
                 .reduce(0, (a, b) -> (a << 1) | b);
     }
 

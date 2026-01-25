@@ -1,7 +1,7 @@
 package com.adventofcode.common.memory;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.BitSet;
@@ -41,8 +41,7 @@ public class LongMemory implements Memory<Long> {
     }
 
     @Override
-    @Nullable
-    public Long get(int key) {
+    public @Nullable Long get(int key) {
         checkKey(key);
 
         if (key < mem.length && bitSet.get(key)) {
@@ -53,11 +52,7 @@ public class LongMemory implements Memory<Long> {
     }
 
     @Override
-    @Nullable
-    public Long put(int key, Long value) {
-        if (value == null) {
-            throw new IllegalStateException("Null value are not allowed");
-        }
+    public @Nullable Long put(int key, Long value) {
         return put(key, value.longValue());
     }
 
@@ -77,9 +72,9 @@ public class LongMemory implements Memory<Long> {
         return bitSet.stream().mapToLong(i -> mem[i]).boxed().toList();
     }
 
-    @Nullable
+
     @CanIgnoreReturnValue
-    public Long put(int key, long value) {
+    public @Nullable Long put(int key, long value) {
         checkKey(key);
 
         if (key >= mem.length) {

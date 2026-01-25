@@ -1,7 +1,7 @@
 package com.adventofcode.year2022;
 
 import com.google.common.primitives.Longs;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

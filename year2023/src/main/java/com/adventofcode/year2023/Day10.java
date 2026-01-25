@@ -5,7 +5,7 @@ import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectCharPair;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -387,8 +387,8 @@ public final class Day10 {
         return pipes;
     }
 
-    @Nullable
-    private static List<Pair<Point2D, Direction>> findPath(CharMap pipes, Point2D start, Direction direction) {
+
+    private static @Nullable List<Pair<Point2D, Direction>> findPath(CharMap pipes, Point2D start, Direction direction) {
         Point2D current = start.move(direction);
         if (current.x() < 0 || current.y() < 0) {
             return null;

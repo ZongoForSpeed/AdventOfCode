@@ -2,11 +2,10 @@ package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -44,27 +43,24 @@ public class Map2D implements Map<Point2D, Long> {
     }
 
     @Override
-    @Nullable
-    public Long get(Object key) {
+    public @Nullable Long get(Object key) {
         return map.get(key);
     }
 
     @Override
-    @Nullable
     @CanIgnoreReturnValue
-    public Long put(Point2D key, Long value) {
+    public @Nullable Long put(Point2D key, Long value) {
         return map.put(key, value);
     }
 
     @Override
-    @Nullable
     @CanIgnoreReturnValue
-    public Long remove(Object key) {
+    public @Nullable Long remove(Object key) {
         return map.remove(key);
     }
 
     @Override
-    public void putAll(@Nonnull Map<? extends Point2D, ? extends Long> m) {
+    public void putAll(Map<? extends Point2D, ? extends Long> m) {
         map.putAll(m);
     }
 
@@ -74,19 +70,16 @@ public class Map2D implements Map<Point2D, Long> {
     }
 
     @Override
-    @Nonnull
     public Set<Point2D> keySet() {
         return map.keySet();
     }
 
     @Override
-    @Nonnull
     public Collection<Long> values() {
         return map.values();
     }
 
     @Override
-    @Nonnull
     public Set<Map.Entry<Point2D, Long>> entrySet() {
         return map.entrySet();
     }

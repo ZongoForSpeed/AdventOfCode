@@ -1,7 +1,6 @@
 package com.adventofcode.common.memory;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.BitSet;
@@ -44,9 +43,8 @@ public class ObjectMemory<V> implements Memory<V> {
     }
 
     @Override
-    @Nullable
     @SuppressWarnings("unchecked")
-    public V get(int key) {
+    public @Nullable V get(int key) {
         checkKey(key);
 
         if (key < mem.length && bitSet.get(key)) {
@@ -57,7 +55,6 @@ public class ObjectMemory<V> implements Memory<V> {
     }
 
     @SuppressWarnings("unchecked")
-    @Nonnull
     public V getNonNull(int key) {
         checkKey(key);
 
@@ -69,8 +66,7 @@ public class ObjectMemory<V> implements Memory<V> {
     }
 
     @Override
-    @Nullable
-    public V put(int key, V value) {
+    public @Nullable V put(int key, V value) {
         checkKey(key);
 
         if (key >= mem.length) {

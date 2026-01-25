@@ -2,7 +2,7 @@ package com.adventofcode.year2016;
 
 import com.adventofcode.common.maths.Arithmetic;
 import com.adventofcode.common.maths.Prime;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

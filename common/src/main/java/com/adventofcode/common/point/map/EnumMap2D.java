@@ -2,11 +2,10 @@ package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -51,15 +50,13 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
     }
 
     @Override
-    @Nullable
-    public E get(Object key) {
+    public @Nullable E get(Object key) {
         return map.get(key);
     }
 
     @Override
-    @Nullable
     @CanIgnoreReturnValue
-    public E put(Point2D key, E value) {
+    public @Nullable E put(Point2D key, E value) {
         return map.put(key, value);
     }
 
@@ -70,7 +67,7 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
     }
 
     @Override
-    public void putAll(@Nonnull Map<? extends Point2D, ? extends E> m) {
+    public void putAll(Map<? extends Point2D, ? extends E> m) {
         map.putAll(m);
     }
 
@@ -80,19 +77,16 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
     }
 
     @Override
-    @Nonnull
     public Set<Point2D> keySet() {
         return map.keySet();
     }
 
     @Override
-    @Nonnull
     public Collection<E> values() {
         return map.values();
     }
 
     @Override
-    @Nonnull
     public Set<Entry<Point2D, E>> entrySet() {
         return map.entrySet();
     }

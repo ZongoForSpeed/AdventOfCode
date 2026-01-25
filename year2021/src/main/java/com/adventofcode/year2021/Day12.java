@@ -1,20 +1,11 @@
 package com.adventofcode.year2021;
 
-import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,9 +20,7 @@ public final class Day12 {
         // No-Op
     }
 
-    private static void findAllPathsPartOne(Map<String, List<String>> adjList, String current, String destination,
-                                            Set<String> visited,
-                                            Deque<String> currentPath, Set<List<String>> paths) {
+    private static void findAllPathsPartOne(Map<String, List<String>> adjList, String current, String destination, Set<String> visited, Deque<String> currentPath, Set<List<String>> paths) {
 
         if (current.equals(destination)) {
             paths.add(new ArrayList<>(currentPath));
@@ -201,9 +190,7 @@ public final class Day12 {
         return paths;
     }
 
-    private static void findAllPathsPartTwo(Map<String, List<String>> adjList, String current, String destination,
-                                            Set<String> visited, AtomicReference<String> visitedTwice,
-                                            Deque<String> currentPath, Set<List<String>> paths) {
+    private static void findAllPathsPartTwo(Map<String, List<String>> adjList, String current, String destination, Set<String> visited, AtomicReference<@Nullable String> visitedTwice, Deque<String> currentPath, Set<List<String>> paths) {
 
         if (current.equals(destination)) {
             paths.add(new ArrayList<>(currentPath));
@@ -226,7 +213,7 @@ public final class Day12 {
             }
         }
 
-        if (visitedTwice.get() != null && visitedTwice.get().equals(current)) {
+        if (visitedTwice.get() != null && Objects.equals(visitedTwice.get(), current)) {
             visitedTwice.set(null);
         } else {
             visited.remove(current);

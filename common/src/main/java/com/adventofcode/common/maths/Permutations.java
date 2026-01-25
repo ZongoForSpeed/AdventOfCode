@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
-import jakarta.annotation.Nonnull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,19 +50,19 @@ public final class Permutations {
         return FACTORIALS[n];
     }
 
-    public static <T> List<T> permutation(long no, @Nonnull List<T> items) {
+    public static <T> List<T> permutation(long no, List<T> items) {
         return permutationHelper(no,
                 new ArrayList<>(items),
                 new ArrayList<>());
     }
 
-    public static LongList permutation(long no, @Nonnull LongList items) {
+    public static LongList permutation(long no, LongList items) {
         return permutationHelper(no,
                 new LongArrayList(items),
                 new LongArrayList());
     }
 
-    public static IntList permutation(long no, @Nonnull IntList items) {
+    public static IntList permutation(long no, IntList items) {
         return permutationHelper(no,
                 new IntArrayList(items),
                 new IntArrayList());

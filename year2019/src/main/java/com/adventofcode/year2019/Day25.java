@@ -4,8 +4,7 @@ import com.adventofcode.common.Intcode;
 import com.adventofcode.common.point.Direction;
 import com.google.common.base.Splitter;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -125,8 +124,8 @@ public final class Day25 {
             executor = Executors.newVirtualThreadPerTaskExecutor();
         }
 
-        @Nullable
-        private static Position parseOutput(String output) {
+
+        private static @Nullable Position parseOutput(String output) {
             if (output.contains("You take the ") || output.contains("You drop the ")) {
                 return null;
             }
@@ -172,8 +171,8 @@ public final class Day25 {
             return new Position(position.orElseThrow(), description.orElseThrow(), directions, items, output);
         }
 
-        @Nullable
-        public Position start(String program) {
+
+        public @Nullable Position start(String program) {
             executor.submit(() -> {
                 Intcode.intcode(program, this::input, this::output);
                 consoleOutput.put(stringBuilder.toString());
@@ -211,24 +210,23 @@ public final class Day25 {
             }
         }
 
-        @Nonnull
         @CanIgnoreReturnValue
         private Position doCommand(@Nullable Direction direction) {
             String cardinalDirection = Objects.requireNonNull(CARDINAL.get(direction), "Cannot find direction: " + direction);
             return Objects.requireNonNull(doCommand(cardinalDirection), "Cannot run command on " + direction);
         }
 
-        @Nullable
+
         @CanIgnoreReturnValue
-        private Position doCommand(String input) {
+        private @Nullable Position doCommand(String input) {
             input.chars().mapToLong(t -> t).forEach(instructions::add);
             instructions.add(10L);
 
             return getConsoleOutput();
         }
 
-        @Nullable
-        private Position getConsoleOutput() {
+
+        private @Nullable Position getConsoleOutput() {
             try {
                 return parseOutput(consoleOutput.take());
             } catch (InterruptedException e) {

@@ -22,7 +22,7 @@ public record Rectangle(Range dx, Range dy) {
 
     public static boolean intersect(Rectangle c1, Rectangle c2) {
         return Range.intersect(c1.dx, c2.dx)
-               && Range.intersect(c1.dy, c2.dy);
+                && Range.intersect(c1.dy, c2.dy);
     }
 
     public static Optional<Rectangle> intersection(Rectangle c1, Rectangle c2) {
@@ -44,7 +44,7 @@ public record Rectangle(Range dx, Range dy) {
 
         for (Range xRange : xRanges) {
             for (Range yRange : yRanges) {
-                    rectangles.add(new Rectangle(xRange, yRange));
+                rectangles.add(new Rectangle(xRange, yRange));
             }
         }
 
@@ -70,7 +70,7 @@ public record Rectangle(Range dx, Range dy) {
 
     public boolean contains(Rectangle c) {
         return dx.contains(c.dx)
-               && dy.contains(c.dy);
+                && dy.contains(c.dy);
     }
 
     public boolean valid() {

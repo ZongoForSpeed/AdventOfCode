@@ -2,6 +2,7 @@ package com.adventofcode.year2015;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,7 +68,7 @@ public final class Day21 {
         return boss;
     }
 
-    public static void loosingStrategy(AtomicInteger worstCost, Boolean win, List<Item> items) {
+    public static void loosingStrategy(AtomicInteger worstCost, @Nullable Boolean win, List<Item> items) {
         if (Boolean.FALSE.equals(win)) {
             int cost = items.stream().mapToInt(Item::cost).sum();
             if (worstCost.get() < cost) {
@@ -76,7 +77,7 @@ public final class Day21 {
         }
     }
 
-    public static void winningStrategy(AtomicInteger bestCost, Boolean win, List<Item> items) {
+    public static void winningStrategy(AtomicInteger bestCost, @Nullable Boolean win, List<Item> items) {
         if (Boolean.TRUE.equals(win)) {
             int cost = items.stream().mapToInt(Item::cost).sum();
             if (cost < bestCost.get()) {

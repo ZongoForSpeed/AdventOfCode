@@ -30,7 +30,7 @@ public final class Day09 {
 
     private static String readChar(Reader reader, int size) throws IOException {
         char[] buf = new char[size];
-        reader.read(buf);
+        var _ = reader.read(buf);
         return new String(buf);
     }
 

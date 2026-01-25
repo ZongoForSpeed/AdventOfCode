@@ -1,8 +1,8 @@
 package com.adventofcode.year2022;
 
 import com.google.common.base.Splitter;
-import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

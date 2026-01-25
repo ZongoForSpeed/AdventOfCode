@@ -4,8 +4,7 @@ import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.CharMap;
 import it.unimi.dsi.fastutil.Pair;
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -665,8 +664,8 @@ public final class Day15 {
                     .ifPresent(bestPath -> u.move(bestPath.getFirst()));
         }
 
-        @Nullable
-        private static List<Point2D> getPath(Unit u, Map<Point2D, Point2D> previous, @Nonnull Point2D dest) {
+
+        private static @Nullable List<Point2D> getPath(Unit u, Map<Point2D, Point2D> previous, Point2D dest) {
             if (!previous.containsKey(dest)) {
                 return null;
             }
