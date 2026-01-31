@@ -1,7 +1,7 @@
 package com.adventofcode.year2025;
 
+import java.util.ArrayDeque;
 import java.util.Scanner;
-import java.util.Stack;
 
 public final class Day03 {
 
@@ -114,18 +114,18 @@ public final class Day03 {
 
     private static long findJoltage(String line, int n) {
         int removal_left = line.length() - n;
-        var stack = new Stack<Integer>();
+        var stack = new ArrayDeque<Integer>();
         for (int i = 0; i < line.length(); i++) {
             int d = line.charAt(i) - '0';
-            while (!stack.isEmpty() && removal_left > 0 && stack.peek() < d) {
-                stack.pop();
+            while (!stack.isEmpty() && removal_left > 0 && stack.peekLast() < d) {
+                stack.removeLast();
                 removal_left--;
             }
-            stack.push(d);
+            stack.addLast(d);
         }
 
         while (stack.size() > n) {
-            stack.pop();
+            stack.removeLast();
         }
 
         long joltage = 0;

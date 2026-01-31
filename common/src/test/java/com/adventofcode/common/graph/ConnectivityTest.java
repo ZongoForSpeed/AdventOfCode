@@ -94,7 +94,7 @@ class ConnectivityTest {
     @Test
     void testFindRegionEmptyPoints() {
         Map<String, List<String>> graph = Map.of("A", List.of());
-        Collection<String> points = List.of();
+        List<String> points = List.of();
 
         Map<String, Set<String>> regions = Connectivity.findRegion(points, graph);
         assertThat(regions).isEmpty();

@@ -345,7 +345,7 @@ public final class Day24 {
         }
 
         @Override
-        public Iterable<Move<Elf>> next(Elf node) {
+        public List<Move<Elf>> next(Elf node) {
             Map<Direction, Set<Point2D>> blizzard = basin.blizzard(node.minutes() + 1);
             List<Move<Elf>> moves = new ArrayList<>();
             for (Direction direction : Direction.values()) {

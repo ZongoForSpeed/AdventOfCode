@@ -280,7 +280,7 @@ public final class Day15 {
         }
 
         @Override
-        public Iterable<Move<Point2D>> next(Point2D node) {
+        public List<Move<Point2D>> next(Point2D node) {
             return adjacent(map, node, xMax, yMax);
         }
     }

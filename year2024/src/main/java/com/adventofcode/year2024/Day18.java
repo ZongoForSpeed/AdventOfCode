@@ -233,7 +233,7 @@ public final class Day18 {
         }
 
         @Override
-        public Iterable<Move<Point2D>> next(Point2D node) {
+        public List<Move<Point2D>> next(Point2D node) {
             return Arrays.stream(Direction.values())
                     .map(node::move)
                     .filter(accessible::contains)

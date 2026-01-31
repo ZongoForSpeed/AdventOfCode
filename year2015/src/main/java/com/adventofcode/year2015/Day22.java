@@ -30,7 +30,7 @@ public final class Day22 {
         }
 
         @Override
-        public Iterable<Move<State>> next(State node) {
+        public List<Move<State>> next(State node) {
             if (node instanceof TerminalState) {
                 return Collections.emptyList();
             } else if (node instanceof PlayableState(Player player, Boss boss, boolean turn)) {

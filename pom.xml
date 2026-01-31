@@ -362,6 +362,77 @@
                             -Xep:NullableTypeParameter:ERROR
                             -Xep:NullableVoid:ERROR
                             -Xep:NullableWildcard:ERROR
+                            -Xep:UnusedMethod:ERROR
+                            -Xep:UnusedVariable:ERROR
+                            -Xep:UnusedNestedClass:ERROR
+                            -Xep:BoxedPrimitiveConstructor:ERROR
+                            -Xep:MathAbsoluteRandom:ERROR
+                            -Xep:OptionalEquality:ERROR
+                            -Xep:StreamResourceLeak:ERROR
+                            -Xep:ArgumentSelectionDefectChecker:ERROR
+                            -Xep:AssertEqualsArgumentOrderChecker:ERROR
+                            -Xep:BadInstanceof:ERROR
+                            -Xep:ComparisonOutOfRange:ERROR
+                            -Xep:DoubleBraceInitialization:ERROR
+                            -Xep:DuplicateMapKeys:ERROR
+                            -Xep:EqualsIncompatibleType:ERROR
+                            -Xep:FormatString:ERROR
+                            -Xep:InvalidBlockTag:ERROR
+                            -Xep:InvalidInlineTag:ERROR
+                            -Xep:InvalidParam:ERROR
+                            -Xep:InvalidThrows:ERROR
+                            -Xep:JavaDurationWithNanos:ERROR
+                            -Xep:JavaDurationWithSeconds:ERROR
+                            -Xep:JavaInstantGetSecondsGetNano:ERROR
+                            -Xep:JavaLocalDateTimeGetNano:ERROR
+                            -Xep:JavaLocalTimeGetNano:ERROR
+                            -Xep:JavaTimeDefaultTimeZone:ERROR
+                            -Xep:LockOnBoxedPrimitive:ERROR
+                            -Xep:ModifiedButNotUsed:ERROR
+                            -Xep:ModifyCollectionInEnhancedForLoop:ERROR
+                            -Xep:ModifySourceCollectionInStream:ERROR
+                            -Xep:MultipleParallelOrSequentialCalls:ERROR
+                            -Xep:MutableConstantField:ERROR
+                            -Xep:MutablePublicArray:ERROR
+                            -Xep:NonCanonicalType:ERROR
+                            -Xep:ObjectToString:ERROR
+                            -Xep:OperatorPrecedence:ERROR
+                            -Xep:PreconditionsCheckNotNullPrimitive:ERROR
+                            -Xep:RandomModInteger:ERROR
+                            -Xep:ReturnValueIgnored:ERROR
+                            -Xep:SelfAssignment:ERROR
+                            -Xep:SelfComparison:ERROR
+                            -Xep:SelfEquals:ERROR
+                            -Xep:ShortCircuitBoolean:ERROR
+                            -Xep:StaticAssignmentInConstructor:ERROR
+                            -Xep:StaticGuardedByInstance:ERROR
+                            -Xep:SynchronizeOnNonFinalField:ERROR
+                            -Xep:ThreadJoinLoop:ERROR
+                            -Xep:ThreadLocalUsage:ERROR
+                            -Xep:WaitNotInLoop:ERROR
+                            -Xep:EmptyBlockTag:ERROR
+                            -Xep:EmptyCatch:ERROR
+                            -Xep:InvalidThrows:ERROR
+                            -Xep:NonCanonicalStaticMemberImport:ERROR
+                            -Xep:ArrayAsKeyOfSetOrMap:ERROR
+                            -Xep:AssertFalse:ERROR
+                            -Xep:CanIgnoreReturnValueSuggester:OFF
+                            -Xep:ClassName:ERROR
+                            -Xep:ComparisonContractViolated:ERROR
+                            -Xep:DepAnn:ERROR
+                            -Xep:EmptyIf:ERROR
+                            -Xep:IterablePathParameter:ERROR
+                            -Xep:LongLiteralLowerCaseSuffix:ERROR
+                            -Xep:NumericEquality:ERROR
+                            -Xep:ParameterName:ERROR
+                            -Xep:PrimitiveAtomicReference:ERROR
+                            -Xep:StaticAssignmentInConstructor:ERROR
+                            -Xep:SystemExitOutsideMain:ERROR
+                            -Xep:TypeParameterNaming:ERROR
+                            -Xep:UnnecessaryAssignment:ERROR
+                            -Xep:UnnecessaryCheckNotNull:ERROR
+                            -Xep:UnnecessaryParentheses:ERROR
+                            -Xep:UnusedException:ERROR
                         </arg>
                     </compilerArgs>
                     <annotationProcessorPaths>

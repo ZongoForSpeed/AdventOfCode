@@ -35,7 +35,7 @@ public final class Day12 {
         }
 
         @Override
-        public Iterable<Move<Point2D>> next(Point2D node) {
+        public List<Move<Point2D>> next(Point2D node) {
             return Objects.requireNonNull(graph.get(node)).stream().map(AStar.Move::of).toList();
         }
 

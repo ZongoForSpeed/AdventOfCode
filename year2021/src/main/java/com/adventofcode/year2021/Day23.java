@@ -28,7 +28,7 @@ public final class Day23 {
         }
 
         @Override
-        public Iterable<Move<State>> next(State node) {
+        public List<Move<State>> next(State node) {
             List<Move<State>> moves = cache.get(node);
             if (moves != null) {
                 return moves;

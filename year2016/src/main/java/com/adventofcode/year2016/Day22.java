@@ -261,7 +261,7 @@ public final class Day22 {
         }
 
         @Override
-        public Iterable<Move<State>> next(State node) {
+        public List<Move<State>> next(State node) {
             List<Move<State>> next = new ArrayList<>();
             List<Point2D> neighbours = Objects.requireNonNull(graph.get(node.empty), "Cannot find node in graph: " + node);
             for (Point2D neighbour : neighbours) {

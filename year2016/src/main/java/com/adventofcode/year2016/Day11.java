@@ -69,7 +69,7 @@ public final class Day11 {
         }
 
         @Override
-        public Iterable<Move<State>> next(State current) {
+        public List<Move<State>> next(State current) {
             Floor currentFloor = current.getFloor();
             IntList microchips = currentFloor.getMicrochips();
             IntList generators = currentFloor.getGenerators();

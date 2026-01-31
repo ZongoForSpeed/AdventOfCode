@@ -18,7 +18,7 @@ public final class Day17 {
         // No-Op
     }
 
-    private static Collection<Point3D> neighbors(Point3D p) {
+    private static List<Point3D> neighbors(Point3D p) {
         int x = p.x();
         int y = p.y();
         int z = p.z();
@@ -35,7 +35,7 @@ public final class Day17 {
         return result;
     }
 
-    private static Collection<Point4D> neighbors(Point4D p) {
+    private static List<Point4D> neighbors(Point4D p) {
         int x = p.x();
         int y = p.y();
         int z = p.z();

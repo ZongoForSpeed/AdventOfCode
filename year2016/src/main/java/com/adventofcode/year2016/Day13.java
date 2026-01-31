@@ -36,7 +36,7 @@ public final class Day13 {
         }
 
         @Override
-        public Iterable<Move<Point2D>> next(Point2D node) {
+        public List<Move<Point2D>> next(Point2D node) {
             return neighbours(node, favoriteNumber).map(AStar.Move::of).toList();
         }
     }

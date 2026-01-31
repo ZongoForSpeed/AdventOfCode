@@ -170,7 +170,7 @@ public final class Day16 {
         }
 
         @Override
-        public Iterable<Move<Position2D>> next(Position2D node) {
+        public List<Move<Position2D>> next(Position2D node) {
             List<Move<Position2D>> moves = new ArrayList<>(3);
             moves.add(AStar.Move.of(node.left(), 1000L));
             moves.add(AStar.Move.of(node.right(), 1000L));

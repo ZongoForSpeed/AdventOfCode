@@ -30,7 +30,7 @@ public final class Day17 {
                 continue;
             }
             if (closedList.add(state)) {
-                Collection<State> moves = state.nextStates(passcode);
+                List<State> moves = state.nextStates(passcode);
                 for (State move : moves) {
                     if (!closedList.contains(move)) {
                         queue.add(move);
