@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.common.hash.KnotHash;
+import com.adventofcode.year2017.hash.KnotHash;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.BooleanMap;

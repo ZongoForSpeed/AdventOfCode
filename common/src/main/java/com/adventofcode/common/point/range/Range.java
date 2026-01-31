@@ -41,6 +41,13 @@ public record Range(long lower, long upper) {
         return lowerMax <= upperMin;
     }
 
+    public static Range union(Range r1, Range r2) {
+        long lower_min = Math.min(r1.lower, r2.lower);
+        long upper_max = Math.max(r1.upper, r2.upper);
+
+        return new Range(lower_min, upper_max);
+    }
+
     public static Optional<Range> intersection(Range r1, Range r2) {
         long lowerMax = Math.max(r1.lower, r2.lower);
         long upperMin = Math.min(r1.upper, r2.upper);
@@ -54,6 +61,10 @@ public record Range(long lower, long upper) {
 
     public boolean contains(Range r) {
         return lower <= r.lower && r.upper <= upper;
+    }
+
+    public boolean contains(long id) {
+        return id >= lower && id <= upper;
     }
 
     public boolean valid() {

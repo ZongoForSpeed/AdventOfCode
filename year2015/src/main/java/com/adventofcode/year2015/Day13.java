@@ -136,7 +136,7 @@ public final class Day13 {
 
         long maxHappiness = Long.MIN_VALUE;
 
-        Iterator<List<String>> iterator = Permutations.of(persons).iterator();
+        Iterator<List<String>> iterator = Permutations.ofCollection(persons).iterator();
         while (iterator.hasNext()) {
             List<String> permutation = iterator.next();
             long happiness = computeHappiness(graph, permutation, seatYourself);

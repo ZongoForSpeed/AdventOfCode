@@ -125,7 +125,7 @@ public final class Day24 {
 
         int[] dots = neededPoints.keySet().intStream().filter(i -> i != 0).toArray();
 
-        long minSteps = Permutations.of(dots)
+        long minSteps = Permutations.ofInts(dots)
                 .mapToLong(d -> computeStep(fullDistances, d, addOrigin))
                 .min()
                 .orElseThrow();

@@ -1,21 +1,19 @@
 package com.adventofcode.common.maths;
 
 import it.unimi.dsi.fastutil.ints.IntList;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class IntegerPartitionTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(IntegerPartitionTest.class);
 
     @Test
     void partition103() {
         List<IntList> partition = IntegerPartition.partitions(10, 3);
-        partition.forEach(p -> LOGGER.info("{}", p));
-        Assertions.assertThat(partition)
+        assertThat(partition)
                 .containsExactlyInAnyOrder(
                         IntList.of(8, 1, 1),
                         IntList.of(7, 2, 1),
@@ -60,8 +58,7 @@ class IntegerPartitionTest {
     @Test
     void partition44() {
         List<IntList> partition = IntegerPartition.partitions(4, 4);
-        partition.forEach(p -> LOGGER.info("{}", p));
-        Assertions.assertThat(partition)
+        assertThat(partition)
                 .containsExactlyInAnyOrder(
                         IntList.of(1, 1, 1, 1)
                 );
@@ -70,8 +67,7 @@ class IntegerPartitionTest {
     @Test
     void partition54() {
         List<IntList> partition = IntegerPartition.partitions(5, 4);
-        partition.forEach(p -> LOGGER.info("{}", p));
-        Assertions.assertThat(partition)
+        assertThat(partition)
                 .containsExactlyInAnyOrder(
                         IntList.of(2, 1, 1, 1),
                         IntList.of(1, 2, 1, 1),
@@ -83,7 +79,13 @@ class IntegerPartitionTest {
     @Test
     void partition104() {
         List<IntList> partition = IntegerPartition.partitions(10, 4);
-        partition.forEach(p -> LOGGER.info("{}", p));
-        Assertions.assertThat(partition).hasSize(84);
+        assertThat(partition).hasSize(84);
+    }
+
+    @Test
+    void testPartitionsError() {
+        assertThatThrownBy(() -> IntegerPartition.partitions(0, 1))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Partition error");
     }
 }

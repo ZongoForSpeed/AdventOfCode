@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.common.hash.KnotHash;
+import com.adventofcode.year2017.hash.KnotHash;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 

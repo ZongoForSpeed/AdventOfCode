@@ -147,7 +147,7 @@ public final class Day07 {
      * Although it hasn't changed, you can still get your puzzle input.
      */
     public static Pair<LongList, Long> maxThrusterSignal(String program, long... items) {
-        Optional<Pair<LongList, Long>> max = Permutations.of(items)
+        Optional<Pair<LongList, Long>> max = Permutations.ofLongs(items)
                 .map(settings -> Pair.of(settings, thrusterSignal(program, settings)))
                 .max((o1, o2) -> Comparator.comparingLong((ToLongFunction<Pair<LongList, Long>>) Pair::right).compare(o1, o2));
         return max.orElseGet(() -> Pair.of(LongLists.emptyList(), -1L));

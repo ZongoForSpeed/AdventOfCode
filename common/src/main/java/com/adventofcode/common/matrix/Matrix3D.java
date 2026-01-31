@@ -57,6 +57,19 @@ public final class Matrix3D {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Matrix3D matrix3D = (Matrix3D) o;
+        return Arrays.deepEquals(m, matrix3D.m);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(m);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Matrix3D");
         sb.append('[');

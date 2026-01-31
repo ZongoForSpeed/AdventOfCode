@@ -7,8 +7,14 @@ import java.math.BigInteger;
 @Immutable
 public record Matrix2D(long a11, long a12, long a21, long a22) {
 
+    private static final long INTEGER_MAX_VALUE = Integer.MAX_VALUE;
+
     private static long multiplyMod(long a, long b, long modulus) {
-        return BigInteger.valueOf(a).multiply(BigInteger.valueOf(b)).mod(BigInteger.valueOf(modulus)).longValue();
+        if (Math.abs(a) < INTEGER_MAX_VALUE && Math.abs(b) < INTEGER_MAX_VALUE) {
+            return (a * b) % modulus;
+        } else {
+            return BigInteger.valueOf(a).multiply(BigInteger.valueOf(b)).mod(BigInteger.valueOf(modulus)).longValue();
+        }
     }
 
     public static Matrix2D power(Matrix2D base, long exponent, long modulus) {

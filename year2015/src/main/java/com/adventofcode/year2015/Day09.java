@@ -93,7 +93,7 @@ public final class Day09 {
         LOGGER.info("Graph :\n{}", graph);
         int minDistance = Integer.MAX_VALUE;
         int maxDistance = Integer.MIN_VALUE;
-        Iterator<List<String>> iterator = Permutations.of(cities).iterator();
+        Iterator<List<String>> iterator = Permutations.ofCollection(cities).iterator();
         while (iterator.hasNext()) {
             List<String> permutation = iterator.next();
             OptionalInt distance = computeDistance(graph, permutation);

@@ -91,25 +91,25 @@ public final class Permutations {
 
     @SafeVarargs
     @SuppressWarnings("varargs") // Creating a List from an array is safe
-    public static <T> Stream<List<T>> of(T... items) {
+    public static <T> Stream<List<T>> ofObjects(T... items) {
         List<T> itemList = Arrays.asList(items);
         return LongStream.range(0, factorial(items.length))
                 .mapToObj(no -> permutation(no, itemList));
     }
 
-    public static <T> Stream<List<T>> of(Collection<T> items) {
+    public static <T> Stream<List<T>> ofCollection(Collection<T> items) {
         List<T> itemList = new ArrayList<>(items);
         return LongStream.range(0, factorial(items.size()))
                 .mapToObj(no -> permutation(no, itemList));
     }
 
-    public static Stream<LongList> of(long... items) {
+    public static Stream<LongList> ofLongs(long... items) {
         LongList itemList = LongList.of(items);
         return LongStream.range(0, factorial(items.length))
                 .mapToObj(no -> permutation(no, itemList));
     }
 
-    public static Stream<IntList> of(int... items) {
+    public static Stream<IntList> ofInts(int... items) {
         IntList itemList = IntList.of(items);
         return LongStream.range(0, factorial(items.length))
                 .mapToObj(no -> permutation(no, itemList));
