@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.Intcode;
+import com.adventofcode.year2019.code.Intcode;
 import com.adventofcode.common.point.map.Map2D;
 import com.adventofcode.common.point.Point2D;
 

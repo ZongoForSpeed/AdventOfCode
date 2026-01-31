@@ -39,4 +39,23 @@ class IntSetsTest {
         BitSet union = IntSets.union(bitSet1, bitSet2);
         assertThat(union.stream().toArray()).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 9, 14, 16, 17, 18, 19);
     }
+
+    @Test
+    void unionWithInt() {
+        BitSet bitSet = IntSets.of(1, 2);
+        BitSet result = IntSets.union(bitSet, 3);
+        assertThat(result.stream().toArray()).containsExactly(1, 2, 3);
+        assertThat(bitSet.stream().toArray()).containsExactly(1, 2);
+    }
+
+    @Test
+    void empty() {
+        assertThat(IntSets.empty().isEmpty()).isTrue();
+    }
+
+    @Test
+    void range() {
+        BitSet range = IntSets.range(1, 4);
+        assertThat(range.stream().toArray()).containsExactly(1, 2, 3);
+    }
 }

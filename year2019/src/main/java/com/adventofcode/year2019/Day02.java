@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.Intcode;
+import com.adventofcode.year2019.code.Intcode;
 
 public final class Day02 {
     private Day02() {

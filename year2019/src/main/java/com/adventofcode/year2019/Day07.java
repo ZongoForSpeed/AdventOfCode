@@ -17,9 +17,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.ToLongFunction;
 
-import static com.adventofcode.common.Intcode.intcode;
-import static com.adventofcode.common.Intcode.offer;
-import static com.adventofcode.common.Intcode.take;
+import static com.adventofcode.year2019.code.Intcode.intcode;
+import static com.adventofcode.year2019.code.Intcode.offer;
+import static com.adventofcode.year2019.code.Intcode.take;
 
 public final class Day07 {
 

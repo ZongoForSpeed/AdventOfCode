@@ -1,6 +1,7 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.common.OpCode;
+import com.adventofcode.year2018.code.Command;
+import com.adventofcode.year2018.code.OpCode;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
@@ -76,12 +77,12 @@ public final class Day21 {
         public static int run(Scanner scanner) {
             String s = scanner.nextLine();
             int ip = readIp(s);
-            List<OpCode.Command> commands = OpCode.parseCommands(scanner);
+            List<Command> commands = OpCode.parseCommands(scanner);
 
             return runOpCode(ip, commands);
         }
 
-        private static int runOpCode(int ip, List<OpCode.Command> commands) {
+        private static int runOpCode(int ip, List<Command> commands) {
             IntList register = new IntArrayList(Collections.nCopies(6, 0));
             register.set(0, 1);
             while (true) {
@@ -91,7 +92,7 @@ public final class Day21 {
                     LOGGER.info("Register = {}", register);
                     break;
                 }
-                OpCode.Command command = commands.get(current);
+                Command command = commands.get(current);
                 LOGGER.trace("Register before: {} -> {}", register, command);
                 OpCode.executeInstruction(register, command.code(), command.a(), command.b(), command.c());
                 if ("eqrr".equals(command.code())) {
@@ -130,12 +131,12 @@ public final class Day21 {
         public static int run(Scanner scanner) {
             String s = scanner.nextLine();
             int ip = readIp(s);
-            List<OpCode.Command> commands = OpCode.parseCommands(scanner);
+            List<Command> commands = OpCode.parseCommands(scanner);
 
             return runOpCode(ip, commands);
         }
 
-        private static int runOpCode(int ip, List<OpCode.Command> commands) {
+        private static int runOpCode(int ip, List<Command> commands) {
             Set<Integer> seen = new HashSet<>();
             int last = 0;
             IntList register = new IntArrayList(Collections.nCopies(6, 0));
@@ -147,7 +148,7 @@ public final class Day21 {
                     LOGGER.info("Register = {}", register);
                     break;
                 }
-                OpCode.Command command = commands.get(current);
+                Command command = commands.get(current);
                 LOGGER.trace("Register before: {} -> {}", register, command);
                 OpCode.executeInstruction(register, command.code(), command.a(), command.b(), command.c());
                 if ("eqrr".equals(command.code())) {

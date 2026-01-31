@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.Intcode;
+import com.adventofcode.year2019.code.Intcode;
 import com.adventofcode.test.AbstractTest;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.Intcode;
+import com.adventofcode.year2019.code.Intcode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

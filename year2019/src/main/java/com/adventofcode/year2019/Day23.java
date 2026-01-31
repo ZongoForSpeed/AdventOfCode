@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.Intcode;
+import com.adventofcode.year2019.code.Intcode;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.slf4j.Logger;

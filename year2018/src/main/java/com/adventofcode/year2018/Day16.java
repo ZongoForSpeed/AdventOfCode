@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.common.OpCode;
+import com.adventofcode.year2018.code.OpCode;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.apache.commons.collections4.ListUtils;

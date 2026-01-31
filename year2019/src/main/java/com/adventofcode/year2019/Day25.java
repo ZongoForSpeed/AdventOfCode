@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.common.Intcode;
+import com.adventofcode.year2019.code.Intcode;
 import com.adventofcode.common.point.Direction;
 import com.google.common.base.Splitter;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;

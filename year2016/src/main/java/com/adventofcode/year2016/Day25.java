@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.common.Assembunny;
+import com.adventofcode.year2016.code.Assembunny;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
