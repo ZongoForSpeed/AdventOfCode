@@ -1,5 +1,6 @@
 package com.adventofcode.year2017;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
@@ -10,9 +11,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public final class Day06 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day06.class);
+    private static final Pattern PATTERN = Pattern.compile("[ \t]");
 
     private Day06() {
         // No-Op
@@ -97,7 +100,7 @@ public final class Day06 {
      * Your puzzle answer was 11137.
      */
     static int memoryReallocationPartOne(String input) {
-        IntList memory = IntArrayList.toList(Arrays.stream(input.split("[ \t]")).mapToInt(Integer::parseInt));
+        IntList memory = IntArrayList.toList(Splitter.on(PATTERN).splitToStream(input).mapToInt(Integer::parseInt));
         Set<IntList> memories = new HashSet<>();
         memories.add(memory);
 
@@ -125,7 +128,7 @@ public final class Day06 {
      * Your puzzle answer was 1037.
      */
     static int memoryReallocationPartTwo(String input) {
-        IntList memory = IntArrayList.toList(Arrays.stream(input.split("[ \t]")).mapToInt(Integer::parseInt));
+        IntList memory = IntArrayList.toList(Splitter.on(PATTERN).splitToStream(input).mapToInt(Integer::parseInt));
         Map<IntList, Integer> memories = new HashMap<>();
         int step = 0;
         memories.put(memory, step);

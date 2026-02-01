@@ -1,6 +1,7 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.utils.IntegerPair;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +24,7 @@ public final class Day09 {
             sb.append((char) read);
         }
         String compression = sb.toString();
-        int[] array = Arrays.stream(compression.split("x")).mapToInt(Integer::parseInt).toArray();
+        int[] array = Splitter.on('x').splitToStream(compression).mapToInt(Integer::parseInt).toArray();
         LOGGER.debug("Compression: {}", array);
         return IntegerPair.of(array[0], array[1]);
     }

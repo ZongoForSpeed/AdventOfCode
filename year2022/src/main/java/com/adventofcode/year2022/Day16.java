@@ -2,6 +2,7 @@ package com.adventofcode.year2022;
 
 import com.adventofcode.common.graph.Dijkstra;
 import com.adventofcode.common.utils.Bits;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
@@ -409,7 +410,7 @@ public final class Day16 {
             if (matcher.matches()) {
                 int index = indexes.computeIfAbsent(matcher.group(1), _ -> id.getAndIncrement());
                 rates.put(index, Integer.parseInt(matcher.group(2)));
-                IntStream intStream = Arrays.stream(matcher.group(3).split(", ")).mapToInt(v -> indexes.computeIfAbsent(v, _ -> id.getAndIncrement()));
+                IntStream intStream = Splitter.on(", ").splitToStream(matcher.group(3)).mapToInt(v -> indexes.computeIfAbsent(v, _ -> id.getAndIncrement()));
                 links.put(index, IntArrayList.toList(intStream));
             } else {
                 LOGGER.error("Cannot parse line '{}'", line);

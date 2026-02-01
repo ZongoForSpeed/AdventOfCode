@@ -1,5 +1,6 @@
 package com.adventofcode.common.point.range;
 
+import com.google.common.base.Splitter;
 import com.google.errorprone.annotations.Immutable;
 
 import java.util.Arrays;
@@ -13,7 +14,7 @@ public record Range(long lower, long upper) {
     }
 
     public static Range of(String d) {
-        int[] ints = Arrays.stream(d.split("\\.\\.")).mapToInt(Integer::parseInt).toArray();
+        int[] ints = Splitter.on("..").splitToStream(d).mapToInt(Integer::parseInt).toArray();
         return new Range(ints[0], ints[1]);
     }
 

@@ -1,6 +1,7 @@
 package com.adventofcode.year2017;
 
 import com.adventofcode.common.utils.IntegerPair;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
@@ -54,7 +55,7 @@ public final class Day24 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            int[] array = Arrays.stream(line.split("/")).mapToInt(Integer::parseInt).toArray();
+            int[] array = Splitter.on('/').splitToStream(line).mapToInt(Integer::parseInt).toArray();
             components.computeIfAbsent(array[0], _ -> new IntArrayList()).add(array[1]);
             components.computeIfAbsent(array[1], _ -> new IntArrayList()).add(array[0]);
         }

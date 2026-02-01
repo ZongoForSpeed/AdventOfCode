@@ -164,7 +164,7 @@ public final class Day12 {
                 Matcher matcher = PATTERN.matcher(line);
                 if (matcher.find()) {
                     String pattern = matcher.group(1);
-                    int[] springs = Splitter.on(",").splitToStream(matcher.group(2)).mapToInt(Integer::parseInt).toArray();
+                    int[] springs = Splitter.on(',').splitToStream(matcher.group(2)).mapToInt(Integer::parseInt).toArray();
 
                     int countArrangements = countArrangements(pattern, springs);
                     count += countArrangements;
@@ -291,7 +291,7 @@ public final class Day12 {
                 Matcher matcher = PATTERN.matcher(line);
                 if (matcher.find()) {
                     String pattern = matcher.group(1);
-                    int[] springs = Splitter.on(",").splitToStream(matcher.group(2)).mapToInt(Integer::parseInt).toArray();
+                    int[] springs = Splitter.on(',').splitToStream(matcher.group(2)).mapToInt(Integer::parseInt).toArray();
 
                     long countArrangements = countArrangements(pattern, springs, copy);
                     count += countArrangements;

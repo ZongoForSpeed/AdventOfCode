@@ -1,5 +1,6 @@
 package com.adventofcode.year2023;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -211,7 +212,7 @@ public final class Day09 {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            int[] history = Arrays.stream(line.split(" "))
+            int[] history = Splitter.on(' ').splitToStream(line)
                     .mapToInt(Integer::parseInt)
                     .toArray();
 

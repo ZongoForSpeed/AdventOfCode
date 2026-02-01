@@ -1,17 +1,18 @@
 package com.adventofcode.year2022;
 
 import com.adventofcode.common.point.Point3D;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Stream;
+
 
 public final class Day18 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day18.class);
@@ -152,18 +153,18 @@ public final class Day18 {
 
     private static boolean valid(Point3D point, int max) {
         return point.x() >= 0
-               && point.y() >= 0
-               && point.z() >= 0
-               && point.x() <= max
-               && point.y() <= max
-               && point.z() <= max;
+                && point.y() >= 0
+                && point.z() >= 0
+                && point.x() <= max
+                && point.y() <= max
+                && point.z() <= max;
     }
 
     private static Set<Point3D> readInput(Scanner scanner) {
         Set<Point3D> droplets = new HashSet<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            int[] array = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();
+            int[] array = Splitter.on(',').splitToStream(line).mapToInt(Integer::parseInt).toArray();
             droplets.add(new Point3D(array[0] + 1, array[1] + 1, array[2] + 1));
         }
 

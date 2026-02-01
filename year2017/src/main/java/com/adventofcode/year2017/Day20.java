@@ -1,6 +1,7 @@
 package com.adventofcode.year2017;
 
 import com.adventofcode.common.point.Point3D;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -180,7 +181,7 @@ public final class Day20 {
         }
 
         private static Point3D parse(String input) {
-            int[] array = Arrays.stream(input.split(","))
+            int[] array = Splitter.on(',').splitToStream(input)
                     .map(String::trim)
                     .mapToInt(Integer::parseInt)
                     .toArray();

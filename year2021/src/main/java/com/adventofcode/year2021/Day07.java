@@ -1,5 +1,6 @@
 package com.adventofcode.year2021;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,7 +113,7 @@ public final class Day07 {
     }
 
     public static int fuelCost(String input, IntBinaryOperator fuelOperator) {
-        int[] crabs = Arrays.stream(input.split(",")).mapToInt(Integer::valueOf).toArray();
+        int[] crabs = Splitter.on(',').splitToStream(input).mapToInt(Integer::valueOf).toArray();
         int length = crabs.length;
         int pMin = -1;
         int minCost = Integer.MAX_VALUE;

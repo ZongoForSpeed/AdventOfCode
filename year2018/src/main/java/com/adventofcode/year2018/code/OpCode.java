@@ -1,5 +1,6 @@
 package com.adventofcode.year2018.code;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Triple;
@@ -20,6 +21,7 @@ public final class OpCode {
     private static final Logger LOGGER = LoggerFactory.getLogger(OpCode.class);
     private static final Pattern PATTERN_BEFORE = Pattern.compile("Before: \\[(\\d*), (\\d*), (\\d*), (\\d*)]");
     private static final Pattern PATTERN_AFTER = Pattern.compile("After:  \\[(\\d*), (\\d*), (\\d*), (\\d*)]");
+    private static final Pattern PATTERN_COMMAND = Pattern.compile("(\\w+) (\\d+) (\\d+) (\\d+)");
 
     private OpCode() {
         // No-Op
@@ -183,7 +185,7 @@ public final class OpCode {
                 registerAfter = IntList.of(value1, value2, value3, value4);
                 continue;
             }
-            command = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray();
+            command = Splitter.on(' ').splitToStream(line).mapToInt(Integer::parseInt).toArray();
         }
         return commands;
     }
@@ -192,11 +194,14 @@ public final class OpCode {
         List<Command> commands = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" ");
-            String command = split[0];
-            int[] array = Arrays.stream(split).skip(1).mapToInt(Integer::parseInt).toArray();
-            LOGGER.info("Command: {} {}", command, array);
-            commands.add(Command.of(command, array[0], array[1], array[2]));
+            Matcher matcher = PATTERN_COMMAND.matcher(line);
+            if (!matcher.matches()) {
+                throw new IllegalStateException("Invalid command: " + line);
+            }
+
+            Command command = Command.of(matcher.group(1), matcher.group(2), matcher.group(3), matcher.group(4));
+            LOGGER.info("Command: {} -> {}", line, command);
+            commands.add(command);
         }
 
         LOGGER.info("Commands: {}", commands);

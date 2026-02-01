@@ -2,6 +2,7 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.common.matrix.Matrix3D;
 import com.adventofcode.common.point.Point3D;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -503,7 +504,7 @@ public final class Day19 {
             if (matcher.matches()) {
                 scannerName = matcher.group(1);
             } else {
-                int[] coord = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();
+                int[] coord = Splitter.on(',').splitToStream(line).mapToInt(Integer::parseInt).toArray();
                 scanners.computeIfAbsent(scannerName, _ -> new ArrayList<>()).add(Probe.of(Point3D.of(coord[0], coord[1], coord[2])));
             }
         }

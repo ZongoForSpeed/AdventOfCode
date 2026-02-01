@@ -480,7 +480,7 @@ public final class Day19 {
                     Matcher matcher1 = ROBOTSS_PATTERN.matcher(s);
                     if (matcher1.matches()) {
                         Resource resource = Resource.valueOf(matcher1.group(1));
-                        Arrays.stream(matcher1.group(2).split(" and "))
+                        Splitter.on(" and ").splitToStream(matcher1.group(2))
                                 .map(c -> c.split(" "))
                                 .forEach(a -> costs[resource.ordinal()][Resource.valueOf(a[1]).ordinal()] = Integer.parseInt(a[0]));
                         LOGGER.info("{} ==> {}", resource, toString(costs[resource.ordinal()]));

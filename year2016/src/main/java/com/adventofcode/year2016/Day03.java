@@ -1,5 +1,6 @@
 package com.adventofcode.year2016;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -7,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public final class Day03 {
@@ -43,7 +43,7 @@ public final class Day03 {
         int count = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            int[] array = Arrays.stream(line.split(" ")).filter(StringUtils::isNotBlank).mapToInt(Integer::parseInt).sorted().toArray();
+            int[] array = Splitter.on(' ').splitToStream(line).filter(StringUtils::isNotBlank).mapToInt(Integer::parseInt).sorted().toArray();
             LOGGER.trace("Array: {}", array);
             if (array[0] + array[1] > array[2]) {
                 count++;
@@ -80,7 +80,7 @@ public final class Day03 {
         IntList column3 = new IntArrayList();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            int[] array = Arrays.stream(line.split(" ")).filter(StringUtils::isNotBlank).mapToInt(Integer::parseInt).toArray();
+            int[] array = Splitter.on(' ').splitToStream(line).filter(StringUtils::isNotBlank).mapToInt(Integer::parseInt).toArray();
             LOGGER.trace("Array: {}", array);
             column1.add(array[0]);
             column2.add(array[1]);

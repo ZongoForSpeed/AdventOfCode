@@ -1,5 +1,6 @@
 package com.adventofcode.year2017.hash;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ public final class KnotHash {
     }
 
     public static int sparseHash(String input, int endExclusive) {
-        IntStream intStream = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt);
+        IntStream intStream = Splitter.on(',').splitToStream(input).mapToInt(Integer::parseInt);
         IntList integers = sparseHash(IntArrayList.toList(intStream), endExclusive, 1);
         return integers.getInt(0) * integers.getInt(1);
     }

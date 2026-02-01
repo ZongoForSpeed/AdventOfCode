@@ -1,5 +1,6 @@
 package com.adventofcode.year2017;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -370,7 +371,7 @@ public final class Day13 {
         List<PacketScanner> firewall = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            int[] array = Arrays.stream(line.split(": ")).mapToInt(Integer::parseInt).toArray();
+            int[] array = Splitter.on(": ").splitToStream(line).mapToInt(Integer::parseInt).toArray();
             firewall.add(PacketScanner.of(array[0], array[1]));
         }
 

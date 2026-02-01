@@ -1,5 +1,6 @@
 package com.adventofcode.year2020;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -70,9 +71,9 @@ public final class Day16 {
                 }
 
             } else if (readYourTicket) {
-                yourTicket = Arrays.stream(note.split(",")).mapToInt(Integer::parseInt).toArray();
+                yourTicket = Splitter.on(',').splitToStream(note).mapToInt(Integer::parseInt).toArray();
             } else if (readNearbyTickets) {
-                int[] ints = Arrays.stream(note.split(",")).mapToInt(Integer::parseInt).toArray();
+                int[] ints = Splitter.on(',').splitToStream(note).mapToInt(Integer::parseInt).toArray();
                 nearbyTickets.add(ints);
             }
         }

@@ -33,7 +33,7 @@
         <maven.compiler.target>25</maven.compiler.target>
 
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-        <logback-classic.version>1.5.25</logback-classic.version>
+        <logback-classic.version>1.5.26</logback-classic.version>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <slf4j.version>2.0.17</slf4j.version>
@@ -60,13 +60,13 @@
         <fastutil.version>8.5.18</fastutil.version>
 
         <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-        <commons-codec.version>1.20.0</commons-codec.version>
+        <commons-codec.version>1.21.0</commons-codec.version>
 
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
         <junit-jupiter.version>6.0.2</junit-jupiter.version>
 
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <assertj.version>3.27.6</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
         <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
@@ -78,7 +78,7 @@
         <error-prone.version>2.46.0</error-prone.version>
 
         <!-- https://mvnrepository.com/artifact/com.uber.nullaway/nullaway -->
-        <nullaway.version>0.12.15</nullaway.version>
+        <nullaway.version>0.13.1</nullaway.version>
 
         <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
         <jmh.version>1.37</jmh.version>

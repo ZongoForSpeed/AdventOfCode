@@ -220,7 +220,7 @@ public final class Day05 {
             Matcher matcher = PATTERN_SEED.matcher(line);
             if (matcher.matches()) {
                 scanner.nextLine();
-                LongStream longStream = Arrays.stream(matcher.group(1).split(" ")).mapToLong(Long::parseLong);
+                LongStream longStream = Splitter.on(' ').splitToStream(matcher.group(1)).mapToLong(Long::parseLong);
                 seeds = LongArrayList.toList(longStream);
                 LOGGER.info("seeds = {}", seeds);
             }
@@ -281,7 +281,7 @@ public final class Day05 {
             Matcher matcher = PATTERN_SEED.matcher(line);
             if (matcher.matches()) {
                 scanner.nextLine();
-                LongStream longStream = Arrays.stream(matcher.group(1).split(" ")).mapToLong(Long::parseLong);
+                LongStream longStream = Splitter.on(' ').splitToStream(matcher.group(1)).mapToLong(Long::parseLong);
                 LongArrayList seeds = LongArrayList.toList(longStream);
                 for (int i = 0; i < seeds.size(); i += 2) {
                     categoryRanges.add(new CategoryRange("seed", seeds.getLong(i), seeds.getLong(i + 1)));

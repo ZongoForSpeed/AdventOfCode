@@ -1,5 +1,6 @@
 package com.adventofcode.year2023;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -221,7 +222,7 @@ public final class Day04 {
         }
 
         private static IntSet parseNumbers(String group) {
-            IntStream collect = Arrays.stream(group.split(" "))
+            IntStream collect = Splitter.on(' ').splitToStream(group)
                     .map(String::trim)
                     .filter(StringUtils::isNotBlank)
                     .mapToInt(Integer::parseInt);

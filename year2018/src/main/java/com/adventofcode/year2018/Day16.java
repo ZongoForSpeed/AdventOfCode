@@ -1,6 +1,7 @@
 package com.adventofcode.year2018;
 
 import com.adventofcode.year2018.code.OpCode;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.apache.commons.collections4.ListUtils;
@@ -256,7 +257,7 @@ public final class Day16 {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (StringUtils.isNotBlank(line)) {
-                inputs.add(Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray());
+                inputs.add(Splitter.on(' ').splitToStream(line).mapToInt(Integer::parseInt).toArray());
             }
         }
         return inputs;

@@ -135,7 +135,8 @@ public final class Day16 {
 
     record Exchange(int first, int second) implements DanceMove {
         public static Exchange of(String command) {
-            int[] array = Arrays.stream(command.substring(1).split("/"))
+            int[] array = Splitter.on('/')
+                    .splitToStream(command.substring(1))
                     .mapToInt(Integer::parseInt)
                     .toArray();
             return new Exchange(array[0], array[1]);

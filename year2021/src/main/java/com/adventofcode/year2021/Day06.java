@@ -1,6 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.memory.LongMemory;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -123,7 +124,7 @@ public final class Day06 {
      */
     @SuppressWarnings("NullAway")
     static long nextDays(String input, int days) {
-        int[] lanternfish = Arrays.stream(input.split(",")).mapToInt(Integer::valueOf).toArray();
+        int[] lanternfish = Splitter.on(',').splitToStream(input).mapToInt(Integer::valueOf).toArray();
         LongMemory memory = new LongMemory(9);
         for (int fish : lanternfish) {
             memory.put(fish, memory.getOrDefault(fish, 0L) + 1);

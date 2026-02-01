@@ -1,5 +1,6 @@
 package com.adventofcode.year2015;
 
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -29,7 +30,9 @@ public final class Day16 {
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
                 int sueNumber = Integer.parseInt(matcher.group(1));
-                Map<Compounds, Integer> collect = Arrays.stream(matcher.group(2).split(", "))
+
+                Map<Compounds, Integer> collect = Splitter.on(", ")
+                        .splitToStream(matcher.group(2))
                         .map(s -> s.split(": "))
                         .collect(Collectors.toMap(
                                 s -> Compounds.valueOf(s[0]),

@@ -1,5 +1,6 @@
 package com.adventofcode.year2021;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import it.unimi.dsi.fastutil.Pair;
 import org.slf4j.Logger;
@@ -147,7 +148,7 @@ public final class Day04 {
 
     private static Pair<int[], List<List<Integer>>> readBingo(Scanner scanner) {
         String firstLine = scanner.nextLine();
-        int[] draws = Arrays.stream(firstLine.split(",")).mapToInt(Integer::valueOf).toArray();
+        int[] draws = Splitter.on(',').splitToStream(firstLine).mapToInt(Integer::valueOf).toArray();
 
         LOGGER.info("Draws: {}", draws);
         scanner.nextLine();
@@ -161,7 +162,7 @@ public final class Day04 {
 
                 currentBingo = new ArrayList<>();
             } else {
-                Arrays.stream(line.split(" ")).filter(StringUtils::isNotBlank).mapToInt(Integer::valueOf).forEach(currentBingo::add);
+                Splitter.on(' ').splitToStream(line).filter(StringUtils::isNotBlank).mapToInt(Integer::valueOf).forEach(currentBingo::add);
             }
             LOGGER.debug("Line: {}", line);
         }

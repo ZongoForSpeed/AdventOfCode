@@ -1,5 +1,6 @@
 package com.adventofcode.year2015;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.jspecify.annotations.Nullable;
@@ -258,7 +259,7 @@ public final class Day21 {
                         LOGGER.debug("Type: {}", currentType);
                     } else {
                         String name = line.substring(0, 12).trim();
-                        int[] stats = Arrays.stream(line.substring(12).split(" ")).filter(NumberUtils::isParsable).mapToInt(Integer::parseInt).toArray();
+                        int[] stats = Splitter.on(' ').splitToStream(line.substring(12)).filter(NumberUtils::isParsable).mapToInt(Integer::parseInt).toArray();
                         Item item = Item.of(name, stats[0], stats[1], stats[2]);
                         LOGGER.debug("Object: {}", item);
                         items.computeIfAbsent(currentType, _ -> new ArrayList<>()).add(item);

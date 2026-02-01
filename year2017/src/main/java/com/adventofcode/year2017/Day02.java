@@ -1,17 +1,22 @@
 package com.adventofcode.year2017;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public final class Day02 {
+
+    private static final Pattern PATTERN = Pattern.compile("[ \t]");
+
     private Day02() {
         // No-Op
     }
 
     private static int corruptionChecksumPartOne(String row) {
-        int[] array = Arrays.stream(row.split("[ \t]"))
+        int[] array = Splitter.on(PATTERN).splitToStream(row)
                 .filter(StringUtils::isNotBlank)
                 .mapToInt(Integer::parseInt)
                 .sorted()
@@ -61,7 +66,7 @@ public final class Day02 {
     }
 
     private static long corruptionChecksumPartTwo(String row) {
-        int[] array = Arrays.stream(row.split("[ \t]"))
+        int[] array = Splitter.on(PATTERN).splitToStream(row)
                 .filter(StringUtils::isNotBlank)
                 .mapToInt(Integer::parseInt)
                 .sorted()

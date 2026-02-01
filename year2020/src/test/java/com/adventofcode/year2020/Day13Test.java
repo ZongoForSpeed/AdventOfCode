@@ -3,6 +3,7 @@ package com.adventofcode.year2020;
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.LongPair;
 import com.adventofcode.test.AbstractTest;
+import com.google.common.base.Splitter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -25,7 +26,7 @@ class Day13Test extends AbstractTest {
 
         long timestamp = Long.parseLong(notes.getFirst());
 
-        long[] buses = Arrays.stream(notes.get(1).split(","))
+        long[] buses = Splitter.on(',').splitToStream(notes.get(1))
                 .filter(t -> !"x".equals(t))
                 .mapToLong(Long::parseLong)
                 .toArray();
@@ -54,7 +55,7 @@ class Day13Test extends AbstractTest {
 
         long timestamp = Long.parseLong(notes.getFirst());
 
-        long[] buses = Arrays.stream(notes.get(1).split(","))
+        long[] buses = Splitter.on(',').splitToStream(notes.get(1))
                 .filter(t -> !"x".equals(t))
                 .mapToLong(Long::parseLong)
                 .toArray();

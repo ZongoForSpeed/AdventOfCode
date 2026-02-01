@@ -1,5 +1,6 @@
 package com.adventofcode.year2016;
 
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,7 +78,7 @@ public final class Day20 {
         }
 
         public static Range of(String input) {
-            long[] longs = Arrays.stream(input.split("-")).mapToLong(Long::parseLong).toArray();
+            long[] longs = Splitter.on('-').splitToStream(input).mapToLong(Long::parseLong).toArray();
             return new Range(longs[0], longs[1]);
         }
 

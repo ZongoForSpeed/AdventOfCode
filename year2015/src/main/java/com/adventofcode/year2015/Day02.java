@@ -1,5 +1,7 @@
 package com.adventofcode.year2015;
 
+import com.google.common.base.Splitter;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,14 +11,14 @@ public final class Day02 {
     }
 
     public static long wrappingPaper(String line) {
-        long[] dimensions = Arrays.stream(line.split("x")).mapToLong(Long::parseLong).toArray();
+        long[] dimensions = Splitter.on('x').splitToStream(line).mapToLong(Long::parseLong).toArray();
         long volume = Arrays.stream(dimensions).reduce(1L, (a, b) -> a * b);
         long[] areas = Arrays.stream(dimensions).map(d -> volume / d).toArray();
         return Arrays.stream(areas).map(a -> 2 * a).sum() + Arrays.stream(areas).min().orElseThrow();
     }
 
     public static long wrappingBow(String line) {
-        long[] dimensions = Arrays.stream(line.split("x")).mapToLong(Long::parseLong).sorted().toArray();
+        long[] dimensions = Splitter.on('x').splitToStream(line).mapToLong(Long::parseLong).sorted().toArray();
         long volume = Arrays.stream(dimensions).reduce(1L, (a, b) -> a * b);
         return dimensions[0] * 2 + dimensions[1] * 2 + volume;
     }

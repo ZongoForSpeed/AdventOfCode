@@ -1,6 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.memory.IntMemory;
+import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,7 +94,7 @@ public final class Day15 {
         IntMemory lastMemory = new IntMemory(turn * 2);
         IntMemory previousMemory = new IntMemory(turn * 2);
 
-        int[] startingNumbers = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] startingNumbers = Splitter.on(',').splitToStream(input).mapToInt(Integer::parseInt).toArray();
         int n = 1;
         int lastNumberSpoken = -1;
         boolean newNumber = false;

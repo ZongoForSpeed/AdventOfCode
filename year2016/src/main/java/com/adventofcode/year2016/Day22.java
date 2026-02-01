@@ -3,6 +3,7 @@ package com.adventofcode.year2016;
 import com.adventofcode.common.graph.AStar;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
+import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.Pair;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -290,11 +291,12 @@ public final class Day22 {
     private record GridNode(Point2D position, short size, short used, short available, short pct) {
         private static GridNode of(String line) {
 
-            String[] array = Arrays.stream(line.split(" "))
+            String[] array = Splitter.on(' ').splitToStream(line)
                     .filter(StringUtils::isNotBlank)
                     .toArray(String[]::new);
 
-            int[] ints = Arrays.stream(array[0].split("-"))
+
+            int[] ints = Splitter.on('-').splitToStream(array[0])
                     .skip(1)
                     .map(s -> s.substring(1))
                     .mapToInt(Integer::parseInt)
