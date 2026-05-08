@@ -296,4 +296,7 @@ public final class Day25 {
             return sb.toString();
         }
     }
+
+
+private Day25() {}
 }

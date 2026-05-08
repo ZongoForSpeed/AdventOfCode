@@ -183,4 +183,7 @@ public final class Day17 {
                    && position.y() >= 1 && position.y() <= 4;
         }
     }
+
+
+private Day17() {}
 }

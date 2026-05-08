@@ -134,4 +134,7 @@ public final class Day15 {
 
     record Disc(int positions, int current) {
     }
+
+
+private Day15() {}
 }

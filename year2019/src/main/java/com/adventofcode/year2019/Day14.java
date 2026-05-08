@@ -237,4 +237,7 @@ public final class Day14 {
                    + " => " + writeChemical(chemicalOutput) + "]";
         }
     }
+
+
+private Day14() {}
 }

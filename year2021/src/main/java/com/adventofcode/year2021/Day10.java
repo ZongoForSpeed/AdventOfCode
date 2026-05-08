@@ -273,4 +273,7 @@ public final class Day10 {
         CURLY,
         ANGLE
     }
+
+
+private Day10() {}
 }

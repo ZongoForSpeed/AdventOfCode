@@ -280,4 +280,7 @@ public final class Day10 {
                    '}';
         }
     }
+
+
+private Day10() {}
 }

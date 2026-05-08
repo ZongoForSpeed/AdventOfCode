@@ -278,4 +278,7 @@ public final class Day17 {
             return p.x() > xMax || p.y() < yMin;
         }
     }
+
+
+private Day17() {}
 }

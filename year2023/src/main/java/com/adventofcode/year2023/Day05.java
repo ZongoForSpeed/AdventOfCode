@@ -385,4 +385,7 @@ public final class Day05 {
             return Range.of(lowerBound, upperBound);
         }
     }
+
+
+private Day05() {}
 }

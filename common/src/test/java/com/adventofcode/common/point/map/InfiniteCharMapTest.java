@@ -1,6 +1,5 @@
 package com.adventofcode.common.point.map;
 
-import com.adventofcode.common.point.Point2D;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -555,4 +555,7 @@ public final class Day23 {
             };
         }
     }
+
+
+private Day23() {}
 }

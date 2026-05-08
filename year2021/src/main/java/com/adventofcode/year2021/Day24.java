@@ -261,4 +261,7 @@ public final class Day24 {
             return new Block(divZ, addX, addY);
         }
     }
+
+
+private Day24() {}
 }

@@ -277,4 +277,7 @@ public final class Day16 {
             return lowerBound <= value && value <= upperBound;
         }
     }
+
+
+private Day16() {}
 }

@@ -304,4 +304,7 @@ public final class Day24 {
             }
         }
     }
+
+
+private Day24() {}
 }

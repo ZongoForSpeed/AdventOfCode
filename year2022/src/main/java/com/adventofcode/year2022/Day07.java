@@ -294,4 +294,7 @@ public final class Day07 {
         }
     }
 
+
+
+private Day07() {}
 }

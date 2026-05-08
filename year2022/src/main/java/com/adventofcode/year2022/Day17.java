@@ -591,4 +591,7 @@ public final class Day17 {
             return list.get(position++ % size);
         }
     }
+
+
+private Day17() {}
 }

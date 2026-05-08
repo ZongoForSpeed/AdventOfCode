@@ -8,11 +8,11 @@ class PairTest {
 
     @Test
     void testBooleanPair() {
-        BooleanPair pair = BooleanPair.of(true, false);
+        BooleanPair pair = BooleanPair.of(/*left=*/true, /*right=*/false);
         assertThat(pair.left()).isTrue();
         assertThat(pair.right()).isFalse();
-        assertThat(pair).isEqualTo(new BooleanPair(true, false));
-        assertThat(pair).isNotEqualTo(BooleanPair.of(false, true));
+        assertThat(pair).isEqualTo(new BooleanPair(/*left=*/true, /*right=*/false));
+        assertThat(pair).isNotEqualTo(BooleanPair.of(/*left=*/false, /*right=*/true));
     }
 
     @Test

@@ -113,4 +113,7 @@ public final class Day20 {
             return upper - lower + 1;
         }
     }
+
+
+private Day20() {}
 }

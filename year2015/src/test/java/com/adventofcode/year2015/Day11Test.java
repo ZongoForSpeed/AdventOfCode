@@ -2,8 +2,6 @@ package com.adventofcode.year2015;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 

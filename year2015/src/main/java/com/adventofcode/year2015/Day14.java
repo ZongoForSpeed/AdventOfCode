@@ -20,6 +20,10 @@ public final class Day14 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day14.class);
     private static final Pattern PATTERN = Pattern.compile("(\\w+) can fly (\\d+) km/s for (\\d+) seconds, but then must rest for (\\d+) seconds\\.");
 
+    private Day14() {
+        // No-Op
+    }
+
     public static IntList race(Reindeer reindeer, int duration) {
         IntList positions = new IntArrayList(duration + 1);
         int flyWithRest = reindeer.flyDuration() + reindeer.restDuration();

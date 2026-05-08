@@ -237,4 +237,7 @@ public final class Day23 {
 
     record Packet(long address, long x, long y) {
     }
+
+
+private Day23() {}
 }

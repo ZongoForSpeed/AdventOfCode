@@ -316,5 +316,8 @@ public final class Day13 {
             return OptionalInt.empty();
         }
 
-    }
+    
+
+private PartTwo() {}
+}
 }

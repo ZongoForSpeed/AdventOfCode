@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,10 @@ public final class Day16 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day16.class);
     private static final Pattern PATTERN = Pattern.compile("Sue (\\d+): (.*)");
     private static final Pattern AUNT_SUE_PATTERN = Pattern.compile("^(\\w+): (\\d+)$");
+
+    private Day16() {
+        // No-Op
+    }
 
     public static List<Pair<Integer, Map<Compounds, Integer>>> readInput(Scanner scanner) {
         List<Pair<Integer, Map<Compounds, Integer>>> sues = new ArrayList<>();

@@ -33,7 +33,7 @@ public class IntMemory implements Memory<Integer> {
         return key < mem.length && bitSet.get(key);
     }
 
-    private void checkKey(int key) {
+    private static void checkKey(int key) {
         if (key < 0) {
             throw new IllegalStateException("Negative key are not allowed: " + key);
         }

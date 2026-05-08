@@ -39,7 +39,7 @@ public class BooleanMap {
     }
 
     public static BooleanMap read(Scanner scanner, Predicate<Character> predicate) {
-        return read(scanner, predicate, false);
+        return read(scanner, predicate, /*stopWhenBlank=*/false);
     }
 
     public static BooleanMap read(Scanner scanner, Predicate<Character> predicate, boolean stopWhenBlank) {

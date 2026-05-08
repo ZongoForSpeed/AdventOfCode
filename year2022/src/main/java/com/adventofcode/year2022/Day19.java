@@ -645,4 +645,7 @@ public final class Day19 {
             return robots.compareTo(o.robots);
         }
     }
+
+
+private Day19() {}
 }

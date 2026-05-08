@@ -247,4 +247,7 @@ public final class Day09 {
 
     record Block(int id, int size, int start, int end) {
     }
+
+
+private Day09() {}
 }

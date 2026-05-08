@@ -261,4 +261,7 @@ public final class Day12 {
 
     record PositionDirection(Direction d, int x, int y) {
     }
+
+
+private Day12() {}
 }

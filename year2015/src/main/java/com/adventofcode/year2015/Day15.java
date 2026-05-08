@@ -179,11 +179,11 @@ public final class Day15 {
     }
 
     public enum Property {
-        capacity(true), // (how well it helps the cookie absorb milk)
-        durability(true), // (how well it keeps the cookie intact when full of milk)
-        flavor(true), // (how tasty it makes the cookie)
-        texture(true), // (how it improves the feel of the cookie)
-        calories(false); // (how many calories it adds to the cookie)
+        capacity(/*score=*/true), // (how well it helps the cookie absorb milk)
+        durability(/*score=*/true), // (how well it keeps the cookie intact when full of milk)
+        flavor(/*score=*/true), // (how tasty it makes the cookie)
+        texture(/*score=*/true), // (how it improves the feel of the cookie)
+        calories(/*score=*/false); // (how many calories it adds to the cookie)
 
         private final boolean score;
 

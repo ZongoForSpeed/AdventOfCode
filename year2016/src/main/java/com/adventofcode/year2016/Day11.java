@@ -466,4 +466,7 @@ public final class Day11 {
             return first.valid() && second.valid() && third.valid() && fourth.valid();
         }
     }
+
+
+private Day11() {}
 }

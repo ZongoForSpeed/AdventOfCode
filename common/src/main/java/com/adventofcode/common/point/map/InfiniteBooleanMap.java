@@ -9,7 +9,12 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.Nullable;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -26,7 +31,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     }
 
     public static InfiniteBooleanMap read(Scanner scanner, Predicate<Character> predicate) {
-        return read(scanner, predicate, false);
+        return read(scanner, predicate, /*stopWhenBlank=*/false);
     }
 
     public static InfiniteBooleanMap read(Scanner scanner, Predicate<Character> predicate, boolean stopWhenBlank) {

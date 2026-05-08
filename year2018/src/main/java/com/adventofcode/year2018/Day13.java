@@ -399,4 +399,7 @@ public final class Day13 {
             };
         }
     }
+
+
+private Day13() {}
 }

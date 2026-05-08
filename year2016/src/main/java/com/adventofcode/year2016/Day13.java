@@ -135,4 +135,7 @@ public final class Day13 {
 
     private record Node<E>(E vertex, long cost) {
     }
+
+
+private Day13() {}
 }

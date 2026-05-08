@@ -166,4 +166,7 @@ public final class Day11 {
 
     private record State(long n, int blinks) {
     }
+
+
+private Day11() {}
 }

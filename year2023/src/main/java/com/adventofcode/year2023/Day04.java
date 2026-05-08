@@ -170,7 +170,7 @@ public final class Day04 {
      * scratchcards are won. Including the original set of scratchcards, how many
      * total scratchcards do you end up with?
      */
-    public static class PartTwo {
+    public static final class PartTwo {
         public static int scratchcards(Scanner scanner) {
             List<Day04.Scratchcard> scratchcards = Day04.readScratchcards(scanner);
 
@@ -195,7 +195,10 @@ public final class Day04 {
 
             return cards.values().intStream().sum();
         }
-    }
+    
+
+private PartTwo() {}
+}
 
     private static List<Scratchcard> readScratchcards(Scanner scanner) {
         List<Scratchcard> cards = new ArrayList<>();

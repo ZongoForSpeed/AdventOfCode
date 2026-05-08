@@ -673,4 +673,7 @@ public final class Day19 {
             return Point3D.add(base, operation.apply(point));
         }
     }
+
+
+private Day19() {}
 }

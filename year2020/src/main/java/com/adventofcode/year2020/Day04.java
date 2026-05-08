@@ -297,4 +297,7 @@ public final class Day04 {
             return optional;
         }
     }
+
+
+private Day04() {}
 }

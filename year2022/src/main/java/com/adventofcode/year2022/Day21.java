@@ -274,4 +274,7 @@ public final class Day21 {
             throw new IllegalStateException();
         }
     }
+
+
+private Day21() {}
 }

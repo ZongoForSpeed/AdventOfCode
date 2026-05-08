@@ -21,6 +21,10 @@ public final class Day22 {
     private static final TerminalState LOOSING_STATE = TerminalState.of(false);
     private static final Pattern BOSS_PATTERN = Pattern.compile("^(.*): (\\d+)$");
 
+    private Day22() {
+        // No-Op
+    }
+
     private static final class WizardSimulator extends AStar<State> {
 
         private final boolean hardMode;
@@ -52,7 +56,8 @@ public final class Day22 {
 
                         switch (entry.getKey()) {
                             case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
-                            case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
+                            case Recharge ->
+                                    player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
                             default -> {
                             }
                         }
@@ -69,7 +74,8 @@ public final class Day22 {
                         Map<Spells, Integer> newEffects = new EnumMap<>(currentEffects);
                         newEffects.put(spell, spell.getDuration());
                         Player newPlayer = switch (spell) {
-                            case Drain -> Player.of(player.hitPoints() + 2, player.mana() - spell.getCost(), newEffects);
+                            case Drain ->
+                                    Player.of(player.hitPoints() + 2, player.mana() - spell.getCost(), newEffects);
                             case MagicMissile, Shield, Recharge, Poison ->
                                     Player.of(player.hitPoints(), player.mana() - spell.getCost(), newEffects);
                         };
@@ -82,7 +88,7 @@ public final class Day22 {
                             nextState.add(Move.of(WINNING_STATE, spell.getCost()));
                         } else {
                             nextState.add(Move.of(PlayableState.of(
-                                    newPlayer, newBoss, false
+                                    newPlayer, newBoss, /*turn=*/false
                             ), spell.getCost()));
                         }
                     }
@@ -100,7 +106,8 @@ public final class Day22 {
                         switch (entry.getKey()) {
                             case Shield -> armor += 7;
                             case Poison -> boss = Boss.of(boss.hitPoints() - 3, boss.damage());
-                            case Recharge -> player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
+                            case Recharge ->
+                                    player = Player.of(player.hitPoints(), player.mana() + 101, player.effects());
                             default -> {
                             }
                         }
@@ -121,7 +128,7 @@ public final class Day22 {
                         return List.of(Move.of(LOOSING_STATE, Integer.MAX_VALUE));
                     }
 
-                    return List.of(Move.of(PlayableState.of(player, boss, true), 0));
+                    return List.of(Move.of(PlayableState.of(player, boss, /*turn=*/true), 0));
                 }
             } else {
                 throw new IllegalStateException("Unknown type of state: " + node.getClass());
@@ -296,8 +303,8 @@ public final class Day22 {
     }
 
     public static long gamePartOne(Player player, Boss boss) {
-        WizardSimulator game = new WizardSimulator(false);
-        return game.algorithm(PlayableState.of(player, boss, true), WINNING_STATE);
+        WizardSimulator game = new WizardSimulator(/*hardMode=*/false);
+        return game.algorithm(PlayableState.of(player, boss, /*turn=*/true), WINNING_STATE);
     }
 
     /**
@@ -320,8 +327,8 @@ public final class Day22 {
     }
 
     public static long gamePartTwo(Player player, Boss boss) {
-        WizardSimulator game = new WizardSimulator(true);
-        return game.algorithm(PlayableState.of(player, boss, true), WINNING_STATE);
+        WizardSimulator game = new WizardSimulator(/*hardMode=*/true);
+        return game.algorithm(PlayableState.of(player, boss, /*turn=*/true), WINNING_STATE);
     }
 
 

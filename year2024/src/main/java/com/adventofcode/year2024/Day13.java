@@ -256,4 +256,7 @@ public final class Day13 {
             return new Point2D(x + d.x, y + d.y);
         }
     }
+
+
+private Day13() {}
 }

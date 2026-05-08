@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.Arrays;
 
 public final class Day09 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day09.class);

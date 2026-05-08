@@ -233,4 +233,7 @@ public final class Day06 {
             return ((distance / speed) + speed < time);
         }
     }
+
+
+private Day06() {}
 }

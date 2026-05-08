@@ -248,4 +248,7 @@ public final class Day21 {
             return new Player(name, nextPosition, nextScore);
         }
     }
+
+
+private Day21() {}
 }

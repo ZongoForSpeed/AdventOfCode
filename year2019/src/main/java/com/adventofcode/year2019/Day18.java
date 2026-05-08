@@ -431,4 +431,7 @@ public final class Day18 {
                    '}';
         }
     }
+
+
+private Day18() {}
 }

@@ -9,6 +9,10 @@ import java.util.Set;
 
 public final class Clique {
 
+    private Clique() {
+        // No-Op
+    }
+
     /**
      * cf. https://fr.wikipedia.org/wiki/Algorithme_de_Bron-Kerbosch#Version_avec_pivot
      *

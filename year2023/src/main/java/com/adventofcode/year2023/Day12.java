@@ -240,7 +240,10 @@ public final class Day12 {
 
             return Arrays.equals(newDamagedSprings.toIntArray(), damagedSprings);
         }
-    }
+    
+
+private PartOne() {}
+}
 
     /**
      * --- Part Two ---
@@ -371,5 +374,8 @@ public final class Day12 {
             return false;
         }
 
-    }
+    
+
+private PartTwo() {}
+}
 }

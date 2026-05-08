@@ -28,7 +28,7 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
     }
 
     public static InfiniteCharMap read(Scanner scanner, Predicate<Character> predicate) {
-        return read(scanner, predicate, false);
+        return read(scanner, predicate, /*stopWhenBlank=*/false);
     }
 
     public static InfiniteCharMap read(Scanner scanner, Predicate<Character> predicate, boolean stopWhenBlank) {
