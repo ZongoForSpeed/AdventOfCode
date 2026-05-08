@@ -24,6 +24,9 @@ import java.util.stream.IntStream;
 public final class Day24 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
 
+    private Day24() {
+    }
+
     private static Int2ObjectMap<IntegerPair> readCriteria(Scanner scanner) {
         List<String> commands = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -240,6 +243,7 @@ public final class Day24 {
     }
 
     record State(IntList digits, int position) {
+
         public static State of(IntList digits, int position) {
             return new State(digits, position);
         }
@@ -254,14 +258,14 @@ public final class Day24 {
         public int hashCode() {
             return Objects.hash(digits, position);
         }
+
     }
 
     record Block(int divZ, int addX, int addY) {
         public static Block of(int divZ, int addX, int addY) {
             return new Block(divZ, addX, addY);
         }
+
     }
 
-
-private Day24() {}
 }

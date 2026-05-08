@@ -34,6 +34,9 @@ public final class Day11 {
             100000000000000000L
     );
 
+    private Day11() {
+    }
+
     /**
      * --- Day 11: Plutonian Pebbles ---
      * <p>
@@ -156,7 +159,7 @@ public final class Day11 {
             } else {
                 long powerTens = POWER_TENS.getLong(digits / 2);
                 result = plutonianPebbles(cache, n / powerTens, blinks - 1)
-                         + plutonianPebbles(cache, n % powerTens, blinks - 1);
+                        + plutonianPebbles(cache, n % powerTens, blinks - 1);
             }
         }
 
@@ -167,6 +170,4 @@ public final class Day11 {
     private record State(long n, int blinks) {
     }
 
-
-private Day11() {}
 }

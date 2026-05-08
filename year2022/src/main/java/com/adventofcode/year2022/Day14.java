@@ -2,7 +2,7 @@ package com.adventofcode.year2022;
 
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.InfiniteCharMap;
-import com.google.common.base.Splitter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

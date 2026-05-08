@@ -446,6 +446,14 @@
                             -Xep:UnnecessaryLambda:ERROR
                             -Xep:UnnecessaryMethodReference:ERROR
                             -Xep:WildcardImport:ERROR
+                            -Xep:ArrayEquals:ERROR
+                            -Xep:CollectionIncompatibleType:ERROR
+                            -Xep:DeadException:ERROR
+                            -Xep:EqualsHashCode:ERROR
+                            -Xep:MissingFail:ERROR
+                            -Xep:PreconditionsCheckNotNull:ERROR
+                            -Xep:TypeParameterUnusedInFormals:ERROR
+                            -Xep:IdentityBinaryExpression:ERROR
                             -XepPatchChecks:RemoveUnusedImports,WildcardImport -XepPatchLocation:IN_PLACE
                         </arg>
                     </compilerArgs>

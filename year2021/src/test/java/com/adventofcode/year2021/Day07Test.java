@@ -3,9 +3,9 @@ package com.adventofcode.year2021;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
+
+
+
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;

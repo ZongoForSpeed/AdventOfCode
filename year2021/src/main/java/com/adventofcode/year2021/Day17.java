@@ -14,6 +14,9 @@ public final class Day17 {
     // "target area: x=20..30, y=-10..-5"
     private static final Pattern TARGET_PATTERN = Pattern.compile("target area: x=(-?\\d+)..(-?\\d+), y=(-?\\d+)..(-?\\d+)");
 
+    private Day17() {
+    }
+
     private static OptionalInt simulate(Point2D velocity, Target target) {
         Probe probe = new Probe(Point2D.of(0, 0), velocity);
         int yMax = 0;
@@ -252,6 +255,7 @@ public final class Day17 {
     }
 
     record Probe(Point2D position, Point2D velocity) {
+
         public static Probe of(int x, int y, int vx, int vy) {
             return new Probe(Point2D.of(x, y), Point2D.of(vx, vy));
         }
@@ -263,9 +267,11 @@ public final class Day17 {
             int vy = velocity().y() - 1;
             return new Probe(nextPosition, Point2D.of(vx, vy));
         }
+
     }
 
     record Target(int xMin, int xMax, int yMin, int yMax) {
+
         public static Target of(int xMin, int xMax, int yMin, int yMax) {
             return new Target(xMin, xMax, yMin, yMax);
         }
@@ -277,8 +283,7 @@ public final class Day17 {
         public boolean unreachable(Point2D p) {
             return p.x() > xMax || p.y() < yMin;
         }
+
     }
 
-
-private Day17() {}
 }

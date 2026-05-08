@@ -1,12 +1,11 @@
 package com.adventofcode.year2025;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.adventofcode.test.AbstractTest;
+import java.util.Scanner;
 import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
-
-import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day05Test extends AbstractTest {
 

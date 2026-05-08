@@ -2,13 +2,11 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.test.AbstractTest;
-import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.doubles.Double2ObjectMap;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;

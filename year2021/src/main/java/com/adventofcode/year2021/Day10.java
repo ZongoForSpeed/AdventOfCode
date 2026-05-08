@@ -13,6 +13,9 @@ import java.util.Scanner;
 public final class Day10 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day10.class);
 
+    private Day10() {
+    }
+
     /**
      * --- Day 10: Syntax Scoring ---
      * <p>
@@ -272,8 +275,7 @@ public final class Day10 {
         SQUARE,
         CURLY,
         ANGLE
+
     }
 
-
-private Day10() {}
 }

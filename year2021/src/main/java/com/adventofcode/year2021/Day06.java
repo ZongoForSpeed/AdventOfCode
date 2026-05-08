@@ -5,7 +5,7 @@ import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
+
 
 public final class Day06 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day06.class);

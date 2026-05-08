@@ -39,6 +39,9 @@ public final class Day25 {
             Direction.LEFT, "west"
     );
 
+    private Day25() {
+    }
+
     /**
      * --- Day 25: Cryostasis ---
      * As you approach Santa's ship, your sensors report two important details:
@@ -116,6 +119,7 @@ public final class Day25 {
         private final Set<String> items = new HashSet<>();
         private final Set<Position> seenPosition = new HashSet<>();
         private final Map<String, List<Direction>> paths = new HashMap<>();
+
         @Nullable
         private Direction exit;
 
@@ -260,11 +264,13 @@ public final class Day25 {
 
             path.pollLast();
         }
+
     }
 
     public record Position(String position, String description,
                            List<Direction> directions,
                            List<String> items, String message) {
+
 
         @Override
         public boolean equals(Object o) {
@@ -295,8 +301,7 @@ public final class Day25 {
 
             return sb.toString();
         }
+
     }
 
-
-private Day25() {}
 }

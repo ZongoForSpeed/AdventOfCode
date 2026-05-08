@@ -16,6 +16,9 @@ public final class Day24 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
     private static final Pattern HAILSTORM_PATTERN = Pattern.compile("(-?\\d+),\\s+(-?\\d+),\\s+(-?\\d+)\\s+@\\s+(-?\\d+),\\s+(-?\\d+),\\s+(-?\\d+)");
 
+    private Day24() {
+    }
+
     static List<Hailstorm> readHailstorms(Scanner scanner) {
         List<Hailstorm> hailstorms = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -158,7 +161,7 @@ public final class Day24 {
                     double intersection_x = p.x() + t * r.x();
                     double intersection_y = p.y() + t * r.y();
                     if (min <= intersection_x && intersection_x <= max
-                        && min <= intersection_y && intersection_y <= max) {
+                            && min <= intersection_y && intersection_y <= max) {
                         count++;
                     }
                 }
@@ -305,6 +308,4 @@ public final class Day24 {
         }
     }
 
-
-private Day24() {}
 }

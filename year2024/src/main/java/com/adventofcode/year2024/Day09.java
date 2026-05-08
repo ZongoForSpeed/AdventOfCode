@@ -15,6 +15,9 @@ public final class Day09 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day09.class);
 
+    private Day09() {
+    }
+
     private static long hash(IntList memory) {
         long hash = 0;
         for (int i = 0; i < memory.size(); i++) {
@@ -248,6 +251,4 @@ public final class Day09 {
     record Block(int id, int size, int start, int end) {
     }
 
-
-private Day09() {}
 }

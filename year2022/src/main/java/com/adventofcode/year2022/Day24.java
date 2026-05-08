@@ -20,6 +20,9 @@ import java.util.function.Predicate;
 public final class Day24 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24.class);
 
+    private Day24() {
+    }
+
     public static Basin readInput(Scanner scanner) {
         CharMap map = CharMap.read(scanner, c -> c != '.');
         LOGGER.info("map:\n{}", map);
@@ -455,7 +458,4 @@ public final class Day24 {
         }
     }
 
-
-
-private Day24() {}
 }

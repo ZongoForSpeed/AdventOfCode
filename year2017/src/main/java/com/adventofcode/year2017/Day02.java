@@ -3,7 +3,6 @@ package com.adventofcode.year2017;
 import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 

@@ -22,6 +22,9 @@ public final class Day18 {
             Point2D.of(1, 1)
     );
 
+    private Day18() {
+    }
+
     public static Optional<Long> countSteps(MazeMap map) {
         MazeState start = new MazeState(map.keys(), map.position());
 
@@ -376,25 +379,29 @@ public final class Day18 {
         Free,
         Key,
         Door
+
     }
 
     public record Tile(TileType type, int value) {
+
         public static final Tile FREE = new Tile(TileType.Free, -1);
 
         @Override
         public String toString() {
             return "Tile{" +
-                   "type=" + type +
-                   ", value=" + value +
-                   '}';
+                    "type=" + type +
+                    ", value=" + value +
+                    '}';
         }
 
     }
 
     public record MazeMap(Map<Point2D, Tile> tiles, Point2D position, long keys) {
+
     }
 
     record MazeState(long missingKeys, Point2D position) {
+
         public List<MazeState> next(MazeMap map) {
             List<MazeState> result = new ArrayList<>();
             for (Direction direction : Direction.values()) {
@@ -426,12 +433,10 @@ public final class Day18 {
         @Override
         public String toString() {
             return "State{" +
-                   "missing_keys=" + missingKeys +
-                   ", pos=" + position +
-                   '}';
+                    "missing_keys=" + missingKeys +
+                    ", pos=" + position +
+                    '}';
         }
+
     }
-
-
-private Day18() {}
 }

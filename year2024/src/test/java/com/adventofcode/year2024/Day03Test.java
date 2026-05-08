@@ -1,13 +1,13 @@
 package com.adventofcode.year2024;
 
 import com.adventofcode.test.AbstractTest;
-import org.apache.commons.io.IOUtils;
+
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.Objects;
+
+
+
+
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;

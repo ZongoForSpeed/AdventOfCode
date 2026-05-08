@@ -25,6 +25,9 @@ public final class Day16 {
     // class: 1-3 or 5-7
     private static final Pattern PATTERN = Pattern.compile("^(.+): (\\d+)-(\\d+) or (\\d+)-(\\d+)$");
 
+    private Day16() {
+    }
+
     private static Triple<Map<String, IntPredicate>, int[], List<int[]>> readNote(List<String> notes) {
         Map<String, IntPredicate> rules = new HashMap<>();
         int[] yourTicket = null;
@@ -264,20 +267,20 @@ public final class Day16 {
     }
 
     private record SimpleRule(int lowerBound, int upperBound) implements IntPredicate {
+
         @Override
         public String toString() {
             return "SimpleRule{" +
-                   "lowerBound=" + lowerBound +
-                   ", upperBound=" + upperBound +
-                   '}';
+                    "lowerBound=" + lowerBound +
+                    ", upperBound=" + upperBound +
+                    '}';
         }
 
         @Override
         public boolean test(int value) {
             return lowerBound <= value && value <= upperBound;
         }
+
     }
 
-
-private Day16() {}
 }

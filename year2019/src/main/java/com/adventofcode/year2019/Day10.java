@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public final class Day10 {
+
+    private Day10() {
+    }
+
     private static int doubleCompare(double a, double b) {
         if (Math.abs(a - b) < 0.000001) {
             return 0;
@@ -268,6 +272,7 @@ public final class Day10 {
     }
 
     public record Asteroids(double distance, Point2D position) {
+
         public long getCoordinate() {
             return position.x() * 100L + position.y();
         }
@@ -275,12 +280,10 @@ public final class Day10 {
         @Override
         public String toString() {
             return "A{" +
-                   "d=" + distance +
-                   ", p=" + position +
-                   '}';
+                    "d=" + distance +
+                    ", p=" + position +
+                    '}';
         }
+
     }
-
-
-private Day10() {}
 }

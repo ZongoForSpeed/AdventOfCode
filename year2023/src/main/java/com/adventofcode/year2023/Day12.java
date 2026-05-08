@@ -150,6 +150,9 @@ public final class Day12 {
      */
     public static final class PartOne {
 
+        private PartOne() {
+        }
+
         enum Position {
             OPERATIONAL,
             DAMAGED,
@@ -212,7 +215,7 @@ public final class Day12 {
             for (long bitSet = 0; bitSet < maxBitSet; ++bitSet) {
                 BitSet set = BitSet.valueOf(new long[]{bitSet});
                 if (set.cardinality() == missingDamagedSprings
-                    && testArrangements(positionList, unknownPosition, set, springs)) {
+                        && testArrangements(positionList, unknownPosition, set, springs)) {
                     ++countArrangements;
                 }
             }
@@ -240,10 +243,8 @@ public final class Day12 {
 
             return Arrays.equals(newDamagedSprings.toIntArray(), damagedSprings);
         }
-    
 
-private PartOne() {}
-}
+    }
 
     /**
      * --- Part Two ---
@@ -338,7 +339,7 @@ private PartOne() {}
             } else {
                 switch (pattern.charAt(p)) {
                     case '?' -> result = countArrangements(cache, pattern, groups, p + 1, g)
-                                         + countArrangementsDamaged(cache, pattern, groups, p, g);
+                            + countArrangementsDamaged(cache, pattern, groups, p, g);
                     case '.' -> result = countArrangements(cache, pattern, groups, p + 1, g);
                     case '#' -> result = countArrangementsDamaged(cache, pattern, groups, p, g);
                     default -> throw new IllegalStateException();
@@ -374,8 +375,8 @@ private PartOne() {}
             return false;
         }
 
-    
 
-private PartTwo() {}
-}
+        private PartTwo() {
+        }
+    }
 }

@@ -18,9 +18,13 @@ public final class Day23 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23.class);
     private static final IntSet ENTRIES = IntSet.of(2, 4, 6, 8);
 
+    private Day23() {
+    }
+
     private static final class AmphipodAlgorithm extends AStar<State> {
 
         private final Map<State, List<Move<State>>> cache = new HashMap<>();
+
         private final int size;
 
         private AmphipodAlgorithm(int size) {
@@ -87,6 +91,7 @@ public final class Day23 {
             cache.put(node, moves);
             return moves;
         }
+
     }
 
     private static long computeCost(char c) {
@@ -510,6 +515,7 @@ public final class Day23 {
     }
 
     record State(String hallway, String a, String b, String c, String d) {
+
         public static State of(String a, String b, String c, String d) {
             return new State("           ", a, b, c, d);
         }
@@ -554,8 +560,7 @@ public final class Day23 {
                 default -> throw new IllegalStateException("Invalid type " + i);
             };
         }
+
     }
 
-
-private Day23() {}
 }

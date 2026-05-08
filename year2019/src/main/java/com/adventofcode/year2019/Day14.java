@@ -21,6 +21,9 @@ public final class Day14 {
     private static final Pattern REACTION_PATTERN = Pattern.compile("^(.*) => (.*)$");
     private static final Pattern CHEMICAL_PATTERN = Pattern.compile("(\\d+) (\\w+)");
 
+    private Day14() {
+    }
+
     /**
      * --- Day 14: Space Stoichiometry ---
      * As you approach the rings of Saturn, your ship's low fuel indicator turns on. There isn't any fuel here, but the
@@ -192,8 +195,8 @@ public final class Day14 {
         }
         return reactions;
     }
-
     public record Reaction(List<Pair<String, Long>> chemicalInputs, Pair<String, Long> chemicalOutput) {
+
 
         static Reaction parseReaction(String line) {
             Matcher matcher = REACTION_PATTERN.matcher(line);
@@ -230,14 +233,11 @@ public final class Day14 {
         private void applyChemicalChange(Map<String, Long> quantities, Pair<String, Long> chemical, long factor) {
             quantities.merge(chemical.left(), factor * chemical.right(), Long::sum);
         }
-
         @Override
         public String toString() {
             return "Reaction[" + chemicalInputs.stream().map(Reaction::writeChemical).collect(Collectors.joining(", "))
-                   + " => " + writeChemical(chemicalOutput) + "]";
+                    + " => " + writeChemical(chemicalOutput) + "]";
         }
+
     }
-
-
-private Day14() {}
 }

@@ -37,62 +37,65 @@ public final class Day17 {
                     0b0011000), 4)
     );
 
+    private Day17() {
+    }
+
     /**
      * --- Day 17: Pyroclastic Flow ---
-     *
+     * <p>
      * Your handheld device has located an alternative exit from the cave for you
      * and the elephants. The ground is rumbling almost continuously now, but the
      * strange valves bought you some time. It's definitely getting warmer in
      * here, though.
-     *
+     * <p>
      * The tunnels eventually open into a very tall, narrow chamber. Large, oddly-
      * shaped rocks are falling into the chamber from above, presumably due to all
      * the rumbling. If you can't work out where the rocks will fall next, you
      * might be crushed!
-     *
+     * <p>
      * The five types of rocks have the following peculiar shapes, where # is rock
      * and . is empty space:
-     *
+     * <p>
      * ####
-     *
+     * <p>
      * .#.
      * ###
      * .#.
-     *
+     * <p>
      * ..#
      * ..#
      * ###
-     *
+     * <p>
      * #
      * #
      * #
      * #
-     *
+     * <p>
      * ##
      * ##
-     *
+     * <p>
      * The rocks fall in the order shown above: first the - shape, then the +
      * shape, and so on. Once the end of the list is reached, the same order
      * repeats: the - shape falls first, sixth, 11th, 16th, etc.
-     *
+     * <p>
      * The rocks don't spin, but they do get pushed around by jets of hot gas
      * coming out of the walls themselves. A quick scan reveals the effect the
      * jets of hot gas will have on the rocks as they fall (your puzzle input).
-     *
+     * <p>
      * For example, suppose this was the jet pattern in your cave:
-     *
+     * <p>
      * >>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>
-     *
+     * <p>
      * In jet patterns, < means a push to the left, while > means a push to the
      * right. The pattern above means that the jets will push a falling rock
      * right, then right, then right, then left, then left, then right, and so on.
      * If the end of the list is reached, it repeats.
-     *
+     * <p>
      * The tall, vertical chamber is exactly seven units wide. Each rock appears
      * so that its left edge is two units away from the left wall and its bottom
      * edge is three units above the highest rock in the room (or the floor, if
      * there isn't one).
-     *
+     * <p>
      * After a rock appears, it alternates between being pushed by a jet of hot
      * gas one unit (in the direction indicated by the next symbol in the jet
      * pattern) and then falling one unit down. If any movement would cause any
@@ -101,58 +104,58 @@ public final class Day17 {
      * falling rock to move into the floor or an already-fallen rock, the falling
      * rock stops where it is (having landed on something) and a new rock
      * immediately begins falling.
-     *
+     * <p>
      * Drawing falling rocks with @ and stopped rocks with #, the jet pattern in
      * the example above manifests as follows:
-     *
+     * <p>
      * The first rock begins falling:
      * |..@@@@.|
      * |.......|
      * |.......|
      * |.......|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock right:
      * |...@@@@|
      * |.......|
      * |.......|
      * |.......|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit:
      * |...@@@@|
      * |.......|
      * |.......|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock right, but nothing happens:
      * |...@@@@|
      * |.......|
      * |.......|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit:
      * |...@@@@|
      * |.......|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock right, but nothing happens:
      * |...@@@@|
      * |.......|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit:
      * |...@@@@|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock left:
      * |..@@@@.|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit, causing it to come to rest:
      * |..####.|
      * +-------+
-     *
+     * <p>
      * A new rock begins falling:
      * |...@...|
      * |..@@@..|
@@ -162,7 +165,7 @@ public final class Day17 {
      * |.......|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock left:
      * |..@....|
      * |.@@@...|
@@ -172,7 +175,7 @@ public final class Day17 {
      * |.......|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit:
      * |..@....|
      * |.@@@...|
@@ -181,7 +184,7 @@ public final class Day17 {
      * |.......|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock right:
      * |...@...|
      * |..@@@..|
@@ -190,7 +193,7 @@ public final class Day17 {
      * |.......|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit:
      * |...@...|
      * |..@@@..|
@@ -198,7 +201,7 @@ public final class Day17 {
      * |.......|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock left:
      * |..@....|
      * |.@@@...|
@@ -206,28 +209,28 @@ public final class Day17 {
      * |.......|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit:
      * |..@....|
      * |.@@@...|
      * |..@....|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Jet of gas pushes rock right:
      * |...@...|
      * |..@@@..|
      * |...@...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * Rock falls 1 unit, causing it to come to rest:
      * |...#...|
      * |..###..|
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * A new rock begins falling:
      * |....@..|
      * |....@..|
@@ -240,9 +243,9 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * The moment each of the next few rocks begins falling, you would see this:
-     *
+     * <p>
      * |..@....|
      * |..@....|
      * |..@....|
@@ -257,7 +260,7 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * |..@@...|
      * |..@@...|
      * |.......|
@@ -271,7 +274,7 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * |..@@@@.|
      * |.......|
      * |.......|
@@ -286,7 +289,7 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * |...@...|
      * |..@@@..|
      * |...@...|
@@ -304,7 +307,7 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * |....@..|
      * |....@..|
      * |..@@@..|
@@ -325,7 +328,7 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * |..@....|
      * |..@....|
      * |..@....|
@@ -349,7 +352,7 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * |..@@...|
      * |..@@...|
      * |.......|
@@ -373,7 +376,7 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * |..@@@@.|
      * |.......|
      * |.......|
@@ -396,23 +399,23 @@ public final class Day17 {
      * |...#...|
      * |..####.|
      * +-------+
-     *
+     * <p>
      * To prove to the elephants your simulation is accurate, they want to know
      * how tall the tower will get after 2022 rocks have stopped (but before the
      * 2023rd rock begins falling). In this example, the tower of rocks will be
      * 3068 units tall.
-     *
+     * <p>
      * How many units tall will the tower of rocks be after 2022 rocks have
      * stopped falling?
-     *
+     * <p>
      * --- Part Two ---
-     *
+     * <p>
      * The elephants are not impressed by your simulation. They demand to know how
      * tall the tower will be after 1000000000000 rocks have stopped! Only then
      * will they feel confident enough to proceed through the cave.
-     *
+     * <p>
      * In the example above, the tower would be 1514285714288 units tall!
-     *
+     * <p>
      * How tall will the tower be after 1000000000000 rocks have stopped?
      */
     public static long pyroclasticFlow(String input, long turns, boolean debug) {
@@ -437,7 +440,7 @@ public final class Day17 {
                     }
                 }
                 if (rock.length() + y >= pile.size()
-                    || rock.overlaps(pile.subList(y + 1, pile.size()))) {
+                        || rock.overlaps(pile.subList(y + 1, pile.size()))) {
                     for (int i = 0; i < rock.shape.size(); i++) {
                         pile.set(y + i, pile.getInt(y + i) | rock.shape.getInt(i));
                     }
@@ -592,6 +595,4 @@ public final class Day17 {
         }
     }
 
-
-private Day17() {}
 }

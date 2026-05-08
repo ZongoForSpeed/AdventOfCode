@@ -19,6 +19,9 @@ public final class Day13 {
     private static final Pattern BUTTON_PATTERN = Pattern.compile("Button \\w: X\\+(\\d+), Y\\+(\\d+)");
     private static final Pattern PRIZE_PATTERN = Pattern.compile("Prize: X=(\\d+), Y=(\\d+)");
 
+    private Day13() {
+    }
+
     private static long solve(List<Pair<Matrix2D, Point2D>> claws, Point2D point2D) {
         long cost = 0;
 
@@ -257,6 +260,4 @@ public final class Day13 {
         }
     }
 
-
-private Day13() {}
 }

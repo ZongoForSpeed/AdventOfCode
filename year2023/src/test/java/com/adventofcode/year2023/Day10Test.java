@@ -4,10 +4,10 @@ import com.adventofcode.test.AbstractTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
+
+
+
+
 import java.util.Scanner;
 
 class Day10Test extends AbstractTest {
