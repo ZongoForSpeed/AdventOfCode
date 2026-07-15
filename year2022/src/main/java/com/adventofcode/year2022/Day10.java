@@ -467,7 +467,7 @@ public final class Day10 {
                     case "noop" -> register.add(register.getLast());
                     case "addx" -> {
                         int value = Integer.parseInt(matcher.group(2));
-                        register.add(register.getLast());
+                        register.add((int)register.getLast());
                         register.add(register.getLast() + value);
                     }
                     default -> throw new IllegalStateException("Unknown command: '" + command + "'");

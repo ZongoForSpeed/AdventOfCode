@@ -467,6 +467,7 @@ public final class Day11 {
         }
     }
 
-
-private Day11
+    private Day11() {
+        // No-Op
+    }
 }
