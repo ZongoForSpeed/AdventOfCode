@@ -26,7 +26,7 @@ class Day08Test extends AbstractTest {
         printImage(image, 2, 2);
     }
 
-    private void printImage(int[] image, int width, int height) {
+    private static void printImage(int[] image, int width, int height) {
         for (int index = 0; index < width * height; index += width) {
             StringBuilder sb = new StringBuilder();
             Arrays.spliterator(image, index, index + width).forEachRemaining((IntConsumer) i -> sb.append(i == 1 ? 'X' : ' '));

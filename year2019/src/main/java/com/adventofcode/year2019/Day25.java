@@ -177,7 +177,7 @@ public final class Day25 {
 
 
         public @Nullable Position start(String program) {
-            executor.submit(() -> {
+            var unused = executor.submit(() -> {
                 Intcode.intcode(program, this::input, this::output);
                 consoleOutput.put(stringBuilder.toString());
                 stringBuilder.setLength(0);

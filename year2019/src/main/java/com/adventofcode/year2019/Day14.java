@@ -230,7 +230,7 @@ public final class Day14 {
             }
         }
 
-        private void applyChemicalChange(Map<String, Long> quantities, Pair<String, Long> chemical, long factor) {
+        private static void applyChemicalChange(Map<String, Long> quantities, Pair<String, Long> chemical, long factor) {
             quantities.merge(chemical.left(), factor * chemical.right(), Long::sum);
         }
         @Override

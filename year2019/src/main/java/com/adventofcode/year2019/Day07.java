@@ -161,10 +161,10 @@ public final class Day07 {
             BlockingQueue<Long> queue4 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(3, 4)));
             BlockingQueue<Long> queue5 = new LinkedBlockingQueue<>(new LongArrayList(settings.subList(4, 5)));
 
-            executorService.submit(() -> intcode(stringCodes, take(queue1), offer(queue2)));
-            executorService.submit(() -> intcode(stringCodes, take(queue2), offer(queue3)));
-            executorService.submit(() -> intcode(stringCodes, take(queue3), offer(queue4)));
-            executorService.submit(() -> intcode(stringCodes, take(queue4), offer(queue5)));
+            var unused1 = executorService.submit(() -> intcode(stringCodes, take(queue1), offer(queue2)));
+            var unused2 = executorService.submit(() -> intcode(stringCodes, take(queue2), offer(queue3)));
+            var unused3 = executorService.submit(() -> intcode(stringCodes, take(queue3), offer(queue4)));
+            var unused4 = executorService.submit(() -> intcode(stringCodes, take(queue4), offer(queue5)));
 
             Future<Long> future = executorService.submit(() -> {
                 AtomicLong result = new AtomicLong(0);

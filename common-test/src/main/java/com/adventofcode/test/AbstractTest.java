@@ -1,10 +1,11 @@
 package com.adventofcode.test;
 
-import org.junit.jupiter.api.Test;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Scanner;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractTest {
 
@@ -19,7 +20,7 @@ public abstract class AbstractTest {
     @Test
     void inputPartOne() throws Exception {
         try (InputStream is = AbstractTest.class.getResourceAsStream("/%4d/day/%02d/input".formatted(year, day));
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
             partOne(scanner);
         }
     }
@@ -27,7 +28,7 @@ public abstract class AbstractTest {
     @Test
     void inputPartTwo() throws Exception {
         try (InputStream is = AbstractTest.class.getResourceAsStream("/%4d/day/%02d/input".formatted(year, day));
-             Scanner scanner = new Scanner(Objects.requireNonNull(is))) {
+             Scanner scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
             partTwo(scanner);
         }
     }

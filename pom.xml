@@ -29,14 +29,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.release>25</maven.compiler.release>
 
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-        <logback-classic.version>1.5.32</logback-classic.version>
+        <logback-classic.version>1.5.38</logback-classic.version>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-        <slf4j.version>2.0.17</slf4j.version>
+        <slf4j.version>2.0.18</slf4j.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <commons-lang3.version>3.20.0</commons-lang3.version>
@@ -63,22 +62,22 @@
         <commons-codec.version>1.22.0</commons-codec.version>
 
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
-        <junit-jupiter.version>6.0.3</junit-jupiter.version>
+        <junit-jupiter.version>6.1.1</junit-jupiter.version>
 
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <assertj.version>3.27.7</assertj.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-        <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.6</maven-surefire-plugin.version>
 
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
 
         <!-- https://mvnrepository.com/artifact/com.google.errorprone/error_prone_core -->
-        <error-prone.version>2.49.0</error-prone.version>
+        <error-prone.version>2.50.0</error-prone.version>
 
         <!-- https://mvnrepository.com/artifact/com.uber.nullaway/nullaway -->
-        <nullaway.version>0.13.4</nullaway.version>
+        <nullaway.version>0.13.7</nullaway.version>
 
         <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
         <jmh.version>1.37</jmh.version>
@@ -323,159 +322,32 @@
 
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <showDeprecation>true</showDeprecation>
-                    <showWarnings>true</showWarnings>
-                    <compilerArgs>
-                        <arg>-XDcompilePolicy=simple</arg>
-                        <arg>--should-stop=ifError=FLOW</arg>
-                        <arg>
-                            -Xplugin:ErrorProne
-                            -XepExcludedPaths:.*/target/(generated-sources|generated-test-sources)/.*
-                            -Xep:NullAway:ERROR
-                            -XepOpt:NullAway:AnnotatedPackages=com.adventofcode
-                            -XepOpt:NullAway:JSpecifyMode=true
-                            -Xep:MissingOverride:ERROR
-                            -Xep:EqualsGetClass:ERROR
-                            -Xep:StringSplitter:ERROR
-                            -Xep:ReferenceEquality:ERROR
-                            -Xep:LoopOverCharArray:ERROR
-                            -Xep:DefaultCharset:OFF
-                            -Xep:IntLongMath:ERROR
-                            -Xep:FutureReturnValueIgnored:OFF
-                            -Xep:NullOptional:ERROR
-                            -Xep:NullableConstructor:ERROR
-                            -Xep:NullableOptional:ERROR
-                            -Xep:NullablePrimitive:ERROR
-                            -Xep:NullablePrimitiveArray:ERROR
-                            -Xep:NullableTypeParameter:ERROR
-                            -Xep:NullableVoid:ERROR
-                            -Xep:NullableWildcard:ERROR
-                            -Xep:UnusedMethod:ERROR
-                            -Xep:UnusedVariable:ERROR
-                            -Xep:UnusedNestedClass:ERROR
-                            -Xep:BoxedPrimitiveConstructor:ERROR
-                            -Xep:MathAbsoluteRandom:ERROR
-                            -Xep:OptionalEquality:ERROR
-                            -Xep:StreamResourceLeak:ERROR
-                            -Xep:ArgumentSelectionDefectChecker:ERROR
-                            -Xep:AssertEqualsArgumentOrderChecker:ERROR
-                            -Xep:BadInstanceof:ERROR
-                            -Xep:ComparisonOutOfRange:ERROR
-                            -Xep:DoubleBraceInitialization:ERROR
-                            -Xep:DuplicateMapKeys:ERROR
-                            -Xep:EqualsIncompatibleType:ERROR
-                            -Xep:FormatString:ERROR
-                            -Xep:InvalidBlockTag:ERROR
-                            -Xep:InvalidInlineTag:ERROR
-                            -Xep:InvalidParam:ERROR
-                            -Xep:InvalidThrows:ERROR
-                            -Xep:JavaDurationWithNanos:ERROR
-                            -Xep:JavaDurationWithSeconds:ERROR
-                            -Xep:JavaInstantGetSecondsGetNano:ERROR
-                            -Xep:JavaLocalDateTimeGetNano:ERROR
-                            -Xep:JavaLocalTimeGetNano:ERROR
-                            -Xep:JavaTimeDefaultTimeZone:ERROR
-                            -Xep:LockOnBoxedPrimitive:ERROR
-                            -Xep:ModifiedButNotUsed:ERROR
-                            -Xep:ModifyCollectionInEnhancedForLoop:ERROR
-                            -Xep:ModifySourceCollectionInStream:ERROR
-                            -Xep:MultipleParallelOrSequentialCalls:ERROR
-                            -Xep:MutableConstantField:ERROR
-                            -Xep:MutablePublicArray:ERROR
-                            -Xep:NonCanonicalType:ERROR
-                            -Xep:ObjectToString:ERROR
-                            -Xep:OperatorPrecedence:ERROR
-                            -Xep:PreconditionsCheckNotNullPrimitive:ERROR
-                            -Xep:RandomModInteger:ERROR
-                            -Xep:ReturnValueIgnored:ERROR
-                            -Xep:SelfAssignment:ERROR
-                            -Xep:SelfComparison:ERROR
-                            -Xep:SelfEquals:ERROR
-                            -Xep:ShortCircuitBoolean:ERROR
-                            -Xep:StaticAssignmentInConstructor:ERROR
-                            -Xep:StaticGuardedByInstance:ERROR
-                            -Xep:SynchronizeOnNonFinalField:ERROR
-                            -Xep:ThreadJoinLoop:ERROR
-                            -Xep:ThreadLocalUsage:ERROR
-                            -Xep:WaitNotInLoop:ERROR
-                            -Xep:EmptyBlockTag:ERROR
-                            -Xep:EmptyCatch:ERROR
-                            -Xep:InvalidThrows:ERROR
-                            -Xep:NonCanonicalStaticMemberImport:ERROR
-                            -Xep:ArrayAsKeyOfSetOrMap:ERROR
-                            -Xep:AssertFalse:ERROR
-                            -Xep:CanIgnoreReturnValueSuggester:OFF
-                            -Xep:ClassName:ERROR
-                            -Xep:ComparisonContractViolated:ERROR
-                            -Xep:DepAnn:ERROR
-                            -Xep:EmptyIf:ERROR
-                            -Xep:IterablePathParameter:ERROR
-                            -Xep:LongLiteralLowerCaseSuffix:ERROR
-                            -Xep:NumericEquality:ERROR
-                            -Xep:ParameterName:ERROR
-                            -Xep:PrimitiveAtomicReference:ERROR
-                            -Xep:StaticAssignmentInConstructor:ERROR
-                            -Xep:SystemExitOutsideMain:ERROR
-                            -Xep:TypeParameterNaming:ERROR
-                            -Xep:UnnecessaryAssignment:ERROR
-                            -Xep:UnnecessaryCheckNotNull:ERROR
-                            -Xep:UnnecessaryParentheses:ERROR
-                            -Xep:UnusedException:ERROR
-                            -Xep:BadImport:ERROR
-                            -Xep:BooleanParameter:ERROR
-                            -Xep:FieldCanBeFinal:ERROR
-                            -Xep:MethodCanBeStatic:ERROR
-                            -Xep:MultipleTopLevelClasses:ERROR
-                            -Xep:NarrowingCompoundAssignment:ERROR
-                            -Xep:PackageLocation:ERROR
-                            -Xep:PrivateConstructorForUtilityClass:ERROR
-                            -Xep:RemoveUnusedImports:ERROR
-                            -Xep:TryFailThrowable:ERROR
-                            -Xep:UnnecessaryLambda:ERROR
-                            -Xep:UnnecessaryMethodReference:ERROR
-                            -Xep:WildcardImport:ERROR
-                            -Xep:ArrayEquals:ERROR
-                            -Xep:CollectionIncompatibleType:ERROR
-                            -Xep:DeadException:ERROR
-                            -Xep:EqualsHashCode:ERROR
-                            -Xep:MissingFail:ERROR
-                            -Xep:PreconditionsCheckNotNull:ERROR
-                            -Xep:TypeParameterUnusedInFormals:ERROR
-                            -Xep:IdentityBinaryExpression:ERROR
-                            -XepPatchChecks:RemoveUnusedImports,WildcardImport -XepPatchLocation:IN_PLACE
-                        </arg>
-                    </compilerArgs>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>com.google.errorprone</groupId>
-                            <artifactId>error_prone_core</artifactId>
-                            <version>${error-prone.version}</version>
-                        </path>
-                        <path>
-                            <groupId>com.uber.nullaway</groupId>
-                            <artifactId>nullaway</artifactId>
-                            <version>${nullaway.version}</version>
-                        </path>
-                        <path>
-                            <groupId>org.openjdk.jmh</groupId>
-                            <artifactId>jmh-generator-annprocess</artifactId>
-                            <version>${jmh.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.openrewrite.maven</groupId>
                 <artifactId>rewrite-maven-plugin</artifactId>
@@ -496,5 +368,208 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>errorProne</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <showDeprecation>true</showDeprecation>
+                            <showWarnings>true</showWarnings>
+                            <compilerArgs>
+                                <arg>-XDcompilePolicy=simple</arg>
+                                <arg>--should-stop=ifError=FLOW</arg>
+                                <arg>
+                                    -Xplugin:ErrorProne
+                                    -XepExcludedPaths:.*/target/(generated-sources|generated-test-sources)/.*
+                                    -Xep:NullAway:ERROR
+                                    -XepOpt:NullAway:AnnotatedPackages=com.adventofcode
+                                    -XepOpt:NullAway:JSpecifyMode=true
+                                    -Xep:ArgumentSelectionDefectChecker:ERROR
+                                    -Xep:ArrayAsKeyOfSetOrMap:ERROR
+                                    -Xep:ArrayEquals:ERROR
+                                    -Xep:AssertEqualsArgumentOrderChecker:ERROR
+                                    -Xep:AssertFalse:ERROR
+                                    -Xep:BadImport:ERROR
+                                    -Xep:BadInstanceof:ERROR
+                                    -Xep:BooleanParameter:WARN
+                                    -Xep:BoxedPrimitiveConstructor:ERROR
+                                    -Xep:CanIgnoreReturnValueSuggester:OFF
+                                    -Xep:ClassName:ERROR
+                                    -Xep:CollectionIncompatibleType:ERROR
+                                    -Xep:ComparisonContractViolated:ERROR
+                                    -Xep:ComparisonOutOfRange:ERROR
+                                    -Xep:DeadException:ERROR
+                                    -Xep:DefaultCharset:OFF
+                                    -Xep:DepAnn:ERROR
+                                    -Xep:DoubleBraceInitialization:ERROR
+                                    -Xep:DuplicateMapKeys:ERROR
+                                    -Xep:EmptyBlockTag:ERROR
+                                    -Xep:EmptyCatch:ERROR
+                                    -Xep:EmptyIf:ERROR
+                                    -Xep:EqualsGetClass:ERROR
+                                    -Xep:EqualsHashCode:ERROR
+                                    -Xep:EqualsIncompatibleType:ERROR
+                                    -Xep:FieldCanBeFinal:ERROR
+                                    -Xep:FormatString:ERROR
+                                    -Xep:FutureReturnValueIgnored:OFF
+                                    -Xep:IdentityBinaryExpression:ERROR
+                                    -Xep:IntLongMath:ERROR
+                                    -Xep:InvalidBlockTag:ERROR
+                                    -Xep:InvalidInlineTag:ERROR
+                                    -Xep:InvalidParam:ERROR
+                                    -Xep:InvalidThrows:ERROR
+                                    -Xep:InvalidThrows:ERROR
+                                    -Xep:IterablePathParameter:ERROR
+                                    -Xep:JavaDurationWithNanos:ERROR
+                                    -Xep:JavaDurationWithSeconds:ERROR
+                                    -Xep:JavaInstantGetSecondsGetNano:ERROR
+                                    -Xep:JavaLocalDateTimeGetNano:ERROR
+                                    -Xep:JavaLocalTimeGetNano:ERROR
+                                    -Xep:JavaTimeDefaultTimeZone:ERROR
+                                    -Xep:LockOnBoxedPrimitive:ERROR
+                                    -Xep:LongLiteralLowerCaseSuffix:ERROR
+                                    -Xep:LoopOverCharArray:ERROR
+                                    -Xep:MathAbsoluteRandom:ERROR
+                                    -Xep:MethodCanBeStatic:ERROR
+                                    -Xep:MissingFail:ERROR
+                                    -Xep:MissingOverride:ERROR
+                                    -Xep:ModifiedButNotUsed:ERROR
+                                    -Xep:ModifyCollectionInEnhancedForLoop:ERROR
+                                    -Xep:ModifySourceCollectionInStream:ERROR
+                                    -Xep:MultipleParallelOrSequentialCalls:ERROR
+                                    -Xep:MultipleTopLevelClasses:ERROR
+                                    -Xep:MutableConstantField:ERROR
+                                    -Xep:MutablePublicArray:ERROR
+                                    -Xep:NarrowingCompoundAssignment:ERROR
+                                    -Xep:NonCanonicalStaticMemberImport:ERROR
+                                    -Xep:NonCanonicalType:ERROR
+                                    -Xep:NullOptional:ERROR
+                                    -Xep:NullableConstructor:ERROR
+                                    -Xep:NullableOptional:ERROR
+                                    -Xep:NullablePrimitive:ERROR
+                                    -Xep:NullablePrimitiveArray:ERROR
+                                    -Xep:NullableTypeParameter:ERROR
+                                    -Xep:NullableVoid:ERROR
+                                    -Xep:NullableWildcard:ERROR
+                                    -Xep:NumericEquality:ERROR
+                                    -Xep:ObjectToString:ERROR
+                                    -Xep:OperatorPrecedence:ERROR
+                                    -Xep:OptionalEquality:ERROR
+                                    -Xep:PackageLocation:ERROR
+                                    -Xep:ParameterName:ERROR
+                                    -Xep:PreconditionsCheckNotNull:ERROR
+                                    -Xep:PreconditionsCheckNotNullPrimitive:ERROR
+                                    -Xep:PrimitiveAtomicReference:ERROR
+                                    -Xep:PrivateConstructorForUtilityClass:ERROR
+                                    -Xep:RandomModInteger:ERROR
+                                    -Xep:ReferenceEquality:ERROR
+                                    -Xep:RemoveUnusedImports:ERROR
+                                    -Xep:ReturnValueIgnored:ERROR
+                                    -Xep:SelfAssignment:ERROR
+                                    -Xep:SelfComparison:ERROR
+                                    -Xep:SelfEquals:ERROR
+                                    -Xep:ShortCircuitBoolean:ERROR
+                                    -Xep:StaticAssignmentInConstructor:ERROR
+                                    -Xep:StaticAssignmentInConstructor:ERROR
+                                    -Xep:StaticGuardedByInstance:ERROR
+                                    -Xep:StreamResourceLeak:ERROR
+                                    -Xep:StringSplitter:ERROR
+                                    -Xep:SynchronizeOnNonFinalField:ERROR
+                                    -Xep:SystemExitOutsideMain:ERROR
+                                    -Xep:ThreadJoinLoop:ERROR
+                                    -Xep:ThreadLocalUsage:ERROR
+                                    -Xep:TryFailThrowable:ERROR
+                                    -Xep:TypeParameterNaming:ERROR
+                                    -Xep:TypeParameterUnusedInFormals:ERROR
+                                    -Xep:UnnecessaryAssignment:ERROR
+                                    -Xep:UnnecessaryCheckNotNull:ERROR
+                                    -Xep:UnnecessaryLambda:ERROR
+                                    -Xep:UnnecessaryMethodReference:ERROR
+                                    -Xep:UnnecessaryParentheses:ERROR
+                                    -Xep:UnusedException:ERROR
+                                    -Xep:UnusedMethod:ERROR
+                                    -Xep:UnusedNestedClass:ERROR
+                                    -Xep:UnusedVariable:ERROR
+                                    -Xep:WaitNotInLoop:ERROR
+                                    -Xep:WildcardImport:ERROR
+                                </arg>
+                            </compilerArgs>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.google.errorprone</groupId>
+                                    <artifactId>error_prone_core</artifactId>
+                                    <version>${error-prone.version}</version>
+                                </path>
+                                <path>
+                                    <groupId>com.uber.nullaway</groupId>
+                                    <artifactId>nullaway</artifactId>
+                                    <version>${nullaway.version}</version>
+                                </path>
+                                <path>
+                                    <groupId>org.openjdk.jmh</groupId>
+                                    <artifactId>jmh-generator-annprocess</artifactId>
+                                    <version>${jmh.version}</version>
+                                </path>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>fixErrorProne</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>${maven-compiler-plugin.version}</version>
+                        <configuration>
+                            <showDeprecation>true</showDeprecation>
+                            <showWarnings>true</showWarnings>
+                            <compilerArgs>
+                                <arg>-XDcompilePolicy=simple</arg>
+                                <arg>--should-stop=ifError=FLOW</arg>
+                                <arg>
+                                    -Xplugin:ErrorProne
+                                    -XepExcludedPaths:.*/target/(generated-sources|generated-test-sources)/.*
+                                    -XepPatchChecks:ArgumentSelectionDefectChecker,ArrayAsKeyOfSetOrMap,ArrayEquals,AssertEqualsArgumentOrderChecker,AssertFalse,BadImport,BadInstanceof,BooleanParameter,BoxedPrimitiveConstructor,CanIgnoreReturnValueSuggester,ClassName,CollectionIncompatibleType,ComparisonContractViolated,ComparisonOutOfRange,DeadException,DefaultCharset,DepAnn,DoubleBraceInitialization,DuplicateMapKeys,EmptyBlockTag,EmptyCatch,EmptyIf,EqualsGetClass,EqualsHashCode,EqualsIncompatibleType,FieldCanBeFinal,FormatString,FutureReturnValueIgnored,IdentityBinaryExpression,IntLongMath,InvalidBlockTag,InvalidInlineTag,InvalidParam,InvalidThrows,IterablePathParameter,JavaDurationWithNanos,JavaDurationWithSeconds,JavaInstantGetSecondsGetNano,JavaLocalDateTimeGetNano,JavaLocalTimeGetNano,JavaTimeDefaultTimeZone,LockOnBoxedPrimitive,LongLiteralLowerCaseSuffix,LoopOverCharArray,MathAbsoluteRandom,MethodCanBeStatic,MissingFail,MissingOverride,ModifiedButNotUsed,ModifyCollectionInEnhancedForLoop,ModifySourceCollectionInStream,MultipleParallelOrSequentialCalls,MultipleTopLevelClasses,MutableConstantField,MutablePublicArray,NarrowingCompoundAssignment,NonCanonicalStaticMemberImport,NonCanonicalType,NullOptional,NullableConstructor,NullableOptional,NullablePrimitive,NullablePrimitiveArray,NullableTypeParameter,NullableVoid,NullableWildcard,NumericEquality,ObjectToString,OperatorPrecedence,OptionalEquality,PackageLocation,ParameterName,PreconditionsCheckNotNull,PreconditionsCheckNotNullPrimitive,PrimitiveAtomicReference,PrivateConstructorForUtilityClass,RandomModInteger,ReferenceEquality,RemoveUnusedImports,ReturnValueIgnored,SelfAssignment,SelfComparison,SelfEquals,ShortCircuitBoolean,StaticAssignmentInConstructor,StaticGuardedByInstance,StreamResourceLeak,StringSplitter,SynchronizeOnNonFinalField,SystemExitOutsideMain,ThreadJoinLoop,ThreadLocalUsage,TryFailThrowable,TypeParameterNaming,TypeParameterUnusedInFormals,UnnecessaryAssignment,UnnecessaryCheckNotNull,UnnecessaryLambda,UnnecessaryMethodReference,UnnecessaryParentheses,UnusedException,UnusedMethod,UnusedNestedClass,UnusedVariable,WaitNotInLoop,WildcardImport
+                                    -XepPatchLocation:IN_PLACE
+                                </arg>
+                            </compilerArgs>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.google.errorprone</groupId>
+                                    <artifactId>error_prone_core</artifactId>
+                                    <version>${error-prone.version}</version>
+                                </path>
+                                <path>
+                                    <groupId>com.uber.nullaway</groupId>
+                                    <artifactId>nullaway</artifactId>
+                                    <version>${nullaway.version}</version>
+                                </path>
+                                <path>
+                                    <groupId>org.openjdk.jmh</groupId>
+                                    <artifactId>jmh-generator-annprocess</artifactId>
+                                    <version>${jmh.version}</version>
+                                </path>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+
+        </profile>
+    </profiles>
 
 </project>

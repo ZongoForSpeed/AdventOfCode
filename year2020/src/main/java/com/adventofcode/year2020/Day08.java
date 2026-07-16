@@ -110,7 +110,7 @@ public final class Day08 {
                         accumulator += command.right();
                         position++;
                     }
-                    case "jmp" -> position += command.right();
+                    case "jmp" -> position += command.right().intValue();
                     case "nop" -> position++;
                 }
             } else {

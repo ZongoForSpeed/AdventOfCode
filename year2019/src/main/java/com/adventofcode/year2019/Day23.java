@@ -187,7 +187,7 @@ public final class Day23 {
             this.address = address;
             this.queue = new LinkedBlockingQueue<>();
             this.receivedPackets = new LongArrayList();
-            executor.submit(() -> Intcode.intcode(program, this::input, this::output));
+            var unused = executor.submit(() -> Intcode.intcode(program, this::input, this::output));
         }
 
         public BlockingQueue<Long> inputQueue() {
