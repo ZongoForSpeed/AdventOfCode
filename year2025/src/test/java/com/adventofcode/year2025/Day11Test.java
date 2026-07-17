@@ -16,7 +16,7 @@ public class Day11Test extends AbstractTest {
 
     @Test
     void inputExampleOne() {
-        String input = """
+        var input = """
                 aaa: you hhh
                 you: bbb ccc
                 bbb: ddd eee
@@ -28,15 +28,15 @@ public class Day11Test extends AbstractTest {
                 hhh: ccc fff iii
                 iii: out""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long result = Day11.reactorPartOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var result = Day11.reactorPartOne(scanner);
             assertThat(result).isEqualTo(5);
         }
     }
 
     @Test
     void inputExampleTwo() {
-        String input = """
+        var input = """
                 svr: aaa bbb
                 aaa: fft
                 fft: ccc
@@ -51,21 +51,21 @@ public class Day11Test extends AbstractTest {
                 ggg: out
                 hhh: out""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long result = Day11.reactorPartTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var result = Day11.reactorPartTwo(scanner);
             assertThat(result).isEqualTo(2);
         }
     }
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        long result = Day11.reactorPartOne(scanner);
+        var result = Day11.reactorPartOne(scanner);
         assertThat(result).isEqualTo(701);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        long result = Day11.reactorPartTwo(scanner);
+        var result = Day11.reactorPartTwo(scanner);
         assertThat(result).isEqualTo(390108778818526L);
     }
 

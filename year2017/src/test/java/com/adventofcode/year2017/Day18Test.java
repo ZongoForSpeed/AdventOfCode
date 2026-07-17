@@ -16,7 +16,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 set a 1
                 add a 2
                 mul a a
@@ -33,7 +33,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void inputDuetExample() throws Exception {
-        String input = """
+        var input = """
                 snd 1
                 snd 2
                 snd p
@@ -42,7 +42,7 @@ class Day18Test extends AbstractTest {
                 rcv c
                 rcv d""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.partTwo(scanner)).isEqualTo(3);
         }
     }

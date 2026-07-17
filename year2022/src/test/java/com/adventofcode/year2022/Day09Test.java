@@ -13,7 +13,7 @@ class Day09Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 R 4
                 U 4
                 L 3
@@ -24,21 +24,21 @@ class Day09Test extends AbstractTest {
                 R 2""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int size = Day09.PartOne.countTailPositions(scanner);
+            var scanner = new Scanner(input);
+            var size = Day09.PartOne.countTailPositions(scanner);
             Assertions.assertThat(size).isEqualTo(13);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int size = Day09.PartTwo.countTailPositions(scanner);
+            var scanner = new Scanner(input);
+            var size = Day09.PartTwo.countTailPositions(scanner);
             Assertions.assertThat(size).isEqualTo(1);
         }
     }
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 R 5
                 U 8
                 L 8
@@ -49,21 +49,21 @@ class Day09Test extends AbstractTest {
                 U 20""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int size = Day09.PartTwo.countTailPositions(scanner);
+            var scanner = new Scanner(input);
+            var size = Day09.PartTwo.countTailPositions(scanner);
             Assertions.assertThat(size).isEqualTo(36);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int size = Day09.PartOne.countTailPositions(scanner);
+        var size = Day09.PartOne.countTailPositions(scanner);
         Assertions.assertThat(size).isEqualTo(5858);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int size = Day09.PartTwo.countTailPositions(scanner);
+        var size = Day09.PartTwo.countTailPositions(scanner);
         Assertions.assertThat(size).isEqualTo(2602);
     }
 

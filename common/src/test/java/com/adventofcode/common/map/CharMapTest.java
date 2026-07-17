@@ -13,17 +13,17 @@ class CharMapTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(CharMapTest.class);
     @Test
     void charMap() {
-        List<String> input = List.of(
+        var input = List.of(
                 "                  # ",
                 "#    ##    ##    ###",
                 " #  #  #  #  #  #   "
         );
 
-        CharMap map = new CharMap();
+        var map = new CharMap();
 
-        for (int i = 0; i < input.size(); i++) {
+        for (var i = 0; i < input.size(); i++) {
             String line = input.get(i);
-            for (int j = 0; j < line.length(); j++) {
+            for (var j = 0; j < line.length(); j++) {
                 if (line.charAt(j) == '#') {
                     map.set(j, i, line.charAt(j));
                 }

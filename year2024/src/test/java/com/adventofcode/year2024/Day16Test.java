@@ -15,7 +15,7 @@ class Day16Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 ###############
                 #.......#....E#
                 #.#.###.#.###.#
@@ -32,20 +32,20 @@ class Day16Test extends AbstractTest {
                 #S..#.....#...#
                 ###############""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long score = Day16.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var score = Day16.partOne(scanner);
             assertThat(score).isEqualTo(7036);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            long score = Day16.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var score = Day16.partTwo(scanner);
             assertThat(score).isEqualTo(45);
         }
     }
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 #################
                 #...#...#...#..E#
                 #.#.#.#.#.#.#.#.#
@@ -64,26 +64,26 @@ class Day16Test extends AbstractTest {
                 #S#.............#
                 #################""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long score = Day16.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var score = Day16.partOne(scanner);
             assertThat(score).isEqualTo(11048);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            long score = Day16.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var score = Day16.partTwo(scanner);
             assertThat(score).isEqualTo(64);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        long score = Day16.partOne(scanner);
+        var score = Day16.partOne(scanner);
         assertThat(score).isEqualTo(72400);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        long score = Day16.partTwo(scanner);
+        var score = Day16.partTwo(scanner);
         assertThat(score).isEqualTo(435);
     }
 

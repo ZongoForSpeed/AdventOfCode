@@ -20,7 +20,7 @@ public abstract class AbstractTest {
     @Test
     void inputPartOne() throws Exception {
         try (InputStream is = AbstractTest.class.getResourceAsStream("/%4d/day/%02d/input".formatted(year, day));
-             Scanner scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
+             var scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
             partOne(scanner);
         }
     }
@@ -28,7 +28,7 @@ public abstract class AbstractTest {
     @Test
     void inputPartTwo() throws Exception {
         try (InputStream is = AbstractTest.class.getResourceAsStream("/%4d/day/%02d/input".formatted(year, day));
-             Scanner scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
+             var scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
             partTwo(scanner);
         }
     }

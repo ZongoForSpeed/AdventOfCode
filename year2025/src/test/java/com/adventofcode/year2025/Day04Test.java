@@ -17,7 +17,7 @@ public class Day04Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 ..@@.@@@@.
                 @@@.@.@.@@
                 @@@@@.@.@@
@@ -29,13 +29,13 @@ public class Day04Test extends AbstractTest {
                 .@@@@@@@@.
                 @.@.@@@.@.""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int size = Day04.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var size = Day04.partOne(scanner);
             assertThat(size).isEqualTo(13);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            int size = Day04.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var size = Day04.partTwo(scanner);
             assertThat(size).isEqualTo(43);
         }
 
@@ -43,13 +43,13 @@ public class Day04Test extends AbstractTest {
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        int size = Day04.partOne(scanner);
+        var size = Day04.partOne(scanner);
         assertThat(size).isEqualTo(1419);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        int size = Day04.partTwo(scanner);
+        var size = Day04.partTwo(scanner);
         assertThat(size).isEqualTo(8739);
     }
 }

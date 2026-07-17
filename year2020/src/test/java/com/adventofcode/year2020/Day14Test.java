@@ -16,7 +16,7 @@ class Day14Test extends AbstractTest {
 
     @Test
     void dockingData1() {
-        List<String> programs = List.of("mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X",
+        var programs = List.of("mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X",
                 "mem[8] = 11",
                 "mem[7] = 101",
                 "mem[8] = 0");
@@ -26,7 +26,7 @@ class Day14Test extends AbstractTest {
 
     @Test
     void dockingData2() {
-        List<String> programs = List.of("mask = 000000000000000000000000000000X1001X",
+        var programs = List.of("mask = 000000000000000000000000000000X1001X",
                 "mem[42] = 100",
                 "mask = 00000000000000000000000000000000X0XX",
                 "mem[26] = 1");
@@ -36,14 +36,14 @@ class Day14Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> programs = FileUtils.readLines(scanner);
+        var programs = FileUtils.readLines(scanner);
 
         assertThat(Day14.runDockingDataProgram1(programs)).isEqualTo(15403588588538L);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> programs = FileUtils.readLines(scanner);
+        var programs = FileUtils.readLines(scanner);
 
         assertThat(Day14.runDockingDataProgram2(programs)).isEqualTo(3260587250457L);
     }

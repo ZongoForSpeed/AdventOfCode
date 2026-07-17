@@ -17,12 +17,12 @@ class Day09Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 London to Dublin = 464
                 London to Belfast = 518
                 Dublin to Belfast = 141""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         IntegerPair bestDistance = Day09.computeBestDistance(scanner);
         assertThat(bestDistance.left()).isEqualTo(605);

@@ -42,8 +42,8 @@ class Point2DTest {
     @Test
     void testMoveRange() {
         Point2D p = Point2D.of(1, 1);
-        int xMax = 2;
-        int yMax = 2;
+        var xMax = 2;
+        var yMax = 2;
         
         assertThat(p.moveRange(Direction.UP, xMax, yMax)).isEqualTo(Point2D.of(1, 0));
         assertThat(p.moveRange(Direction.UP, xMax, yMax).moveRange(Direction.UP, xMax, yMax)).isEqualTo(Point2D.of(1, 0));
@@ -61,8 +61,8 @@ class Point2DTest {
     @Test
     void testMoveLoop() {
         Point2D p = Point2D.of(0, 0);
-        int xMax = 2;
-        int yMax = 2;
+        var xMax = 2;
+        var yMax = 2;
 
         assertThat(p.moveLoop(Direction.UP, xMax, yMax)).isEqualTo(Point2D.of(0, 2));
         assertThat(p.moveLoop(Direction.LEFT, xMax, yMax)).isEqualTo(Point2D.of(2, 0));
@@ -82,8 +82,8 @@ class Point2DTest {
     @Test
     void testMovePointLoop() {
         Point2D p = Point2D.of(1, 1);
-        int xMax = 5;
-        int yMax = 5;
+        var xMax = 5;
+        var yMax = 5;
         
         assertThat(p.moveLoop(Point2D.of(5, 0), xMax, yMax)).isEqualTo(Point2D.of(1, 1));
         assertThat(p.moveLoop(Point2D.of(0, 5), xMax, yMax)).isEqualTo(Point2D.of(1, 1));

@@ -14,17 +14,17 @@ class Day14Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 498,4 -> 498,6 -> 496,6
                 503,4 -> 502,4 -> 502,9 -> 494,9""";
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day14.partOne(scanner)).isEqualTo(24);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day14.partTwo(scanner)).isEqualTo(93);
         }
     }

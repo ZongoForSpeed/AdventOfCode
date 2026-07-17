@@ -93,7 +93,7 @@ class Day10Test extends AbstractTest {
         assertThat(adapter.left()).isEqualTo(72);
         assertThat(adapter.right()).isEqualTo(31);
 
-        long result = (long) adapter.left() * adapter.right();
+        var result = (long) adapter.left() * adapter.right();
         assertThat(result).isEqualTo(2232);
     }
 

@@ -14,7 +14,7 @@ class Day05Test extends AbstractTest {
 
     @Test
     void exampleInput() {
-        String input = """
+        var input = """
                 seeds: 79 14 55 13
                 
                 seed-to-soil map:
@@ -50,13 +50,13 @@ class Day05Test extends AbstractTest {
                 56 93 4""";
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             OptionalLong min = Day05.PartOne.fertilizer(scanner);
             Assertions.assertThat(min).isPresent().hasValue(35);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             OptionalLong min = Day05.PartTwo.fertilizer(scanner);
             Assertions.assertThat(min).isPresent().hasValue(46);
         }

@@ -14,7 +14,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 1,0,1~1,2,1
                 0,0,2~2,0,2
                 0,2,3~2,2,3
@@ -24,27 +24,27 @@ class Day22Test extends AbstractTest {
                 1,1,8~1,1,9""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int count = Day22.PartOne.countSupports(scanner);
+            var scanner = new Scanner(input);
+            var count = Day22.PartOne.countSupports(scanner);
             Assertions.assertThat(count).isEqualTo(5);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long count = Day22.PartTwo.countFalling(scanner);
+            var scanner = new Scanner(input);
+            var count = Day22.PartTwo.countFalling(scanner);
             Assertions.assertThat(count).isEqualTo(7);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int count = Day22.PartOne.countSupports(scanner);
+        var count = Day22.PartOne.countSupports(scanner);
         Assertions.assertThat(count).isEqualTo(403);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long count = Day22.PartTwo.countFalling(scanner);
+        var count = Day22.PartTwo.countFalling(scanner);
         Assertions.assertThat(count).isEqualTo(70189);
     }
 }

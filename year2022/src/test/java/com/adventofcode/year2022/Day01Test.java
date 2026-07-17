@@ -14,7 +14,7 @@ class Day01Test extends AbstractTest {
 
     @Test
     void sampleInput() {
-        String input = """
+        var input = """
                 1000
                 2000
                 3000

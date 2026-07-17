@@ -4,7 +4,6 @@ import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -26,7 +25,7 @@ class Day14Test extends AbstractTest {
                 "7 A, 1 D => 1 E",
                 "7 A, 1 E => 1 FUEL").map(Day14.Reaction::parseReaction).toList();
 
-        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
+        var fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 31L));
     }
 
@@ -41,7 +40,7 @@ class Day14Test extends AbstractTest {
                 "4 C, 1 A => 1 CA",
                 "2 AB, 3 BC, 4 CA => 1 FUEL").map(Day14.Reaction::parseReaction).toList();
 
-        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
+        var fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 165L));
     }
 
@@ -59,7 +58,7 @@ class Day14Test extends AbstractTest {
                 "3 DCFZ, 7 NZVS, 5 HKGWZ, 10 PSHF => 8 KHKGT"
         ).map(Day14.Reaction::parseReaction).toList();
 
-        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
+        var fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 13312L));
     }
 
@@ -80,7 +79,7 @@ class Day14Test extends AbstractTest {
                 "176 ORE => 6 VJHF"
         ).map(Day14.Reaction::parseReaction).toList();
 
-        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
+        var fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 180697L));
     }
 
@@ -106,7 +105,7 @@ class Day14Test extends AbstractTest {
                 "5 BHXH, 4 VRPVC => 5 LTCX"
         ).map(Day14.Reaction::parseReaction).toList();
 
-        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
+        var fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 2210736L));
     }
 
@@ -174,15 +173,15 @@ class Day14Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<Day14.Reaction> reactions = Day14.readReactions(scanner);
+        var reactions = Day14.readReactions(scanner);
 
-        Map<String, Long> fuelReaction = Day14.solveOrePerFuel(reactions, 1);
+        var fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 337075L));
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<Day14.Reaction> reactions = Day14.readReactions(scanner);
+        var reactions = Day14.readReactions(scanner);
 
         assertThat(Day14.solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5194174L);
     }

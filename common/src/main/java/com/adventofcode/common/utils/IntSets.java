@@ -9,7 +9,7 @@ public final class IntSets {
     }
 
     public static BitSet of(final int... a) {
-        BitSet set = new BitSet();
+        var set = new BitSet();
         for (int i : a) {
             set.set(i);
         }
@@ -43,7 +43,7 @@ public final class IntSets {
     }
 
     public static BitSet range(int a, int b) {
-        BitSet set = new BitSet();
+        var set = new BitSet();
         set.set(a, b);
         return set;
     }

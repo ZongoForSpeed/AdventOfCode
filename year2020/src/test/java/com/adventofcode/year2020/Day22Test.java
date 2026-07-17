@@ -14,7 +14,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void crabCombat() {
-        String input = """
+        var input = """
                 Player 1:
                 9
                 2
@@ -29,23 +29,23 @@ class Day22Test extends AbstractTest {
                 7
                 10""";
 
-        Scanner scanner = new Scanner(input);
-        long point = Day22.playCrabCombat(scanner);
+        var scanner = new Scanner(input);
+        var point = Day22.playCrabCombat(scanner);
         assertThat(point).isEqualTo(306);
 
-        long recursiveCombat = Day22.playRecursiveCombat(new Scanner(input));
+        var recursiveCombat = Day22.playRecursiveCombat(new Scanner(input));
         assertThat(recursiveCombat).isEqualTo(291);
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        long point = Day22.playCrabCombat(scanner);
+        var point = Day22.playCrabCombat(scanner);
         assertThat(point).isEqualTo(33393);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        long recursiveCombat = Day22.playRecursiveCombat(scanner);
+        var recursiveCombat = Day22.playRecursiveCombat(scanner);
         assertThat(recursiveCombat).isEqualTo(31963);
     }
 }

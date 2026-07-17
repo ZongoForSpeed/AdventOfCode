@@ -19,15 +19,15 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 ###########
                 #0.1.....2#
                 #.#######.#
                 #4.......3#
                 ###########""";
 
-        Scanner scanner = new Scanner(input);
-        long minSteps = Day24.computeMinSteps(scanner, false);
+        var scanner = new Scanner(input);
+        var minSteps = Day24.computeMinSteps(scanner, false);
 
         LOGGER.info("minSteps: {}", minSteps);
         assertThat(minSteps).isEqualTo(14);

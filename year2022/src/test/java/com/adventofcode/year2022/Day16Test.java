@@ -14,7 +14,7 @@ class Day16Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
                 Valve BB has flow rate=13; tunnels lead to valves CC, AA
                 Valve CC has flow rate=2; tunnels lead to valves DD, BB
@@ -27,13 +27,13 @@ class Day16Test extends AbstractTest {
                 Valve JJ has flow rate=21; tunnel leads to valve II""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int solution = Day16.solvePartOne(scanner);
+            var scanner = new Scanner(input);
+            var solution = Day16.solvePartOne(scanner);
             assertThat(solution).isEqualTo(1651);
         }
         {
-            Scanner scanner = new Scanner(input);
-            int solution = Day16.solvePartTwo(scanner);
+            var scanner = new Scanner(input);
+            var solution = Day16.solvePartTwo(scanner);
             assertThat(solution).isEqualTo(1707);
         }
     }

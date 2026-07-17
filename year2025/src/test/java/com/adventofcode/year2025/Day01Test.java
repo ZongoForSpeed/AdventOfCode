@@ -16,7 +16,7 @@ public class Day01Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 L68
                 L30
                 R48
@@ -28,14 +28,14 @@ public class Day01Test extends AbstractTest {
                 R14
                 L82""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int password = Day01.countPasswordPartOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var password = Day01.countPasswordPartOne(scanner);
 
             assertThat(password).isEqualTo(3);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            int password = Day01.countPasswordPartTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var password = Day01.countPasswordPartTwo(scanner);
 
             assertThat(password).isEqualTo(6);
         }
@@ -43,14 +43,14 @@ public class Day01Test extends AbstractTest {
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        int password = Day01.countPasswordPartOne(scanner);
+        var password = Day01.countPasswordPartOne(scanner);
         assertThat(password).isEqualTo(1031);
     }
 
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        int password = Day01.countPasswordPartTwo(scanner);
+        var password = Day01.countPasswordPartTwo(scanner);
         assertThat(password).isEqualTo(5831);
     }
 }

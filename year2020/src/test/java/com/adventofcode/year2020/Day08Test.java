@@ -17,7 +17,7 @@ class Day08Test extends AbstractTest {
 
     @Test
     void handheldGameConsole() {
-        List<String> program = List.of("nop +0",
+        var program = List.of("nop +0",
                 "acc +1",
                 "jmp +4",
                 "acc +3",
@@ -34,14 +34,14 @@ class Day08Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> program = FileUtils.readLines(scanner);
+        var program = FileUtils.readLines(scanner);
 
         assertThat(Day08.runHandheldGameConsole(program)).isEqualTo(Pair.of(1217L, false));
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> program = FileUtils.readLines(scanner);
+        var program = FileUtils.readLines(scanner);
 
         assertThat(Day08.fixHandheldGameConsole(program)).isEqualTo(501);
     }

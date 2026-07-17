@@ -14,7 +14,7 @@ class Day20Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 1
                 2
                 -3
@@ -24,14 +24,14 @@ class Day20Test extends AbstractTest {
                 4""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long decrypt = Day20.decryptPartOne(scanner);
+            var scanner = new Scanner(input);
+            var decrypt = Day20.decryptPartOne(scanner);
             assertThat(decrypt).isEqualTo(3);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long decrypt = Day20.decryptPartTwo(scanner);
+            var scanner = new Scanner(input);
+            var decrypt = Day20.decryptPartTwo(scanner);
             assertThat(decrypt).isEqualTo(1623178306L);
         }
     }

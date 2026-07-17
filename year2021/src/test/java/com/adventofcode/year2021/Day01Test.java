@@ -18,7 +18,7 @@ class Day01Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        List<String> strings = List.of("199", "200", "208", "210", "200", "207", "240", "269", "260", "263");
+        var strings = List.of("199", "200", "208", "210", "200", "207", "240", "269", "260", "263");
 
         int[] array = strings.stream().mapToInt(Integer::valueOf).toArray();
 

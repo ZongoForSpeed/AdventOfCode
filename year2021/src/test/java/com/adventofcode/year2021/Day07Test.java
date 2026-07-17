@@ -17,7 +17,7 @@ class Day07Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = "16,1,2,0,4,2,7,1,2,14";
+        var input = "16,1,2,0,4,2,7,1,2,14";
         assertThat(Day07.fuelCost(input, Day07::fuelPartOne)).isEqualTo(37);
         assertThat(Day07.fuelCost(input, Day07::fuelPartTwo)).isEqualTo(168);
     }

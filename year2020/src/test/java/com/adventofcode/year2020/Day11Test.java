@@ -16,7 +16,7 @@ class Day11Test extends AbstractTest {
 
     @Test
     void seatingSystem() {
-        List<String> inputGrid = List.of(
+        var inputGrid = List.of(
                 "L.LL.LL.LL",
                 "LLLLLLL.LL",
                 "L.L.L..L..",
@@ -36,7 +36,7 @@ class Day11Test extends AbstractTest {
 
     @Test
     void adjacentOccupiedSeats1() {
-        List<String> inputGrid = List.of(
+        var inputGrid = List.of(
                 ".......#.",
                 "...#.....",
                 ".#.......",
@@ -47,24 +47,24 @@ class Day11Test extends AbstractTest {
                 "#........",
                 "...#.....");
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
-        int occupiedSeats = Day11.adjacentOccupiedSeats(grid, 4, 3, true);
+        var occupiedSeats = Day11.adjacentOccupiedSeats(grid, 4, 3, true);
         assertThat(occupiedSeats).isEqualTo(8);
     }
 
     @Test
     void adjacentOccupiedSeats2() {
-        List<String> inputGrid = List.of(
+        var inputGrid = List.of(
                 ".............",
                 ".L.L.#.#.#.#.",
                 ".............");
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
-        int occupiedSeats = Day11.adjacentOccupiedSeats(grid, 1, 1, true);
+        var occupiedSeats = Day11.adjacentOccupiedSeats(grid, 1, 1, true);
         assertThat(occupiedSeats).isZero();
     }
 
     @Test
     void adjacentOccupiedSeats3() {
-        List<String> inputGrid1 = List.of(
+        var inputGrid1 = List.of(
                 ".##.##.",
                 "#.#.#.#",
                 "##...##",
@@ -74,13 +74,13 @@ class Day11Test extends AbstractTest {
                 ".##.##.");
 
         char[][] grid1 = inputGrid1.stream().map(String::toCharArray).toArray(char[][]::new);
-        int occupiedSeats = Day11.adjacentOccupiedSeats(grid1, 3, 3, true);
+        var occupiedSeats = Day11.adjacentOccupiedSeats(grid1, 3, 3, true);
         assertThat(occupiedSeats).isZero();
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> inputGrid = FileUtils.readLines(scanner);
+        var inputGrid = FileUtils.readLines(scanner);
 
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
 
@@ -89,7 +89,7 @@ class Day11Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> inputGrid = FileUtils.readLines(scanner);
+        var inputGrid = FileUtils.readLines(scanner);
 
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
 

@@ -16,7 +16,7 @@ class Day03Test extends AbstractTest {
 
     @Test
     void tobogganTrajectory() {
-        List<String> map = List.of("..##.......",
+        var map = List.of("..##.......",
                 "#...#...#..",
                 ".#....#..#.",
                 "..#.#...#.#",
@@ -40,13 +40,13 @@ class Day03Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
+        var lines = FileUtils.readLines(scanner);
         assertThat(Day03.tobogganTrajectory(lines, 3, 1)).isEqualTo(234);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
+        var lines = FileUtils.readLines(scanner);
         assertThat(Day03.checkAllTobogganTrajectories(lines)).isEqualTo(5813773056L);
     }
 }

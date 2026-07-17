@@ -16,19 +16,19 @@ public class Day03Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 987654321111111
                 811111111111119
                 234234234234278
                 818181911112111""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long sum = Day03.joltageLobby(scanner, 2);
+        try (var scanner = new Scanner(input)) {
+            var sum = Day03.joltageLobby(scanner, 2);
             assertThat(sum).isEqualTo(357);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            long sum = Day03.joltageLobby(scanner, 12);
+        try (var scanner = new Scanner(input)) {
+            var sum = Day03.joltageLobby(scanner, 12);
             assertThat(sum).isEqualTo(3121910778619L);
         }
     }
@@ -36,14 +36,14 @@ public class Day03Test extends AbstractTest {
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
 
-        long sum = Day03.joltageLobby(scanner, 2);
+        var sum = Day03.joltageLobby(scanner, 2);
         assertThat(sum).isEqualTo(17316);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
 
-        long sum = Day03.joltageLobby(scanner, 12);
+        var sum = Day03.joltageLobby(scanner, 12);
         assertThat(sum).isEqualTo(171741365473332L);
     }
 }

@@ -14,7 +14,7 @@ class Day10Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 [({(<(())[]>[[{[]{<()<>>
                 [(()[<>])]({[<{<<[]>>(
                 {([(<{}[<>[]}>{[]{[(<()>

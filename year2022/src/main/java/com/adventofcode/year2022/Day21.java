@@ -16,105 +16,101 @@ public final class Day21 {
     private Day21() {
     }
 
-    /**
-     * --- Day 21: Monkey Math ---
-     * <p>
-     * The monkeys are back! You're worried they're going to try to steal your
-     * stuff again, but it seems like they're just holding their ground and making
-     * various monkey noises at you.
-     * <p>
-     * Eventually, one of the elephants realizes you don't speak monkey and comes
-     * over to interpret. As it turns out, they overheard you talking about trying
-     * to find the grove; they can show you a shortcut if you answer their riddle.
-     * <p>
-     * Each monkey is given a job: either to yell a specific number or to yell the
-     * result of a math operation. All of the number-yelling monkeys know their
-     * number from the start; however, the math operation monkeys need to wait for
-     * two other monkeys to yell a number, and those two other monkeys might also
-     * be waiting on other monkeys.
-     * <p>
-     * Your job is to work out the number the monkey named root will yell before
-     * the monkeys figure it out themselves.
-     * <p>
-     * For example:
-     * <p>
-     * root: pppw + sjmn
-     * dbpl: 5
-     * cczh: sllz + lgvd
-     * zczc: 2
-     * ptdq: humn - dvpt
-     * dvpt: 3
-     * lfqf: 4
-     * humn: 5
-     * ljgn: 2
-     * sjmn: drzm * dbpl
-     * sllz: 4
-     * pppw: cczh / lfqf
-     * lgvd: ljgn * ptdq
-     * drzm: hmdt - zczc
-     * hmdt: 32
-     * <p>
-     * Each line contains the name of a monkey, a colon, and then the job of that
-     * monkey:
-     * <p>
-     * - A lone number means the monkey's job is simply to yell that number.
-     * - A job like aaaa + bbbb means the monkey waits for monkeys aaaa and
-     * bbbb to yell each of their numbers; the monkey then yells the sum of
-     * those two numbers.
-     * - aaaa - bbbb means the monkey yells aaaa's number minus bbbb's number.
-     * - Job aaaa * bbbb will yell aaaa's number multiplied by bbbb's number.
-     * - Job aaaa / bbbb will yell aaaa's number divided by bbbb's number.
-     * <p>
-     * So, in the above example, monkey drzm has to wait for monkeys hmdt and zczc
-     * to yell their numbers. Fortunately, both hmdt and zczc have jobs that
-     * involve simply yelling a single number, so they do this immediately: 32 and
-     * 2. Monkey drzm can then yell its number by finding 32 minus 2: 30.
-     * <p>
-     * Then, monkey sjmn has one of its numbers (30, from monkey drzm), and
-     * already has its other number, 5, from dbpl. This allows it to yell its own
-     * number by finding 30 multiplied by 5: 150.
-     * <p>
-     * This process continues until root yells a number: 152.
-     * <p>
-     * However, your actual situation involves considerably more monkeys. What
-     * number will the monkey named root yell?
-     */
+    /// --- Day 21: Monkey Math ---
+    ///
+    /// The monkeys are back! You're worried they're going to try to steal your
+    /// stuff again, but it seems like they're just holding their ground and making
+    /// various monkey noises at you.
+    ///
+    /// Eventually, one of the elephants realizes you don't speak monkey and comes
+    /// over to interpret. As it turns out, they overheard you talking about trying
+    /// to find the grove; they can show you a shortcut if you answer their riddle.
+    ///
+    /// Each monkey is given a job: either to yell a specific number or to yell the
+    /// result of a math operation. All of the number-yelling monkeys know their
+    /// number from the start; however, the math operation monkeys need to wait for
+    /// two other monkeys to yell a number, and those two other monkeys might also
+    /// be waiting on other monkeys.
+    ///
+    /// Your job is to work out the number the monkey named root will yell before
+    /// the monkeys figure it out themselves.
+    ///
+    /// For example:
+    ///
+    /// root: pppw + sjmn
+    /// dbpl: 5
+    /// cczh: sllz + lgvd
+    /// zczc: 2
+    /// ptdq: humn - dvpt
+    /// dvpt: 3
+    /// lfqf: 4
+    /// humn: 5
+    /// ljgn: 2
+    /// sjmn: drzm * dbpl
+    /// sllz: 4
+    /// pppw: cczh / lfqf
+    /// lgvd: ljgn * ptdq
+    /// drzm: hmdt - zczc
+    /// hmdt: 32
+    ///
+    /// Each line contains the name of a monkey, a colon, and then the job of that
+    /// monkey:
+    ///
+    /// - A lone number means the monkey's job is simply to yell that number.
+    /// - A job like aaaa + bbbb means the monkey waits for monkeys aaaa and
+    /// bbbb to yell each of their numbers; the monkey then yells the sum of
+    /// those two numbers.
+    /// - aaaa - bbbb means the monkey yells aaaa's number minus bbbb's number.
+    /// - Job aaaa * bbbb will yell aaaa's number multiplied by bbbb's number.
+    /// - Job aaaa / bbbb will yell aaaa's number divided by bbbb's number.
+    ///
+    /// So, in the above example, monkey drzm has to wait for monkeys hmdt and zczc
+    /// to yell their numbers. Fortunately, both hmdt and zczc have jobs that
+    /// involve simply yelling a single number, so they do this immediately: 32 and
+    /// 2. Monkey drzm can then yell its number by finding 32 minus 2: 30.
+    ///
+    /// Then, monkey sjmn has one of its numbers (30, from monkey drzm), and
+    /// already has its other number, 5, from dbpl. This allows it to yell its own
+    /// number by finding 30 multiplied by 5: 150.
+    ///
+    /// This process continues until root yells a number: 152.
+    ///
+    /// However, your actual situation involves considerably more monkeys. What
+    /// number will the monkey named root yell?
     public static long partOne(Scanner scanner) {
-        Map<String, Monkey> monkeys = readInput(scanner);
+        var monkeys = readInput(scanner);
 
         LOGGER.info("Monkeys = {}", monkeys);
         Monkey root = Objects.requireNonNull(monkeys.get("root"));
         LOGGER.info("Root = {}", root);
 
-        Const expression = (Const) root.shout(new HashMap<>(), monkeys);
+        var expression = (Const) root.shout(new HashMap<>(), monkeys);
         return expression.value;
     }
 
-    /**
-     * --- Part Two ---
-     * <p>
-     * Due to some kind of monkey-elephant-human mistranslation, you seem to have
-     * misunderstood a few key details about the riddle.
-     * <p>
-     * First, you got the wrong job for the monkey named root; specifically, you
-     * got the wrong math operation. The correct operation for monkey root should
-     * be =, which means that it still listens for two numbers (from the same two
-     * monkeys as before), but now checks that the two numbers match.
-     * <p>
-     * Second, you got the wrong monkey for the job starting with humn:. It isn't
-     * a monkey - it's you. Actually, you got the job wrong, too: you need to
-     * figure out what number you need to yell so that root's equality check
-     * passes. (The number that appears after humn: in your input is now
-     * irrelevant.)
-     * <p>
-     * In the above example, the number you need to yell to pass root's equality
-     * test is 301. (This causes root to get the same number, 150, from both of
-     * its monkeys.)
-     * <p>
-     * What number do you yell to pass root's equality test?
-     */
+    /// --- Part Two ---
+    ///
+    /// Due to some kind of monkey-elephant-human mistranslation, you seem to have
+    /// misunderstood a few key details about the riddle.
+    ///
+    /// First, you got the wrong job for the monkey named root; specifically, you
+    /// got the wrong math operation. The correct operation for monkey root should
+    /// be =, which means that it still listens for two numbers (from the same two
+    /// monkeys as before), but now checks that the two numbers match.
+    ///
+    /// Second, you got the wrong monkey for the job starting with humn:. It isn't
+    /// a monkey - it's you. Actually, you got the job wrong, too: you need to
+    /// figure out what number you need to yell so that root's equality check
+    /// passes. (The number that appears after humn: in your input is now
+    /// irrelevant.)
+    ///
+    /// In the above example, the number you need to yell to pass root's equality
+    /// test is 301. (This causes root to get the same number, 150, from both of
+    /// its monkeys.)
+    ///
+    /// What number do you yell to pass root's equality test?
     public static long partTwo(Scanner scanner) {
-        Map<String, Monkey> monkeys = readInput(scanner);
+        var monkeys = readInput(scanner);
 
         monkeys.put("humn", new Human("x"));
 
@@ -123,11 +119,11 @@ public final class Day21 {
         root = new CompositeMonkey("root", root.leftMonkey, '=', root.rightMonkey);
         LOGGER.info("Root = {}", root);
 
-        Equation expression = (Equation) root.shout(new HashMap<>(), monkeys);
+        var expression = (Equation) root.shout(new HashMap<>(), monkeys);
         LOGGER.info("Expression = {}", expression);
-        Linear left = (Linear) expression.left;
-        Const right = (Const) expression.right;
-        long value = right.value;
+        var left = (Linear) expression.left;
+        var right = (Const) expression.right;
+        var value = right.value;
         value *= left.c;
         value -= left.b;
         value /= left.a;
@@ -135,19 +131,19 @@ public final class Day21 {
     }
 
     private static Map<String, Monkey> readInput(Scanner scanner) {
-        Map<String, Monkey> monkeys = new HashMap<>();
+        var monkeys = new HashMap<String, Monkey>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] split = line.split(":? ");
             LOGGER.debug("Line: {}", Arrays.toString(split));
             if (split.length == 2) {
                 String name = split[0];
-                long value = Long.parseLong(split[1]);
+                var value = Long.parseLong(split[1]);
                 monkeys.put(name, new SimpleMonkey(name, value));
             } else if (split.length == 4) {
                 String name = split[0];
                 String leftMonkey = split[1];
-                char op = split[2].charAt(0);
+                var op = split[2].charAt(0);
                 String rightMonkey = split[3];
                 monkeys.put(name, new CompositeMonkey(name, leftMonkey, op, rightMonkey));
             } else {
@@ -237,10 +233,10 @@ public final class Day21 {
         }
 
         public static Linear build(long a, long b, long c) {
-            long gcd = Arithmetic.gcd(a, b, c);
-            long newA = a / gcd;
-            long newB = b / gcd;
-            long newC = c / gcd;
+            var gcd = Arithmetic.gcd(a, b, c);
+            var newA = a / gcd;
+            var newB = b / gcd;
+            var newC = c / gcd;
             if (newC < 0) {
                 newA *= -1;
                 newB *= -1;

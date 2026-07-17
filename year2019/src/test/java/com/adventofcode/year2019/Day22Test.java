@@ -7,7 +7,6 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -39,7 +38,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void simpleExample1() {
-        List<String> commands = Arrays.asList("deal with increment 7",
+        var commands = Arrays.asList("deal with increment 7",
                 Day22.DEAL_INTO_NEW_STACK,
                 Day22.DEAL_INTO_NEW_STACK);
 
@@ -50,7 +49,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void simpleExample2() {
-        List<String> commands = Arrays.asList("cut 6",
+        var commands = Arrays.asList("cut 6",
                 "deal with increment 7",
                 Day22.DEAL_INTO_NEW_STACK);
 
@@ -60,7 +59,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void simpleExample3() {
-        List<String> commands = Arrays.asList("deal with increment 7",
+        var commands = Arrays.asList("deal with increment 7",
                 "deal with increment 9",
                 "cut -2");
 
@@ -70,7 +69,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void simpleExample4() {
-        List<String> commands = Arrays.asList(Day22.DEAL_INTO_NEW_STACK,
+        var commands = Arrays.asList(Day22.DEAL_INTO_NEW_STACK,
                 "cut -2",
                 "deal with increment 7",
                 "cut 8",
@@ -87,7 +86,7 @@ class Day22Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> commands = FileUtils.readLines(scanner);
+        var commands = FileUtils.readLines(scanner);
         IntList cards = IntArrayList.toList(IntStream.range(0, 10007));
         IntList shuffle = Day22.slamShuffle(cards, commands);
         assertThat(shuffle.indexOf(2019)).isEqualTo(4775);
@@ -97,8 +96,8 @@ class Day22Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> commands = FileUtils.readLines(scanner);
-        long result = Day22.inverseSlamShuffle(commands, 2020, 119315717514047L, 101741582076661L);
+        var commands = FileUtils.readLines(scanner);
+        var result = Day22.inverseSlamShuffle(commands, 2020, 119315717514047L, 101741582076661L);
         assertThat(result).isEqualTo(37889219674304L);
     }
 }

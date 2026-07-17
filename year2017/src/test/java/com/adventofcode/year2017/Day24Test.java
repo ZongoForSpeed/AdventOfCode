@@ -4,7 +4,6 @@ import com.adventofcode.common.utils.IntegerPair;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +16,7 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 0/2
                 2/2
                 2/3
@@ -27,7 +26,7 @@ class Day24Test extends AbstractTest {
                 10/1
                 9/10""";
 
-        List<IntegerPair> strongestBridge = Day24.findStrongestBridgePartOne(new Scanner(input));
+        var strongestBridge = Day24.findStrongestBridgePartOne(new Scanner(input));
         assertThat(strongestBridge)
                 .hasSize(3)
                 .containsExactly(IntegerPair.of(0, 1), IntegerPair.of(1, 10), IntegerPair.of(9, 10));
@@ -44,14 +43,14 @@ class Day24Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<IntegerPair> strongestBridge = Day24.findStrongestBridgePartOne(scanner);
+        var strongestBridge = Day24.findStrongestBridgePartOne(scanner);
 
         assertThat(Day24.strength(strongestBridge)).isEqualTo(2006);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<IntegerPair> strongestBridge = Day24.findStrongestBridgePartTwo(scanner);
+        var strongestBridge = Day24.findStrongestBridgePartTwo(scanner);
 
         assertThat(Day24.strength(strongestBridge)).isEqualTo(1994);
     }

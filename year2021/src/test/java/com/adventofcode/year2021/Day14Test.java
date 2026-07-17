@@ -14,7 +14,7 @@ class Day14Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 NNCB
                 
                 CH -> B

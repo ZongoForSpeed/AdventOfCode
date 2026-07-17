@@ -15,15 +15,15 @@ class Day04Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 ..X...
                 .SAMX.
                 .A..A.
                 XMAS.S
                 .X....""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int count = Day04.xmasPartOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var count = Day04.xmasPartOne(scanner);
             assertThat(count).isEqualTo(4);
         }
 
@@ -31,7 +31,7 @@ class Day04Test extends AbstractTest {
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 MMMSXXMASM
                 MSAMXMSMSA
                 AMXSXMAAMM
@@ -43,13 +43,13 @@ class Day04Test extends AbstractTest {
                 MAMMMXMMMM
                 MXMXAXMASX""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int count = Day04.xmasPartOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var count = Day04.xmasPartOne(scanner);
             assertThat(count).isEqualTo(18);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            int count = Day04.xmasPartTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var count = Day04.xmasPartTwo(scanner);
             assertThat(count).isEqualTo(9);
         }
     }

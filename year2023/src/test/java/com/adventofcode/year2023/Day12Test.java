@@ -13,7 +13,7 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 ???.### 1,1,3
                 .??..??...?##. 1,1,3
                 ?#?#?#?#?#?#?#? 1,3,1,6
@@ -22,34 +22,34 @@ class Day12Test extends AbstractTest {
                 ?###???????? 3,2,1""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int count = Day12.PartOne.countArrangements(scanner);
+            var scanner = new Scanner(input);
+            var count = Day12.PartOne.countArrangements(scanner);
 //
             Assertions.assertThat(count).isEqualTo(21);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long count = Day12.PartTwo.countArrangements(scanner, 1);
+            var scanner = new Scanner(input);
+            var count = Day12.PartTwo.countArrangements(scanner, 1);
             Assertions.assertThat(count).isEqualTo(21);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long count = Day12.PartTwo.countArrangements(scanner, 5);
+            var scanner = new Scanner(input);
+            var count = Day12.PartTwo.countArrangements(scanner, 5);
             Assertions.assertThat(count).isEqualTo(525152);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int count = Day12.PartOne.countArrangements(scanner);
+        var count = Day12.PartOne.countArrangements(scanner);
         Assertions.assertThat(count).isEqualTo(6871);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long count = Day12.PartTwo.countArrangements(scanner, 5);
+        var count = Day12.PartTwo.countArrangements(scanner, 5);
         Assertions.assertThat(count).isEqualTo(2043098029844L);
     }
 

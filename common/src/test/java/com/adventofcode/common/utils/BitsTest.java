@@ -33,7 +33,7 @@ class BitsTest {
 
     @Test
     void testContains() {
-        long bitset = 0b1011L;
+        var bitset = 0b1011L;
         assertThat(Bits.contains(bitset, 0)).isTrue();
         assertThat(Bits.contains(bitset, 1)).isTrue();
         assertThat(Bits.contains(bitset, 2)).isFalse();
@@ -43,14 +43,14 @@ class BitsTest {
 
     @Test
     void testAdd() {
-        long bitset = 0b1011L;
+        var bitset = 0b1011L;
         assertThat(Bits.add(bitset, 2)).isEqualTo(0b1111L);
         assertThat(Bits.add(bitset, 0)).isEqualTo(0b1011L);
     }
 
     @Test
     void testRemove() {
-        long bitset = 0b1011L;
+        var bitset = 0b1011L;
         assertThat(Bits.remove(bitset, 1)).isEqualTo(0b1001L);
         assertThat(Bits.remove(bitset, 2)).isEqualTo(0b1011L);
     }

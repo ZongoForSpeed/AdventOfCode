@@ -15,7 +15,7 @@ class Day25Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 #####
                 .####
                 .####
@@ -56,15 +56,15 @@ class Day25Test extends AbstractTest {
                 #.#.#
                 #####""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int count = Day25.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var count = Day25.partOne(scanner);
             assertThat(count).isEqualTo(3);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        int count = Day25.partOne(scanner);
+        var count = Day25.partOne(scanner);
         assertThat(count).isEqualTo(3155);
     }
 

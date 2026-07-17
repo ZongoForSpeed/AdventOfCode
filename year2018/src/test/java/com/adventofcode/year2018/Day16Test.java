@@ -15,13 +15,13 @@ class Day16Test extends AbstractTest {
 
     @Test
     void example() {
-        String input = """
+        var input = """
                 Before: [3, 2, 1, 1]
                 9 2 1 2
                 After:  [3, 2, 2, 1]
                 
                 """;
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         assertThat(Day16.chronalClassificationPartOne(scanner)).isEqualTo(1);
     }
 

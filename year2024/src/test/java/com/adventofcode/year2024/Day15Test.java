@@ -15,7 +15,7 @@ class Day15Test extends AbstractTest {
 
     @Test
     void example1() {
-        String input = """
+        var input = """
                 ########
                 #..O.O.#
                 ##@.O..#
@@ -27,13 +27,13 @@ class Day15Test extends AbstractTest {
                 
                 <^^>>>vv<v>>v<<""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int gps = Day15.partOne(scanner, true);
+        try (var scanner = new Scanner(input)) {
+            var gps = Day15.partOne(scanner, true);
             assertThat(gps).isEqualTo(2028);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            int gps = Day15.partTwo(scanner, true);
+        try (var scanner = new Scanner(input)) {
+            var gps = Day15.partTwo(scanner, true);
             assertThat(gps).isEqualTo(1751);
         }
     }
@@ -41,7 +41,7 @@ class Day15Test extends AbstractTest {
 
     @Test
     void example2() {
-        String input = """
+        var input = """
                 ##########
                 #..O..O.O#
                 #......O.#
@@ -64,20 +64,20 @@ class Day15Test extends AbstractTest {
                 ^^>vv<^v^v<vv>^<><v<^v>^^^>>>^^vvv^>vvv<>>>^<^>>>>>^<<^v>^vvv<>^<><<v>
                 v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int gps = Day15.partOne(scanner, true);
+        try (var scanner = new Scanner(input)) {
+            var gps = Day15.partOne(scanner, true);
             assertThat(gps).isEqualTo(10092);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            int gps = Day15.partTwo(scanner, true);
+        try (var scanner = new Scanner(input)) {
+            var gps = Day15.partTwo(scanner, true);
             assertThat(gps).isEqualTo(9021);
         }
     }
 
     @Test
     void example3() {
-        String input = """
+        var input = """
                 #######
                 #...#.#
                 #.....#
@@ -88,21 +88,21 @@ class Day15Test extends AbstractTest {
                 
                 <vv<<^^<<^^""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int gps = Day15.partTwo(scanner, false);
+        try (var scanner = new Scanner(input)) {
+            var gps = Day15.partTwo(scanner, false);
             assertThat(gps).isEqualTo(618);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        int gps = Day15.partOne(scanner, false);
+        var gps = Day15.partOne(scanner, false);
         assertThat(gps).isEqualTo(1426855);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        int gps = Day15.partTwo(scanner, false);
+        var gps = Day15.partTwo(scanner, false);
         assertThat(gps).isEqualTo(1404917);
     }
 

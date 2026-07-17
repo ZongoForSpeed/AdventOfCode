@@ -15,7 +15,7 @@ class Day07Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 pbga (66)
                 xhth (57)
                 ebii (61)

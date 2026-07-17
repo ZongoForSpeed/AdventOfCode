@@ -32,7 +32,7 @@ public class CharMap {
     public CharMap(CharMap o) {
         this.defaultValue = o.defaultValue;
         this.map = Arrays.copyOf(o.map, o.map.length);
-        for (int i = 0; i < map.length; i++) {
+        for (var i = 0; i < map.length; i++) {
             map[i] = Arrays.copyOf(o.map[i], o.map[i].length);
         }
     }
@@ -46,15 +46,15 @@ public class CharMap {
     }
 
     public static CharMap read(Scanner scanner, Predicate<Character> predicate, boolean stopWhenBlank) {
-        CharMap map = new CharMap();
-        int j = 0;
+        var map = new CharMap();
+        var j = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (stopWhenBlank && StringUtils.isBlank(line)) {
                 break;
             }
-            for (int i = 0; i < line.length(); i++) {
-                char c = line.charAt(i);
+            for (var i = 0; i < line.length(); i++) {
+                var c = line.charAt(i);
                 if (predicate.test(c)) {
                     map.set(i, j, c);
                 }
@@ -98,22 +98,22 @@ public class CharMap {
 
     public void reserve(int x, int y) {
         if (y >= map.length) {
-            int length = map.length;
+            var length = map.length;
             map = Arrays.copyOf(map, y + 1);
             Arrays.fill(map, length, y + 1, new char[0]);
         }
         if (x >= map[y].length) {
-            int length = map[y].length;
+            var length = map[y].length;
             map[y] = Arrays.copyOf(map[y], x + 1);
             Arrays.fill(map[y], length, x + 1, defaultValue);
         }
     }
 
     public void trim() {
-        int iMax = -1;
-        for (int i = 0; i < map.length; i++) {
-            int jMax = -1;
-            for (int j = 0; j < map[i].length; j++) {
+        var iMax = -1;
+        for (var i = 0; i < map.length; i++) {
+            var jMax = -1;
+            for (var j = 0; j < map[i].length; j++) {
                 if (map[i][j] != defaultValue) {
                     jMax = j;
                 }
@@ -132,9 +132,9 @@ public class CharMap {
     }
 
     public int xMax() {
-        int max = 0;
+        var max = 0;
         for (char[] line : map) {
-            for (int x = 0; x < line.length; x++) {
+            for (var x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     max = Math.max(x, max);
                 }
@@ -144,8 +144,8 @@ public class CharMap {
     }
 
     public int yMax() {
-        int max = 0;
-        for (int y = 0; y < map.length; y++) {
+        var max = 0;
+        for (var y = 0; y < map.length; y++) {
             char[] line = map[y];
             for (char c : line) {
                 if (c != defaultValue) {
@@ -157,9 +157,9 @@ public class CharMap {
     }
 
     public void foreach(TriConsumer<Integer, Integer, Character> consumer) {
-        for (int y = 0; y < map.length; y++) {
+        for (var y = 0; y < map.length; y++) {
             char[] line = map[y];
-            for (int x = 0; x < line.length; x++) {
+            for (var x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     consumer.accept(x, y, line[x]);
                 }
@@ -177,10 +177,10 @@ public class CharMap {
     }
 
     public List<Point2D> points() {
-        List<Point2D> points = new ArrayList<>();
-        for (int y = 0; y < map.length; y++) {
+        var points = new ArrayList<Point2D>();
+        for (var y = 0; y < map.length; y++) {
             char[] line = map[y];
-            for (int x = 0; x < line.length; x++) {
+            for (var x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     points.add(Point2D.of(x, y));
                 }
@@ -190,10 +190,10 @@ public class CharMap {
     }
 
     public List<ObjectCharPair<Point2D>> entries() {
-        List<ObjectCharPair<Point2D>> entries = new ArrayList<>();
-        for (int y = 0; y < map.length; y++) {
+        var entries = new ArrayList<ObjectCharPair<Point2D>>();
+        for (var y = 0; y < map.length; y++) {
             char[] line = map[y];
-            for (int x = 0; x < line.length; x++) {
+            for (var x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     entries.add(ObjectCharPair.of(Point2D.of(x, y), line[x]));
                 }
@@ -214,9 +214,9 @@ public class CharMap {
     }
 
     public CharMap subMap(int xMin, int xMax, int yMin, int yMax) {
-        CharMap subMap = new CharMap(xMax - xMin - 1, yMax - yMin - 1, defaultValue);
-        for (int x = xMin; x < xMax; ++x) {
-            for (int y = yMin; y < yMax; ++y) {
+        var subMap = new CharMap(xMax - xMin - 1, yMax - yMin - 1, defaultValue);
+        for (var x = xMin; x < xMax; ++x) {
+            for (var y = yMin; y < yMax; ++y) {
                 subMap.set(x - xMin, y - yMin, get(x, y));
             }
         }
@@ -224,20 +224,20 @@ public class CharMap {
     }
 
     public void insertLine(int line, char c) {
-        int length = map.length;
+        var length = map.length;
         map = Arrays.copyOf(map, length + 1);
         System.arraycopy(map, line,
                 map, line + 1,
                 length - line);
 
-        int lineLength = map[line].length;
+        var lineLength = map[line].length;
         map[line] = new char[lineLength];
         Arrays.fill(map[line], c);
     }
 
     public void insertColumn(int column, char c) {
-        for (int i = 0; i < map.length; i++) {
-            int length = map[i].length;
+        for (var i = 0; i < map.length; i++) {
+            var length = map[i].length;
             map[i] = Arrays.copyOf(map[i], length + 1);
             System.arraycopy(map[i], column,
                     map[i], column + 1,

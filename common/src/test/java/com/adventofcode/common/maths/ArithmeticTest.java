@@ -1,6 +1,5 @@
 package com.adventofcode.common.maths;
 
-import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -97,7 +96,7 @@ class ArithmeticTest {
 
     @Test
     void testBezout() {
-        Triple<Long, Long, Long> result = Arithmetic.bezout(12, 18);
+        var result = Arithmetic.bezout(12, 18);
         assertThat(result.getLeft()).isEqualTo(6L);
         assertThat(12 * result.getMiddle() + 18 * result.getRight()).isEqualTo(6L);
 

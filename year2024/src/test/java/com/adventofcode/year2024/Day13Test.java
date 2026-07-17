@@ -15,7 +15,7 @@ class Day13Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Button A: X+94, Y+34
                 Button B: X+22, Y+67
                 Prize: X=8400, Y=5400
@@ -32,13 +32,13 @@ class Day13Test extends AbstractTest {
                 Button B: X+27, Y+71
                 Prize: X=18641, Y=10279""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long cost = Day13.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var cost = Day13.partOne(scanner);
             assertThat(cost).isEqualTo(480);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            long cost = Day13.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var cost = Day13.partTwo(scanner);
             assertThat(cost).isEqualTo(875318608908L);
         }
     }

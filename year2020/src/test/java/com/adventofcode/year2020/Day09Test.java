@@ -49,7 +49,7 @@ class Day09Test extends AbstractTest {
 
         LongList contiguousSet = Day09.findContiguousSet(codes, 127);
         assertThat(contiguousSet.toLongArray()).containsExactly(15L, 25L, 47L, 40L);
-        long weakness = Collections.max(contiguousSet) + Collections.min(contiguousSet);
+        var weakness = Collections.max(contiguousSet) + Collections.min(contiguousSet);
         assertThat(weakness).isEqualTo(62);
     }
 
@@ -84,7 +84,7 @@ class Day09Test extends AbstractTest {
                 167400001L,
                 168612228L);
 
-        long weakness = Collections.max(contiguousSet) + Collections.min(contiguousSet);
+        var weakness = Collections.max(contiguousSet) + Collections.min(contiguousSet);
         assertThat(weakness).isEqualTo(438559930L);
     }
 

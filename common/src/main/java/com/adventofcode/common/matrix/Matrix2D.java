@@ -18,7 +18,7 @@ public record Matrix2D(long a11, long a12, long a21, long a22) {
     }
 
     public static Matrix2D power(Matrix2D base, long exponent, long modulus) {
-        Matrix2D result = new Matrix2D(1, 0, 0, 1);
+        var result = new Matrix2D(1, 0, 0, 1);
         while (exponent > 0) {
             if (exponent % 2 != 0)
                 result = result.multiply(base, modulus);

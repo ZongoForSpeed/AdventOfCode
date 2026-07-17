@@ -14,7 +14,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void largerExample() {
-        String input = """
+        var input = """
                 on x=-5..47,y=-31..22,z=-19..33
                 on x=-44..5,y=-27..21,z=-14..35
                 on x=-49..-1,y=-11..42,z=-10..38
@@ -82,7 +82,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void simpleExample() {
-        String input = """
+        var input = """
                 on x=10..12,y=10..12,z=10..12
                 on x=11..13,y=11..13,z=11..13
                 off x=9..11,y=9..11,z=9..11
@@ -93,7 +93,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 on x=-20..26,y=-36..17,z=-47..7
                 on x=-20..33,y=-21..23,z=-26..28
                 on x=-22..28,y=-29..23,z=-38..16

@@ -14,19 +14,19 @@ class Day19Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Blueprint 1: Each ore robot costs 4 ore. Each clay robot costs 2 ore. Each obsidian robot costs 3 ore and 14 clay. Each geode robot costs 2 ore and 7 obsidian.
                 Blueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 8 clay. Each geode robot costs 3 ore and 12 obsidian.""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long qualityLevel = Day19.computeQualityLevelPartOne(scanner);
+            var scanner = new Scanner(input);
+            var qualityLevel = Day19.computeQualityLevelPartOne(scanner);
             assertThat(qualityLevel).isEqualTo(33);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long qualityLevel = Day19.computeQualityLevelPartTwo(scanner);
+            var scanner = new Scanner(input);
+            var qualityLevel = Day19.computeQualityLevelPartTwo(scanner);
             assertThat(qualityLevel).isEqualTo(3472);
         }
     }

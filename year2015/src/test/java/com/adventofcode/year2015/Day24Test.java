@@ -16,7 +16,7 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 1
                 2
                 3

@@ -15,7 +15,7 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Sabqponm
                 abcryxxl
                 accszExk
@@ -23,12 +23,12 @@ class Day12Test extends AbstractTest {
                 abdefghi""";
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day12.partOne(scanner)).isEqualTo(31);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day12.partTwo(scanner)).isEqualTo(29);
         }
 

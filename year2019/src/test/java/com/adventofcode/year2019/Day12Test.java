@@ -31,12 +31,12 @@ class Day12Test extends AbstractTest {
         for (Day12.Moon moon : moons) {
             LOGGER.debug("Moon: {}", moon);
         }
-        for (long i = 1; i < 11; i++) {
+        for (var i = 1L; i < 11; i++) {
             Day12.Moon.step(moons);
             LOGGER.debug("After {} step(s):\n{}", i, moons);
         }
 
-        long totalEnergy = moons.stream().mapToLong(Day12.Moon::energy).sum();
+        var totalEnergy = moons.stream().mapToLong(Day12.Moon::energy).sum();
         assertThat(totalEnergy).isEqualTo(179);
     }
 
@@ -52,14 +52,14 @@ class Day12Test extends AbstractTest {
             LOGGER.debug("Moon: {}", moon);
         }
 
-        for (long i = 1; i < 101; i++) {
+        for (var i = 1L; i < 101; i++) {
             Day12.Moon.step(moons);
             if (i % 10 == 0) {
                 LOGGER.debug("After {} step(s):\n{}", i, moons);
             }
         }
 
-        long totalEnergy = moons.stream().mapToLong(Day12.Moon::energy).sum();
+        var totalEnergy = moons.stream().mapToLong(Day12.Moon::energy).sum();
         assertThat(totalEnergy).isEqualTo(1940);
     }
 
@@ -73,7 +73,7 @@ class Day12Test extends AbstractTest {
 
         List<Day12.Moon> moonCopyList = moons.stream().map(Day12.Moon::new).toList();
 
-        long step = 0;
+        var step = 0L;
         do {
             step++;
             Day12.Moon.step(moons);
@@ -81,15 +81,15 @@ class Day12Test extends AbstractTest {
 
         assertThat(step).isEqualTo(2772);
 
-        long loopX = Day12.findLoop(moonCopyList, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);
-        long loopY = Day12.findLoop(moonCopyList, Day12.Moon::getPositionY, Day12.Moon::getVelocityY);
-        long loopZ = Day12.findLoop(moonCopyList, Day12.Moon::getPositionZ, Day12.Moon::getVelocityZ);
+        var loopX = Day12.findLoop(moonCopyList, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);
+        var loopY = Day12.findLoop(moonCopyList, Day12.Moon::getPositionY, Day12.Moon::getVelocityY);
+        var loopZ = Day12.findLoop(moonCopyList, Day12.Moon::getPositionZ, Day12.Moon::getVelocityZ);
 
         assertThat(loopX).isEqualTo(18);
         assertThat(loopY).isEqualTo(28);
         assertThat(loopZ).isEqualTo(44);
 
-        long result = Arithmetic.lcm(loopX, loopY, loopZ);
+        var result = Arithmetic.lcm(loopX, loopY, loopZ);
         assertThat(result).isEqualTo(2772);
     }
 
@@ -102,15 +102,15 @@ class Day12Test extends AbstractTest {
                 "<x=9, y=-8, z=-3>").map(Day12.Moon::parse).toList();
 
 
-        long loopX = Day12.findLoop(moons, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);
-        long loopY = Day12.findLoop(moons, Day12.Moon::getPositionY, Day12.Moon::getVelocityY);
-        long loopZ = Day12.findLoop(moons, Day12.Moon::getPositionZ, Day12.Moon::getVelocityZ);
+        var loopX = Day12.findLoop(moons, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);
+        var loopY = Day12.findLoop(moons, Day12.Moon::getPositionY, Day12.Moon::getVelocityY);
+        var loopZ = Day12.findLoop(moons, Day12.Moon::getPositionZ, Day12.Moon::getVelocityZ);
 
         assertThat(loopX).isEqualTo(2028);
         assertThat(loopY).isEqualTo(5898);
         assertThat(loopZ).isEqualTo(4702);
 
-        long result = Arithmetic.lcm(loopX, loopY, loopZ);
+        var result = Arithmetic.lcm(loopX, loopY, loopZ);
         assertThat(result).isEqualTo(4686774924L);
     }
 
@@ -119,7 +119,7 @@ class Day12Test extends AbstractTest {
 
         List<Day12.Moon> moons = FileUtils.readLines(scanner).stream().map(Day12.Moon::parse).toList();
 
-        long totalEnergy = Day12.computeTotalEnergy(moons);
+        var totalEnergy = Day12.computeTotalEnergy(moons);
         assertThat(totalEnergy).isEqualTo(12053);
     }
 
@@ -127,15 +127,15 @@ class Day12Test extends AbstractTest {
     public void partTwo(Scanner scanner) {
         List<Day12.Moon> moons = FileUtils.readLines(scanner).stream().map(Day12.Moon::parse).toList();
 
-        long loopX = Day12.findLoop(moons, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);
-        long loopY = Day12.findLoop(moons, Day12.Moon::getPositionY, Day12.Moon::getVelocityY);
-        long loopZ = Day12.findLoop(moons, Day12.Moon::getPositionZ, Day12.Moon::getVelocityZ);
+        var loopX = Day12.findLoop(moons, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);
+        var loopY = Day12.findLoop(moons, Day12.Moon::getPositionY, Day12.Moon::getVelocityY);
+        var loopZ = Day12.findLoop(moons, Day12.Moon::getPositionZ, Day12.Moon::getVelocityZ);
 
         assertThat(loopX).isEqualTo(186028L);
         assertThat(loopY).isEqualTo(286332L);
         assertThat(loopZ).isEqualTo(96236L);
 
-        long result = Arithmetic.lcm(loopX, loopY, loopZ);
+        var result = Arithmetic.lcm(loopX, loopY, loopZ);
         assertThat(result).isEqualTo(320380285873116L);
     }
 }

@@ -11,17 +11,17 @@ class Day14Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 p=2,4 v=2,-3""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day14.partOne(scanner, 11, 7, 5, true)).isEqualTo(1);
         }
     }
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 p=0,4 v=3,-3
                 p=6,3 v=-1,-3
                 p=10,3 v=-1,2
@@ -35,7 +35,7 @@ class Day14Test extends AbstractTest {
                 p=2,4 v=2,-3
                 p=9,5 v=-3,-3""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day14.partOne(scanner, 11, 7, 100, true)).isEqualTo(12);
         }
     }

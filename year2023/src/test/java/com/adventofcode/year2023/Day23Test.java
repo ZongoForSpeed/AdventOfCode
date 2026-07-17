@@ -13,7 +13,7 @@ class Day23Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 #.#####################
                 #.......#########...###
                 #######.#########.#.###
@@ -39,27 +39,27 @@ class Day23Test extends AbstractTest {
                 #####################.#""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int cardinality = Day23.PartOne.longestPathLength(scanner);
+            var scanner = new Scanner(input);
+            var cardinality = Day23.PartOne.longestPathLength(scanner);
             Assertions.assertThat(cardinality).isEqualTo(94);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int cardinality = Day23.PartTwo.longestPathLength(scanner);
+            var scanner = new Scanner(input);
+            var cardinality = Day23.PartTwo.longestPathLength(scanner);
             Assertions.assertThat(cardinality).isEqualTo(154);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int cardinality = Day23.PartOne.longestPathLength(scanner);
+        var cardinality = Day23.PartOne.longestPathLength(scanner);
         Assertions.assertThat(cardinality).isEqualTo(2070);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int cardinality = Day23.PartTwo.longestPathLength(scanner);
+        var cardinality = Day23.PartTwo.longestPathLength(scanner);
         Assertions.assertThat(cardinality).isEqualTo(6498);
     }
 

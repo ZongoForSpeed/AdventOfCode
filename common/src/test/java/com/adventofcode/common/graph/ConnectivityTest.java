@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,19 +12,19 @@ class ConnectivityTest {
 
     @Test
     void testConnectedPointsSimple() {
-        Map<String, List<String>> graph = Map.of(
+        var graph = Map.of(
                 "A", List.of("B"),
                 "B", List.of("A", "C"),
                 "C", List.of("B")
         );
 
-        Set<String> connected = Connectivity.connectedPoints(graph, "A");
+        var connected = Connectivity.connectedPoints(graph, "A");
         assertThat(connected).containsExactlyInAnyOrder("A", "B", "C");
     }
 
     @Test
     void testConnectedPointsDisconnected() {
-        Map<String, List<String>> graph = Map.of(
+        var graph = Map.of(
                 "A", List.of("B"),
                 "B", List.of("A"),
                 "C", List.of("D"),
@@ -38,15 +37,15 @@ class ConnectivityTest {
 
     @Test
     void testConnectedPointsSingleNode() {
-        Map<String, List<String>> graph = Map.of("A", List.of());
+        var graph = Map.of("A", List.of());
 
-        Set<String> connected = Connectivity.connectedPoints(graph, "A");
+        var connected = Connectivity.connectedPoints(graph, "A");
         assertThat(connected).containsExactly("A");
     }
 
     @Test
     void testConnectedPointsMissingNode() {
-        Map<String, List<String>> graph = Map.of("A", List.of("B"));
+        var graph = Map.of("A", List.of("B"));
 
         // B is in A's list, but B is not a key in the graph
         assertThatThrownBy(() -> Connectivity.connectedPoints(graph, "A"))
@@ -56,14 +55,14 @@ class ConnectivityTest {
 
     @Test
     void testFindRegionSingleComponent() {
-        Map<String, List<String>> graph = Map.of(
+        var graph = Map.of(
                 "A", List.of("B"),
                 "B", List.of("A", "C"),
                 "C", List.of("B")
         );
-        List<String> points = List.of("A", "B", "C");
+        var points = List.of("A", "B", "C");
 
-        Map<String, Set<String>> regions = Connectivity.findRegion(points, graph);
+        var regions = Connectivity.findRegion(points, graph);
         
         assertThat(regions).hasSize(1);
         assertThat(regions.get("A")).containsExactlyInAnyOrder("A", "B", "C");
@@ -71,16 +70,16 @@ class ConnectivityTest {
 
     @Test
     void testFindRegionMultipleComponents() {
-        Map<String, List<String>> graph = Map.of(
+        var graph = Map.of(
                 "A", List.of("B"),
                 "B", List.of("A"),
                 "C", List.of("D"),
                 "D", List.of("C"),
                 "E", List.of()
         );
-        List<String> points = List.of("A", "B", "C", "D", "E");
+        var points = List.of("A", "B", "C", "D", "E");
 
-        Map<String, Set<String>> regions = Connectivity.findRegion(points, graph);
+        var regions = Connectivity.findRegion(points, graph);
 
         assertThat(regions).hasSize(3);
         // The representative of each region depends on the iteration order of 'points'
@@ -92,10 +91,10 @@ class ConnectivityTest {
 
     @Test
     void testFindRegionEmptyPoints() {
-        Map<String, List<String>> graph = Map.of("A", List.of());
+        var graph = Map.of("A", List.of());
         List<String> points = List.of();
 
-        Map<String, Set<String>> regions = Connectivity.findRegion(points, graph);
+        var regions = Connectivity.findRegion(points, graph);
         assertThat(regions).isEmpty();
     }
 }

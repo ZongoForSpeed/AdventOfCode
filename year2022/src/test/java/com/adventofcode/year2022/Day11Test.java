@@ -14,7 +14,7 @@ class Day11Test extends AbstractTest {
 
     @Test
     void example() {
-        String input = """
+        var input = """
                 Monkey 0:
                   Starting items: 79, 98
                   Operation: new = old * 19
@@ -44,13 +44,13 @@ class Day11Test extends AbstractTest {
                     If false: throw to monkey 1""";
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             Long reduce = Day11.partOne(scanner);
             assertThat(reduce).isEqualTo(10605L);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             Long reduce = Day11.partTwo(scanner);
             assertThat(reduce).isEqualTo(2713310158L);
         }

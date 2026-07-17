@@ -17,7 +17,7 @@ class Day04Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 2-4,6-8
                 2-3,4-5
                 5-7,7-9
@@ -26,27 +26,27 @@ class Day04Test extends AbstractTest {
                 2-6,4-8""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long count = Day04.PartOne.countFullyContained(scanner);
+            var scanner = new Scanner(input);
+            var count = Day04.PartOne.countFullyContained(scanner);
             Assertions.assertThat(count).isEqualTo(2);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long count = Day04.PartTwo.countOverlaps(scanner);
+            var scanner = new Scanner(input);
+            var count = Day04.PartTwo.countOverlaps(scanner);
             Assertions.assertThat(count).isEqualTo(4);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        long count = Day04.PartOne.countFullyContained(scanner);
+        var count = Day04.PartOne.countFullyContained(scanner);
         Assertions.assertThat(count).isEqualTo(444);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long count = Day04.PartTwo.countOverlaps(scanner);
+        var count = Day04.PartTwo.countOverlaps(scanner);
         Assertions.assertThat(count).isEqualTo(801);
     }
 

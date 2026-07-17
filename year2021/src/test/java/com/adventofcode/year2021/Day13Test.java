@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +21,7 @@ class Day13Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 6,10
                 0,14
                 9,10
@@ -46,10 +45,10 @@ class Day13Test extends AbstractTest {
                 fold along x=5""";
 
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        BooleanMap map = new BooleanMap(0, 0);
-        List<Pair<String, Integer>> instructions = new ArrayList<>();
+        var map = new BooleanMap(0, 0);
+        var instructions = new ArrayList<Pair<String, Integer>>();
         Day13.readMap(scanner, map, instructions);
 
         LOGGER.info("Map:\n{}", map);

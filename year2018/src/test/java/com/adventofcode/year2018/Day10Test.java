@@ -1,7 +1,6 @@
 package com.adventofcode.year2018;
 
 import com.adventofcode.test.AbstractTest;
-import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -17,7 +16,7 @@ class Day10Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 position=< 9,  1> velocity=< 0,  2>
                 position=< 7,  0> velocity=<-1,  0>
                 position=< 3, -2> velocity=<-1,  1>
@@ -49,8 +48,8 @@ class Day10Test extends AbstractTest {
                 position=< 5,  9> velocity=< 1, -2>
                 position=<14,  7> velocity=<-2,  0>
                 position=<-3,  6> velocity=< 2, -1>""";
-        try (Scanner scanner = new Scanner(input)) {
-            Pair<String, Integer> result = Day10.decodeStars(scanner);
+        try (var scanner = new Scanner(input)) {
+            var result = Day10.decodeStars(scanner);
             assertThat(result.left()).isEqualTo("""
                     #...#..###
                     #...#...#.
@@ -66,7 +65,7 @@ class Day10Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        Pair<String, Integer> result = Day10.decodeStars(scanner);
+        var result = Day10.decodeStars(scanner);
         assertThat(result.left()).isEqualTo("""
                 ######..#....#....##....#.......#.......#....#..#.......#####.
                 #.......#...#....#..#...#.......#.......#...#...#.......#....#
@@ -82,7 +81,7 @@ class Day10Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        Pair<String, Integer> result = Day10.decodeStars(scanner);
+        var result = Day10.decodeStars(scanner);
         assertThat(result.right()).isEqualTo(10227);
     }
 }

@@ -15,7 +15,7 @@ class Day19Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 r, wr, b, g, bwu, rb, gb, br
                 
                 brwrr
@@ -27,25 +27,25 @@ class Day19Test extends AbstractTest {
                 brgr
                 bbrgwb""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int count = Day19.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var count = Day19.partOne(scanner);
             assertThat(count).isEqualTo(6);
         }
-        try (Scanner scanner = new Scanner(input)) {
-            long count = Day19.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var count = Day19.partTwo(scanner);
             assertThat(count).isEqualTo(16);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        int count = Day19.partOne(scanner);
+        var count = Day19.partOne(scanner);
         assertThat(count).isEqualTo(258);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        long count = Day19.partTwo(scanner);
+        var count = Day19.partTwo(scanner);
         assertThat(count).isEqualTo(632423618484345L);
     }
 

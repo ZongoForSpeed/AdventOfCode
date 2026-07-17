@@ -4,7 +4,6 @@ import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,13 +32,13 @@ class Day18Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
+        var lines = FileUtils.readLines(scanner);
         assertThat(lines.stream().mapToLong(Day18::evalExpressionLR).sum()).isEqualTo(654686398176L);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> lines = FileUtils.readLines(scanner);
+        var lines = FileUtils.readLines(scanner);
         assertThat(lines.stream().mapToLong(Day18::evalExpressionAdditionFirst).sum()).isEqualTo(8952864356993L);
     }
 }

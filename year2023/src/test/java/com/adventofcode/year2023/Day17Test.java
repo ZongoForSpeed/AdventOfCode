@@ -14,7 +14,7 @@ class Day17Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 2413432311323
                 3215453535623
                 3255245654254
@@ -30,14 +30,14 @@ class Day17Test extends AbstractTest {
                 4322674655533""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
+            var scanner = new Scanner(input);
+            var heatLoss = Day17.PartOne.clumsyCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(102);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
+            var scanner = new Scanner(input);
+            var heatLoss = Day17.PartTwo.ultraCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(94);
         }
     }
@@ -45,7 +45,7 @@ class Day17Test extends AbstractTest {
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 111111111111
                 999999999991
                 999999999991
@@ -53,21 +53,21 @@ class Day17Test extends AbstractTest {
                 999999999991""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
+            var scanner = new Scanner(input);
+            var heatLoss = Day17.PartTwo.ultraCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(71);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
+        var heatLoss = Day17.PartOne.clumsyCrucible(scanner);
         Assertions.assertThat(heatLoss).isEqualTo(936);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
+        var heatLoss = Day17.PartTwo.ultraCrucible(scanner);
         Assertions.assertThat(heatLoss).isEqualTo(1157);
     }
 

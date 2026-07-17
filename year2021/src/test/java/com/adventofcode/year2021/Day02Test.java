@@ -16,7 +16,7 @@ class Day02Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 forward 5
                 down 5
                 forward 8
@@ -24,15 +24,15 @@ class Day02Test extends AbstractTest {
                 down 8
                 forward 2""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             IntegerPair p = Day02.divePartOne(scanner);
 
             assertThat(p.left()).isEqualTo(15);
             assertThat(p.right()).isEqualTo(10);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            Triple<Integer, Integer, Integer> triple = Day02.divePartTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var triple = Day02.divePartTwo(scanner);
             assertThat(triple).isEqualTo(Triple.of(15, 60, 10));
         }
     }
@@ -45,7 +45,7 @@ class Day02Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        Triple<Integer, Integer, Integer> triple = Day02.divePartTwo(scanner);
+        var triple = Day02.divePartTwo(scanner);
         assertThat(triple).isEqualTo(Triple.of(2033, 909225, 768));
         assertThat(triple.getLeft() * triple.getMiddle()).isEqualTo(1848454425);
     }

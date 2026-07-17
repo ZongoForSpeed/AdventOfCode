@@ -17,7 +17,7 @@ class Day03Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 467..114..
                 ...*......
                 ..35..633.
@@ -41,7 +41,7 @@ class Day03Test extends AbstractTest {
     @Test
     void inputPartOne() throws Exception {
         try (InputStream inputStream = Day03Test.class.getResourceAsStream("/2023/day/03/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
+             var scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
         }
     }
 
@@ -49,7 +49,7 @@ class Day03Test extends AbstractTest {
     @Test
     void inputPartTwo() throws Exception {
         try (InputStream inputStream = Day03Test.class.getResourceAsStream("/2023/day/03/input");
-             Scanner scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
+             var scanner = new Scanner(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8)) {
         }
     }
 

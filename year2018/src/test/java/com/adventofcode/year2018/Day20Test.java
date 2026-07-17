@@ -46,7 +46,7 @@ class Day20Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        long door1000 = Day20.PartTwo.door1000(scanner.nextLine());
+        var door1000 = Day20.PartTwo.door1000(scanner.nextLine());
         Assertions.assertThat(door1000).isEqualTo(8784);
     }
 

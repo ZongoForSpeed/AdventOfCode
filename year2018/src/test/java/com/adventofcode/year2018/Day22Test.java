@@ -10,42 +10,42 @@ class Day22Test {
     @Test
     void exampleInput() {
 
-        String input = """
+        var input = """
                 depth: 510
                 target: 10,10""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int riskLevel = Day22.PartOne.computeRiskLevel(scanner);
+            var scanner = new Scanner(input);
+            var riskLevel = Day22.PartOne.computeRiskLevel(scanner);
             Assertions.assertThat(riskLevel).isEqualTo(114);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int duration = Day22.PartTwo.findFastestWay(scanner);
+            var scanner = new Scanner(input);
+            var duration = Day22.PartTwo.findFastestWay(scanner);
             Assertions.assertThat(duration).isEqualTo(45);
         }
     }
 
     @Test
     void inputPartOne() {
-        String input = """
+        var input = """
                 depth: 10647
                 target: 7,770""";
 
-        Scanner scanner = new Scanner(input);
-        int riskLevel = Day22.PartOne.computeRiskLevel(scanner);
+        var scanner = new Scanner(input);
+        var riskLevel = Day22.PartOne.computeRiskLevel(scanner);
         Assertions.assertThat(riskLevel).isEqualTo(6208);
     }
 
     @Test
     void inputPartTwo() {
-        String input = """
+        var input = """
                 depth: 10647
                 target: 7,770""";
 
-        Scanner scanner = new Scanner(input);
-        int duration = Day22.PartTwo.findFastestWay(scanner);
+        var scanner = new Scanner(input);
+        var duration = Day22.PartTwo.findFastestWay(scanner);
         Assertions.assertThat(duration).isEqualTo(1039);
     }
 

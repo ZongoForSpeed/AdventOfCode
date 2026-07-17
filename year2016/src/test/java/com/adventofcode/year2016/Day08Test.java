@@ -16,13 +16,13 @@ class Day08Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 rect 3x2
                 rotate column x=1 by 1
                 rotate row y=0 by 4
                 rotate column x=1 by 1""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         BooleanMap charMap = Day08.buildScreen(scanner, 7, 3);
         assertThat(charMap).hasToString("""

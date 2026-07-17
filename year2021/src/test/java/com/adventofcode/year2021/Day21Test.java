@@ -14,7 +14,7 @@ class Day21Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Player 1 starting position: 4
                 Player 2 starting position: 8""";
 

@@ -1,12 +1,9 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.point.Point3D;
 import com.adventofcode.test.AbstractTest;
-import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +14,7 @@ class Day19Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 --- scanner 0 ---
                 404,-588,-901
                 528,-643,409
@@ -155,7 +152,7 @@ class Day19Test extends AbstractTest {
                 -652,-548,-490
                 30,-46,-14""";
 
-        Pair<Set<Point3D>, Integer> beaconScanner = Day19.beaconScanner(new Scanner(input));
+        var beaconScanner = Day19.beaconScanner(new Scanner(input));
 
         assertThat(beaconScanner.left()).hasSize(79);
         assertThat(beaconScanner.right()).isEqualTo(3621);

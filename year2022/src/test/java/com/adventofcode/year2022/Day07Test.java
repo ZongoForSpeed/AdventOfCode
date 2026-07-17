@@ -14,7 +14,7 @@ class Day07Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 $ cd /
                 $ ls
                 dir a
@@ -40,13 +40,13 @@ class Day07Test extends AbstractTest {
                 7214296 k""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long sum = Day07.PartOne.findSum(scanner);
+            var scanner = new Scanner(input);
+            var sum = Day07.PartOne.findSum(scanner);
             Assertions.assertThat(sum).isEqualTo(95437);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             OptionalLong min = Day07.PartTwo.findSmallestToDelete(scanner);
             Assertions.assertThat(min).hasValue(24933642);
         }
@@ -54,7 +54,7 @@ class Day07Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        long sum = Day07.PartOne.findSum(scanner);
+        var sum = Day07.PartOne.findSum(scanner);
         Assertions.assertThat(sum).isEqualTo(1307902);
     }
 

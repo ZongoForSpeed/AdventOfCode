@@ -20,7 +20,7 @@ class Day07Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 123 -> x
                 456 -> y
                 x AND y -> d
@@ -30,7 +30,7 @@ class Day07Test extends AbstractTest {
                 NOT x -> h
                 NOT y -> i""";
 
-        Map<String, Integer> map = Day07.runAssemblyPartOne(new Scanner(input));
+        var map = Day07.runAssemblyPartOne(new Scanner(input));
 
         LOGGER.info("Memory: {}", map);
         assertThat(map).containsAllEntriesOf(

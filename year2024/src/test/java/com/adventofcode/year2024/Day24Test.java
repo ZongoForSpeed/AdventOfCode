@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +18,7 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 x00: 1
                 x01: 1
                 x02: 1
@@ -31,8 +30,8 @@ class Day24Test extends AbstractTest {
                 x01 XOR y01 -> z01
                 x02 OR y02 -> z02""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            Map<String, Boolean> values = Day24.crossedWires(scanner);
+        try (var scanner = new Scanner(input)) {
+            var values = Day24.crossedWires(scanner);
             LOGGER.info("Values: {}", values);
             assertThat(values)
                     .hasSize(9)
@@ -44,7 +43,7 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 x00: 1
                 x01: 0
                 x02: 1
@@ -93,8 +92,8 @@ class Day24Test extends AbstractTest {
                 tgd XOR rvg -> z12
                 tnw OR pbm -> gnj""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long result = Day24.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var result = Day24.partOne(scanner);
             assertThat(result).isEqualTo(2024);
         }
 
@@ -102,7 +101,7 @@ class Day24Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        long result = Day24.partOne(scanner);
+        var result = Day24.partOne(scanner);
         assertThat(result).isEqualTo(50411513338638L);
     }
 

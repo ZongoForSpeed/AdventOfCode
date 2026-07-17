@@ -14,7 +14,7 @@ class Day21Test extends AbstractTest {
     @Override
     public void partOne(Scanner scanner) {
         String line = scanner.nextLine();
-        String command = """
+        var command = """
                 NOT A T
                 NOT B J
                 OR T J
@@ -29,7 +29,7 @@ class Day21Test extends AbstractTest {
     @Override
     public void partTwo(Scanner scanner) {
         String line = scanner.nextLine();
-        String command = """
+        var command = """
                 NOT F J
                 OR E J
                 OR H J

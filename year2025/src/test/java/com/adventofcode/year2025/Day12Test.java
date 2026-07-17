@@ -16,7 +16,7 @@ public class Day12Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 0:
                 ###
                 ##.
@@ -51,8 +51,8 @@ public class Day12Test extends AbstractTest {
                 12x5: 1 0 1 0 2 2
                 12x5: 1 0 1 0 3 2""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long solution = Day12.christmasTreeFarm(scanner);
+        try (var scanner = new Scanner(input)) {
+            var solution = Day12.christmasTreeFarm(scanner);
             assertThat(solution).isEqualTo(3);
         }
 
@@ -60,7 +60,7 @@ public class Day12Test extends AbstractTest {
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        long solution = Day12.christmasTreeFarm(scanner);
+        var solution = Day12.christmasTreeFarm(scanner);
         assertThat(solution).isEqualTo(531);
     }
 

@@ -13,19 +13,19 @@ class Day10Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 noop
                 addx 3
                 addx -5""";
 
-        Scanner scanner = new Scanner(input);
-        long signalStrength = Day10.PartOne.getSignalStrength(scanner);
+        var scanner = new Scanner(input);
+        var signalStrength = Day10.PartOne.getSignalStrength(scanner);
         Assertions.assertThat(signalStrength).isZero();
     }
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 addx 15
                 addx -11
                 addx 6
@@ -174,13 +174,13 @@ class Day10Test extends AbstractTest {
                 noop""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long signalStrength = Day10.PartOne.getSignalStrength(scanner);
+            var scanner = new Scanner(input);
+            var signalStrength = Day10.PartOne.getSignalStrength(scanner);
             Assertions.assertThat(signalStrength).isEqualTo(13140L);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             String crt = Day10.PartTwo.printCRT(scanner);
             Assertions.assertThat(crt).isEqualTo("""
                     ##..##..##..##..##..##..##..##..##..##..
@@ -194,7 +194,7 @@ class Day10Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        long signalStrength = Day10.PartOne.getSignalStrength(scanner);
+        var signalStrength = Day10.PartOne.getSignalStrength(scanner);
         Assertions.assertThat(signalStrength).isEqualTo(14780L);
     }
 

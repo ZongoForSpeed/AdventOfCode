@@ -15,7 +15,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 5,4
                 4,2
                 4,5
@@ -42,12 +42,12 @@ class Day18Test extends AbstractTest {
                 1,6
                 2,0""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long path = Day18.partOne(scanner, 6, 12);
+        try (var scanner = new Scanner(input)) {
+            var path = Day18.partOne(scanner, 6, 12);
             assertThat(path).isEqualTo(22);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             String memory = Day18.partTwo(scanner, 6);
             assertThat(memory).isEqualTo("6,1");
         }
@@ -55,7 +55,7 @@ class Day18Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        long path = Day18.partOne(scanner, 70, 1024);
+        var path = Day18.partOne(scanner, 70, 1024);
         assertThat(path).isEqualTo(438L);
     }
 

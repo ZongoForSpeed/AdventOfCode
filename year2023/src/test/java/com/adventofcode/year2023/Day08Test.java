@@ -14,7 +14,7 @@ class Day08Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 RL
                 
                 AAA = (BBB, CCC)
@@ -25,30 +25,30 @@ class Day08Test extends AbstractTest {
                 GGG = (GGG, GGG)
                 ZZZ = (ZZZ, ZZZ)""";
 
-        Scanner scanner = new Scanner(input);
-        int count = Day08.PartOne.countSteps(scanner);
+        var scanner = new Scanner(input);
+        var count = Day08.PartOne.countSteps(scanner);
 
         Assertions.assertThat(count).isEqualTo(2);
     }
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 LLR
                 
                 AAA = (BBB, BBB)
                 BBB = (AAA, ZZZ)
                 ZZZ = (ZZZ, ZZZ)""";
 
-        Scanner scanner = new Scanner(input);
-        int count = Day08.PartOne.countSteps(scanner);
+        var scanner = new Scanner(input);
+        var count = Day08.PartOne.countSteps(scanner);
 
         Assertions.assertThat(count).isEqualTo(6);
     }
 
     @Test
     void inputExample3() {
-        String input = """
+        var input = """
                 LR
                 
                 11A = (11B, XXX)
@@ -60,21 +60,21 @@ class Day08Test extends AbstractTest {
                 22Z = (22B, 22B)
                 XXX = (XXX, XXX)""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        long count = Day08.PartTwo.countSteps(scanner);
+        var count = Day08.PartTwo.countSteps(scanner);
         Assertions.assertThat(count).isEqualTo(6);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int count = Day08.PartOne.countSteps(scanner);
+        var count = Day08.PartOne.countSteps(scanner);
         Assertions.assertThat(count).isEqualTo(22411);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long count = Day08.PartTwo.countSteps(scanner);
+        var count = Day08.PartTwo.countSteps(scanner);
         Assertions.assertThat(count).isEqualTo(11188774513823L);
     }
 

@@ -16,40 +16,40 @@ class Day12Test extends AbstractTest {
 
     @Test
     void rainRisk1() {
-        List<String> actions = List.of("F10",
+        var actions = List.of("F10",
                 "N3",
                 "F7",
                 "R90",
                 "F11");
 
-        int manhattanDistance = Day12.moveWithDirectionDistance(actions);
+        var manhattanDistance = Day12.moveWithDirectionDistance(actions);
         assertThat(manhattanDistance).isEqualTo(25);
     }
 
     @Test
     void rainRisk2() {
-        List<String> actions = List.of("F10",
+        var actions = List.of("F10",
                 "N3",
                 "F7",
                 "R90",
                 "F11");
 
-        int manhattanDistance = Day12.moveWithWaypointDistance(actions);
+        var manhattanDistance = Day12.moveWithWaypointDistance(actions);
         assertThat(manhattanDistance).isEqualTo(286);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> actions = FileUtils.readLines(scanner);
+        var actions = FileUtils.readLines(scanner);
 
         assertThat(Day12.moveWithDirectionDistance(actions)).isEqualTo(590);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> actions = FileUtils.readLines(scanner);
+        var actions = FileUtils.readLines(scanner);
 
-        int manhattanDistance = Day12.moveWithWaypointDistance(actions);
+        var manhattanDistance = Day12.moveWithWaypointDistance(actions);
         assertThat(manhattanDistance).isEqualTo(42013);
     }
 }

@@ -14,19 +14,19 @@ class Day01Test extends AbstractTest {
 
     @Test
     void examplePartOne() {
-        String input = """
+        var input = """
                 1abc2
                 pqr3stu8vwx
                 a1b2c3d4e5f
                 treb7uchet""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         Assertions.assertThat(Day01.PartOne.sumCalibrationValues(scanner)).isEqualTo(142);
     }
 
     @Test
     void examplePartTwo() {
-        String input = """
+        var input = """
                 two1nine
                 eightwothree
                 abcone2threexyz
@@ -35,7 +35,7 @@ class Day01Test extends AbstractTest {
                 zoneight234
                 7pqrstsixteen""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         Assertions.assertThat(Day01.PartTwo.sumCalibrationValues(scanner)).isEqualTo(281);
     }
 

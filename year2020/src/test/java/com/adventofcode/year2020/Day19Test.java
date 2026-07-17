@@ -16,7 +16,7 @@ class Day19Test extends AbstractTest {
 
     @Test
     void matchRules() {
-        List<String> simpleInput = List.of("0: 1 2",
+        var simpleInput = List.of("0: 1 2",
                 "1: \"a\"",
                 "2: 1 3 | 3 1",
                 "3: \"b\"",
@@ -30,7 +30,7 @@ class Day19Test extends AbstractTest {
 
         assertThat(Day19.matchMonsterMessages(simpleInput, false)).isEqualTo(2);
 
-        List<String> input = List.of("0: 4 1 5",
+        var input = List.of("0: 4 1 5",
                 "1: 2 3 | 3 2",
                 "2: 4 4 | 5 5",
                 "3: 4 5 | 5 4",
@@ -48,7 +48,7 @@ class Day19Test extends AbstractTest {
 
     @Test
     void monsterMessages() {
-        List<String> input = List.of("42: 9 14 | 10 1",
+        var input = List.of("42: 9 14 | 10 1",
                 "9: 14 27 | 1 26",
                 "10: 23 14 | 28 1",
                 "1: \"a\"",
@@ -103,7 +103,7 @@ class Day19Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> input = FileUtils.readLines(scanner);
+        var input = FileUtils.readLines(scanner);
 
         assertThat(Day19.matchMonsterMessages(input, false)).isEqualTo(176);
 
@@ -111,7 +111,7 @@ class Day19Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> input = FileUtils.readLines(scanner);
+        var input = FileUtils.readLines(scanner);
 
         assertThat(Day19.matchMonsterMessages(input, true)).isEqualTo(352);
 

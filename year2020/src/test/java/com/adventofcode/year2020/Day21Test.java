@@ -1,7 +1,6 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.test.AbstractTest;
-import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -15,15 +14,15 @@ class Day21Test extends AbstractTest {
 
     @Test
     void allergenAssessment() {
-        String input = """
+        var input = """
                 mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
                 trh fvjkl sbzzf mxmxvkd (contains dairy)
                 sqjhc fvjkl (contains soy)
                 sqjhc mxmxvkd sbzzf (contains fish)""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        Pair<Long, String> result = Day21.findAllergenAssessment(scanner);
+        var result = Day21.findAllergenAssessment(scanner);
 
         assertThat(result.left()).isEqualTo(5);
         assertThat(result.right()).isEqualTo("mxmxvkd,sqjhc,fvjkl");
@@ -31,7 +30,7 @@ class Day21Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        Pair<Long, String> result = Day21.findAllergenAssessment(scanner);
+        var result = Day21.findAllergenAssessment(scanner);
         assertThat(result.left()).isEqualTo(2170L);
         assertThat(result.right()).isEqualTo("nfnfk,nbgklf,clvr,fttbhdr,qjxxpr,hdsm,sjhds,xchzh");
     }

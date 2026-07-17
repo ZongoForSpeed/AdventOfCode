@@ -15,20 +15,20 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 AAAA
                 BBCD
                 BBCC
                 EEEC""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partOne(scanner);
 
             assertThat(price).isEqualTo(140);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(80);
         }
@@ -36,22 +36,22 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 OOOOO
                 OXOXO
                 OOOOO
                 OXOXO
                 OOOOO""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partOne(scanner);
 
             assertThat(price).isEqualTo(772);
         }
 
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(436);
         }
@@ -59,7 +59,7 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample3() {
-        String input = """
+        var input = """
                 RRRRIICCFF
                 RRRRIICCCF
                 VVRRRCCFFF
@@ -71,15 +71,15 @@ class Day12Test extends AbstractTest {
                 MIIISIJEEE
                 MMMISSJEEE""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partOne(scanner);
 
             assertThat(price).isEqualTo(1930);
         }
 
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(1206);
         }
@@ -87,15 +87,15 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample4() {
-        String input = """
+        var input = """
                 EEEEE
                 EXXXX
                 EEEEE
                 EXXXX
                 EEEEE""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(236);
         }
@@ -103,7 +103,7 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample5() {
-        String input = """
+        var input = """
                 AAAAAA
                 AAABBA
                 AAABBA
@@ -111,8 +111,8 @@ class Day12Test extends AbstractTest {
                 ABBAAA
                 AAAAAA""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long price = Day12.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(368);
         }

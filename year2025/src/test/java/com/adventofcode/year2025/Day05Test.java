@@ -15,7 +15,7 @@ public class Day05Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 3-5
                 10-14
                 16-20
@@ -28,25 +28,25 @@ public class Day05Test extends AbstractTest {
                 17
                 32""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int fresh = Day05.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var fresh = Day05.partOne(scanner);
             assertThat(fresh).isEqualTo(3);
         }
-        try (Scanner scanner = new Scanner(input)) {
-            long size = Day05.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var size = Day05.partTwo(scanner);
             assertThat(size).isEqualTo(14);
         }
     }
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        int fresh = Day05.partOne(scanner);
+        var fresh = Day05.partOne(scanner);
         assertThat(fresh).isEqualTo(712);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        long size = Day05.partTwo(scanner);
+        var size = Day05.partTwo(scanner);
         assertThat(size).isEqualTo(332998283036769L);
     }
 }

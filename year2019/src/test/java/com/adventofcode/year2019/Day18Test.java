@@ -14,37 +14,37 @@ class Day18Test extends AbstractTest {
 
     @Test
     void simple() {
-        String input = """
+        var input = """
                 #########
                 #b.A.@.a#
                 #########""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(8);
         }
     }
 
     @Test
     void largerExample1() {
-        String input = """
+        var input = """
                 ########################
                 #f.D.E.e.C.b.A.@.a.B.c.#
                 ######################.#
                 #d.....................#
                 ########################""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(86);
         }
     }
 
     @Test
     void largerExample2() {
-        String input = """
+        var input = """
                 ########################
                 #...............b.C.D.f#
                 #.######################
                 #.....@.a.B.c.d.A.e.F.g#
                 ########################""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(132);
         }
 
@@ -52,7 +52,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void largerExample3() {
-        String input = """
+        var input = """
                 #################
                 #i.G..c...e..H.p#
                 ########.########
@@ -62,28 +62,28 @@ class Day18Test extends AbstractTest {
                 ########.########
                 #l.F..d...h..C.m#
                 #################""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(136);
         }
     }
 
     @Test
     void largerExample4() {
-        String input = """
+        var input = """
                 ########################
                 #@..............ac.GI.b#
                 ###d#e#f################
                 ###A#B#C################
                 ###g#h#i################
                 ########################""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartOne(scanner)).isEqualTo(81);
         }
     }
 
     @Test
     void simpleVault() {
-        String input = """
+        var input = """
                 #######
                 #a.#Cd#
                 ##...##
@@ -91,7 +91,7 @@ class Day18Test extends AbstractTest {
                 ##...##
                 #cB#Ab#
                 #######""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(8);
         }
 
@@ -99,7 +99,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void largerVault() {
-        String input = """
+        var input = """
                 ###############
                 #d.ABC.#.....a#
                 ######...######
@@ -107,14 +107,14 @@ class Day18Test extends AbstractTest {
                 ######...######
                 #b.....#.....c#
                 ###############""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(24);
         }
     }
 
     @Test
     void complexVault1() {
-        String input = """
+        var input = """
                 #############
                 #DcBa.#.GhKl#
                 #.###...#I###
@@ -122,7 +122,7 @@ class Day18Test extends AbstractTest {
                 ###C#...###J#
                 #fEbA.#.FgHi#
                 #############""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(32);
         }
 
@@ -130,7 +130,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void complexVault2() {
-        String input = """
+        var input = """
                 #############
                 #g#f.D#..h#l#
                 #F###e#E###.#
@@ -140,7 +140,7 @@ class Day18Test extends AbstractTest {
                 #M###N#H###.#
                 #o#m..#i#jk.#
                 #############""";
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day18.algorithmPartTwo(scanner)).isEqualTo(70);
         }
     }

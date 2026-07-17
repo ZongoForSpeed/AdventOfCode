@@ -15,16 +15,16 @@ class Day13Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 0: 3
                 1: 2
                 4: 4
                 6: 4""";
 
-        int tripSeverity = Day13.getTripSeverity(new Scanner(input));
+        var tripSeverity = Day13.getTripSeverity(new Scanner(input));
         assertThat(tripSeverity).isEqualTo(24);
 
-        int findBestDelay = Day13.findBestDelay(new Scanner(input));
+        var findBestDelay = Day13.findBestDelay(new Scanner(input));
         assertThat(findBestDelay).isEqualTo(10);
     }
 

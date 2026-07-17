@@ -14,7 +14,7 @@ class Day23Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 #############
                 #...........#
                 ###B#C#B#D###

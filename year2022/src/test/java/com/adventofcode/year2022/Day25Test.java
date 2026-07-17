@@ -68,7 +68,7 @@ class Day25Test extends AbstractTest {
     @Test
     void inputExample2() {
 
-        String input = """
+        var input = """
                 1=-0-2
                 12111
                 2=0=
@@ -83,7 +83,7 @@ class Day25Test extends AbstractTest {
                 1=
                 122""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             Day25.Result result = Day25.partOne(scanner);
 
             assertThat(result.decimal()).isEqualTo(4890);

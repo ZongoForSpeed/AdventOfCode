@@ -16,7 +16,7 @@ class Day23Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 kh-tc
                 qp-kh
                 de-cg
@@ -50,8 +50,8 @@ class Day23Test extends AbstractTest {
                 tb-vc
                 td-yn""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            Set<Set<String>> triplets = Day23.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var triplets = Day23.partOne(scanner);
 
             assertThat(triplets).containsExactlyInAnyOrder(
                     Set.of("co", "de", "ta"),
@@ -64,7 +64,7 @@ class Day23Test extends AbstractTest {
             );
         }
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             String clique = Day23.partTwo(scanner);
             assertThat(clique).isEqualTo("co,de,ka,ta");
         }
@@ -73,7 +73,7 @@ class Day23Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        Set<Set<String>> triplets = Day23.partOne(scanner);
+        var triplets = Day23.partOne(scanner);
         assertThat(triplets).hasSize(893);
     }
 

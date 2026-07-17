@@ -3,7 +3,6 @@ package com.adventofcode.common.graph;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ class CliqueTest {
 
     @Test
     void bronKerbosch() {
-        Map<String, Set<String>> graph = Map.ofEntries(
+        var graph = Map.ofEntries(
                 Map.entry("de", Set.of("cg", "ka", "co", "ta")),
                 Map.entry("cg", Set.of("aq", "de", "yn", "tb")),
                 Map.entry("co", Set.of("de", "ka", "ta", "tc")),
@@ -32,7 +31,7 @@ class CliqueTest {
                 Map.entry("qp", Set.of("td", "wh", "kh", "ub"))
         );
 
-        List<Set<String>> result = new ArrayList<>();
+        var result = new ArrayList<Set<String>>();
         Clique.algorithmBronKerbosch(graph, Set.of(), graph.keySet(), Set.of(), result);
 
         assertThat(result).contains(Set.of("co", "de", "ka", "ta"));

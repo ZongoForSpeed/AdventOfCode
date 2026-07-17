@@ -10,17 +10,17 @@ class DisjointSetTest {
 
     @Test
     void testInitialState() {
-        DisjointSet ds = new DisjointSet(5);
+        var ds = new DisjointSet(5);
         assertThat(ds.getCount()).isEqualTo(5);
         assertThat((Collection<Integer>) ds.getSizes()).containsExactlyInAnyOrder(1, 1, 1, 1, 1);
-        for (int i = 0; i < 5; i++) {
+        for (var i = 0; i < 5; i++) {
             assertThat(ds.find(i)).isEqualTo(i);
         }
     }
 
     @Test
     void testUnion() {
-        DisjointSet ds = new DisjointSet(5);
+        var ds = new DisjointSet(5);
         assertThat(ds.union(0, 1)).isTrue();
         assertThat(ds.getCount()).isEqualTo(4);
         assertThat(ds.find(0)).isEqualTo(ds.find(1));
@@ -42,22 +42,22 @@ class DisjointSetTest {
 
     @Test
     void testPathCompression() {
-        DisjointSet ds = new DisjointSet(5);
+        var ds = new DisjointSet(5);
         assertThat(ds.union(0, 1)).isTrue();
         assertThat(ds.union(1, 2)).isTrue();
         assertThat(ds.union(2, 3)).isTrue();
         
-        int root = ds.find(0);
+        var root = ds.find(0);
         // After find(0), parent[0] should be root, parent[1] should be root etc.
         // Although parent is private, we can't directly check it, but find should return same root.
-        for (int i = 0; i <= 3; i++) {
+        for (var i = 0; i <= 3; i++) {
             assertThat(ds.find(i)).isEqualTo(root);
         }
     }
 
     @Test
     void testUnionBySize() {
-        DisjointSet ds = new DisjointSet(5);
+        var ds = new DisjointSet(5);
         assertThat(ds.union(0, 1)).isTrue(); // {0,1}, {2}, {3}, {4}
         assertThat(ds.union(2, 3)).isTrue(); // {0,1}, {2,3}, {4}
         assertThat(ds.union(4, 0)).isTrue(); // {0,1,4}, {2,3}

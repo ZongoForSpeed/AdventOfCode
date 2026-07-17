@@ -13,7 +13,7 @@ class Day14Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 O....#....
                 O.OO#....#
                 .....##...
@@ -25,27 +25,27 @@ class Day14Test extends AbstractTest {
                 #....###..
                 #OO..#....""";
         {
-            Scanner scanner = new Scanner(input);
-            int totalLoad = Day14.PartOne.findTotalLoad(scanner);
+            var scanner = new Scanner(input);
+            var totalLoad = Day14.PartOne.findTotalLoad(scanner);
             Assertions.assertThat(totalLoad).isEqualTo(136);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
+            var scanner = new Scanner(input);
+            var totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
             Assertions.assertThat(totalLoad).isEqualTo(64);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int totalLoad = Day14.PartOne.findTotalLoad(scanner);
+        var totalLoad = Day14.PartOne.findTotalLoad(scanner);
         Assertions.assertThat(totalLoad).isEqualTo(109385);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
+        var totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
         Assertions.assertThat(totalLoad).isEqualTo(93102);
     }
 

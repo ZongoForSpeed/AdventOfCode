@@ -12,7 +12,7 @@ class PermutationsTest {
 
     @Test
     void permutations_abc() {
-        List<String> abc = Permutations.permutations("abc");
+        var abc = Permutations.permutations("abc");
         assertThat(abc).containsExactly("abc", "acb", "bac", "bca", "cab", "cba");
     }
 
@@ -26,7 +26,7 @@ class PermutationsTest {
 
     @Test
     void testPermutationByNumber() {
-        List<String> items = List.of("A", "B", "C");
+        var items = List.of("A", "B", "C");
         assertThat(Permutations.permutation(0, items)).containsExactly("A", "B", "C");
         assertThat(Permutations.permutation(5, items)).containsExactly("C", "B", "A");
     }

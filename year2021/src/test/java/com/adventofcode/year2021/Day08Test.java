@@ -18,7 +18,7 @@ class Day08Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
                 edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
                 fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
@@ -34,7 +34,7 @@ class Day08Test extends AbstractTest {
 
         assertThat(day08.solveMapping("acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")).isEqualTo(5353);
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         assertThat(day08.solveMapping(scanner)).isEqualTo(61229);
     }

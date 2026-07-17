@@ -16,7 +16,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Filesystem            Size  Used  Avail  Use%
                 /dev/grid/node-x0-y0   10T    8T     2T   80%
                 /dev/grid/node-x0-y1   11T    6T     5T   54%
@@ -28,8 +28,8 @@ class Day22Test extends AbstractTest {
                 /dev/grid/node-x2-y1    9T    8T     1T   88%
                 /dev/grid/node-x2-y2    9T    6T     3T   66%""";
 
-        Scanner scanner = new Scanner(input);
-        long steps = Day22.countSteps(scanner, Point2D.of(2, 0));
+        var scanner = new Scanner(input);
+        var steps = Day22.countSteps(scanner, Point2D.of(2, 0));
 
         assertThat(steps).isEqualTo(7);
     }

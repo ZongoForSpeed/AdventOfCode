@@ -8,9 +8,9 @@ class Matrix2DTest {
 
     @Test
     void testMultiply() {
-        Matrix2D m1 = new Matrix2D(1, 2, 3, 4);
-        Matrix2D m2 = new Matrix2D(5, 6, 7, 8);
-        long modulus = 1000;
+        var m1 = new Matrix2D(1, 2, 3, 4);
+        var m2 = new Matrix2D(5, 6, 7, 8);
+        var modulus = 1000L;
 
         // [1 2] * [5 6] = [1*5+2*7 1*6+2*8] = [19 22]
         // [3 4]   [7 8]   [3*5+4*7 3*6+4*8]   [43 50]
@@ -21,9 +21,9 @@ class Matrix2DTest {
 
     @Test
     void testMultiplyMod() {
-        Matrix2D m1 = new Matrix2D(10, 20, 30, 40);
-        Matrix2D m2 = new Matrix2D(5, 6, 7, 8);
-        long modulus = 17;
+        var m1 = new Matrix2D(10, 20, 30, 40);
+        var m2 = new Matrix2D(5, 6, 7, 8);
+        var modulus = 17L;
 
         // [10 20] * [5 6] = [10*5+20*7 10*6+20*8] = [190 220]
         // [30 40]   [7 8]   [30*5+40*7 30*6+40*8]   [430 500]
@@ -38,8 +38,8 @@ class Matrix2DTest {
 
     @Test
     void testPower() {
-        Matrix2D base = new Matrix2D(1, 1, 1, 0);
-        long modulus = 1000;
+        var base = new Matrix2D(1, 1, 1, 0);
+        var modulus = 1000L;
 
         // Fib: [1 1]^n = [F(n+1) F(n)]
         //      [1 0]     [F(n)   F(n-1)]
@@ -61,8 +61,8 @@ class Matrix2DTest {
 
     @Test
     void testPowerLarge() {
-        Matrix2D base = new Matrix2D(1, 1, 1, 0);
-        long modulus = 1000000007L;
+        var base = new Matrix2D(1, 1, 1, 0);
+        var modulus = 1000000007L;
 
         // F(10) = 55
         Matrix2D result = Matrix2D.power(base, 10, modulus);
@@ -71,10 +71,10 @@ class Matrix2DTest {
 
     @Test
     void testMultiplyLargeValues() {
-        long large = Integer.MAX_VALUE + 100L;
-        Matrix2D m1 = new Matrix2D(large, 0, 0, large);
-        Matrix2D m2 = new Matrix2D(large, 0, 0, large);
-        long modulus = 1000000007L;
+        var large = Integer.MAX_VALUE + 100L;
+        var m1 = new Matrix2D(large, 0, 0, large);
+        var m2 = new Matrix2D(large, 0, 0, large);
+        var modulus = 1000000007L;
 
         // large % mod = 2147483647 + 100 = 2147483747
         // 2147483747 % 1000000007 = 147483733
@@ -83,7 +83,7 @@ class Matrix2DTest {
         // BigInteger should handle this in multiplyMod
 
         Matrix2D result = m1.multiply(m2, modulus);
-        long expected = (147483733L * 147483733L) % modulus;
+        var expected = (147483733L * 147483733L) % modulus;
         assertThat(result).isEqualTo(new Matrix2D(expected, 0, 0, expected));
     }
 }

@@ -9,7 +9,7 @@ class IntMemoryTest {
 
     @Test
     void testBasicOperations() {
-        IntMemory memory = new IntMemory(10);
+        var memory = new IntMemory(10);
         assertThat(memory.isEmpty()).isTrue();
         assertThat(memory.size()).isEqualTo(0);
 
@@ -29,7 +29,7 @@ class IntMemoryTest {
 
     @Test
     void testPutReturnsOldValue() {
-        IntMemory memory = new IntMemory(10);
+        var memory = new IntMemory(10);
         assertThat(memory.put(1, 100)).isNull();
         assertThat(memory.put(1, 200)).isEqualTo(100);
         assertThat(memory.get(1)).isEqualTo(200);
@@ -37,7 +37,7 @@ class IntMemoryTest {
 
     @Test
     void testIncrement() {
-        IntMemory memory = new IntMemory(10);
+        var memory = new IntMemory(10);
         assertThat(memory.increment(1, 10)).isNull();
         assertThat(memory.get(1)).isEqualTo(10);
 
@@ -47,7 +47,7 @@ class IntMemoryTest {
 
     @Test
     void testGrow() {
-        IntMemory memory = new IntMemory(2);
+        var memory = new IntMemory(2);
         assertThat(memory.put(1, 100)).isNull();
         assertThat(memory.put(2, 200)).isNull();
         // This should trigger grow
@@ -61,7 +61,7 @@ class IntMemoryTest {
 
     @Test
     void testClear() {
-        IntMemory memory = new IntMemory(10);
+        var memory = new IntMemory(10);
         assertThat(memory.put(1, 100)).isNull();
         memory.clear();
 
@@ -71,7 +71,7 @@ class IntMemoryTest {
 
     @Test
     void testKeySetAndValues() {
-        IntMemory memory = new IntMemory(10);
+        var memory = new IntMemory(10);
         assertThat(memory.put(1, 100)).isNull();
         assertThat(memory.put(3, 300)).isNull();
         assertThat(memory.put(2, 200)).isNull();
@@ -82,7 +82,7 @@ class IntMemoryTest {
 
     @Test
     void testNegativeKey() {
-        IntMemory memory = new IntMemory(10);
+        var memory = new IntMemory(10);
         assertThatThrownBy(() -> memory.get(-1))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Negative key are not allowed");
@@ -90,7 +90,7 @@ class IntMemoryTest {
 
     @Test
     void testToString() {
-        IntMemory memory = new IntMemory(10);
+        var memory = new IntMemory(10);
         assertThat(memory.put(1, 100)).isNull();
         assertThat(memory.put(2, 200)).isNull();
 

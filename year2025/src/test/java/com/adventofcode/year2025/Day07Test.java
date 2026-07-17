@@ -17,7 +17,7 @@ public class Day07Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 .......S.......
                 ...............
                 .......^.......
@@ -35,7 +35,7 @@ public class Day07Test extends AbstractTest {
                 .^.^.^.^.^...^.
                 ...............""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             LongPair result = Day07.countTimeline(scanner);
             assertThat(result.left()).isEqualTo(21);
             assertThat(result.right()).isEqualTo(40);

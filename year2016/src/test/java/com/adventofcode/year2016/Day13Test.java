@@ -15,16 +15,16 @@ class Day13Test {
 
     @Test
     void inputPartOne() {
-        long path = Day13.findPath(1364, Point2D.of(1, 1), Point2D.of(31, 39));
+        var path = Day13.findPath(1364, Point2D.of(1, 1), Point2D.of(31, 39));
         assertThat(path).isEqualTo(86);
     }
 
     @Test
     void inputPartTwo() {
-        int favoriteNumber = 1364;
+        var favoriteNumber = 1364;
         Point2D start = Point2D.of(1, 1);
 
-        long path = Day13.algorithm(favoriteNumber, start, 50);
+        var path = Day13.algorithm(favoriteNumber, start, 50);
         assertThat(path).isEqualTo(127);
     }
 

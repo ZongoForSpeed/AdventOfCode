@@ -15,19 +15,19 @@ class Day23Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        int freeSpace = Day23.partOne(scanner);
+        var freeSpace = Day23.partOne(scanner);
         assertThat(freeSpace).isEqualTo(4000);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        int rounds = Day23.partTwo(scanner);
+        var rounds = Day23.partTwo(scanner);
         assertThat(rounds).isEqualTo(1040);
     }
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 .....
                 ..##.
                 ..#..
@@ -35,14 +35,14 @@ class Day23Test extends AbstractTest {
                 ..##.
                 .....""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertThat(Day23.partOne(scanner)).isEqualTo(25);
         }
     }
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 ..............
                 ..............
                 .......#......
@@ -56,13 +56,13 @@ class Day23Test extends AbstractTest {
                 ..............
                 ..............""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int freeSpace = Day23.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var freeSpace = Day23.partOne(scanner);
             assertThat(freeSpace).isEqualTo(110);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            int rounds = Day23.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var rounds = Day23.partTwo(scanner);
             assertThat(rounds).isEqualTo(20);
         }
     }

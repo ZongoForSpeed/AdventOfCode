@@ -2,8 +2,6 @@ package com.adventofcode.common.point.range;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RangeTest {
@@ -86,7 +84,7 @@ class RangeTest {
         
         // lowerMin=10, lowerMax=15, upperMin=20, upperMax=25
         // Expects: [10..14], [15..20], [21..25]
-        List<Range> result = Range.fullUnion(r1, r2);
+        var result = Range.fullUnion(r1, r2);
         assertThat(result).containsExactly(
                 Range.of(10, 14),
                 Range.of(15, 20),
@@ -100,7 +98,7 @@ class RangeTest {
         Range r2 = Range.of(15, 25);
 
         // r1 diff r2: [10..20] diff [15..25] should be [10..14]
-        List<Range> result = Range.difference(r1, r2);
+        var result = Range.difference(r1, r2);
         assertThat(result).containsExactly(Range.of(10, 14));
     }
 

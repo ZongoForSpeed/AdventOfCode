@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +19,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        long secretNumber = 123;
+        var secretNumber = 123L;
         secretNumber = Day22.nextSecretNumber(secretNumber);
         assertThat(secretNumber).isEqualTo(15887950);
         secretNumber = Day22.nextSecretNumber(secretNumber);
@@ -45,23 +44,23 @@ class Day22Test extends AbstractTest {
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 1
                 10
                 100
                 2024""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long sum = Day22.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var sum = Day22.partOne(scanner);
             assertThat(sum).isEqualTo(37327623);
         }
     }
 
     @Test
     void inputExample3() {
-        long secretNumber = 123;
+        var secretNumber = 123L;
 
-        Map<Day22.PriceChange, Integer> changes = Day22.findPriceChanges(secretNumber, 10);
+        var changes = Day22.findPriceChanges(secretNumber, 10);
 
         LOGGER.info("changes: {}", changes);
         assertThat(changes).containsEntry(new Day22.PriceChange(-1, -1, 0, 2), 6);
@@ -69,27 +68,27 @@ class Day22Test extends AbstractTest {
 
     @Test
     void inputExample4() {
-        String input = """
+        var input = """
                 1
                 2
                 3
                 2024""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int bananas = Day22.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var bananas = Day22.partTwo(scanner);
             assertThat(bananas).isEqualTo(23);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        long sum = Day22.partOne(scanner);
+        var sum = Day22.partOne(scanner);
         assertThat(sum).isEqualTo(19458130434L);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        int bananas = Day22.partTwo(scanner);
+        var bananas = Day22.partTwo(scanner);
         assertThat(bananas).isEqualTo(2130);
     }
 

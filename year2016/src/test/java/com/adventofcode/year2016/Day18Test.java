@@ -16,7 +16,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = "..^^.";
+        var input = "..^^.";
         BooleanMap booleanMap = Day18.getTiles(input, 3);
         assertThat(booleanMap).hasToString("""
                 ..##.
@@ -27,7 +27,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void inputLargerExample() {
-        String input = ".^^.^.^^^^";
+        var input = ".^^.^.^^^^";
         BooleanMap booleanMap = Day18.getTiles(input, 10);
         assertThat(booleanMap).hasToString("""
                 .##.#.####
@@ -42,7 +42,7 @@ class Day18Test extends AbstractTest {
                 ##.###..##
                 """);
         booleanMap.trim();
-        int size = booleanMap.yMax() * booleanMap.xMax();
+        var size = booleanMap.yMax() * booleanMap.xMax();
         assertThat(size - booleanMap.cardinality()).isEqualTo(38);
     }
 

@@ -15,11 +15,11 @@ class Day15Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Disc #1 has 5 positions; at time=0, it is at position 4.
                 Disc #2 has 2 positions; at time=0, it is at position 1.""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         assertThat(Day15.findTimePartOne(scanner)).isEqualTo(5);
     }
 

@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -21,13 +20,13 @@ class Day23Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
 
     static long runTest(long b, long c, long o) {
-        long mul = 0;
-        long a = 0;
+        var mul = 0L;
+        var a = 0L;
         long d;
         long e;
         long f;
         long g;
-        long h = 0;
+        var h = 0L;
         do {
             f = 1;
             d = 2;
@@ -82,7 +81,7 @@ class Day23Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 set b 57
                 set c b
                 jnz a 2
@@ -92,9 +91,9 @@ class Day23Test extends AbstractTest {
                 set c b
                 sub c -17000""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            List<String[]> commands = Day23.readCommands(scanner);
-            Map<String, Long> registers = new HashMap<>(Map.of("a", 1L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
+        try (var scanner = new Scanner(input)) {
+            var commands = Day23.readCommands(scanner);
+            var registers = new HashMap<String, Long>(Map.of("a", 1L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
             assertThat(Day23.runProgram(commands, registers)).isEqualTo(1);
 
             LOGGER.info("registers: {}", registers);
@@ -106,9 +105,9 @@ class Day23Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String[]> commands = Day23.readCommands(scanner);
+        var commands = Day23.readCommands(scanner);
 
-        Map<String, Long> registers = new HashMap<>(Map.of("a", 0L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
+        var registers = new HashMap<String, Long>(Map.of("a", 0L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
 
         assertThat(Day23.runProgram(commands, registers)).isEqualTo(3025);
     }

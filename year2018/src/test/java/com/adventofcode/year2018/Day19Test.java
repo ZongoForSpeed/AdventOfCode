@@ -15,7 +15,7 @@ class Day19Test extends AbstractTest {
 
     @Test
     void example() {
-        String input = """
+        var input = """
                 #ip 0
                 seti 5 0 1
                 seti 6 0 2
@@ -24,7 +24,7 @@ class Day19Test extends AbstractTest {
                 setr 1 0 0
                 seti 8 0 4
                 seti 9 0 5""";
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         IntList register = Day19.executePartOne(scanner);
         assertThat(register.toIntArray()).containsExactly(6, 5, 6, 0, 0, 9);

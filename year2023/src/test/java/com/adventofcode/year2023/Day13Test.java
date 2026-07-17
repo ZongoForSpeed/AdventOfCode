@@ -13,7 +13,7 @@ class Day13Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 #.##..##.
                 ..#.##.#.
                 ##......#
@@ -31,17 +31,17 @@ class Day13Test extends AbstractTest {
                 #....#..#""";
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
 
-            long total = Day13.PartOne.findReflection(scanner);
+            var total = Day13.PartOne.findReflection(scanner);
 
             Assertions.assertThat(total).isEqualTo(405);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
 
-            long total = Day13.PartTwo.findSmudge(scanner);
+            var total = Day13.PartTwo.findSmudge(scanner);
 
             Assertions.assertThat(total).isEqualTo(400);
         }
@@ -49,13 +49,13 @@ class Day13Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        long reflection = Day13.PartOne.findReflection(scanner);
+        var reflection = Day13.PartOne.findReflection(scanner);
         Assertions.assertThat(reflection).isEqualTo(34993);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long reflection = Day13.PartTwo.findSmudge(scanner);
+        var reflection = Day13.PartTwo.findSmudge(scanner);
         Assertions.assertThat(reflection).isEqualTo(29341);
     }
 }

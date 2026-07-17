@@ -32,15 +32,15 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
     }
 
     public static InfiniteCharMap read(Scanner scanner, Predicate<Character> predicate, boolean stopWhenBlank) {
-        InfiniteCharMap map = new InfiniteCharMap();
-        int j = 0;
+        var map = new InfiniteCharMap();
+        var j = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (stopWhenBlank && StringUtils.isBlank(line)) {
                 break;
             }
-            for (int i = 0; i < line.length(); i++) {
-                char c = line.charAt(i);
+            for (var i = 0; i < line.length(); i++) {
+                var c = line.charAt(i);
                 if (predicate.test(c)) {
                     map.put(Point2D.of(i, j), c);
                 }
@@ -134,10 +134,10 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
     }
 
     private List<String> print(UnaryOperator<Character> supplier) {
-        int maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
-        int minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
-        int maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
-        int minY = map.keySet().stream().mapToInt(Point2D::y).min().orElse(0);
+        var maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
+        var minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
+        var maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
+        var minY = map.keySet().stream().mapToInt(Point2D::y).min().orElse(0);
 
         char[][] view = new char[maxY - minY + 1][maxX - minX + 1];
         for (char[] chars : view) {

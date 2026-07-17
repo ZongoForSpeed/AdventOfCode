@@ -15,14 +15,14 @@ class Day17Test extends AbstractTest {
 
     @Test
     void example1() {
-        String input = """
+        var input = """
                 Register A: 729
                 Register B: 0
                 Register C: 0
                 
                 Program: 0,1,5,4,3,0""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             String join = Day17.partOne(scanner);
             assertThat(join).isEqualTo("4,6,3,5,6,3,5,2,1,0");
         }
@@ -30,14 +30,14 @@ class Day17Test extends AbstractTest {
 
     @Test
     void example2() {
-        String input = """
+        var input = """
                 Register A: 2024
                 Register B: 0
                 Register C: 0
                 
                 Program: 0,1,5,4,3,0""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             String join = Day17.partOne(scanner);
             assertThat(join).isEqualTo("4,2,5,6,7,7,7,7,3,1,0");
         }
@@ -45,15 +45,15 @@ class Day17Test extends AbstractTest {
 
     @Test
     void example3() {
-        String input = """
+        var input = """
                 Register A: 2024
                 Register B: 0
                 Register C: 0
                 
                 Program: 0,3,5,4,3,0""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long register = Day17.partTwoBruteForce(scanner);
+        try (var scanner = new Scanner(input)) {
+            var register = Day17.partTwoBruteForce(scanner);
             assertThat(register).isEqualTo(117440);
         }
     }
@@ -66,7 +66,7 @@ class Day17Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        long register = Day17.partTwo(scanner);
+        var register = Day17.partTwo(scanner);
         assertThat(register).isEqualTo(136904920099226L);
     }
 }

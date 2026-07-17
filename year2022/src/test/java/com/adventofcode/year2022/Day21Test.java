@@ -14,7 +14,7 @@ class Day21Test extends AbstractTest {
 
     @Test
     void example() {
-        String input = """
+        var input = """
                 root: pppw + sjmn
                 dbpl: 5
                 cczh: sllz + lgvd
@@ -32,14 +32,14 @@ class Day21Test extends AbstractTest {
                 hmdt: 32""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long shout = Day21.partOne(scanner);
+            var scanner = new Scanner(input);
+            var shout = Day21.partOne(scanner);
             assertThat(shout).isEqualTo(152);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long shout = Day21.partTwo(scanner);
+            var scanner = new Scanner(input);
+            var shout = Day21.partTwo(scanner);
             assertThat(shout).isEqualTo(301);
         }
     }

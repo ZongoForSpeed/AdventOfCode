@@ -15,7 +15,7 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 initial state: #..#.#..##......###...###
                 
                 ...## => #
@@ -32,7 +32,7 @@ class Day12Test extends AbstractTest {
                 ###.. => #
                 ###.# => #
                 ####. => #""";
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         assertThat(Day12.getPlants(scanner, 20)).isEqualTo(325);
     }

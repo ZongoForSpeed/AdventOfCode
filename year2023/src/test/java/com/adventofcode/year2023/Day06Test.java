@@ -13,43 +13,43 @@ class Day06Test extends AbstractTest {
 
     @Test
     void examplePartOne() {
-        String input = """
+        var input = """
                 Time:      7  15   30
                 Distance:  9  40  200""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        long reduce = Day06.PartOne.raceRecord(scanner);
+        var reduce = Day06.PartOne.raceRecord(scanner);
         Assertions.assertThat(reduce).isEqualTo(288);
     }
 
     @Test
     void examplePartTwo() {
-        String input = """
+        var input = """
                 Time:      71530
                 Distance:  940200""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        long reduce = Day06.PartTwo.raceRecord(scanner);
+        var reduce = Day06.PartTwo.raceRecord(scanner);
         Assertions.assertThat(reduce).isEqualTo(71503);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        long reduce = Day06.PartOne.raceRecord(scanner);
+        var reduce = Day06.PartOne.raceRecord(scanner);
         Assertions.assertThat(reduce).isEqualTo(131376);
     }
 
     @Override
     public void partTwo(Scanner ignored) {
-        String input = """
+        var input = """
                 Time:       51699878
                 Distance:   377117112241505
                 """;
 
-        try (Scanner scanner = new Scanner(input)) {
-            long reduce = Day06.PartTwo.raceRecord(scanner);
+        try (var scanner = new Scanner(input)) {
+            var reduce = Day06.PartTwo.raceRecord(scanner);
             Assertions.assertThat(reduce).isEqualTo(34123437L);
         }
     }

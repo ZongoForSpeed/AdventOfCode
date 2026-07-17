@@ -16,18 +16,18 @@ class Day15Test extends AbstractTest {
     void inputExample() {
         Assertions.assertThat(Day15.PartOne.hash("HASH")).isEqualTo(52);
 
-        String input = """
+        var input = """
                 rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long sum = Day15.PartOne.sumHash(scanner);
+            var scanner = new Scanner(input);
+            var sum = Day15.PartOne.sumHash(scanner);
             Assertions.assertThat(sum).isEqualTo(1320);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long focusingPower = Day15.PartTwo.focusingPower(scanner);
+            var scanner = new Scanner(input);
+            var focusingPower = Day15.PartTwo.focusingPower(scanner);
             Assertions.assertThat(focusingPower).isEqualTo(145);
         }
     }
@@ -35,13 +35,13 @@ class Day15Test extends AbstractTest {
     @Override
     public void partOne(Scanner scanner) {
 
-        long sum = Day15.PartOne.sumHash(scanner);
+        var sum = Day15.PartOne.sumHash(scanner);
         Assertions.assertThat(sum).isEqualTo(516469);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long focusingPower = Day15.PartTwo.focusingPower(scanner);
+        var focusingPower = Day15.PartTwo.focusingPower(scanner);
         Assertions.assertThat(focusingPower).isEqualTo(221627);
     }
 

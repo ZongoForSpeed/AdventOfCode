@@ -14,7 +14,7 @@ class Day05Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 0,9 -> 5,9
                 8,0 -> 0,8
                 9,4 -> 3,4
@@ -34,13 +34,13 @@ class Day05Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        int overlaps = Day05.countOverlapsPartOne(scanner);
+        var overlaps = Day05.countOverlapsPartOne(scanner);
         assertThat(overlaps).isEqualTo(6572);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int overlaps = Day05.countOverlapsPartTwo(scanner);
+        var overlaps = Day05.countOverlapsPartTwo(scanner);
         assertThat(overlaps).isEqualTo(21466);
     }
 }

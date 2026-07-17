@@ -15,7 +15,7 @@ class Day21Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 swap position 4 with position 0
                 swap letter d with letter b
                 reverse positions 0 through 4

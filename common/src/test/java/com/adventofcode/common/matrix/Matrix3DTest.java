@@ -13,7 +13,7 @@ class Matrix3DTest {
         // | 1 2 3 |
         // | 0 1 4 | = 1*(1*1 - 4*1) - 2*(0*1 - 4*2) + 3*(0*1 - 1*2)
         // | 2 1 1 | = 1*(-3) - 2*(-8) + 3*(-2) = -3 + 16 - 6 = 7
-        Matrix3D m = new Matrix3D(
+        var m = new Matrix3D(
                 Point3D.of(1, 0, 2),
                 Point3D.of(2, 1, 1),
                 Point3D.of(3, 4, 1)
@@ -29,7 +29,7 @@ class Matrix3DTest {
         // [ 1 0 1 ]
         // Determinant: 1(1-0) - 2(0-0) + 1(0-1) = 1 - 1 = 0 -> Not invertible
         
-        Matrix3D mNonInv = new Matrix3D(
+        var mNonInv = new Matrix3D(
                 Point3D.of(1, 0, 1),
                 Point3D.of(2, 1, 0),
                 Point3D.of(1, 0, 1)
@@ -51,7 +51,7 @@ class Matrix3DTest {
         // Wait, if it's integer based, it's only useful for matrices with det = 1 or -1, 
         // or where elements are divisible by det.
 
-        Matrix3D m = new Matrix3D(
+        var m = new Matrix3D(
                 Point3D.of(1, 0, 0),
                 Point3D.of(0, 1, 0),
                 Point3D.of(0, 0, 1)
@@ -65,7 +65,7 @@ class Matrix3DTest {
         // [ 1 2 3 ]   [ 1 ]   [ 1*1 + 2*2 + 3*3 ]   [ 14 ]
         // [ 4 5 6 ] * [ 2 ] = [ 4*1 + 5*2 + 6*3 ] = [ 32 ]
         // [ 7 8 9 ]   [ 3 ]   [ 7*1 + 8*2 + 9*3 ]   [ 50 ]
-        Matrix3D m = new Matrix3D(
+        var m = new Matrix3D(
                 Point3D.of(1, 4, 7),
                 Point3D.of(2, 5, 8),
                 Point3D.of(3, 6, 9)
@@ -77,7 +77,7 @@ class Matrix3DTest {
 
     @Test
     void testToString() {
-        Matrix3D m = new Matrix3D(
+        var m = new Matrix3D(
                 Point3D.of(1, 0, 0),
                 Point3D.of(0, 1, 0),
                 Point3D.of(0, 0, 1)

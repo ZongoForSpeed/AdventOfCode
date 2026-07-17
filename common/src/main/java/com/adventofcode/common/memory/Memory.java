@@ -30,7 +30,7 @@ public interface Memory<V> {
 
     default @Nullable V getOrDefault(int key, V defaultValue) {
         V v;
-        return (((v = get(key)) != null) || containsKey(key))
+        return ((v = get(key)) != null) || containsKey(key)
                 ? v
                 : defaultValue;
     }

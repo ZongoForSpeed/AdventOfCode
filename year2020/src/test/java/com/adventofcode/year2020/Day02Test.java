@@ -25,7 +25,7 @@ class Day02Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        long count = 0;
+        var count = 0L;
         while (scanner.hasNextLine()) {
             if (Day02.passwordPolicy1(scanner.nextLine())) {
                 count++;
@@ -37,7 +37,7 @@ class Day02Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        long count = 0;
+        var count = 0L;
         while (scanner.hasNextLine()) {
             if (Day02.passwordPolicy2(scanner.nextLine())) {
                 count++;

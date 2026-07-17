@@ -4,7 +4,6 @@ import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +15,7 @@ class Day06Test extends AbstractTest {
 
     @Test
     void examplePartOne() throws Exception {
-        String input = """
+        var input = """
                 COM)B
                 B)C
                 C)D
@@ -29,14 +28,14 @@ class Day06Test extends AbstractTest {
                 J)K
                 K)L""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            Map<String, String> graph = Day06.readGraph(scanner);
+        try (var scanner = new Scanner(input)) {
+            var graph = Day06.readGraph(scanner);
             assertThat(Day06.internalCountOrbits(graph, new HashMap<>(), "D")).isEqualTo(3);
             assertThat(Day06.internalCountOrbits(graph, new HashMap<>(), "L")).isEqualTo(7);
             assertThat(Day06.countOrbits(graph)).isEqualTo(42);
         }
-        try (Scanner scanner = new Scanner(input)) {
-            Map<String, String> graph = Day06.readGraph(scanner);
+        try (var scanner = new Scanner(input)) {
+            var graph = Day06.readGraph(scanner);
             graph.put("YOU", "K");
             graph.put("SAN", "I");
 
@@ -46,13 +45,13 @@ class Day06Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        Map<String, String> graph = Day06.readGraph(scanner);
+        var graph = Day06.readGraph(scanner);
         assertThat(Day06.countOrbits(graph)).isEqualTo(144909);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        Map<String, String> graph = Day06.readGraph(scanner);
+        var graph = Day06.readGraph(scanner);
         assertThat(Day06.countOrbitalTransfers(graph, "YOU", "SAN")).isEqualTo(259);
     }
 

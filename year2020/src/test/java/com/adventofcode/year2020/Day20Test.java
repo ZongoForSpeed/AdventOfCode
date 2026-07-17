@@ -5,7 +5,6 @@ import com.adventofcode.common.point.map.CharMap;
 import com.adventofcode.test.AbstractTest;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -25,7 +24,7 @@ class Day20Test extends AbstractTest {
 
     @Test
     void jurassicJigsaw() {
-        Scanner scanner = new Scanner(
+        var scanner = new Scanner(
                 """
                         Tile 2311:
                         ..##.#..#.
@@ -136,7 +135,7 @@ class Day20Test extends AbstractTest {
                         ..#.###...
                         """);
 
-        Int2ObjectMap<List<CharMap>> tiles = new Int2ObjectOpenHashMap<>();
+        var tiles = new Int2ObjectOpenHashMap<List<CharMap>>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
             line = line.replace(":", "");
@@ -145,11 +144,11 @@ class Day20Test extends AbstractTest {
         }
         LOGGER.info("Read tiles: {}", tiles.size());
 
-        int grid = (int) Math.round(Math.sqrt(tiles.size()));
+        var grid = (int) Math.round(Math.sqrt(tiles.size()));
         LOGGER.info("Grid size: {}", grid);
 
-        CharMap fullGrid = new CharMap();
-        long product = Day20.computeProduct(tiles, grid, fullGrid);
+        var fullGrid = new CharMap();
+        var product = Day20.computeProduct(tiles, grid, fullGrid);
         assertThat(product).isEqualTo(20899048083289L);
 
         LOGGER.info("Solution: \n{}", fullGrid);
@@ -157,7 +156,7 @@ class Day20Test extends AbstractTest {
         CharMap trim = Day20.removeBorder(fullGrid, grid, 10);
 
         BooleanMap seaMonster = Day20.readSeaMonster();
-        long monster = Day20.findSeaMonster(seaMonster, trim);
+        var monster = Day20.findSeaMonster(seaMonster, trim);
         assertThat(monster).isEqualTo(273L);
     }
 
@@ -168,7 +167,7 @@ class Day20Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        Int2ObjectMap<List<CharMap>> tiles = new Int2ObjectOpenHashMap<>();
+        var tiles = new Int2ObjectOpenHashMap<List<CharMap>>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
             line = line.replace(":", "");
@@ -177,11 +176,11 @@ class Day20Test extends AbstractTest {
         }
         LOGGER.info("Read tiles: {}", tiles.size());
 
-        int grid = (int) Math.round(Math.sqrt(tiles.size()));
+        var grid = (int) Math.round(Math.sqrt(tiles.size()));
         LOGGER.info("Grid size: {}", grid);
 
-        CharMap fullGrid = new CharMap();
-        long product = Day20.computeProduct(tiles, grid, fullGrid);
+        var fullGrid = new CharMap();
+        var product = Day20.computeProduct(tiles, grid, fullGrid);
         assertThat(product).isEqualTo(16937516456219L);
 
         LOGGER.info("Solution: \n{}", fullGrid);
@@ -189,7 +188,7 @@ class Day20Test extends AbstractTest {
         CharMap trim = Day20.removeBorder(fullGrid, grid, 10);
 
         BooleanMap seaMonster = Day20.readSeaMonster();
-        long monster = Day20.findSeaMonster(seaMonster, trim);
+        var monster = Day20.findSeaMonster(seaMonster, trim);
         assertThat(monster).isEqualTo(1858);
     }
 }

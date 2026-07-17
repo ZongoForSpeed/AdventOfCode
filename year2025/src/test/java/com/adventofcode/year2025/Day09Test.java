@@ -16,7 +16,7 @@ public class Day09Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 7,1
                 11,1
                 11,7
@@ -26,11 +26,11 @@ public class Day09Test extends AbstractTest {
                 2,3
                 7,3""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertEquals(50, Day09.partOne(scanner));
         }
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             assertEquals(24, Day09.partTwo(scanner));
         }
 

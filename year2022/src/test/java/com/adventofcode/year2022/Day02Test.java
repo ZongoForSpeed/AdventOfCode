@@ -13,33 +13,33 @@ class Day02Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 A Y
                 B X
                 C Z""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int score = Day02.PartOne.findScore(scanner);
+            var scanner = new Scanner(input);
+            var score = Day02.PartOne.findScore(scanner);
             Assertions.assertThat(score).isEqualTo(15);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int score = Day02.PartTwo.findScore(scanner);
+            var scanner = new Scanner(input);
+            var score = Day02.PartTwo.findScore(scanner);
             Assertions.assertThat(score).isEqualTo(12);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int score = Day02.PartOne.findScore(scanner);
+        var score = Day02.PartOne.findScore(scanner);
         Assertions.assertThat(score).isEqualTo(15691);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int score = Day02.PartTwo.findScore(scanner);
+        var score = Day02.PartTwo.findScore(scanner);
         Assertions.assertThat(score).isEqualTo(12989);
     }
 

@@ -15,13 +15,13 @@ class Day04Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 aaaaa-bbb-z-y-x-123[abxyz]
                 a-b-c-d-e-f-g-h-987[abcde]
                 not-a-real-room-404[oarel]
                 totally-real-room-200[decoy]""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         assertThat(Day04.checkRoomName(scanner)).isEqualTo(1514);
 

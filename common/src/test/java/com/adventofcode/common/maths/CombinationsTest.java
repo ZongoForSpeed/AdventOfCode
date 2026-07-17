@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CombinationsTest {
     @Test
     void generateArrays() {
-        List<int[]> combinations = Combinations.generate(5, 2);
+        var combinations = Combinations.generate(5, 2);
         assertThat(combinations)
                 .hasSize(10)
                 .containsExactly(
@@ -43,15 +43,15 @@ class CombinationsTest {
 
     @Test
     void testGenerateAll() {
-        List<int[]> combinations = Combinations.generate(3, 3);
+        var combinations = Combinations.generate(3, 3);
         assertThat(combinations).hasSize(1);
-        assertThat(combinations.get(0)).containsExactly(0, 1, 2);
+        assertThat(combinations.getFirst()).containsExactly(0, 1, 2);
     }
 
     @Test
     void testGenerateNone() {
-        List<int[]> combinations = Combinations.generate(3, 0);
+        var combinations = Combinations.generate(3, 0);
         assertThat(combinations).hasSize(1);
-        assertThat(combinations.get(0)).isEmpty();
+        assertThat(combinations.getFirst()).isEmpty();
     }
 }

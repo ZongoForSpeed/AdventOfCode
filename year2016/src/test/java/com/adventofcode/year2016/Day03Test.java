@@ -15,7 +15,7 @@ class Day03Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 101 301 501
                 102 302 502
                 103 303 503
@@ -23,7 +23,7 @@ class Day03Test extends AbstractTest {
                 202 402 602
                 203 403 603""";
 
-        int count = Day03.countTrianglesPartTwo(new Scanner(input));
+        var count = Day03.countTrianglesPartTwo(new Scanner(input));
         assertThat(count).isEqualTo(6);
     }
 

@@ -16,7 +16,7 @@ class Day13Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Alice would gain 54 happiness units by sitting next to Bob.
                 Alice would lose 79 happiness units by sitting next to Carol.
                 Alice would lose 2 happiness units by sitting next to David.
@@ -30,7 +30,7 @@ class Day13Test extends AbstractTest {
                 David would lose 7 happiness units by sitting next to Bob.
                 David would gain 41 happiness units by sitting next to Carol.""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         assertThat(Day13.computeMaxHappiness(scanner, false)).isEqualTo(330);
     }

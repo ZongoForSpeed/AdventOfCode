@@ -18,7 +18,7 @@ class Day15Test extends AbstractTest {
     class PartOne {
         @Test
         void example1() {
-            String input = """
+            var input = """
                     #######
                     #.G...#
                     #...EG#
@@ -26,13 +26,13 @@ class Day15Test extends AbstractTest {
                     #..G#E#
                     #.....#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartOne(scanner)).hasValue(27730);
         }
 
         @Test
         void example2() {
-            String input = """
+            var input = """
                     #######
                     #G..#E#
                     #E#E.E#
@@ -40,13 +40,13 @@ class Day15Test extends AbstractTest {
                     #...#E#
                     #...E.#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartOne(scanner)).hasValue(36334);
         }
 
         @Test
         void example3() {
-            String input = """
+            var input = """
                     #######
                     #E..EG#
                     #.#G.E#
@@ -54,13 +54,13 @@ class Day15Test extends AbstractTest {
                     #G..#.#
                     #..E#.#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartOne(scanner)).hasValue(39514);
         }
 
         @Test
         void example4() {
-            String input = """
+            var input = """
                     #######
                     #E.G#.#
                     #.#G..#
@@ -68,13 +68,13 @@ class Day15Test extends AbstractTest {
                     #G..#.#
                     #...E.#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartOne(scanner)).hasValue(27755);
         }
 
         @Test
         void example5() {
-            String input = """
+            var input = """
                     #######
                     #.E...#
                     #.#..G#
@@ -82,13 +82,13 @@ class Day15Test extends AbstractTest {
                     #E#G#G#
                     #...#G#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartOne(scanner)).hasValue(28944);
         }
 
         @Test
         void example6() {
-            String input = """
+            var input = """
                     #########
                     #G......#
                     #.E.#...#
@@ -98,7 +98,7 @@ class Day15Test extends AbstractTest {
                     #.G...G.#
                     #.....G.#
                     #########""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartOne(scanner)).hasValue(18740);
         }
     }
@@ -107,7 +107,7 @@ class Day15Test extends AbstractTest {
     class PartTwo {
         @Test
         void example1() {
-            String input = """
+            var input = """
                     #######
                     #.G...#
                     #...EG#
@@ -115,13 +115,13 @@ class Day15Test extends AbstractTest {
                     #..G#E#
                     #.....#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartTwo(scanner)).isEqualTo(4988);
         }
 
         @Test
         void example2() {
-            String input = """
+            var input = """
                     #######
                     #E..EG#
                     #.#G.E#
@@ -129,13 +129,13 @@ class Day15Test extends AbstractTest {
                     #G..#.#
                     #..E#.#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartTwo(scanner)).isEqualTo(31284);
         }
 
         @Test
         void example3() {
-            String input = """
+            var input = """
                     #######
                     #E.G#.#
                     #.#G..#
@@ -143,13 +143,13 @@ class Day15Test extends AbstractTest {
                     #G..#.#
                     #...E.#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartTwo(scanner)).isEqualTo(3478);
         }
 
         @Test
         void example4() {
-            String input = """
+            var input = """
                     #######
                     #.E...#
                     #.#..G#
@@ -157,13 +157,13 @@ class Day15Test extends AbstractTest {
                     #E#G#G#
                     #...#G#
                     #######""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartTwo(scanner)).isEqualTo(6474);
         }
 
         @Test
         void example5() {
-            String input = """
+            var input = """
                     #########
                     #G......#
                     #.E.#...#
@@ -173,7 +173,7 @@ class Day15Test extends AbstractTest {
                     #.G...G.#
                     #.....G.#
                     #########""";
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.playPartTwo(scanner)).isEqualTo(1140);
         }
     }

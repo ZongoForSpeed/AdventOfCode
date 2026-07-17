@@ -20,7 +20,7 @@ public final class Day24 {
     }
 
     static List<Hailstorm> readHailstorms(Scanner scanner) {
-        List<Hailstorm> hailstorms = new ArrayList<>();
+        var hailstorms = new ArrayList<Hailstorm>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
 
@@ -33,100 +33,98 @@ public final class Day24 {
         return hailstorms;
     }
 
-    /**
-     * --- Day 24: Never Tell Me The Odds ---
-     * <p>
-     * It seems like something is going wrong with the snow-making process.
-     * Instead of forming snow, the water that's been absorbed into the air seems
-     * to be forming hail!
-     * <p>
-     * Maybe there's something you can do to break up the hailstones?
-     * <p>
-     * Due to strong, probably-magical winds, the hailstones are all flying
-     * through the air in perfectly linear trajectories. You make a note of each
-     * hailstone's position and velocity (your puzzle input). For example:
-     * <p>
-     * 19, 13, 30 @ -2,  1, -2
-     * 18, 19, 22 @ -1, -1, -2
-     * 20, 25, 34 @ -2, -2, -4
-     * 12, 31, 28 @ -1, -2, -1
-     * 20, 19, 15 @  1, -5, -3
-     * <p>
-     * Each line of text corresponds to the position and velocity of a single
-     * hailstone. The positions indicate where the hailstones are right now (at
-     * time 0). The velocities are constant and indicate exactly how far each
-     * hailstone will move in one nanosecond.
-     * <p>
-     * Each line of text uses the format px py pz @ vx vy vz. For instance, the
-     * hailstone specified by 20, 19, 15 @ 1, -5, -3 has initial X position 20, Y
-     * position 19, Z position 15, X velocity 1, Y velocity -5, and Z velocity -3.
-     * After one nanosecond, the hailstone would be at 21, 14, 12.
-     * <p>
-     * Perhaps you won't have to do anything. How likely are the hailstones to
-     * collide with each other and smash into tiny ice crystals?
-     * <p>
-     * To estimate this, consider only the X and Y axes; ignore the Z axis.
-     * Looking forward in time, how many of the hailstones' paths will intersect
-     * within a test area? (The hailstones themselves don't have to collide, just
-     * test for intersections between the paths they will trace.)
-     * <p>
-     * In this example, look for intersections that happen with an X and Y
-     * position each at least 7 and at most 27; in your actual data, you'll need
-     * to check a much larger test area. Comparing all pairs of hailstones' future
-     * paths produces the following results:
-     * <p>
-     * Hailstone A: 19, 13, 30 @ -2, 1, -2
-     * Hailstone B: 18, 19, 22 @ -1, -1, -2
-     * Hailstones' paths will cross inside the test area (at x=14.333, y=15.333).
-     * <p>
-     * Hailstone A: 19, 13, 30 @ -2, 1, -2
-     * Hailstone B: 20, 25, 34 @ -2, -2, -4
-     * Hailstones' paths will cross inside the test area (at x=11.667, y=16.667).
-     * <p>
-     * Hailstone A: 19, 13, 30 @ -2, 1, -2
-     * Hailstone B: 12, 31, 28 @ -1, -2, -1
-     * Hailstones' paths will cross outside the test area (at x=6.2, y=19.4).
-     * <p>
-     * Hailstone A: 19, 13, 30 @ -2, 1, -2
-     * Hailstone B: 20, 19, 15 @ 1, -5, -3
-     * Hailstones' paths crossed in the past for hailstone A.
-     * <p>
-     * Hailstone A: 18, 19, 22 @ -1, -1, -2
-     * Hailstone B: 20, 25, 34 @ -2, -2, -4
-     * Hailstones' paths are parallel; they never intersect.
-     * <p>
-     * Hailstone A: 18, 19, 22 @ -1, -1, -2
-     * Hailstone B: 12, 31, 28 @ -1, -2, -1
-     * Hailstones' paths will cross outside the test area (at x=-6, y=-5).
-     * <p>
-     * Hailstone A: 18, 19, 22 @ -1, -1, -2
-     * Hailstone B: 20, 19, 15 @ 1, -5, -3
-     * Hailstones' paths crossed in the past for both hailstones.
-     * <p>
-     * Hailstone A: 20, 25, 34 @ -2, -2, -4
-     * Hailstone B: 12, 31, 28 @ -1, -2, -1
-     * Hailstones' paths will cross outside the test area (at x=-2, y=3).
-     * <p>
-     * Hailstone A: 20, 25, 34 @ -2, -2, -4
-     * Hailstone B: 20, 19, 15 @ 1, -5, -3
-     * Hailstones' paths crossed in the past for hailstone B.
-     * <p>
-     * Hailstone A: 12, 31, 28 @ -1, -2, -1
-     * Hailstone B: 20, 19, 15 @ 1, -5, -3
-     * Hailstones' paths crossed in the past for both hailstones.
-     * <p>
-     * So, in this example, 2 hailstones' future paths cross inside the boundaries
-     * of the test area.
-     * <p>
-     * However, you'll need to search a much larger test area if you want to see
-     * if any hailstones might collide. Look for intersections that happen with an
-     * X and Y position each at least 200000000000000 and at most 400000000000000.
-     * Disregard the Z axis entirely.
-     * <p>
-     * Considering only the X and Y axes, check all pairs of hailstones' future
-     * paths for intersections. How many of these intersections occur within the
-     * test area?
-     */
+    /// --- Day 24: Never Tell Me The Odds ---
+    ///
+    /// It seems like something is going wrong with the snow-making process.
+    /// Instead of forming snow, the water that's been absorbed into the air seems
+    /// to be forming hail!
+    ///
+    /// Maybe there's something you can do to break up the hailstones?
+    ///
+    /// Due to strong, probably-magical winds, the hailstones are all flying
+    /// through the air in perfectly linear trajectories. You make a note of each
+    /// hailstone's position and velocity (your puzzle input). For example:
+    ///
+    /// 19, 13, 30 @ -2,  1, -2
+    /// 18, 19, 22 @ -1, -1, -2
+    /// 20, 25, 34 @ -2, -2, -4
+    /// 12, 31, 28 @ -1, -2, -1
+    /// 20, 19, 15 @  1, -5, -3
+    ///
+    /// Each line of text corresponds to the position and velocity of a single
+    /// hailstone. The positions indicate where the hailstones are right now (at
+    /// time 0). The velocities are constant and indicate exactly how far each
+    /// hailstone will move in one nanosecond.
+    ///
+    /// Each line of text uses the format px py pz @ vx vy vz. For instance, the
+    /// hailstone specified by 20, 19, 15 @ 1, -5, -3 has initial X position 20, Y
+    /// position 19, Z position 15, X velocity 1, Y velocity -5, and Z velocity -3.
+    /// After one nanosecond, the hailstone would be at 21, 14, 12.
+    ///
+    /// Perhaps you won't have to do anything. How likely are the hailstones to
+    /// collide with each other and smash into tiny ice crystals?
+    ///
+    /// To estimate this, consider only the X and Y axes; ignore the Z axis.
+    /// Looking forward in time, how many of the hailstones' paths will intersect
+    /// within a test area? (The hailstones themselves don't have to collide, just
+    /// test for intersections between the paths they will trace.)
+    ///
+    /// In this example, look for intersections that happen with an X and Y
+    /// position each at least 7 and at most 27; in your actual data, you'll need
+    /// to check a much larger test area. Comparing all pairs of hailstones' future
+    /// paths produces the following results:
+    ///
+    /// Hailstone A: 19, 13, 30 @ -2, 1, -2
+    /// Hailstone B: 18, 19, 22 @ -1, -1, -2
+    /// Hailstones' paths will cross inside the test area (at x=14.333, y=15.333).
+    ///
+    /// Hailstone A: 19, 13, 30 @ -2, 1, -2
+    /// Hailstone B: 20, 25, 34 @ -2, -2, -4
+    /// Hailstones' paths will cross inside the test area (at x=11.667, y=16.667).
+    ///
+    /// Hailstone A: 19, 13, 30 @ -2, 1, -2
+    /// Hailstone B: 12, 31, 28 @ -1, -2, -1
+    /// Hailstones' paths will cross outside the test area (at x=6.2, y=19.4).
+    ///
+    /// Hailstone A: 19, 13, 30 @ -2, 1, -2
+    /// Hailstone B: 20, 19, 15 @ 1, -5, -3
+    /// Hailstones' paths crossed in the past for hailstone A.
+    ///
+    /// Hailstone A: 18, 19, 22 @ -1, -1, -2
+    /// Hailstone B: 20, 25, 34 @ -2, -2, -4
+    /// Hailstones' paths are parallel; they never intersect.
+    ///
+    /// Hailstone A: 18, 19, 22 @ -1, -1, -2
+    /// Hailstone B: 12, 31, 28 @ -1, -2, -1
+    /// Hailstones' paths will cross outside the test area (at x=-6, y=-5).
+    ///
+    /// Hailstone A: 18, 19, 22 @ -1, -1, -2
+    /// Hailstone B: 20, 19, 15 @ 1, -5, -3
+    /// Hailstones' paths crossed in the past for both hailstones.
+    ///
+    /// Hailstone A: 20, 25, 34 @ -2, -2, -4
+    /// Hailstone B: 12, 31, 28 @ -1, -2, -1
+    /// Hailstones' paths will cross outside the test area (at x=-2, y=3).
+    ///
+    /// Hailstone A: 20, 25, 34 @ -2, -2, -4
+    /// Hailstone B: 20, 19, 15 @ 1, -5, -3
+    /// Hailstones' paths crossed in the past for hailstone B.
+    ///
+    /// Hailstone A: 12, 31, 28 @ -1, -2, -1
+    /// Hailstone B: 20, 19, 15 @ 1, -5, -3
+    /// Hailstones' paths crossed in the past for both hailstones.
+    ///
+    /// So, in this example, 2 hailstones' future paths cross inside the boundaries
+    /// of the test area.
+    ///
+    /// However, you'll need to search a much larger test area if you want to see
+    /// if any hailstones might collide. Look for intersections that happen with an
+    /// X and Y position each at least 200000000000000 and at most 400000000000000.
+    /// Disregard the Z axis entirely.
+    ///
+    /// Considering only the X and Y axes, check all pairs of hailstones' future
+    /// paths for intersections. How many of these intersections occur within the
+    /// test area?
     public static final class PartOne {
 
         private PartOne() {
@@ -134,10 +132,10 @@ public final class Day24 {
         }
 
         public static int countIntersection(List<Hailstorm> hailstorms, long min, long max) {
-            int count = 0;
-            for (int i = 0; i < hailstorms.size(); i++) {
+            var count = 0;
+            for (var i = 0; i < hailstorms.size(); i++) {
                 Hailstorm a = hailstorms.get(i);
-                for (int j = i + 1; j < hailstorms.size(); ++j) {
+                for (var j = i + 1; j < hailstorms.size(); ++j) {
                     Hailstorm b = hailstorms.get(j);
 
                     Point3D p = a.position();
@@ -146,20 +144,20 @@ public final class Day24 {
                     Point3D q = b.position();
                     Point3D s = b.velocity();
 
-                    long rxs = crossProduct(r, s);
+                    var rxs = crossProduct(r, s);
                     if (rxs == 0) {
                         continue;
                     }
 
                     Point3D q_p = Point3D.minus(q, p);
-                    double t = crossProduct(q_p, s) * 1.0 / rxs;
-                    double u = crossProduct(q_p, r) * 1.0 / rxs;
+                    var t = crossProduct(q_p, s) * 1.0 / rxs;
+                    var u = crossProduct(q_p, r) * 1.0 / rxs;
                     if (t < 0 || u < 0) {
                         continue;
                     }
 
-                    double intersection_x = p.x() + t * r.x();
-                    double intersection_y = p.y() + t * r.y();
+                    var intersection_x = p.x() + t * r.x();
+                    var intersection_y = p.y() + t * r.y();
                     if (min <= intersection_x && intersection_x <= max
                             && min <= intersection_y && intersection_y <= max) {
                         count++;
@@ -174,64 +172,62 @@ public final class Day24 {
         }
     }
 
-    /**
-     * --- Part Two ---
-     * <p>
-     * Upon further analysis, it doesn't seem like any hailstones will naturally
-     * collide. It's up to you to fix that!
-     * <p>
-     * You find a rock on the ground nearby. While it seems extremely unlikely, if
-     * you throw it just right, you should be able to hit every hailstone in a
-     * single throw!
-     * <p>
-     * You can use the probably-magical winds to reach any integer position you
-     * like and to propel the rock at any integer velocity. Now including the Z
-     * axis in your calculations, if you throw the rock at time 0, where do you
-     * need to be so that the rock perfectly collides with every hailstone? Due to
-     * probably-magical inertia, the rock won't slow down or change direction when
-     * it collides with a hailstone.
-     * <p>
-     * In the example above, you can achieve this by moving to position 24, 13, 10
-     * and throwing the rock at velocity -3, 1, 2. If you do this, you will hit
-     * every hailstone as follows:
-     * <p>
-     * Hailstone: 19, 13, 30 @ -2, 1, -2
-     * Collision time: 5
-     * Collision position: 9, 18, 20
-     * <p>
-     * Hailstone: 18, 19, 22 @ -1, -1, -2
-     * Collision time: 3
-     * Collision position: 15, 16, 16
-     * <p>
-     * Hailstone: 20, 25, 34 @ -2, -2, -4
-     * Collision time: 4
-     * Collision position: 12, 17, 18
-     * <p>
-     * Hailstone: 12, 31, 28 @ -1, -2, -1
-     * Collision time: 6
-     * Collision position: 6, 19, 22
-     * <p>
-     * Hailstone: 20, 19, 15 @ 1, -5, -3
-     * Collision time: 1
-     * Collision position: 21, 14, 12
-     * <p>
-     * Above, each hailstone is identified by its initial position and its
-     * velocity. Then, the time and position of that hailstone's collision with
-     * your rock are given.
-     * <p>
-     * After 1 nanosecond, the rock has exactly the same position as one of the
-     * hailstones, obliterating it into ice dust! Another hailstone is smashed to
-     * bits two nanoseconds after that. After a total of 6 nanoseconds, all of the
-     * hailstones have been destroyed.
-     * <p>
-     * So, at time 0, the rock needs to be at X position 24, Y position 13, and Z
-     * position 10. Adding these three coordinates together produces 47. (Don't
-     * add any coordinates from the rock's velocity.)
-     * <p>
-     * Determine the exact position and velocity the rock needs to have at time 0
-     * so that it perfectly collides with every hailstone. What do you get if you
-     * add up the X, Y, and Z coordinates of that initial position?
-     */
+    /// --- Part Two ---
+    ///
+    /// Upon further analysis, it doesn't seem like any hailstones will naturally
+    /// collide. It's up to you to fix that!
+    ///
+    /// You find a rock on the ground nearby. While it seems extremely unlikely, if
+    /// you throw it just right, you should be able to hit every hailstone in a
+    /// single throw!
+    ///
+    /// You can use the probably-magical winds to reach any integer position you
+    /// like and to propel the rock at any integer velocity. Now including the Z
+    /// axis in your calculations, if you throw the rock at time 0, where do you
+    /// need to be so that the rock perfectly collides with every hailstone? Due to
+    /// probably-magical inertia, the rock won't slow down or change direction when
+    /// it collides with a hailstone.
+    ///
+    /// In the example above, you can achieve this by moving to position 24, 13, 10
+    /// and throwing the rock at velocity -3, 1, 2. If you do this, you will hit
+    /// every hailstone as follows:
+    ///
+    /// Hailstone: 19, 13, 30 @ -2, 1, -2
+    /// Collision time: 5
+    /// Collision position: 9, 18, 20
+    ///
+    /// Hailstone: 18, 19, 22 @ -1, -1, -2
+    /// Collision time: 3
+    /// Collision position: 15, 16, 16
+    ///
+    /// Hailstone: 20, 25, 34 @ -2, -2, -4
+    /// Collision time: 4
+    /// Collision position: 12, 17, 18
+    ///
+    /// Hailstone: 12, 31, 28 @ -1, -2, -1
+    /// Collision time: 6
+    /// Collision position: 6, 19, 22
+    ///
+    /// Hailstone: 20, 19, 15 @ 1, -5, -3
+    /// Collision time: 1
+    /// Collision position: 21, 14, 12
+    ///
+    /// Above, each hailstone is identified by its initial position and its
+    /// velocity. Then, the time and position of that hailstone's collision with
+    /// your rock are given.
+    ///
+    /// After 1 nanosecond, the rock has exactly the same position as one of the
+    /// hailstones, obliterating it into ice dust! Another hailstone is smashed to
+    /// bits two nanoseconds after that. After a total of 6 nanoseconds, all of the
+    /// hailstones have been destroyed.
+    ///
+    /// So, at time 0, the rock needs to be at X position 24, Y position 13, and Z
+    /// position 10. Adding these three coordinates together produces 47. (Don't
+    /// add any coordinates from the rock's velocity.)
+    ///
+    /// Determine the exact position and velocity the rock needs to have at time 0
+    /// so that it perfectly collides with every hailstone. What do you get if you
+    /// add up the X, Y, and Z coordinates of that initial position?
     public static final class PartTwo {
 
         private PartTwo() {
@@ -273,7 +269,7 @@ public final class Day24 {
                     (p1[2] * v1[0] - p3[2] * v3[0]) - (p1[0] * v1[2] - p3[0] * v3[2])
             };
 
-            GaussJordan gaussJordan = new GaussJordan(A, b);
+            var gaussJordan = new GaussJordan(A, b);
             double[] solution = gaussJordan.solve();
             LOGGER.info("solution = {}", Arrays.toString(solution));
             return (long) (solution[0] + solution[1] + solution[2]);
@@ -295,12 +291,12 @@ public final class Day24 {
         static Hailstorm of(String line) {
             Matcher matcher = HAILSTORM_PATTERN.matcher(line);
             if (matcher.find()) {
-                long x = Long.parseLong(matcher.group(1));
-                long y = Long.parseLong(matcher.group(2));
-                long z = Long.parseLong(matcher.group(3));
-                long vx = Long.parseLong(matcher.group(4));
-                long vy = Long.parseLong(matcher.group(5));
-                long vz = Long.parseLong(matcher.group(6));
+                var x = Long.parseLong(matcher.group(1));
+                var y = Long.parseLong(matcher.group(2));
+                var z = Long.parseLong(matcher.group(3));
+                var vx = Long.parseLong(matcher.group(4));
+                var vy = Long.parseLong(matcher.group(5));
+                var vz = Long.parseLong(matcher.group(6));
                 return new Hailstorm(new Point3D(x, y, z), new Point3D(vx, vy, vz));
             } else {
                 throw new IllegalStateException("Cannot parse line: " + line);

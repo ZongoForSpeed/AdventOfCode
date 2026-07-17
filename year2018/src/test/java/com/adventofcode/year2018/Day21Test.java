@@ -12,13 +12,13 @@ class Day21Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        int result = Day21.PartOne.run(scanner);
+        var result = Day21.PartOne.run(scanner);
         Assertions.assertThat(result).isEqualTo(16134795);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int result = Day21.PartTwo.run(scanner);
+        var result = Day21.PartTwo.run(scanner);
         Assertions.assertThat(result).isEqualTo(14254292);
     }
 }

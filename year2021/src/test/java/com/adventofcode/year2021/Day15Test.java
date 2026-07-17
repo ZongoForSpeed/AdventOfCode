@@ -14,7 +14,7 @@ class Day15Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 1163751742
                 1381373672
                 2136511328

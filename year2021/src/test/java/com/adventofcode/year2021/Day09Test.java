@@ -14,7 +14,7 @@ class Day09Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 2199943210
                 3987894921
                 9856789892

@@ -15,25 +15,25 @@ class Day11Test extends AbstractTest {
 
     @Test
     void example1() {
-        String input = "0 1 10 99 999";
+        var input = "0 1 10 99 999";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long result = Day11.plutonianPebbles(scanner, 1);
+        try (var scanner = new Scanner(input)) {
+            var result = Day11.plutonianPebbles(scanner, 1);
             assertThat(result).isEqualTo(7);
         }
     }
 
     @Test
     void example2() {
-        String input = "125 17";
+        var input = "125 17";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long result = Day11.plutonianPebbles(scanner, 6);
+        try (var scanner = new Scanner(input)) {
+            var result = Day11.plutonianPebbles(scanner, 6);
             assertThat(result).isEqualTo(22L);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            long result = Day11.plutonianPebbles(scanner, 25);
+        try (var scanner = new Scanner(input)) {
+            var result = Day11.plutonianPebbles(scanner, 25);
             assertThat(result).isEqualTo(55312L);
         }
     }

@@ -3,13 +3,9 @@ package com.adventofcode.common.graph;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Set;
 import java.util.function.Predicate;
 
-/**
- * cf. https://fr.wikipedia.org/wiki/Algorithme_A*
- */
+/// cf. https://fr.wikipedia.org/wiki/Algorithme_A*
 public abstract class AStar<E> {
 
     public abstract Iterable<Move<E>> next(E node);
@@ -23,8 +19,8 @@ public abstract class AStar<E> {
     }
 
     public long algorithm(E start, Predicate<E> ending) {
-        Set<E> closedList = new HashSet<>();
-        Queue<NodeHeuristic<E>> queue = new PriorityQueue<>(Comparator.comparingLong(NodeHeuristic::cost));
+        var closedList = new HashSet<E>();
+        var queue = new PriorityQueue<NodeHeuristic<E>>(Comparator.comparingLong(NodeHeuristic::cost));
         queue.add(new NodeHeuristic<>(start, 0L, heuristic(start)));
         while (!queue.isEmpty()) {
             NodeHeuristic<E> node = queue.poll();
@@ -32,11 +28,11 @@ public abstract class AStar<E> {
                 return node.cost();
             }
             if (closedList.add(node.vertex())) {
-                Iterable<Move<E>> moves = next(node.vertex());
+                var moves = <Move<E>>next(node.vertex());
                 for (Move<E> move : moves) {
                     E vertex = move.vertex();
                     if (!closedList.contains(vertex)) {
-                        long cost = node.cost() + move.cost();
+                        var cost = node.cost() + move.cost();
                         queue.add(new NodeHeuristic<>(vertex, cost, cost + heuristic(vertex)));
                     }
                 }

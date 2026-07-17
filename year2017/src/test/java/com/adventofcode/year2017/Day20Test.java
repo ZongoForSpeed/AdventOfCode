@@ -15,11 +15,11 @@ class Day20Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 p=< 3,0,0>, v=< 2,0,0>, a=<-1,0,0>
                 p=< 4,0,0>, v=< 0,0,0>, a=<-2,0,0>""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         Day20.Particle particle = Day20.nearestParticle(scanner);
         assertThat(particle).extracting(Day20.Particle::id).isEqualTo(0);
@@ -27,15 +27,15 @@ class Day20Test extends AbstractTest {
 
     @Test
     void inputExamplePartTwo() {
-        String input = """
+        var input = """
                 p=<-6,0,0>, v=< 3,0,0>, a=< 0,0,0>
                 p=<-4,0,0>, v=< 2,0,0>, a=< 0,0,0>
                 p=<-2,0,0>, v=< 1,0,0>, a=< 0,0,0>
                 p=< 3,0,0>, v=<-1,0,0>, a=< 0,0,0>""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        int size = Day20.particlesCollision(scanner);
+        var size = Day20.particlesCollision(scanner);
         assertThat(size).isEqualTo(1);
     }
 

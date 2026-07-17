@@ -12,9 +12,9 @@ class Day10Test {
 
     @Test
     void inputExample() {
-        String input = "1";
+        var input = "1";
 
-        for (int step = 1; step < 6; ++step) {
+        for (var step = 1; step < 6; ++step) {
             String next = Day10.lookAndSay(input);
             LOGGER.info("{} becomes {}", input, next);
             input = next;
@@ -25,14 +25,14 @@ class Day10Test {
 
     @Test
     void inputPartOne() {
-        String input = "3113322113";
+        var input = "3113322113";
         input = Day10.lookAndSay(input, 40);
         assertThat(input).hasSize(329356);
     }
 
     @Test
     void inputPartTwo() {
-        String input = "3113322113";
+        var input = "3113322113";
         input = Day10.lookAndSay(input, 50);
         assertThat(input).hasSize(4666278);
     }

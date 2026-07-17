@@ -14,7 +14,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 2,2,2
                 1,2,2
                 3,2,2
@@ -30,14 +30,14 @@ class Day18Test extends AbstractTest {
                 2,3,5""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long surface = Day18.computeSurfaceArea(scanner);
+            var scanner = new Scanner(input);
+            var surface = Day18.computeSurfaceArea(scanner);
             assertThat(surface).isEqualTo(64);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long surface = Day18.exteriorSurfaceArea(scanner);
+            var scanner = new Scanner(input);
+            var surface = Day18.exteriorSurfaceArea(scanner);
             assertThat(surface).isEqualTo(58);
         }
     }

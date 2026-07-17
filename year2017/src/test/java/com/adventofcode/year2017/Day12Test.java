@@ -15,7 +15,7 @@ class Day12Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 0 <-> 2
                 1 <-> 1
                 2 <-> 0, 3, 4

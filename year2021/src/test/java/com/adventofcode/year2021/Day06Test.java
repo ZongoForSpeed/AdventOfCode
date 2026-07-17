@@ -14,7 +14,7 @@ class Day06Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = "3,4,3,1,2";
+        var input = "3,4,3,1,2";
 
         assertThat(Day06.nextDays(input, 18)).isEqualTo(26);
         assertThat(Day06.nextDays(input, 80)).isEqualTo(5934);

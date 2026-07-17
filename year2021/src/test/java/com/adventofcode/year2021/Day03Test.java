@@ -17,7 +17,7 @@ class Day03Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        List<String> strings = List.of(
+        var strings = List.of(
                 "00100",
                 "11110",
                 "10110",
@@ -36,15 +36,15 @@ class Day03Test extends AbstractTest {
         assertThat(p.left()).isEqualTo(22);
         assertThat(p.right()).isEqualTo(9);
 
-        int oxygen = Day03.oxygenGeneratorRating(strings);
-        int co2 = Day03.co2ScrubberRating(strings);
+        var oxygen = Day03.oxygenGeneratorRating(strings);
+        var co2 = Day03.co2ScrubberRating(strings);
         assertThat(oxygen).isEqualTo(23);
         assertThat(co2).isEqualTo(10);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> input = FileUtils.readLines(scanner);
+        var input = FileUtils.readLines(scanner);
 
         IntegerPair p = Day03.binaryDiagnostic(input);
 
@@ -53,10 +53,10 @@ class Day03Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> input = FileUtils.readLines(scanner);
+        var input = FileUtils.readLines(scanner);
 
-        int oxygen = Day03.oxygenGeneratorRating(input);
-        int co2 = Day03.co2ScrubberRating(input);
+        var oxygen = Day03.oxygenGeneratorRating(input);
+        var co2 = Day03.co2ScrubberRating(input);
         assertThat(oxygen * co2).isEqualTo(3969126);
     }
 }

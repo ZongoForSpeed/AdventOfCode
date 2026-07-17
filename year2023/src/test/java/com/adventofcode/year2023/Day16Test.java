@@ -13,7 +13,7 @@ class Day16Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 .|...\\....
                 |.-.\\.....
                 .....|-...
@@ -26,27 +26,27 @@ class Day16Test extends AbstractTest {
                 ..//.|....""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long count = Day16.PartOne.countEnergizedTiles(scanner);
+            var scanner = new Scanner(input);
+            var count = Day16.PartOne.countEnergizedTiles(scanner);
             Assertions.assertThat(count).isEqualTo(46);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long max = Day16.PartTwo.maxEnergizedTiles(scanner);
+            var scanner = new Scanner(input);
+            var max = Day16.PartTwo.maxEnergizedTiles(scanner);
             Assertions.assertThat(max).isEqualTo(51);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        long count = Day16.PartOne.countEnergizedTiles(scanner);
+        var count = Day16.PartOne.countEnergizedTiles(scanner);
         Assertions.assertThat(count).isEqualTo(6816);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long max = Day16.PartTwo.maxEnergizedTiles(scanner);
+        var max = Day16.PartTwo.maxEnergizedTiles(scanner);
         Assertions.assertThat(max).isEqualTo(8163);
     }
 

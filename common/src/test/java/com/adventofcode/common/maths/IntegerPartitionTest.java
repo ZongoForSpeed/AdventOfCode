@@ -3,8 +3,6 @@ package com.adventofcode.common.maths;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -12,7 +10,7 @@ class IntegerPartitionTest {
 
     @Test
     void partition103() {
-        List<IntList> partition = IntegerPartition.partitions(10, 3);
+        var partition = IntegerPartition.partitions(10, 3);
         assertThat(partition)
                 .containsExactlyInAnyOrder(
                         IntList.of(8, 1, 1),
@@ -57,7 +55,7 @@ class IntegerPartitionTest {
 
     @Test
     void partition44() {
-        List<IntList> partition = IntegerPartition.partitions(4, 4);
+        var partition = IntegerPartition.partitions(4, 4);
         assertThat(partition)
                 .containsExactlyInAnyOrder(
                         IntList.of(1, 1, 1, 1)
@@ -66,7 +64,7 @@ class IntegerPartitionTest {
 
     @Test
     void partition54() {
-        List<IntList> partition = IntegerPartition.partitions(5, 4);
+        var partition = IntegerPartition.partitions(5, 4);
         assertThat(partition)
                 .containsExactlyInAnyOrder(
                         IntList.of(2, 1, 1, 1),
@@ -78,7 +76,7 @@ class IntegerPartitionTest {
 
     @Test
     void partition104() {
-        List<IntList> partition = IntegerPartition.partitions(10, 4);
+        var partition = IntegerPartition.partitions(10, 4);
         assertThat(partition).hasSize(84);
     }
 

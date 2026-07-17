@@ -15,7 +15,7 @@ class Day16Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = "s1,x3/4,pe/b";
+        var input = "s1,x3/4,pe/b";
 
         assertThat(Day16.danceMoves(input, 5, 1)).isEqualTo("baedc");
         assertThat(Day16.danceMoves(input, 5, 2)).isEqualTo("ceadb");

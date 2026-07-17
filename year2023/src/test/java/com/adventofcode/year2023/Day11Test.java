@@ -13,7 +13,7 @@ class Day11Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 ...#......
                 .......#..
                 #.........
@@ -26,22 +26,22 @@ class Day11Test extends AbstractTest {
                 #...#.....""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long sumLength = Day11.PartOne.computeGalaxyLength(scanner);
+            var scanner = new Scanner(input);
+            var sumLength = Day11.PartOne.computeGalaxyLength(scanner);
 
             Assertions.assertThat(sumLength).isEqualTo(374);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 10);
+            var scanner = new Scanner(input);
+            var sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 10);
 
             Assertions.assertThat(sumLength).isEqualTo(1030);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 100);
+            var scanner = new Scanner(input);
+            var sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 100);
 
             Assertions.assertThat(sumLength).isEqualTo(8410);
         }
@@ -49,13 +49,13 @@ class Day11Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        long sumLength = Day11.PartOne.computeGalaxyLength(scanner);
+        var sumLength = Day11.PartOne.computeGalaxyLength(scanner);
         Assertions.assertThat(sumLength).isEqualTo(9608724);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 1_000_000);
+        var sumLength = Day11.PartTwo.computeGalaxyLength(scanner, 1_000_000);
         Assertions.assertThat(sumLength).isEqualTo(904633799472L);
     }
 }

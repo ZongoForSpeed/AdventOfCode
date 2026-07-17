@@ -2,7 +2,6 @@ package com.adventofcode.common.graph;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -16,15 +15,15 @@ public final class Connectivity {
     }
 
     public static <T> Set<T> connectedPoints(Map<T, ? extends Collection<T>> graph, T point) {
-        Set<T> connected = new HashSet<>();
+        var connected = new HashSet<T>();
         connected.add(point);
 
-        Deque<T> nodes = new ArrayDeque<>();
+        var nodes = new ArrayDeque<T>();
         nodes.add(point);
 
         while (!nodes.isEmpty()) {
             T d = nodes.remove();
-            Collection<T> list = Objects.requireNonNull(graph.get(d), "Cannot find node '" + d + "' in graph");
+            var list = Objects.<T>requireNonNull(graph.get(d), "Cannot find node '" + d + "' in graph");
             for (T p : list) {
                 if (connected.add(p)) {
                     nodes.add(p);
@@ -35,12 +34,12 @@ public final class Connectivity {
     }
 
     public static <T> Map<T, Set<T>> findRegion(Collection<T> points, Map<T, ? extends Collection<T>> graph) {
-        Map<T, Set<T>> region = new HashMap<>();
+        var region = new HashMap<T, Set<T>>();
 
-        Set<T> visited = new HashSet<>();
+        var visited = new HashSet<T>();
         for (T point : points) {
             if (!visited.contains(point)) {
-                Set<T> connected = connectedPoints(graph, point);
+                var connected = <T>connectedPoints(graph, point);
                 visited.addAll(connected);
 
                 region.put(point, connected);

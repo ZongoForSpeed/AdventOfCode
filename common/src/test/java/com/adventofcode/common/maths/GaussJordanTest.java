@@ -17,9 +17,9 @@ class GaussJordanTest {
         };
 
         // Order of Matrix(n)
-        int n = 3;
+        var n = 3;
 
-        GaussJordan gaussJordan = new GaussJordan(a, n);
+        var gaussJordan = new GaussJordan(a, n);
 
         double[] solution = gaussJordan.solve();
 
@@ -39,7 +39,7 @@ class GaussJordanTest {
         };
         double[] vectorB = {8, -11, -3};
 
-        GaussJordan solver = new GaussJordan(matrixA, vectorB);
+        var solver = new GaussJordan(matrixA, vectorB);
         double[] result = solver.solve();
 
         assertThat(result[0]).isCloseTo(2.0, offset(0.0001));
@@ -57,7 +57,7 @@ class GaussJordanTest {
         };
         double[] vectorB = {2, 3};
 
-        GaussJordan solver = new GaussJordan(matrixA, vectorB);
+        var solver = new GaussJordan(matrixA, vectorB);
         assertThatThrownBy(solver::solve)
                 .isInstanceOf(IllegalStateException.class);
     }
@@ -72,7 +72,7 @@ class GaussJordanTest {
         };
         double[] vectorB = {2, 2};
 
-        GaussJordan solver = new GaussJordan(matrixA, vectorB);
+        var solver = new GaussJordan(matrixA, vectorB);
         assertThatThrownBy(solver::solve)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Infinite Solutions Exists");

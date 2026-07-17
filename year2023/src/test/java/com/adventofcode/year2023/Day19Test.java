@@ -14,7 +14,7 @@ class Day19Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 px{a<2006:qkq,m>2090:A,rfg}
                 pv{a>1716:R,A}
                 lnx{m>1548:A,A}
@@ -34,27 +34,27 @@ class Day19Test extends AbstractTest {
                 {x=2127,m=1623,a=2188,s=1013}""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long sum = Day19.PartOne.sumAccepted(scanner);
+            var scanner = new Scanner(input);
+            var sum = Day19.PartOne.sumAccepted(scanner);
             Assertions.assertThat(sum).isEqualTo(19114);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long combinations = Day19.PartTwo.combinations(scanner);
+            var scanner = new Scanner(input);
+            var combinations = Day19.PartTwo.combinations(scanner);
             Assertions.assertThat(combinations).isEqualTo(167409079868000L);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        long sum = Day19.PartOne.sumAccepted(scanner);
+        var sum = Day19.PartOne.sumAccepted(scanner);
         Assertions.assertThat(sum).isEqualTo(319295);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long combinations = Day19.PartTwo.combinations(scanner);
+        var combinations = Day19.PartTwo.combinations(scanner);
         Assertions.assertThat(combinations).isEqualTo(110807725108076L);
     }
 

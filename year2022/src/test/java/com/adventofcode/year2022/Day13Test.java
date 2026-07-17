@@ -14,7 +14,7 @@ class Day13Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 [1,1,3,1,1]
                 [1,1,5,1,1]
                 
@@ -40,12 +40,12 @@ class Day13Test extends AbstractTest {
                 [1,[2,[3,[4,[5,6,0]]]],8,9]""";
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day13.partOne(scanner)).isEqualTo(13);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day13.partTwo(scanner)).isEqualTo(140);
         }
     }

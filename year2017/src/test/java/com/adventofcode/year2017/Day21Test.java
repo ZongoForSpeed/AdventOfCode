@@ -16,11 +16,11 @@ class Day21Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 ../.# => ##./#../...
                 .#./..#/### => #..#/..../..../#..#""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
         assertThat(Day21.buildFractal(scanner, 2)).extracting(BooleanMap::cardinality).isEqualTo(12L);
     }

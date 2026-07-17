@@ -15,7 +15,7 @@ class Day08Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2";
+        var input = "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2";
 
         assertThat(Day08.readNode(new Scanner(input))).isEqualTo(138);
         assertThat(Day08.rootNode(new Scanner(input))).isEqualTo(66);

@@ -14,23 +14,23 @@ class Day07Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 32T3K 765
                 T55J5 684
                 KK677 28
                 KTJJT 220
                 QQQJA 483""";
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
 
-            long winnings = Day07.PartOne.computeWinnings(scanner);
+            var winnings = Day07.PartOne.computeWinnings(scanner);
 
             Assertions.assertThat(winnings).isEqualTo(6440);
         }
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
 
-            long winnings = Day07.PartTwo.computeWinnings(scanner);
+            var winnings = Day07.PartTwo.computeWinnings(scanner);
 
             Assertions.assertThat(winnings).isEqualTo(5905);
 
@@ -39,13 +39,13 @@ class Day07Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        long winnings = Day07.PartOne.computeWinnings(scanner);
+        var winnings = Day07.PartOne.computeWinnings(scanner);
         Assertions.assertThat(winnings).isEqualTo(253866470);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long winnings = Day07.PartTwo.computeWinnings(scanner);
+        var winnings = Day07.PartTwo.computeWinnings(scanner);
         Assertions.assertThat(winnings).isEqualTo(254494947);
     }
 

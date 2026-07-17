@@ -25,19 +25,19 @@ public final class Matrix3D {
     }
 
     public int determinant() {
-        int det = 0;
-        for (int i = 0; i < 3; ++i) {
-            det += (m[0][i] * (m[1][(i + 1) % 3] * m[2][(i + 2) % 3] - m[1][(i + 2) % 3] * m[2][(i + 1) % 3]));
+        var det = 0;
+        for (var i = 0; i < 3; ++i) {
+            det += m[0][i] * (m[1][(i + 1) % 3] * m[2][(i + 2) % 3] - m[1][(i + 2) % 3] * m[2][(i + 1) % 3]);
         }
         return det;
     }
 
     public Matrix3D inverse() {
-        int det = determinant();
+        var det = determinant();
         if (det == 0) {
             throw new IllegalStateException("Matrix is not invertible");
         }
-        Matrix3D inverse = new Matrix3D();
+        var inverse = new Matrix3D();
         inverse.m[0][0] = ((m[1][1] * m[2][2]) - (m[1][2] * m[2][1])) / det;
         inverse.m[0][1] = -((m[0][1] * m[2][2]) - (m[0][2] * m[2][1])) / det;
         inverse.m[0][2] = ((m[0][1] * m[1][2]) - (m[0][2] * m[1][1])) / det;
@@ -60,7 +60,7 @@ public final class Matrix3D {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Matrix3D matrix3D = (Matrix3D) o;
+        var matrix3D = (Matrix3D) o;
         return Arrays.deepEquals(m, matrix3D.m);
     }
 
@@ -71,7 +71,7 @@ public final class Matrix3D {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Matrix3D");
+        var sb = new StringBuilder("Matrix3D");
         sb.append('[');
         for (int[] ints : m) {
             sb.append(Arrays.toString(ints));

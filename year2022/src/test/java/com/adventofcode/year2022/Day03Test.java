@@ -13,7 +13,7 @@ class Day03Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 vJrwpWtwJgWrhcsFMMfFFhFp
                 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
                 PmmdzqPrVvPwwTWBwg
@@ -22,27 +22,27 @@ class Day03Test extends AbstractTest {
                 CrZsJsPPZsGzwwsLwLmpwMDw""";
 
         {
-            Scanner scanner = new Scanner(input);
-            int sum = Day03.PartOne.sumPriorities(scanner);
+            var scanner = new Scanner(input);
+            var sum = Day03.PartOne.sumPriorities(scanner);
             Assertions.assertThat(sum).isEqualTo(157);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int sum = Day03.PartTwo.sumPriorities(scanner);
+            var scanner = new Scanner(input);
+            var sum = Day03.PartTwo.sumPriorities(scanner);
             Assertions.assertThat(sum).isEqualTo(70);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int priority = Day03.PartOne.sumPriorities(scanner);
+        var priority = Day03.PartOne.sumPriorities(scanner);
         Assertions.assertThat(priority).isEqualTo(8298);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int priority = Day03.PartTwo.sumPriorities(scanner);
+        var priority = Day03.PartTwo.sumPriorities(scanner);
         Assertions.assertThat(priority).isEqualTo(2708);
     }
 

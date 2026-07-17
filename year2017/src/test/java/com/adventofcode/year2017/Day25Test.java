@@ -15,7 +15,7 @@ class Day25Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Begin in state A.
                 Perform a diagnostic checksum after 6 steps.
                 
@@ -39,9 +39,9 @@ class Day25Test extends AbstractTest {
                     - Move one slot to the right.
                     - Continue with state A.""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        long diagnosticChecksum = Day25.diagnosticChecksum(scanner);
+        var diagnosticChecksum = Day25.diagnosticChecksum(scanner);
         assertThat(diagnosticChecksum).isEqualTo(3);
     }
 

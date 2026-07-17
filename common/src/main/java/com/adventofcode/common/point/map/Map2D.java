@@ -98,10 +98,10 @@ public class Map2D implements Map<Point2D, Long> {
 
     @CanIgnoreReturnValue
     public List<String> print(LongFunction<Character> supplier) {
-        int maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
-        int minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
-        int maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
-        int minY = map.keySet().stream().mapToInt(Point2D::y).min().orElse(0);
+        var maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
+        var minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
+        var maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
+        var minY = map.keySet().stream().mapToInt(Point2D::y).min().orElse(0);
 
         char[][] view = new char[maxY - minY + 1][maxX - minX + 1];
         for (char[] chars : view) {

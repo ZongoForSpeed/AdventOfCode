@@ -20,7 +20,7 @@ class Day15Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        int duration = Day15.partTwo(scanner);
+        var duration = Day15.partTwo(scanner);
         assertThat(duration).isEqualTo(322);
     }
 

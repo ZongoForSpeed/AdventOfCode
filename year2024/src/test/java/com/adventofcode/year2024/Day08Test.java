@@ -1,11 +1,9 @@
 package com.adventofcode.year2024;
 
-import com.adventofcode.common.point.Point2D;
 import com.adventofcode.test.AbstractTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +15,7 @@ class Day08Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 ............
                 ........0...
                 .....0......
@@ -31,13 +29,13 @@ class Day08Test extends AbstractTest {
                 ............
                 ............""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            Set<Point2D> antinodes = Day08.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var antinodes = Day08.partOne(scanner);
             assertThat(antinodes).hasSize(14);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            Set<Point2D> antinodes = Day08.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var antinodes = Day08.partTwo(scanner);
             assertThat(antinodes).hasSize(34);
         }
     }

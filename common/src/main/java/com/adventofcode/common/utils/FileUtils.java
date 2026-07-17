@@ -11,7 +11,7 @@ public final class FileUtils {
     }
 
     public static List<String> readLines(Scanner scanner) {
-        List<String> lines = new ArrayList<>();
+        var lines = new ArrayList<String>();
         while (scanner.hasNextLine()) {
             lines.add(scanner.nextLine());
         }

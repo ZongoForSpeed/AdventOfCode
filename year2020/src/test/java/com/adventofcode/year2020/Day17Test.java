@@ -16,7 +16,7 @@ class Day17Test extends AbstractTest {
 
     @Test
     void conwayCubes() {
-        List<String> initialState = List.of(".#.",
+        var initialState = List.of(".#.",
                 "..#",
                 "###");
 
@@ -26,14 +26,14 @@ class Day17Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        List<String> initialState = FileUtils.readLines(scanner);
+        var initialState = FileUtils.readLines(scanner);
 
         assertThat(Day17.runConwayCubes(initialState, 6)).isEqualTo(215);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        List<String> initialState = FileUtils.readLines(scanner);
+        var initialState = FileUtils.readLines(scanner);
 
         assertThat(Day17.runConwayHyperCubes(initialState, 6)).isEqualTo(1728);
     }

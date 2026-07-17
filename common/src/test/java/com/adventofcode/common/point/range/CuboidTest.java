@@ -2,8 +2,6 @@ package com.adventofcode.common.point.range;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CuboidTest {
@@ -40,7 +38,7 @@ class CuboidTest {
         Cuboid c2 = Cuboid.of(1, 1, 1, 1, 1, 1);
         
         // c1 size 27, c2 size 1. Difference size should be 26.
-        List<Cuboid> diff = Cuboid.difference(c1, c2);
+        var diff = Cuboid.difference(c1, c2);
         assertThat(diff.stream().mapToLong(Cuboid::size).sum()).isEqualTo(26);
     }
 

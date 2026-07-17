@@ -19,7 +19,7 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = """
+        var input = """
                 #.#####
                 #.....#
                 #>....#
@@ -28,7 +28,7 @@ class Day24Test extends AbstractTest {
                 #.....#
                 #####.#""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             Day24.Basin basin = Day24.readInput(scanner);
 
             LOGGER.info("blizzard {}: {}", 1, basin.blizzard(1));
@@ -39,7 +39,7 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample2() {
-        String input = """
+        var input = """
                 #.#####
                 #...v.#
                 #..>..#
@@ -48,7 +48,7 @@ class Day24Test extends AbstractTest {
                 #.....#
                 #####.#""";
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             Day24.Basin basin = Day24.readInput(scanner);
 
             LOGGER.info("blizzard {}: {}", 1, basin.blizzard(1));
@@ -59,7 +59,7 @@ class Day24Test extends AbstractTest {
 
     @Test
     void inputExample3() {
-        String input = """
+        var input = """
                 #.######
                 #>>.<^<#
                 #.<..<<#
@@ -67,26 +67,26 @@ class Day24Test extends AbstractTest {
                 #<^v^^>#
                 ######.#""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long path = Day24.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var path = Day24.partOne(scanner);
             assertThat(path).isEqualTo(18);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            long path = Day24.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var path = Day24.partTwo(scanner);
             assertThat(path).isEqualTo(54);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        long path = Day24.partOne(scanner);
+        var path = Day24.partOne(scanner);
         assertThat(path).isEqualTo(288);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        long path = Day24.partTwo(scanner);
+        var path = Day24.partTwo(scanner);
         assertThat(path).isEqualTo(861);
     }
 

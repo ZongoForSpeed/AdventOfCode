@@ -13,7 +13,7 @@ class Day18Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 R 6 (#70c710)
                 D 5 (#0dc571)
                 L 2 (#5713f0)
@@ -30,27 +30,27 @@ class Day18Test extends AbstractTest {
                 U 2 (#7a21e3)""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long digPlan = Day18.PartOne.readDigPlan(scanner);
+            var scanner = new Scanner(input);
+            var digPlan = Day18.PartOne.readDigPlan(scanner);
             Assertions.assertThat(digPlan).isEqualTo(62);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            long digPlan = Day18.PartTwo.readDigPlan(scanner);
+            var scanner = new Scanner(input);
+            var digPlan = Day18.PartTwo.readDigPlan(scanner);
             Assertions.assertThat(digPlan).isEqualTo(952408144115L);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        long digPlan = Day18.PartOne.readDigPlan(scanner);
+        var digPlan = Day18.PartOne.readDigPlan(scanner);
         Assertions.assertThat(digPlan).isEqualTo(31171);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        long digPlan = Day18.PartTwo.readDigPlan(scanner);
+        var digPlan = Day18.PartTwo.readDigPlan(scanner);
         Assertions.assertThat(digPlan).isEqualTo(131431655002266L);
     }
 

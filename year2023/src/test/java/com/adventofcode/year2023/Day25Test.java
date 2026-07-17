@@ -14,7 +14,7 @@ class Day25Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 jqt: rhn xhk nvd
                 rsh: frs pzl lsr
                 xhk: hfx
@@ -28,15 +28,15 @@ class Day25Test extends AbstractTest {
                 lsr: lhk
                 rzs: qnr cmg lsr rsh
                 frs: qnr lhk lsr""";
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        int result = Day25.PartOne.minimumCut(scanner);
+        var result = Day25.PartOne.minimumCut(scanner);
         assertThat(result).isEqualTo(54);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        int result = Day25.PartOne.minimumCut(scanner);
+        var result = Day25.PartOne.minimumCut(scanner);
         assertThat(result).isEqualTo(546804);
     }
 

@@ -17,7 +17,7 @@ class Day10Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 value 5 goes to bot 2
                 bot 2 gives low to bot 1 and high to bot 0
                 value 3 goes to bot 1
@@ -25,9 +25,9 @@ class Day10Test extends AbstractTest {
                 bot 0 gives low to output 2 and high to output 0
                 value 2 goes to bot 2""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-        Day10.BalanceBots balanceBots = new Day10.BalanceBots();
+        var balanceBots = new Day10.BalanceBots();
         balanceBots.runBalanceBots(scanner);
         assertThat(balanceBots.getOutputs()).containsAllEntriesOf(Map.of(0, 5, 1, 2, 2, 3));
     }

@@ -13,7 +13,7 @@ class Day08Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 30373
                 25512
                 65332
@@ -21,27 +21,27 @@ class Day08Test extends AbstractTest {
                 35390""";
 
         {
-            Scanner scanner = new Scanner(input);
-            long cardinality = Day08.PartOne.countVisibleTrees(scanner);
+            var scanner = new Scanner(input);
+            var cardinality = Day08.PartOne.countVisibleTrees(scanner);
             Assertions.assertThat(cardinality).isEqualTo(21);
         }
 
         {
-            Scanner scanner = new Scanner(input);
-            int maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
+            var scanner = new Scanner(input);
+            var maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
             Assertions.assertThat(maxScenicScore).isEqualTo(8);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        long cardinality = Day08.PartOne.countVisibleTrees(scanner);
+        var cardinality = Day08.PartOne.countVisibleTrees(scanner);
         Assertions.assertThat(cardinality).isEqualTo(1820);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        int maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
+        var maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
         Assertions.assertThat(maxScenicScore).isEqualTo(385112);
     }
 }

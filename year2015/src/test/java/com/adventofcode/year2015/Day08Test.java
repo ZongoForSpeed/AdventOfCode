@@ -29,7 +29,7 @@ class Day08Test extends AbstractTest {
         assertThat(Day08.encode("\"aaa\\\"aaa\"")).isEqualTo(16);
         assertThat(Day08.encode("\"\\x27\"")).isEqualTo(11);
 
-        String input = """
+        var input = """
                 ""
                 "abc"
                 "aaa\\"aaa"

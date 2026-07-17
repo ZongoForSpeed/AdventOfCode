@@ -10,11 +10,11 @@ class Day17Test {
 
     @Test
     void inputExample() {
-        Day17.CircularBuffer<Integer> circularBuffer = Day17.buildBuffer(9, 3);
+        var circularBuffer = Day17.buildBuffer(9, 3);
         assertThat(circularBuffer).hasToString("0 (9) 5  7  2  4  3  8  6  1");
 
         IntList circularBuffer2017 = Day17.buildBufferPartOne(2017, 3);
-        int index = circularBuffer2017.indexOf(2017);
+        var index = circularBuffer2017.indexOf(2017);
 
         assertThat(circularBuffer2017.getInt(index + 1)).isEqualTo(638);
 
@@ -23,7 +23,7 @@ class Day17Test {
     @Test
     void inputPartOne() {
         IntList circularBuffer = Day17.buildBufferPartOne(2017, 303);
-        int index = circularBuffer.indexOf(2017);
+        var index = circularBuffer.indexOf(2017);
 
         assertThat(circularBuffer.getInt(index + 1)).isEqualTo(1971);
     }

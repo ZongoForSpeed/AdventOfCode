@@ -15,7 +15,7 @@ class Day05Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 47|53
                 97|13
                 97|61
@@ -45,13 +45,13 @@ class Day05Test extends AbstractTest {
                 61,13,29
                 97,13,75,29,47""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            int middle = Day05.partOne(scanner);
+        try (var scanner = new Scanner(input)) {
+            var middle = Day05.partOne(scanner);
             assertThat(middle).isEqualTo(143);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
-            int middle = Day05.partTwo(scanner);
+        try (var scanner = new Scanner(input)) {
+            var middle = Day05.partTwo(scanner);
             assertThat(middle).isEqualTo(123);
         }
     }

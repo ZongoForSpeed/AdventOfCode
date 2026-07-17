@@ -16,7 +16,7 @@ public class Day08Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 162,817,812
                 57,618,57
                 906,360,560
@@ -38,12 +38,12 @@ public class Day08Test extends AbstractTest {
                 984,92,344
                 425,690,689""";
 
-        try (Scanner scanner = new Scanner(input)) {
-            long result = Day08.partOne(scanner, 10);
+        try (var scanner = new Scanner(input)) {
+            var result = Day08.partOne(scanner, 10);
             assertThat(result).isEqualTo(40);
         }
 
-        try (Scanner scanner = new Scanner(input)) {
+        try (var scanner = new Scanner(input)) {
             OptionalLong result = Day08.partTwo(scanner);
             assertThat(result).hasValue(25272);
         }
@@ -51,7 +51,7 @@ public class Day08Test extends AbstractTest {
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        long result = Day08.partOne(scanner, 1000);
+        var result = Day08.partOne(scanner, 1000);
         assertThat(result).isEqualTo(131150);
     }
 

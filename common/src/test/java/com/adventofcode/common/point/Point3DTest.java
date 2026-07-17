@@ -18,7 +18,7 @@ class Point3DTest {
     @Test
     void testConstructorFromPoint2D() {
         Point2D p2d = Point2D.of(5, 10);
-        Point3D p3d = new Point3D(p2d, 15);
+        var p3d = new Point3D(p2d, 15);
         assertThat(p3d).isEqualTo(Point3D.of(5, 10, 15));
     }
 

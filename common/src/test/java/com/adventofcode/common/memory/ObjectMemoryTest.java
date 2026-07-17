@@ -9,7 +9,7 @@ class ObjectMemoryTest {
 
     @Test
     void testBasicOperations() {
-        ObjectMemory<String> memory = new ObjectMemory<>(10);
+        var memory = new ObjectMemory<String>(10);
         assertThat(memory.isEmpty()).isTrue();
         assertThat(memory.size()).isEqualTo(0);
 
@@ -25,7 +25,7 @@ class ObjectMemoryTest {
 
     @Test
     void testGetNonNull() {
-        ObjectMemory<String> memory = new ObjectMemory<>(10);
+        var memory = new ObjectMemory<String>(10);
         assertThat(memory.put(1, "A")).isNull();
         assertThat(memory.getNonNull(1)).isEqualTo("A");
         assertThatThrownBy(() -> memory.getNonNull(2))
@@ -35,7 +35,7 @@ class ObjectMemoryTest {
 
     @Test
     void testPutReturnsOldValue() {
-        ObjectMemory<String> memory = new ObjectMemory<>(10);
+        var memory = new ObjectMemory<String>(10);
         assertThat(memory.put(1, "A")).isNull();
         assertThat(memory.put(1, "B")).isEqualTo("A");
         assertThat(memory.get(1)).isEqualTo("B");
@@ -43,14 +43,14 @@ class ObjectMemoryTest {
 
     @Test
     void testGrow() {
-        ObjectMemory<String> memory = new ObjectMemory<>(2);
+        var memory = new ObjectMemory<String>(2);
         assertThat(memory.put(10, "J")).isNull();
         assertThat(memory.get(10)).isEqualTo("J");
     }
 
     @Test
     void testClear() {
-        ObjectMemory<String> memory = new ObjectMemory<>(10);
+        var memory = new ObjectMemory<String>(10);
         assertThat(memory.put(1, "A")).isNull();
         memory.clear();
         assertThat(memory.isEmpty()).isTrue();
@@ -58,7 +58,7 @@ class ObjectMemoryTest {
 
     @Test
     void testKeySetAndValues() {
-        ObjectMemory<String> memory = new ObjectMemory<>(10);
+        var memory = new ObjectMemory<String>(10);
         assertThat(memory.put(1, "A")).isNull();
         assertThat(memory.put(2, "B")).isNull();
 
@@ -68,7 +68,7 @@ class ObjectMemoryTest {
 
     @Test
     void testNegativeKey() {
-        ObjectMemory<String> memory = new ObjectMemory<>(10);
+        var memory = new ObjectMemory<String>(10);
         assertThatThrownBy(() -> memory.get(-1))
                 .isInstanceOf(IllegalStateException.class);
     }

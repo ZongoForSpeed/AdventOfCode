@@ -15,7 +15,7 @@ class Day02Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 abcdef
                 bababc
                 abbcde
@@ -24,7 +24,7 @@ class Day02Test extends AbstractTest {
                 abcdee
                 ababab""";
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         assertThat(Day02.checksum(scanner)).isEqualTo(12);
 
         scanner = new Scanner("""

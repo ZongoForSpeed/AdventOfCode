@@ -15,14 +15,14 @@ class Day09Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        String input = "12345";
+        var input = "12345";
 
         assertThat(Day09.partOne(input)).isEqualTo(60);
     }
 
     @Test
     void inputExample2() {
-        String input = "2333133121414131402";
+        var input = "2333133121414131402";
 
         assertThat(Day09.partOne(input)).isEqualTo(1928);
 

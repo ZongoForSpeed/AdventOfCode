@@ -14,7 +14,7 @@ class Day13Test extends AbstractTest {
     @Override
     public void partOne(Scanner scanner) {
         String line = scanner.nextLine();
-        long count = Day13.arkanoidBlockTiles(line);
+        var count = Day13.arkanoidBlockTiles(line);
 
         assertThat(count).isEqualTo(348);
     }

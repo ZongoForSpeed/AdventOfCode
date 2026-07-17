@@ -14,7 +14,7 @@ class Day15Test extends AbstractTest {
 
     @Test
     void inputExample() {
-        String input = """
+        var input = """
                 Sensor at x=2, y=18: closest beacon is at x=-2, y=15
                 Sensor at x=9, y=16: closest beacon is at x=10, y=16
                 Sensor at x=13, y=2: closest beacon is at x=15, y=3
@@ -31,12 +31,12 @@ class Day15Test extends AbstractTest {
                 Sensor at x=20, y=1: closest beacon is at x=15, y=3""";
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.partOne(scanner, 10)).isEqualTo(26);
         }
 
         {
-            Scanner scanner = new Scanner(input);
+            var scanner = new Scanner(input);
             assertThat(Day15.partTwo(scanner, 20)).isEqualTo(56000011);
         }
 
