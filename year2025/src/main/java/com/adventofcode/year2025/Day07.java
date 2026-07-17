@@ -3,10 +3,14 @@ package com.adventofcode.year2025;
 import com.adventofcode.common.utils.LongPair;
 import it.unimi.dsi.fastutil.ints.Int2LongArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2LongMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
 public final class Day07 {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Day07.class);
 
     /// --- Day 7: Laboratories ---
     ///
@@ -258,7 +262,7 @@ public final class Day07 {
                 if (i != -1) {
                     beams.put(i, 1L);
                 } else {
-                    IO.println("Cannot find starting position in input");
+                    LOGGER.error("Cannot find starting position in input");
                 }
             } else {
                 Int2LongMap toAdd = new Int2LongArrayMap();
