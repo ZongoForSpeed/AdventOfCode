@@ -112,7 +112,7 @@ public final class Day07 {
         var maskLimit = (1L << size) - 1;
         for (var mask = 0L; mask <= maskLimit; ++mask) {
             BitSet bitSet = BitSet.valueOf(new long[]{mask});
-            var value = numbers.getInt(0);
+            long value = numbers.getInt(0);
             for (var i = 1; i < numbers.size(); ++i) {
                 if (bitSet.get(i - 1)) {
                     value += numbers.getInt(i);
@@ -132,7 +132,7 @@ public final class Day07 {
         var maskLimit = Arithmetic.power(3L, size) - 1;
         for (var mask = 0L; mask <= maskLimit; ++mask) {
             var localMask = mask;
-            var value = numbers.getInt(0);
+            long value = numbers.getInt(0);
             for (var i = 1; i < numbers.size(); ++i) {
                 switch ((int) (localMask % 3)) {
                     case 0 -> value += numbers.getInt(i);

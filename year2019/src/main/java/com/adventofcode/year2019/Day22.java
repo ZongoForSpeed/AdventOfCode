@@ -279,7 +279,7 @@ public final class Day22 {
 
         for (String command : commands) {
             if (command.startsWith(DEAL_WITH_INCREMENT)) {
-                var argument = Integer.parseInt(command.substring(DEAL_WITH_INCREMENT.length()));
+                var argument = Long.parseLong(command.substring(DEAL_WITH_INCREMENT.length()));
                 argument = Arithmetic.inverseModulaire(argument, modulus);
                 m = m.multiply(new Matrix2D(argument, 0, 0, 1), modulus);
             } else if (command.startsWith(DEAL_INTO_NEW_STACK)) {

@@ -37,7 +37,7 @@ class ConnectivityTest {
 
     @Test
     void testConnectedPointsSingleNode() {
-        var graph = Map.of("A", List.of());
+        Map<String, List<String>> graph = Map.of("A", List.of());
 
         var connected = Connectivity.connectedPoints(graph, "A");
         assertThat(connected).containsExactly("A");
@@ -70,7 +70,7 @@ class ConnectivityTest {
 
     @Test
     void testFindRegionMultipleComponents() {
-        var graph = Map.of(
+        Map<String, List<String>> graph = Map.of(
                 "A", List.of("B"),
                 "B", List.of("A"),
                 "C", List.of("D"),
@@ -91,7 +91,7 @@ class ConnectivityTest {
 
     @Test
     void testFindRegionEmptyPoints() {
-        var graph = Map.of("A", List.of());
+        Map<String, List<String>> graph = Map.of("A", List.of());
         List<String> points = List.of();
 
         var regions = Connectivity.findRegion(points, graph);

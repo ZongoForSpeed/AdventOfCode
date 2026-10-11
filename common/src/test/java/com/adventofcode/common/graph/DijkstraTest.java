@@ -13,7 +13,7 @@ class DijkstraTest {
     @Test
     void testSimplePath() {
         // A -(2)-> B -(3)-> C
-        var graph = Map.of(
+        Map<String, List<Pair<String, Integer>>> graph = Map.of(
                 "A", List.of(Pair.of("B", 2)),
                 "B", List.of(Pair.of("C", 3)),
                 "C", List.of()
@@ -32,7 +32,7 @@ class DijkstraTest {
     void testMultiplePaths() {
         // A -(1)-> B -(4)-> D
         // A -(3)-> C -(1)-> D
-        var graph = Map.of(
+        Map<String, List<Pair<String, Integer>>> graph = Map.of(
                 "A", List.of(Pair.of("B", 1), Pair.of("C", 3)),
                 "B", List.of(Pair.of("D", 4)),
                 "C", List.of(Pair.of("D", 1)),
@@ -52,7 +52,7 @@ class DijkstraTest {
     void testGraphWithCycle() {
         // A -(1)-> B -(1)-> C -(1)-> A
         // B -(4)-> D
-        var graph = Map.of(
+        Map<String, List<Pair<String, Integer>>> graph = Map.of(
                 "A", List.of(Pair.of("B", 1)),
                 "B", List.of(Pair.of("C", 1), Pair.of("D", 4)),
                 "C", List.of(Pair.of("A", 1)),
@@ -72,7 +72,7 @@ class DijkstraTest {
     void testDisconnectedGraph() {
         // A -(1)-> B
         // C -(1)-> D
-        var graph = Map.of(
+        Map<String, List<Pair<String, Integer>>> graph = Map.of(
                 "A", List.of(Pair.of("B", 1)),
                 "B", List.of(),
                 "C", List.of(Pair.of("D", 1)),
@@ -90,7 +90,7 @@ class DijkstraTest {
 
     @Test
     void testSingleNode() {
-        var graph = Map.of(
+        Map<String, List<Pair<String, Integer>>> graph = Map.of(
                 "A", List.of()
         );
 

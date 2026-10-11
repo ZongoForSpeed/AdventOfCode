@@ -23,7 +23,7 @@ public final class Connectivity {
 
         while (!nodes.isEmpty()) {
             T d = nodes.remove();
-            var list = Objects.<T>requireNonNull(graph.get(d), "Cannot find node '" + d + "' in graph");
+            var list = Objects.requireNonNull(graph.get(d), "Cannot find node '" + d + "' in graph");
             for (T p : list) {
                 if (connected.add(p)) {
                     nodes.add(p);
@@ -39,7 +39,7 @@ public final class Connectivity {
         var visited = new HashSet<T>();
         for (T point : points) {
             if (!visited.contains(point)) {
-                var connected = <T>connectedPoints(graph, point);
+                var connected = connectedPoints(graph, point);
                 visited.addAll(connected);
 
                 region.put(point, connected);

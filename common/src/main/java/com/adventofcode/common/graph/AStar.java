@@ -28,7 +28,7 @@ public abstract class AStar<E> {
                 return node.cost();
             }
             if (closedList.add(node.vertex())) {
-                var moves = <Move<E>>next(node.vertex());
+                var moves = next(node.vertex());
                 for (Move<E> move : moves) {
                     E vertex = move.vertex();
                     if (!closedList.contains(vertex)) {

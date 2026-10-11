@@ -62,7 +62,7 @@ public class EnumMap2D<E extends Enum<E>> implements Map<Point2D, E> {
 
     @Override
     @CanIgnoreReturnValue
-    public E remove(Object key) {
+    public @Nullable E remove(Object key) {
         return map.remove(key);
     }
 

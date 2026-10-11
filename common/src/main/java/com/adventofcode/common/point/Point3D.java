@@ -9,7 +9,7 @@ public record Point3D(int x, int y, int z) {
     public static final Point3D ORIGIN = of(0, 0, 0);
 
     public Point3D(Point2D p, int z) {
-        this(x1, y1, z);
+        this(p.x(), p.y(), z);
     }
 
     public static Point3D of(int x, int y, int z) {
@@ -17,9 +17,9 @@ public record Point3D(int x, int y, int z) {
     }
 
     public static double distance(Point3D p1, Point3D p2) {
-        var dx = p1.x - p2.x;
-        var dy = p1.y - p2.y;
-        var dz = p1.z - p2.z;
+        double dx = p1.x - p2.x;
+        double dy = p1.y - p2.y;
+        double dz = p1.z - p2.z;
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 

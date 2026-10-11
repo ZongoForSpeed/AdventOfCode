@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
@@ -660,8 +661,8 @@ public final class Day15 {
     }
 
     private static void moveBox(Direction direction, Point2D box1, Point2D box2, Map<Point2D, Obstacle> obstacles) {
-        Obstacle remove1 = obstacles.remove(box1);
-        Obstacle remove2 = obstacles.remove(box2);
+        Obstacle remove1 = Objects.requireNonNull(obstacles.remove(box1));
+        Obstacle remove2 = Objects.requireNonNull(obstacles.remove(box2));
 
         moveBox(direction, box1, obstacles, remove1);
         moveBox(direction, box2, obstacles, remove2);
