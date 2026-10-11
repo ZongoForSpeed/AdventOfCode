@@ -62,4 +62,18 @@ class CharMapTest {
         assertThat(map.entries().get(0).left()).isEqualTo(Point2D.of(0, 0));
         assertThat(map.entries().get(0).right()).isEqualTo('A');
     }
+
+    @Test
+    void testInsertLineAtEnd() {
+        var map = CharMap.read("ab\ncd", _ -> true);
+        map.insertLine(2, '#');
+        assertThat(map.values()).containsExactly("ab", "cd", "##");
+    }
+
+    @Test
+    void testSubMapHasRequestedSize() {
+        var map = CharMap.read("abc\ndef\nghi", _ -> true);
+        var subMap = map.subMap(1, 3, 0, 2);
+        assertThat(subMap.values()).containsExactly("bc", "ef");
+    }
 }

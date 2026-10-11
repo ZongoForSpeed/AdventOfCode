@@ -11,7 +11,7 @@ public final class Prime {
 
     public static long[] sieve(int size) {
         BitSet test = new BitSet(size);
-        test.set(0, size - 1, true);
+        test.set(0, size, true);
         for (int p = 2; p * p < size; ++p) {
             if (test.get(p)) {
                 for (int k = p * p; k < size; k += p) {

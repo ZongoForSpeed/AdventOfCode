@@ -113,11 +113,11 @@ public final class Arithmetic {
     }
 
     public static int lcm(int a, int b) {
-        return a * b / gcd(a, b);
+        return a / gcd(a, b) * b;
     }
 
     public static long lcm(long a, long b) {
-        return a * b / gcd(a, b);
+        return a / gcd(a, b) * b;
     }
 
     public static int gcd(int a, int b) {

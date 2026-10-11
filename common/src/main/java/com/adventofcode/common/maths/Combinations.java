@@ -28,6 +28,10 @@ public final class Combinations {
     }
 
     public static List<int[]> generate(int n, int r) {
+        return cached(n, r).stream().map(int[]::clone).toList();
+    }
+
+    private static List<int[]> cached(int n, int r) {
         return CACHE.computeIfAbsent(IntegerPair.of(n, r), _ -> {
             List<int[]> combinations = new ArrayList<>();
             helper(combinations, new int[r], 0, n - 1, 0);
@@ -36,7 +40,7 @@ public final class Combinations {
     }
 
     public static <T> Stream<List<T>> generate(List<T> list, int r) {
-        List<int[]> combinations = generate(list.size(), r);
+        List<int[]> combinations = cached(list.size(), r);
         return combinations
                 .stream()
                 .map(c -> Arrays.stream(c).mapToObj(list::get).toList());

@@ -65,10 +65,30 @@ class BooleanMapTest {
         BooleanMap map = new BooleanMap(10, 10);
         map.set(5, 5);
         map.trim();
-        // sizeY = lastLine + 1 = 5 + 1 = 6
-        // sizeX = max(x) + 1 = 5 + 1 = 6
-        assertThat(map.xMax()).isEqualTo(6);
-        assertThat(map.yMax()).isEqualTo(6);
+        // xMax / yMax are the highest set indexes, as everywhere else in BooleanMap
+        assertThat(map.xMax()).isEqualTo(5);
+        assertThat(map.yMax()).isEqualTo(5);
         assertThat(map.get(5, 5)).isTrue();
+    }
+
+    @Test
+    void testTrimEmptyMap() {
+        var map = new BooleanMap(3, 3);
+        map.trim();
+        assertThat(map.xMax()).isZero();
+        assertThat(map.yMax()).isZero();
+        assertThat(map.cardinality()).isZero();
+    }
+
+    @Test
+    void testEqualsIgnoresTrailingEmptyRows() {
+        var small = new BooleanMap(2, 2);
+        small.set(1, 1);
+        var large = new BooleanMap(5, 5);
+        large.set(1, 1);
+        assertThat(large).isEqualTo(small).hasSameHashCodeAs(small);
+
+        large.set(0, 4);
+        assertThat(large).isNotEqualTo(small);
     }
 }

@@ -12,6 +12,7 @@ public final class Digits {
     }
 
     public static CharList digits(int n) {
+        checkNonNegative(n);
         if (n == 0) {
             return CharList.of((char) 0);
         }
@@ -26,6 +27,7 @@ public final class Digits {
     }
 
     public static CharList digits(long n) {
+        checkNonNegative(n);
         if (n == 0) {
             return CharList.of((char) 0);
         }
@@ -40,12 +42,19 @@ public final class Digits {
     }
 
     public static int numberDigits(long n) {
-        var d = 0;
-        while (n > 0) {
+        checkNonNegative(n);
+        var d = 1;
+        while (n >= 10) {
             n /= 10;
             ++d;
         }
 
         return d;
+    }
+
+    private static void checkNonNegative(long n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Negative numbers are not supported: " + n);
+        }
     }
 }

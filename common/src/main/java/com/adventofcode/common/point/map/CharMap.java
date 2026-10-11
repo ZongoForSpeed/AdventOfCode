@@ -214,7 +214,7 @@ public class CharMap {
     }
 
     public CharMap subMap(int xMin, int xMax, int yMin, int yMax) {
-        var subMap = new CharMap(xMax - xMin - 1, yMax - yMin - 1, defaultValue);
+        var subMap = new CharMap(xMax - xMin, yMax - yMin, defaultValue);
         for (var x = xMin; x < xMax; ++x) {
             for (var y = yMin; y < yMax; ++y) {
                 subMap.set(x - xMin, y - yMin, get(x, y));
@@ -225,12 +225,12 @@ public class CharMap {
 
     public void insertLine(int line, char c) {
         var length = map.length;
+        var lineLength = line < length ? map[line].length : length > 0 ? map[length - 1].length : 0;
         map = Arrays.copyOf(map, length + 1);
         System.arraycopy(map, line,
                 map, line + 1,
                 length - line);
 
-        var lineLength = map[line].length;
         map[line] = new char[lineLength];
         Arrays.fill(map[line], c);
     }

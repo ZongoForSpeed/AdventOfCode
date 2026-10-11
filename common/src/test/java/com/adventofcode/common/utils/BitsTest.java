@@ -54,4 +54,16 @@ class BitsTest {
         assertThat(Bits.remove(bitset, 1)).isEqualTo(0b1001L);
         assertThat(Bits.remove(bitset, 2)).isEqualTo(0b1011L);
     }
+
+    @Test
+    void testConvertBitSetWithHighestBit() {
+        assertThat((Iterable<Integer>) Bits.convertBitSet((1L << 63) | 1L)).containsExactly(0, 63);
+        assertThat((Iterable<Integer>) Bits.convertBitSet(-1L)).hasSize(64);
+    }
+
+    @Test
+    void testToBitSetWithDuplicates() {
+        assertThat(Bits.toBitSet(IntList.of(1, 1))).isEqualTo(2L);
+        assertThat(Bits.toBitSet(IntStream.of(3, 0, 3))).isEqualTo(9L);
+    }
 }

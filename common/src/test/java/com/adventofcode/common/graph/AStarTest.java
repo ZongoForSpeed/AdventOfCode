@@ -115,4 +115,25 @@ class AStarTest {
 
         assertThat(astar.algorithm("A", "C")).isEqualTo(2);
     }
+
+    @Test
+    void testHeuristicGuidesTheSearch() {
+        var expanded = new int[]{0};
+        var line = new AStar<Integer>() {
+            @Override
+            public List<Move<Integer>> next(Integer node) {
+                expanded[0]++;
+                return List.of(Move.of(node + 1), Move.of(node - 1));
+            }
+
+            @Override
+            public long heuristic(Integer node) {
+                return Math.abs(1000 - node);
+            }
+        };
+
+        assertThat(line.algorithm(0, 1000)).isEqualTo(1000);
+        // With an exact heuristic only the nodes on the shortest path are expanded (Dijkstra would expand ~2000)
+        assertThat(expanded[0]).isEqualTo(1000);
+    }
 }

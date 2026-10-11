@@ -5,6 +5,7 @@ import com.google.errorprone.annotations.Immutable;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Immutable
 public record Range(long lower, long upper) {
@@ -31,7 +32,12 @@ public record Range(long lower, long upper) {
     }
 
     public static List<Range> difference(Range r1, Range r2) {
-        return fullUnion(r1, r2).stream().filter(r -> !intersect(r, r2)).toList();
+        if (!intersect(r1, r2)) {
+            return List.of(r1);
+        }
+        return Stream.of(new Range(r1.lower, r2.lower - 1), new Range(r2.upper + 1, r1.upper))
+                .filter(Range::valid)
+                .toList();
     }
 
     public static boolean intersect(Range r1, Range r2) {

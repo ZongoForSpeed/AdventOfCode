@@ -54,4 +54,10 @@ class CombinationsTest {
         assertThat(combinations).hasSize(1);
         assertThat(combinations.getFirst()).isEmpty();
     }
+
+    @Test
+    void testCallerCannotCorruptCache() {
+        Combinations.generate(3, 2).getFirst()[0] = 99;
+        assertThat(Combinations.generate(3, 2).getFirst()).containsExactly(0, 1);
+    }
 }

@@ -106,4 +106,16 @@ class RangeTest {
     void testToString() {
         assertThat(Range.of(10, 20).toString()).isEqualTo("[10..20]");
     }
+
+    @Test
+    void testDifferenceEdgeCases() {
+        // r2 covers the start of r1: no empty [0..-1] range
+        assertThat(Range.difference(Range.of(0, 10), Range.of(0, 5))).containsExactly(Range.of(6, 10));
+        // r2 strictly inside r1
+        assertThat(Range.difference(Range.of(0, 10), Range.of(3, 5))).containsExactly(Range.of(0, 2), Range.of(6, 10));
+        // disjoint ranges
+        assertThat(Range.difference(Range.of(0, 2), Range.of(5, 7))).containsExactly(Range.of(0, 2));
+        // r2 covers r1
+        assertThat(Range.difference(Range.of(3, 5), Range.of(0, 10))).isEmpty();
+    }
 }

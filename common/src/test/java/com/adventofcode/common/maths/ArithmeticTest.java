@@ -104,4 +104,10 @@ class ArithmeticTest {
         assertThat(result.getLeft()).isEqualTo(1L);
         assertThat(101 * result.getMiddle() + 13 * result.getRight()).isEqualTo(1L);
     }
+
+    @Test
+    void testLcmDoesNotOverflowWhenResultFits() {
+        assertThat(Arithmetic.lcm(65_536, 32_768)).isEqualTo(65_536);
+        assertThat(Arithmetic.lcm(4_000_000_000L, 6_000_000_000L)).isEqualTo(12_000_000_000L);
+    }
 }

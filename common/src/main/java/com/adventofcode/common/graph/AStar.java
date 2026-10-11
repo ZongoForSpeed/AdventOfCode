@@ -20,7 +20,7 @@ public abstract class AStar<E> {
 
     public long algorithm(E start, Predicate<E> ending) {
         var closedList = new HashSet<E>();
-        var queue = new PriorityQueue<NodeHeuristic<E>>(Comparator.comparingLong(NodeHeuristic::cost));
+        var queue = new PriorityQueue<NodeHeuristic<E>>(Comparator.comparingLong(NodeHeuristic::heuristic));
         queue.add(new NodeHeuristic<>(start, 0L, heuristic(start)));
         while (!queue.isEmpty()) {
             NodeHeuristic<E> node = queue.poll();

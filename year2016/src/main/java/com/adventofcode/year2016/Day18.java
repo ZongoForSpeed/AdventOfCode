@@ -141,8 +141,8 @@ public final class Day18 {
      * Your puzzle answer was 19984714.
      */
     static long mapSize(Scanner scanner, int rows) {
-        BooleanMap booleanMap = getTiles(scanner.nextLine(), rows);
-        booleanMap.trim();
-        return (long) booleanMap.yMax() * booleanMap.xMax() - booleanMap.cardinality();
+        var line = scanner.nextLine();
+        BooleanMap booleanMap = getTiles(line, rows);
+        return (long) rows * line.length() - booleanMap.cardinality();
     }
 }

@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
@@ -149,20 +148,13 @@ public class BooleanMap {
     }
 
     public void trim() {
-        int lastLine = 0;
-        for (int i = 0; i < bitSets.size(); i++) {
-            BitSet bitSet = bitSets.get(i);
-            if (bitSet.cardinality() > 0) {
-                lastLine = i;
-            }
-        }
-
+        var lastLine = lastNonEmptyLine();
         while (bitSets.size() > lastLine + 1) {
             bitSets.removeLast();
         }
 
-        sizeY = lastLine + 1;
-        sizeX = bitSets.stream().flatMapToInt(BitSet::stream).max().orElseThrow() + 1;
+        sizeY = Math.max(lastLine, 0);
+        sizeX = Math.max(bitSets.stream().mapToInt(BitSet::length).max().orElse(0) - 1, 0);
     }
 
     public BooleanMap subMap(int xMin, int xMax, int yMin, int yMax) {
@@ -214,11 +206,29 @@ public class BooleanMap {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof BooleanMap that)) return false;
-        return Objects.equals(bitSets, that.bitSets);
+        var lastLine = lastNonEmptyLine();
+        if (lastLine != that.lastNonEmptyLine()) return false;
+        for (var y = 0; y <= lastLine; y++) {
+            if (!bitSets.get(y).equals(that.bitSets.get(y))) return false;
+        }
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(bitSets);
+        var hash = 1;
+        for (var y = 0; y <= lastNonEmptyLine(); y++) {
+            hash = 31 * hash + bitSets.get(y).hashCode();
+        }
+        return hash;
+    }
+
+    private int lastNonEmptyLine() {
+        for (var y = bitSets.size() - 1; y >= 0; y--) {
+            if (!bitSets.get(y).isEmpty()) {
+                return y;
+            }
+        }
+        return -1;
     }
 }

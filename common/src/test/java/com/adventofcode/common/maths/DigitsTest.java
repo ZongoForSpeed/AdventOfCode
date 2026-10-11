@@ -3,6 +3,7 @@ package com.adventofcode.common.maths;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DigitsTest {
 
@@ -23,8 +24,14 @@ class DigitsTest {
     @Test
     void numberDigits_LONG() {
         assertThat(Digits.numberDigits(221280540398419L)).isEqualTo(15);
-        assertThat(Digits.numberDigits(0L)).isEqualTo(0);
+        assertThat(Digits.numberDigits(0L)).isEqualTo(1);
         assertThat(Digits.numberDigits(7L)).isEqualTo(1);
     }
 
+    @Test
+    void negativeNumbersAreRejected() {
+        assertThatThrownBy(() -> Digits.digits(-12)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Digits.digits(-12L)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Digits.numberDigits(-12L)).isInstanceOf(IllegalArgumentException.class);
+    }
 }

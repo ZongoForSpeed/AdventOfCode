@@ -17,6 +17,19 @@ mvn -P fixErrorProne compile                        # apply Error Prone suggeste
 mvn rewrite:run                                     # OpenRewrite JavaBestPractices recipe
 ```
 
+## Validating changes
+
+**Always finish a change with a full `mvn clean install` from the repo root**, even if the change only touches one module, and only report the work as done once it ends in `BUILD SUCCESS`. Year modules depend on `common`, so a change there can break any year. Error Prone also runs at compile time, so a single-module or IDE build isn't enough. If the build fails, report the failing modules and tests; never skip tests (`-DskipTests`) or disable them to get a green build.
+
+`mvn` is usually not on the shell PATH. Use IntelliJ's bundled Maven with the local JDK:
+
+```bash
+export JAVA_HOME=/Users/zongo/Library/Java/JavaVirtualMachines/openjdk-26.0.1/Contents/Home
+"/Users/zongo/Applications/IntelliJ IDEA.app/Contents/plugins/maven-plugin/lib/maven3/bin/mvn" clean install
+```
+
+The full build takes about 2–3 minutes. Run it in the background and filter the log for `Tests run:`, `<<< FAILURE`, `COMPILATION ERROR` and the reactor summary.
+
 ## Static analysis is part of compilation
 
 The `errorProne` profile is **active by default**. It runs Error Prone and NullAway (JSpecify mode, `AnnotatedPackages=com.adventofcode`), and most checks are set to `ERROR`, so violations fail the build. Some checks that commonly break new code: `UnusedVariable`, `UnusedMethod`, `MethodCanBeStatic`, `FieldCanBeFinal`, `PrivateConstructorForUtilityClass`, `RemoveUnusedImports`, `WildcardImport`, `UnnecessaryParentheses`, `ReferenceEquality`, `MissingOverride`, and `OperatorPrecedence`. `.mvn/jvm.config` holds the `--add-exports`/`--add-opens` flags that Error Prone needs.
