@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.BlockingQueue;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.Semaphore;
 
 public final class Day23 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23.class);
@@ -55,7 +56,6 @@ public final class Day23 {
      */
     static long runNetworkInterfaceController(String program) throws InterruptedException {
         try (NetworkInterfaceController controller = new NetworkInterfaceController(program)) {
-            controller.start();
             return controller.runNetworkInterfaceController();
         }
     }
@@ -82,90 +82,86 @@ public final class Day23 {
      */
     public static long runNotAlwaysTransmitting(String program) throws InterruptedException {
         try (NetworkInterfaceController controller = new NetworkInterfaceController(program)) {
-            controller.start();
             return controller.runNotAlwaysTransmitting();
         }
     }
 
+    /// Runs the 50 computers in lockstep rounds: a computer reading an empty inbox parks until the
+    /// controller has seen every computer parked, so each round ends in a consistent network state.
     static class NetworkInterfaceController implements AutoCloseable {
-        private final ExecutorService executor;
+        private static final int SIZE = 50;
+        private static final long NAT_ADDRESS = 255;
 
-        private final NetworkComputer[] computers;
+        private final ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+        private final Semaphore parked = new Semaphore(0);
+        private final NetworkComputer[] computers = new NetworkComputer[SIZE];
 
-        public NetworkInterfaceController(String program) {
-            this.executor = Executors.newFixedThreadPool(50);
-            computers = new NetworkComputer[50];
-            for (int i = 0; i < 50; i++) {
-                computers[i] = new NetworkComputer(executor, program, i);
+        NetworkInterfaceController(String program) {
+            for (var i = 0; i < SIZE; i++) {
+                computers[i] = new NetworkComputer(i, parked);
             }
-        }
-
-        public void start() {
             for (NetworkComputer computer : computers) {
-                computer.start();
+                var unused = executor.submit(() -> Intcode.intcode(program, computer::input, computer::output));
             }
         }
 
-        public long runNetworkInterfaceController() throws InterruptedException {
+        long runNetworkInterfaceController() throws InterruptedException {
             while (true) {
-                List<Packet> packets = new ArrayList<>();
-                for (NetworkComputer computer : computers) {
-                    computer.outputQueue().drainTo(packets);
-                }
-
-                for (Packet packet : packets) {
-                    if (packet.address() == 255) {
+                for (Packet packet : nextRound()) {
+                    if (packet.address() == NAT_ADDRESS) {
                         return packet.y();
-                    } else if (packet.address() < 50) {
-                        computers[(int) packet.address()].inputQueue().put(packet.x());
-                        computers[(int) packet.address()].inputQueue().put(packet.y());
                     }
+                    deliver(packet);
                 }
-
-                for (NetworkComputer computer : computers) {
-                    if (computer.inputQueue().isEmpty()) {
-                        computer.inputQueue().put(-1L);
-                    }
-                    computer.run();
-                }
+                resumeAll();
             }
         }
 
-        public long runNotAlwaysTransmitting() throws InterruptedException {
+        long runNotAlwaysTransmitting() throws InterruptedException {
             Packet natPacket = null;
-            Long prevY = null;
+            Long previousY = null;
             while (true) {
-                boolean idle = Arrays.stream(computers).filter(c -> c.inputQueue().isEmpty() && c.outputQueue().isEmpty()).count() == 50;
-                if (idle && natPacket != null) {
-                    computers[0].inputQueue().put(natPacket.x());
-                    computers[0].inputQueue().put(natPacket.y());
-                    if (Objects.equals(prevY, natPacket.y())) {
-                        return Objects.requireNonNull(prevY);
-                    }
-
-                    prevY = natPacket.y();
-                }
-
-                List<Packet> packets = new ArrayList<>();
-                for (NetworkComputer computer : computers) {
-                    computer.outputQueue().drainTo(packets);
-                }
-
+                var packets = nextRound();
                 for (Packet packet : packets) {
-                    if (packet.address() == 255) {
+                    if (packet.address() == NAT_ADDRESS) {
                         natPacket = packet;
-                    } else if (packet.address() < 50) {
-                        computers[(int) packet.address()].inputQueue().put(packet.x());
-                        computers[(int) packet.address()].inputQueue().put(packet.y());
+                    } else {
+                        deliver(packet);
                     }
                 }
 
-                for (NetworkComputer computer : computers) {
-                    if (computer.inputQueue().isEmpty()) {
-                        computer.inputQueue().put(-1L);
+                var idle = packets.isEmpty() && Arrays.stream(computers).allMatch(NetworkComputer::isInboxEmpty);
+                if (idle && natPacket != null) {
+                    if (Objects.equals(previousY, natPacket.y())) {
+                        return natPacket.y();
                     }
-                    computer.run();
+                    previousY = natPacket.y();
+                    deliver(new Packet(0, natPacket.x(), natPacket.y()));
                 }
+                resumeAll();
+            }
+        }
+
+        /// Waits until every computer is parked on an empty inbox, then collects what they sent.
+        private List<Packet> nextRound() throws InterruptedException {
+            parked.acquire(SIZE);
+            var packets = new ArrayList<Packet>();
+            for (NetworkComputer computer : computers) {
+                computer.drainOutput(packets);
+            }
+            return packets;
+        }
+
+        private void deliver(Packet packet) {
+            if (packet.address() < 0 || packet.address() >= SIZE) {
+                throw new IllegalStateException("Unknown address in " + packet);
+            }
+            computers[(int) packet.address()].receive(packet);
+        }
+
+        private void resumeAll() {
+            for (NetworkComputer computer : computers) {
+                computer.resume();
             }
         }
 
@@ -173,72 +169,67 @@ public final class Day23 {
         public void close() {
             executor.shutdownNow();
         }
-
     }
 
     static class NetworkComputer {
         private final long address;
-        private final BlockingQueue<Long> queue;
-        private final LongList receivedPackets;
+        private final Semaphore parked;
+        private final Semaphore resume = new Semaphore(0);
+        private final Queue<Long> inbox = new ConcurrentLinkedQueue<>();
+        private final Queue<Packet> outbox = new ConcurrentLinkedQueue<>();
+        private final LongList pendingOutput = new LongArrayList();
 
-        private final BlockingQueue<Packet> outputQueue = new LinkedBlockingQueue<>();
-
-        NetworkComputer(ExecutorService executor, String program, long address) {
+        NetworkComputer(long address, Semaphore parked) {
             this.address = address;
-            this.queue = new LinkedBlockingQueue<>();
-            this.receivedPackets = new LongArrayList();
-            var unused = executor.submit(() -> Intcode.intcode(program, this::input, this::output));
+            this.parked = parked;
+            inbox.add(address);
         }
 
-        public BlockingQueue<Long> inputQueue() {
-            return queue;
+        void receive(Packet packet) {
+            inbox.add(packet.x());
+            inbox.add(packet.y());
         }
 
-        public BlockingQueue<Packet> outputQueue() {
-            return outputQueue;
+        boolean isInboxEmpty() {
+            return inbox.isEmpty();
         }
 
-        public void start() {
-            synchronized (queue) {
-                queue.add(address);
+        void drainOutput(List<Packet> packets) {
+            for (Packet packet = outbox.poll(); packet != null; packet = outbox.poll()) {
+                packets.add(packet);
             }
         }
 
-        public void run() {
-            synchronized (queue) {
-                queue.notifyAll();
-            }
+        void resume() {
+            resume.release();
         }
 
         private long input() {
-            synchronized (queue) {
-                while (true) {
-                    Long head = queue.poll();
-                    if (head != null) {
-                        return head;
-                    }
-
-                    try {
-                        queue.wait();
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        throw new IllegalStateException(e);
-                    }
-                }
+            var head = inbox.poll();
+            if (head != null) {
+                return head;
             }
+
+            parked.release();
+            try {
+                resume.acquire();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException(e);
+            }
+            head = inbox.poll();
+            return head != null ? head : -1L;
         }
 
-        private void output(long l) {
-            receivedPackets.add(l);
-            if (receivedPackets.size() == 3) {
-                Packet packet = new Packet(receivedPackets.getLong(0), receivedPackets.getLong(1), receivedPackets.getLong(2));
-
-                LOGGER.info("Computer {} received {}", address, packet);
-                outputQueue.add(packet);
-                receivedPackets.clear();
+        private void output(long value) {
+            pendingOutput.add(value);
+            if (pendingOutput.size() == 3) {
+                var packet = new Packet(pendingOutput.getLong(0), pendingOutput.getLong(1), pendingOutput.getLong(2));
+                LOGGER.debug("Computer {} sent {}", address, packet);
+                outbox.add(packet);
+                pendingOutput.clear();
             }
         }
-
     }
 
     record Packet(long address, long x, long y) {
