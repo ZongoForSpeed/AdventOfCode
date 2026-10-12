@@ -37,17 +37,22 @@ Paths below are relative to that directory. Items marked _(verified)_ were repro
 
 ## 2. Design
 
-- [ ] **One generic sparse grid** — `Map2D`, `EnumMap2D`, `InfiniteCharMap`, `InfiniteBooleanMap` each hand-delegate
+- [x] **One generic sparse grid** — `Map2D`, `EnumMap2D`, `InfiniteCharMap`, `InfiniteBooleanMap` each hand-delegate
   `Map<Point2D, X>` (~60 lines) and duplicate `print()`. Replace with `SparseGrid<V> extends AbstractMap<Point2D, V>`
   with a single `render(Function<V, Character>)`.
-- [ ] **Merge `IntegerMap` and `LongMap`** — the two 195-line files are identical modulo the element type.
-- [ ] **Drop the `memory` package** (`Memory`, `IntMemory`, `LongMemory`, `ObjectMemory`, 4 usages) in favour of
+  _Done:_ `SparseGrid<V>` added; `Map2D` and `EnumMap2D` deleted (users migrated), `InfiniteCharMap` now extends it, `InfiniteBooleanMap` extends `AbstractMap` and reuses its renderer. Also fixed `InfiniteBooleanMap.size()` (it counted columns, not cells).
+- [x] **Merge `IntegerMap` and `LongMap`** — the two 195-line files are identical modulo the element type.
+  _Done:_ `LongMap` had a single user (2018 Day22, where it only fed a trace log), so it was deleted instead of merged.
+- [x] **Drop the `memory` package** (`Memory`, `IntMemory`, `LongMemory`, `ObjectMemory`, 4 usages) in favour of
   fastutil `Int2IntOpenHashMap` / `Int2ObjectOpenHashMap` (already a dependency). Note `IntMemory.containsKey(-1)`
   throws instead of returning `false`, and `clear()` resets capacity to 10.
-- [ ] **`graph/Dijkstra` is O(V²)** — linear scan for the minimum, boxed `Pair<E, Integer>` edges, `int` distances.
+  _Done:_ package and tests deleted. 2020 Day15 uses plain `int[]` (no boxing), 2020 Day23 a `Cup[]`, 2021 Day06 a `long[]`, 2020 Day19 a `HashMap`.
+- [x] **`graph/Dijkstra` is O(V²)** — linear scan for the minimum, boxed `Pair<E, Integer>` edges, `int` distances.
   Use a priority queue, or implement it as `AStar` with a zero heuristic once AStar is fixed.
-- [ ] **`point/Direction`: store `dx`/`dy` on each constant** — makes `Point2D.move` a one-liner and removes the
+  _Done:_ priority queue with stale-entry skipping; same API.
+- [x] **`point/Direction`: store `dx`/`dy` on each constant** — makes `Point2D.move` a one-liner and removes the
   per-constant `left`/`right`/`reverse` overrides boilerplate.
+  _Done:_ `dx()`/`dy()` added, `Point2D.move` uses them.
 - [ ] **`point/Point2D` wrap-around semantics differ** — `moveLoop(Direction, xMax, yMax)` treats `xMax` as the last
   valid index, `moveLoop(Point2D, xMax, yMax)` as the grid size. Pick one.
 - [ ] **Pair records duplicate fastutil** — `IntegerPair`, `LongPair`, `CharPair`, `BooleanPair` (44 usages) vs
@@ -78,5 +83,5 @@ Paths below are relative to that directory. Items marked _(verified)_ were repro
 ## Suggested order
 
 1. ~~Section 1, one regression test per bug; run the full suite.~~ Done — no year result changed.
-2. Deduplicate: `IntegerMap`/`LongMap`, sparse grids, `memory` → fastutil.
+2. ~~Deduplicate: `IntegerMap`/`LongMap`, sparse grids, `memory` → fastutil.~~ Done.
 3. API cleanup: `Direction`, `Point2D`, `Arithmetic`.

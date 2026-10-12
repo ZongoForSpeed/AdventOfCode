@@ -2,9 +2,8 @@ package com.adventofcode.year2018;
 
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
-import com.adventofcode.common.point.map.EnumMap2D;
 import com.adventofcode.common.point.map.IntegerMap;
-import com.adventofcode.common.point.map.LongMap;
+import com.adventofcode.common.point.map.SparseGrid;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 import org.slf4j.Logger;
@@ -148,7 +147,7 @@ public final class Day22 {
             Point2D mouth = Point2D.of(0, 0);
             Point2D target = modeMaze.target();
 
-            EnumMap2D<Region> mazeMap = buildMazeMap(modeMaze, target, mouth);
+            SparseGrid<Region> mazeMap = buildMazeMap(modeMaze, target, mouth);
 
             LOGGER.debug("maze map: \n{}", mazeMap);
 
@@ -479,7 +478,7 @@ public final class Day22 {
             Point2D mouth = Point2D.of(0, 0);
             Point2D target = modeMaze.target();
 
-            EnumMap2D<Region> mapRegion = buildMazeMap(modeMaze, target, mouth);
+            SparseGrid<Region> mapRegion = buildMazeMap(modeMaze, target, mouth);
 
             PriorityQueue<State> queue = new PriorityQueue<>(Comparator.comparingInt(State::heuristic));
             queue.add(new State(0, mouth, Tool.TORCH, Point2D.manhattanDistance(mouth, target)));
@@ -508,35 +507,28 @@ public final class Day22 {
     }
 
 
-    private static EnumMap2D<Region> buildMazeMap(ModeMaze modeMaze, Point2D target, Point2D mouth) {
+    private static SparseGrid<Region> buildMazeMap(ModeMaze modeMaze, Point2D target, Point2D mouth) {
         LOGGER.info("depth: {}, target: {}", modeMaze.depth(), target);
         int max = target.x() + target.y() + 1;
 
-        LongMap geologicIndex = new LongMap(max, max, -1);
         IntegerMap erosionLevels = new IntegerMap(max, max, -1);
-        geologicIndex.set(mouth, 0);
 
         for (int x = 1; x <= max; ++x) {
             long value = (16807L * x);
-            geologicIndex.set(x, 0, value);
             erosionLevels.set(x, 0, (int) ((value + modeMaze.depth()) % 20183));
         }
         for (int y = 1; y <= max; ++y) {
             long value = (48271L * y);
-            geologicIndex.set(0, y, value);
             erosionLevels.set(0, y, (int) ((value + modeMaze.depth()) % 20183));
         }
         for (int x = 1; x <= max; ++x) {
             for (int y = 1; y <= max; ++y) {
                 long value = (long) erosionLevels.get(x - 1, y) * erosionLevels.get(x, y - 1);
-                geologicIndex.set(x, y, value);
                 erosionLevels.set(x, y, (int) ((value + modeMaze.depth()) % 20183));
             }
         }
 
-        LOGGER.trace("geologicIndex = {}", geologicIndex);
-
-        EnumMap2D<Region> mapRegion = new EnumMap2D<>(Region::toChar);
+        SparseGrid<Region> mapRegion = new SparseGrid<>(Region::toChar, ' ');
 
         for (ObjectIntPair<Point2D> entry : erosionLevels.entries()) {
             Point2D p = entry.left();

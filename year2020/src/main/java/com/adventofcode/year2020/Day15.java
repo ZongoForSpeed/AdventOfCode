@@ -1,11 +1,10 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.common.memory.IntMemory;
 import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
+import java.util.Arrays;
 
 public final class Day15 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day15.class);
@@ -87,11 +86,13 @@ public final class Day15 {
     /// Given 3,1,2, the 30000000th number spoken is 362.
     /// Given your starting numbers, what will be the 30000000th number spoken?
     public static long memoryGame(String input, int turn) {
-        // TODO Replace to Int2IntMap
-        var lastMemory = new IntMemory(turn * 2);
-        var previousMemory = new IntMemory(turn * 2);
-
         int[] startingNumbers = Splitter.on(',').splitToStream(input).mapToInt(Integer::parseInt).toArray();
+        // Turn at which each number was last / previously spoken, 0 meaning never (turns start at 1).
+        // A spoken number is either a starting number or a difference of two turns, so it is always below `size`.
+        var size = Math.max(turn, Arrays.stream(startingNumbers).max().orElse(0)) + 1;
+        var lastTurn = new int[size];
+        var previousTurn = new int[size];
+
         var n = 1;
         var lastNumberSpoken = -1;
         var newNumber = false;
@@ -100,27 +101,22 @@ public final class Day15 {
 
             LOGGER.trace("Turn {}, spoken number {}", n, lastNumberSpoken);
 
-            Integer last = lastMemory.put(lastNumberSpoken, n);
-            newNumber = last == null;
-            if (last != null) {
-                previousMemory.put(lastNumberSpoken, last);
-            }
+            newNumber = lastTurn[lastNumberSpoken] == 0;
+            previousTurn[lastNumberSpoken] = lastTurn[lastNumberSpoken];
+            lastTurn[lastNumberSpoken] = n;
         }
         for (; n <= turn; ++n) {
             if (newNumber) {
                 lastNumberSpoken = 0;
             } else {
-                lastNumberSpoken = Objects.requireNonNull(lastMemory.get(lastNumberSpoken), "Cannot find lastNumberSpoken")
-                        - Objects.requireNonNull(previousMemory.get(lastNumberSpoken), "Cannot find lastNumberSpoken");
+                lastNumberSpoken = lastTurn[lastNumberSpoken] - previousTurn[lastNumberSpoken];
             }
 
             LOGGER.trace("Turn {}, spoken number {}", n, lastNumberSpoken);
 
-            Integer last = lastMemory.put(lastNumberSpoken, n);
-            newNumber = last == null;
-            if (last != null) {
-                previousMemory.put(lastNumberSpoken, last);
-            }
+            newNumber = lastTurn[lastNumberSpoken] == 0;
+            previousTurn[lastNumberSpoken] = lastTurn[lastNumberSpoken];
+            lastTurn[lastNumberSpoken] = n;
         }
 
         LOGGER.info("memoryGame({}, {}) = {}", input, turn, lastNumberSpoken);

@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.year2019.code.Intcode;
-import com.adventofcode.common.point.map.Map2D;
+import com.adventofcode.common.point.map.SparseGrid;
 import com.adventofcode.common.point.Point2D;
 
 import java.util.List;
@@ -71,7 +71,7 @@ public final class Day13 {
     }
 
     static class Arkanoid {
-        private final Map2D squares = new Map2D();
+        private final SparseGrid<Long> squares = new SparseGrid<>();
         private int count = 0;
         private int x;
         private int y;

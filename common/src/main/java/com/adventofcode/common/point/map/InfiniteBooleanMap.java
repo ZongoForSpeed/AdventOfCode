@@ -9,18 +9,17 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Arrays;
+import java.util.AbstractMap;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
+public class InfiniteBooleanMap extends AbstractMap<Point2D, Boolean> {
     private final Int2ObjectMap<Int2BooleanMap> map;
+    private int size;
 
     public InfiniteBooleanMap() {
         this.map = new Int2ObjectOpenHashMap<>();
@@ -52,7 +51,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
 
     @Override
     public int size() {
-        return map.size();
+        return size;
     }
 
     @Override
@@ -97,20 +96,27 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
         if (value == null) {
             return null;
         }
-        return map.computeIfAbsent(key.x(), _ -> new Int2BooleanOpenHashMap()).put(key.y(), value.booleanValue());
+        var column = map.computeIfAbsent(key.x(), _ -> new Int2BooleanOpenHashMap());
+        if (column.containsKey(key.y())) {
+            return column.put(key.y(), value.booleanValue());
+        }
+        column.put(key.y(), value.booleanValue());
+        size++;
+        return null;
     }
 
     @Override
     @CanIgnoreReturnValue
     public @Nullable Boolean remove(Object key) {
         if (key instanceof Point2D(int x, int y)) {
-            Int2BooleanMap booleanMap = map.getOrDefault(x, null);
-            if (booleanMap != null) {
-                boolean remove = booleanMap.remove(y);
-                if (booleanMap.isEmpty()) {
+            Int2BooleanMap column = map.get(x);
+            if (column != null && column.containsKey(y)) {
+                var removed = column.remove(y);
+                if (column.isEmpty()) {
                     map.remove(x);
                 }
-                return remove;
+                size--;
+                return removed;
             }
         }
         return null;
@@ -124,6 +130,7 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
     @Override
     public void clear() {
         map.clear();
+        size = 0;
     }
 
     @Override
@@ -150,26 +157,8 @@ public class InfiniteBooleanMap implements Map<Point2D, Boolean> {
                 .collect(Collectors.toSet());
     }
 
-    private List<String> print(Function<@Nullable Boolean, Character> supplier) {
-        int maxX = map.keySet().intStream().max().orElse(0);
-        int minX = map.keySet().intStream().min().orElse(0);
-        int maxY = map.values().stream().flatMapToInt(m -> m.keySet().intStream()).max().orElse(0);
-        int minY = map.values().stream().flatMapToInt(m -> m.keySet().intStream()).min().orElse(0);
-
-        char[][] view = new char[maxY - minY + 1][maxX - minX + 1];
-        for (char[] chars : view) {
-            Arrays.fill(chars, '.');
-        }
-
-        for (Entry<Point2D, Boolean> entry : entrySet()) {
-            view[entry.getKey().y() - minY][entry.getKey().x() - minX] = supplier.apply(entry.getValue());
-        }
-
-        return Arrays.stream(view).map(String::valueOf).toList();
-    }
-
     @Override
     public String toString() {
-        return String.join("\n", print(b -> Boolean.TRUE.equals(b) ? '#' : '.'));
+        return String.join("\n", SparseGrid.render(this, b -> b ? '#' : '.', '.'));
     }
 }

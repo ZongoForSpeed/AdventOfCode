@@ -1,14 +1,14 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.common.memory.Memory;
-import com.adventofcode.common.memory.ObjectMemory;
 import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.regex.Matcher;
@@ -23,7 +23,7 @@ public final class Day19 {
         // No-Op
     }
 
-    private static String buildPattern(int rulesNumber, boolean addLoopRules, Memory<String> rules, Memory<String> cache) {
+    private static String buildPattern(int rulesNumber, boolean addLoopRules, Map<Integer, String> rules, Map<Integer, String> cache) {
         String pattern = cache.get(rulesNumber);
         if (pattern != null) {
             return pattern;
@@ -245,7 +245,7 @@ public final class Day19 {
      */
     static long matchMonsterMessages(List<String> lines, boolean addLoopRules) {
 
-        Memory<String> rules = new ObjectMemory<>();
+        Map<Integer, String> rules = new HashMap<>();
         List<String> messages = new ArrayList<>();
         boolean readRule = true;
         for (String line : lines) {
@@ -268,7 +268,7 @@ public final class Day19 {
 
         LOGGER.info("Rules: {}", rules);
         LOGGER.info("Messages: {}", messages);
-        Pattern pattern = Pattern.compile("^" + buildPattern(0, addLoopRules, rules, new ObjectMemory<>()) + "$");
+        Pattern pattern = Pattern.compile("^" + buildPattern(0, addLoopRules, rules, new HashMap<>()) + "$");
         LOGGER.info("Pattern: '{}'", pattern);
         long count = 0;
         for (String message : messages) {

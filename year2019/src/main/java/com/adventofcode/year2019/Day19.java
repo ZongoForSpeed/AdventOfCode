@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.year2019.code.Intcode;
-import com.adventofcode.common.point.map.Map2D;
+import com.adventofcode.common.point.map.SparseGrid;
 import com.adventofcode.common.point.Point2D;
 
 import java.util.ArrayDeque;
@@ -92,7 +92,7 @@ public final class Day19 {
     static long countPartOne(String line) {
         long count = 0;
 
-        Map2D map = new Map2D();
+        SparseGrid<Long> map = new SparseGrid<>();
         for (int x = 0; x < 50; x++) {
             for (int y = 0; y < 50; y++) {
                 if (tractorBeam(line, x, y)) {

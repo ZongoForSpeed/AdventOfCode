@@ -1,11 +1,10 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.common.memory.LongMemory;
 import com.google.common.base.Splitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import java.util.Arrays;
 
 public final class Day06 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day06.class);
@@ -14,19 +13,12 @@ public final class Day06 {
         // No-Op
     }
 
-    @SuppressWarnings("NullAway")
-    private static LongMemory nextDay(LongMemory lanternfish) {
-        LongMemory next = new LongMemory(9);
-        for (int key : lanternfish.keySet()) {
-            Long count = lanternfish.get(key);
-            if (key == 0) {
-                next.put(6, count);
-                next.put(8, count);
-            } else {
-                next.put(key - 1, next.getOrDefault(key - 1, 0L) + count);
-            }
-        }
-
+    /// `lanternfish[t]` is the number of fish whose timer is `t`.
+    private static long[] nextDay(long[] lanternfish) {
+        var next = new long[9];
+        System.arraycopy(lanternfish, 1, next, 0, 8);
+        next[6] += lanternfish[0];
+        next[8] = lanternfish[0];
         return next;
     }
 
@@ -122,20 +114,19 @@ public final class Day06 {
      *
      * Your puzzle answer was 1733403626279.
      */
-    @SuppressWarnings("NullAway")
     static long nextDays(String input, int days) {
         int[] lanternfish = Splitter.on(',').splitToStream(input).mapToInt(Integer::valueOf).toArray();
-        LongMemory memory = new LongMemory(9);
+        var timers = new long[9];
         for (int fish : lanternfish) {
-            memory.put(fish, memory.getOrDefault(fish, 0L) + 1);
+            timers[fish]++;
         }
 
-        LOGGER.info("Initial state:  {}", memory);
+        LOGGER.info("Initial state:  {}", Arrays.toString(timers));
         for (int i = 1; i <= days; ++i) {
-            memory = nextDay(memory);
-            LOGGER.info("After {} days : {}", i, memory);
+            timers = nextDay(timers);
+            LOGGER.info("After {} days : {}", i, Arrays.toString(timers));
         }
 
-        return memory.values().stream().mapToLong(i -> i).sum();
+        return Arrays.stream(timers).sum();
     }
 }

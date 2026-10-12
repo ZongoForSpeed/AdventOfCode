@@ -5,22 +5,12 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 
-public class InfiniteCharMap implements Map<Point2D, Character> {
-
-    private final Map<Point2D, Character> map;
-
+public class InfiniteCharMap extends SparseGrid<Character> {
     public InfiniteCharMap() {
-        this.map = new HashMap<>();
+        super(c -> c, '.');
     }
 
     public static InfiniteCharMap read(String input, Predicate<Character> predicate) {
@@ -50,109 +40,21 @@ public class InfiniteCharMap implements Map<Point2D, Character> {
         return map;
     }
 
-    @Override
-    public int size() {
-        return map.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return map.isEmpty();
-    }
-
-    @Override
-    public boolean containsKey(Object key) {
-        return map.containsKey(key);
-    }
-
     public boolean containsKey(int x, int y) {
         return containsKey(Point2D.of(x, y));
     }
 
-    @Override
-    public boolean containsValue(Object value) {
-        return map.containsValue(value);
-    }
-
-    @Override
-    public @Nullable Character get(Object key) {
-        return map.get(key);
-    }
-
-
     public @Nullable Character get(int x, int y) {
         return get(Point2D.of(x, y));
     }
-
-    @Override
-    @CanIgnoreReturnValue
-    public @Nullable Character put(Point2D key, Character value) {
-        return map.put(key, value);
-    }
-
 
     @CanIgnoreReturnValue
     public @Nullable Character put(int x, int y, Character value) {
         return put(Point2D.of(x, y), value);
     }
 
-    @Override
-    @CanIgnoreReturnValue
-    public @Nullable Character remove(Object key) {
-        return map.remove(key);
-    }
-
-
     @CanIgnoreReturnValue
     public @Nullable Character remove(int x, int y) {
         return remove(Point2D.of(x, y));
-    }
-
-    @Override
-    public void putAll(Map<? extends Point2D, ? extends Character> m) {
-        map.putAll(m);
-    }
-
-    @Override
-    public void clear() {
-        map.clear();
-    }
-
-    @Override
-    public Set<Point2D> keySet() {
-        return map.keySet();
-    }
-
-    @Override
-    public Collection<Character> values() {
-        return map.values();
-    }
-
-    @Override
-    public Set<Entry<Point2D, Character>> entrySet() {
-        return map.entrySet();
-    }
-
-    private List<String> print(UnaryOperator<Character> supplier) {
-        var maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
-        var minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
-        var maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
-        var minY = map.keySet().stream().mapToInt(Point2D::y).min().orElse(0);
-
-        char[][] view = new char[maxY - minY + 1][maxX - minX + 1];
-        for (char[] chars : view) {
-            Arrays.fill(chars, '.');
-        }
-
-        for (Entry<Point2D, Character> entry : map.entrySet()) {
-            view[entry.getKey().y() - minY][entry.getKey().x() - minX] = supplier.apply(entry.getValue());
-        }
-
-        return Arrays.stream(view).map(String::valueOf).toList();
-    }
-
-    @Override
-    public String toString() {
-        return String.join("\n", print(UnaryOperator.identity()));
     }
 }

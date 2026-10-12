@@ -2,7 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.year2019.code.Intcode;
 import com.adventofcode.common.point.Direction;
-import com.adventofcode.common.point.map.Map2D;
+import com.adventofcode.common.point.map.SparseGrid;
 import com.adventofcode.common.point.Point2D;
 
 public final class Day11 {
@@ -112,13 +112,13 @@ public final class Day11 {
     }
 
     static class HullPaintingRobot {
-        public final Map2D hull;
+        public final SparseGrid<Long> hull;
         private Point2D position;
         private Direction direction;
         private long count;
 
         public HullPaintingRobot() {
-            hull = new Map2D();
+            hull = new SparseGrid<>();
             position = Point2D.of(0, 0);
             direction = Direction.UP;
             count = 0;
@@ -142,7 +142,7 @@ public final class Day11 {
             position = position.move(direction);
         }
 
-        public Map2D getHull() {
+        public SparseGrid<Long> getHull() {
             return hull;
         }
 

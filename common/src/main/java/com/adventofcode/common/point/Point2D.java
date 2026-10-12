@@ -41,12 +41,7 @@ public record Point2D(int x, int y) implements Comparable<Point2D> {
     }
 
     public Point2D move(Direction direction, int d) {
-        return switch (direction) {
-            case UP -> Point2D.of(x, y - d);
-            case DOWN -> Point2D.of(x, y + d);
-            case LEFT -> Point2D.of(x - d, y);
-            case RIGHT -> Point2D.of(x + d, y);
-        };
+        return Point2D.of(x + direction.dx() * d, y + direction.dy() * d);
     }
 
     public Point2D moveRange(Direction direction, int xMax, int yMax) {

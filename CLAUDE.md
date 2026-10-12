@@ -41,7 +41,7 @@ Every package has a `package-info.java` annotated with `@NullMarked` (JSpecify) 
 
 ## Architecture
 
-- **`common`**: shared algorithms and data structures used by the year modules. Packages: `graph` (AStar, Dijkstra, DisjointSet, Clique, Connectivity), `maths` (primes, GaussJordan, permutations/combinations), `matrix`, `memory` (Intcode-style memory), `point` (Point2D/3D/4D, Direction, `map` grids such as `CharMap`/`IntegerMap`/`InfiniteBooleanMap`, `range` types such as `Range`/`Rectangle`/`Cuboid`), and `utils`. Check here before writing a new grid, pathfinding, or math helper. JMH benchmarks are in `common/src/test` (e.g. `PermutationsBenchmark`).
+- **`common`**: shared algorithms and data structures used by the year modules. Packages: `graph` (AStar, Dijkstra, DisjointSet, Clique, Connectivity), `maths` (primes, GaussJordan, permutations/combinations), `matrix`, `point` (Point2D/3D/4D, Direction, `map` grids such as `CharMap`/`IntegerMap`/`SparseGrid`/`InfiniteBooleanMap`, `range` types such as `Range`/`Rectangle`/`Cuboid`), and `utils`. Check here before writing a new grid, pathfinding, or math helper. JMH benchmarks are in `common/src/test` (e.g. `PermutationsBenchmark`).
 - **`common-test`**: provides `AbstractTest`. Its constructor takes `(year, day)`, and it defines two `@Test` methods, `inputPartOne` and `inputPartTwo`. Each one opens the classpath resource `/<year>/day/<DD>/input` as a `Scanner` and passes it to the abstract `partOne(Scanner)` / `partTwo(Scanner)`.
 - **`yearYYYY`**: one module per year. Each depends on `common` and `common-test` (test scope), and may also use libraries such as fastutil, commons-lang3, and Guava.
 

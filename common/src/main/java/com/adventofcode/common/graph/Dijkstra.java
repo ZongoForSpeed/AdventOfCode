@@ -3,10 +3,12 @@ package com.adventofcode.common.graph;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectIntPair;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public final class Dijkstra<E> {
     private final Map<E, List<Pair<E, Integer>>> graph;
@@ -17,32 +19,28 @@ public final class Dijkstra<E> {
 
     public Object2IntMap<E> computeDistance(E start) {
         var distance = new Object2IntOpenHashMap<E>();
+        distance.defaultReturnValue(Integer.MAX_VALUE);
         distance.put(start, 0);
 
-        var nodes = new HashSet<E>(graph.keySet());
-
-        while (!nodes.isEmpty()) {
-            E next = null;
-            var minimum = Integer.MAX_VALUE;
-            for (E node : nodes) {
-                if (distance.getOrDefault(node, Integer.MAX_VALUE) < minimum) {
-                    next = node;
-                    minimum = distance.getOrDefault(node, Integer.MAX_VALUE);
-                }
+        var queue = new PriorityQueue<ObjectIntPair<E>>(Comparator.comparingInt(ObjectIntPair::rightInt));
+        queue.add(ObjectIntPair.of(start, 0));
+        while (!queue.isEmpty()) {
+            var current = queue.remove();
+            var node = current.left();
+            var cost = current.rightInt();
+            if (cost > distance.getInt(node)) {
+                // Stale entry: a shorter path to this node was already processed
+                continue;
             }
-
-            if (next == null) {
-                break;
-            }
-
-            nodes.remove(next);
-
-            for (Pair<E, Integer> edge : graph.getOrDefault(next, List.of())) {
-                if (distance.getOrDefault(edge.left(), Integer.MAX_VALUE) > minimum + edge.right()) {
-                    distance.put(edge.left(), minimum + edge.right());
+            for (Pair<E, Integer> edge : graph.getOrDefault(node, List.of())) {
+                var newCost = cost + edge.right();
+                if (newCost < distance.getInt(edge.left())) {
+                    distance.put(edge.left(), newCost);
+                    queue.add(ObjectIntPair.of(edge.left(), newCost));
                 }
             }
         }
+        distance.defaultReturnValue(0);
         return distance;
     }
 }

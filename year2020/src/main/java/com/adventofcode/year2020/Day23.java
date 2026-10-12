@@ -1,6 +1,5 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.common.memory.ObjectMemory;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -201,7 +200,7 @@ public final class Day23 {
     }
 
     private static class CupCircle {
-        private final ObjectMemory<Cup> cups;
+        private final Cup[] cups;
         private final int min;
         private final int max;
         private Cup head;
@@ -210,17 +209,17 @@ public final class Day23 {
             max = cupIndexes.length;
             min = 1;
 
-            cups = new ObjectMemory<>(cupIndexes.length + 1);
+            cups = new Cup[cupIndexes.length + 1];
             for (int cupIndex : cupIndexes) {
-                cups.put(cupIndex, new Cup(cupIndex));
+                cups[cupIndex] = new Cup(cupIndex);
             }
 
             for (int i = 0, cupIndexesLength = cupIndexes.length - 1; i < cupIndexesLength; i++) {
-                cups.getNonNull(cupIndexes[i]).next(cups.getNonNull(cupIndexes[i + 1]));
+                cups[cupIndexes[i]].next(cups[cupIndexes[i + 1]]);
             }
 
-            head = cups.getNonNull(cupIndexes[0]);
-            cups.getNonNull(cupIndexes[cupIndexes.length - 1]).next(head);
+            head = cups[cupIndexes[0]];
+            cups[cupIndexes[cupIndexes.length - 1]].next(head);
         }
 
         private void performStep() {
@@ -242,7 +241,7 @@ public final class Day23 {
                     destination = max;
             } while (forbidden.contains(destination));
 
-            Cup destinationCup = cups.getNonNull(destination);
+            Cup destinationCup = cups[destination];
 
             moveEnd.next(destinationCup.next());
             destinationCup.next(moveStart);
@@ -251,7 +250,7 @@ public final class Day23 {
 
         private String resultPart1() {
             StringBuilder stringBuilder = new StringBuilder();
-            for (Cup current = cups.getNonNull(1).next(); current.id() != 1; current = current.next()) {
+            for (Cup current = cups[1].next(); current.id() != 1; current = current.next()) {
                 stringBuilder.append(current.id());
             }
             return stringBuilder.toString();
@@ -259,7 +258,7 @@ public final class Day23 {
 
         private long resultPart2() {
             long result = 1;
-            Cup current = cups.getNonNull(1).next();
+            Cup current = cups[1].next();
             result *= current.id();
             current = current.next();
             result *= current.id();

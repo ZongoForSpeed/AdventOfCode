@@ -4,7 +4,7 @@ import com.adventofcode.year2019.code.Intcode;
 import com.adventofcode.common.graph.Dijkstra;
 import com.adventofcode.common.point.Direction;
 import com.adventofcode.common.point.Point2D;
-import com.adventofcode.common.point.map.Map2D;
+import com.adventofcode.common.point.map.SparseGrid;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
@@ -24,7 +24,7 @@ public final class Day15 {
         // No-Op
     }
 
-    private static void cartography(Intcode.Robot robot, Map2D map, Deque<Direction> paths, Set<Point2D> visited, Point2D position) {
+    private static void cartography(Intcode.Robot robot, SparseGrid<Long> map, Deque<Direction> paths, Set<Point2D> visited, Point2D position) {
         if (visited.add(position)) {
             for (Direction d : Direction.values()) {
                 long move = robot.action(convertDirection(d));
@@ -146,7 +146,7 @@ public final class Day15 {
         Intcode.Robot robot = new Intcode.Robot(line);
         Point2D origin = Point2D.of(0, 0);
 
-        Map2D map = new Map2D();
+        SparseGrid<Long> map = new SparseGrid<>();
         cartography(robot, map, new ArrayDeque<>(), new HashSet<>(), origin);
 
         map.print(Day15::print);
@@ -215,7 +215,7 @@ public final class Day15 {
         Intcode.Robot robot = new Intcode.Robot(line);
         Point2D origin = Point2D.of(0, 0);
 
-        Map2D map = new Map2D();
+        SparseGrid<Long> map = new SparseGrid<>();
         cartography(robot, map, new ArrayDeque<>(), new HashSet<>(), origin);
 
         map.print(Day15::print);
@@ -229,7 +229,7 @@ public final class Day15 {
         return oxygenFill.values().intStream().max().orElse(0);
     }
 
-    private static Map<Point2D, List<Pair<Point2D, Integer>>> createGraph(Map2D map) {
+    private static Map<Point2D, List<Pair<Point2D, Integer>>> createGraph(SparseGrid<Long> map) {
         Map<Point2D, List<Pair<Point2D, Integer>>> graph = new HashMap<>();
         for (Map.Entry<Point2D, Long> entry : map.entrySet()) {
             Point2D point = entry.getKey();
