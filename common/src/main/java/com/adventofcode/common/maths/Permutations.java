@@ -85,7 +85,7 @@ public final class Permutations {
     static IntList permutationHelper(long no, List<Integer> in, IntList out) {
         if (in.isEmpty()) return out;
         long subFactorial = factorial(in.size() - 1);
-        out.add(in.remove((int) (no / subFactorial)).intValue());
+        out.add(in.remove(/* index */ (int) (no / subFactorial)).intValue());
         return permutationHelper(no % subFactorial, in, out);
     }
 

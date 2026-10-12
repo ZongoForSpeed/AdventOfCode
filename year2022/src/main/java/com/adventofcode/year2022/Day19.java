@@ -634,8 +634,8 @@ public final class Day19 {
         }
     }
 
-    record State(ResourceState resources, RobotState robots, ResourceState nextResources) implements Comparable<State> {
-        State(ResourceState resources, RobotState robots) {
+    private record State(ResourceState resources, RobotState robots, ResourceState nextResources) implements Comparable<State> {
+        private State(ResourceState resources, RobotState robots) {
             this(resources, robots, resources.collects(robots));
         }
 

@@ -397,6 +397,7 @@
                                     -Xep:ArrayEquals:ERROR
                                     -Xep:AssertEqualsArgumentOrderChecker:ERROR
                                     -Xep:AssertFalse:ERROR
+                                    -Xep:AssignmentExpression:ERROR
                                     -Xep:BadImport:ERROR
                                     -Xep:BadInstanceof:ERROR
                                     -Xep:BooleanParameter:WARN
@@ -417,6 +418,7 @@
                                     -Xep:EqualsGetClass:ERROR
                                     -Xep:EqualsHashCode:ERROR
                                     -Xep:EqualsIncompatibleType:ERROR
+                                    -Xep:ExposedPrivateType:ERROR
                                     -Xep:FieldCanBeFinal:ERROR
                                     -Xep:FormatString:ERROR
                                     -Xep:FutureReturnValueIgnored:OFF
@@ -470,6 +472,7 @@
                                     -Xep:PrimitiveAtomicReference:ERROR
                                     -Xep:PrivateConstructorForUtilityClass:ERROR
                                     -Xep:RandomModInteger:ERROR
+                                    -Xep:RefactorSwitch:ERROR
                                     -Xep:ReferenceEquality:ERROR
                                     -Xep:RemoveUnusedImports:ERROR
                                     -Xep:ReturnValueIgnored:ERROR
@@ -489,6 +492,7 @@
                                     -Xep:TryFailThrowable:ERROR
                                     -Xep:TypeParameterNaming:ERROR
                                     -Xep:TypeParameterUnusedInFormals:ERROR
+                                    -Xep:UnnamedVariable:ERROR
                                     -Xep:UnnecessaryAssignment:ERROR
                                     -Xep:UnnecessaryCheckNotNull:ERROR
                                     -Xep:UnnecessaryLambda:ERROR

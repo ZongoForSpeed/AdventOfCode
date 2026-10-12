@@ -118,7 +118,7 @@ public final class Day23 {
         IntList cups = new IntArrayList();
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
-            cups.add(Character.getNumericValue(c));
+            cups.add(Character.digit(c, 10));
         }
         CupCircle cupCircle = new CupCircle(cups.toIntArray());
         for (int move = 1; move <= moves; ++move) {
@@ -163,7 +163,7 @@ public final class Day23 {
         IntList cups = new IntArrayList();
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
-            cups.add(Character.getNumericValue(c));
+            cups.add(Character.digit(c, 10));
         }
         while (cups.size() < size) {
             cups.add(cups.size() + 1);

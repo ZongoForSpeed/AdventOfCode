@@ -31,7 +31,7 @@ public final class Day22 {
         return Short.parseShort(s.substring(0, s.length() - 1));
     }
 
-    static List<GridNode> parseGridNodes(Scanner scanner) {
+    private static List<GridNode> parseGridNodes(Scanner scanner) {
         List<GridNode> nodes = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -48,7 +48,7 @@ public final class Day22 {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
-    static long distance(State a, State b) {
+    private static long distance(State a, State b) {
         return (long) distance(a.empty(), a.goal()) + distance(a.goal(), b.goal()) + distance(b.empty(), b.goal());
     }
 

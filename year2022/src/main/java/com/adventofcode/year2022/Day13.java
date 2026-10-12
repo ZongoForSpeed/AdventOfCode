@@ -177,7 +177,7 @@ public final class Day13 {
             var left = gson.fromJson(line, List.class);
             var right = gson.fromJson(scanner.nextLine(), List.class);
             ++index;
-            var compare = compare(left, right);
+            var compare = compareList(left, right);
             LOGGER.info("{} / {} ==> {}", left, right, compare == -1);
             if (compare == -1) {
                 indices.add(index);
@@ -256,7 +256,7 @@ public final class Day13 {
         packets.add(dividerPacket2);
         packets.add(dividerPacket6);
 
-        packets.sort(Day13::compare);
+        packets.sort(Day13::compareList);
 
         for (List<?> packet : packets) {
             LOGGER.info("{}", packet);
@@ -269,26 +269,30 @@ public final class Day13 {
     }
 
     private static int compare(Object left, Object right) {
-        switch (left) {
-            case Long leftLong -> {
-                return switch (right) {
-                    case Long rightLong -> Long.compare(leftLong, rightLong);
-                    case List<?> rightList -> compare(List.of(leftLong), rightList);
-                    default -> throw new IllegalStateException("Cannot manage type of right " + right);
-                };
-            }
-            case List<?> leftList -> {
-                return switch (right) {
-                    case Long rightLong -> compare(leftList, List.of(rightLong));
-                    case List<?> rightList -> compare(leftList, rightList);
-                    default -> throw new IllegalStateException("Cannot manage type of right " + right);
-                };
-            }
+        return switch (left) {
+            case Long leftLong -> compareLong(leftLong, right);
+            case List<?> leftList -> compareList(leftList, right);
             default -> throw new IllegalStateException("Cannot manage type of left " + left);
-        }
+        };
     }
 
-    private static int compare(List<?> left, List<?> right) {
+    private static int compareLong(Long leftLong, Object right) {
+        return switch (right) {
+            case Long rightLong -> Long.compare(leftLong, rightLong);
+            case List<?> rightList -> compareList(List.of(leftLong), rightList);
+            default -> throw new IllegalStateException("Cannot manage type of right " + right);
+        };
+    }
+
+    private static int compareList(List<?> leftList, Object right) {
+        return switch (right) {
+            case Long rightLong -> compareList(leftList, List.of(rightLong));
+            case List<?> rightList -> compareList(leftList, rightList);
+            default -> throw new IllegalStateException("Cannot manage type of right " + right);
+        };
+    }
+
+    private static int compareList(List<?> left, List<?> right) {
         Iterator<?> leftIterator = left.iterator();
         Iterator<?> rightIterator = right.iterator();
         while (leftIterator.hasNext() && rightIterator.hasNext()) {

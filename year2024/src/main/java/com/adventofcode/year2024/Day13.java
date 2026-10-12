@@ -216,18 +216,12 @@ public final class Day13 {
         Optional<Matrix2D> inverse() {
             var det = det();
 
-            switch (Long.signum(det)) {
-                case 0 -> {
-                    return Optional.empty();
-                }
-                case 1 -> {
-                    return Optional.of(new Matrix2D(a22, -a21, -a12, a11, det));
-                }
-                case -1 -> {
-                    return Optional.of(new Matrix2D(-a22, a21, a12, -a11, -det));
-                }
+            return switch (Long.signum(det)) {
+                case 0 -> Optional.empty();
+                case 1 -> Optional.of(new Matrix2D(a22, -a21, -a12, a11, det));
+                case -1 -> Optional.of(new Matrix2D(-a22, a21, a12, -a11, -det));
                 default -> throw new IllegalStateException();
-            }
+            };
         }
 
         Optional<Point2D> multiply(Point2D v) {

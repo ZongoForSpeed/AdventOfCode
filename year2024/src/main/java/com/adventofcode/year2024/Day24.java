@@ -388,7 +388,7 @@ public final class Day24 {
      * in a swap and then join those names with commas?
      */
     public static String partTwo(Scanner scanner) {
-        var unused = readValues(scanner);
+        var _ = readValues(scanner);
 
         Map<String, Gate> gates = readGates(scanner);
         LOGGER.trace("gates: {}", gates);

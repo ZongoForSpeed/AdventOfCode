@@ -101,7 +101,7 @@ public final class Day23 {
                 computers[i] = new NetworkComputer(i, parked);
             }
             for (NetworkComputer computer : computers) {
-                var unused = executor.submit(() -> Intcode.intcode(program, computer::input, computer::output));
+                var _ = executor.submit(() -> Intcode.intcode(program, computer::input, computer::output));
             }
         }
 

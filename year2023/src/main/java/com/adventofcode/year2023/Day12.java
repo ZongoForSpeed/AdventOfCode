@@ -337,13 +337,13 @@ public final class Day12 {
                     result = 0L;
                 }
             } else {
-                switch (pattern.charAt(p)) {
-                    case '?' -> result = countArrangements(cache, pattern, groups, p + 1, g)
+                result = switch (pattern.charAt(p)) {
+                    case '?' -> countArrangements(cache, pattern, groups, p + 1, g)
                             + countArrangementsDamaged(cache, pattern, groups, p, g);
-                    case '.' -> result = countArrangements(cache, pattern, groups, p + 1, g);
-                    case '#' -> result = countArrangementsDamaged(cache, pattern, groups, p, g);
+                    case '.' -> countArrangements(cache, pattern, groups, p + 1, g);
+                    case '#' -> countArrangementsDamaged(cache, pattern, groups, p, g);
                     default -> throw new IllegalStateException();
-                }
+                };
             }
 
             cache.put(key, result);

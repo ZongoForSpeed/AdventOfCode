@@ -84,7 +84,7 @@ public final class GaussJordan {
     // prints no solution or infinite solutions
     // depending upon the input given.
     double[] getResult(int flag) {
-        switch (flag) {
+        return switch (flag) {
             case 2 -> throw new IllegalStateException("Infinite Solutions Exists");
             case 3 -> throw new IllegalStateException("No Solution Exists");
             default -> {
@@ -93,9 +93,9 @@ public final class GaussJordan {
                 double[] solution = new double[n];
                 for (var i = 0; i < n; i++)
                     solution[i] = a[i][n] / a[i][i];
-                return solution;
+                yield solution;
             }
-        }
+        };
     }
 
     // To check whether infinite solutions
