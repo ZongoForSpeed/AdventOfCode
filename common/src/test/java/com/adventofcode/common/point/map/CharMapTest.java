@@ -76,4 +76,26 @@ class CharMapTest {
         var subMap = map.subMap(1, 3, 0, 2);
         assertThat(subMap.values()).containsExactly("bc", "ef");
     }
+
+    @Test
+    void charMap() {
+        var input = List.of(
+                "                  # ",
+                "#    ##    ##    ###",
+                " #  #  #  #  #  #   "
+        );
+
+        var map = new CharMap();
+
+        for (int i = 0; i < input.size(); i++) {
+            String line = input.get(i);
+            for (int j = 0; j < line.length(); j++) {
+                if (line.charAt(j) == '#') {
+                    map.set(j, i, line.charAt(j));
+                }
+            }
+        }
+
+        assertThat(map.points()).hasSize(15);
+    }
 }

@@ -84,6 +84,9 @@
 
         <!-- Source: https://mvnrepository.com/artifact/org.jspecify/jspecify -->
         <jspecify.version>1.0.1</jspecify.version>
+
+        <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+        <reflections.version>0.10.2</reflections.version>
     </properties>
 
     <dependencyManagement>
@@ -227,6 +230,12 @@
                 <artifactId>jspecify</artifactId>
                 <version>${jspecify.version}</version>
                 <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
             </dependency>
 
             <dependency>

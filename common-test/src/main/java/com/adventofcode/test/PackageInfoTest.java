@@ -2,69 +2,56 @@ package com.adventofcode.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.stream.Stream;
+import com.google.errorprone.annotations.CheckReturnValue;
+import java.util.Map;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import org.jspecify.annotations.NullMarked;
 import org.junit.jupiter.api.Test;
+import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
 
-/// Checks that every package of the module under test is `@NullMarked` and `@CheckReturnValue`.
+/// Checks that every `com.adventofcode` package on the classpath is annotated with `@NullMarked` and
+/// `@CheckReturnValue`.
 ///
-/// This class is picked up by every module through the Surefire `dependenciesToScan` setting,
-/// and inspects the `src/main/java` directory of the module it runs in.
+/// This class is picked up by every module through the Surefire `dependenciesToScan` setting.
 public class PackageInfoTest {
-    private static final Path SOURCES = Path.of("src", "main", "java");
+    private static final String ROOT = "com.adventofcode";
+    private static final String PACKAGE_INFO = "package-info";
+    private static final String GENERATED_BY_JMH = ".jmh_generated";
 
     @Test
-    void everyPackageHasPackageInfo() throws IOException {
-        if (!Files.isDirectory(SOURCES)) {
-            return;
-        }
+    void everyPackageIsNullMarkedAndCheckReturnValue() {
+        var reflections = new Reflections(ROOT, Scanners.SubTypes.filterResultsBy(_ -> true));
 
-        try (Stream<Path> files = Files.walk(SOURCES)) {
-            var missing = files.filter(PackageInfoTest::isSourceFile)
-                    .map(Path::getParent)
-                    .distinct()
-                    .filter(directory -> !Files.exists(directory.resolve("package-info.java")))
-                    .map(SOURCES::relativize)
-                    .map(Path::toString)
-                    .sorted()
-                    .toList();
+        Map<String, String> classByPackage = reflections.getAll(Scanners.SubTypes).stream()
+                .filter(name -> name.startsWith(ROOT + "."))
+                .filter(name -> !name.endsWith(PACKAGE_INFO))
+                .filter(name -> !name.contains(GENERATED_BY_JMH))
+                .collect(Collectors.toMap(PackageInfoTest::packageName, name -> name, (a, b) -> a));
 
-            assertThat(missing).as("packages without package-info.java").isEmpty();
-        }
+        var invalid = new TreeSet<String>();
+        classByPackage.forEach((packageName, className) -> {
+            var annotatedPackage = load(className).getPackage();
+            if (!annotatedPackage.isAnnotationPresent(NullMarked.class)
+                || !annotatedPackage.isAnnotationPresent(CheckReturnValue.class)) {
+                invalid.add(packageName);
+            }
+        });
+
+        assertThat(classByPackage).as("scanned packages").isNotEmpty();
+        assertThat(invalid).as("packages without @NullMarked and @CheckReturnValue").isEmpty();
     }
 
-    @Test
-    void everyPackageInfoIsNullMarked() throws IOException {
-        if (!Files.isDirectory(SOURCES)) {
-            return;
-        }
-
-        try (Stream<Path> files = Files.walk(SOURCES)) {
-            var invalid = files.filter(path -> path.getFileName().toString().equals("package-info.java"))
-                    .filter(PackageInfoTest::missingAnnotations)
-                    .map(SOURCES::relativize)
-                    .map(Path::toString)
-                    .sorted()
-                    .toList();
-
-            assertThat(invalid).as("package-info.java without @NullMarked and @CheckReturnValue").isEmpty();
-        }
+    private static String packageName(String className) {
+        return className.substring(0, className.lastIndexOf('.'));
     }
 
-    private static boolean isSourceFile(Path path) {
-        var name = path.getFileName().toString();
-        return name.endsWith(".java") && !name.equals("package-info.java");
-    }
-
-    private static boolean missingAnnotations(Path packageInfo) {
+    private static Class<?> load(String className) {
         try {
-            var content = Files.readString(packageInfo);
-            return !content.contains("@NullMarked") || !content.contains("@CheckReturnValue");
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
+            return Class.forName(className, false, PackageInfoTest.class.getClassLoader());
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException("Cannot load " + className, e);
         }
     }
 }
