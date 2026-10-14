@@ -77,7 +77,7 @@ public final class Day24 {
 
     private static long solve(Int2ObjectMap<IntegerPair> criteria, IntList order) {
         Deque<State> queue = new ArrayDeque<>();
-        queue.addLast(State.of(new IntImmutableList(new int[14]), 0));
+        queue.addLast(State.of(IntImmutableList.of(new int[14]), 0));
 
         while (!queue.isEmpty()) {
             State first = queue.removeFirst();
