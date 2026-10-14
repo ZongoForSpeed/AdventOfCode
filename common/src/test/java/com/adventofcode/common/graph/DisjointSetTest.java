@@ -13,7 +13,7 @@ class DisjointSetTest {
         var ds = new DisjointSet(5);
         assertThat(ds.getCount()).isEqualTo(5);
         assertThat((Collection<Integer>) ds.getSizes()).containsExactlyInAnyOrder(1, 1, 1, 1, 1);
-        for (var i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             assertThat(ds.find(i)).isEqualTo(i);
         }
     }
@@ -47,10 +47,10 @@ class DisjointSetTest {
         assertThat(ds.union(1, 2)).isTrue();
         assertThat(ds.union(2, 3)).isTrue();
         
-        var root = ds.find(0);
+        int root = ds.find(0);
         // After find(0), parent[0] should be root, parent[1] should be root etc.
         // Although parent is private, we can't directly check it, but find should return same root.
-        for (var i = 0; i <= 3; i++) {
+        for (int i = 0; i <= 3; i++) {
             assertThat(ds.find(i)).isEqualTo(root);
         }
     }

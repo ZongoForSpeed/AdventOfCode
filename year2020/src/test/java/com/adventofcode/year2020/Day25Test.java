@@ -14,15 +14,15 @@ class Day25Test extends AbstractTest {
 
     @Test
     void comboBreaker() {
-        var cardEncryptionKey = Day25.comboBreaker(5764801, 17807724);
+        long cardEncryptionKey = Day25.comboBreaker(5764801, 17807724);
         assertThat(cardEncryptionKey).isEqualTo(14897079);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var cardPublicKey = Long.parseLong(scanner.nextLine());
-        var doorPublicKey = Long.parseLong(scanner.nextLine());
-        var encryptionKey = Day25.comboBreaker(cardPublicKey, doorPublicKey);
+        long cardPublicKey = Long.parseLong(scanner.nextLine());
+        long doorPublicKey = Long.parseLong(scanner.nextLine());
+        long encryptionKey = Day25.comboBreaker(cardPublicKey, doorPublicKey);
         assertThat(encryptionKey).isEqualTo(16933668);
     }
 

@@ -71,7 +71,7 @@ class Day21Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) {
-        var counter = Day21.PartTwo.infiniteStepCounter(scanner, 26501365);
+        long counter = Day21.PartTwo.infiniteStepCounter(scanner, 26501365);
         Assertions.assertThat(counter).isEqualTo(601113643448699L);
     }
 

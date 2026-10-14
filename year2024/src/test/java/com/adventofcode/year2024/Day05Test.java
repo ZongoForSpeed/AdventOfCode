@@ -46,12 +46,12 @@ class Day05Test extends AbstractTest {
                 97,13,75,29,47""";
 
         try (var scanner = new Scanner(input)) {
-            var middle = Day05.partOne(scanner);
+            int middle = Day05.partOne(scanner);
             assertThat(middle).isEqualTo(143);
         }
 
         try (var scanner = new Scanner(input)) {
-            var middle = Day05.partTwo(scanner);
+            int middle = Day05.partTwo(scanner);
             assertThat(middle).isEqualTo(123);
         }
     }

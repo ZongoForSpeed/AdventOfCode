@@ -82,7 +82,7 @@ public final class Day06 {
             return value;
         }
 
-        var result = 0L;
+        long result = 0L;
         String orbit = graph.get(object);
         if (orbit != null) {
             result += 1;
@@ -94,7 +94,7 @@ public final class Day06 {
     }
 
     static long countOrbits(Map<String, String> graph) {
-        var result = 0L;
+        long result = 0L;
 
         var cache = new HashMap<String, Long>();
         for (String object : graph.keySet()) {

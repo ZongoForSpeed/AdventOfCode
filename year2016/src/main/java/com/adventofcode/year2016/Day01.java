@@ -61,7 +61,7 @@ public final class Day01 {
                 case 'R' -> direction.right();
                 default -> throw new IllegalStateException("Unknown input: " + s);
             };
-            var d = Integer.parseInt(s.substring(1));
+            int d = Integer.parseInt(s.substring(1));
             position = position.move(direction, d);
         }
 
@@ -93,7 +93,7 @@ public final class Day01 {
                 case 'R' -> direction.right();
                 default -> throw new IllegalStateException("Unknown input: " + s);
             };
-            var d = Integer.parseInt(s.substring(1));
+            int d = Integer.parseInt(s.substring(1));
             while (d-- > 0) {
                 position = position.move(direction);
                 if (!visited.add(position)) {

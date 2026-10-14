@@ -19,7 +19,7 @@ class Day10Test extends AbstractTest {
                 addx -5""";
 
         var scanner = new Scanner(input);
-        var signalStrength = Day10.PartOne.getSignalStrength(scanner);
+        long signalStrength = Day10.PartOne.getSignalStrength(scanner);
         Assertions.assertThat(signalStrength).isZero();
     }
 
@@ -175,7 +175,7 @@ class Day10Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var signalStrength = Day10.PartOne.getSignalStrength(scanner);
+            long signalStrength = Day10.PartOne.getSignalStrength(scanner);
             Assertions.assertThat(signalStrength).isEqualTo(13140L);
         }
 
@@ -194,7 +194,7 @@ class Day10Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        var signalStrength = Day10.PartOne.getSignalStrength(scanner);
+        long signalStrength = Day10.PartOne.getSignalStrength(scanner);
         Assertions.assertThat(signalStrength).isEqualTo(14780L);
     }
 

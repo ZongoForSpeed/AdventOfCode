@@ -77,10 +77,10 @@ public final class Day03 {
     /// Starting at the top-left corner of your map and following a slope of right
     /// 3 and down 1, how many trees would you encounter?
     public static long tobogganTrajectory(List<String> map, int right, int down) {
-        var taille = map.getFirst().length();
-        var count = 0;
-        var position = 0;
-        for (var i = 0; i < map.size(); i += down) {
+        int taille = map.getFirst().length();
+        int count = 0;
+        int position = 0;
+        for (int i = 0; i < map.size(); i += down) {
             String line = map.get(i);
             if (line.charAt(position) == '#') {
                 count++;
@@ -113,7 +113,7 @@ public final class Day03 {
     /// What do you get if you multiply together the number of trees encountered on
     /// each of the listed slopes?
     public static long checkAllTobogganTrajectories(List<String> map) {
-        var result = 1L;
+        long result = 1L;
         result *= tobogganTrajectory(map, 1, 1);
         result *= tobogganTrajectory(map, 3, 1);
         result *= tobogganTrajectory(map, 5, 1);

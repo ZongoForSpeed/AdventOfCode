@@ -132,10 +132,10 @@ public final class Day24 {
         }
 
         public static int countIntersection(List<Hailstorm> hailstorms, long min, long max) {
-            var count = 0;
-            for (var i = 0; i < hailstorms.size(); i++) {
+            int count = 0;
+            for (int i = 0; i < hailstorms.size(); i++) {
                 Hailstorm a = hailstorms.get(i);
-                for (var j = i + 1; j < hailstorms.size(); ++j) {
+                for (int j = i + 1; j < hailstorms.size(); ++j) {
                     Hailstorm b = hailstorms.get(j);
 
                     Point3D p = a.position();
@@ -144,20 +144,20 @@ public final class Day24 {
                     Point3D q = b.position();
                     Point3D s = b.velocity();
 
-                    var rxs = crossProduct(r, s);
+                    long rxs = crossProduct(r, s);
                     if (rxs == 0) {
                         continue;
                     }
 
                     Point3D q_p = Point3D.minus(q, p);
-                    var t = crossProduct(q_p, s) * 1.0 / rxs;
-                    var u = crossProduct(q_p, r) * 1.0 / rxs;
+                    double t = crossProduct(q_p, s) * 1.0 / rxs;
+                    double u = crossProduct(q_p, r) * 1.0 / rxs;
                     if (t < 0 || u < 0) {
                         continue;
                     }
 
-                    var intersection_x = p.x() + t * r.x();
-                    var intersection_y = p.y() + t * r.y();
+                    double intersection_x = p.x() + t * r.x();
+                    double intersection_y = p.y() + t * r.y();
                     if (min <= intersection_x && intersection_x <= max
                             && min <= intersection_y && intersection_y <= max) {
                         count++;
@@ -291,12 +291,12 @@ public final class Day24 {
         static Hailstorm of(String line) {
             Matcher matcher = HAILSTORM_PATTERN.matcher(line);
             if (matcher.find()) {
-                var x = Long.parseLong(matcher.group(1));
-                var y = Long.parseLong(matcher.group(2));
-                var z = Long.parseLong(matcher.group(3));
-                var vx = Long.parseLong(matcher.group(4));
-                var vy = Long.parseLong(matcher.group(5));
-                var vz = Long.parseLong(matcher.group(6));
+                long x = Long.parseLong(matcher.group(1));
+                long y = Long.parseLong(matcher.group(2));
+                long z = Long.parseLong(matcher.group(3));
+                long vx = Long.parseLong(matcher.group(4));
+                long vy = Long.parseLong(matcher.group(5));
+                long vz = Long.parseLong(matcher.group(6));
                 return new Hailstorm(new Point3D(x, y, z), new Point3D(vx, vy, vz));
             } else {
                 throw new IllegalStateException("Cannot parse line: " + line);

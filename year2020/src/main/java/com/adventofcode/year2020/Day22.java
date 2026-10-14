@@ -24,7 +24,7 @@ public final class Day22 {
         var player2deck = new ArrayDeque<Integer>();
         readPlayerDecks(scanner, player1deck, player2deck);
 
-        var round = 0;
+        int round = 0;
         while (!player1deck.isEmpty() && !player2deck.isEmpty()) {
             var card1 = player1deck.removeFirst();
             var card2 = player2deck.removeFirst();
@@ -53,8 +53,8 @@ public final class Day22 {
     }
 
     private static long countPoint(Deque<Integer> deck) {
-        var point = 0L;
-        var cardPoint = deck.size();
+        long point = 0L;
+        int cardPoint = deck.size();
         for (Integer card : deck) {
             point += cardPoint * card;
             --cardPoint;
@@ -503,7 +503,7 @@ public final class Day22 {
     }
 
     private static void readPlayerDecks(Scanner scanner, Deque<Integer> player1deck, Deque<Integer> player2deck) {
-        var readPlayer2 = false;
+        boolean readPlayer2 = false;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.isBlank()) {
@@ -513,7 +513,7 @@ public final class Day22 {
             if (line.startsWith("Player ")) {
                 continue;
             }
-            var card = Integer.parseInt(line);
+            int card = Integer.parseInt(line);
             if (readPlayer2) {
                 player2deck.add(card);
             } else {
@@ -524,7 +524,7 @@ public final class Day22 {
 
     private static Pair<Integer, Long> playRecursiveCombat(Deque<Integer> player1deck, Deque<Integer> player2deck, int depth) {
         var cache = new HashSet<Pair<IntList, IntList>>();
-        var round = 0;
+        int round = 0;
         while (!player1deck.isEmpty() && !player2deck.isEmpty()) {
             if (!cache.add(Pair.of(new IntArrayList(player1deck), new IntArrayList(player2deck)))) {
                 LOGGER.info("Found recursive decks: {}, {}", player1deck, player2deck);

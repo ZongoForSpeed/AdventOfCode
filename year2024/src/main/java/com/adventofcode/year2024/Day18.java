@@ -116,8 +116,8 @@ public final class Day18 {
         var corruptedMemory = readCorruptedMemory(scanner);
 
         var accessible = new HashSet<Point2D>();
-        for (var x = 0; x <= size; ++x) {
-            for (var y = 0; y <= size; ++y) {
+        for (int x = 0; x <= size; ++x) {
+            for (int y = 0; y <= size; ++y) {
                 accessible.add(Point2D.of(x, y));
             }
         }
@@ -173,8 +173,8 @@ public final class Day18 {
         var corruptedMemory = readCorruptedMemory(scanner);
 
         var accessible = new HashSet<Point2D>();
-        for (var x = 0; x <= size; ++x) {
-            for (var y = 0; y <= size; ++y) {
+        for (int x = 0; x <= size; ++x) {
+            for (int y = 0; y <= size; ++y) {
                 accessible.add(Point2D.of(x, y));
             }
         }
@@ -186,7 +186,7 @@ public final class Day18 {
 
         for (Point2D memory : corruptedMemory) {
             pathFinder.remove(memory);
-            var path = pathFinder.findPath();
+            long path = pathFinder.findPath();
             LOGGER.trace("After memory={}, path={}", memory, path);
 
             if (path == Long.MAX_VALUE) {
@@ -203,8 +203,8 @@ public final class Day18 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
-                var x = Integer.parseInt(matcher.group(1));
-                var y = Integer.parseInt(matcher.group(2));
+                int x = Integer.parseInt(matcher.group(1));
+                int y = Integer.parseInt(matcher.group(2));
                 corruptedMemory.add(Point2D.of(x, y));
             }
         }

@@ -25,7 +25,7 @@ class Day23Test extends AbstractTest {
                 pos=<1,3,1>, r=1""";
 
         var scanner = new Scanner(input);
-        var count = Day23.PartOne.countNanobots(scanner);
+        long count = Day23.PartOne.countNanobots(scanner);
 
         Assertions.assertThat(count).isEqualTo(7);
     }
@@ -41,20 +41,20 @@ class Day23Test extends AbstractTest {
                 pos=<10,10,10>, r=5""";
 
         var scanner = new Scanner(input);
-        var distance = Day23.PartTwo.bestPositionDistance(scanner);
+        int distance = Day23.PartTwo.bestPositionDistance(scanner);
 
         Assertions.assertThat(distance).isEqualTo(36);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var count = Day23.PartOne.countNanobots(scanner);
+        long count = Day23.PartOne.countNanobots(scanner);
         Assertions.assertThat(count).isEqualTo(943);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var distance = Day23.PartTwo.bestPositionDistance(scanner);
+        int distance = Day23.PartTwo.bestPositionDistance(scanner);
         Assertions.assertThat(distance).isEqualTo(84087816);
     }
 

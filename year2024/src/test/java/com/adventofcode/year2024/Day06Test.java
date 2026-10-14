@@ -28,12 +28,12 @@ class Day06Test extends AbstractTest {
                 ......#...""";
 
         try (var scanner = new Scanner(input)) {
-            var path = Day06.partOne(scanner);
+            int path = Day06.partOne(scanner);
             assertThat(path).isEqualTo(41);
         }
 
         try (var scanner = new Scanner(input)) {
-            var count = Day06.partTwo(scanner);
+            int count = Day06.partTwo(scanner);
             assertThat(count).isEqualTo(6);
         }
     }

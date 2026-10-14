@@ -20,10 +20,10 @@ public final class Day06 {
     }
 
     private static int maxIndex(int[] memory) {
-        var index = 0;
-        var max = Integer.MIN_VALUE;
-        for (var i = 0; i < memory.length; i++) {
-            var bank = memory[i];
+        int index = 0;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < memory.length; i++) {
+            int bank = memory[i];
             if (bank > max) {
                 index = i;
                 max = bank;
@@ -34,8 +34,8 @@ public final class Day06 {
 
     private static IntList memoryReallocation(IntList input) {
         int[] memory = input.toIntArray();
-        var index = maxIndex(memory);
-        var value = memory[index];
+        int index = maxIndex(memory);
+        int value = memory[index];
         memory[index] = 0;
         do {
             index++;
@@ -103,7 +103,7 @@ public final class Day06 {
         while (true) {
             memory = memoryReallocation(memory);
             if (!memories.add(memory)) {
-                var size = memories.size();
+                int size = memories.size();
                 LOGGER.info("Memories: {}", size);
                 return size;
             }
@@ -124,7 +124,7 @@ public final class Day06 {
     static int memoryReallocationPartTwo(String input) {
         IntList memory = IntArrayList.toList(Splitter.on(PATTERN).splitToStream(input).mapToInt(Integer::parseInt));
         var memories = new HashMap<IntList, Integer>();
-        var step = 0;
+        int step = 0;
         memories.put(memory, step);
 
         while (true) {

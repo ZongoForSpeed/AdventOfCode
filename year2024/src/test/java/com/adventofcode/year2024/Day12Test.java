@@ -22,13 +22,13 @@ class Day12Test extends AbstractTest {
                 EEEC""";
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partOne(scanner);
+            long price = Day12.partOne(scanner);
 
             assertThat(price).isEqualTo(140);
         }
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partTwo(scanner);
+            long price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(80);
         }
@@ -44,14 +44,14 @@ class Day12Test extends AbstractTest {
                 OOOOO""";
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partOne(scanner);
+            long price = Day12.partOne(scanner);
 
             assertThat(price).isEqualTo(772);
         }
 
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partTwo(scanner);
+            long price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(436);
         }
@@ -72,14 +72,14 @@ class Day12Test extends AbstractTest {
                 MMMISSJEEE""";
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partOne(scanner);
+            long price = Day12.partOne(scanner);
 
             assertThat(price).isEqualTo(1930);
         }
 
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partTwo(scanner);
+            long price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(1206);
         }
@@ -95,7 +95,7 @@ class Day12Test extends AbstractTest {
                 EEEEE""";
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partTwo(scanner);
+            long price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(236);
         }
@@ -112,7 +112,7 @@ class Day12Test extends AbstractTest {
                 AAAAAA""";
 
         try (var scanner = new Scanner(input)) {
-            var price = Day12.partTwo(scanner);
+            long price = Day12.partTwo(scanner);
 
             assertThat(price).isEqualTo(368);
         }

@@ -17,7 +17,7 @@ class GaussJordanTest {
         };
 
         // Order of Matrix(n)
-        var n = 3;
+        int n = 3;
 
         var gaussJordan = new GaussJordan(a, n);
 

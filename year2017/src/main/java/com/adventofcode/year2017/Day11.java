@@ -9,9 +9,9 @@ public final class Day11 {
     }
 
     private static Point3D move(Point3D p, String direction) {
-        var x = p.x();
-        var y = p.y();
-        var z = p.z();
+        int x = p.x();
+        int y = p.y();
+        int z = p.z();
         switch (direction) {
             case "n" -> {
                 y++;
@@ -94,7 +94,7 @@ public final class Day11 {
     ///
     /// Your puzzle answer was 1548.
     static int maxGridDistance(String input) {
-        var maxDistance = 0;
+        int maxDistance = 0;
         Point3D position = Point3D.ORIGIN;
         for (String d : Splitter.on(',').split(input)) {
             position = move(position, d);

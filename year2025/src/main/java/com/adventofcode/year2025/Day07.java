@@ -252,13 +252,13 @@ public final class Day07 {
     }
 
     public static LongPair countTimeline(Scanner scanner) {
-        var split = 0L;
+        long split = 0L;
         Int2LongMap beams = new Int2LongArrayMap();
-        var n = 0;
+        int n = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (n == 0) {
-                var i = line.indexOf('S');
+                int i = line.indexOf('S');
                 if (i != -1) {
                     beams.put(i, 1L);
                 } else {
@@ -266,10 +266,10 @@ public final class Day07 {
                 }
             } else {
                 Int2LongMap toAdd = new Int2LongArrayMap();
-                for (var i = 0; i < line.length(); i++) {
-                    var c = line.charAt(i);
+                for (int i = 0; i < line.length(); i++) {
+                    char c = line.charAt(i);
                     if (c == '^') {
-                        var value = beams.remove(i);
+                        long value = beams.remove(i);
                         if (value != beams.defaultReturnValue()) {
                             split += 1;
                             toAdd.put(i - 1, toAdd.getOrDefault(i - 1, 0L) + value);
@@ -283,7 +283,7 @@ public final class Day07 {
             }
             n++;
         }
-        var timeline = beams.values().longStream().sum();
+        long timeline = beams.values().longStream().sum();
         return new LongPair(split, timeline);
     }
 }

@@ -93,7 +93,7 @@ class Day24Test extends AbstractTest {
                 tnw OR pbm -> gnj""";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day24.partOne(scanner);
+            long result = Day24.partOne(scanner);
             assertThat(result).isEqualTo(2024);
         }
 
@@ -101,7 +101,7 @@ class Day24Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var result = Day24.partOne(scanner);
+        long result = Day24.partOne(scanner);
         assertThat(result).isEqualTo(50411513338638L);
     }
 

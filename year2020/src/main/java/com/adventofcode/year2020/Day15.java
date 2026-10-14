@@ -89,13 +89,13 @@ public final class Day15 {
         int[] startingNumbers = Splitter.on(',').splitToStream(input).mapToInt(Integer::parseInt).toArray();
         // Turn at which each number was last / previously spoken, 0 meaning never (turns start at 1).
         // A spoken number is either a starting number or a difference of two turns, so it is always below `size`.
-        var size = Math.max(turn, Arrays.stream(startingNumbers).max().orElse(0)) + 1;
+        int size = Math.max(turn, Arrays.stream(startingNumbers).max().orElse(0)) + 1;
         var lastTurn = new int[size];
         var previousTurn = new int[size];
 
-        var n = 1;
-        var lastNumberSpoken = -1;
-        var newNumber = false;
+        int n = 1;
+        int lastNumberSpoken = -1;
+        boolean newNumber = false;
         for (; n <= startingNumbers.length; ++n) {
             lastNumberSpoken = startingNumbers[n - 1];
 

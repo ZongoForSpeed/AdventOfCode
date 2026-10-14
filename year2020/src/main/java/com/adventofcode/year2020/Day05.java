@@ -66,10 +66,10 @@ public final class Day05 {
     /// As a sanity check, look through your list of boarding passes. What is the
     /// highest seat ID on a boarding pass?
     public static long binaryBoarding(String boardingPasses) {
-        var row = 0L;
-        var column = 0L;
+        long row = 0L;
+        long column = 0L;
 
-        for (var i = 0; i < boardingPasses.length(); ++i) {
+        for (int i = 0; i < boardingPasses.length(); ++i) {
             switch (boardingPasses.charAt(i)) {
                 case 'F' -> row <<= 1;
                 case 'B' -> {
@@ -104,7 +104,7 @@ public final class Day05 {
     ///
     /// What is the ID of your seat?
     static OptionalLong findEmptySeat(long[] seatIds) {
-        for (var i = 0; i < seatIds.length - 1; i++) {
+        for (int i = 0; i < seatIds.length - 1; i++) {
             if (seatIds[i] + 2 == seatIds[i + 1]) {
                 return OptionalLong.of(seatIds[i] + 1);
             }

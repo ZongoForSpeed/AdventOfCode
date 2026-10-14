@@ -20,13 +20,13 @@ class Day19Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var qualityLevel = Day19.computeQualityLevelPartOne(scanner);
+            long qualityLevel = Day19.computeQualityLevelPartOne(scanner);
             assertThat(qualityLevel).isEqualTo(33);
         }
 
         {
             var scanner = new Scanner(input);
-            var qualityLevel = Day19.computeQualityLevelPartTwo(scanner);
+            long qualityLevel = Day19.computeQualityLevelPartTwo(scanner);
             assertThat(qualityLevel).isEqualTo(3472);
         }
     }

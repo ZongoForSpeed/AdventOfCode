@@ -70,9 +70,9 @@ public final class Day03 {
         var positions2 = readPath(path2);
 
         var intersection = Sets.intersection(new HashSet<Point2D>(positions1.subList(1, positions1.size() - 1)), new HashSet<Point2D>(positions2.subList(1, positions2.size() - 1)));
-        var distance = Integer.MAX_VALUE;
+        int distance = Integer.MAX_VALUE;
         for (Point2D position : intersection) {
-            var d = Math.abs(position.x()) + Math.abs(position.y());
+            int d = Math.abs(position.x()) + Math.abs(position.y());
             if (d < distance) {
                 distance = d;
             }
@@ -85,10 +85,10 @@ public final class Day03 {
         Point2D position = Point2D.of(0, 0);
         result.add(position);
         for (String move : Splitter.on(',').split(path)) {
-            var direction = move.charAt(0);
-            var distance = Integer.parseInt(move.substring(1));
+            char direction = move.charAt(0);
+            int distance = Integer.parseInt(move.substring(1));
 
-            for (var i = 1; i < distance + 1; ++i) {
+            for (int i = 1; i < distance + 1; ++i) {
                 position = switch (direction) {
                     case 'R' -> position.move(Direction.RIGHT);
                     case 'U' -> position.move(Direction.UP);
@@ -108,10 +108,10 @@ public final class Day03 {
         var positions2 = readPath(path2);
 
         var intersection = Sets.intersection(new HashSet<Point2D>(positions1.subList(1, positions1.size() - 1)), new HashSet<Point2D>(positions2.subList(1, positions2.size() - 1)));
-        var steps = Integer.MAX_VALUE;
+        int steps = Integer.MAX_VALUE;
         for (Point2D position : intersection) {
-            var steps1 = positions1.indexOf(position);
-            var steps2 = positions2.indexOf(position);
+            int steps1 = positions1.indexOf(position);
+            int steps2 = positions2.indexOf(position);
 
             if (steps > steps1 + steps2) {
                 steps = steps1 + steps2;

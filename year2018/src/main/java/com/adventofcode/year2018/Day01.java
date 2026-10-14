@@ -65,7 +65,7 @@ public final class Day01 {
     ///
     /// Your puzzle answer was 508.
     static long addFrequencies(Scanner scanner) {
-        var frequency = 0L;
+        long frequency = 0L;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             frequency += Long.parseLong(line);
@@ -113,7 +113,7 @@ public final class Day01 {
             changes.add(Long.parseLong(line));
         }
 
-        var frequency = 0L;
+        long frequency = 0L;
         LongSet frequencies = new LongOpenHashSet();
         frequencies.add(frequency);
         while (true) {

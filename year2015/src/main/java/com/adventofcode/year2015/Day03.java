@@ -38,8 +38,8 @@ public final class Day03 {
         var houses = new HashSet<Point2D>();
         Point2D position = Point2D.of(0, 0);
         houses.add(position);
-        for (var i = 0; i < input.length(); i++) {
-            var c = input.charAt(i);
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
             position = move(position, c);
             houses.add(position);
         }
@@ -75,8 +75,8 @@ public final class Day03 {
         Point2D santasPosition = Point2D.of(0, 0);
         Point2D robosPosition = Point2D.of(0, 0);
         houses.add(santasPosition);
-        for (var i = 0; i < input.length(); i++) {
-            var c = input.charAt(i);
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
             if (i % 2 == 0) {
                 santasPosition = move(santasPosition, c);
                 houses.add(santasPosition);

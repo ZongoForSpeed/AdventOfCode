@@ -191,9 +191,9 @@ public final class Day09 {
 
     public static long partOne(Scanner scanner) {
         var positions = readInput(scanner);
-        var maxArea = 0L;
-        for (var i = 0; i < positions.size(); i++) {
-            for (var j = i + 1; j < positions.size(); j++) {
+        long maxArea = 0L;
+        for (int i = 0; i < positions.size(); i++) {
+            for (int j = i + 1; j < positions.size(); j++) {
                 Rectangle rectangle = Rectangle.from(positions.get(i), positions.get(j));
                 maxArea = Math.max(maxArea, rectangle.area());
             }
@@ -204,11 +204,11 @@ public final class Day09 {
     public static long partTwo(Scanner scanner) {
         var positions = readInput(scanner);
         var edges = findEdges(positions);
-        var maxArea = 0L;
-        for (var i = 0; i < positions.size(); i++) {
-            for (var j = i + 1; j < positions.size(); j++) {
+        long maxArea = 0L;
+        for (int i = 0; i < positions.size(); i++) {
+            for (int j = i + 1; j < positions.size(); j++) {
                 Rectangle rectangle = Rectangle.from(positions.get(i), positions.get(j));
-                var overlaps = false;
+                boolean overlaps = false;
                 for (Rectangle edge : edges) {
                     if (rectangle.overlapsWith(edge)) {
                         overlaps = true;
@@ -225,8 +225,8 @@ public final class Day09 {
 
     private static List<Rectangle> findEdges(List<Point2D> positions) {
         var edges = new ArrayList<Rectangle>();
-        var len = positions.size();
-        for (var i = 1; i < len; i++) {
+        int len = positions.size();
+        for (int i = 1; i < len; i++) {
             edges.add(Rectangle.from(positions.get(i - 1), positions.get(i)));
         }
         if (len > 0) {

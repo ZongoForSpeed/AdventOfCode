@@ -149,7 +149,7 @@ public class BooleanMap {
     }
 
     public void trim() {
-        var lastLine = lastNonEmptyLine();
+        int lastLine = lastNonEmptyLine();
         while (bitSets.size() > lastLine + 1) {
             bitSets.removeLast();
         }
@@ -207,9 +207,9 @@ public class BooleanMap {
     @Override
     public boolean equals(@Nullable Object o) {
         if (!(o instanceof BooleanMap that)) return false;
-        var lastLine = lastNonEmptyLine();
+        int lastLine = lastNonEmptyLine();
         if (lastLine != that.lastNonEmptyLine()) return false;
-        for (var y = 0; y <= lastLine; y++) {
+        for (int y = 0; y <= lastLine; y++) {
             if (!bitSets.get(y).equals(that.bitSets.get(y))) return false;
         }
         return true;
@@ -217,15 +217,15 @@ public class BooleanMap {
 
     @Override
     public int hashCode() {
-        var hash = 1;
-        for (var y = 0; y <= lastNonEmptyLine(); y++) {
+        int hash = 1;
+        for (int y = 0; y <= lastNonEmptyLine(); y++) {
             hash = 31 * hash + bitSets.get(y).hashCode();
         }
         return hash;
     }
 
     private int lastNonEmptyLine() {
-        for (var y = bitSets.size() - 1; y >= 0; y--) {
+        for (int y = bitSets.size() - 1; y >= 0; y--) {
             if (!bitSets.get(y).isEmpty()) {
                 return y;
             }

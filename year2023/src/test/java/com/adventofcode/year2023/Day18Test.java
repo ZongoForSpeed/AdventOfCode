@@ -31,26 +31,26 @@ class Day18Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var digPlan = Day18.PartOne.readDigPlan(scanner);
+            long digPlan = Day18.PartOne.readDigPlan(scanner);
             Assertions.assertThat(digPlan).isEqualTo(62);
         }
 
         {
             var scanner = new Scanner(input);
-            var digPlan = Day18.PartTwo.readDigPlan(scanner);
+            long digPlan = Day18.PartTwo.readDigPlan(scanner);
             Assertions.assertThat(digPlan).isEqualTo(952408144115L);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var digPlan = Day18.PartOne.readDigPlan(scanner);
+        long digPlan = Day18.PartOne.readDigPlan(scanner);
         Assertions.assertThat(digPlan).isEqualTo(31171);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var digPlan = Day18.PartTwo.readDigPlan(scanner);
+        long digPlan = Day18.PartTwo.readDigPlan(scanner);
         Assertions.assertThat(digPlan).isEqualTo(131431655002266L);
     }
 

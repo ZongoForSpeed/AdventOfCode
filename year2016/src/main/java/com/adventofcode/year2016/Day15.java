@@ -25,8 +25,8 @@ public final class Day15 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
-                var positions = Integer.parseInt(matcher.group(2));
-                var current = Integer.parseInt(matcher.group(3));
+                int positions = Integer.parseInt(matcher.group(2));
+                int current = Integer.parseInt(matcher.group(3));
                 discs.add(new Disc(positions, current));
             } else {
                 throw new IllegalStateException("Cannot parse line: " + line);
@@ -43,7 +43,7 @@ public final class Day15 {
 
         long[] modulos = new long[discs.size()];
         long[] reminders = new long[discs.size()];
-        for (var i = 0; i < discs.size(); i++) {
+        for (int i = 0; i < discs.size(); i++) {
             Disc disc = discs.get(i);
             modulos[i] = disc.positions();
             reminders[i] = ((long) disc.positions() * disc.positions() - disc.current() - i - 1) % disc.positions();

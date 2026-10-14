@@ -122,8 +122,8 @@ public final class Day11 {
     static long reactorPartTwo(Scanner scanner) {
         var nextServers = readInput(scanner);
 
-        var dacToFft = findPaths(nextServers, "dac", "fft");
-        var fftToDac = findPaths(nextServers, "fft", "dac");
+        long dacToFft = findPaths(nextServers, "dac", "fft");
+        long fftToDac = findPaths(nextServers, "fft", "dac");
 
         if (dacToFft > 0) {
             return findPaths(nextServers, "svr", "dac")
@@ -173,7 +173,7 @@ public final class Day11 {
             return 0;
         }
 
-        var res = 0L;
+        long res = 0L;
         for (String nextServer : neighbors) {
             res += visit(cache, graph, nextServer);
         }

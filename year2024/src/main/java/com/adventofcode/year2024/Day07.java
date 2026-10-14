@@ -89,12 +89,12 @@ public final class Day07 {
     }
 
     private static long checkBridge(Scanner scanner, BiPredicate<Long, IntList> checker) {
-        var result = 0L;
+        long result = 0L;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
-                var objective = Long.parseLong(matcher.group(1));
+                long objective = Long.parseLong(matcher.group(1));
                 IntList numbers = IntArrayList.toList(Splitter.on(' ').splitToStream(matcher.group(2)).mapToInt(Integer::parseInt));
                 LOGGER.info("{} --> {}", objective, numbers);
                 if (checker.test(objective, numbers)) {
@@ -108,12 +108,12 @@ public final class Day07 {
     }
 
     private static boolean checkBridgePartOne(long objective, IntList numbers) {
-        var size = numbers.size();
-        var maskLimit = (1L << size) - 1;
-        for (var mask = 0L; mask <= maskLimit; ++mask) {
+        int size = numbers.size();
+        long maskLimit = (1L << size) - 1;
+        for (long mask = 0L; mask <= maskLimit; ++mask) {
             BitSet bitSet = BitSet.valueOf(new long[]{mask});
             long value = numbers.getInt(0);
-            for (var i = 1; i < numbers.size(); ++i) {
+            for (int i = 1; i < numbers.size(); ++i) {
                 if (bitSet.get(i - 1)) {
                     value += numbers.getInt(i);
                 } else {
@@ -128,12 +128,12 @@ public final class Day07 {
     }
 
     static boolean checkBridgePartTwo(long objective, IntList numbers) {
-        var size = numbers.size();
-        var maskLimit = Arithmetic.power(3L, size) - 1;
-        for (var mask = 0L; mask <= maskLimit; ++mask) {
-            var localMask = mask;
+        int size = numbers.size();
+        long maskLimit = Arithmetic.power(3L, size) - 1;
+        for (long mask = 0L; mask <= maskLimit; ++mask) {
+            long localMask = mask;
             long value = numbers.getInt(0);
-            for (var i = 1; i < numbers.size(); ++i) {
+            for (int i = 1; i < numbers.size(); ++i) {
                 switch ((int) (localMask % 3)) {
                     case 0 -> value += numbers.getInt(i);
                     case 1 -> value *= numbers.getInt(i);

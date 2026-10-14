@@ -25,13 +25,13 @@ class Day09Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var size = Day09.PartOne.countTailPositions(scanner);
+            int size = Day09.PartOne.countTailPositions(scanner);
             Assertions.assertThat(size).isEqualTo(13);
         }
 
         {
             var scanner = new Scanner(input);
-            var size = Day09.PartTwo.countTailPositions(scanner);
+            int size = Day09.PartTwo.countTailPositions(scanner);
             Assertions.assertThat(size).isEqualTo(1);
         }
     }
@@ -50,20 +50,20 @@ class Day09Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var size = Day09.PartTwo.countTailPositions(scanner);
+            int size = Day09.PartTwo.countTailPositions(scanner);
             Assertions.assertThat(size).isEqualTo(36);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var size = Day09.PartOne.countTailPositions(scanner);
+        int size = Day09.PartOne.countTailPositions(scanner);
         Assertions.assertThat(size).isEqualTo(5858);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var size = Day09.PartTwo.countTailPositions(scanner);
+        int size = Day09.PartTwo.countTailPositions(scanner);
         Assertions.assertThat(size).isEqualTo(2602);
     }
 

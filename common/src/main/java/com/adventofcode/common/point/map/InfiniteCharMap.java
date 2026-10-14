@@ -23,14 +23,14 @@ public class InfiniteCharMap extends SparseGrid<Character> {
 
     public static InfiniteCharMap read(Scanner scanner, Predicate<Character> predicate, boolean stopWhenBlank) {
         var map = new InfiniteCharMap();
-        var j = 0;
+        int j = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (stopWhenBlank && StringUtils.isBlank(line)) {
                 break;
             }
-            for (var i = 0; i < line.length(); i++) {
-                var c = line.charAt(i);
+            for (int i = 0; i < line.length(); i++) {
+                char c = line.charAt(i);
                 if (predicate.test(c)) {
                     map.put(Point2D.of(i, j), c);
                 }

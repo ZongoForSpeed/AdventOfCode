@@ -53,7 +53,7 @@ class Day17Test extends AbstractTest {
                 Program: 0,3,5,4,3,0""";
 
         try (var scanner = new Scanner(input)) {
-            var register = Day17.partTwoBruteForce(scanner);
+            long register = Day17.partTwoBruteForce(scanner);
             assertThat(register).isEqualTo(117440);
         }
     }
@@ -66,7 +66,7 @@ class Day17Test extends AbstractTest {
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        var register = Day17.partTwo(scanner);
+        long register = Day17.partTwo(scanner);
         assertThat(register).isEqualTo(136904920099226L);
     }
 }

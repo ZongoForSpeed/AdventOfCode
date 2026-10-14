@@ -25,13 +25,13 @@ class Day20Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var decrypt = Day20.decryptPartOne(scanner);
+            long decrypt = Day20.decryptPartOne(scanner);
             assertThat(decrypt).isEqualTo(3);
         }
 
         {
             var scanner = new Scanner(input);
-            var decrypt = Day20.decryptPartTwo(scanner);
+            long decrypt = Day20.decryptPartTwo(scanner);
             assertThat(decrypt).isEqualTo(1623178306L);
         }
     }

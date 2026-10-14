@@ -47,7 +47,7 @@ class Day11Test extends AbstractTest {
                 "#........",
                 "...#.....");
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
-        var occupiedSeats = Day11.adjacentOccupiedSeats(grid, 4, 3, true);
+        int occupiedSeats = Day11.adjacentOccupiedSeats(grid, 4, 3, true);
         assertThat(occupiedSeats).isEqualTo(8);
     }
 
@@ -58,7 +58,7 @@ class Day11Test extends AbstractTest {
                 ".L.L.#.#.#.#.",
                 ".............");
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
-        var occupiedSeats = Day11.adjacentOccupiedSeats(grid, 1, 1, true);
+        int occupiedSeats = Day11.adjacentOccupiedSeats(grid, 1, 1, true);
         assertThat(occupiedSeats).isZero();
     }
 
@@ -74,7 +74,7 @@ class Day11Test extends AbstractTest {
                 ".##.##.");
 
         char[][] grid1 = inputGrid1.stream().map(String::toCharArray).toArray(char[][]::new);
-        var occupiedSeats = Day11.adjacentOccupiedSeats(grid1, 3, 3, true);
+        int occupiedSeats = Day11.adjacentOccupiedSeats(grid1, 3, 3, true);
         assertThat(occupiedSeats).isZero();
     }
 

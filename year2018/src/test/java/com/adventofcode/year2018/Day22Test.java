@@ -16,13 +16,13 @@ class Day22Test {
 
         {
             var scanner = new Scanner(input);
-            var riskLevel = Day22.PartOne.computeRiskLevel(scanner);
+            int riskLevel = Day22.PartOne.computeRiskLevel(scanner);
             Assertions.assertThat(riskLevel).isEqualTo(114);
         }
 
         {
             var scanner = new Scanner(input);
-            var duration = Day22.PartTwo.findFastestWay(scanner);
+            int duration = Day22.PartTwo.findFastestWay(scanner);
             Assertions.assertThat(duration).isEqualTo(45);
         }
     }
@@ -34,7 +34,7 @@ class Day22Test {
                 target: 7,770""";
 
         var scanner = new Scanner(input);
-        var riskLevel = Day22.PartOne.computeRiskLevel(scanner);
+        int riskLevel = Day22.PartOne.computeRiskLevel(scanner);
         Assertions.assertThat(riskLevel).isEqualTo(6208);
     }
 
@@ -45,7 +45,7 @@ class Day22Test {
                 target: 7,770""";
 
         var scanner = new Scanner(input);
-        var duration = Day22.PartTwo.findFastestWay(scanner);
+        int duration = Day22.PartTwo.findFastestWay(scanner);
         Assertions.assertThat(duration).isEqualTo(1039);
     }
 

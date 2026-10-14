@@ -95,10 +95,10 @@ public final class Day10 {
     ///
     /// Your puzzle answer was 339411.
     static int validateSyntax(Scanner scanner) {
-        var totalScore = 0;
+        int totalScore = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            var score = validateLineSyntax(line);
+            int score = validateLineSyntax(line);
             LOGGER.info("Syntax line {}: {}", line, score);
             totalScore += score;
         }
@@ -107,8 +107,8 @@ public final class Day10 {
 
     private static int validateLineSyntax(String line) {
         var openedBrackets = new ArrayDeque<Brackets>();
-        for (var i = 0; i < line.length(); i++) {
-            var c = line.charAt(i);
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
             switch (c) {
                 case '(' -> openedBrackets.addLast(Brackets.ROUND);
                 case ')' -> {
@@ -204,7 +204,7 @@ public final class Day10 {
         LongList scores = new LongArrayList();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            var score = completeLineSyntax(line);
+            long score = completeLineSyntax(line);
             LOGGER.info("Syntax line {}: {}", line, score);
             if (score > 0) {
                 scores.add(score);
@@ -218,8 +218,8 @@ public final class Day10 {
 
     private static long completeLineSyntax(String line) {
         var openedBrackets = new ArrayDeque<Brackets>();
-        for (var i = 0; i < line.length(); i++) {
-            var c = line.charAt(i);
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
             switch (c) {
                 case '(' -> openedBrackets.addLast(Brackets.ROUND);
                 case ')' -> {
@@ -249,7 +249,7 @@ public final class Day10 {
             }
         }
 
-        var score = 0L;
+        long score = 0L;
         while (!openedBrackets.isEmpty()) {
             Brackets brackets = openedBrackets.removeLast();
             score *= 5;

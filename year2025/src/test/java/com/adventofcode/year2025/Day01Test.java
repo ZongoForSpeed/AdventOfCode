@@ -29,13 +29,13 @@ public class Day01Test extends AbstractTest {
                 L82""";
 
         try (var scanner = new Scanner(input)) {
-            var password = Day01.countPasswordPartOne(scanner);
+            int password = Day01.countPasswordPartOne(scanner);
 
             assertThat(password).isEqualTo(3);
         }
 
         try (var scanner = new Scanner(input)) {
-            var password = Day01.countPasswordPartTwo(scanner);
+            int password = Day01.countPasswordPartTwo(scanner);
 
             assertThat(password).isEqualTo(6);
         }
@@ -43,14 +43,14 @@ public class Day01Test extends AbstractTest {
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        var password = Day01.countPasswordPartOne(scanner);
+        int password = Day01.countPasswordPartOne(scanner);
         assertThat(password).isEqualTo(1031);
     }
 
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        var password = Day01.countPasswordPartTwo(scanner);
+        int password = Day01.countPasswordPartTwo(scanner);
         assertThat(password).isEqualTo(5831);
     }
 }

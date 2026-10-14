@@ -30,13 +30,13 @@ class Day25Test extends AbstractTest {
                 frs: qnr lhk lsr""";
         var scanner = new Scanner(input);
 
-        var result = Day25.PartOne.minimumCut(scanner);
+        int result = Day25.PartOne.minimumCut(scanner);
         assertThat(result).isEqualTo(54);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var result = Day25.PartOne.minimumCut(scanner);
+        int result = Day25.PartOne.minimumCut(scanner);
         assertThat(result).isEqualTo(546804);
     }
 

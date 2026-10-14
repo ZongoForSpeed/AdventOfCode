@@ -67,8 +67,8 @@ public record Point2D(int x, int y) implements Comparable<Point2D> {
     }
 
     public Point2D moveLoop(Point2D d, int xMax, int yMax) {
-        var moveX = x + d.x;
-        var moveY = y + d.y;
+        int moveX = x + d.x;
+        int moveY = y + d.y;
         if (moveX >= xMax) {
             moveX -= xMax;
         } else if (moveX < 0) {
@@ -84,7 +84,7 @@ public record Point2D(int x, int y) implements Comparable<Point2D> {
 
     @Override
     public int compareTo(Point2D o) {
-        var compare = Integer.compare(y, o.y);
+        int compare = Integer.compare(y, o.y);
         if (compare != 0) {
             return compare;
         }

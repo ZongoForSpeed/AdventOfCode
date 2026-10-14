@@ -15,13 +15,13 @@ class Day23Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var freeSpace = Day23.partOne(scanner);
+        int freeSpace = Day23.partOne(scanner);
         assertThat(freeSpace).isEqualTo(4000);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        var rounds = Day23.partTwo(scanner);
+        int rounds = Day23.partTwo(scanner);
         assertThat(rounds).isEqualTo(1040);
     }
 
@@ -57,12 +57,12 @@ class Day23Test extends AbstractTest {
                 ..............""";
 
         try (var scanner = new Scanner(input)) {
-            var freeSpace = Day23.partOne(scanner);
+            int freeSpace = Day23.partOne(scanner);
             assertThat(freeSpace).isEqualTo(110);
         }
 
         try (var scanner = new Scanner(input)) {
-            var rounds = Day23.partTwo(scanner);
+            int rounds = Day23.partTwo(scanner);
             assertThat(rounds).isEqualTo(20);
         }
     }

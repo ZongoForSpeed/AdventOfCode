@@ -97,7 +97,7 @@ class Day22Test extends AbstractTest {
     @Override
     public void partTwo(Scanner scanner) {
         var commands = FileUtils.readLines(scanner);
-        var result = Day22.inverseSlamShuffle(commands, 2020, 119315717514047L, 101741582076661L);
+        long result = Day22.inverseSlamShuffle(commands, 2020, 119315717514047L, 101741582076661L);
         assertThat(result).isEqualTo(37889219674304L);
     }
 }

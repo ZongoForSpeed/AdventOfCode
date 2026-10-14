@@ -43,7 +43,7 @@ class Day18Test extends AbstractTest {
                 2,0""";
 
         try (var scanner = new Scanner(input)) {
-            var path = Day18.partOne(scanner, 6, 12);
+            long path = Day18.partOne(scanner, 6, 12);
             assertThat(path).isEqualTo(22);
         }
 
@@ -55,7 +55,7 @@ class Day18Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var path = Day18.partOne(scanner, 70, 1024);
+        long path = Day18.partOne(scanner, 70, 1024);
         assertThat(path).isEqualTo(438L);
     }
 

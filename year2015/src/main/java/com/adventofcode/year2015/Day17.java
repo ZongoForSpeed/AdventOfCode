@@ -58,7 +58,7 @@ public final class Day17 {
     public static long findCombinationsPartTwo(Scanner scanner, int size) {
         Long2LongMap combinations = findCombinations(scanner, size);
 
-        var minContainers = combinations.keySet().longStream().min().orElseThrow();
+        long minContainers = combinations.keySet().longStream().min().orElseThrow();
         return combinations.get(minContainers);
     }
 
@@ -70,10 +70,10 @@ public final class Day17 {
         LOGGER.info("Containers = {}", containers);
 
         Long2LongMap combinations = new Long2LongOpenHashMap();
-        var maxBitSet = 1L << containers.size();
-        for (var c = 1L; c < maxBitSet; ++c) {
+        long maxBitSet = 1L << containers.size();
+        for (long c = 1L; c < maxBitSet; ++c) {
             BitSet set = BitSet.valueOf(new long[]{c});
-            var sum = set.stream().map(containers::getInt).sum();
+            int sum = set.stream().map(containers::getInt).sum();
             if (sum == size) {
                 combinations.mergeLong(set.cardinality(), 1L, Long::sum);
             }

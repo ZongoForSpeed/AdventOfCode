@@ -57,14 +57,14 @@ class Day25Test extends AbstractTest {
                 #####""";
 
         try (var scanner = new Scanner(input)) {
-            var count = Day25.partOne(scanner);
+            int count = Day25.partOne(scanner);
             assertThat(count).isEqualTo(3);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var count = Day25.partOne(scanner);
+        int count = Day25.partOne(scanner);
         assertThat(count).isEqualTo(3155);
     }
 

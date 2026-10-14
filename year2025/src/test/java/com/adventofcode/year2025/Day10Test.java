@@ -23,25 +23,25 @@ public class Day10Test extends AbstractTest {
 
 
         try (var scanner = new Scanner(input)) {
-            var sum = Day10.factoryPartOne(scanner);
+            long sum = Day10.factoryPartOne(scanner);
             assertThat(sum).isEqualTo(7);
         }
 
         try (var scanner = new Scanner(input)) {
-            var sum = Day10.factoryPartTwo(scanner);
+            long sum = Day10.factoryPartTwo(scanner);
             assertThat(sum).isEqualTo(33);
         }
     }
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        var sum = Day10.factoryPartOne(scanner);
+        long sum = Day10.factoryPartOne(scanner);
         assertThat(sum).isEqualTo(486);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        var sum = Day10.factoryPartTwo(scanner);
+        long sum = Day10.factoryPartTwo(scanner);
         assertThat(sum).isEqualTo(17820);
     }
 }

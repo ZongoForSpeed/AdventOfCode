@@ -25,7 +25,7 @@ public final class Day12 {
     }
 
     public static long computeSum(List<?> list, @Nullable Predicate<Object> filter) {
-        var sum = 0L;
+        long sum = 0L;
         for (Object item : list) {
             sum += computeSum(item, filter);
         }
@@ -33,7 +33,7 @@ public final class Day12 {
     }
 
     public static long computeSum(Map<?, ?> map, @Nullable Predicate<Object> filter) {
-        var sum = 0L;
+        long sum = 0L;
         for (Object value : map.values()) {
             if (filter != null && filter.test(value)) {
                 return 0;

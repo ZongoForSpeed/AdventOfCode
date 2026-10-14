@@ -128,13 +128,13 @@ public final class Day15 {
         }
 
         public static long sumHash(Scanner scanner) {
-            var sum = 0L;
+            long sum = 0L;
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 Iterable<String> split = Splitter.on(',').split(line);
                 for (String s : split) {
-                    var hash = hash(s);
+                    int hash = hash(s);
                     LOGGER.trace("{} becomes {}", s, hash);
                     sum += hash;
                 }
@@ -143,8 +143,8 @@ public final class Day15 {
         }
 
         public static int hash(String input) {
-            var currentValue = 0;
-            for (var i = 0; i < input.length(); ++i) {
+            int currentValue = 0;
+            for (int i = 0; i < input.length(); ++i) {
                 currentValue += input.charAt(i);
                 currentValue *= 17;
                 currentValue %= 256;
@@ -293,7 +293,7 @@ public final class Day15 {
 
         public static long focusingPower(Scanner scanner) {
             var boxes = new ArrayList<Box>();
-            for (var i = 0; i < 256; ++i) {
+            for (int i = 0; i < 256; ++i) {
                 boxes.add(new Box(i));
             }
             while (scanner.hasNextLine()) {
@@ -303,8 +303,8 @@ public final class Day15 {
                     Matcher matcher = PATTERN_EQUALS.matcher(s);
                     if (matcher.matches()) {
                         String label = matcher.group(1);
-                        var focalLength = Integer.parseInt(matcher.group(2));
-                        var hash = PartOne.hash(label);
+                        int focalLength = Integer.parseInt(matcher.group(2));
+                        int hash = PartOne.hash(label);
                         LOGGER.trace("[{} {}] = {}", label, focalLength, hash);
                         boxes.get(hash).lenses().put(label, focalLength);
 
@@ -315,7 +315,7 @@ public final class Day15 {
                     matcher = PATTERN_DASH.matcher(s);
                     if (matcher.matches()) {
                         String label = matcher.group(1);
-                        var hash = PartOne.hash(label);
+                        int hash = PartOne.hash(label);
                         LOGGER.trace("[{} -] = {}", label, hash);
                         boxes.get(hash).lenses().remove(label);
 
@@ -343,9 +343,9 @@ public final class Day15 {
         }
 
         private static long focusingPower(List<Box> boxes) {
-            var power = 0;
+            int power = 0;
             for (Box box : boxes) {
-                var slot = 1;
+                int slot = 1;
                 for (Map.Entry<String, Integer> entry : box.lenses().entrySet()) {
                     power += (box.id() + 1) * slot++ * entry.getValue();
                 }

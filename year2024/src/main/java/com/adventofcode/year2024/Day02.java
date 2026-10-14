@@ -23,7 +23,7 @@ public final class Day02 {
 
     private static boolean safe(long[] report) {
         LongSet diffs = new LongArraySet();
-        for (var j = 1; j < report.length; j++) {
+        for (int j = 1; j < report.length; j++) {
             diffs.add(report[j - 1] - report[j]);
         }
 
@@ -39,7 +39,7 @@ public final class Day02 {
             return true;
         }
 
-        for (var i = 0; i < report.length; i++) {
+        for (int i = 0; i < report.length; i++) {
             var longs = new LongArrayList(report);
             longs.removeLong(i);
             if (safe(longs.toArray(new long[0]))) {
@@ -101,7 +101,7 @@ public final class Day02 {
     ///
     /// Analyze the unusual data from the engineers. How many reports are safe?
     public static int partOne(Scanner scanner) {
-        var count = 0;
+        int count = 0;
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -143,7 +143,7 @@ public final class Day02 {
     /// Update your analysis by handling situations where the Problem Dampener can
     /// remove a single level from unsafe reports. How many reports are now safe?
     public static int partTwo(Scanner scanner) {
-        var count = 0;
+        int count = 0;
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

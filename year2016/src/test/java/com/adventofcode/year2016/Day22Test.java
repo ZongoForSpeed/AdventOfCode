@@ -29,7 +29,7 @@ class Day22Test extends AbstractTest {
                 /dev/grid/node-x2-y2    9T    6T     3T   66%""";
 
         var scanner = new Scanner(input);
-        var steps = Day22.countSteps(scanner, Point2D.of(2, 0));
+        long steps = Day22.countSteps(scanner, Point2D.of(2, 0));
 
         assertThat(steps).isEqualTo(7);
     }

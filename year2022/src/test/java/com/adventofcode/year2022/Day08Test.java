@@ -22,26 +22,26 @@ class Day08Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var cardinality = Day08.PartOne.countVisibleTrees(scanner);
+            long cardinality = Day08.PartOne.countVisibleTrees(scanner);
             Assertions.assertThat(cardinality).isEqualTo(21);
         }
 
         {
             var scanner = new Scanner(input);
-            var maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
+            int maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
             Assertions.assertThat(maxScenicScore).isEqualTo(8);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var cardinality = Day08.PartOne.countVisibleTrees(scanner);
+        long cardinality = Day08.PartOne.countVisibleTrees(scanner);
         Assertions.assertThat(cardinality).isEqualTo(1820);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
+        int maxScenicScore = Day08.PartTwo.maxScenicScore(scanner);
         Assertions.assertThat(maxScenicScore).isEqualTo(385112);
     }
 }

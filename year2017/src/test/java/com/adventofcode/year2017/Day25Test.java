@@ -41,7 +41,7 @@ class Day25Test extends AbstractTest {
 
         var scanner = new Scanner(input);
 
-        var diagnosticChecksum = Day25.diagnosticChecksum(scanner);
+        long diagnosticChecksum = Day25.diagnosticChecksum(scanner);
         assertThat(diagnosticChecksum).isEqualTo(3);
     }
 

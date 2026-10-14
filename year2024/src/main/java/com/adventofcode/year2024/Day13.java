@@ -23,7 +23,7 @@ public final class Day13 {
     }
 
     private static long solve(List<Pair<Matrix2D, Point2D>> claws, Point2D point2D) {
-        var cost = 0L;
+        long cost = 0L;
 
         for (Pair<Matrix2D, Point2D> claw : claws) {
             Matrix2D m = claw.first();
@@ -65,13 +65,13 @@ public final class Day13 {
                 throw new IllegalStateException("Cannot parse line :" + line3);
             }
 
-            var dxA = Long.parseLong(matcher1.group(1));
-            var dyA = Long.parseLong(matcher1.group(2));
-            var dxB = Long.parseLong(matcher2.group(1));
-            var dyB = Long.parseLong(matcher2.group(2));
+            long dxA = Long.parseLong(matcher1.group(1));
+            long dyA = Long.parseLong(matcher1.group(2));
+            long dxB = Long.parseLong(matcher2.group(1));
+            long dyB = Long.parseLong(matcher2.group(2));
 
-            var priceX = Integer.parseInt(matcher3.group(1));
-            var prizeY = Integer.parseInt(matcher3.group(2));
+            int priceX = Integer.parseInt(matcher3.group(1));
+            int prizeY = Integer.parseInt(matcher3.group(2));
 
             LOGGER.info("dxA = {}, dyA = {}, dxB = {}, dyB = {}", dxA, dyA, dxB, dyB);
             LOGGER.info("X = {}, Y = {}", priceX, prizeY);
@@ -214,7 +214,7 @@ public final class Day13 {
         }
 
         Optional<Matrix2D> inverse() {
-            var det = det();
+            long det = det();
 
             return switch (Long.signum(det)) {
                 case 0 -> Optional.empty();

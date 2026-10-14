@@ -11,8 +11,8 @@ public final class Day25 {
     }
 
     private static long findLoop(long pk) {
-        var value = 1L;
-        var loopNo = 0L;
+        long value = 1L;
+        long loopNo = 0L;
         while (value != pk) {
             value = loop(value, 7);
             loopNo++;
@@ -23,8 +23,8 @@ public final class Day25 {
     }
 
     private static long findEncryptionKey(long pk, long loopNo) {
-        var value = 1L;
-        for (var i = 0L; i < loopNo; i++) {
+        long value = 1L;
+        for (long i = 0L; i < loopNo; i++) {
             value = loop(value, pk);
         }
 
@@ -144,10 +144,10 @@ public final class Day25 {
     ///
     /// Looks like you only needed 49 stars after all.
     static long comboBreaker(long cardPublicKey, long doorPublicKey) {
-        var cardLoop = findLoop(cardPublicKey);
-        var doorLoop = findLoop(doorPublicKey);
-        var cardEncryptionKey = findEncryptionKey(doorPublicKey, cardLoop);
-        var doorEncryptionKey = findEncryptionKey(cardPublicKey, doorLoop);
+        long cardLoop = findLoop(cardPublicKey);
+        long doorLoop = findLoop(doorPublicKey);
+        long cardEncryptionKey = findEncryptionKey(doorPublicKey, cardLoop);
+        long doorEncryptionKey = findEncryptionKey(cardPublicKey, doorLoop);
 
         if (cardEncryptionKey != doorEncryptionKey)
             throw new IllegalStateException("Different EncryptionKey !");

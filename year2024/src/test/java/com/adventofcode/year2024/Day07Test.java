@@ -27,12 +27,12 @@ class Day07Test extends AbstractTest {
                 292: 11 6 16 20""";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day07.partOne(scanner);
+            long result = Day07.partOne(scanner);
             assertThat(result).isEqualTo(3749);
         }
 
         try (var scanner = new Scanner(input)) {
-            var result = Day07.partTwo(scanner);
+            long result = Day07.partTwo(scanner);
             assertThat(result).isEqualTo(11387L);
         }
     }

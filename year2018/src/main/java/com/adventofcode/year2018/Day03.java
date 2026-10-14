@@ -26,11 +26,11 @@ public final class Day03 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
-                var id = Integer.parseInt(matcher.group(1));
-                var x = Integer.parseInt(matcher.group(2));
-                var y = Integer.parseInt(matcher.group(3));
-                var dx = Integer.parseInt(matcher.group(4));
-                var dy = Integer.parseInt(matcher.group(5));
+                int id = Integer.parseInt(matcher.group(1));
+                int x = Integer.parseInt(matcher.group(2));
+                int y = Integer.parseInt(matcher.group(3));
+                int dx = Integer.parseInt(matcher.group(4));
+                int dy = Integer.parseInt(matcher.group(5));
 
                 LOGGER.trace("elf {}, {},{} : {}x{}", id, x, y, dx, dy);
                 Rectangle rectangle = Rectangle.of(x, x + dx - 1, y, y + dy - 1);
@@ -111,9 +111,9 @@ public final class Day03 {
 
         var intersections = new ArrayList<Rectangle>();
 
-        for (var i = 0; i < claims.size(); i++) {
+        for (int i = 0; i < claims.size(); i++) {
             Claim claim1 = claims.get(i);
-            for (var j = i + 1; j < claims.size(); j++) {
+            for (int j = i + 1; j < claims.size(); j++) {
                 Claim claim2 = claims.get(j);
                 var intersection = Rectangle.intersection(claim1.fabric(), claim2.fabric());
                 intersection.ifPresent(intersections::add);
@@ -161,9 +161,9 @@ public final class Day03 {
 
         var set = new BitSet(claims.size());
         set.set(0, claims.size());
-        for (var i = 0; i < claims.size(); i++) {
+        for (int i = 0; i < claims.size(); i++) {
             Claim claim1 = claims.get(i);
-            for (var j = i + 1; j < claims.size(); j++) {
+            for (int j = i + 1; j < claims.size(); j++) {
                 Claim claim2 = claims.get(j);
                 if (Rectangle.intersect(claim1.fabric(), claim2.fabric())) {
                     set.clear(i);

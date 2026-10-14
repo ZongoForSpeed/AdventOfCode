@@ -21,10 +21,10 @@ class Day13Test extends AbstractTest {
                 4: 4
                 6: 4""";
 
-        var tripSeverity = Day13.getTripSeverity(new Scanner(input));
+        int tripSeverity = Day13.getTripSeverity(new Scanner(input));
         assertThat(tripSeverity).isEqualTo(24);
 
-        var findBestDelay = Day13.findBestDelay(new Scanner(input));
+        int findBestDelay = Day13.findBestDelay(new Scanner(input));
         assertThat(findBestDelay).isEqualTo(10);
     }
 

@@ -22,7 +22,7 @@ public final class GaussJordan {
         this.a = new double[matrixA.length][matrixA.length + 1];
         this.n = matrixA.length;
 
-        for (var i = 0; i < matrixA.length; i++) {
+        for (int i = 0; i < matrixA.length; i++) {
             System.arraycopy(matrixA[i], 0, a[i], 0, matrixA[i].length);
             a[i][matrixA.length] = vectorB[i];
         }
@@ -32,7 +32,7 @@ public final class GaussJordan {
     void printMatrix() {
         var joiner = new StringJoiner(",\n", "[", "]");
 
-        for (var i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             joiner.add(Arrays.toString(a[i]));
         }
 
@@ -42,35 +42,35 @@ public final class GaussJordan {
     // function to reduce matrix to reduced
 // row echelon form.
     int performOperation() {
-        var flag = 0;
+        int flag = 0;
 
         // Performing elementary operations
-        for (var i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             if (a[i][i] == 0) {
-                var c = 1;
+                int c = 1;
                 while ((i + c) < n && a[i + c][i] == 0)
                     c++;
                 if ((i + c) == n) {
                     flag = 1;
                     break;
                 }
-                for (var k = 0; k <= n; k++) {
-                    var temp = a[i][k];
+                for (int k = 0; k <= n; k++) {
+                    double temp = a[i][k];
                     a[i][k] = a[i + c][k];
                     a[i + c][k] = temp;
                 }
             }
 
-            for (var j = 0; j < n; j++) {
+            for (int j = 0; j < n; j++) {
 
                 // Excluding all i == j
                 if (i != j) {
 
                     // Converting Matrix to reduced row
                     // echelon form(diagonal matrix)
-                    var p = a[j][i] / a[i][i];
+                    double p = a[j][i] / a[i][i];
 
-                    for (var k = 0; k <= n; k++){
+                    for (int k = 0; k <= n; k++){
                         a[j][k] = a[j][k] - a[i][k] * p;
                     }
                 }
@@ -91,7 +91,7 @@ public final class GaussJordan {
                 // Printing the solution by dividing constants by
                 // their respective diagonal elements
                 double[] solution = new double[n];
-                for (var i = 0; i < n; i++)
+                for (int i = 0; i < n; i++)
                     solution[i] = a[i][n] / a[i][i];
                 yield solution;
             }
@@ -104,9 +104,9 @@ public final class GaussJordan {
 
         // flag == 2 for infinite solution
         // flag == 3 for No solution
-        var flag = 3;
-        for (var i = 0; i < n; i++) {
-            var sum = 0D;
+        int flag = 3;
+        for (int i = 0; i < n; i++) {
+            double sum = 0D;
             int j;
             for (j = 0; j < n; j++)
                 sum = sum + a[i][j];

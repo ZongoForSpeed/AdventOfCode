@@ -14,7 +14,7 @@ class Day21Test extends AbstractTest {
     void inputExample1() {
         var input = "029A";
 
-        var complexity = Day21.findComplexity(input, 3);
+        long complexity = Day21.findComplexity(input, 3);
 
         assertThat(complexity).isEqualTo(1972);
     }
@@ -23,7 +23,7 @@ class Day21Test extends AbstractTest {
     void inputExample2() {
         var input = "179A";
 
-        var complexity = Day21.findComplexity(input, 3);
+        long complexity = Day21.findComplexity(input, 3);
 
         assertThat(complexity).isEqualTo(12172);
     }
@@ -38,7 +38,7 @@ class Day21Test extends AbstractTest {
                 379A""";
 
         try (var scanner = new Scanner(input)) {
-            var complexity = Day21.partOne(scanner);
+            long complexity = Day21.partOne(scanner);
             assertThat(complexity).isEqualTo(126384);
         }
     }
@@ -49,13 +49,13 @@ class Day21Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var complexity = Day21.partOne(scanner);
+        long complexity = Day21.partOne(scanner);
         assertThat(complexity).isEqualTo(125742);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        var complexity = Day21.partTwo(scanner);
+        long complexity = Day21.partTwo(scanner);
         assertThat(complexity).isEqualTo(157055032722640L);
     }
 }

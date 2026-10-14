@@ -56,15 +56,15 @@ public final class Day02 {
     ///
     /// Your puzzle answer was 1561344.
     public static IntegerPair divePartOne(Scanner scanner) {
-        var position = 0;
-        var depth = 0;
+        int position = 0;
+        int depth = 0;
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
                 String command = matcher.group(1);
-                var n = Integer.parseInt(matcher.group(2));
+                int n = Integer.parseInt(matcher.group(2));
                 switch (command) {
                     case "forward" -> position += n;
                     case "down" -> depth += n;
@@ -120,16 +120,16 @@ public final class Day02 {
     ///
     /// Your puzzle answer was 1848454425.
     public static Triple<Integer, Integer, Integer> divePartTwo(Scanner scanner) {
-        var position = 0;
-        var depth = 0;
-        var aim = 0;
+        int position = 0;
+        int depth = 0;
+        int aim = 0;
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
                 String command = matcher.group(1);
-                var n = Integer.parseInt(matcher.group(2));
+                int n = Integer.parseInt(matcher.group(2));
                 switch (command) {
                     case "forward" -> {
                         position += n;

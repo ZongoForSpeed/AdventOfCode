@@ -13,9 +13,9 @@ public final class Day08 {
             line = line.substring(1, line.length() - 1);
         }
         PrimitiveIterator.OfInt iterator = line.chars().iterator();
-        var count = 0;
+        int count = 0;
         while (iterator.hasNext()) {
-            var c = iterator.nextInt();
+            int c = iterator.nextInt();
             if (c == '\\') {
                 c = iterator.nextInt();
                 if (c == 'x') {
@@ -30,9 +30,9 @@ public final class Day08 {
     }
 
     public static int encode(String line) {
-        var count = 2;
-        for (var i = 0; i < line.length(); i++) {
-            var c = line.charAt(i);
+        int count = 2;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
             if (c == '\\' || c == '"') {
                 count++;
             }
@@ -91,7 +91,7 @@ public final class Day08 {
     ///
     /// Your puzzle answer was 1371.
     public static int memoryDecode(Scanner scanner) {
-        var memoryCharacters = 0;
+        int memoryCharacters = 0;
         while (scanner.hasNextLine()) {
             memoryCharacters += memoryDecode(scanner.nextLine());
         }
@@ -122,7 +122,7 @@ public final class Day08 {
     ///
     /// Your puzzle answer was 2117.
     public static int memoryEncode(Scanner scanner) {
-        var memoryCharacters = 0;
+        int memoryCharacters = 0;
         while (scanner.hasNextLine()) {
             memoryCharacters += memoryEncode(scanner.nextLine());
         }

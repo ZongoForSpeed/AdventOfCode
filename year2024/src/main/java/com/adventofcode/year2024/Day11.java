@@ -129,7 +129,7 @@ public final class Day11 {
 
         LOGGER.debug("Stones = {}", stones);
 
-        var result = 0L;
+        long result = 0L;
 
         var cache = new HashMap<State, Long>();
         for (long stone : stones) {
@@ -151,11 +151,11 @@ public final class Day11 {
         } else if (n == 0) {
             result = plutonianPebbles(cache, 1, blinks - 1);
         } else {
-            var digits = Digits.numberDigits(n);
+            int digits = Digits.numberDigits(n);
             if (digits % 2 == 1) {
                 result = plutonianPebbles(cache, 2024 * n, blinks - 1);
             } else {
-                var powerTens = POWER_TENS.getLong(digits / 2);
+                long powerTens = POWER_TENS.getLong(digits / 2);
                 result = plutonianPebbles(cache, n / powerTens, blinks - 1)
                         + plutonianPebbles(cache, n % powerTens, blinks - 1);
             }

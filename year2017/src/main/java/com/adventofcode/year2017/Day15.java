@@ -94,10 +94,10 @@ public final class Day15 {
     ///
     /// Your puzzle answer was 2164.
     static long countPairsPartOne(long a, long b) {
-        var match = Long.parseLong("1111111111111111", 2);
+        long match = Long.parseLong("1111111111111111", 2);
 
-        var countPair = 0L;
-        for (var i = 0; i < 40_000_000; ++i) {
+        long countPair = 0L;
+        for (int i = 0; i < 40_000_000; ++i) {
             a = generatorAPartOne(a);
             b = generatorBPartOne(b);
             LOGGER.trace("\t{}\t{}", a, b);
@@ -178,10 +178,10 @@ public final class Day15 {
     ///
     /// Your puzzle answer was 316.
     static long countPairsPartTwo(long a, long b) {
-        var match = Long.parseLong("1111111111111111", 2);
+        long match = Long.parseLong("1111111111111111", 2);
 
-        var countPair = 0L;
-        for (var i = 0; i < 5_000_000; ++i) {
+        long countPair = 0L;
+        for (int i = 0; i < 5_000_000; ++i) {
             a = generatorAPartTwo(a);
             b = generatorBPartTwo(b);
             LOGGER.trace("\t{}\t{}", a, b);

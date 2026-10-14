@@ -19,7 +19,7 @@ class Day22Test extends AbstractTest {
 
     @Test
     void inputExample1() {
-        var secretNumber = 123L;
+        long secretNumber = 123L;
         secretNumber = Day22.nextSecretNumber(secretNumber);
         assertThat(secretNumber).isEqualTo(15887950);
         secretNumber = Day22.nextSecretNumber(secretNumber);
@@ -51,14 +51,14 @@ class Day22Test extends AbstractTest {
                 2024""";
 
         try (var scanner = new Scanner(input)) {
-            var sum = Day22.partOne(scanner);
+            long sum = Day22.partOne(scanner);
             assertThat(sum).isEqualTo(37327623);
         }
     }
 
     @Test
     void inputExample3() {
-        var secretNumber = 123L;
+        long secretNumber = 123L;
 
         var changes = Day22.findPriceChanges(secretNumber, 10);
 
@@ -75,20 +75,20 @@ class Day22Test extends AbstractTest {
                 2024""";
 
         try (var scanner = new Scanner(input)) {
-            var bananas = Day22.partTwo(scanner);
+            int bananas = Day22.partTwo(scanner);
             assertThat(bananas).isEqualTo(23);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var sum = Day22.partOne(scanner);
+        long sum = Day22.partOne(scanner);
         assertThat(sum).isEqualTo(19458130434L);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        var bananas = Day22.partTwo(scanner);
+        int bananas = Day22.partTwo(scanner);
         assertThat(bananas).isEqualTo(2130);
     }
 

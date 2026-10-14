@@ -97,7 +97,7 @@ public final class Day23 {
         private final NetworkComputer[] computers = new NetworkComputer[SIZE];
 
         NetworkInterfaceController(String program) {
-            for (var i = 0; i < SIZE; i++) {
+            for (int i = 0; i < SIZE; i++) {
                 computers[i] = new NetworkComputer(i, parked);
             }
             for (NetworkComputer computer : computers) {
@@ -130,7 +130,7 @@ public final class Day23 {
                     }
                 }
 
-                var idle = packets.isEmpty() && Arrays.stream(computers).allMatch(NetworkComputer::isInboxEmpty);
+                boolean idle = packets.isEmpty() && Arrays.stream(computers).allMatch(NetworkComputer::isInboxEmpty);
                 if (idle && natPacket != null) {
                     if (Objects.equals(previousY, natPacket.y())) {
                         return natPacket.y();

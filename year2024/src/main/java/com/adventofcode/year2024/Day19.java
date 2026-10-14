@@ -99,7 +99,7 @@ public final class Day19 {
         var towels = readTowels(scanner);
 
         LOGGER.trace("patterns = {}, towels = {}", patterns, towels);
-        var count = 0;
+        int count = 0;
         var cache = new HashMap<String, Boolean>();
         for (String towel : towels) {
             if (possible(cache, towel, patterns)) {
@@ -158,10 +158,10 @@ public final class Day19 {
         var towels = readTowels(scanner);
 
         LOGGER.trace("patterns = {}, towels = {}", patterns, towels);
-        var count = 0L;
+        long count = 0L;
         var cache = new HashMap<String, Long>();
         for (String towel : towels) {
-            var layout = layout(cache, towel, patterns);
+            long layout = layout(cache, towel, patterns);
             LOGGER.info("tower {} has {} layouts", towel, layout);
             count += layout;
         }
@@ -210,7 +210,7 @@ public final class Day19 {
             return value;
         }
 
-        var result = 0L;
+        long result = 0L;
         for (String pattern : patterns) {
             if (towel.startsWith(pattern)) {
                 if (towel.length() == pattern.length()) {

@@ -28,12 +28,12 @@ class Day16Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var solution = Day16.solvePartOne(scanner);
+            int solution = Day16.solvePartOne(scanner);
             assertThat(solution).isEqualTo(1651);
         }
         {
             var scanner = new Scanner(input);
-            var solution = Day16.solvePartTwo(scanner);
+            int solution = Day16.solvePartTwo(scanner);
             assertThat(solution).isEqualTo(1707);
         }
     }

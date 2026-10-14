@@ -20,26 +20,26 @@ class Day02Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var score = Day02.PartOne.findScore(scanner);
+            int score = Day02.PartOne.findScore(scanner);
             Assertions.assertThat(score).isEqualTo(15);
         }
 
         {
             var scanner = new Scanner(input);
-            var score = Day02.PartTwo.findScore(scanner);
+            int score = Day02.PartTwo.findScore(scanner);
             Assertions.assertThat(score).isEqualTo(12);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var score = Day02.PartOne.findScore(scanner);
+        int score = Day02.PartOne.findScore(scanner);
         Assertions.assertThat(score).isEqualTo(15691);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var score = Day02.PartTwo.findScore(scanner);
+        int score = Day02.PartTwo.findScore(scanner);
         Assertions.assertThat(score).isEqualTo(12989);
     }
 

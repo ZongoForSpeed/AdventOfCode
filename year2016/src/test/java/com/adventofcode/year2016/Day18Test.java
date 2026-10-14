@@ -41,7 +41,7 @@ class Day18Test extends AbstractTest {
                 .###..#.##
                 ##.###..##
                 """);
-        var size = (booleanMap.yMax() + 1) * (booleanMap.xMax() + 1);
+        int size = (booleanMap.yMax() + 1) * (booleanMap.xMax() + 1);
         assertThat(size - booleanMap.cardinality()).isEqualTo(38);
     }
 

@@ -48,7 +48,7 @@ public final class Day19 {
     /// Your puzzle answer was 1834903.
     static int getLastElfPartOne(int elves) {
         var table = new ElvesTable<Integer>();
-        for (var elf = 1; elf <= elves; ++elf) {
+        for (int elf = 1; elf <= elves; ++elf) {
             table.addLast(elf);
         }
 
@@ -112,7 +112,7 @@ public final class Day19 {
     /// Your puzzle answer was 1420280.
     static int getLastElfPartTwo(int elves) {
         var table = new ElvesTable<Integer>();
-        for (var elf = 1; elf <= elves; ++elf) {
+        for (int elf = 1; elf <= elves; ++elf) {
             table.addLast(elf);
         }
 

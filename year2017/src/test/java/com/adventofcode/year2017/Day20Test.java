@@ -35,7 +35,7 @@ class Day20Test extends AbstractTest {
 
         var scanner = new Scanner(input);
 
-        var size = Day20.particlesCollision(scanner);
+        int size = Day20.particlesCollision(scanner);
         assertThat(size).isEqualTo(1);
     }
 

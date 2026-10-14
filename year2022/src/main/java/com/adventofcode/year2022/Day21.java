@@ -123,7 +123,7 @@ public final class Day21 {
         LOGGER.info("Expression = {}", expression);
         var left = (Linear) expression.left;
         var right = (Const) expression.right;
-        var value = right.value;
+        long value = right.value;
         value *= left.c;
         value -= left.b;
         value /= left.a;
@@ -138,12 +138,12 @@ public final class Day21 {
             LOGGER.debug("Line: {}", Arrays.toString(split));
             if (split.length == 2) {
                 String name = split[0];
-                var value = Long.parseLong(split[1]);
+                long value = Long.parseLong(split[1]);
                 monkeys.put(name, new SimpleMonkey(name, value));
             } else if (split.length == 4) {
                 String name = split[0];
                 String leftMonkey = split[1];
-                var op = split[2].charAt(0);
+                char op = split[2].charAt(0);
                 String rightMonkey = split[3];
                 monkeys.put(name, new CompositeMonkey(name, leftMonkey, op, rightMonkey));
             } else {
@@ -233,10 +233,10 @@ public final class Day21 {
         }
 
         public static Linear build(long a, long b, long c) {
-            var gcd = Arithmetic.gcd(a, b, c);
-            var newA = a / gcd;
-            var newB = b / gcd;
-            var newC = c / gcd;
+            long gcd = Arithmetic.gcd(a, b, c);
+            long newA = a / gcd;
+            long newB = b / gcd;
+            long newC = c / gcd;
             if (newC < 0) {
                 newA *= -1;
                 newB *= -1;

@@ -101,7 +101,7 @@ class Day10Test extends AbstractTest {
     /// Your puzzle answer was 23715.
     @Override
     public void partOne(Scanner scanner) {
-        var hash = KnotHash.sparseHash(scanner.nextLine(), 256);
+        int hash = KnotHash.sparseHash(scanner.nextLine(), 256);
         assertThat(hash).isEqualTo(23715);
     }
 

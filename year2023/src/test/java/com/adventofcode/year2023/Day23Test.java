@@ -40,26 +40,26 @@ class Day23Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var cardinality = Day23.PartOne.longestPathLength(scanner);
+            int cardinality = Day23.PartOne.longestPathLength(scanner);
             Assertions.assertThat(cardinality).isEqualTo(94);
         }
 
         {
             var scanner = new Scanner(input);
-            var cardinality = Day23.PartTwo.longestPathLength(scanner);
+            int cardinality = Day23.PartTwo.longestPathLength(scanner);
             Assertions.assertThat(cardinality).isEqualTo(154);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var cardinality = Day23.PartOne.longestPathLength(scanner);
+        int cardinality = Day23.PartOne.longestPathLength(scanner);
         Assertions.assertThat(cardinality).isEqualTo(2070);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var cardinality = Day23.PartTwo.longestPathLength(scanner);
+        int cardinality = Day23.PartTwo.longestPathLength(scanner);
         Assertions.assertThat(cardinality).isEqualTo(6498);
     }
 

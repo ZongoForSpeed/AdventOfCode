@@ -19,7 +19,7 @@ public final class Day17 {
 
     private static OptionalInt simulate(Point2D velocity, Target target) {
         var probe = new Probe(Point2D.of(0, 0), velocity);
-        var yMax = 0;
+        int yMax = 0;
         while (!target.reached(probe.position())) {
             probe = probe.step();
 
@@ -175,9 +175,9 @@ public final class Day17 {
     /// Your puzzle answer was 3160.
     static int simulatePartOne(String input) {
         Target target = readTarget(input);
-        var yMax = 0;
-        for (var vx = 0; vx <= target.xMax(); ++vx) {
-            for (var vy = -100; vy < 100; ++vy) {
+        int yMax = 0;
+        for (int vx = 0; vx <= target.xMax(); ++vx) {
+            for (int vy = -100; vy < 100; ++vy) {
                 OptionalInt simulate = simulate(Point2D.of(vx, vy), target);
                 if (simulate.isPresent()) {
                     LOGGER.debug("Simulate {}, {} : {}", vx, vy, simulate);
@@ -221,9 +221,9 @@ public final class Day17 {
     /// Your puzzle answer was 1928.
     static int simulatePartTwo(String input) {
         Target target = readTarget(input);
-        var count = 0;
-        for (var vx = 0; vx <= target.xMax(); ++vx) {
-            for (var vy = -100; vy < 100; ++vy) {
+        int count = 0;
+        for (int vx = 0; vx <= target.xMax(); ++vx) {
+            for (int vy = -100; vy < 100; ++vy) {
                 OptionalInt simulate = simulate(Point2D.of(vx, vy), target);
                 if (simulate.isPresent()) {
                     LOGGER.debug("Simulate {}, {} : {}", vx, vy, simulate);
@@ -239,10 +239,10 @@ public final class Day17 {
     private static Target readTarget(String input) {
         Matcher matcher = TARGET_PATTERN.matcher(input);
         if (matcher.find()) {
-            var x1 = Integer.parseInt(matcher.group(1));
-            var x2 = Integer.parseInt(matcher.group(2));
-            var y1 = Integer.parseInt(matcher.group(3));
-            var y2 = Integer.parseInt(matcher.group(4));
+            int x1 = Integer.parseInt(matcher.group(1));
+            int x2 = Integer.parseInt(matcher.group(2));
+            int y1 = Integer.parseInt(matcher.group(3));
+            int y2 = Integer.parseInt(matcher.group(4));
             LOGGER.info("Range: {}..{}, {}..{}", x1, x2, y1, y2);
             return Target.of(x1, x2, y1, y2);
         } else {
@@ -258,9 +258,9 @@ public final class Day17 {
 
         public Probe step() {
             Point2D nextPosition = Point2D.of(position().x() + velocity().x(), position().y() + velocity().y());
-            var vx = velocity().x();
+            int vx = velocity().x();
             vx -= Integer.compare(vx, 0);
-            var vy = velocity().y() - 1;
+            int vy = velocity().y() - 1;
             return new Probe(nextPosition, Point2D.of(vx, vy));
         }
 

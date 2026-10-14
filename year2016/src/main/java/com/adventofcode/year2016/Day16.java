@@ -33,7 +33,7 @@ public final class Day16 {
     private static ShortList reverseFlip(ShortList input) {
         input = new ShortArrayList(input);
         Collections.reverse(input);
-        for (var i = 0; i < input.size(); i++) {
+        for (int i = 0; i < input.size(); i++) {
             input.set(i, (short) (1 - input.getShort(i)));
         }
         return input;
@@ -134,7 +134,7 @@ public final class Day16 {
     /// Your puzzle answer was 10001101010000101.
     static String dragonChecksum(String input, int diskSize) {
         ShortList curve = new ShortArrayList();
-        for (var i = 0; i < input.length(); i++) {
+        for (int i = 0; i < input.length(); i++) {
             curve.add((short) (input.charAt(i) - '0'));
         }
 

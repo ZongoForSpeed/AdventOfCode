@@ -26,15 +26,15 @@ public final class Matrix3D {
     }
 
     public int determinant() {
-        var det = 0;
-        for (var i = 0; i < 3; ++i) {
+        int det = 0;
+        for (int i = 0; i < 3; ++i) {
             det += m[0][i] * (m[1][(i + 1) % 3] * m[2][(i + 2) % 3] - m[1][(i + 2) % 3] * m[2][(i + 1) % 3]);
         }
         return det;
     }
 
     public Matrix3D inverse() {
-        var det = determinant();
+        int det = determinant();
         if (det == 0) {
             throw new IllegalStateException("Matrix is not invertible");
         }

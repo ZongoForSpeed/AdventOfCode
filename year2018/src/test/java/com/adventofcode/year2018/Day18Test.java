@@ -26,20 +26,20 @@ class Day18Test extends AbstractTest {
                 |.||||..|.
                 ...#.|..|.""";
 
-        var value = Day18.treesAndLumberyards(new Scanner(input), 10);
+        long value = Day18.treesAndLumberyards(new Scanner(input), 10);
         assertThat(value).isEqualTo(1147);
 
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var value = Day18.treesAndLumberyards(scanner, 10);
+        long value = Day18.treesAndLumberyards(scanner, 10);
         assertThat(value).isEqualTo(519552);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var value = Day18.treesAndLumberyards(scanner, 1_000_000_000);
+        long value = Day18.treesAndLumberyards(scanner, 1_000_000_000);
         assertThat(value).isEqualTo(165376);
     }
 

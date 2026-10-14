@@ -21,26 +21,26 @@ class Day09Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var sum = Day09.PartOne.extrapolatedValues(scanner);
+            int sum = Day09.PartOne.extrapolatedValues(scanner);
             Assertions.assertThat(sum).isEqualTo(114);
         }
 
         {
             var scanner = new Scanner(input);
-            var sum = Day09.PartTwo.extrapolatedValues(scanner);
+            int sum = Day09.PartTwo.extrapolatedValues(scanner);
             Assertions.assertThat(sum).isEqualTo(2);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var sum = Day09.PartOne.extrapolatedValues(scanner);
+        int sum = Day09.PartOne.extrapolatedValues(scanner);
         Assertions.assertThat(sum).isEqualTo(1819125966);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var sum = Day09.PartTwo.extrapolatedValues(scanner);
+        int sum = Day09.PartTwo.extrapolatedValues(scanner);
         Assertions.assertThat(sum).isEqualTo(1140);
     }
 }

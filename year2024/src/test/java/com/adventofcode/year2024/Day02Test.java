@@ -24,13 +24,13 @@ class Day02Test extends AbstractTest {
                 1 3 6 7 9""";
 
         try (var scanner = new Scanner(input)) {
-            var count = Day02.partOne(scanner);
+            int count = Day02.partOne(scanner);
 
             assertThat(count).isEqualTo(2);
         }
 
         try (var scanner = new Scanner(input)) {
-            var count = Day02.partTwo(scanner);
+            int count = Day02.partTwo(scanner);
 
             assertThat(count).isEqualTo(4);
         }

@@ -55,7 +55,7 @@ public final class Day02 {
     ///
     /// Your puzzle answer was 45972.
     static int corruptionChecksumPartOne(Scanner scanner) {
-        var checksum = 0;
+        int checksum = 0;
         while (scanner.hasNextLine()) {
             checksum += corruptionChecksumPartOne(scanner.nextLine());
         }
@@ -69,9 +69,9 @@ public final class Day02 {
                 .sorted()
                 .toArray();
 
-        var checksum = 0;
-        for (var i = 0; i < array.length; i++) {
-            for (var j = i + 1; j < array.length; j++) {
+        int checksum = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array.length; j++) {
                 if (array[j] % array[i] == 0) {
                     checksum += array[j] / array[i];
                 }
@@ -114,7 +114,7 @@ public final class Day02 {
     ///
     /// Your puzzle answer was 113.
     static long corruptionChecksumPartTwo(Scanner scanner) {
-        var checksum = 0L;
+        long checksum = 0L;
         while (scanner.hasNextLine()) {
             checksum += corruptionChecksumPartTwo(scanner.nextLine());
         }

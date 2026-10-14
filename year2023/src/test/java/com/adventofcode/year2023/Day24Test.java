@@ -22,10 +22,10 @@ class Day24Test extends AbstractTest {
 
         var scanner = new Scanner(input);
         var hailstorms = Day24.readHailstorms(scanner);
-        var count = Day24.PartOne.countIntersection(hailstorms, 7, 27);
+        int count = Day24.PartOne.countIntersection(hailstorms, 7, 27);
         Assertions.assertThat(count).isEqualTo(2);
 
-        var solved = Day24.PartTwo.solveEquation(hailstorms);
+        long solved = Day24.PartTwo.solveEquation(hailstorms);
         Assertions.assertThat(solved).isEqualTo(47);
     }
 
@@ -33,7 +33,7 @@ class Day24Test extends AbstractTest {
     public void partOne(Scanner scanner) {
         var hailstorms = Day24.readHailstorms(scanner);
 
-        var count = Day24.PartOne.countIntersection(hailstorms, 200000000000000L, 400000000000000L);
+        int count = Day24.PartOne.countIntersection(hailstorms, 200000000000000L, 400000000000000L);
 
         Assertions.assertThat(count).isEqualTo(19976);
     }
@@ -42,7 +42,7 @@ class Day24Test extends AbstractTest {
     public void partTwo(Scanner scanner) {
         var hailstorms = Day24.readHailstorms(scanner);
 
-        var solved = Day24.PartTwo.solveEquation(hailstorms);
+        long solved = Day24.PartTwo.solveEquation(hailstorms);
         Assertions.assertThat(solved).isEqualTo(849377770236905L);
         // 849377770236905
     }

@@ -26,7 +26,7 @@ class Day08Test extends AbstractTest {
                 ZZZ = (ZZZ, ZZZ)""";
 
         var scanner = new Scanner(input);
-        var count = Day08.PartOne.countSteps(scanner);
+        int count = Day08.PartOne.countSteps(scanner);
 
         Assertions.assertThat(count).isEqualTo(2);
     }
@@ -41,7 +41,7 @@ class Day08Test extends AbstractTest {
                 ZZZ = (ZZZ, ZZZ)""";
 
         var scanner = new Scanner(input);
-        var count = Day08.PartOne.countSteps(scanner);
+        int count = Day08.PartOne.countSteps(scanner);
 
         Assertions.assertThat(count).isEqualTo(6);
     }
@@ -62,19 +62,19 @@ class Day08Test extends AbstractTest {
 
         var scanner = new Scanner(input);
 
-        var count = Day08.PartTwo.countSteps(scanner);
+        long count = Day08.PartTwo.countSteps(scanner);
         Assertions.assertThat(count).isEqualTo(6);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var count = Day08.PartOne.countSteps(scanner);
+        int count = Day08.PartOne.countSteps(scanner);
         Assertions.assertThat(count).isEqualTo(22411);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var count = Day08.PartTwo.countSteps(scanner);
+        long count = Day08.PartTwo.countSteps(scanner);
         Assertions.assertThat(count).isEqualTo(11188774513823L);
     }
 

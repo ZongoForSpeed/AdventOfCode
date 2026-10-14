@@ -23,7 +23,7 @@ class Day04Test extends AbstractTest {
                 .X....""";
 
         try (var scanner = new Scanner(input)) {
-            var count = Day04.xmasPartOne(scanner);
+            int count = Day04.xmasPartOne(scanner);
             assertThat(count).isEqualTo(4);
         }
 
@@ -44,12 +44,12 @@ class Day04Test extends AbstractTest {
                 MXMXAXMASX""";
 
         try (var scanner = new Scanner(input)) {
-            var count = Day04.xmasPartOne(scanner);
+            int count = Day04.xmasPartOne(scanner);
             assertThat(count).isEqualTo(18);
         }
 
         try (var scanner = new Scanner(input)) {
-            var count = Day04.xmasPartTwo(scanner);
+            int count = Day04.xmasPartTwo(scanner);
             assertThat(count).isEqualTo(9);
         }
     }

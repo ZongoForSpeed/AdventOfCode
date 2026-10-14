@@ -68,11 +68,11 @@ public final class Day05 {
     static int countStepsPartOne(Scanner scanner) {
         IntList jumps = readList(scanner);
 
-        var steps = 0;
-        var position = 0;
+        int steps = 0;
+        int position = 0;
         while (position >= 0 && position < jumps.size()) {
             steps++;
-            var offset = jumps.getInt(position);
+            int offset = jumps.getInt(position);
             jumps.set(position, offset + 1);
             position += offset;
         }
@@ -95,11 +95,11 @@ public final class Day05 {
     static int countStepsPartTwo(Scanner scanner) {
         IntList jumps = readList(scanner);
 
-        var steps = 0;
-        var position = 0;
+        int steps = 0;
+        int position = 0;
         while (position >= 0 && position < jumps.size()) {
             steps++;
-            var offset = jumps.getInt(position);
+            int offset = jumps.getInt(position);
             jumps.set(position, offset >= 3 ? offset - 1 : offset + 1);
             position += offset;
         }

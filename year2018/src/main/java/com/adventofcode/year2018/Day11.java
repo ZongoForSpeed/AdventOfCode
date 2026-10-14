@@ -15,8 +15,8 @@ public final class Day11 {
     }
 
     public static int powerLevel(int x, int y, int serialId) {
-        var rackId = x + 10L;
-        var powerLevel = rackId * y;
+        long rackId = x + 10L;
+        long powerLevel = rackId * y;
         powerLevel += serialId;
         powerLevel *= rackId;
         powerLevel %= 1000;
@@ -27,9 +27,9 @@ public final class Day11 {
 
     private static IntegerMap buildSum(IntegerMap map) {
         var sum = new IntegerMap(301, 301, 0);
-        for (var x = 1; x <= 300; ++x) {
-            var partialSum = 0;
-            for (var y = 1; y <= 300; ++y) {
+        for (int x = 1; x <= 300; ++x) {
+            int partialSum = 0;
+            for (int y = 1; y <= 300; ++y) {
                 partialSum += map.get(x, y);
                 sum.set(x, y, partialSum + sum.get(x - 1, y));
             }
@@ -39,8 +39,8 @@ public final class Day11 {
 
     private static IntegerMap buildMap(int serialId) {
         var map = new IntegerMap(301, 301, 0);
-        for (var x = 1; x <= 300; ++x) {
-            for (var y = 1; y <= 300; ++y) {
+        for (int x = 1; x <= 300; ++x) {
+            for (int y = 1; y <= 300; ++y) {
                 map.set(x, y, powerLevel(x, y, serialId));
             }
         }
@@ -130,11 +130,11 @@ public final class Day11 {
 
         IntegerMap sum = buildSum(map);
 
-        var maxTotal = Integer.MIN_VALUE;
+        int maxTotal = Integer.MIN_VALUE;
         Point2D maxCorner = null;
-        for (var x = 1; x <= 301 - size; ++x) {
-            for (var y = 1; y <= 301 - size; ++y) {
-                var totalPower = sum.get(x + size - 1, y + size - 1)
+        for (int x = 1; x <= 301 - size; ++x) {
+            for (int y = 1; y <= 301 - size; ++y) {
+                int totalPower = sum.get(x + size - 1, y + size - 1)
                                  + sum.get(x - 1, y - 1)
                                  - sum.get(x - 1, y + size - 1)
                                  - sum.get(x + size - 1, y - 1);
@@ -175,14 +175,14 @@ public final class Day11 {
 
         IntegerMap sum = buildSum(map);
 
-        var maxTotal = Integer.MIN_VALUE;
+        int maxTotal = Integer.MIN_VALUE;
         Point3D maxCorner = null;
 
-        for (var x = 1; x <= 300; ++x) {
-            for (var y = 1; y <= 300; ++y) {
-                var maxSquare = Math.min(301 - x, 301 - y);
-                for (var size = 1; size <= maxSquare; ++size) {
-                    var totalPower = sum.get(x + size - 1, y + size - 1)
+        for (int x = 1; x <= 300; ++x) {
+            for (int y = 1; y <= 300; ++y) {
+                int maxSquare = Math.min(301 - x, 301 - y);
+                for (int size = 1; size <= maxSquare; ++size) {
+                    int totalPower = sum.get(x + size - 1, y + size - 1)
                                      + sum.get(x - 1, y - 1)
                                      - sum.get(x - 1, y + size - 1)
                                      - sum.get(x + size - 1, y - 1);

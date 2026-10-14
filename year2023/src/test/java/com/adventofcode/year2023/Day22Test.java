@@ -25,26 +25,26 @@ class Day22Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var count = Day22.PartOne.countSupports(scanner);
+            int count = Day22.PartOne.countSupports(scanner);
             Assertions.assertThat(count).isEqualTo(5);
         }
 
         {
             var scanner = new Scanner(input);
-            var count = Day22.PartTwo.countFalling(scanner);
+            long count = Day22.PartTwo.countFalling(scanner);
             Assertions.assertThat(count).isEqualTo(7);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var count = Day22.PartOne.countSupports(scanner);
+        int count = Day22.PartOne.countSupports(scanner);
         Assertions.assertThat(count).isEqualTo(403);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var count = Day22.PartTwo.countFalling(scanner);
+        long count = Day22.PartTwo.countFalling(scanner);
         Assertions.assertThat(count).isEqualTo(70189);
     }
 }

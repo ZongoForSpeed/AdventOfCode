@@ -201,38 +201,38 @@ public final class Day18 {
         var register = new HashMap<String, Long>(startingRegister);
 
         mainLoop:
-        for (var position = 0; position < commands.size(); ) {
+        for (int position = 0; position < commands.size(); ) {
             String[] command = commands.get(position);
             switch (command[0]) {
                 case "snd" -> {
-                    var value = getValue(register, command[1]);
+                    long value = getValue(register, command[1]);
                     LOGGER.debug("{} Playing sound {}", startingRegister, value);
                     callback.send(value);
                     ++position;
                 }
                 case "set" -> {
-                    var value = getValue(register, command[2]);
+                    long value = getValue(register, command[2]);
                     register.put(command[1], value);
                     ++position;
                 }
                 case "add" -> {
-                    var value = getValue(register, command[1]) + getValue(register, command[2]);
+                    long value = getValue(register, command[1]) + getValue(register, command[2]);
                     register.put(command[1], value);
                     ++position;
                 }
                 case "mul" -> {
-                    var value = getValue(register, command[1]) * getValue(register, command[2]);
+                    long value = getValue(register, command[1]) * getValue(register, command[2]);
                     register.put(command[1], value);
                     ++position;
                 }
                 case "mod" -> {
-                    var value = getValue(register, command[1]) % getValue(register, command[2]);
+                    long value = getValue(register, command[1]) % getValue(register, command[2]);
                     register.put(command[1], value);
                     ++position;
                 }
                 case "rcv" -> {
                     LOGGER.trace("{} Waiting to be serve", startingRegister);
-                    var receive = callback.receive();
+                    long receive = callback.receive();
                     if (receive > 0) {
                         register.put(command[1], receive);
                         LOGGER.trace("{} Recover {}", startingRegister, receive);
@@ -243,7 +243,7 @@ public final class Day18 {
                     ++position;
                 }
                 case "jgz" -> {
-                    var value = getValue(register, command[1]);
+                    long value = getValue(register, command[1]);
                     if (value > 0) {
                         position += (int) getValue(register, command[2]);
                     } else {

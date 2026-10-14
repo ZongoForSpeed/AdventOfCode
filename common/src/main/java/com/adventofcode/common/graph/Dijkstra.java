@@ -27,13 +27,13 @@ public final class Dijkstra<E> {
         while (!queue.isEmpty()) {
             var current = queue.remove();
             var node = current.left();
-            var cost = current.rightInt();
+            int cost = current.rightInt();
             if (cost > distance.getInt(node)) {
                 // Stale entry: a shorter path to this node was already processed
                 continue;
             }
             for (Pair<E, Integer> edge : graph.getOrDefault(node, List.of())) {
-                var newCost = cost + edge.right();
+                int newCost = cost + edge.right();
                 if (newCost < distance.getInt(edge.left())) {
                     distance.put(edge.left(), newCost);
                     queue.add(ObjectIntPair.of(edge.left(), newCost));

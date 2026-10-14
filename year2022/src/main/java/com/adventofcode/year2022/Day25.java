@@ -175,10 +175,10 @@ public final class Day25 {
     /// Only 49 stars to go.
     /// ```
     public static Result partOne(Scanner scanner) {
-        var sum = 0L;
+        long sum = 0L;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            var decimal = snafuToDecimal(line);
+            long decimal = snafuToDecimal(line);
             LOGGER.info("{} -> {}", line, decimal);
             sum += decimal;
         }
@@ -188,8 +188,8 @@ public final class Day25 {
     }
 
     public static long snafuToDecimal(String n) {
-        var result = 0L;
-        for (var i = 0; i < n.length(); ++i) {
+        long result = 0L;
+        for (int i = 0; i < n.length(); ++i) {
             switch (n.charAt(i)) {
                 case '0' -> result *= 5;
                 case '1' -> result = 5 * result + 1;

@@ -33,7 +33,7 @@ class Day13Test extends AbstractTest {
         {
             var scanner = new Scanner(input);
 
-            var total = Day13.PartOne.findReflection(scanner);
+            long total = Day13.PartOne.findReflection(scanner);
 
             Assertions.assertThat(total).isEqualTo(405);
         }
@@ -41,7 +41,7 @@ class Day13Test extends AbstractTest {
         {
             var scanner = new Scanner(input);
 
-            var total = Day13.PartTwo.findSmudge(scanner);
+            long total = Day13.PartTwo.findSmudge(scanner);
 
             Assertions.assertThat(total).isEqualTo(400);
         }
@@ -49,13 +49,13 @@ class Day13Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        var reflection = Day13.PartOne.findReflection(scanner);
+        long reflection = Day13.PartOne.findReflection(scanner);
         Assertions.assertThat(reflection).isEqualTo(34993);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var reflection = Day13.PartTwo.findSmudge(scanner);
+        long reflection = Day13.PartTwo.findSmudge(scanner);
         Assertions.assertThat(reflection).isEqualTo(29341);
     }
 }

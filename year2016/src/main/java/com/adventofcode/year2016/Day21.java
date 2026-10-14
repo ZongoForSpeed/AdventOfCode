@@ -25,13 +25,13 @@ public final class Day21 {
     }
 
     private static void rotateLeft(List<String> message, int steps) {
-        for (var step = 0; step < steps; ++step) {
+        for (int step = 0; step < steps; ++step) {
             message.addLast(message.removeFirst());
         }
     }
 
     private static void rotateRight(List<String> message, int steps) {
-        for (var step = 0; step < steps; ++step) {
+        for (int step = 0; step < steps; ++step) {
             message.addFirst(message.removeLast());
         }
     }
@@ -45,7 +45,7 @@ public final class Day21 {
 
     private static String scramblingFunction(List<String> operations, String letters) {
         var message = new ArrayList<String>();
-        for (var i = 0; i < letters.length(); i++) {
+        for (int i = 0; i < letters.length(); i++) {
             message.add("" + letters.charAt(i));
         }
 
@@ -54,8 +54,8 @@ public final class Day21 {
         for (String operation : operations) {
             Matcher matcher = SWAP_POSITION.matcher(operation);
             if (matcher.matches()) {
-                var position1 = Integer.parseInt(matcher.group(1));
-                var position2 = Integer.parseInt(matcher.group(2));
+                int position1 = Integer.parseInt(matcher.group(1));
+                int position2 = Integer.parseInt(matcher.group(2));
                 LOGGER.trace("Swap position {}, {}", position1, position2);
                 swap(message, position1, position2);
                 LOGGER.trace("After operation: {}", message);
@@ -75,7 +75,7 @@ public final class Day21 {
             matcher = ROTATE_LEFT_RIGHT.matcher(operation);
             if (matcher.matches()) {
                 String order = matcher.group(1);
-                var steps = Integer.parseInt(matcher.group(2));
+                int steps = Integer.parseInt(matcher.group(2));
                 LOGGER.trace("Rotate {}, {}", order, steps);
                 switch (order) {
                     case "left" -> rotateLeft(message, steps);
@@ -90,7 +90,7 @@ public final class Day21 {
             if (matcher.matches()) {
                 String letter = matcher.group(1);
                 LOGGER.trace("Rotate position {}", letter);
-                var position = message.indexOf(letter);
+                int position = message.indexOf(letter);
                 rotateRight(message, 1);
                 rotateRight(message, position);
                 if (position >= 4) {
@@ -102,8 +102,8 @@ public final class Day21 {
 
             matcher = REVERSE.matcher(operation);
             if (matcher.matches()) {
-                var position1 = Integer.parseInt(matcher.group(1));
-                var position2 = Integer.parseInt(matcher.group(2));
+                int position1 = Integer.parseInt(matcher.group(1));
+                int position2 = Integer.parseInt(matcher.group(2));
                 LOGGER.trace("Reverse {}, {}", position1, position2);
                 Collections.reverse(message.subList(position1, position2 + 1));
                 LOGGER.trace("After operation: {}", message);
@@ -112,8 +112,8 @@ public final class Day21 {
 
             matcher = MOVE.matcher(operation);
             if (matcher.matches()) {
-                var position1 = Integer.parseInt(matcher.group(1));
-                var position2 = Integer.parseInt(matcher.group(2));
+                int position1 = Integer.parseInt(matcher.group(1));
+                int position2 = Integer.parseInt(matcher.group(2));
                 LOGGER.trace("Move {}, {}", position1, position2);
                 String letter = message.remove(position1);
                 message.add(position2, letter);

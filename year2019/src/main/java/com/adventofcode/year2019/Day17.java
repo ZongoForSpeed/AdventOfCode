@@ -80,9 +80,9 @@ public final class Day17 {
                 .filter(StringUtils::isNotBlank)
                 .map(String::toCharArray)
                 .toArray(char[][]::new);
-        var sum = 0;
-        for (var i = 1; i < map.length - 1; i++) {
-            for (var j = 1; j < map[i].length - 1; j++) {
+        int sum = 0;
+        for (int i = 1; i < map.length - 1; i++) {
+            for (int j = 1; j < map[i].length - 1; j++) {
                 if (map[i][j] == '#' && map[i - 1][j] == '#' && map[i + 1][j] == '#' && map[i][j - 1] == '#' && map[i][j + 1] == '#') {
                     sum += i * j;
                 }
@@ -205,8 +205,8 @@ public final class Day17 {
 
         Point2D position = null;
         Direction direction = Direction.UP;
-        for (var i = 0; i < map.length; i++) {
-            for (var j = 0; j < map[i].length; j++) {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
                 switch (map[i][j]) {
                     case '^' -> {
                         position = Point2D.of(j, i);
@@ -248,7 +248,7 @@ public final class Day17 {
                 break;
             }
 
-            var count = 0;
+            int count = 0;
             while (isValid(map, position, direction)) {
                 position = position.move(direction);
                 count++;

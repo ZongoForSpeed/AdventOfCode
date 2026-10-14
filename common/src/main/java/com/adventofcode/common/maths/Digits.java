@@ -43,7 +43,7 @@ public final class Digits {
 
     public static int numberDigits(long n) {
         checkNonNegative(n);
-        var d = 1;
+        int d = 1;
         while (n >= 10) {
             n /= 10;
             ++d;

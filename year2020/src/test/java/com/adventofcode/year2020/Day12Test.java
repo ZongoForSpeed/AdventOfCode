@@ -22,7 +22,7 @@ class Day12Test extends AbstractTest {
                 "R90",
                 "F11");
 
-        var manhattanDistance = Day12.moveWithDirectionDistance(actions);
+        int manhattanDistance = Day12.moveWithDirectionDistance(actions);
         assertThat(manhattanDistance).isEqualTo(25);
     }
 
@@ -34,7 +34,7 @@ class Day12Test extends AbstractTest {
                 "R90",
                 "F11");
 
-        var manhattanDistance = Day12.moveWithWaypointDistance(actions);
+        int manhattanDistance = Day12.moveWithWaypointDistance(actions);
         assertThat(manhattanDistance).isEqualTo(286);
     }
 
@@ -49,7 +49,7 @@ class Day12Test extends AbstractTest {
     public void partTwo(Scanner scanner) {
         var actions = FileUtils.readLines(scanner);
 
-        var manhattanDistance = Day12.moveWithWaypointDistance(actions);
+        int manhattanDistance = Day12.moveWithWaypointDistance(actions);
         assertThat(manhattanDistance).isEqualTo(42013);
     }
 }

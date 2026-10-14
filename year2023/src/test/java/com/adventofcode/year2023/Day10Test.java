@@ -25,7 +25,7 @@ class Day10Test extends AbstractTest {
                 .....""";
 
         var scanner = new Scanner(input);
-        var depth = Day10.PartOne.findMaxDepth(scanner);
+        int depth = Day10.PartOne.findMaxDepth(scanner);
         Assertions.assertThat(depth).isEqualTo(4);
     }
 
@@ -39,7 +39,7 @@ class Day10Test extends AbstractTest {
                 LJ...""";
 
         var scanner = new Scanner(input);
-        var depth = Day10.PartOne.findMaxDepth(scanner);
+        int depth = Day10.PartOne.findMaxDepth(scanner);
         Assertions.assertThat(depth).isEqualTo(8);
     }
 
@@ -57,7 +57,7 @@ class Day10Test extends AbstractTest {
                 ...........""";
 
         var scanner = new Scanner(input);
-        var count = Day10.PartTwo.countEnclosedTiles(scanner);
+        int count = Day10.PartTwo.countEnclosedTiles(scanner);
 
         Assertions.assertThat(count).isEqualTo(4);
     }
@@ -77,7 +77,7 @@ class Day10Test extends AbstractTest {
                 ....L---J.LJ.LJLJ...""";
 
         var scanner = new Scanner(input);
-        var count = Day10.PartTwo.countEnclosedTiles(scanner);
+        int count = Day10.PartTwo.countEnclosedTiles(scanner);
 
         Assertions.assertThat(count).isEqualTo(8);
     }
@@ -97,20 +97,20 @@ class Day10Test extends AbstractTest {
                 L7JLJL-JLJLJL--JLJ.L""";
 
         var scanner = new Scanner(input);
-        var count = Day10.PartTwo.countEnclosedTiles(scanner);
+        int count = Day10.PartTwo.countEnclosedTiles(scanner);
 
         Assertions.assertThat(count).isEqualTo(10);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var depth = Day10.PartOne.findMaxDepth(scanner);
+        int depth = Day10.PartOne.findMaxDepth(scanner);
         Assertions.assertThat(depth).isEqualTo(6613);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var depth = Day10.PartTwo.countEnclosedTiles(scanner);
+        int depth = Day10.PartTwo.countEnclosedTiles(scanner);
         Assertions.assertThat(depth).isEqualTo(511);
     }
 

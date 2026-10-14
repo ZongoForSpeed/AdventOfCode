@@ -141,14 +141,14 @@ public final class Day01 {
     private static final Pattern PATTERN = Pattern.compile("([RL])(\\d+)");
 
     public static int countPasswordPartOne(Scanner scanner) {
-        var safe = 50;
-        var password = 0;
+        int safe = 50;
+        int password = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
                 String order = matcher.group(1);
-                var count = Integer.parseInt(matcher.group(2));
+                int count = Integer.parseInt(matcher.group(2));
                 switch (order) {
                     case "R" -> safe += count;
                     case "L" -> safe -= count;
@@ -164,14 +164,14 @@ public final class Day01 {
     }
 
     public static int countPasswordPartTwo(Scanner scanner) {
-        var safe = 50;
-        var password = 0;
+        int safe = 50;
+        int password = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
                 String order = matcher.group(1);
-                var count = Integer.parseInt(matcher.group(2));
+                int count = Integer.parseInt(matcher.group(2));
                 switch (order) {
                     case "R" -> {
                         password += Math.floorDiv(safe + count, 100) - Math.floorDiv(safe, 100);

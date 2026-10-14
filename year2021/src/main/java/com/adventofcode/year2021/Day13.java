@@ -23,7 +23,7 @@ public final class Day13 {
     }
 
     static void readMap(Scanner scanner, BooleanMap map, List<Pair<String, Integer>> instructions) {
-        var readFold = false;
+        boolean readFold = false;
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -36,7 +36,7 @@ public final class Day13 {
                 Matcher matcher = FOLD_PATTERN.matcher(line);
                 if (matcher.find()) {
                     String axe = matcher.group(1);
-                    var position = Integer.parseInt(matcher.group(2));
+                    int position = Integer.parseInt(matcher.group(2));
                     instructions.add(Pair.of(axe, position));
                 } else {
                     throw new IllegalStateException("Cannot parse line: " + line);
@@ -44,8 +44,8 @@ public final class Day13 {
             } else {
                 Matcher matcher = MAP_PATTERN.matcher(line);
                 if (matcher.find()) {
-                    var x = Integer.parseInt(matcher.group(1));
-                    var y = Integer.parseInt(matcher.group(2));
+                    int x = Integer.parseInt(matcher.group(1));
+                    int y = Integer.parseInt(matcher.group(2));
                     map.set(x, y);
                 } else {
                     throw new IllegalStateException("Cannot parse line: " + line);

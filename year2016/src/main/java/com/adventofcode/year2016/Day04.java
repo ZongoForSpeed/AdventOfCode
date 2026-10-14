@@ -30,11 +30,11 @@ public final class Day04 {
         }
 
         String letters = matcher.group(1);
-        var sectorID = Integer.parseInt(matcher.group(2));
+        int sectorID = Integer.parseInt(matcher.group(2));
         String checksum = matcher.group(3);
         Char2IntMap counts = new Char2IntOpenHashMap();
-        for (var i = 0; i < letters.length(); i++) {
-            var c = letters.charAt(i);
+        for (int i = 0; i < letters.length(); i++) {
+            char c = letters.charAt(i);
             if (c != '-') {
                 counts.mergeInt(c, 1, Integer::sum);
             }
@@ -72,8 +72,8 @@ public final class Day04 {
 
     static String decryptRoomName(String room, int sectorID) {
         var sb = new StringBuilder();
-        for (var i = 0; i < room.length(); i++) {
-            var c = room.charAt(i);
+        for (int i = 0; i < room.length(); i++) {
+            char c = room.charAt(i);
             sb.append(decryptRoomName(c, sectorID));
         }
         return sb.toString();
@@ -117,7 +117,7 @@ public final class Day04 {
     ///
     /// Your puzzle answer was 245102.
     static int checkRoomName(Scanner scanner) {
-        var sectorIDs = 0;
+        int sectorIDs = 0;
         while (scanner.hasNextLine()) {
             var pair = checkRoomName(scanner.nextLine());
             if (pair != null) {

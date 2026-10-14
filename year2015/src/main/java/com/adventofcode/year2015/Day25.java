@@ -93,10 +93,10 @@ public final class Day25 {
     /// sits at the bottom, awaiting its friends. Looks like you need to provide 49
     /// yourself.
     public static long findCode(int row, int column) {
-        var code = 20151125L;
-        for (var i = 1; ; ++i) {
-            for (var iColumn = 1; iColumn <= i; ++iColumn) {
-                var iRow = i - iColumn + 1;
+        long code = 20151125L;
+        for (int i = 1; ; ++i) {
+            for (int iColumn = 1; iColumn <= i; ++iColumn) {
+                int iRow = i - iColumn + 1;
                 LOGGER.trace("Number at ({},{}) is {}", iRow, iColumn, code);
                 if (iRow == row && iColumn == column) {
                     return code;

@@ -41,7 +41,7 @@ class Day07Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var sum = Day07.PartOne.findSum(scanner);
+            long sum = Day07.PartOne.findSum(scanner);
             Assertions.assertThat(sum).isEqualTo(95437);
         }
 
@@ -54,7 +54,7 @@ class Day07Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        var sum = Day07.PartOne.findSum(scanner);
+        long sum = Day07.PartOne.findSum(scanner);
         Assertions.assertThat(sum).isEqualTo(1307902);
     }
 

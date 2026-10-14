@@ -23,12 +23,12 @@ public class Day06Test extends AbstractTest {
                 *   +   *   +  \s""";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day06.partOne(scanner);
+            long result = Day06.partOne(scanner);
             assertThat(result).isEqualTo(4277556);
         }
 
         try (var scanner = new Scanner(input)) {
-            var result = Day06.partTwo(scanner);
+            long result = Day06.partTwo(scanner);
             assertThat(result).isEqualTo(3263827);
         }
 
@@ -36,13 +36,13 @@ public class Day06Test extends AbstractTest {
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        var result = Day06.partOne(scanner);
+        long result = Day06.partOne(scanner);
         assertThat(result).isEqualTo(5667835681547L);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        var result = Day06.partTwo(scanner);
+        long result = Day06.partTwo(scanner);
         assertThat(result).isEqualTo(9434900032651L);
     }
 

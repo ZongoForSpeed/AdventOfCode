@@ -134,7 +134,7 @@ public final class Day08 {
         int count = 0;
 
         for (Distance d : distances) {
-            var _ = disjointSet.union(d.p1, d.p2);
+            boolean _ = disjointSet.union(d.p1, d.p2);
             count++;
             if (count == limit) {
                 break;

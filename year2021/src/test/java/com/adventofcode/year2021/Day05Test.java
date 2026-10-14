@@ -34,13 +34,13 @@ class Day05Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        var overlaps = Day05.countOverlapsPartOne(scanner);
+        int overlaps = Day05.countOverlapsPartOne(scanner);
         assertThat(overlaps).isEqualTo(6572);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var overlaps = Day05.countOverlapsPartTwo(scanner);
+        int overlaps = Day05.countOverlapsPartTwo(scanner);
         assertThat(overlaps).isEqualTo(21466);
     }
 }

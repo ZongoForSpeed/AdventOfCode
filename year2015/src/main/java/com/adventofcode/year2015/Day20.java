@@ -55,7 +55,7 @@ public final class Day20 {
     ///
     /// Your puzzle answer was 665280.
     public long findLowestHouseNumberPartOne(long gifts) {
-        for (var h = 1; ; ++h) {
+        for (int h = 1; ; ++h) {
             if (countPresent(h) > gifts) {
                 return h;
             }
@@ -74,10 +74,10 @@ public final class Day20 {
     ///
     /// Your puzzle answer was 705600.
     public long findLowestHouseNumberPartTwo(long gifts) {
-        var limit = 1_000_000;
+        int limit = 1_000_000;
         int[] memory = new int[limit];
-        for (var elf = 1; elf < limit; ++elf) {
-            for (var house = 1; house <= 50; ++house) {
+        for (int elf = 1; elf < limit; ++elf) {
+            for (int house = 1; house <= 50; ++house) {
                 if (house * elf >= limit) {
                     break;
                 }
@@ -85,7 +85,7 @@ public final class Day20 {
             }
         }
 
-        for (var house = 1; ; ++house) {
+        for (int house = 1; ; ++house) {
             if (memory[house] > gifts) {
                 return house;
             }

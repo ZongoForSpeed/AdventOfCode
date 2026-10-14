@@ -31,13 +31,13 @@ class Day18Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var surface = Day18.computeSurfaceArea(scanner);
+            long surface = Day18.computeSurfaceArea(scanner);
             assertThat(surface).isEqualTo(64);
         }
 
         {
             var scanner = new Scanner(input);
-            var surface = Day18.exteriorSurfaceArea(scanner);
+            long surface = Day18.exteriorSurfaceArea(scanner);
             assertThat(surface).isEqualTo(58);
         }
     }

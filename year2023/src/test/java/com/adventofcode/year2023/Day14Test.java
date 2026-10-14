@@ -26,26 +26,26 @@ class Day14Test extends AbstractTest {
                 #OO..#....""";
         {
             var scanner = new Scanner(input);
-            var totalLoad = Day14.PartOne.findTotalLoad(scanner);
+            int totalLoad = Day14.PartOne.findTotalLoad(scanner);
             Assertions.assertThat(totalLoad).isEqualTo(136);
         }
 
         {
             var scanner = new Scanner(input);
-            var totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
+            int totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
             Assertions.assertThat(totalLoad).isEqualTo(64);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var totalLoad = Day14.PartOne.findTotalLoad(scanner);
+        int totalLoad = Day14.PartOne.findTotalLoad(scanner);
         Assertions.assertThat(totalLoad).isEqualTo(109385);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
+        int totalLoad = Day14.PartTwo.findTotalLoad(scanner, 1_000_000_000);
         Assertions.assertThat(totalLoad).isEqualTo(93102);
     }
 

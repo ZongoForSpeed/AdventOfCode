@@ -35,26 +35,26 @@ class Day19Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var sum = Day19.PartOne.sumAccepted(scanner);
+            long sum = Day19.PartOne.sumAccepted(scanner);
             Assertions.assertThat(sum).isEqualTo(19114);
         }
 
         {
             var scanner = new Scanner(input);
-            var combinations = Day19.PartTwo.combinations(scanner);
+            long combinations = Day19.PartTwo.combinations(scanner);
             Assertions.assertThat(combinations).isEqualTo(167409079868000L);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var sum = Day19.PartOne.sumAccepted(scanner);
+        long sum = Day19.PartOne.sumAccepted(scanner);
         Assertions.assertThat(sum).isEqualTo(319295);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var combinations = Day19.PartTwo.combinations(scanner);
+        long combinations = Day19.PartTwo.combinations(scanner);
         Assertions.assertThat(combinations).isEqualTo(110807725108076L);
     }
 

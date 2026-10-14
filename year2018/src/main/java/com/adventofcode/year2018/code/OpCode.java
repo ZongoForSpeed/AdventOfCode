@@ -166,20 +166,20 @@ public final class OpCode {
 
             Matcher matcher = PATTERN_BEFORE.matcher(line);
             if (matcher.matches()) {
-                var value1 = Integer.parseInt(matcher.group(1));
-                var value2 = Integer.parseInt(matcher.group(2));
-                var value3 = Integer.parseInt(matcher.group(3));
-                var value4 = Integer.parseInt(matcher.group(4));
+                int value1 = Integer.parseInt(matcher.group(1));
+                int value2 = Integer.parseInt(matcher.group(2));
+                int value3 = Integer.parseInt(matcher.group(3));
+                int value4 = Integer.parseInt(matcher.group(4));
 
                 registerBefore = IntList.of(value1, value2, value3, value4);
                 continue;
             }
             matcher = PATTERN_AFTER.matcher(line);
             if (matcher.matches()) {
-                var value1 = Integer.parseInt(matcher.group(1));
-                var value2 = Integer.parseInt(matcher.group(2));
-                var value3 = Integer.parseInt(matcher.group(3));
-                var value4 = Integer.parseInt(matcher.group(4));
+                int value1 = Integer.parseInt(matcher.group(1));
+                int value2 = Integer.parseInt(matcher.group(2));
+                int value3 = Integer.parseInt(matcher.group(3));
+                int value4 = Integer.parseInt(matcher.group(4));
 
                 registerAfter = IntList.of(value1, value2, value3, value4);
                 continue;

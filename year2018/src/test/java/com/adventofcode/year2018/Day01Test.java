@@ -14,13 +14,13 @@ class Day01Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        var frequency = Day01.addFrequencies(scanner);
+        long frequency = Day01.addFrequencies(scanner);
         assertThat(frequency).isEqualTo(508);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var frequency = Day01.findDuplicateFrequency(scanner);
+        long frequency = Day01.findDuplicateFrequency(scanner);
         assertThat(frequency).isEqualTo(549);
     }
 

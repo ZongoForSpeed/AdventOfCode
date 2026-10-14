@@ -33,12 +33,12 @@ class Day13Test extends AbstractTest {
                 Prize: X=18641, Y=10279""";
 
         try (var scanner = new Scanner(input)) {
-            var cost = Day13.partOne(scanner);
+            long cost = Day13.partOne(scanner);
             assertThat(cost).isEqualTo(480);
         }
 
         try (var scanner = new Scanner(input)) {
-            var cost = Day13.partTwo(scanner);
+            long cost = Day13.partTwo(scanner);
             assertThat(cost).isEqualTo(875318608908L);
         }
     }

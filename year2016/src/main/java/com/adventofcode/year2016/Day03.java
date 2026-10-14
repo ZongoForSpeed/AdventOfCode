@@ -38,7 +38,7 @@ public final class Day03 {
     ///
     /// Your puzzle answer was 1032.
     public static int countTrianglesPartOne(Scanner scanner) {
-        var count = 0;
+        int count = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             int[] array = Splitter.on(' ').splitToStream(line).filter(StringUtils::isNotBlank).mapToInt(Integer::parseInt).sorted().toArray();
@@ -88,8 +88,8 @@ public final class Day03 {
         allColumns.addAll(column2);
         allColumns.addAll(column3);
 
-        var count = 0;
-        for (var j = 2; j < allColumns.size(); j += 3) {
+        int count = 0;
+        for (int j = 2; j < allColumns.size(); j += 3) {
             IntList subList = allColumns.subList(j - 2, j + 1);
             subList.sort(IntComparators.NATURAL_COMPARATOR);
             LOGGER.trace("subList = {}", subList);

@@ -52,10 +52,10 @@ public final class Day03 {
         }
         Matcher matcher = MUL_PATTERN_PART_1.matcher(stringBuilder.toString());
 
-        var results = 0L;
+        long results = 0L;
         while (matcher.find()) {
-            var a = Long.parseLong(matcher.group(1));
-            var b = Long.parseLong(matcher.group(2));
+            long a = Long.parseLong(matcher.group(1));
+            long b = Long.parseLong(matcher.group(2));
 
             results += a * b;
         }
@@ -98,9 +98,9 @@ public final class Day03 {
         }
         Matcher matcher = MUL_PATTERN_PART_2.matcher(stringBuilder.toString());
 
-        var results = 0L;
+        long results = 0L;
 
-        var enableMul = true;
+        boolean enableMul = true;
         while (matcher.find()) {
             String group = matcher.group();
             switch (group) {
@@ -108,8 +108,8 @@ public final class Day03 {
                 case "don't()" -> enableMul = false;
                 default -> {
                     if (enableMul) {
-                        var a = Long.parseLong(matcher.group(1));
-                        var b = Long.parseLong(matcher.group(2));
+                        long a = Long.parseLong(matcher.group(1));
+                        long b = Long.parseLong(matcher.group(2));
 
                         results += a * b;
                     }

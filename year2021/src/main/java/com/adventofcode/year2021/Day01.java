@@ -123,7 +123,7 @@ public final class Day01 {
     ///
     /// Your puzzle answer was 1734.
     public static int measurementIncreases(int[] array, int offset) {
-        var counter = 0;
+        int counter = 0;
         for (int j = 0, arrayLength = array.length - offset; j < arrayLength; j++) {
             if (array[j + offset] > array[j]) {
                 counter++;

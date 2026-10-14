@@ -23,14 +23,14 @@ class Day07Test extends AbstractTest {
         {
             var scanner = new Scanner(input);
 
-            var winnings = Day07.PartOne.computeWinnings(scanner);
+            long winnings = Day07.PartOne.computeWinnings(scanner);
 
             Assertions.assertThat(winnings).isEqualTo(6440);
         }
         {
             var scanner = new Scanner(input);
 
-            var winnings = Day07.PartTwo.computeWinnings(scanner);
+            long winnings = Day07.PartTwo.computeWinnings(scanner);
 
             Assertions.assertThat(winnings).isEqualTo(5905);
 
@@ -39,13 +39,13 @@ class Day07Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        var winnings = Day07.PartOne.computeWinnings(scanner);
+        long winnings = Day07.PartOne.computeWinnings(scanner);
         Assertions.assertThat(winnings).isEqualTo(253866470);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var winnings = Day07.PartTwo.computeWinnings(scanner);
+        long winnings = Day07.PartTwo.computeWinnings(scanner);
         Assertions.assertThat(winnings).isEqualTo(254494947);
     }
 

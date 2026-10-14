@@ -87,9 +87,9 @@ public final class Day06 {
     static int findMarker(String packet, int distinct) {
         IntArrayList codepoints = IntArrayList.toList(packet.chars());
 
-        for (var i = 0; i < codepoints.size() - (distinct - 1); ++i) {
+        for (int i = 0; i < codepoints.size() - (distinct - 1); ++i) {
             IntList substring = codepoints.subList(i, i + distinct);
-            var count = substring.intStream().distinct().count();
+            long count = substring.intStream().distinct().count();
             if (count == distinct) {
                 return i + distinct;
             }

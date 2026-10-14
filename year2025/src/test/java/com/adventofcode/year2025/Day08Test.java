@@ -39,7 +39,7 @@ public class Day08Test extends AbstractTest {
                 425,690,689""";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day08.partOne(scanner, 10);
+            long result = Day08.partOne(scanner, 10);
             assertThat(result).isEqualTo(40);
         }
 
@@ -51,7 +51,7 @@ public class Day08Test extends AbstractTest {
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        var result = Day08.partOne(scanner, 1000);
+        long result = Day08.partOne(scanner, 1000);
         assertThat(result).isEqualTo(131150);
     }
 

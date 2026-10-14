@@ -27,7 +27,7 @@ class Day24Test extends AbstractTest {
                 ###########""";
 
         var scanner = new Scanner(input);
-        var minSteps = Day24.computeMinSteps(scanner, false);
+        long minSteps = Day24.computeMinSteps(scanner, false);
 
         LOGGER.info("minSteps: {}", minSteps);
         assertThat(minSteps).isEqualTo(14);

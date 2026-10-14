@@ -36,10 +36,10 @@ public class SparseGrid<V> extends AbstractMap<Point2D, V> {
 
     /// Draws the bounding box of the points of `map`, one string per line.
     public static <V> List<String> render(Map<Point2D, ? extends V> map, Function<? super V, Character> toChar, char background) {
-        var minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
-        var maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
-        var minY = map.keySet().stream().mapToInt(Point2D::y).min().orElse(0);
-        var maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
+        int minX = map.keySet().stream().mapToInt(Point2D::x).min().orElse(0);
+        int maxX = map.keySet().stream().mapToInt(Point2D::x).max().orElse(0);
+        int minY = map.keySet().stream().mapToInt(Point2D::y).min().orElse(0);
+        int maxY = map.keySet().stream().mapToInt(Point2D::y).max().orElse(0);
 
         var view = new char[maxY - minY + 1][maxX - minX + 1];
         for (char[] line : view) {

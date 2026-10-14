@@ -252,8 +252,8 @@ public final class Day10 {
         static long getSignalStrength(Scanner scanner) {
             IntList register = getRegister(scanner);
 
-            var signalStrength = 0L;
-            for (var cycle = 20; cycle <= register.size(); cycle += 40) {
+            long signalStrength = 0L;
+            for (int cycle = 20; cycle <= register.size(); cycle += 40) {
                 LOGGER.info("During cycle {}, signal is {}", cycle, register.getInt(cycle));
                 signalStrength += (long) cycle * register.getInt(cycle);
             }
@@ -413,9 +413,9 @@ public final class Day10 {
             IntList register = getRegister(scanner);
 
             var crt = new StringBuilder();
-            var line = 1;
-            var position = 0;
-            for (var cycle = 1; cycle < register.size(); ++cycle) {
+            int line = 1;
+            int position = 0;
+            for (int cycle = 1; cycle < register.size(); ++cycle) {
                 crt.append(getSprite(position, register.getInt(cycle)));
 
                 ++position;
@@ -462,7 +462,7 @@ public final class Day10 {
                 switch (command) {
                     case "noop" -> register.add(register.getLast());
                     case "addx" -> {
-                        var value = Integer.parseInt(matcher.group(2));
+                        int value = Integer.parseInt(matcher.group(2));
                         register.add((int)register.getLast());
                         register.add(register.getLast() + value);
                     }

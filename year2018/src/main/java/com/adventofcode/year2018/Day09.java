@@ -106,12 +106,12 @@ public final class Day09 {
         IntPriorityQueue marbles = new IntArrayFIFOQueue();
         IntStream.rangeClosed(1, lastMarble).forEach(marbles::enqueue);
 
-        var player = 1;
+        int player = 1;
 
         long[] scores = new long[players];
 
         while (!marbles.isEmpty()) {
-            var marble = marbles.dequeueInt();
+            int marble = marbles.dequeueInt();
             if (marble % 23 == 0) {
                 marblesCircle.moveAntiClockWise(7);
                 scores[player - 1] += marble + marblesCircle.remove();
@@ -142,23 +142,23 @@ public final class Day09 {
         }
 
         void moveClockWise() {
-            var first = deque.dequeueInt();
+            int first = deque.dequeueInt();
             deque.enqueue(first);
         }
 
         void moveClockWise(int move) {
-            for (var i = 1; i <= move; ++i) {
+            for (int i = 1; i <= move; ++i) {
                 moveClockWise();
             }
         }
 
         void moveAntiClockWise() {
-            var last = deque.dequeueLastInt();
+            int last = deque.dequeueLastInt();
             deque.enqueueFirst(last);
         }
 
         void moveAntiClockWise(int move) {
-            for (var i = 1; i <= move; ++i) {
+            for (int i = 1; i <= move; ++i) {
                 moveAntiClockWise();
             }
         }

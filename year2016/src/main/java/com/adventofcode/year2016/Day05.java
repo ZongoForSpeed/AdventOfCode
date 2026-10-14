@@ -48,8 +48,8 @@ public final class Day05 {
     static String findPasswordPartOne(String doorID) {
         var password = new StringBuilder();
 
-        var l = 0;
-        for (var i = 0; i < 8; ++i) {
+        int l = 0;
+        for (int i = 0; i < 8; ++i) {
             ++l;
             while (true) {
                 String md5Hex = DigestUtils.md5Hex(doorID + l);
@@ -98,14 +98,14 @@ public final class Day05 {
     /// Your puzzle answer was 324.
     static String findPasswordPartTwo(String doorID) {
         char[] password = new char[8];
-        var l = 0;
+        int l = 0;
         var positions = new HashSet<Integer>();
         while (positions.size() < 8) {
             ++l;
             while (true) {
                 String md5Hex = DigestUtils.md5Hex(doorID + l);
                 if (md5Hex.startsWith("00000") && md5Hex.charAt(5) < '8') {
-                    var position = md5Hex.charAt(5) - '0';
+                    int position = md5Hex.charAt(5) - '0';
                     if (positions.add(position)) {
                         password[position] = md5Hex.charAt(6);
                         break;

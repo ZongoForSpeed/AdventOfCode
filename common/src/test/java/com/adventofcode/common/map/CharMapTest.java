@@ -21,9 +21,9 @@ class CharMapTest {
 
         var map = new CharMap();
 
-        for (var i = 0; i < input.size(); i++) {
+        for (int i = 0; i < input.size(); i++) {
             String line = input.get(i);
-            for (var j = 0; j < line.length(); j++) {
+            for (int j = 0; j < line.length(); j++) {
                 if (line.charAt(j) == '#') {
                     map.set(j, i, line.charAt(j));
                 }

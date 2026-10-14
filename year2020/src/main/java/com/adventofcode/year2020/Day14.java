@@ -24,7 +24,7 @@ public final class Day14 {
 
     private static long applyMask(String mask, long value) {
         BitSet bitSet = BitSet.valueOf(new long[]{value});
-        for (var n = 0; n < mask.length(); ++n) {
+        for (int n = 0; n < mask.length(); ++n) {
             switch (mask.charAt(n)) {
                 case '0' -> bitSet.set(n, false);
                 case '1' -> bitSet.set(n, true);
@@ -39,7 +39,7 @@ public final class Day14 {
     private static LongSet applyAddressMask(String mask, long address) {
         BitSet bitSet = BitSet.valueOf(new long[]{address});
         IntList xs = new IntArrayList();
-        for (var n = 0; n < mask.length(); ++n) {
+        for (int n = 0; n < mask.length(); ++n) {
             switch (mask.charAt(n)) {
                 case '1' -> bitSet.set(n, true);
                 case 'X' -> {
@@ -55,7 +55,7 @@ public final class Day14 {
         LongSet addresses = new LongOpenHashSet();
         addresses.add(bitSet.cardinality() != 0 ? bitSet.toLongArray()[0] : 0);
         for (int x : xs) {
-            var indMask = 1L << x;
+            long indMask = 1L << x;
             LongSet newAddresses = new LongOpenHashSet(addresses);
             for (Long a : addresses) {
                 newAddresses.add(a | indMask);
@@ -148,8 +148,8 @@ public final class Day14 {
 
             matcher = MEMORY_PATTERN.matcher(line);
             if (matcher.find()) {
-                var address = Integer.parseInt(matcher.group(1));
-                var value = Long.parseLong(matcher.group(2));
+                int address = Integer.parseInt(matcher.group(1));
+                long value = Long.parseLong(matcher.group(2));
 
                 value = applyMask(currentMask, value);
                 memory.put(address, value);
@@ -246,8 +246,8 @@ public final class Day14 {
 
             matcher = MEMORY_PATTERN.matcher(line);
             if (matcher.find()) {
-                var address = Long.parseLong(matcher.group(1));
-                var value = Long.parseLong(matcher.group(2));
+                long address = Long.parseLong(matcher.group(1));
+                long value = Long.parseLong(matcher.group(2));
 
                 LongSet addresses = applyAddressMask(currentMask, address);
                 for (long a : addresses) {

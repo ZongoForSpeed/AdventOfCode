@@ -103,9 +103,9 @@ public final class Day01 {
         left.sort(IntComparators.NATURAL_COMPARATOR);
         right.sort(IntComparators.NATURAL_COMPARATOR);
 
-        var diff = 0;
+        int diff = 0;
 
-        for (var j = 0; j < left.size(); j++) {
+        for (int j = 0; j < left.size(); j++) {
             diff += Math.abs(left.getInt(j) - right.getInt(j));
         }
         return diff;
@@ -165,7 +165,7 @@ public final class Day01 {
             right.mergeInt(scanner.nextInt(), 1, Integer::sum);
         }
 
-        var score = 0L;
+        long score = 0L;
 
         for (int left : leftLeft) {
             score += left * (long) right.getOrDefault(left, 0);

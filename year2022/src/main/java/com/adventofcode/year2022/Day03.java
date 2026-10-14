@@ -76,7 +76,7 @@ public final class Day03 {
         }
 
         static int sumPriorities(Scanner scanner) {
-            var sum = 0;
+            int sum = 0;
             while (scanner.hasNextLine()) {
                 String rucksack = scanner.nextLine();
                 sum += PartOne.rucksackPriority(rucksack);
@@ -85,7 +85,7 @@ public final class Day03 {
         }
 
         static int rucksackPriority(String rucksack) {
-            var position = rucksack.length() / 2;
+            int position = rucksack.length() / 2;
             String first = rucksack.substring(0, position);
             String second = rucksack.substring(position);
 
@@ -176,7 +176,7 @@ public final class Day03 {
         }
 
         static int sumPriorities(Scanner scanner) {
-            var sum = 0;
+            int sum = 0;
             while (scanner.hasNextLine()) {
                 String first = scanner.nextLine();
                 String second = scanner.nextLine();

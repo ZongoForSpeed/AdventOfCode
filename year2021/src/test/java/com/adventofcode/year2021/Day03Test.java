@@ -36,8 +36,8 @@ class Day03Test extends AbstractTest {
         assertThat(p.left()).isEqualTo(22);
         assertThat(p.right()).isEqualTo(9);
 
-        var oxygen = Day03.oxygenGeneratorRating(strings);
-        var co2 = Day03.co2ScrubberRating(strings);
+        int oxygen = Day03.oxygenGeneratorRating(strings);
+        int co2 = Day03.co2ScrubberRating(strings);
         assertThat(oxygen).isEqualTo(23);
         assertThat(co2).isEqualTo(10);
     }
@@ -55,8 +55,8 @@ class Day03Test extends AbstractTest {
     public void partTwo(Scanner scanner) {
         var input = FileUtils.readLines(scanner);
 
-        var oxygen = Day03.oxygenGeneratorRating(input);
-        var co2 = Day03.co2ScrubberRating(input);
+        int oxygen = Day03.oxygenGeneratorRating(input);
+        int co2 = Day03.co2ScrubberRating(input);
         assertThat(oxygen * co2).isEqualTo(3969126);
     }
 }

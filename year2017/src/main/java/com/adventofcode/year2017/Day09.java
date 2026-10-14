@@ -12,12 +12,12 @@ public final class Day09 {
     }
 
     private static IntegerPair streamProcessing(String input) {
-        var score = 0;
-        var garbage = false;
-        var garbageCount = 0;
-        var depth = 1;
-        for (var position = 0; position < input.length(); ) {
-            var c = input.charAt(position);
+        int score = 0;
+        boolean garbage = false;
+        int garbageCount = 0;
+        int depth = 1;
+        for (int position = 0; position < input.length(); ) {
+            char c = input.charAt(position);
             if (c == '!') {
                 position++;
             } else if (garbage && c != '>') {

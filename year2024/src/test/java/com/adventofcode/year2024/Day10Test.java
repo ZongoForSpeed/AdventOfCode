@@ -22,7 +22,7 @@ class Day10Test extends AbstractTest {
                 9876""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partOne(scanner);
+            int score = Day10.partOne(scanner);
             assertThat(score).isEqualTo(1);
         }
     }
@@ -39,7 +39,7 @@ class Day10Test extends AbstractTest {
                 9.....9""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partOne(scanner);
+            int score = Day10.partOne(scanner);
             assertThat(score).isEqualTo(2);
         }
     }
@@ -56,12 +56,12 @@ class Day10Test extends AbstractTest {
                 987....""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partOne(scanner);
+            int score = Day10.partOne(scanner);
             assertThat(score).isEqualTo(4);
         }
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partTwo(scanner);
+            int score = Day10.partTwo(scanner);
             assertThat(score).isEqualTo(13);
         }
     }
@@ -78,7 +78,7 @@ class Day10Test extends AbstractTest {
                 .....01""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partOne(scanner);
+            int score = Day10.partOne(scanner);
             assertThat(score).isEqualTo(3);
         }
     }
@@ -96,12 +96,12 @@ class Day10Test extends AbstractTest {
                 10456732""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partOne(scanner);
+            int score = Day10.partOne(scanner);
             assertThat(score).isEqualTo(36);
         }
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partTwo(scanner);
+            int score = Day10.partTwo(scanner);
             assertThat(score).isEqualTo(81);
         }
     }
@@ -118,7 +118,7 @@ class Day10Test extends AbstractTest {
                 ..9....""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partTwo(scanner);
+            int score = Day10.partTwo(scanner);
             assertThat(score).isEqualTo(3);
         }
     }
@@ -134,7 +134,7 @@ class Day10Test extends AbstractTest {
                 56789.""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day10.partTwo(scanner);
+            int score = Day10.partTwo(scanner);
             assertThat(score).isEqualTo(227);
         }
     }

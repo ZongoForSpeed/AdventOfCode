@@ -273,7 +273,7 @@ public final class Day22 {
         }
 
         LOGGER.trace("Sets : {}", sets);
-        var size = sets.stream().mapToLong(Cuboid::size).sum();
+        long size = sets.stream().mapToLong(Cuboid::size).sum();
         LOGGER.info("Size = {}", size);
         return size;
     }

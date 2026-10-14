@@ -94,12 +94,12 @@ public final class Day14 {
         IntList recipes = new IntArrayList();
         recipes.add((char) 3);
         recipes.add((char) 7);
-        var firstElf = 0;
-        var secondElf = 1;
+        int firstElf = 0;
+        int secondElf = 1;
 
         while (recipes.size() < 10 + shift) {
-            var firstRecipe = recipes.getInt(firstElf);
-            var secondRecipe = recipes.getInt(secondElf);
+            int firstRecipe = recipes.getInt(firstElf);
+            int secondRecipe = recipes.getInt(secondElf);
 
             CharList digits = Digits.digits(firstRecipe + secondRecipe);
             digits.forEach(recipes::add);
@@ -134,12 +134,12 @@ public final class Day14 {
         CharList recipes = new CharArrayList();
         recipes.add((char) 3);
         recipes.add((char) 7);
-        var firstElf = 0;
-        var secondElf = 1;
+        int firstElf = 0;
+        int secondElf = 1;
 
         while (true) {
-            var firstRecipe = recipes.getChar(firstElf);
-            var secondRecipe = recipes.getChar(secondElf);
+            char firstRecipe = recipes.getChar(firstElf);
+            char secondRecipe = recipes.getChar(secondElf);
 
             CharList digits = Digits.digits(firstRecipe + secondRecipe);
             recipes.addAll(digits);

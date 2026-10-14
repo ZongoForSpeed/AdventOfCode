@@ -16,8 +16,8 @@ class Day05Test extends AbstractTest {
 
     @Test
     void simple() {
-        var randomValue = new Random().nextInt();
-        var result = Intcode.ioIntcode("3,0,4,0,99", randomValue);
+        int randomValue = new Random().nextInt();
+        long result = Intcode.ioIntcode("3,0,4,0,99", randomValue);
         assertThat(result).isEqualTo(randomValue);
     }
 
@@ -79,7 +79,7 @@ class Day05Test extends AbstractTest {
 
     @Override
     public void partOne(Scanner scanner) {
-        var result = Day05.diagnosticPartOne(scanner.nextLine());
+        long result = Day05.diagnosticPartOne(scanner.nextLine());
         assertThat(result).isEqualTo(16209841);
     }
 

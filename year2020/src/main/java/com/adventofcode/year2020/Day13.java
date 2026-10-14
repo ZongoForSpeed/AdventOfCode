@@ -86,10 +86,10 @@ public final class Day13 {
     /// by the number of minutes you'll need to wait for that bus?
     /// ```
     static LongPair findBus(long timestamp, long[] buses) {
-        var minWait = Long.MAX_VALUE;
-        var minBus = -1L;
+        long minWait = Long.MAX_VALUE;
+        long minBus = -1L;
         for (long bus : buses) {
-            var wait = bus - timestamp % bus;
+            long wait = bus - timestamp % bus;
             if (wait < minWait) {
                 minWait = wait;
                 minBus = bus;
@@ -183,10 +183,10 @@ public final class Day13 {
     static long solveShuttleSearch(String note) {
         LongList buses = new LongArrayList();
         LongList remainders = new LongArrayList();
-        var remainder = 0L;
+        long remainder = 0L;
         for (String s : Splitter.on(',').split(note)) {
             if (!"x".equals(s)) {
-                var bus = Long.parseLong(s);
+                long bus = Long.parseLong(s);
                 buses.add(bus);
                 remainders.add((bus * bus - remainder) % bus);
             }

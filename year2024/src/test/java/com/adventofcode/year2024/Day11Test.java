@@ -18,7 +18,7 @@ class Day11Test extends AbstractTest {
         var input = "0 1 10 99 999";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day11.plutonianPebbles(scanner, 1);
+            long result = Day11.plutonianPebbles(scanner, 1);
             assertThat(result).isEqualTo(7);
         }
     }
@@ -28,12 +28,12 @@ class Day11Test extends AbstractTest {
         var input = "125 17";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day11.plutonianPebbles(scanner, 6);
+            long result = Day11.plutonianPebbles(scanner, 6);
             assertThat(result).isEqualTo(22L);
         }
 
         try (var scanner = new Scanner(input)) {
-            var result = Day11.plutonianPebbles(scanner, 25);
+            long result = Day11.plutonianPebbles(scanner, 25);
             assertThat(result).isEqualTo(55312L);
         }
     }

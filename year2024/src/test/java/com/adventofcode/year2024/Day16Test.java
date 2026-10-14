@@ -33,12 +33,12 @@ class Day16Test extends AbstractTest {
                 ###############""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day16.partOne(scanner);
+            long score = Day16.partOne(scanner);
             assertThat(score).isEqualTo(7036);
         }
 
         try (var scanner = new Scanner(input)) {
-            var score = Day16.partTwo(scanner);
+            long score = Day16.partTwo(scanner);
             assertThat(score).isEqualTo(45);
         }
     }
@@ -65,25 +65,25 @@ class Day16Test extends AbstractTest {
                 #################""";
 
         try (var scanner = new Scanner(input)) {
-            var score = Day16.partOne(scanner);
+            long score = Day16.partOne(scanner);
             assertThat(score).isEqualTo(11048);
         }
 
         try (var scanner = new Scanner(input)) {
-            var score = Day16.partTwo(scanner);
+            long score = Day16.partTwo(scanner);
             assertThat(score).isEqualTo(64);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var score = Day16.partOne(scanner);
+        long score = Day16.partOne(scanner);
         assertThat(score).isEqualTo(72400);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        var score = Day16.partTwo(scanner);
+        long score = Day16.partTwo(scanner);
         assertThat(score).isEqualTo(435);
     }
 

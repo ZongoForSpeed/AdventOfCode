@@ -161,25 +161,25 @@ public final class Day12 {
         InputData inputData = parseInput(scanner);
         int[] sizes = inputData.polyminos().stream().mapToInt(Day12::polyminosSize).toArray();
 
-        var solution = 0L;
+        long solution = 0L;
         for (String line : inputData.data()) {
             String[] parts = line.split(": ", -1);
             String s1 = parts[0];
             String s2 = parts[1];
 
             String[] xParts = s1.split("x", -1);
-            var l = Integer.parseInt(xParts[0]);
-            var h = Integer.parseInt(xParts[1]);
-            var available = l * h;
+            int l = Integer.parseInt(xParts[0]);
+            int h = Integer.parseInt(xParts[1]);
+            int available = l * h;
 
             String[] objectiveStrings = s2.split(" ", -1);
             int[] objective = new int[objectiveStrings.length];
-            for (var i = 0; i < objectiveStrings.length; i++) {
+            for (int i = 0; i < objectiveStrings.length; i++) {
                 objective[i] = Integer.parseInt(objectiveStrings[i]);
             }
 
-            var needed = 0;
-            for (var i = 0; i < objective.length; i++) {
+            int needed = 0;
+            for (int i = 0; i < objective.length; i++) {
                 needed += sizes[i] * objective[i];
             }
 
@@ -202,7 +202,7 @@ public final class Day12 {
 
             if (line.endsWith(":")) {
                 char[][] block = new char[3][3];
-                for (var row = 0; row < 3; row++) {
+                for (int row = 0; row < 3; row++) {
                     if (scanner.hasNextLine()) {
                         String l = scanner.nextLine();
                         block[row] = l.toCharArray();
@@ -217,7 +217,7 @@ public final class Day12 {
     }
 
     private static int polyminosSize(char[][] poly) {
-        var count = 0;
+        int count = 0;
         for (char[] row : poly) {
             for (char c : row) {
                 if (c == '#') {

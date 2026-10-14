@@ -11,15 +11,15 @@ public final class Day11 {
     }
 
     static int adjacentOccupiedSeats(char[][] grid, int x0, int y0, boolean deepSearch) {
-                var lengthX = grid.length;
-                var lengthY = grid[0].length;
+                int lengthX = grid.length;
+                int lengthY = grid[0].length;
 
-                var result = 0;
+                int result = 0;
                 for (Point2D delta : Point2D.ADJACENT) {
-                    var x = x0 + delta.x();
-                    var y = y0 + delta.y();
+                    int x = x0 + delta.x();
+                    int y = y0 + delta.y();
                     if (deepSearch) {
-                        var occupiedSeats = false;
+                        boolean occupiedSeats = false;
                         while (x >= 0 && x < lengthX && y >= 0 && y < lengthY && !occupiedSeats) {
                             if (grid[x][y] == 'L') {
                                 break;
@@ -40,12 +40,12 @@ public final class Day11 {
             }
 
     private static char[][] nextStep(char[][] grid, boolean deepSearch) {
-        var lengthX = grid.length;
-        var lengthY = grid[0].length;
+        int lengthX = grid.length;
+        int lengthY = grid[0].length;
 
         char[][] nextGrid = new char[lengthX][lengthY];
-        for (var x = 0; x < lengthX; ++x) {
-            for (var y = 0; y < lengthY; ++y) {
+        for (int x = 0; x < lengthX; ++x) {
+            for (int y = 0; y < lengthY; ++y) {
                 switch (grid[x][y]) {
                     case '.' -> nextGrid[x][y] = '.';
                     case 'L' -> {
@@ -315,7 +315,7 @@ public final class Day11 {
             grid = nextStep;
         } while (!stable);
 
-        var result = 0L;
+        long result = 0L;
         for (char[] ligne : grid) {
             for (char c : ligne) {
                 if (c == '#') {

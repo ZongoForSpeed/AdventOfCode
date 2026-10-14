@@ -137,10 +137,10 @@ public final class Day04 {
         private static ElfAssignment readAssignment(String line) {
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
-                var x1 = Integer.parseInt(matcher.group(1));
-                var y1 = Integer.parseInt(matcher.group(2));
-                var x2 = Integer.parseInt(matcher.group(3));
-                var y2 = Integer.parseInt(matcher.group(4));
+                int x1 = Integer.parseInt(matcher.group(1));
+                int y1 = Integer.parseInt(matcher.group(2));
+                int x2 = Integer.parseInt(matcher.group(3));
+                int y2 = Integer.parseInt(matcher.group(4));
 
                 IntSet range1 = IntSets.fromTo(x1, y1 + 1);
                 IntSet range2 = IntSets.fromTo(x2, y2 + 1);

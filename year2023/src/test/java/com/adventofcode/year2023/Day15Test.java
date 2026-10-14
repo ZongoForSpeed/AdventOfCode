@@ -21,13 +21,13 @@ class Day15Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var sum = Day15.PartOne.sumHash(scanner);
+            long sum = Day15.PartOne.sumHash(scanner);
             Assertions.assertThat(sum).isEqualTo(1320);
         }
 
         {
             var scanner = new Scanner(input);
-            var focusingPower = Day15.PartTwo.focusingPower(scanner);
+            long focusingPower = Day15.PartTwo.focusingPower(scanner);
             Assertions.assertThat(focusingPower).isEqualTo(145);
         }
     }
@@ -35,13 +35,13 @@ class Day15Test extends AbstractTest {
     @Override
     public void partOne(Scanner scanner) {
 
-        var sum = Day15.PartOne.sumHash(scanner);
+        long sum = Day15.PartOne.sumHash(scanner);
         Assertions.assertThat(sum).isEqualTo(516469);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var focusingPower = Day15.PartTwo.focusingPower(scanner);
+        long focusingPower = Day15.PartTwo.focusingPower(scanner);
         Assertions.assertThat(focusingPower).isEqualTo(221627);
     }
 

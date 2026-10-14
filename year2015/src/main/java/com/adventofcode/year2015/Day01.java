@@ -40,9 +40,9 @@ public final class Day01 {
     ///
     /// Your puzzle answer was 232.
     public static int countFloor(String input) {
-        var floor = 0;
-        for (var i = 0; i < input.length(); i++) {
-            var c = input.charAt(i);
+        int floor = 0;
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
             if (c == '(') {
                 floor++;
             } else if (c == ')') {
@@ -70,9 +70,9 @@ public final class Day01 {
     ///
     /// Your puzzle answer was 1783.
     public static int findBasement(String input) {
-        var floor = 0;
+        int floor = 0;
 
-        for (var i = 0; i < input.length(); i++) {
+        for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == '(') {
                 floor++;
             } else if (input.charAt(i) == ')') {

@@ -24,12 +24,12 @@ class Day01Test extends AbstractTest {
                 3   3""";
 
         try (var scanner = new Scanner(input)) {
-            var diff = Day01.partOne(scanner);
+            int diff = Day01.partOne(scanner);
             assertThat(diff).isEqualTo(11);
         }
 
         try (var scanner = new Scanner(input)) {
-            var score = Day01.partTwo(scanner);
+            long score = Day01.partTwo(scanner);
 
             assertThat(score).isEqualTo(31);
         }

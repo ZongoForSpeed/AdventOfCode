@@ -166,7 +166,7 @@ public final class Day13 {
         gsonBuilder.setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE);
         Gson gson = gsonBuilder.create();
 
-        var index = 0;
+        int index = 0;
         IntList indices = new IntArrayList();
 
         while (scanner.hasNextLine()) {
@@ -177,7 +177,7 @@ public final class Day13 {
             var left = gson.fromJson(line, List.class);
             var right = gson.fromJson(scanner.nextLine(), List.class);
             ++index;
-            var compare = compareList(left, right);
+            int compare = compareList(left, right);
             LOGGER.info("{} / {} ==> {}", left, right, compare == -1);
             if (compare == -1) {
                 indices.add(index);
@@ -262,8 +262,8 @@ public final class Day13 {
             LOGGER.info("{}", packet);
         }
 
-        var indexOf2 = packets.indexOf(dividerPacket2) + 1;
-        var indexOf6 = packets.indexOf(dividerPacket6) + 1;
+        int indexOf2 = packets.indexOf(dividerPacket2) + 1;
+        int indexOf6 = packets.indexOf(dividerPacket6) + 1;
 
         return indexOf2 * indexOf6;
     }
@@ -298,7 +298,7 @@ public final class Day13 {
         while (leftIterator.hasNext() && rightIterator.hasNext()) {
             Object leftNext = leftIterator.next();
             Object rightNext = rightIterator.next();
-            var compare = compare(leftNext, rightNext);
+            int compare = compare(leftNext, rightNext);
             if (compare != 0) {
                 return compare;
             }

@@ -33,13 +33,13 @@ class Day21Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var shout = Day21.partOne(scanner);
+            long shout = Day21.partOne(scanner);
             assertThat(shout).isEqualTo(152);
         }
 
         {
             var scanner = new Scanner(input);
-            var shout = Day21.partTwo(scanner);
+            long shout = Day21.partTwo(scanner);
             assertThat(shout).isEqualTo(301);
         }
     }

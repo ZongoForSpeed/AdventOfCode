@@ -34,7 +34,7 @@ public final class Day01 {
     ///
     /// What is the sum of the fuel requirements for all of the modules on your spacecraft?
     public static long fuelRequirements(Scanner scanner) {
-        var sum = 0L;
+        long sum = 0L;
         while (scanner.hasNextLong()) {
             sum += fuelRequirements(scanner.nextLong());
         }
@@ -70,7 +70,7 @@ public final class Day01 {
     /// the mass of the added fuel? (Calculate the fuel requirements for each module separately, then add them all up at
     /// the end.)
     public static long sumFuelRequirements(Scanner scanner) {
-        var sum = 0L;
+        long sum = 0L;
         while (scanner.hasNextLong()) {
             sum += sumFuelRequirements(scanner.nextLong());
         }
@@ -78,8 +78,8 @@ public final class Day01 {
     }
 
     public static long sumFuelRequirements(long mass) {
-        var sum = 0L;
-        var fuelMass = fuelRequirements(mass);
+        long sum = 0L;
+        long fuelMass = fuelRequirements(mass);
 
         do {
             sum += fuelMass;

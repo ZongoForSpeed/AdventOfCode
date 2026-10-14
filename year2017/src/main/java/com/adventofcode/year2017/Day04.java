@@ -40,7 +40,7 @@ public final class Day04 {
     ///
     /// Your puzzle answer was 438.
     static int validPassphrasePartOne(Scanner scanner) {
-        var count = 0;
+        int count = 0;
         while (scanner.hasNextLine()) {
             if (validPassphrasePartOne(scanner.nextLine())) {
                 count++;
@@ -80,7 +80,7 @@ public final class Day04 {
     ///
     /// Your puzzle answer was 113.
     static int validPassphrasePartTwo(Scanner scanner) {
-        var count = 0;
+        int count = 0;
         while (scanner.hasNextLine()) {
             if (validPassphrasePartTwo(scanner.nextLine())) {
                 count++;

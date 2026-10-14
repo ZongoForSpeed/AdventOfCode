@@ -111,7 +111,7 @@ public class InfiniteBooleanMap extends AbstractMap<Point2D, Boolean> {
         if (key instanceof Point2D(int x, int y)) {
             Int2BooleanMap column = map.get(x);
             if (column != null && column.containsKey(y)) {
-                var removed = column.remove(y);
+                boolean removed = column.remove(y);
                 if (column.isEmpty()) {
                     map.remove(x);
                 }

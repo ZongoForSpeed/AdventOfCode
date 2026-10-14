@@ -68,25 +68,25 @@ class Day24Test extends AbstractTest {
                 ######.#""";
 
         try (var scanner = new Scanner(input)) {
-            var path = Day24.partOne(scanner);
+            long path = Day24.partOne(scanner);
             assertThat(path).isEqualTo(18);
         }
 
         try (var scanner = new Scanner(input)) {
-            var path = Day24.partTwo(scanner);
+            long path = Day24.partTwo(scanner);
             assertThat(path).isEqualTo(54);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var path = Day24.partOne(scanner);
+        long path = Day24.partOne(scanner);
         assertThat(path).isEqualTo(288);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        var path = Day24.partTwo(scanner);
+        long path = Day24.partTwo(scanner);
         assertThat(path).isEqualTo(861);
     }
 

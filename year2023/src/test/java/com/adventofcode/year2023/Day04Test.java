@@ -21,24 +21,24 @@ class Day04Test extends AbstractTest {
                 Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
                 Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11""";
 
-        var score = Day04.PartOne.scratchcards(new Scanner(input));
+        int score = Day04.PartOne.scratchcards(new Scanner(input));
 
         Assertions.assertThat(score).isEqualTo(13);
 
-        var cards = Day04.PartTwo.scratchcards(new Scanner(input));
+        int cards = Day04.PartTwo.scratchcards(new Scanner(input));
 
         Assertions.assertThat(cards).isEqualTo(30);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var score = Day04.PartOne.scratchcards(scanner);
+        int score = Day04.PartOne.scratchcards(scanner);
         Assertions.assertThat(score).isEqualTo(32001);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var score = Day04.PartTwo.scratchcards(scanner);
+        int score = Day04.PartTwo.scratchcards(scanner);
         Assertions.assertThat(score).isEqualTo(5037841);
     }
 

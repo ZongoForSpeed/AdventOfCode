@@ -31,17 +31,17 @@ public class IntegerMap {
     public IntegerMap(IntegerMap m) {
         defaultValue = m.defaultValue;
         map = Arrays.copyOf(m.map, m.map.length);
-        for (var i = 0; i < map.length; i++) {
+        for (int i = 0; i < map.length; i++) {
             map[i] = Arrays.copyOf(m.map[i], m.map[i].length);
         }
     }
 
     public static IntegerMap read(Scanner scanner) {
         var map = new IntegerMap(0, 0, -1);
-        var j = 0;
+        int j = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            for (var i = 0; i < line.length(); i++) {
+            for (int i = 0; i < line.length(); i++) {
                 map.set(i, j, line.charAt(i) - '0');
             }
             ++j;
@@ -85,12 +85,12 @@ public class IntegerMap {
 
     private void ensure(int x, int y) {
         if (y >= map.length) {
-            var length = map.length;
+            int length = map.length;
             map = Arrays.copyOf(map, y + 1);
             Arrays.fill(map, length, y + 1, new int[0]);
         }
         if (x >= map[y].length) {
-            var length = map[y].length;
+            int length = map[y].length;
             map[y] = Arrays.copyOf(map[y], x + 1);
             Arrays.fill(map[y], length, x + 1, defaultValue);
         }
@@ -122,9 +122,9 @@ public class IntegerMap {
 
     public List<Point2D> points() {
         var points = new ArrayList<Point2D>();
-        for (var y = 0; y < map.length; y++) {
+        for (int y = 0; y < map.length; y++) {
             int[] line = map[y];
-            for (var x = 0; x < line.length; x++) {
+            for (int x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     points.add(Point2D.of(x, y));
                 }
@@ -135,9 +135,9 @@ public class IntegerMap {
 
     public List<ObjectIntPair<Point2D>> entries() {
         var entries = new ArrayList<ObjectIntPair<Point2D>>();
-        for (var y = 0; y < map.length; y++) {
+        for (int y = 0; y < map.length; y++) {
             int[] line = map[y];
-            for (var x = 0; x < line.length; x++) {
+            for (int x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     entries.add(ObjectIntPair.of(Point2D.of(x, y), line[x]));
                 }
@@ -147,9 +147,9 @@ public class IntegerMap {
     }
 
     public int xMax() {
-        var max = 0;
+        int max = 0;
         for (int[] line : map) {
-            for (var x = 0; x < line.length; x++) {
+            for (int x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     max = Math.max(x, max);
                 }
@@ -159,8 +159,8 @@ public class IntegerMap {
     }
 
     public int yMax() {
-        var max = 0;
-        for (var y = 0; y < map.length; y++) {
+        int max = 0;
+        for (int y = 0; y < map.length; y++) {
             int[] line = map[y];
             for (int c : line) {
                 if (c != defaultValue) {
@@ -172,9 +172,9 @@ public class IntegerMap {
     }
 
     public void foreach(TriConsumer<Integer, Integer, Integer> consumer) {
-        for (var y = 0; y < map.length; y++) {
+        for (int y = 0; y < map.length; y++) {
             int[] line = map[y];
-            for (var x = 0; x < line.length; x++) {
+            for (int x = 0; x < line.length; x++) {
                 if (line[x] != defaultValue) {
                     consumer.accept(x, y, line[x]);
                 }
@@ -184,8 +184,8 @@ public class IntegerMap {
 
     public IntegerMap subMap(int xMin, int xMax, int yMin, int yMax) {
         var subMap = new IntegerMap(xMax - xMin - 1, yMax - yMin - 1, defaultValue);
-        for (var x = xMin; x < xMax; ++x) {
-            for (var y = yMin; y < yMax; ++y) {
+        for (int x = xMin; x < xMax; ++x) {
+            for (int y = yMin; y < yMax; ++y) {
                 subMap.set(x - xMin, y - yMin, get(x, y));
             }
         }

@@ -185,8 +185,8 @@ public final class Day17 {
         IntegerMap lavafall = IntegerMap.read(scanner);
         LOGGER.info("lavafall:\n{}", lavafall);
 
-        var xMax = lavafall.xMax();
-        var yMax = lavafall.yMax();
+        int xMax = lavafall.xMax();
+        int yMax = lavafall.yMax();
 
         Point2D start = Point2D.of(0, 0);
         Point2D end = Point2D.of(xMax, yMax);
@@ -223,13 +223,13 @@ public final class Day17 {
             Point2D position = position();
             Direction direction = direction();
             var next = new ArrayList<State>();
-            var cost = path();
-            for (var move = 1; move <= maxMove; ++move) {
+            int cost = path();
+            for (int move = 1; move <= maxMove; ++move) {
                 Point2D moved = position.move(direction, move);
                 if (moved.x() < 0 || moved.x() > xMax || moved.y() < 0 || moved.y() > yMax) {
                     continue;
                 }
-                var lava = lavafall.get(moved);
+                int lava = lavafall.get(moved);
                 cost += lava;
 
                 if (move < minMove) {
@@ -239,7 +239,7 @@ public final class Day17 {
                 var realPath = new ArrayList<Pair<Direction, Integer>>(realPath());
                 realPath.add(Pair.of(direction, move));
 
-                var heuristic = cost + Point2D.manhattanDistance(moved, end);
+                int heuristic = cost + Point2D.manhattanDistance(moved, end);
                 next.add(new State(moved, direction.left(), cost, heuristic, realPath));
                 next.add(new State(moved, direction.right(), cost, heuristic, realPath));
             }

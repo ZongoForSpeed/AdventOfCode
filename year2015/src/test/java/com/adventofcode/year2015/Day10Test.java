@@ -14,7 +14,7 @@ class Day10Test {
     void inputExample() {
         var input = "1";
 
-        for (var step = 1; step < 6; ++step) {
+        for (int step = 1; step < 6; ++step) {
             String next = Day10.lookAndSay(input);
             LOGGER.info("{} becomes {}", input, next);
             input = next;

@@ -32,25 +32,25 @@ class Day22Test extends AbstractTest {
                 10R5L5R10L4R5L5""";
 
         try (var scanner = new Scanner(input)) {
-            var password = Day22.partOne(scanner);
+            int password = Day22.partOne(scanner);
             assertThat(password).isEqualTo(6032);
         }
 
         try (var scanner = new Scanner(input)) {
-            var password = Day22.partTwoExample(scanner);
+            int password = Day22.partTwoExample(scanner);
             assertThat(password).isEqualTo(5031);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var monkeyMap = Day22.partOne(scanner);
+        int monkeyMap = Day22.partOne(scanner);
         assertThat(monkeyMap).isEqualTo(117102);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var monkeyCube = Day22.partTwo(scanner);
+        int monkeyCube = Day22.partTwo(scanner);
         assertThat(monkeyCube).isEqualTo(135297);
     }
 

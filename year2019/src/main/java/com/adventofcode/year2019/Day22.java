@@ -186,7 +186,7 @@ public final class Day22 {
 
     static IntList dealWithIncrement(IntList cards, int n) {
         int[] result = new int[cards.size()];
-        for (var i = 0; i < cards.size(); i++) {
+        for (int i = 0; i < cards.size(); i++) {
             result[(i * n) % cards.size()] = cards.getInt(i);
         }
 
@@ -196,12 +196,12 @@ public final class Day22 {
     static IntList slamShuffle(IntList cards, List<String> commands) {
         for (String command : commands) {
             if (command.startsWith(DEAL_WITH_INCREMENT)) {
-                var increment = Integer.parseInt(command.substring(DEAL_WITH_INCREMENT.length()));
+                int increment = Integer.parseInt(command.substring(DEAL_WITH_INCREMENT.length()));
                 cards = dealWithIncrement(cards, increment);
             } else if (command.startsWith(DEAL_INTO_NEW_STACK)) {
                 cards = dealIntoNewStack(cards);
             } else if (command.startsWith(CUT_N_CARDS)) {
-                var argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
+                int argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
                 cards = cutCards(cards, argument);
             } else {
                 throw new IllegalStateException("Unknown command '" + command + "'");
@@ -214,13 +214,13 @@ public final class Day22 {
     static long slamShuffle(long position, long modulus, List<String> commands) {
         for (String command : commands) {
             if (command.startsWith(DEAL_WITH_INCREMENT)) {
-                var increment = Integer.parseInt(command.substring(DEAL_WITH_INCREMENT.length()));
+                int increment = Integer.parseInt(command.substring(DEAL_WITH_INCREMENT.length()));
                 position = multiplyMod(position, increment, modulus);
                 // position = (position + modulus - increment) % modulus;
             } else if (command.startsWith(DEAL_INTO_NEW_STACK)) {
                 position = modulus - 1 - position;
             } else if (command.startsWith(CUT_N_CARDS)) {
-                var argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
+                int argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
                 position = (position + modulus - argument) % modulus;
             } else {
                 throw new IllegalStateException("Unknown command '" + command + "'");
@@ -242,13 +242,13 @@ public final class Day22 {
         Collections.reverse(commands);
         for (String command : commands) {
             if (command.startsWith(DEAL_WITH_INCREMENT)) {
-                var increment = Integer.parseInt(command.substring(DEAL_WITH_INCREMENT.length()));
+                int increment = Integer.parseInt(command.substring(DEAL_WITH_INCREMENT.length()));
                 position = multiplyMod(position, Arithmetic.inverseModulaire(increment, modulus), modulus);
                 // position = (position + modulus - increment) % modulus;
             } else if (command.startsWith(DEAL_INTO_NEW_STACK)) {
                 position = modulus - 1 - position;
             } else if (command.startsWith(CUT_N_CARDS)) {
-                var argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
+                int argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
                 position = (position + modulus + argument) % modulus;
             } else {
                 throw new IllegalStateException("Unknown command '" + command + "'");
@@ -279,13 +279,13 @@ public final class Day22 {
 
         for (String command : commands) {
             if (command.startsWith(DEAL_WITH_INCREMENT)) {
-                var argument = Long.parseLong(command.substring(DEAL_WITH_INCREMENT.length()));
+                long argument = Long.parseLong(command.substring(DEAL_WITH_INCREMENT.length()));
                 argument = Arithmetic.inverseModulaire(argument, modulus);
                 m = m.multiply(new Matrix2D(argument, 0, 0, 1), modulus);
             } else if (command.startsWith(DEAL_INTO_NEW_STACK)) {
                 m = m.multiply(new Matrix2D(-1, modulus - 1, 0, 1), modulus);
             } else if (command.startsWith(CUT_N_CARDS)) {
-                var argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
+                int argument = Integer.parseInt(command.substring(CUT_N_CARDS.length()));
                 m = m.multiply(new Matrix2D(1, argument, 0, 1), modulus);
             } else {
                 throw new IllegalStateException("Unknown command '" + command + "'");

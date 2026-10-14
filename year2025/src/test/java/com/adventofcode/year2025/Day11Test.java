@@ -29,7 +29,7 @@ public class Day11Test extends AbstractTest {
                 iii: out""";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day11.reactorPartOne(scanner);
+            long result = Day11.reactorPartOne(scanner);
             assertThat(result).isEqualTo(5);
         }
     }
@@ -52,20 +52,20 @@ public class Day11Test extends AbstractTest {
                 hhh: out""";
 
         try (var scanner = new Scanner(input)) {
-            var result = Day11.reactorPartTwo(scanner);
+            long result = Day11.reactorPartTwo(scanner);
             assertThat(result).isEqualTo(2);
         }
     }
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        var result = Day11.reactorPartOne(scanner);
+        long result = Day11.reactorPartOne(scanner);
         assertThat(result).isEqualTo(701);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        var result = Day11.reactorPartTwo(scanner);
+        long result = Day11.reactorPartTwo(scanner);
         assertThat(result).isEqualTo(390108778818526L);
     }
 

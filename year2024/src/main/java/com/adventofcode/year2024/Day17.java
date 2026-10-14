@@ -29,9 +29,9 @@ public final class Day17 {
     }
 
     private static ChronospatialComputer readProgram(Scanner scanner) {
-        var registerA = 0L;
-        var registerB = 0L;
-        var registerC = 0L;
+        long registerA = 0L;
+        long registerB = 0L;
+        long registerC = 0L;
 
         IntList program = null;
         while (scanner.hasNextLine()) {
@@ -43,7 +43,7 @@ public final class Day17 {
             Matcher matcher = REGISTER_PATTERN.matcher(line);
             if (matcher.matches()) {
                 String register = matcher.group(1);
-                var value = Integer.parseInt(matcher.group(2));
+                int value = Integer.parseInt(matcher.group(2));
 
                 switch (register) {
                     case "A" -> registerA = value;
@@ -207,7 +207,7 @@ public final class Day17 {
     static long partTwoBruteForce(Scanner scanner) {
         ChronospatialComputer program = readProgram(scanner);
 
-        for (var i = 0; ; ++i) {
+        for (int i = 0; ; ++i) {
             IntList out = program.runProgram(i);
             if (out.size() == program.program().size() && ListUtils.isEqualList(out, program.program())) {
                 return i;
@@ -221,7 +221,7 @@ public final class Day17 {
         LongList result = new LongArrayList();
         LongList input = LongArrayList.toList(LongStream.range(0, 8));
 
-        for (var j = 1; j <= program.program().size(); ++j) {
+        for (int j = 1; j <= program.program().size(); ++j) {
             LongList nextInput = new LongArrayList();
             for (long i : input) {
                 IntList out = program.runProgram(i);
@@ -230,7 +230,7 @@ public final class Day17 {
                         result.add(i);
                     }
                     LOGGER.debug("i={} ==> {}", i, out);
-                    for (var k = 0; k < 8; ++k) {
+                    for (int k = 0; k < 8; ++k) {
                         nextInput.add(i * 8L + k);
                     }
                 }
@@ -248,15 +248,15 @@ public final class Day17 {
         }
 
         private IntList runProgram(long regA) {
-            var regB = registerB;
-            var regC = registerC;
+            long regB = registerB;
+            long regC = registerC;
             IntList out = new IntArrayList();
 
-            var instructionPointer = 0;
+            int instructionPointer = 0;
             while (instructionPointer < program.size()) {
-                var instruction = program.getInt(instructionPointer);
-                var operand = program.getInt(instructionPointer + 1);
-                var combo = switch (operand) {
+                int instruction = program.getInt(instructionPointer);
+                int operand = program.getInt(instructionPointer + 1);
+                long combo = switch (operand) {
                     case 0, 1, 2, 3 -> operand;
                     case 4 -> regA;
                     case 5 -> regB;
@@ -291,7 +291,7 @@ public final class Day17 {
                         instructionPointer += 2;
                     }
                     case 5 -> { // out
-                        var output = (int) (combo % 8);
+                        int output = (int) (combo % 8);
                         LOGGER.trace("Out << {}", output);
                         out.add(output);
                         instructionPointer += 2;

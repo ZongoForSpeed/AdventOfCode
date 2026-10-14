@@ -174,7 +174,7 @@ public final class Day25 {
             }
         }
 
-        var count = 0;
+        int count = 0;
         for (Lock lock : locks) {
             for (Key key : keys) {
                 if (key.overlap(lock)) {
@@ -195,7 +195,7 @@ public final class Day25 {
             if (StringUtils.isBlank(line)) {
                 break;
             }
-            for (var i = 0; i < line.length(); ++i) {
+            for (int i = 0; i < line.length(); ++i) {
                 if (line.charAt(i) == '#') {
                     columns[i]++;
                 }
@@ -207,7 +207,7 @@ public final class Day25 {
 
     record Key(IntList pinHeights) {
         boolean overlap(Lock lock) {
-            for (var i = 0; i < pinHeights.size(); i++) {
+            for (int i = 0; i < pinHeights.size(); i++) {
                 if (lock.pinHeights().getInt(i) + pinHeights.getInt(i) > 5) {
                     return true;
                 }

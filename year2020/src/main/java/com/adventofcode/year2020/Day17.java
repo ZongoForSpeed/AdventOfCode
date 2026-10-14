@@ -19,15 +19,15 @@ public final class Day17 {
     }
 
     private static List<Point3D> neighbors(Point3D p) {
-        var x = p.x();
-        var y = p.y();
-        var z = p.z();
+        int x = p.x();
+        int y = p.y();
+        int z = p.z();
 
         var result = new ArrayList<Point3D>();
 
-        for (var dx = -1; dx <= 1; ++dx)
-            for (var dy = -1; dy <= 1; ++dy)
-                for (var dz = -1; dz <= 1; ++dz) {
+        for (int dx = -1; dx <= 1; ++dx)
+            for (int dy = -1; dy <= 1; ++dy)
+                for (int dz = -1; dz <= 1; ++dz) {
                     if (dx != 0 || dy != 0 || dz != 0) {
                         result.add(Point3D.of(x + dx, y + dy, z + dz));
                     }
@@ -36,17 +36,17 @@ public final class Day17 {
     }
 
     private static List<Point4D> neighbors(Point4D p) {
-        var x = p.x();
-        var y = p.y();
-        var z = p.z();
-        var w = p.w();
+        int x = p.x();
+        int y = p.y();
+        int z = p.z();
+        int w = p.w();
 
         var result = new ArrayList<Point4D>();
 
-        for (var dx = -1; dx <= 1; ++dx)
-            for (var dy = -1; dy <= 1; ++dy)
-                for (var dz = -1; dz <= 1; ++dz)
-                    for (var dw = -1; dw <= 1; ++dw) {
+        for (int dx = -1; dx <= 1; ++dx)
+            for (int dy = -1; dy <= 1; ++dy)
+                for (int dz = -1; dz <= 1; ++dz)
+                    for (int dw = -1; dw <= 1; ++dw) {
                         if (dx != 0 || dy != 0 || dz != 0 || dw != 0) {
                             result.add(Point4D.of(x + dx, y + dy, z + dz, w + dw));
                         }
@@ -492,7 +492,7 @@ public final class Day17 {
         for (int y = 0, initialStateSize = initialState.size(); y < initialStateSize; y++) {
             String line = initialState.get(y);
             for (int x = 0, lineLength = line.length(); x < lineLength; x++) {
-                var c = line.charAt(x);
+                char c = line.charAt(x);
                 if (c == '#') {
                     state.add(Point3D.of(x, y, 0));
                 }
@@ -500,19 +500,19 @@ public final class Day17 {
         }
 
         LOGGER.info("initialState: {}", state);
-        for (var i = 1; i <= iteration; ++i) {
+        for (int i = 1; i <= iteration; ++i) {
             var nextState = new HashSet<Point3D>();
-            var minX = state.stream().mapToInt(Point3D::x).min().orElseThrow();
-            var minY = state.stream().mapToInt(Point3D::y).min().orElseThrow();
-            var minZ = state.stream().mapToInt(Point3D::z).min().orElseThrow();
-            var maxX = state.stream().mapToInt(Point3D::x).max().orElseThrow();
-            var maxY = state.stream().mapToInt(Point3D::y).max().orElseThrow();
-            var maxZ = state.stream().mapToInt(Point3D::z).max().orElseThrow();
-            for (var x = minX - 1; x <= maxX + 1; ++x) {
-                for (var y = minY - 1; y <= maxY + 1; ++y) {
-                    for (var z = minZ - 1; z <= maxZ + 1; ++z) {
+            int minX = state.stream().mapToInt(Point3D::x).min().orElseThrow();
+            int minY = state.stream().mapToInt(Point3D::y).min().orElseThrow();
+            int minZ = state.stream().mapToInt(Point3D::z).min().orElseThrow();
+            int maxX = state.stream().mapToInt(Point3D::x).max().orElseThrow();
+            int maxY = state.stream().mapToInt(Point3D::y).max().orElseThrow();
+            int maxZ = state.stream().mapToInt(Point3D::z).max().orElseThrow();
+            for (int x = minX - 1; x <= maxX + 1; ++x) {
+                for (int y = minY - 1; y <= maxY + 1; ++y) {
+                    for (int z = minZ - 1; z <= maxZ + 1; ++z) {
                         Point3D position = Point3D.of(x, y, z);
-                        var count = neighbors(position).stream().filter(state::contains).count();
+                        long count = neighbors(position).stream().filter(state::contains).count();
                         if (state.contains(position)) {
                             if (count == 2 || count == 3) {
                                 nextState.add(position);
@@ -535,7 +535,7 @@ public final class Day17 {
         for (int y = 0, initialStateSize = initialState.size(); y < initialStateSize; y++) {
             String line = initialState.get(y);
             for (int x = 0, lineLength = line.length(); x < lineLength; x++) {
-                var c = line.charAt(x);
+                char c = line.charAt(x);
                 if (c == '#') {
                     state.add(Point4D.of(x, y, 0, 0));
                 }
@@ -543,23 +543,23 @@ public final class Day17 {
         }
 
         LOGGER.info("initialState: {}", state);
-        for (var i = 1; i <= iteration; ++i) {
+        for (int i = 1; i <= iteration; ++i) {
             var nextState = new HashSet<Point4D>();
-            var minX = state.stream().mapToInt(Point4D::x).min().orElseThrow();
-            var maxX = state.stream().mapToInt(Point4D::x).max().orElseThrow();
-            var minY = state.stream().mapToInt(Point4D::y).min().orElseThrow();
-            var minZ = state.stream().mapToInt(Point4D::z).min().orElseThrow();
-            var minW = state.stream().mapToInt(Point4D::w).min().orElseThrow();
-            var maxY = state.stream().mapToInt(Point4D::y).max().orElseThrow();
-            var maxZ = state.stream().mapToInt(Point4D::z).max().orElseThrow();
-            var maxW = state.stream().mapToInt(Point4D::w).max().orElseThrow();
+            int minX = state.stream().mapToInt(Point4D::x).min().orElseThrow();
+            int maxX = state.stream().mapToInt(Point4D::x).max().orElseThrow();
+            int minY = state.stream().mapToInt(Point4D::y).min().orElseThrow();
+            int minZ = state.stream().mapToInt(Point4D::z).min().orElseThrow();
+            int minW = state.stream().mapToInt(Point4D::w).min().orElseThrow();
+            int maxY = state.stream().mapToInt(Point4D::y).max().orElseThrow();
+            int maxZ = state.stream().mapToInt(Point4D::z).max().orElseThrow();
+            int maxW = state.stream().mapToInt(Point4D::w).max().orElseThrow();
 
-            for (var x = minX - 1; x <= maxX + 1; ++x) {
-                for (var y = minY - 1; y <= maxY + 1; ++y) {
-                    for (var z = minZ - 1; z <= maxZ + 1; ++z) {
-                        for (var w = minW - 1; w <= maxW + 1; ++w) {
+            for (int x = minX - 1; x <= maxX + 1; ++x) {
+                for (int y = minY - 1; y <= maxY + 1; ++y) {
+                    for (int z = minZ - 1; z <= maxZ + 1; ++z) {
+                        for (int w = minW - 1; w <= maxW + 1; ++w) {
                             Point4D position = Point4D.of(x, y, z, w);
-                            var count = neighbors(position).stream().filter(state::contains).count();
+                            long count = neighbors(position).stream().filter(state::contains).count();
                             if (state.contains(position)) {
                                 if (count == 2 || count == 3) {
                                     nextState.add(position);

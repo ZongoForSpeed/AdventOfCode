@@ -76,7 +76,7 @@ public final class Day09 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
-                var distance = Integer.parseInt(matcher.group(3));
+                int distance = Integer.parseInt(matcher.group(3));
                 String city1 = matcher.group(1);
                 String city2 = matcher.group(2);
                 LOGGER.info("{} -> {} = {}", city1, city2, distance);
@@ -88,14 +88,14 @@ public final class Day09 {
         }
 
         LOGGER.info("Graph :\n{}", graph);
-        var minDistance = Integer.MAX_VALUE;
-        var maxDistance = Integer.MIN_VALUE;
+        int minDistance = Integer.MAX_VALUE;
+        int maxDistance = Integer.MIN_VALUE;
         Iterator<List<String>> iterator = Permutations.ofCollection(cities).iterator();
         while (iterator.hasNext()) {
             List<String> permutation = iterator.next();
             OptionalInt distance = computeDistance(graph, permutation);
             if (distance.isPresent()) {
-                var distanceAsInt = distance.getAsInt();
+                int distanceAsInt = distance.getAsInt();
                 if (distanceAsInt < minDistance) {
                     LOGGER.info("Cities: {} = {}", permutation, distance);
                     minDistance = distance.getAsInt();
@@ -111,8 +111,8 @@ public final class Day09 {
     }
 
     public static OptionalInt computeDistance(Map<Pair<String, String>, Integer> graph, List<String> cities) {
-        var distance = 0;
-        for (var i = 1; i < cities.size(); i++) {
+        int distance = 0;
+        for (int i = 1; i < cities.size(); i++) {
             String city1 = cities.get(i - 1);
             String city2 = cities.get(i);
             Integer cost = graph.get(Pair.of(city1, city2));

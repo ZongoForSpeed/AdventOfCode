@@ -20,13 +20,13 @@ class Day23Test extends AbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
 
     static long runTest(long b, long c, long o) {
-        var mul = 0L;
-        var a = 0L;
+        long mul = 0L;
+        long a = 0L;
         long d;
         long e;
         long f;
         long g;
-        var h = 0L;
+        long h = 0L;
         do {
             f = 1;
             d = 2;

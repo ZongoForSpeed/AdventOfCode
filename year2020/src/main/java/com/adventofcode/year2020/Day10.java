@@ -26,7 +26,7 @@ public final class Day10 {
             return cache.get(n);
         }
 
-        var value = arrangements(n - 1, cache) + arrangements(n - 2, cache) + arrangements(n - 3, cache);
+        long value = arrangements(n - 1, cache) + arrangements(n - 2, cache) + arrangements(n - 3, cache);
         cache.put(n, value);
         return value;
     }
@@ -155,8 +155,8 @@ public final class Day10 {
 
         int[] diffs = new int[10];
 
-        for (var i = 1; i < adapters.size(); i++) {
-            var diff = adapters.getLong(i) - adapters.getLong(i - 1);
+        for (int i = 1; i < adapters.size(); i++) {
+            long diff = adapters.getLong(i) - adapters.getLong(i - 1);
             LOGGER.info("{} diff {}-{}", diff, adapters.getLong(i), adapters.getLong(i - 1));
             diffs[(int) diff]++;
         }
@@ -238,10 +238,10 @@ public final class Day10 {
 
         Long2LongMap cache = new Long2LongOpenHashMap();
 
-        var result = 1L;
-        var count = 0L;
-        for (var i = 1; i < adapters.size(); i++) {
-            var diff = adapters.getLong(i) - adapters.getLong(i - 1);
+        long result = 1L;
+        long count = 0L;
+        for (int i = 1; i < adapters.size(); i++) {
+            long diff = adapters.getLong(i) - adapters.getLong(i - 1);
             LOGGER.trace("{} diff {}-{}", diff, adapters.getLong(i), adapters.getLong(i - 1));
             if (diff == 1) {
                 ++count;

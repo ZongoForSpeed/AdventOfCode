@@ -19,7 +19,7 @@ class Day06Test extends AbstractTest {
 
         var scanner = new Scanner(input);
 
-        var reduce = Day06.PartOne.raceRecord(scanner);
+        long reduce = Day06.PartOne.raceRecord(scanner);
         Assertions.assertThat(reduce).isEqualTo(288);
     }
 
@@ -31,13 +31,13 @@ class Day06Test extends AbstractTest {
 
         var scanner = new Scanner(input);
 
-        var reduce = Day06.PartTwo.raceRecord(scanner);
+        long reduce = Day06.PartTwo.raceRecord(scanner);
         Assertions.assertThat(reduce).isEqualTo(71503);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var reduce = Day06.PartOne.raceRecord(scanner);
+        long reduce = Day06.PartOne.raceRecord(scanner);
         Assertions.assertThat(reduce).isEqualTo(131376);
     }
 
@@ -49,7 +49,7 @@ class Day06Test extends AbstractTest {
                 """;
 
         try (var scanner = new Scanner(input)) {
-            var reduce = Day06.PartTwo.raceRecord(scanner);
+            long reduce = Day06.PartTwo.raceRecord(scanner);
             Assertions.assertThat(reduce).isEqualTo(34123437L);
         }
     }

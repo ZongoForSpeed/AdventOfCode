@@ -23,7 +23,7 @@ class Day03Test extends AbstractTest {
                 202 402 602
                 203 403 603""";
 
-        var count = Day03.countTrianglesPartTwo(new Scanner(input));
+        int count = Day03.countTrianglesPartTwo(new Scanner(input));
         assertThat(count).isEqualTo(6);
     }
 

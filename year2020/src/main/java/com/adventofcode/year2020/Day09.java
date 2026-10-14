@@ -12,8 +12,8 @@ public final class Day09 {
     }
 
     static boolean isValid(LongList codes, int start, int end, long value) {
-        for (var n = start; n < end; ++n) {
-            for (var m = n + 1; m < end; ++m) {
+        for (int n = start; n < end; ++n) {
+            for (int m = n + 1; m < end; ++m) {
                 if (codes.getLong(m) + codes.getLong(n) == value) {
                     return true;
                 }
@@ -96,7 +96,7 @@ public final class Day09 {
     /// of the 25 numbers before it. What is the first number that does not have
     /// this property?
     public static OptionalLong findEncodingError(LongList codes, int preamble) {
-        for (var n = preamble; n < codes.size(); ++n) {
+        for (int n = preamble; n < codes.size(); ++n) {
             if (!isValid(codes, n - preamble, n, codes.getLong(n))) {
                 return OptionalLong.of(codes.getLong(n));
             }
@@ -146,13 +146,13 @@ public final class Day09 {
     public static LongList findContiguousSet(LongList codes, long value) {
         long[] sum = new long[codes.size() + 1];
         sum[0] = 0;
-        for (var i = 0; i < codes.size(); i++) {
+        for (int i = 0; i < codes.size(); i++) {
             sum[i + 1] = sum[i] + codes.getLong(i);
         }
 
-        for (var n = 0; n < sum.length; ++n) {
-            for (var m = n + 1; m < sum.length; ++m) {
-                var s = sum[m] - sum[n];
+        for (int n = 0; n < sum.length; ++n) {
+            for (int m = n + 1; m < sum.length; ++m) {
+                long s = sum[m] - sum[n];
                 if (s == value) {
                     return new LongArrayList(codes.subList(n, m));
                 }

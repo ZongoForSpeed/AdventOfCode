@@ -23,33 +23,33 @@ class Day12Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var count = Day12.PartOne.countArrangements(scanner);
+            int count = Day12.PartOne.countArrangements(scanner);
 //
             Assertions.assertThat(count).isEqualTo(21);
         }
 
         {
             var scanner = new Scanner(input);
-            var count = Day12.PartTwo.countArrangements(scanner, 1);
+            long count = Day12.PartTwo.countArrangements(scanner, 1);
             Assertions.assertThat(count).isEqualTo(21);
         }
 
         {
             var scanner = new Scanner(input);
-            var count = Day12.PartTwo.countArrangements(scanner, 5);
+            long count = Day12.PartTwo.countArrangements(scanner, 5);
             Assertions.assertThat(count).isEqualTo(525152);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var count = Day12.PartOne.countArrangements(scanner);
+        int count = Day12.PartOne.countArrangements(scanner);
         Assertions.assertThat(count).isEqualTo(6871);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var count = Day12.PartTwo.countArrangements(scanner, 5);
+        long count = Day12.PartTwo.countArrangements(scanner, 5);
         Assertions.assertThat(count).isEqualTo(2043098029844L);
     }
 

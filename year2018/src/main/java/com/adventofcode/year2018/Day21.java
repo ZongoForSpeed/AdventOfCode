@@ -73,7 +73,7 @@ public final class Day21 {
 
         public static int run(Scanner scanner) {
             String s = scanner.nextLine();
-            var ip = readIp(s);
+            int ip = readIp(s);
             var commands = OpCode.parseCommands(scanner);
 
             return runOpCode(ip, commands);
@@ -83,7 +83,7 @@ public final class Day21 {
             IntList register = new IntArrayList(Collections.nCopies(6, 0));
             register.set(0, 1);
             while (true) {
-                var current = register.getInt(ip);
+                int current = register.getInt(ip);
                 if (current >= commands.size()) {
                     register.set(ip, register.getInt(ip) - 1);
                     LOGGER.info("Register = {}", register);
@@ -125,7 +125,7 @@ public final class Day21 {
 
         public static int run(Scanner scanner) {
             String s = scanner.nextLine();
-            var ip = readIp(s);
+            int ip = readIp(s);
             var commands = OpCode.parseCommands(scanner);
 
             return runOpCode(ip, commands);
@@ -133,11 +133,11 @@ public final class Day21 {
 
         private static int runOpCode(int ip, List<Command> commands) {
             var seen = new HashSet<Integer>();
-            var last = 0;
+            int last = 0;
             IntList register = new IntArrayList(Collections.nCopies(6, 0));
             register.set(0, 1);
             while (true) {
-                var current = register.getInt(ip);
+                int current = register.getInt(ip);
                 if (current >= commands.size()) {
                     register.set(ip, register.getInt(ip) - 1);
                     LOGGER.info("Register = {}", register);
@@ -149,7 +149,7 @@ public final class Day21 {
                 if ("eqrr".equals(command.code())) {
                     LOGGER.trace("Command: {}, register: {}", command, register);
 
-                    var value = register.getInt(3);
+                    int value = register.getInt(3);
                     if (seen.add(value)) {
                         last = value;
                     } else {

@@ -31,13 +31,13 @@ class Day17Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var heatLoss = Day17.PartOne.clumsyCrucible(scanner);
+            int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(102);
         }
 
         {
             var scanner = new Scanner(input);
-            var heatLoss = Day17.PartTwo.ultraCrucible(scanner);
+            int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(94);
         }
     }
@@ -54,20 +54,20 @@ class Day17Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var heatLoss = Day17.PartTwo.ultraCrucible(scanner);
+            int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
             Assertions.assertThat(heatLoss).isEqualTo(71);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var heatLoss = Day17.PartOne.clumsyCrucible(scanner);
+        int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
         Assertions.assertThat(heatLoss).isEqualTo(936);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var heatLoss = Day17.PartTwo.ultraCrucible(scanner);
+        int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
         Assertions.assertThat(heatLoss).isEqualTo(1157);
     }
 

@@ -164,7 +164,7 @@ public final class Day10 {
     }
 
     public static long factoryPartOne(Scanner scanner) {
-        var sum = 0L;
+        long sum = 0L;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.isBlank()) continue;
@@ -175,17 +175,17 @@ public final class Day10 {
 
     private static long solvePartOne(String line) {
         Data data = readLine(line);
-        var mask = data.mask();
+        long mask = data.mask();
         LongList buttonMasks = data.buttonMasks();
 
         IntList indices = new IntArrayList();
-        for (var i = 0; i < buttonMasks.size(); i++) {
+        for (int i = 0; i < buttonMasks.size(); i++) {
             indices.add(i);
         }
 
-        var minButton = Long.MAX_VALUE;
+        long minButton = Long.MAX_VALUE;
         for (Set<Integer> subset : Sets.powerSet(new HashSet<>(indices))) {
-            var on = 0L;
+            long on = 0L;
             for (Integer index : subset) {
                 on ^= buttonMasks.getLong(index);
             }
@@ -197,7 +197,7 @@ public final class Day10 {
     }
 
     public static long factoryPartTwo(Scanner scanner) {
-        var sum = 0L;
+        long sum = 0L;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.isBlank()) continue;
@@ -211,12 +211,12 @@ public final class Day10 {
         LongList buttonMasks = data.buttonMasks();
         IntList jolts = data.jolts();
 
-        var numButtons = buttonMasks.size();
-        var numBits = jolts.size();
+        int numButtons = buttonMasks.size();
+        int numBits = jolts.size();
 
         double[][] matrix = new double[numBits][numButtons + 1];
-        for (var i = 0; i < numBits; i++) {
-            for (var j = 0; j < numButtons; j++) {
+        for (int i = 0; i < numBits; i++) {
+            for (int j = 0; j < numButtons; j++) {
                 if ((buttonMasks.getLong(j) & (1L << i)) != 0) {
                     matrix[i][j] = 1.0;
                 }
@@ -224,13 +224,13 @@ public final class Day10 {
             matrix[i][numButtons] = jolts.getInt(i);
         }
 
-        var pivotRow = 0;
+        int pivotRow = 0;
         int[] pivotCol = new int[numBits];
         Arrays.fill(pivotCol, -1);
 
-        for (var j = 0; j < numButtons && pivotRow < numBits; j++) {
-            var best = pivotRow;
-            for (var i = pivotRow + 1; i < numBits; i++) {
+        for (int j = 0; j < numButtons && pivotRow < numBits; j++) {
+            int best = pivotRow;
+            for (int i = pivotRow + 1; i < numBits; i++) {
                 if (Math.abs(matrix[i][j]) > Math.abs(matrix[best][j])) {
                     best = i;
                 }
@@ -242,15 +242,15 @@ public final class Day10 {
             matrix[best] = temp;
 
             pivotCol[pivotRow] = j;
-            var factor = matrix[pivotRow][j];
-            for (var k = j; k <= numButtons; k++) {
+            double factor = matrix[pivotRow][j];
+            for (int k = j; k <= numButtons; k++) {
                 matrix[pivotRow][k] /= factor;
             }
 
-            for (var i = 0; i < numBits; i++) {
+            for (int i = 0; i < numBits; i++) {
                 if (i != pivotRow) {
-                    var f = matrix[i][j];
-                    for (var k = j; k <= numButtons; k++) {
+                    double f = matrix[i][j];
+                    for (int k = j; k <= numButtons; k++) {
                         matrix[i][k] -= f * matrix[pivotRow][k];
                     }
                 }
@@ -260,14 +260,14 @@ public final class Day10 {
 
         IntList freeVars = new IntArrayList();
         boolean[] isPivot = new boolean[numButtons];
-        for (var i = 0; i < pivotRow; i++) {
+        for (int i = 0; i < pivotRow; i++) {
             if (pivotCol[i] != -1) isPivot[pivotCol[i]] = true;
         }
-        for (var j = 0; j < numButtons; j++) {
+        for (int j = 0; j < numButtons; j++) {
             if (!isPivot[j]) freeVars.add(j);
         }
 
-        var maxJolt = jolts.intStream().max().orElse(0);
+        int maxJolt = jolts.intStream().max().orElse(0);
         long[] bestObjective = {Long.MAX_VALUE};
 
         searchFreeVars(0, freeVars, new int[numButtons], matrix, pivotRow, pivotCol, maxJolt, bestObjective);
@@ -277,15 +277,15 @@ public final class Day10 {
 
     private static void searchFreeVars(int idx, IntList freeVars, int[] solution, double[][] matrix, int pivotRow, int[] pivotCol, int maxJolt, long[] bestObjective) {
         if (idx == freeVars.size()) {
-            var currentSum = 0L;
+            long currentSum = 0L;
             for (int j : freeVars) currentSum += solution[j];
 
-            for (var i = 0; i < pivotRow; i++) {
-                var val = matrix[i][matrix[0].length - 1];
+            for (int i = 0; i < pivotRow; i++) {
+                double val = matrix[i][matrix[0].length - 1];
                 for (int freeVar : freeVars) {
                     val -= matrix[i][freeVar] * solution[freeVar];
                 }
-                var pivotVal = Math.round(val);
+                long pivotVal = Math.round(val);
                 if (Math.abs(val - pivotVal) > 1e-9 || pivotVal < 0) return;
                 currentSum += pivotVal;
             }
@@ -296,8 +296,8 @@ public final class Day10 {
             return;
         }
 
-        var freeVar = freeVars.getInt(idx);
-        for (var v = 0; v <= maxJolt; v++) {
+        int freeVar = freeVars.getInt(idx);
+        for (int v = 0; v <= maxJolt; v++) {
             solution[freeVar] = v;
             searchFreeVars(idx + 1, freeVars, solution, matrix, pivotRow, pivotCol, maxJolt, bestObjective);
         }
@@ -305,9 +305,9 @@ public final class Day10 {
 
     private static Data readLine(String line) {
         List<String> split = Splitter.onPattern("\\s+").omitEmptyStrings().splitToList(line.trim());
-        var mask = readMask(split.getFirst());
+        long mask = readMask(split.getFirst());
         LongList buttonMasks = new LongArrayList();
-        for (var i = 1; i < split.size() - 1; i++) {
+        for (int i = 1; i < split.size() - 1; i++) {
             buttonMasks.add(readButtonMask(split.get(i)));
         }
         IntList jolts = readJolts(split.getLast());
@@ -315,8 +315,8 @@ public final class Day10 {
     }
 
     private static long readMask(String s) {
-        var result = 0L;
-        for (var i = 0; i < s.length(); i++) {
+        long result = 0L;
+        for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '#') {
                 result |= 1L << (i - 1);
             }
@@ -325,7 +325,7 @@ public final class Day10 {
     }
 
     private static long readButtonMask(String s) {
-        var result = 0L;
+        long result = 0L;
         String x = s.substring(1, s.length() - 1);
         if (x.isEmpty()) return 0;
         for (String c : Splitter.on(',').trimResults().split(x)) {

@@ -29,24 +29,24 @@ public class Day05Test extends AbstractTest {
                 32""";
 
         try (var scanner = new Scanner(input)) {
-            var fresh = Day05.partOne(scanner);
+            int fresh = Day05.partOne(scanner);
             assertThat(fresh).isEqualTo(3);
         }
         try (var scanner = new Scanner(input)) {
-            var size = Day05.partTwo(scanner);
+            long size = Day05.partTwo(scanner);
             assertThat(size).isEqualTo(14);
         }
     }
 
     @Override
     public void partOne(@NonNull Scanner scanner) throws Exception {
-        var fresh = Day05.partOne(scanner);
+        int fresh = Day05.partOne(scanner);
         assertThat(fresh).isEqualTo(712);
     }
 
     @Override
     public void partTwo(@NonNull Scanner scanner) throws Exception {
-        var size = Day05.partTwo(scanner);
+        long size = Day05.partTwo(scanner);
         assertThat(size).isEqualTo(332998283036769L);
     }
 }

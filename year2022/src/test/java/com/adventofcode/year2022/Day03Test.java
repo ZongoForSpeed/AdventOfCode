@@ -23,26 +23,26 @@ class Day03Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var sum = Day03.PartOne.sumPriorities(scanner);
+            int sum = Day03.PartOne.sumPriorities(scanner);
             Assertions.assertThat(sum).isEqualTo(157);
         }
 
         {
             var scanner = new Scanner(input);
-            var sum = Day03.PartTwo.sumPriorities(scanner);
+            int sum = Day03.PartTwo.sumPriorities(scanner);
             Assertions.assertThat(sum).isEqualTo(70);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var priority = Day03.PartOne.sumPriorities(scanner);
+        int priority = Day03.PartOne.sumPriorities(scanner);
         Assertions.assertThat(priority).isEqualTo(8298);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var priority = Day03.PartTwo.sumPriorities(scanner);
+        int priority = Day03.PartTwo.sumPriorities(scanner);
         Assertions.assertThat(priority).isEqualTo(2708);
     }
 

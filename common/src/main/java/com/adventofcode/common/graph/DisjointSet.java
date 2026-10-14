@@ -11,7 +11,7 @@ public class DisjointSet {
     public DisjointSet(int n) {
         parent = new int[n];
         size = new int[n];
-        for (var i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             parent[i] = i;
             size[i] = 1;
         }
@@ -27,8 +27,8 @@ public class DisjointSet {
     }
 
     public boolean union(int i, int j) {
-        var rootI = find(i);
-        var rootJ = find(j);
+        int rootI = find(i);
+        int rootJ = find(j);
         if (rootI != rootJ) {
             if (size[rootI] < size[rootJ]) {
                 parent[rootI] = rootJ;
@@ -49,7 +49,7 @@ public class DisjointSet {
 
     public IntList getSizes() {
         IntList sizes = new IntArrayList();
-        for (var i = 0; i < parent.length; i++) {
+        for (int i = 0; i < parent.length; i++) {
             if (parent[i] == i) {
                 sizes.add(size[i]);
             }

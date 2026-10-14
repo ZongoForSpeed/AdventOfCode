@@ -108,8 +108,8 @@ public final class Day02 {
     /// Find the input noun and verb that cause the program to produce the output 19690720. What is 100 * noun + verb?
     /// (For example, if noun=12 and verb=2, the answer would be 1202.)
     static int solvePuzzle(String input, int objective) {
-        for (var noun = 0; noun < 100; ++noun) {
-            for (var verb = 0; verb < 100; ++verb) {
+        for (int noun = 0; noun < 100; ++noun) {
+            for (int verb = 0; verb < 100; ++verb) {
                 long[] output = Intcode.intcode(input, noun, verb);
                 if (output[0] == objective) {
                     return 100 * noun + verb;

@@ -39,12 +39,12 @@ public final class Day17 {
             return;
         }
         if (!open(x, y + 1)) {
-            var leftX = x;
+            int leftX = x;
             while (open(leftX, y) && !open(leftX, y + 1)) {
                 data.set(leftX, y, '|');
                 leftX--;
             }
-            var rightX = x + 1;
+            int rightX = x + 1;
             while (open(rightX, y) && !open(rightX, y + 1)) {
                 data.set(rightX, y, '|');
                 rightX++;
@@ -53,7 +53,7 @@ public final class Day17 {
                 fill(leftX, y);
                 fill(rightX, y);
             } else if (data.get(leftX, y) == '#' && data.get(rightX, y) == '#') {
-                for (var x2 = leftX + 1; x2 < rightX; x2++) {
+                for (int x2 = leftX + 1; x2 < rightX; x2++) {
                     data.set(x2, y, '~');
                 }
             }
@@ -253,9 +253,9 @@ public final class Day17 {
     /// How many tiles can the water reach within the range of y values in your
     /// scan?
     int partOne() {
-        var touched = 0;
-        for (var x = minX - 1; x <= maxX + 1; x++) {
-            for (var y = minY; y <= maxY; y++) {
+        int touched = 0;
+        for (int x = minX - 1; x <= maxX + 1; x++) {
+            for (int y = minY; y <= maxY; y++) {
                 if (data.get(x, y) == '|' || data.get(x, y) == '~') {
                     touched++;
                 }
@@ -276,9 +276,9 @@ public final class Day17 {
     /// How many water tiles are left after the water spring stops producing water
     /// and all remaining water not at rest has drained?
     int partTwo() {
-        var water = 0;
-        for (var x = minX - 1; x <= maxX + 1; x++) {
-            for (var y = minY; y <= maxY; y++) {
+        int water = 0;
+        for (int x = minX - 1; x <= maxX + 1; x++) {
+            for (int y = minY; y <= maxY; y++) {
                 if (data.get(x, y) == '~') {
                     water++;
                 }
@@ -295,11 +295,11 @@ public final class Day17 {
 
             Matcher matcher = PATTERN_X.matcher(line);
             if (matcher.matches()) {
-                var x = Integer.parseInt(matcher.group(1));
-                var y1 = Integer.parseInt(matcher.group(2));
-                var y2 = Integer.parseInt(matcher.group(3));
+                int x = Integer.parseInt(matcher.group(1));
+                int y1 = Integer.parseInt(matcher.group(2));
+                int y2 = Integer.parseInt(matcher.group(3));
 
-                for (var y = y1; y <= y2; ++y) {
+                for (int y = y1; y <= y2; ++y) {
                     data.set(x, y, '#');
                 }
                 continue;
@@ -307,11 +307,11 @@ public final class Day17 {
 
             matcher = PATTERN_Y.matcher(line);
             if (matcher.matches()) {
-                var y = Integer.parseInt(matcher.group(1));
-                var x1 = Integer.parseInt(matcher.group(2));
-                var x2 = Integer.parseInt(matcher.group(3));
+                int y = Integer.parseInt(matcher.group(1));
+                int x1 = Integer.parseInt(matcher.group(2));
+                int x2 = Integer.parseInt(matcher.group(3));
 
-                for (var x = x1; x <= x2; ++x) {
+                for (int x = x1; x <= x2; ++x) {
                     data.set(x, y, '#');
                 }
             }
@@ -327,8 +327,8 @@ public final class Day17 {
 
         // Print board
         var sb = new StringBuilder();
-        for (var y = minY - 1; y <= maxY; y++) {
-            for (var x = minX - 1; x <= maxX + 1; x++) {
+        for (int y = minY - 1; y <= maxY; y++) {
+            for (int x = minX - 1; x <= maxX + 1; x++) {
                 if (x == 500 && y == minY - 1) {
                     sb.append("+");
                 } else {

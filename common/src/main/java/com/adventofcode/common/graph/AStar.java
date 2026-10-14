@@ -32,7 +32,7 @@ public abstract class AStar<E> {
                 for (Move<E> move : moves) {
                     E vertex = move.vertex();
                     if (!closedList.contains(vertex)) {
-                        var cost = node.cost() + move.cost();
+                        long cost = node.cost() + move.cost();
                         queue.add(new NodeHeuristic<>(vertex, cost, cost + heuristic(vertex)));
                     }
                 }

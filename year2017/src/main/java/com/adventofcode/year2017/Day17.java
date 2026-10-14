@@ -122,8 +122,8 @@ public final class Day17 {
      * What is the value after 0 the moment 50000000 is inserted?
      */
     public static int buildBufferPartTwo(int values, int steps) {
-        var pos = 0;
-        var target = 0;
+        int pos = 0;
+        int target = 0;
         for (int i = 1; i <= values; i++) {
             pos = ((pos + steps) % i) + 1;
             if (pos == 1) {

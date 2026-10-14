@@ -144,11 +144,11 @@ class Day20Test extends AbstractTest {
         }
         LOGGER.info("Read tiles: {}", tiles.size());
 
-        var grid = (int) Math.round(Math.sqrt(tiles.size()));
+        int grid = (int) Math.round(Math.sqrt(tiles.size()));
         LOGGER.info("Grid size: {}", grid);
 
         var fullGrid = new CharMap();
-        var product = Day20.computeProduct(tiles, grid, fullGrid);
+        long product = Day20.computeProduct(tiles, grid, fullGrid);
         assertThat(product).isEqualTo(20899048083289L);
 
         LOGGER.info("Solution: \n{}", fullGrid);
@@ -156,7 +156,7 @@ class Day20Test extends AbstractTest {
         CharMap trim = Day20.removeBorder(fullGrid, grid, 10);
 
         BooleanMap seaMonster = Day20.readSeaMonster();
-        var monster = Day20.findSeaMonster(seaMonster, trim);
+        long monster = Day20.findSeaMonster(seaMonster, trim);
         assertThat(monster).isEqualTo(273L);
     }
 
@@ -176,11 +176,11 @@ class Day20Test extends AbstractTest {
         }
         LOGGER.info("Read tiles: {}", tiles.size());
 
-        var grid = (int) Math.round(Math.sqrt(tiles.size()));
+        int grid = (int) Math.round(Math.sqrt(tiles.size()));
         LOGGER.info("Grid size: {}", grid);
 
         var fullGrid = new CharMap();
-        var product = Day20.computeProduct(tiles, grid, fullGrid);
+        long product = Day20.computeProduct(tiles, grid, fullGrid);
         assertThat(product).isEqualTo(16937516456219L);
 
         LOGGER.info("Solution: \n{}", fullGrid);
@@ -188,7 +188,7 @@ class Day20Test extends AbstractTest {
         CharMap trim = Day20.removeBorder(fullGrid, grid, 10);
 
         BooleanMap seaMonster = Day20.readSeaMonster();
-        var monster = Day20.findSeaMonster(seaMonster, trim);
+        long monster = Day20.findSeaMonster(seaMonster, trim);
         assertThat(monster).isEqualTo(1858);
     }
 }

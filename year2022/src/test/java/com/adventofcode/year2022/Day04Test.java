@@ -27,26 +27,26 @@ class Day04Test extends AbstractTest {
 
         {
             var scanner = new Scanner(input);
-            var count = Day04.PartOne.countFullyContained(scanner);
+            long count = Day04.PartOne.countFullyContained(scanner);
             Assertions.assertThat(count).isEqualTo(2);
         }
 
         {
             var scanner = new Scanner(input);
-            var count = Day04.PartTwo.countOverlaps(scanner);
+            long count = Day04.PartTwo.countOverlaps(scanner);
             Assertions.assertThat(count).isEqualTo(4);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var count = Day04.PartOne.countFullyContained(scanner);
+        long count = Day04.PartOne.countFullyContained(scanner);
         Assertions.assertThat(count).isEqualTo(444);
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var count = Day04.PartTwo.countOverlaps(scanner);
+        long count = Day04.PartTwo.countOverlaps(scanner);
         Assertions.assertThat(count).isEqualTo(801);
     }
 

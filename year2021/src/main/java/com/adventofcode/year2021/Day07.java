@@ -104,17 +104,17 @@ public final class Day07 {
     ///
     /// Your puzzle answer was 96708205.
     public static int fuelPartTwo(int a, int b) {
-        var n = Math.abs(a - b);
+        int n = Math.abs(a - b);
         return n * (n + 1) / 2;
     }
 
     public static int fuelCost(String input, IntBinaryOperator fuelOperator) {
         int[] crabs = Splitter.on(',').splitToStream(input).mapToInt(Integer::valueOf).toArray();
-        var length = crabs.length;
-        var pMin = -1;
-        var minCost = Integer.MAX_VALUE;
-        for (var p = 0; p <= length; ++p) {
-            var cost = 0;
+        int length = crabs.length;
+        int pMin = -1;
+        int minCost = Integer.MAX_VALUE;
+        for (int p = 0; p <= length; ++p) {
+            int cost = 0;
             for (int crab : crabs) {
                 cost += fuelOperator.applyAsInt(crab, p);
             }

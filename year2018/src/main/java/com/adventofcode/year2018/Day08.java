@@ -58,16 +58,16 @@ public final class Day08 {
     ///
     /// What is the sum of all metadata entries?
     static int readNode(Scanner scanner) {
-        var children = scanner.nextInt();
-        var metadata = scanner.nextInt();
+        int children = scanner.nextInt();
+        int metadata = scanner.nextInt();
 
-        var checksum = 0;
+        int checksum = 0;
 
-        for (var i = 0; i < children; i++) {
+        for (int i = 0; i < children; i++) {
             checksum += readNode(scanner);
         }
 
-        for (var i = 0; i < metadata; ++i) {
+        for (int i = 0; i < metadata; ++i) {
             checksum += scanner.nextInt();
         }
 
@@ -107,27 +107,27 @@ public final class Day08 {
     ///
     /// What is the value of the root node?
     static int rootNode(Scanner scanner) {
-        var children = scanner.nextInt();
-        var metadata = scanner.nextInt();
+        int children = scanner.nextInt();
+        int metadata = scanner.nextInt();
 
         if (children == 0) {
-            var checksum = 0;
+            int checksum = 0;
 
-            for (var i = 0; i < metadata; ++i) {
+            for (int i = 0; i < metadata; ++i) {
                 checksum += scanner.nextInt();
             }
 
             return checksum;
         } else {
             int[] checksums = new int[children];
-            for (var i = 0; i < children; i++) {
+            for (int i = 0; i < children; i++) {
                 checksums[i] = rootNode(scanner);
             }
 
-            var checksum = 0;
+            int checksum = 0;
 
-            for (var i = 0; i < metadata; ++i) {
-                var index = scanner.nextInt();
+            for (int i = 0; i < metadata; ++i) {
+                int index = scanner.nextInt();
                 if (index - 1 < checksums.length) {
                     checksum += checksums[index - 1];
                 }

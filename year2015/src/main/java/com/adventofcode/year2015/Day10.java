@@ -12,10 +12,10 @@ public final class Day10 {
 
     public static String lookAndSay(String string) {
         Character previous = null;
-        var count = 0;
+        int count = 0;
         var stringBuilder = new StringBuilder();
-        for (var i = 0; i < string.length(); i++) {
-            var c = string.charAt(i);
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
             if (previous == null) {
                 previous = c;
                 count++;
@@ -66,7 +66,7 @@ public final class Day10 {
     ///
     /// Your puzzle answer was 4666278.
     public static String lookAndSay(String input, int steps) {
-        for (var step = 1; step <= steps; ++step) {
+        for (int step = 1; step <= steps; ++step) {
             String next = lookAndSay(input);
             LOGGER.trace("{} becomes {}", input, next);
             input = next;

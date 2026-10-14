@@ -37,7 +37,7 @@ public final class Day04 {
     /// Your puzzle answer was 282749.
     public static long adventCoinsHashPartOne(String secretKey) {
         String pattern = "0".repeat(5);
-        for (var i = 1; ; ++i) {
+        for (int i = 1; ; ++i) {
             String hash = DigestUtils.md5Hex(secretKey + i);
             if (hash.startsWith(pattern)) {
                 LOGGER.info("hash({}{}) = {}", secretKey, i, hash);
@@ -50,7 +50,7 @@ public final class Day04 {
     ///
     /// Now find one that starts with six zeroes.
     public static long adventCoinsHashPartTwo(String secretKey) {
-        for (var i = 1; ; ++i) {
+        for (int i = 1; ; ++i) {
             byte[] hash = DigestUtils.md5(secretKey + i);
             if (hash[0] == 0 && hash[1] == 0 && hash[2] == 0) {
                 LOGGER.info("hash({}{}) = {}", secretKey, i, Hex.encodeHex(hash));

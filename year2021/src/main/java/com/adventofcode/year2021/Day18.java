@@ -41,7 +41,7 @@ public final class Day18 {
 
     private static Snailfish sumPartOne(List<Snailfish> fishes) {
         Snailfish result = fishes.getFirst();
-        for (var i = 1; i < fishes.size(); i++) {
+        for (int i = 1; i < fishes.size(); i++) {
             result = Snailfish.add(result, fishes.get(i));
             result = result.reduce();
         }
@@ -50,11 +50,11 @@ public final class Day18 {
     }
 
     private static long sumPartTwo(List<Snailfish> fishes) {
-        var result = 0L;
+        long result = 0L;
         for (Snailfish left : fishes) {
             for (Snailfish right : fishes) {
                 if (!right.equals(left)) {
-                    var magnitude = Snailfish.add(left, right).reduce().magnitude();
+                    long magnitude = Snailfish.add(left, right).reduce().magnitude();
                     if (magnitude > result) {
                         result = magnitude;
                         LOGGER.debug("Found max: {} + {} = {}", left, right, magnitude);

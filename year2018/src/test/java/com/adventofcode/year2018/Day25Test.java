@@ -25,7 +25,7 @@ class Day25Test extends AbstractTest {
                 12,0,0,0""";
 
         var scanner = new Scanner(input);
-        var size = Day25.countConstellations(scanner);
+        int size = Day25.countConstellations(scanner);
         Assertions.assertThat(size).isEqualTo(2);
     }
 
@@ -44,7 +44,7 @@ class Day25Test extends AbstractTest {
                 3,0,0,0""";
 
         var scanner = new Scanner(input);
-        var size = Day25.countConstellations(scanner);
+        int size = Day25.countConstellations(scanner);
         Assertions.assertThat(size).isEqualTo(4);
     }
 
@@ -63,7 +63,7 @@ class Day25Test extends AbstractTest {
                 3,2,0,2""";
 
         var scanner = new Scanner(input);
-        var size = Day25.countConstellations(scanner);
+        int size = Day25.countConstellations(scanner);
         Assertions.assertThat(size).isEqualTo(3);
     }
 
@@ -82,13 +82,13 @@ class Day25Test extends AbstractTest {
                 -1,-2,0,-2""";
 
         var scanner = new Scanner(input);
-        var size = Day25.countConstellations(scanner);
+        int size = Day25.countConstellations(scanner);
         Assertions.assertThat(size).isEqualTo(8);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var size = Day25.countConstellations(scanner);
+        int size = Day25.countConstellations(scanner);
         Assertions.assertThat(size).isEqualTo(428);
     }
 

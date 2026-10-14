@@ -18,9 +18,9 @@ public final class Day09 {
     }
 
     private static long hash(IntList memory) {
-        var hash = 0L;
-        for (var i = 0; i < memory.size(); i++) {
-            var id = memory.getInt(i);
+        long hash = 0L;
+        for (int i = 0; i < memory.size(); i++) {
+            int id = memory.getInt(i);
             if (id >= 0) {
                 hash += (long) id * i;
             }
@@ -30,10 +30,10 @@ public final class Day09 {
 
     private static IntList readInput(String input) {
         IntList memory = new IntArrayList();
-        var id = 0;
+        int id = 0;
 
-        for (var i = 0; i < input.length(); ++i) {
-            var c = input.charAt(i) - '0';
+        for (int i = 0; i < input.length(); ++i) {
+            int c = input.charAt(i) - '0';
             if (i % 2 == 1) {
                 memory.addAll(Collections.nCopies(c, -1));
             } else {
@@ -130,9 +130,9 @@ public final class Day09 {
     public static long partOne(String input) {
         IntList memory = readInput(input);
 
-        var realMemory = 0;
+        int realMemory = 0;
         IntPriorityQueue freeSpaces = new IntArrayFIFOQueue();
-        for (var i = 0; i < memory.size(); i++) {
+        for (int i = 0; i < memory.size(); i++) {
             if (memory.getInt(i) < 0) {
                 freeSpaces.enqueue(i);
             } else {
@@ -143,7 +143,7 @@ public final class Day09 {
         LOGGER.info("freeSpace = {}", freeSpaces);
 
         while (memory.size() > realMemory) {
-            var file = memory.removeInt(memory.size() - 1);
+            int file = memory.removeInt(memory.size() - 1);
             if (file >= 0) {
                 memory.set(freeSpaces.dequeueInt(), file);
                 LOGGER.trace("memory = {}", memory);
@@ -187,11 +187,11 @@ public final class Day09 {
     /// instead. What is the resulting filesystem checksum?
     public static long partTwo(String input) {
         var blocks = new ArrayList<Block>();
-        var id = 0;
+        int id = 0;
 
-        var address = 0;
-        for (var i = 0; i < input.length(); ++i) {
-            var c = input.charAt(i) - '0';
+        int address = 0;
+        for (int i = 0; i < input.length(); ++i) {
+            int c = input.charAt(i) - '0';
             if (i % 2 == 1) {
                 blocks.add(new Block(-1, c, address, address + c));
             } else {
@@ -211,18 +211,18 @@ public final class Day09 {
         }
 
         IntList memory = new IntArrayList(Collections.nCopies(address, -1));
-        for (var i = blocks.size() - 1; i >= 0; i--) {
+        for (int i = blocks.size() - 1; i >= 0; i--) {
             Block block = blocks.get(i);
             if (block.id() >= 0) {
-                var found = false;
-                for (var j = 0; j < freeBlocks.size(); j++) {
+                boolean found = false;
+                for (int j = 0; j < freeBlocks.size(); j++) {
                     Block freeBlock = freeBlocks.get(j);
                     if (freeBlock.start() > block.start()) {
                         break;
                     }
                     if (freeBlock.size() >= block.size()) {
                         found = true;
-                        for (var k = 0; k < block.size(); ++k) {
+                        for (int k = 0; k < block.size(); ++k) {
                             memory.set(freeBlock.start() + k, block.id());
                         }
                         freeBlocks.set(j, new Block(-1, freeBlock.size() - block.size(), freeBlock.start() + block.size(), freeBlock.end()));
@@ -230,7 +230,7 @@ public final class Day09 {
                     }
                 }
                 if (!found) {
-                    for (var k = 0; k < block.size(); ++k) {
+                    for (int k = 0; k < block.size(); ++k) {
                         memory.set(block.start() + k, block.id());
                     }
                 }

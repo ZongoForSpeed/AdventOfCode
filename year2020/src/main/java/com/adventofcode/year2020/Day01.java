@@ -44,8 +44,8 @@ public final class Day01 {
     /// Of course, your expense report is much larger. Find the two entries that
     /// sum to 2020; what do you get if you multiply them together?
     public static long reportRepair2(long[] report) {
-        for (var i = 0; i < report.length; i++) {
-            for (var j = i + 1; j < report.length; j++) {
+        for (int i = 0; i < report.length; i++) {
+            for (int j = i + 1; j < report.length; j++) {
                 if (report[i] + report[j] == 2020) {
                     return report[i] * report[j];
                 }
@@ -68,12 +68,12 @@ public final class Day01 {
     /// In your expense report, what is the product of the three entries that sum
     /// to 2020?
     public static long reportRepair3(long[] report) {
-        for (var i = 0; i < report.length; i++) {
-            for (var j = i + 1; j < report.length; j++) {
+        for (int i = 0; i < report.length; i++) {
+            for (int j = i + 1; j < report.length; j++) {
                 if (report[i] + report[j] > 2020) {
                     continue;
                 }
-                for (var k = j + 1; k < report.length; k++) {
+                for (int k = j + 1; k < report.length; k++) {
                     if (report[i] + report[j] + report[k] == 2020) {
                         return report[i] * report[j] * report[k];
                     }

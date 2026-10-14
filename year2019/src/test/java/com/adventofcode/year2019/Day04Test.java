@@ -10,7 +10,7 @@ class Day04Test {
 
     @Test
     void input() {
-        var total = IntStream.range(153517, 630395).filter(Day04::matchPartOne).count();
+        long total = IntStream.range(153517, 630395).filter(Day04::matchPartOne).count();
         assertThat(total).isEqualTo(1729);
     }
 
@@ -31,7 +31,7 @@ class Day04Test {
 
     @Test
     void input2() {
-        var total = IntStream.range(153517, 630395).filter(Day04::matchPartTwo).count();
+        long total = IntStream.range(153517, 630395).filter(Day04::matchPartTwo).count();
         assertThat(total).isEqualTo(1172);
     }
 

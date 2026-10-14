@@ -28,24 +28,24 @@ class Day19Test extends AbstractTest {
                 bbrgwb""";
 
         try (var scanner = new Scanner(input)) {
-            var count = Day19.partOne(scanner);
+            int count = Day19.partOne(scanner);
             assertThat(count).isEqualTo(6);
         }
         try (var scanner = new Scanner(input)) {
-            var count = Day19.partTwo(scanner);
+            long count = Day19.partTwo(scanner);
             assertThat(count).isEqualTo(16);
         }
     }
 
     @Override
     public void partOne(Scanner scanner) throws Exception {
-        var count = Day19.partOne(scanner);
+        int count = Day19.partOne(scanner);
         assertThat(count).isEqualTo(258);
     }
 
     @Override
     public void partTwo(Scanner scanner) throws Exception {
-        var count = Day19.partTwo(scanner);
+        long count = Day19.partTwo(scanner);
         assertThat(count).isEqualTo(632423618484345L);
     }
 

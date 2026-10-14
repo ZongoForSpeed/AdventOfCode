@@ -27,26 +27,26 @@ class Day09Test extends AbstractTest {
 
     @Test
     void test16Number() {
-        var result = Intcode.ioIntcode("1102,34915192,34915192,7,4,7,99,0", 0);
+        long result = Intcode.ioIntcode("1102,34915192,34915192,7,4,7,99,0", 0);
         assertThat(result).isEqualTo(1219070632396864L);
     }
 
     @Test
     void output() {
-        var result = Intcode.ioIntcode("104,1125899906842624,99", 0);
+        long result = Intcode.ioIntcode("104,1125899906842624,99", 0);
         assertThat(result).isEqualTo(1125899906842624L);
     }
 
     @Override
     public void partOne(Scanner scanner) {
-        var result = Day09.sensorBoostPartOne(scanner.nextLine());
+        long result = Day09.sensorBoostPartOne(scanner.nextLine());
         assertThat(result).isEqualTo(3533056970L);
 
     }
 
     @Override
     public void partTwo(Scanner scanner) {
-        var result = Day09.sensorBoostPartTwo(scanner.nextLine());
+        long result = Day09.sensorBoostPartTwo(scanner.nextLine());
         assertThat(result).isEqualTo(72852L);
     }
 }

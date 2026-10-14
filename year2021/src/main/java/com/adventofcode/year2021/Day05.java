@@ -82,10 +82,10 @@ public final class Day05 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
-                var x1 = Integer.parseInt(matcher.group(1));
-                var y1 = Integer.parseInt(matcher.group(2));
-                var x2 = Integer.parseInt(matcher.group(3));
-                var y2 = Integer.parseInt(matcher.group(4));
+                int x1 = Integer.parseInt(matcher.group(1));
+                int y1 = Integer.parseInt(matcher.group(2));
+                int x2 = Integer.parseInt(matcher.group(3));
+                int y2 = Integer.parseInt(matcher.group(4));
                 // only consider horizontal and vertical lines
                 if (x1 != x2 && y1 != y2) {
                     LOGGER.info("ignoring {},{} -> {},{}", x1, y1, x2, y2);
@@ -93,12 +93,12 @@ public final class Day05 {
                     continue;
                 }
                 LOGGER.info("{},{} -> {},{}", x1, y1, x2, y2);
-                var xMin = Math.min(x1, x2);
-                var yMin = Math.min(y1, y2);
-                var xMax = Math.max(x1, x2);
-                var yMax = Math.max(y1, y2);
-                for (var x = xMin; x <= xMax; ++x) {
-                    for (var y = yMin; y <= yMax; ++y) {
+                int xMin = Math.min(x1, x2);
+                int yMin = Math.min(y1, y2);
+                int xMax = Math.max(x1, x2);
+                int yMax = Math.max(y1, y2);
+                for (int x = xMin; x <= xMax; ++x) {
+                    for (int y = yMin; y <= yMax; ++y) {
                         map.increment(x, y, 1);
                     }
                 }
@@ -106,7 +106,7 @@ public final class Day05 {
         }
 
         LOGGER.trace("Map \n{}", map);
-        var counter = 0;
+        int counter = 0;
         for (Point2D point : map.points()) {
             if (map.get(point) > 1) {
                 counter++;
@@ -156,21 +156,21 @@ public final class Day05 {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
-                var x1 = Integer.parseInt(matcher.group(1));
-                var y1 = Integer.parseInt(matcher.group(2));
-                var x2 = Integer.parseInt(matcher.group(3));
-                var y2 = Integer.parseInt(matcher.group(4));
+                int x1 = Integer.parseInt(matcher.group(1));
+                int y1 = Integer.parseInt(matcher.group(2));
+                int x2 = Integer.parseInt(matcher.group(3));
+                int y2 = Integer.parseInt(matcher.group(4));
                 LOGGER.info("{},{} -> {},{}", x1, y1, x2, y2);
 
-                var dX = -Integer.compare(x1, x2);
-                var dY = -Integer.compare(y1, y2);
+                int dX = -Integer.compare(x1, x2);
+                int dY = -Integer.compare(y1, y2);
 
                 if (dX == 0) {
-                    for (var y = y1; y != y2 + dY; y += dY) {
+                    for (int y = y1; y != y2 + dY; y += dY) {
                         map.increment(x1, y, 1);
                     }
                 } else if (dY == 0) {
-                    for (var x = x1; x != x2 + dX; x += dX) {
+                    for (int x = x1; x != x2 + dX; x += dX) {
                         map.increment(x, y1, 1);
                     }
                 } else {
@@ -183,7 +183,7 @@ public final class Day05 {
         }
 
         LOGGER.trace("Map \n{}", map);
-        var counter = 0;
+        int counter = 0;
         for (Point2D point : map.points()) {
             if (map.get(point) > 1) {
                 counter++;

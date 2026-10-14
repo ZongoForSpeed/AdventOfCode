@@ -13,17 +13,17 @@ public final class Arithmetic {
             throw new IllegalStateException("modulos and reminders should have the same size !");
         }
 
-        var n = 1L;
+        long n = 1L;
         for (long modulo : modulos) {
             n *= modulo;
         }
 
-        var result = 0L;
-        for (var i = 0; i < reminders.length; i++) {
-            var modulo = modulos[i];
-            var reminder = reminders[i];
+        long result = 0L;
+        for (int i = 0; i < reminders.length; i++) {
+            long modulo = modulos[i];
+            long reminder = reminders[i];
 
-            var r = n / modulo;
+            long r = n / modulo;
             result += r * modularInverse(r, modulo, primes) * reminder;
             result %= n;
         }
@@ -33,12 +33,12 @@ public final class Arithmetic {
     }
 
     public static long modularInverse(long a, long n, long[] primes) {
-        var phi = phi(n, primes);
+        long phi = phi(n, primes);
         return powerMod(a, phi - 1, n);
     }
 
     public static long phi(long n, long[] primes) {
-        var result = n;
+        long result = n;
         for (long p : primes) {
             if (p * p > n) {
                 break;
@@ -57,13 +57,13 @@ public final class Arithmetic {
     }
 
     public static long sigma(long n, long[] primes) {
-        var result = 1L;
+        long result = 1L;
         for (long p : primes) {
             if (p * p > n) {
                 break;
             }
             if (n % p == 0) {
-                var counter = 0;
+                int counter = 0;
                 while (n % p == 0) {
                     n /= p;
                     ++counter;
@@ -87,17 +87,17 @@ public final class Arithmetic {
     }
 
     public static int lcm(int a, int b, int c) {
-        var lcm = lcm(a, b);
+        int lcm = lcm(a, b);
         return c * (lcm / gcd(lcm, c));
     }
 
     public static long lcm(long a, long b, long c) {
-        var lcm = lcm(a, b);
+        long lcm = lcm(a, b);
         return c * (lcm / gcd(lcm, c));
     }
 
     public static long lcm(long... a) {
-        var lcm = 1L;
+        long lcm = 1L;
         for (long v : a) {
             lcm = lcm(lcm, v);
         }
@@ -177,17 +177,17 @@ public final class Arithmetic {
 
     public static Triple<Long, Long, Long> bezout(long a, long b) {
         // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
-        var s = 0L;
-        var oldS = 1L;
-        var t = 1L;
-        var oldT = 0L;
-        var r = b;
-        var oldR = a;
+        long s = 0L;
+        long oldS = 1L;
+        long t = 1L;
+        long oldT = 0L;
+        long r = b;
+        long oldR = a;
         while (r != 0) {
-            var quotient = oldR / r;
-            var newR = oldR - quotient * r;
-            var newS = oldS - quotient * s;
-            var newT = oldT - quotient * t;
+            long quotient = oldR / r;
+            long newR = oldR - quotient * r;
+            long newS = oldS - quotient * s;
+            long newT = oldT - quotient * t;
 
             oldR = r;
             oldS = s;
