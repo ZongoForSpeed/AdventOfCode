@@ -328,6 +328,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <!-- Runs the shared checks of common-test (e.g. PackageInfoTest) in every module -->
+                        <dependenciesToScan>
+                            <dependency>com.github.zongoforspeed:common-test</dependency>
+                        </dependenciesToScan>
+                    </configuration>
                 </plugin>
 
                 <plugin>
