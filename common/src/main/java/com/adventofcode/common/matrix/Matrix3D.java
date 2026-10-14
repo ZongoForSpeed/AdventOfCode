@@ -1,6 +1,7 @@
 package com.adventofcode.common.matrix;
 
 import com.adventofcode.common.point.Point3D;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
 
@@ -57,9 +58,9 @@ public final class Matrix3D {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Matrix3D)) return false;
         var matrix3D = (Matrix3D) o;
         return Arrays.deepEquals(m, matrix3D.m);
     }

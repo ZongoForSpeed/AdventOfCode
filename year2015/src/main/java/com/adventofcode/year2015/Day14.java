@@ -31,13 +31,13 @@ public final class Day14 {
         int position = 0;
         positions.add(position);
         for (int cycle = 0; cycle < cycles; ++cycle) {
-            final int finalPosition = position;
+            int finalPosition = position;
             IntStream.range(1, reindeer.flyDuration() + 1).map(i -> i * reindeer.speed() + finalPosition).forEach(positions::add);
             position = positions.getInt(positions.size() - 1);
             positions.addAll(Collections.nCopies(reindeer.restDuration(), position));
         }
         int remaining = duration % flyWithRest;
-        final int finalPosition = position;
+        int finalPosition = position;
         if (remaining >= reindeer.flyDuration()) {
             IntStream.range(1, reindeer.flyDuration() + 1).map(i -> i * reindeer.speed() + finalPosition).forEach(positions::add);
             position = positions.getInt(positions.size() - 1);

@@ -49,6 +49,7 @@ public final class Day24 {
                     x += 1;
                     y += 2;
                 }
+                default -> throw new IllegalStateException("Unknown direction " + direction);
             }
         }
 

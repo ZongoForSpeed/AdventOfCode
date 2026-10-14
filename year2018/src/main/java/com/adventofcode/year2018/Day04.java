@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ import java.util.regex.Pattern;
 public final class Day04 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day04.class);
     private static final Pattern PATTERN = Pattern.compile("\\[(.*)] (.*)");
-    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm[ss][.SSS]");
+    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm[ss][.SSS]", Locale.ROOT);
 
     private Day04() {
         // No-Op

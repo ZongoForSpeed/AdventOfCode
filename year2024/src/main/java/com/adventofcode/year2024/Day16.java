@@ -151,7 +151,7 @@ public final class Day16 {
         if (startPoint == null || endPoint == null) {
             throw new IllegalStateException("Cannot find start or end");
         }
-        final Point2D finalEndPoint = endPoint;
+        Point2D finalEndPoint = endPoint;
 
         Position2D start = new Position2D(startPoint, Direction.RIGHT);
         Predicate<Position2D> ending = state -> finalEndPoint.equals(state.p());

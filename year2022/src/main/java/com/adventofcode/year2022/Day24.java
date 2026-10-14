@@ -88,7 +88,7 @@ public final class Day24 {
      * The walls of the valley are drawn as #; everything else is ground. Clear
      * ground - where there is currently no blizzard - is drawn as .. Otherwise,
      * blizzards are drawn with an arrow indicating their direction of motion: up
-     * (^), down (v), left (<), or right (>).
+     * (^), down (v), left (&lt;), or right (&gt;).
      *
      * The above map includes two blizzards, one moving right (>) and one moving
      * down (v). In one minute, each blizzard moves one position in the direction

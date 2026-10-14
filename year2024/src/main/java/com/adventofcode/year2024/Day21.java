@@ -197,6 +197,7 @@ public final class Day21 {
      * cause the robot in front of the door to type each code. What is the sum of
      * the complexities of the five codes on your list?
      */
+    @SuppressWarnings("UnescapedEntity") // the puzzle text contains raw '<' and '>' keypad sequences
     public static long partOne(Scanner scanner) {
         Map<Key, Long> cache = new HashMap<>();
         long complexity = 0;

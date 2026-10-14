@@ -8,6 +8,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
@@ -443,7 +444,7 @@ public final class Day24 {
         long bitCount = gates.values().stream().map(Gate::input1)
                 .filter(x -> x.startsWith("x"))
                 .count();
-        String lastZ = "z%2d".formatted(bitCount + 1);
+        String lastZ = String.format(Locale.ROOT, "z%2d", bitCount + 1);
 
         for (Gate gate : carries) {
             if (gate.output('z') && !gate.output(lastZ)) {

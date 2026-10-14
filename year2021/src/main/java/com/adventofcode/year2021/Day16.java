@@ -102,6 +102,7 @@ public final class Day16 {
                 case 'D' -> bytes.addAll(IntList.of(1, 1, 0, 1));
                 case 'E' -> bytes.addAll(IntList.of(1, 1, 1, 0));
                 case 'F' -> bytes.addAll(IntList.of(1, 1, 1, 1));
+                default -> throw new IllegalArgumentException("Not an hexadecimal digit: " + c);
             }
         }
         LOGGER.info("Bytes: {}", bytes);

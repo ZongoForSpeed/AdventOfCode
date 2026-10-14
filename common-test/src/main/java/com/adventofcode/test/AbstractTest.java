@@ -3,6 +3,7 @@ package com.adventofcode.test;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ public abstract class AbstractTest {
 
     @Test
     void inputPartOne() throws Exception {
-        try (InputStream is = AbstractTest.class.getResourceAsStream("/%4d/day/%02d/input".formatted(year, day));
+        try (InputStream is = AbstractTest.class.getResourceAsStream(String.format(Locale.ROOT, "/%4d/day/%02d/input", year, day));
              var scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
             partOne(scanner);
         }
@@ -27,7 +28,7 @@ public abstract class AbstractTest {
 
     @Test
     void inputPartTwo() throws Exception {
-        try (InputStream is = AbstractTest.class.getResourceAsStream("/%4d/day/%02d/input".formatted(year, day));
+        try (InputStream is = AbstractTest.class.getResourceAsStream(String.format(Locale.ROOT, "/%4d/day/%02d/input", year, day));
              var scanner = new Scanner(Objects.requireNonNull(is), UTF_8)) {
             partTwo(scanner);
         }

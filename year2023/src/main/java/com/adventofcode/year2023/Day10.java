@@ -401,11 +401,12 @@ public final class Day10 {
         List<Pair<Point2D, Direction>> path = new ArrayList<>();
         path.add(Pair.of(start, direction));
         while (!current.equals(start)) {
-            direction = PIPE_DIRECTIONS.get(Pair.of(pipe, direction));
-            if (direction == null) {
+            var nextDirection = PIPE_DIRECTIONS.get(Pair.of(pipe, direction));
+            if (nextDirection == null) {
                 LOGGER.error("Cannot find direction");
                 break;
             }
+            direction = nextDirection;
 
             path.add(Pair.of(current, direction));
 

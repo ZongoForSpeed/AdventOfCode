@@ -2,6 +2,7 @@ package com.adventofcode.year2025;
 
 import com.adventofcode.common.point.Point2D;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -223,7 +224,7 @@ public final class Day09 {
     }
 
     private static List<Rectangle> findEdges(List<Point2D> positions) {
-        var edges = new java.util.ArrayList<Rectangle>();
+        var edges = new ArrayList<Rectangle>();
         var len = positions.size();
         for (var i = 1; i < len; i++) {
             edges.add(Rectangle.from(positions.get(i - 1), positions.get(i)));
@@ -235,7 +236,7 @@ public final class Day09 {
     }
 
     private static List<Point2D> readInput(Scanner scanner) {
-        var points = new java.util.ArrayList<Point2D>();
+        var points = new ArrayList<Point2D>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher matcher = PATTERN.matcher(line);

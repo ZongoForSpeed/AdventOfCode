@@ -120,8 +120,7 @@ public final class Day25 {
         private final Set<Position> seenPosition = new HashSet<>();
         private final Map<String, List<Direction>> paths = new HashMap<>();
 
-        @Nullable
-        private Direction exit;
+        private @Nullable Direction exit;
 
         public Droid(Set<String> forbiddenItems) {
             this.forbiddenItems = forbiddenItems;
@@ -273,7 +272,7 @@ public final class Day25 {
 
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(@Nullable Object o) {
             if (!(o instanceof Position position1)) return false;
             return Objects.equals(position, position1.position);
         }

@@ -87,9 +87,6 @@ public final class Day02 {
 
                 String line = scanner.nextLine();
                 Game game = readGame(line);
-                if (game == null) {
-                    continue;
-                }
 
                 boolean possible = game.possible(POSSIBLE_CUBES);
 
@@ -151,9 +148,6 @@ public final class Day02 {
             int sum = 0;
             while (scanner.hasNextLine()) {
                 Game game = readGame(scanner.nextLine());
-                if (game == null) {
-                    continue;
-                }
 
                 int power = game.power();
 

@@ -392,6 +392,7 @@
                                     -Xep:NullAway:ERROR
                                     -XepOpt:NullAway:AnnotatedPackages=com.adventofcode
                                     -XepOpt:NullAway:JSpecifyMode=true
+                                    -Xep:AnnotationPosition:ERROR
                                     -Xep:ArgumentSelectionDefectChecker:ERROR
                                     -Xep:ArrayAsKeyOfSetOrMap:ERROR
                                     -Xep:ArrayEquals:ERROR
@@ -407,8 +408,10 @@
                                     -Xep:CollectionIncompatibleType:ERROR
                                     -Xep:ComparisonContractViolated:ERROR
                                     -Xep:ComparisonOutOfRange:ERROR
+                                    -Xep:ConstantPatternCompile:ERROR
                                     -Xep:DeadException:ERROR
                                     -Xep:DefaultCharset:OFF
+                                    -Xep:DefaultLocale:ERROR
                                     -Xep:DepAnn:ERROR
                                     -Xep:DoubleBraceInitialization:ERROR
                                     -Xep:DuplicateMapKeys:ERROR
@@ -418,16 +421,20 @@
                                     -Xep:EqualsGetClass:ERROR
                                     -Xep:EqualsHashCode:ERROR
                                     -Xep:EqualsIncompatibleType:ERROR
+                                    -Xep:EqualsMissingNullable:ERROR
+                                    -Xep:ExplicitArrayForVarargs:ERROR
                                     -Xep:ExposedPrivateType:ERROR
                                     -Xep:FieldCanBeFinal:ERROR
                                     -Xep:FormatString:ERROR
                                     -Xep:FutureReturnValueIgnored:OFF
                                     -Xep:IdentityBinaryExpression:ERROR
+                                    -Xep:InitializeInline:ERROR
+                                    -Xep:InterruptedExceptionSwallowed:ERROR
+                                    -Xep:Interruption:ERROR
                                     -Xep:IntLongMath:ERROR
                                     -Xep:InvalidBlockTag:ERROR
                                     -Xep:InvalidInlineTag:ERROR
                                     -Xep:InvalidParam:ERROR
-                                    -Xep:InvalidThrows:ERROR
                                     -Xep:InvalidThrows:ERROR
                                     -Xep:IterablePathParameter:ERROR
                                     -Xep:JavaDurationWithNanos:ERROR
@@ -441,6 +448,7 @@
                                     -Xep:LoopOverCharArray:ERROR
                                     -Xep:MathAbsoluteRandom:ERROR
                                     -Xep:MethodCanBeStatic:ERROR
+                                    -Xep:MissingDefault:ERROR
                                     -Xep:MissingFail:ERROR
                                     -Xep:MissingOverride:ERROR
                                     -Xep:ModifiedButNotUsed:ERROR
@@ -453,7 +461,6 @@
                                     -Xep:NarrowingCompoundAssignment:ERROR
                                     -Xep:NonCanonicalStaticMemberImport:ERROR
                                     -Xep:NonCanonicalType:ERROR
-                                    -Xep:NullOptional:ERROR
                                     -Xep:NullableConstructor:ERROR
                                     -Xep:NullableOptional:ERROR
                                     -Xep:NullablePrimitive:ERROR
@@ -461,6 +468,7 @@
                                     -Xep:NullableTypeParameter:ERROR
                                     -Xep:NullableVoid:ERROR
                                     -Xep:NullableWildcard:ERROR
+                                    -Xep:NullOptional:ERROR
                                     -Xep:NumericEquality:ERROR
                                     -Xep:ObjectToString:ERROR
                                     -Xep:OperatorPrecedence:ERROR
@@ -472,6 +480,7 @@
                                     -Xep:PrimitiveAtomicReference:ERROR
                                     -Xep:PrivateConstructorForUtilityClass:ERROR
                                     -Xep:RandomModInteger:ERROR
+                                    -Xep:RedundantNullCheck:ERROR
                                     -Xep:RefactorSwitch:ERROR
                                     -Xep:ReferenceEquality:ERROR
                                     -Xep:RemoveUnusedImports:ERROR
@@ -481,9 +490,9 @@
                                     -Xep:SelfEquals:ERROR
                                     -Xep:ShortCircuitBoolean:ERROR
                                     -Xep:StaticAssignmentInConstructor:ERROR
-                                    -Xep:StaticAssignmentInConstructor:ERROR
                                     -Xep:StaticGuardedByInstance:ERROR
                                     -Xep:StreamResourceLeak:ERROR
+                                    -Xep:StringCaseLocaleUsage:ERROR
                                     -Xep:StringSplitter:ERROR
                                     -Xep:SynchronizeOnNonFinalField:ERROR
                                     -Xep:SystemExitOutsideMain:ERROR
@@ -492,9 +501,12 @@
                                     -Xep:TryFailThrowable:ERROR
                                     -Xep:TypeParameterNaming:ERROR
                                     -Xep:TypeParameterUnusedInFormals:ERROR
+                                    -Xep:UnescapedEntity:ERROR
                                     -Xep:UnnamedVariable:ERROR
+                                    -Xep:UnnecessarilyFullyQualified:ERROR
                                     -Xep:UnnecessaryAssignment:ERROR
                                     -Xep:UnnecessaryCheckNotNull:ERROR
+                                    -Xep:UnnecessaryFinal:ERROR
                                     -Xep:UnnecessaryLambda:ERROR
                                     -Xep:UnnecessaryMethodReference:ERROR
                                     -Xep:UnnecessaryParentheses:ERROR
@@ -546,10 +558,9 @@
                                 <arg>
                                     -Xplugin:ErrorProne
                                     -XepExcludedPaths:.*/target/(generated-sources|generated-test-sources)/.*
-                                    -XepPatchChecks:ArgumentSelectionDefectChecker,ArrayAsKeyOfSetOrMap,ArrayEquals,AssertEqualsArgumentOrderChecker,AssertFalse,BadImport,BadInstanceof,BooleanParameter,BoxedPrimitiveConstructor,CanIgnoreReturnValueSuggester,ClassName,CollectionIncompatibleType,ComparisonContractViolated,ComparisonOutOfRange,DeadException,DefaultCharset,DepAnn,DoubleBraceInitialization,DuplicateMapKeys,EmptyBlockTag,EmptyCatch,EmptyIf,EqualsGetClass,EqualsHashCode,EqualsIncompatibleType,FieldCanBeFinal,FormatString,FutureReturnValueIgnored,IdentityBinaryExpression,IntLongMath,InvalidBlockTag,InvalidInlineTag,InvalidParam,InvalidThrows,IterablePathParameter,JavaDurationWithNanos,JavaDurationWithSeconds,JavaInstantGetSecondsGetNano,JavaLocalDateTimeGetNano,JavaLocalTimeGetNano,JavaTimeDefaultTimeZone,LockOnBoxedPrimitive,LongLiteralLowerCaseSuffix,LoopOverCharArray,MathAbsoluteRandom,MethodCanBeStatic,MissingFail,MissingOverride,ModifiedButNotUsed,ModifyCollectionInEnhancedForLoop,ModifySourceCollectionInStream,MultipleParallelOrSequentialCalls,MultipleTopLevelClasses,MutableConstantField,MutablePublicArray,NarrowingCompoundAssignment,NonCanonicalStaticMemberImport,NonCanonicalType,NullOptional,NullableConstructor,NullableOptional,NullablePrimitive,NullablePrimitiveArray,NullableTypeParameter,NullableVoid,NullableWildcard,NumericEquality,ObjectToString,OperatorPrecedence,OptionalEquality,PackageLocation,ParameterName,PreconditionsCheckNotNull,PreconditionsCheckNotNullPrimitive,PrimitiveAtomicReference,PrivateConstructorForUtilityClass,RandomModInteger,ReferenceEquality,RemoveUnusedImports,ReturnValueIgnored,SelfAssignment,SelfComparison,SelfEquals,ShortCircuitBoolean,StaticAssignmentInConstructor,StaticGuardedByInstance,StreamResourceLeak,StringSplitter,SynchronizeOnNonFinalField,SystemExitOutsideMain,ThreadJoinLoop,ThreadLocalUsage,TryFailThrowable,TypeParameterNaming,TypeParameterUnusedInFormals,UnnecessaryAssignment,UnnecessaryCheckNotNull,UnnecessaryLambda,UnnecessaryMethodReference,UnnecessaryParentheses,UnusedException,UnusedMethod,UnusedNestedClass,UnusedVariable,WaitNotInLoop,WildcardImport
+                                    -XepPatchChecks:AnnotationPosition,ArgumentSelectionDefectChecker,ArrayAsKeyOfSetOrMap,ArrayEquals,AssertEqualsArgumentOrderChecker,AssertFalse,BadImport,BadInstanceof,BooleanParameter,BoxedPrimitiveConstructor,CanIgnoreReturnValueSuggester,ClassName,CollectionIncompatibleType,ComparisonContractViolated,ComparisonOutOfRange,ConstantPatternCompile,DeadException,DefaultCharset,DefaultLocale,DepAnn,DoubleBraceInitialization,DuplicateMapKeys,EmptyBlockTag,EmptyCatch,EmptyIf,EqualsGetClass,EqualsHashCode,EqualsIncompatibleType,EqualsMissingNullable,ExplicitArrayForVarargs,FieldCanBeFinal,FormatString,FutureReturnValueIgnored,IdentityBinaryExpression,InitializeInline,InterruptedExceptionSwallowed,Interruption,IntLongMath,InvalidBlockTag,InvalidInlineTag,InvalidParam,InvalidThrows,IterablePathParameter,JavaDurationWithNanos,JavaDurationWithSeconds,JavaInstantGetSecondsGetNano,JavaLocalDateTimeGetNano,JavaLocalTimeGetNano,JavaTimeDefaultTimeZone,LockOnBoxedPrimitive,LongLiteralLowerCaseSuffix,LoopOverCharArray,MathAbsoluteRandom,MethodCanBeStatic,MissingDefault,MissingFail,MissingOverride,ModifiedButNotUsed,ModifyCollectionInEnhancedForLoop,ModifySourceCollectionInStream,MultipleParallelOrSequentialCalls,MultipleTopLevelClasses,MutableConstantField,MutablePublicArray,NarrowingCompoundAssignment,NonCanonicalStaticMemberImport,NonCanonicalType,NullableConstructor,NullableOptional,NullablePrimitive,NullablePrimitiveArray,NullableTypeParameter,NullableVoid,NullableWildcard,NullOptional,NumericEquality,ObjectToString,OperatorPrecedence,OptionalEquality,PackageLocation,ParameterName,PreconditionsCheckNotNull,PreconditionsCheckNotNullPrimitive,PrimitiveAtomicReference,PrivateConstructorForUtilityClass,RandomModInteger,RedundantNullCheck,RefactorSwitch,ReferenceEquality,RemoveUnusedImports,ReturnValueIgnored,SelfAssignment,SelfComparison,SelfEquals,ShortCircuitBoolean,StaticAssignmentInConstructor,StaticGuardedByInstance,StreamResourceLeak,StringCaseLocaleUsage,StringSplitter,SynchronizeOnNonFinalField,SystemExitOutsideMain,ThreadJoinLoop,ThreadLocalUsage,TryFailThrowable,TypeParameterNaming,TypeParameterUnusedInFormals,UnescapedEntity,UnnamedVariable,UnnecessarilyFullyQualified,UnnecessaryAssignment,UnnecessaryCheckNotNull,UnnecessaryFinal,UnnecessaryLambda,UnnecessaryMethodReference,UnnecessaryParentheses,UnusedException,UnusedMethod,UnusedNestedClass,UnusedVariable,Varifier,WaitNotInLoop,WildcardImport
                                     -XepPatchLocation:IN_PLACE
-                                </arg>
-                            </compilerArgs>
+                                </arg>                            </compilerArgs>
                             <annotationProcessorPaths>
                                 <path>
                                     <groupId>com.google.errorprone</groupId>

@@ -176,10 +176,8 @@ public final class Day10 {
         private final IntList chips;
         private final Set<IntegerPair> operations;
 
-        @Nullable
-        private IntConsumer lowConsumer;
-        @Nullable
-        private IntConsumer highConsumer;
+        private @Nullable IntConsumer lowConsumer;
+        private @Nullable IntConsumer highConsumer;
 
         private Bot(int number) {
             this.number = number;

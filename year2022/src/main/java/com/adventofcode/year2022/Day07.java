@@ -286,7 +286,7 @@ public final class Day07 {
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(@Nullable Object o) {
             if (!(o instanceof Directory directory)) return false;
             return Objects.equals(name, directory.name)
                     && Objects.equals(parent, directory.parent);

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 public final class Day14 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day14.class);
+    private static final Pattern PATTERN = Pattern.compile("(\\w+) -> (\\w)");
 
     private Day14() {
         // No-Op
@@ -136,8 +137,6 @@ public final class Day14 {
      * common element?
      */
     public static long extendedPolymerization(Scanner scanner, int steps) {
-        Pattern pattern = Pattern.compile("(\\w+) -> (\\w)");
-
         Object2CharMap<CharPair> rules = new Object2CharOpenHashMap<>();
         Object2LongMap<CharPair> template = new Object2LongOpenHashMap<>();
 
@@ -152,7 +151,7 @@ public final class Day14 {
             }
 
             if (readRule) {
-                Matcher matcher = pattern.matcher(line);
+                Matcher matcher = PATTERN.matcher(line);
                 if (matcher.matches()) {
                     String left = matcher.group(1);
                     String right = matcher.group(2);

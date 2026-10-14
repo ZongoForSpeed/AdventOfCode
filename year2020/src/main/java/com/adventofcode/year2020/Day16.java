@@ -53,6 +53,9 @@ public final class Day16 {
                     readNearbyTickets = true;
                     continue;
                 }
+                default -> {
+                    // rule or ticket line, handled below
+                }
             }
 
             if (readRules) {

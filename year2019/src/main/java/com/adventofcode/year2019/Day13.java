@@ -99,6 +99,7 @@ public final class Day13 {
                         squares.put(Point2D.of(x, y), output);
                     }
                 }
+                default -> throw new IllegalStateException("Unexpected value: " + count % 3);
             }
         }
 

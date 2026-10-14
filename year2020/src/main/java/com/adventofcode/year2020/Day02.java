@@ -4,6 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Day02 {
+    private static final Pattern PATTERN = Pattern.compile("(\\d+)-(\\d+) (\\w): (\\w*)");
+
     private Day02() {
         // No-Op
     }
@@ -44,8 +46,7 @@ public final class Day02 {
      * How many passwords are valid according to their policies?
      */
     public static boolean passwordPolicy1(String policy) {
-        Pattern pattern = Pattern.compile("(\\d+)-(\\d+) (\\w): (\\w*)");
-        Matcher matcher = pattern.matcher(policy);
+        Matcher matcher = PATTERN.matcher(policy);
         if (matcher.find()) {
             long minCount = Long.parseLong(matcher.group(1));
             long maxCount = Long.parseLong(matcher.group(2));
@@ -85,8 +86,7 @@ public final class Day02 {
      * policies?
      */
     public static boolean passwordPolicy2(String policy) {
-        Pattern pattern = Pattern.compile("(\\d+)-(\\d+) (\\w): (\\w*)");
-        Matcher matcher = pattern.matcher(policy);
+        Matcher matcher = PATTERN.matcher(policy);
         if (matcher.find()) {
             int position1 = Integer.parseInt(matcher.group(1));
             int position2 = Integer.parseInt(matcher.group(2));

@@ -596,16 +596,13 @@ public final class Day11 {
     private static final class Monkey {
         private int id;
 
-        @Nullable
-        private Deque<Long> items;
+        private @Nullable Deque<Long> items;
 
-        @Nullable
-        private LongUnaryOperator operation;
+        private @Nullable LongUnaryOperator operation;
 
         private long divisor;
 
-        @Nullable
-        private LongPredicate test;
+        private @Nullable LongPredicate test;
 
         private int monkeyTrue;
 

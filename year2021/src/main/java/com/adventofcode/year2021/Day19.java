@@ -25,6 +25,7 @@ import java.util.stream.Stream;
 
 public final class Day19 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day19.class);
+    private static final Pattern PATTERN = Pattern.compile("--- scanner (\\d+) ---");
     private static final List<Matrix3D> ROTATIONS = buildOrientation();
 
     private Day19() {
@@ -493,8 +494,6 @@ public final class Day19 {
     }
 
     static Pair<Set<Point3D>, Integer> beaconScanner(Scanner scanner) {
-        Pattern pattern = Pattern.compile("--- scanner (\\d+) ---");
-
         Map<String, List<Probe>> scanners = new HashMap<>();
 
         String scannerName = null;
@@ -503,7 +502,7 @@ public final class Day19 {
             if (StringUtils.isBlank(line)) {
                 continue;
             }
-            Matcher matcher = pattern.matcher(line);
+            Matcher matcher = PATTERN.matcher(line);
             if (matcher.matches()) {
                 scannerName = matcher.group(1);
             } else {

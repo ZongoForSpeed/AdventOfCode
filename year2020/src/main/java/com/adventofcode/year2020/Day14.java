@@ -46,6 +46,9 @@ public final class Day14 {
                     bitSet.set(n, false);
                     xs.add(n);
                 }
+                default -> {
+                    // '0' bits stay unset
+                }
             }
         }
 

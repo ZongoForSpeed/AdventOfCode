@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntImmutableList;
 import it.unimi.dsi.fastutil.ints.IntList;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,7 +77,7 @@ public final class Day24 {
 
     private static long solve(Int2ObjectMap<IntegerPair> criteria, IntList order) {
         Deque<State> queue = new ArrayDeque<>();
-        queue.addLast(State.of(IntImmutableList.of(new int[14]), 0));
+        queue.addLast(State.of(new IntImmutableList(new int[14]), 0));
 
         while (!queue.isEmpty()) {
             State first = queue.removeFirst();
@@ -249,7 +250,7 @@ public final class Day24 {
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(@Nullable Object o) {
             if (!(o instanceof State state)) return false;
             return position == state.position && Objects.deepEquals(digits, state.digits);
         }

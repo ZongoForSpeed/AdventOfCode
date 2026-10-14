@@ -62,6 +62,7 @@ public final class Day11 {
                             nextGrid[x][y] = '#';
                         }
                     }
+                    default -> throw new IllegalStateException("Unexpected cell: " + grid[x][y]);
                 }
             }
 

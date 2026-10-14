@@ -178,8 +178,7 @@ public final class Day23 {
 
     private static class Cup {
         private final int id;
-        @Nullable
-        private Cup next = null;
+        private @Nullable Cup next = null;
 
         private Cup(int id) {
             this.id = id;

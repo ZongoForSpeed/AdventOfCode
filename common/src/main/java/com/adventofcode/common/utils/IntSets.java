@@ -8,7 +8,7 @@ public final class IntSets {
         // No-Op
     }
 
-    public static BitSet of(final int... a) {
+    public static BitSet of(int... a) {
         var set = new BitSet();
         for (int i : a) {
             set.set(i);

@@ -112,6 +112,7 @@ public final class Day08 {
                     }
                     case "jmp" -> position += command.right().intValue();
                     case "nop" -> position++;
+                    default -> throw new IllegalStateException("Unknown command " + command);
                 }
             } else {
                 return Pair.of(accumulator, false);

@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 public final class Day05 {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day05.class);
+    private static final Pattern PATTERN = Pattern.compile("(\\d+),(\\d+) -> (\\d+),(\\d+)");
 
     private Day05() {
         // No-Op
@@ -77,10 +78,9 @@ public final class Day05 {
     /// Your puzzle answer was 6572.
     public static int countOverlapsPartOne(Scanner scanner) {
         var map = new IntegerMap(10, 10, 0);
-        Pattern pattern = Pattern.compile("(\\d+),(\\d+) -> (\\d+),(\\d+)");
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            Matcher matcher = pattern.matcher(line);
+            Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
                 var x1 = Integer.parseInt(matcher.group(1));
                 var y1 = Integer.parseInt(matcher.group(2));
@@ -152,10 +152,9 @@ public final class Day05 {
     /// Your puzzle answer was 21466.
     public static int countOverlapsPartTwo(Scanner scanner) {
         var map = new IntegerMap(10, 10, 0);
-        Pattern pattern = Pattern.compile("(\\d+),(\\d+) -> (\\d+),(\\d+)");
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            Matcher matcher = pattern.matcher(line);
+            Matcher matcher = PATTERN.matcher(line);
             if (matcher.find()) {
                 var x1 = Integer.parseInt(matcher.group(1));
                 var y1 = Integer.parseInt(matcher.group(2));

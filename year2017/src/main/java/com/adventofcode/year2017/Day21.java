@@ -3,6 +3,7 @@ package com.adventofcode.year2017;
 import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.point.map.BooleanMap;
 import com.google.common.base.Splitter;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -234,7 +235,7 @@ public final class Day21 {
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(@Nullable Object o) {
             if (!(o instanceof Key key)) return false;
             return hash == key.hash;
         }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -306,7 +307,7 @@ public final class Day19 {
                 for (String r : split) {
                     matcher = PATTERN_RULE.matcher(r);
                     if (matcher.matches()) {
-                        Category category = Category.valueOf(matcher.group(1).toUpperCase());
+                        Category category = Category.valueOf(matcher.group(1).toUpperCase(Locale.ROOT));
                         boolean greater = ">".equals(matcher.group(2));
                         int value = Integer.parseInt(matcher.group(3));
                         String output = matcher.group(4);

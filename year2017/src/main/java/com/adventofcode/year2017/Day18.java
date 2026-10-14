@@ -171,6 +171,7 @@ public final class Day18 {
     /// Once both of your programs have terminated (regardless of what caused them
     /// to do so), how many times did program 1 send a value?
     /// ```
+    @SuppressWarnings("Interruption") // the duet tasks block on queues and must be interrupted to stop
     public static long partTwo(Scanner scanner) throws InterruptedException {
         var commands = readCommands(scanner);
 

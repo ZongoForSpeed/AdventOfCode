@@ -218,6 +218,7 @@ public final class Day25 {
                     result.append('-');
                     n += 5;
                 }
+                default -> throw new IllegalStateException("Unexpected remainder: " + n % 5);
             }
             n /= 5;
         }

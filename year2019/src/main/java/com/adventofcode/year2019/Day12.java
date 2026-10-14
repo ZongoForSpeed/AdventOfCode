@@ -1,6 +1,9 @@
 package com.adventofcode.year2019;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.regex.Matcher;
@@ -371,12 +374,12 @@ public final class Day12 {
 
         @Override
         public String toString() {
-            return "pos=" + FORMAT.formatted(positionX, positionY, positionZ)
-                   + ", vel=" + FORMAT.formatted(velocityX, velocityY, velocityZ);
+            return "pos=" + String.format(Locale.ROOT, FORMAT, positionX, positionY, positionZ)
+                   + ", vel=" + String.format(Locale.ROOT, FORMAT, velocityX, velocityY, velocityZ);
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(@Nullable Object o) {
             if (!(o instanceof Moon moon)) return false;
             return positionX == moon.positionX
                    && positionY == moon.positionY

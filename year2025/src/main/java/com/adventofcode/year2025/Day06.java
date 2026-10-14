@@ -11,6 +11,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public final class Day06 {
+    private static final Pattern WHITESPACE = Pattern.compile("\\s+");
 
     /**
      * --- Day 6: Trash Compactor ---
@@ -108,7 +109,7 @@ public final class Day06 {
                 Collections.addAll(operations, line.trim().split("\\s+"));
             } else {
                 LongList x = new LongArrayList();
-                for (String s : Splitter.on(Pattern.compile("\\s+")).split(line.trim())) {
+                for (String s : Splitter.on(WHITESPACE).split(line.trim())) {
                     x.add(Long.parseLong(s));
                 }
                 numbers.add(x);
@@ -118,7 +119,7 @@ public final class Day06 {
         long result = 0;
         for (int i = 0; i < operations.size(); i++) {
             String o = operations.get(i);
-            final int index = i;
+            int index = i;
             if (o.equals("+")) {
                 result += numbers.stream().mapToLong(n -> n.getLong(index)).sum();
             } else if (o.equals("*")) {
@@ -153,7 +154,7 @@ public final class Day06 {
 
         LongList queue = new LongArrayList();
         long result = 0;
-        for (String x : Splitter.on(Pattern.compile("\\s+")).split(builder.toString())) {
+        for (String x : Splitter.on(WHITESPACE).split(builder.toString())) {
             if (x.isEmpty()) continue;
             if (x.endsWith("*")) {
                 String valStr = x.substring(0, x.length() - 1);

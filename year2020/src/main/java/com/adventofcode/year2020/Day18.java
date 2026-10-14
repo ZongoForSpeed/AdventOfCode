@@ -44,6 +44,9 @@ public final class Day18 {
                     }
                     operation = (a, b) -> a * b;
                 }
+                default -> {
+                    // ignore spaces
+                }
             }
         }
 
@@ -173,6 +176,9 @@ public final class Day18 {
                         stack.add(operation.apply(stack.removeLast(), stack.removeLast()));
                     }
                     operation = null;
+                }
+                default -> {
+                    // ignore spaces
                 }
             }
         }

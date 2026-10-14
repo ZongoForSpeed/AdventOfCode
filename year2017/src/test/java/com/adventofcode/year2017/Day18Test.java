@@ -32,7 +32,7 @@ class Day18Test extends AbstractTest {
     }
 
     @Test
-    void inputDuetExample() throws Exception {
+    void inputDuetExample() throws InterruptedException {
         var input = """
                 snd 1
                 snd 2

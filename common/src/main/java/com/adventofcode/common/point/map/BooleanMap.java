@@ -2,6 +2,7 @@ package com.adventofcode.common.point.map;
 
 import com.adventofcode.common.point.Point2D;
 import org.apache.commons.lang3.StringUtils;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -204,7 +205,7 @@ public class BooleanMap {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (!(o instanceof BooleanMap that)) return false;
         var lastLine = lastNonEmptyLine();
         if (lastLine != that.lastNonEmptyLine()) return false;

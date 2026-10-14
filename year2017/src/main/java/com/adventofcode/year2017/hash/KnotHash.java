@@ -3,6 +3,7 @@ package com.adventofcode.year2017.hash;
 import com.google.common.base.Splitter;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +52,7 @@ public final class KnotHash {
 
         IntList sparseHash = sparseHash(lengths, 256, 64);
 
-        final int size = sparseHash.size();
+        int size = sparseHash.size();
         String denseHash = IntStream.range(0, (size + 15) >> 4)
                 .map(i -> hashXOR(sparseHash, i << 4, (i + 1) << 4))
                 .mapToObj("%02x"::formatted)
@@ -92,7 +93,7 @@ public final class KnotHash {
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(@Nullable Object o) {
             if (!(o instanceof CircularSubList<?> that)) return false;
             if (!super.equals(o)) return false;
             return fromIndex == that.fromIndex && toIndex == that.toIndex && Objects.equals(root, that.root);

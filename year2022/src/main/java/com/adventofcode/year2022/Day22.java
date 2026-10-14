@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Day22 {
+    private static final Pattern PATH_PATTERN = Pattern.compile("(L|R|\\d+)");
     private static final Logger LOGGER = LoggerFactory.getLogger(Day22.class);
 
     private static final Map<Position2D, Position2D> WRAPPER_CUBE = Map.ofEntries(
@@ -189,8 +190,7 @@ public final class Day22 {
 
         Position2D position = Position2D.of(x, y, Direction.RIGHT);
 
-        Pattern pattern = Pattern.compile("(L|R|\\d+)");
-        Matcher matcher = pattern.matcher(line);
+        Matcher matcher = PATH_PATTERN.matcher(line);
         while (matcher.find()) {
             String group = matcher.group(1);
             LOGGER.trace("group = {}", group);
@@ -307,7 +307,7 @@ public final class Day22 {
      * .^........#.
      *         ...#..v.
      *         .....#v.
-     *         .#v<<<<.
+     *         .#v&lt;&lt;&lt;&lt;.
      *         ..v...#.
      * </pre>
      * <p>
@@ -344,8 +344,7 @@ public final class Day22 {
 
         CharMap debugMap = new CharMap(map);
 
-        Pattern pattern = Pattern.compile("(L|R|\\d+)");
-        Matcher matcher = pattern.matcher(line);
+        Matcher matcher = PATH_PATTERN.matcher(line);
         while (matcher.find()) {
             String group = matcher.group(1);
             if ("R".equals(group)) {

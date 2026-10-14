@@ -167,9 +167,8 @@ public final class Arithmetic {
     }
 
     public static long inverseModulaire(long a, long n) {
-        long inverse;
         var result = bezout(a, n);
-        inverse = result.getMiddle();
+        var inverse = result.getMiddle();
         if (inverse < 0)
             return inverse + n;
         else

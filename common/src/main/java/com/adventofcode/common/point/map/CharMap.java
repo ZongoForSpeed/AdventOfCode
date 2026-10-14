@@ -4,6 +4,7 @@ import com.adventofcode.common.point.Point2D;
 import com.adventofcode.common.utils.TriConsumer;
 import it.unimi.dsi.fastutil.objects.ObjectCharPair;
 import org.apache.commons.lang3.StringUtils;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -203,7 +204,7 @@ public class CharMap {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (!(o instanceof CharMap charMap)) return false;
         return Objects.deepEquals(map, charMap.map);
     }

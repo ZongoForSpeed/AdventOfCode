@@ -138,6 +138,7 @@ public final class Day07 {
                     case 0 -> value += numbers.getInt(i);
                     case 1 -> value *= numbers.getInt(i);
                     case 2 -> value = concat(value, numbers.getInt(i));
+                    default -> throw new IllegalStateException("Unexpected operator " + localMask % 3);
                 }
                 localMask /= 3;
             }

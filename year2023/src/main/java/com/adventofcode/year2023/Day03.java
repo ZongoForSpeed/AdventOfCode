@@ -85,7 +85,7 @@ public final class Day03 {
             List<Point2D> symbols = map.entries()
                     .stream()
                     .filter(e -> !Character.isDigit(e.rightChar()))
-                    .map(it.unimi.dsi.fastutil.Pair::left)
+                    .map(Pair::left)
                     .toList();
 
             LOGGER.info("symbols = {}", symbols);
