@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.utils.IntegerPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day02Test extends AbstractTest {
-    Day02Test() {
-        super(2021, 2);
-    }
-
+@AdventOfCode(year = 2021, day = 2)
+class Day02Test {
     @Test
     void inputExample() {
         var input = """
@@ -37,14 +34,14 @@ class Day02Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         IntegerPair p = Day02.divePartOne(scanner);
         assertThat(p.left() * p.right()).isEqualTo(1561344);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var triple = Day02.divePartTwo(scanner);
         assertThat(triple).isEqualTo(Triple.of(2033, 909225, 768));
         assertThat(triple.getLeft() * triple.getMiddle()).isEqualTo(1848454425);

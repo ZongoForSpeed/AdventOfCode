@@ -1,17 +1,14 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day05Test extends AbstractTest {
-    Day05Test() {
-        super(2021, 5);
-    }
-
+@AdventOfCode(year = 2021, day = 5)
+class Day05Test {
     @Test
     void inputExample() {
         var input = """
@@ -32,14 +29,14 @@ class Day05Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         int overlaps = Day05.countOverlapsPartOne(scanner);
         assertThat(overlaps).isEqualTo(6572);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         int overlaps = Day05.countOverlapsPartTwo(scanner);
         assertThat(overlaps).isEqualTo(21466);
     }

@@ -1,17 +1,14 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day18Test extends AbstractTest {
-    Day18Test() {
-        super(2021, 18);
-    }
-
+@AdventOfCode(year = 2021, day = 18)
+class Day18Test {
     @Test
     void inputExample() {
         assertThat(Day18.reduce("[[[[[9,8],1],2],3],4]")).hasToString("[[[[0,9],2],3],4]");
@@ -75,13 +72,13 @@ class Day18Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day18.sumPartOne(scanner).magnitude()).isEqualTo(2541);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day18.sumPartTwo(scanner)).isEqualTo(4647);
     }
 

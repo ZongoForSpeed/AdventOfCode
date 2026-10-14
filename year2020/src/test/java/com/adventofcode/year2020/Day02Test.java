@@ -1,17 +1,14 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day02Test extends AbstractTest {
-    Day02Test() {
-        super(2020, 2);
-    }
-
+@AdventOfCode(year = 2020, day = 2)
+class Day02Test {
     @Test
     void passwordPolicy() {
         assertThat(Day02.passwordPolicy1("1-3 a: abcde")).isTrue();
@@ -23,8 +20,8 @@ class Day02Test extends AbstractTest {
         assertThat(Day02.passwordPolicy2("2-9 c: ccccccccc")).isFalse();
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         long count = 0L;
         while (scanner.hasNextLine()) {
             if (Day02.passwordPolicy1(scanner.nextLine())) {
@@ -35,8 +32,8 @@ class Day02Test extends AbstractTest {
         assertThat(count).isEqualTo(655);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         long count = 0L;
         while (scanner.hasNextLine()) {
             if (Day02.passwordPolicy2(scanner.nextLine())) {

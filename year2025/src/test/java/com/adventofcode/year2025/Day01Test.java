@@ -1,18 +1,14 @@
 package com.adventofcode.year2025;
 
-import com.adventofcode.test.AbstractTest;
-import org.jspecify.annotations.NonNull;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day01Test extends AbstractTest {
-
-    protected Day01Test() {
-        super(2025, 1);
-    }
+@AdventOfCode(year = 2025, day = 1)
+public class Day01Test {
 
     @Test
     void inputExample() {
@@ -41,15 +37,15 @@ public class Day01Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(@NonNull Scanner scanner) throws Exception {
+    @Test
+    void partOne(Scanner scanner) throws Exception {
         int password = Day01.countPasswordPartOne(scanner);
         assertThat(password).isEqualTo(1031);
     }
 
 
-    @Override
-    public void partTwo(@NonNull Scanner scanner) throws Exception {
+    @Test
+    void partTwo(Scanner scanner) throws Exception {
         int password = Day01.countPasswordPartTwo(scanner);
         assertThat(password).isEqualTo(5831);
     }

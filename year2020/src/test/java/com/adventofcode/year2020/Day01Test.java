@@ -1,6 +1,6 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.junit.jupiter.api.Test;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day01Test extends AbstractTest {
-    Day01Test() {
-        super(2020, 1);
-    }
-
+@AdventOfCode(year = 2020, day = 1)
+class Day01Test {
     @Test
     void reportRepair() {
         long[] report = new long[]{
@@ -24,8 +21,8 @@ class Day01Test extends AbstractTest {
         assertThat(Day01.reportRepair3(report)).isEqualTo(241861950);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         LongList report = new LongArrayList();
         while (scanner.hasNextLong()) {
             report.add(scanner.nextLong());
@@ -33,8 +30,8 @@ class Day01Test extends AbstractTest {
         assertThat(Day01.reportRepair2(report.toLongArray())).isEqualTo(1016964);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         LongList report = new LongArrayList();
         while (scanner.hasNextLong()) {
             report.add(scanner.nextLong());

@@ -1,16 +1,13 @@
 package com.adventofcode.year2022;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-class Day05Test extends AbstractTest {
-    Day05Test() {
-        super(2022, 5);
-    }
-
+@AdventOfCode(year = 2022, day = 5)
+class Day05Test {
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
     void inputExample() {
@@ -36,15 +33,15 @@ class Day05Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         String topCrate = Day05.PartOne.supplyStacks(scanner);
         Assertions.assertThat(topCrate).isEqualTo("NTWZZWHFV");
     }
 
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         String topCrate = Day05.PartTwo.supplyStacks(scanner);
         Assertions.assertThat(topCrate).isEqualTo("BRZGFVBTJ");
     }

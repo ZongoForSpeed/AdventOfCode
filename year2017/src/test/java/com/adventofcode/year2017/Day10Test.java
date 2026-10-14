@@ -1,7 +1,7 @@
 package com.adventofcode.year2017;
 
 import com.adventofcode.year2017.hash.KnotHash;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day10Test extends AbstractTest {
-    Day10Test() {
-        super(2017, 10);
-    }
-
+@AdventOfCode(year = 2017, day = 10)
+class Day10Test {
     @Test
     void inputExample() {
         assertThat(KnotHash.sparseHash("3,4,1,5", 5)).isEqualTo(12);
@@ -99,8 +96,8 @@ class Day10Test extends AbstractTest {
     /// numbers in the list?
     ///
     /// Your puzzle answer was 23715.
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         int hash = KnotHash.sparseHash(scanner.nextLine(), 256);
         assertThat(hash).isEqualTo(23715);
     }
@@ -172,8 +169,8 @@ class Day10Test extends AbstractTest {
     /// you might encounter.
     ///
     /// Your puzzle answer was 541dc3180fd4b72881e39cf925a50253.
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(KnotHash.knotHash(scanner.nextLine())).isEqualTo("541dc3180fd4b72881e39cf925a50253");
     }
 }

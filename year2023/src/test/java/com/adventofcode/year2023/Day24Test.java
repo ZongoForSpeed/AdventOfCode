@@ -1,16 +1,13 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-class Day24Test extends AbstractTest {
-    Day24Test() {
-        super(2023, 24);
-    }
-
+@AdventOfCode(year = 2023, day = 24)
+class Day24Test {
     @Test
     void inputExample() {
         var input = """
@@ -29,8 +26,8 @@ class Day24Test extends AbstractTest {
         Assertions.assertThat(solved).isEqualTo(47);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var hailstorms = Day24.readHailstorms(scanner);
 
         int count = Day24.PartOne.countIntersection(hailstorms, 200000000000000L, 400000000000000L);
@@ -38,8 +35,8 @@ class Day24Test extends AbstractTest {
         Assertions.assertThat(count).isEqualTo(19976);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var hailstorms = Day24.readHailstorms(scanner);
 
         long solved = Day24.PartTwo.solveEquation(hailstorms);

@@ -2,7 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.IntegerPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -20,11 +20,8 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day24Test extends AbstractTest {
-    Day24Test() {
-        super(2019, 24);
-    }
-
+@AdventOfCode(year = 2019, day = 24)
+class Day24Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
 
     @Test
@@ -243,8 +240,8 @@ class Day24Test extends AbstractTest {
         assertThat(totalBugs).isEqualTo(99);
     }
 
-    @Override
-    public void partOne(Scanner scanner) throws Exception {
+    @Test
+    void partOne(Scanner scanner) throws Exception {
         List<IntList> adjacent = Day24.buildAdjacent(5);
 
         List<String> lines = FileUtils.readLines(scanner);
@@ -267,8 +264,8 @@ class Day24Test extends AbstractTest {
         assertThat(Day24.biodiversityPoints(bugs)).isEqualTo(19516944);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) throws Exception {
+    @Test
+    void partTwo(Scanner scanner) throws Exception {
         List<String> lines = FileUtils.readLines(scanner);
         assertThat(Day24.getTotalBugsPartTwo(lines)).isEqualTo(2006);
     }

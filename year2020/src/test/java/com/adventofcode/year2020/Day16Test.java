@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,11 +10,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day16Test extends AbstractTest {
-    Day16Test() {
-        super(2020, 16);
-    }
-
+@AdventOfCode(year = 2020, day = 16)
+class Day16Test {
     @Test
     void invalidNearbyTickets() {
         List<String> notes = List.of("class: 1-3 or 5-7",
@@ -61,15 +58,15 @@ class Day16Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         List<String> notes = FileUtils.readLines(scanner);
 
         assertThat(Day16.invalidNearbyTickets(notes)).isEqualTo(21081);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         List<String> notes = FileUtils.readLines(scanner);
 
         Map<String, Integer> ticketTranslation = Day16.ticketTranslation(notes);

@@ -1,7 +1,7 @@
 package com.adventofcode.year2021;
 
 import com.adventofcode.common.point.map.BooleanMap;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -12,11 +12,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day13Test extends AbstractTest {
-    Day13Test() {
-        super(2021, 13);
-    }
-
+@AdventOfCode(year = 2021, day = 13)
+class Day13Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day13Test.class);
 
     @Test
@@ -61,14 +58,14 @@ class Day13Test extends AbstractTest {
         assertThat(map.points()).hasSize(16);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         BooleanMap map = Day13.transparentOrigamiPartOne(scanner);
         assertThat(map.cardinality()).isEqualTo(842);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         BooleanMap map = Day13.transparentOrigamiPartTwo(scanner);
         assertThat(map.points()).hasSize(95);
     }

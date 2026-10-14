@@ -2,7 +2,7 @@ package com.adventofcode.year2016;
 
 import com.adventofcode.year2016.code.Assembunny;
 import com.adventofcode.common.maths.Permutations;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -11,10 +11,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day23Test extends AbstractTest {
-    Day23Test() {
-        super(2016, 23);
-    }
+@AdventOfCode(year = 2016, day = 23)
+class Day23Test {
 
     @Test
     void inputExample() {
@@ -102,8 +100,8 @@ class Day23Test extends AbstractTest {
     /// What value should be sent to the safe?
     ///
     /// Your puzzle answer was 10890.
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var registers = Assembunny.run(scanner, Map.of("a", 7));
         assertThat(registers).containsEntry("a", 10890);
     }
@@ -125,8 +123,8 @@ class Day23Test extends AbstractTest {
     /// Anyway, what value should actually be sent to the safe?
     ///
     /// Your puzzle answer was 1034.
-    @Override
-    public void partTwo(Scanner ignore) {
+    @Test
+    void partTwo() {
         assertThat(75 * 78 + Permutations.factorial(12)).isEqualTo(479_007_450);
 
     }

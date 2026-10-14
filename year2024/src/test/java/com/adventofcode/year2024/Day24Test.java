@@ -1,6 +1,6 @@
 package com.adventofcode.year2024;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +9,9 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day24Test extends AbstractTest {
+@AdventOfCode(year = 2024, day = 24)
+class Day24Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day24Test.class);
-
-    Day24Test() {
-        super(2024, 24);
-    }
 
     @Test
     void inputExample1() {
@@ -99,14 +96,14 @@ class Day24Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) throws Exception {
+    @Test
+    void partOne(Scanner scanner) throws Exception {
         long result = Day24.partOne(scanner);
         assertThat(result).isEqualTo(50411513338638L);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) throws Exception {
+    @Test
+    void partTwo(Scanner scanner) throws Exception {
         String result = Day24.partTwo(scanner);
         assertThat(result).isEqualTo("gfv,hcm,kfs,tqm,vwr,z06,z11,z16");
     }

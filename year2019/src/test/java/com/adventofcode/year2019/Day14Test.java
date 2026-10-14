@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,11 +10,8 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
-class Day14Test extends AbstractTest {
-    Day14Test() {
-        super(2019, 14);
-    }
-
+@AdventOfCode(year = 2019, day = 14)
+class Day14Test {
     @Test
     void simpleNanofactory1() {
         List<Day14.Reaction> reactions = Stream.of(
@@ -171,16 +168,16 @@ class Day14Test extends AbstractTest {
         assertThat(Day14.solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(460664L);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var reactions = Day14.readReactions(scanner);
 
         var fuelReaction = Day14.solveOrePerFuel(reactions, 1);
         assertThat(fuelReaction).contains(entry("ORE", 337075L));
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var reactions = Day14.readReactions(scanner);
 
         assertThat(Day14.solveFuelPerOre(reactions, 1_000_000_000_000L)).isEqualTo(5194174L);

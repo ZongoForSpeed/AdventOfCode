@@ -1,17 +1,14 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.OptionalLong;
 import java.util.Scanner;
 
-class Day05Test extends AbstractTest {
-    Day05Test() {
-        super(2023, 5);
-    }
-
+@AdventOfCode(year = 2023, day = 5)
+class Day05Test {
     @Test
     void exampleInput() {
         var input = """
@@ -62,14 +59,14 @@ class Day05Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         OptionalLong min = Day05.PartOne.fertilizer(scanner);
         Assertions.assertThat(min).isPresent().hasValue(173706076L);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         OptionalLong min = Day05.PartTwo.fertilizer(scanner);
         Assertions.assertThat(min).isPresent().hasValue(11611182L);
     }

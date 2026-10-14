@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day04Test extends AbstractTest {
-    Day04Test() {
-        super(2016, 4);
-    }
-
+@AdventOfCode(year = 2016, day = 4)
+class Day04Test {
     @Test
     void inputExample() {
         var input = """
@@ -29,13 +26,13 @@ class Day04Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day04.checkRoomName(scanner)).isEqualTo(245102);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day04.decryptRoomName(scanner)).isEqualTo(324);
     }
 

@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day20Test extends AbstractTest {
-    Day20Test() {
-        super(2016, 20);
-    }
-
+@AdventOfCode(year = 2016, day = 20)
+class Day20Test {
     @Test
     void inputExample() {
         var input = """
@@ -24,13 +21,13 @@ class Day20Test extends AbstractTest {
         assertThat(Day20.countIPs(new Scanner(input), 9)).isEqualTo(2);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day20.findFirstIP(scanner, 4294967295L)).isEqualTo(4793564);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day20.countIPs(scanner, 4294967295L)).isEqualTo(146);
     }
 

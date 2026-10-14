@@ -1,17 +1,14 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day03Test extends AbstractTest {
-
-    Day03Test() {
-        super(2019, 3);
-    }
+@AdventOfCode(year = 2019, day = 3)
+class Day03Test {
 
     @Test
     void simplePath1() {
@@ -43,13 +40,13 @@ class Day03Test extends AbstractTest {
         assertThat(Day03.intersectionSteps("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51", "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")).isEqualTo(410);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day03.intersection(scanner.nextLine(), scanner.nextLine())).isEqualTo(260);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day03.intersectionSteps(scanner.nextLine(), scanner.nextLine())).isEqualTo(15612);
     }
 

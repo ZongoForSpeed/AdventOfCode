@@ -1,7 +1,7 @@
 package com.adventofcode.year2015;
 
 import com.adventofcode.common.utils.IntegerPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day09Test extends AbstractTest {
-
-    Day09Test() {
-        super(2015, 9);
-    }
+@AdventOfCode(year = 2015, day = 9)
+class Day09Test {
 
     @Test
     void inputExample() {
@@ -29,13 +26,13 @@ class Day09Test extends AbstractTest {
         assertThat(bestDistance.right()).isEqualTo(982);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day09.computeBestDistance(scanner).left()).isEqualTo(141);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day09.computeBestDistance(scanner).right()).isEqualTo(736);
     }
 }

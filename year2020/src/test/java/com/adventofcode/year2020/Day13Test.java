@@ -2,7 +2,7 @@ package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.LongPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import com.google.common.base.Splitter;
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +11,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day13Test extends AbstractTest {
-    Day13Test() {
-        super(2020, 13);
-    }
-
+@AdventOfCode(year = 2020, day = 13)
+class Day13Test {
     @Test
     void shuttleSearch() {
         List<String> notes = List.of(
@@ -48,8 +45,8 @@ class Day13Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         List<String> notes = FileUtils.readLines(scanner);
 
         long timestamp = Long.parseLong(notes.getFirst());
@@ -65,8 +62,8 @@ class Day13Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         List<String> notes = FileUtils.readLines(scanner);
 
         assertThat(Day13.solveShuttleSearch(notes.get(1))).isEqualTo(780601154795940L);

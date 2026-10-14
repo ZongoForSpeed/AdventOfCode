@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day14Test extends AbstractTest {
-    Day14Test() {
-        super(2015, 14);
-    }
-
+@AdventOfCode(year = 2015, day = 14)
+class Day14Test {
     @Test
     void inputExample() {
         var input = """
@@ -24,13 +21,13 @@ class Day14Test extends AbstractTest {
         assertThat(Day14.raceReindeerPartTwo(new Scanner(input), 1000)).containsAllEntriesOf(Map.of("Comet", 312, "Dancer", 689));
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day14.raceReindeerPartOne(scanner, 2503)).isEqualTo(2696);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day14.raceReindeerPartTwo(scanner, 2503)).containsEntry("Rudolph", 1084);
     }
 

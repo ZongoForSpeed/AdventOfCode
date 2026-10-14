@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.LongPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +12,8 @@ import java.util.function.IntConsumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day08Test extends AbstractTest {
-    Day08Test() {
-        super(2019, 8);
-    }
-
+@AdventOfCode(year = 2019, day = 8)
+class Day08Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
 
     @Test
@@ -34,8 +31,8 @@ class Day08Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         String line = scanner.nextLine();
         int length = line.length();
         int size = 25 * 6;
@@ -47,8 +44,8 @@ class Day08Test extends AbstractTest {
         assertThat(pair.right()).isEqualTo(1935);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         String line = scanner.nextLine();
 
         int[] image = Day08.readImagePartTwo(line, 25 * 6);

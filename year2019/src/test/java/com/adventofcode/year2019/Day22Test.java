@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
@@ -12,11 +12,8 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day22Test extends AbstractTest {
-    Day22Test() {
-        super(2019, 22);
-    }
-
+@AdventOfCode(year = 2019, day = 22)
+class Day22Test {
     @Test
     void dealIntoNewStack() {
         IntList cards = IntArrayList.toList(IntStream.range(0, 10));
@@ -84,8 +81,8 @@ class Day22Test extends AbstractTest {
         assertThat(Day22.slamShuffle(cards, commands).toIntArray()).containsExactly(9, 2, 5, 8, 1, 4, 7, 0, 3, 6);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var commands = FileUtils.readLines(scanner);
         IntList cards = IntArrayList.toList(IntStream.range(0, 10007));
         IntList shuffle = Day22.slamShuffle(cards, commands);
@@ -94,8 +91,8 @@ class Day22Test extends AbstractTest {
         assertThat(Day22.inverseSlamShuffle(commands, 4775, 10007)).isEqualTo(2019);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var commands = FileUtils.readLines(scanner);
         long result = Day22.inverseSlamShuffle(commands, 2020, 119315717514047L, 101741582076661L);
         assertThat(result).isEqualTo(37889219674304L);

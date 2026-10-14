@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day24Test extends AbstractTest {
-
-    Day24Test() {
-        super(2015, 24);
-    }
+@AdventOfCode(year = 2015, day = 24)
+class Day24Test {
 
     @Test
     void inputExample() {
@@ -32,13 +29,13 @@ class Day24Test extends AbstractTest {
         assertThat(Day24.quantumEntanglementPartTwo(new Scanner(input))).isEqualTo(44);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day24.quantumEntanglementPartOne(scanner)).isEqualTo(11846773891L);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day24.quantumEntanglementPartTwo(scanner)).isEqualTo(80393059);
     }
 }

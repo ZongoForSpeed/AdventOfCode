@@ -1,17 +1,14 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day20Test extends AbstractTest {
-    Day20Test() {
-        super(2019, 20);
-    }
-
+@AdventOfCode(year = 2019, day = 20)
+class Day20Test {
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
     void simpleExample() {
@@ -137,14 +134,14 @@ class Day20Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         long steps = Day20.solveMaze(scanner);
         assertThat(steps).isEqualTo(684);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         long steps = Day20.solveRecursiveMaze(scanner);
         assertThat(steps).isEqualTo(7758L);
     }

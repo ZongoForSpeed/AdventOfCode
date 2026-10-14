@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day13Test extends AbstractTest {
-    Day13Test() {
-        super(2017, 13);
-    }
-
+@AdventOfCode(year = 2017, day = 13)
+class Day13Test {
     @Test
     void inputExample() {
         var input = """
@@ -28,13 +25,13 @@ class Day13Test extends AbstractTest {
         assertThat(findBestDelay).isEqualTo(10);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day13.getTripSeverity(scanner)).isEqualTo(2164);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day13.findBestDelay(scanner)).isEqualTo(3861798);
     }
 

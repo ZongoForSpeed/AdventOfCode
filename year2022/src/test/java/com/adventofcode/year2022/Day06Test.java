@@ -1,16 +1,13 @@
 package com.adventofcode.year2022;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-class Day06Test extends AbstractTest {
-    Day06Test() {
-        super(2022, 6);
-    }
-
+@AdventOfCode(year = 2022, day = 6)
+class Day06Test {
     @Test
     void inputExample1() {
         Assertions.assertThat(Day06.findMarker("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 4)).isEqualTo(7);
@@ -41,13 +38,13 @@ class Day06Test extends AbstractTest {
         Assertions.assertThat(Day06.findMarker("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 14)).isEqualTo(26);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         Assertions.assertThat(Day06.findMarker(scanner.nextLine(), 4)).isEqualTo(1566);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         Assertions.assertThat(Day06.findMarker(scanner.nextLine(), 14)).isEqualTo(2265);
     }
 

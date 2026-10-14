@@ -1,16 +1,13 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-class Day17Test extends AbstractTest {
-
-    Day17Test() {
-        super(2023, 17);
-    }
+@AdventOfCode(year = 2023, day = 17)
+class Day17Test {
 
     @Test
     void inputExample1() {
@@ -59,14 +56,14 @@ class Day17Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         int heatLoss = Day17.PartOne.clumsyCrucible(scanner);
         Assertions.assertThat(heatLoss).isEqualTo(936);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         int heatLoss = Day17.PartTwo.ultraCrucible(scanner);
         Assertions.assertThat(heatLoss).isEqualTo(1157);
     }

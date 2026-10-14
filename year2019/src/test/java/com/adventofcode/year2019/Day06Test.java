@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day06Test extends AbstractTest {
-    Day06Test() {
-        super(2019, 6);
-    }
-
+@AdventOfCode(year = 2019, day = 6)
+class Day06Test {
     @Test
     void examplePartOne() throws Exception {
         var input = """
@@ -43,14 +40,14 @@ class Day06Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var graph = Day06.readGraph(scanner);
         assertThat(Day06.countOrbits(graph)).isEqualTo(144909);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var graph = Day06.readGraph(scanner);
         assertThat(Day06.countOrbitalTransfers(graph, "YOU", "SAN")).isEqualTo(259);
     }

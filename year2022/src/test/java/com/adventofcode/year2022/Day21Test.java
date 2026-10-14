@@ -1,17 +1,14 @@
 package com.adventofcode.year2022;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day21Test extends AbstractTest {
-    Day21Test() {
-        super(2022, 21);
-    }
-
+@AdventOfCode(year = 2022, day = 21)
+class Day21Test {
     @Test
     void example() {
         var input = """
@@ -44,13 +41,13 @@ class Day21Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day21.partOne(scanner)).isEqualTo(72664227897438L);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day21.partTwo(scanner)).isEqualTo(3916491093817L);
     }
 

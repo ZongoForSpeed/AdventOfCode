@@ -1,6 +1,6 @@
 package com.adventofcode.year2024;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -8,11 +8,8 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day23Test extends AbstractTest {
-
-    Day23Test() {
-        super(2024, 23);
-    }
+@AdventOfCode(year = 2024, day = 23)
+class Day23Test {
 
     @Test
     void inputExample() {
@@ -71,14 +68,14 @@ class Day23Test extends AbstractTest {
     }
 
 
-    @Override
-    public void partOne(Scanner scanner) throws Exception {
+    @Test
+    void partOne(Scanner scanner) throws Exception {
         var triplets = Day23.partOne(scanner);
         assertThat(triplets).hasSize(893);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) throws Exception {
+    @Test
+    void partTwo(Scanner scanner) throws Exception {
         String clique = Day23.partTwo(scanner);
         assertThat(clique).isEqualTo("cw,dy,ef,iw,ji,jv,ka,ob,qv,ry,ua,wt,xz");
     }

@@ -1,16 +1,13 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-class Day23Test extends AbstractTest {
-    Day23Test() {
-        super(2018, 23);
-    }
-
+@AdventOfCode(year = 2018, day = 23)
+class Day23Test {
     @Test
     void inputExample1() {
         var input = """
@@ -46,14 +43,14 @@ class Day23Test extends AbstractTest {
         Assertions.assertThat(distance).isEqualTo(36);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         long count = Day23.PartOne.countNanobots(scanner);
         Assertions.assertThat(count).isEqualTo(943);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         int distance = Day23.PartTwo.bestPositionDistance(scanner);
         Assertions.assertThat(distance).isEqualTo(84087816);
     }

@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.year2019.code.Intcode;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -16,11 +16,8 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day17Test extends AbstractTest {
-    Day17Test() {
-        super(2019, 17);
-    }
-
+@AdventOfCode(year = 2019, day = 17)
+class Day17Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day17Test.class);
 
     @Test
@@ -62,8 +59,8 @@ class Day17Test extends AbstractTest {
         assertThat(collect).isEqualTo("R,8,R,8,R,4,R,4,R,8,L,6,L,2,R,4,R,4,R,8,R,8,R,8,L,6,L,2");
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         String line = scanner.nextLine();
         StringBuilder sb = new StringBuilder();
         Intcode.intcode(line, () -> 0, i -> sb.append((char) i));
@@ -74,8 +71,8 @@ class Day17Test extends AbstractTest {
         assertThat(Day17.computeSumAlignmentParameters(map)).isEqualTo(7280);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         String line = scanner.nextLine();
         StringBuilder sb = new StringBuilder();
         Intcode.intcode(line, () -> 0, (i) -> sb.append((char) i));

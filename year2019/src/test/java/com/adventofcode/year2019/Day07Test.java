@@ -1,6 +1,6 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day07Test extends AbstractTest {
-    Day07Test() {
-        super(2019, 7);
-    }
-
+@AdventOfCode(year = 2019, day = 7)
+class Day07Test {
     @Test
     void example() {
         Assertions.assertThat(Day07.thrusterSignal("3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0", LongList.of(4L, 3L, 2L, 1L, 0L))).isEqualTo(43210);
@@ -66,15 +63,15 @@ class Day07Test extends AbstractTest {
         assertThat(thrusterSignal.left().toLongArray()).containsExactly(9L, 7L, 8L, 5L, 6L);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var max = Day07.maxThrusterSignal(scanner.nextLine(), 0L, 1L, 2L, 3L, 4L);
         assertThat(max.left().toLongArray()).containsExactly(1L, 3L, 0L, 4L, 2L);
         assertThat(max.right()).isEqualTo(24625);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var max = Day07.maxThrusterSignal(scanner.nextLine(), 9L, 8L, 7L, 6L, 5L);
         assertThat(max.left().toLongArray()).containsExactly(5L, 8L, 6L, 9L, 7L);
         assertThat(max.right()).isEqualTo(36497698);

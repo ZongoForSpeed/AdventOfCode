@@ -1,18 +1,15 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day18Test extends AbstractTest {
-    Day18Test() {
-        super(2020, 18);
-    }
-
+@AdventOfCode(year = 2020, day = 18)
+class Day18Test {
     @Test
     void readExpression() {
         assertThat(Day18.evalExpressionLR("1 + 2 * 3 + 4 * 5 + 6")).isEqualTo(71);
@@ -30,14 +27,14 @@ class Day18Test extends AbstractTest {
         assertThat(Day18.evalExpressionAdditionFirst("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2")).isEqualTo(23340);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var lines = FileUtils.readLines(scanner);
         assertThat(lines.stream().mapToLong(Day18::evalExpressionLR).sum()).isEqualTo(654686398176L);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var lines = FileUtils.readLines(scanner);
         assertThat(lines.stream().mapToLong(Day18::evalExpressionAdditionFirst).sum()).isEqualTo(8952864356993L);
     }

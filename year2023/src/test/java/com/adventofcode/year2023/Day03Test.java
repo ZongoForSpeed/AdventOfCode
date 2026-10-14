@@ -1,6 +1,6 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 
-class Day03Test extends AbstractTest {
-
-    Day03Test() {
-        super(2023, 3);
-    }
+@AdventOfCode(year = 2023, day = 3)
+class Day03Test {
 
     @Test
     void inputExample() {
@@ -53,13 +50,13 @@ class Day03Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         Assertions.assertThat(Day03.PartOne.gearRatios(scanner)).isEqualTo(540025);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         Assertions.assertThat(Day03.PartTwo.gearRatios(scanner)).isEqualTo(84584891);
     }
 

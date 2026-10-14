@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day03Test extends AbstractTest {
-    Day03Test() {
-        super(2020, 3);
-    }
-
+@AdventOfCode(year = 2020, day = 3)
+class Day03Test {
     @Test
     void tobogganTrajectory() {
         var map = List.of("..##.......",
@@ -38,14 +35,14 @@ class Day03Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var lines = FileUtils.readLines(scanner);
         assertThat(Day03.tobogganTrajectory(lines, 3, 1)).isEqualTo(234);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var lines = FileUtils.readLines(scanner);
         assertThat(Day03.checkAllTobogganTrajectories(lines)).isEqualTo(5813773056L);
     }

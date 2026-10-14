@@ -1,7 +1,7 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.utils.IntegerPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -10,11 +10,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day10Test extends AbstractTest {
-    Day10Test() {
-        super(2016, 10);
-    }
-
+@AdventOfCode(year = 2016, day = 10)
+class Day10Test {
     @Test
     void inputExample() {
         var input = """
@@ -32,13 +29,13 @@ class Day10Test extends AbstractTest {
         assertThat(balanceBots.getOutputs()).containsAllEntriesOf(Map.of(0, 5, 1, 2, 2, 3));
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day10.findChips(scanner, IntegerPair.of(17, 61))).isEqualTo(56);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day10.getOutput012(scanner)).isEqualTo(7847);
     }
 

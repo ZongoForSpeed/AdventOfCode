@@ -1,6 +1,6 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +8,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day19Test extends AbstractTest {
-    Day19Test() {
-        super(2018, 19);
-    }
-
+@AdventOfCode(year = 2018, day = 19)
+class Day19Test {
     @Test
     void example() {
         var input = """
@@ -30,13 +27,13 @@ class Day19Test extends AbstractTest {
         assertThat(register.toIntArray()).containsExactly(6, 5, 6, 0, 0, 9);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day19.executePartOne(scanner).toIntArray()).startsWith(878);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day19.executePartTwo(scanner)).isEqualTo(11510496);
     }
 

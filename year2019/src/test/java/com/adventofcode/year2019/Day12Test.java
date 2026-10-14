@@ -2,7 +2,7 @@ package com.adventofcode.year2019;
 
 import com.adventofcode.common.maths.Arithmetic;
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +13,8 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day12Test extends AbstractTest {
-    Day12Test() {
-        super(2019, 12);
-    }
-
+@AdventOfCode(year = 2019, day = 12)
+class Day12Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day12Test.class);
 
     @Test
@@ -114,8 +111,8 @@ class Day12Test extends AbstractTest {
         assertThat(result).isEqualTo(4686774924L);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
 
         List<Day12.Moon> moons = FileUtils.readLines(scanner).stream().map(Day12.Moon::parse).toList();
 
@@ -123,8 +120,8 @@ class Day12Test extends AbstractTest {
         assertThat(totalEnergy).isEqualTo(12053);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         List<Day12.Moon> moons = FileUtils.readLines(scanner).stream().map(Day12.Moon::parse).toList();
 
         long loopX = Day12.findLoop(moons, Day12.Moon::getPositionX, Day12.Moon::getVelocityX);

@@ -1,17 +1,14 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day16Test extends AbstractTest {
-    Day16Test() {
-        super(2019, 16);
-    }
-
+@AdventOfCode(year = 2019, day = 16)
+class Day16Test {
 
     @Test
     void simple() {
@@ -43,15 +40,15 @@ class Day16Test extends AbstractTest {
         assertThat(Day16.decode("03081770884921959731165446850517")).isEqualTo("53553731");
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         String line = scanner.nextLine();
         assertThat(Day16.flawedFrequencyTransmission(line, 100)).startsWith("32002835");
 
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         String line = scanner.nextLine();
         assertThat(Day16.decode(line)).isEqualTo("69732268");
     }

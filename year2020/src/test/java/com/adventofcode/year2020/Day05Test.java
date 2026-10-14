@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day05Test extends AbstractTest {
-    Day05Test() {
-        super(2020, 5);
-    }
-
+@AdventOfCode(year = 2020, day = 5)
+class Day05Test {
     @Test
     void binaryBoarding() {
         assertThat(Day05.binaryBoarding("FBFBBFFRLR")).isEqualTo(357);
@@ -22,8 +19,8 @@ class Day05Test extends AbstractTest {
         assertThat(Day05.binaryBoarding("BBFFBBFRLL")).isEqualTo(820);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         long[] seatIds = FileUtils.readLines(scanner)
                 .stream()
                 .map(Day05::binaryBoarding)
@@ -34,8 +31,8 @@ class Day05Test extends AbstractTest {
         assertThat(max).isEqualTo(933);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         long[] seatIds = FileUtils.readLines(scanner)
                 .stream()
                 .map(Day05::binaryBoarding)

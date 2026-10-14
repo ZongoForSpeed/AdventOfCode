@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day09Test extends AbstractTest {
-    Day09Test() {
-        super(2016, 9);
-    }
-
+@AdventOfCode(year = 2016, day = 9)
+class Day09Test {
     @Test
     void inputExample() throws Exception {
         assertThat(Day09.decompressV1("ADVENT")).isEqualTo("ADVENT");
@@ -29,13 +26,13 @@ class Day09Test extends AbstractTest {
         assertThat(Day09.decompressV2("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN")).isEqualTo(445);
     }
 
-    @Override
-    public void partOne(Scanner scanner) throws IOException {
+    @Test
+    void partOne(Scanner scanner) throws IOException {
         assertThat(Day09.decompressV1(scanner.nextLine())).hasSize(150914);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) throws IOException {
+    @Test
+    void partTwo(Scanner scanner) throws IOException {
         assertThat(Day09.decompressV2(scanner.nextLine())).isEqualTo(11052855125L);
     }
 }

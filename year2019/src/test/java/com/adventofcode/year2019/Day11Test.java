@@ -1,27 +1,25 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day11Test extends AbstractTest {
-    Day11Test() {
-        super(2019, 11);
-    }
-
-    @Override
-    public void partOne(Scanner scanner) {
+@AdventOfCode(year = 2019, day = 11)
+class Day11Test {
+    @Test
+    void partOne(Scanner scanner) {
         String line = scanner.nextLine();
         Day11.HullPaintingRobot robot = Day11.hullPaintingRobotPartOne(line);
         assertThat(robot.getHull()).hasSize(1732);
         robot.getHull().print(v -> v == 1 ? 'X' : ' ');
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
 
         String line = scanner.nextLine();
         Day11.HullPaintingRobot robot = Day11.hullPaintingRobotPartTwo(line);

@@ -1,18 +1,15 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.common.point.Point2D;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day10Test extends AbstractTest {
-    Day10Test() {
-        super(2019, 10);
-    }
-
+@AdventOfCode(year = 2019, day = 10)
+class Day10Test {
     @Test
     void simpleExample() {
         var input = """
@@ -184,15 +181,15 @@ class Day10Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var result = Day10.findBestLocation(scanner);
         assertThat(result.left()).isEqualTo(Point2D.of(26, 29));
         assertThat(result.right()).hasSize(303);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var result = Day10.findBestLocation(scanner);
 
         var asteroids = Day10.vaporizeAsteroids(result.right());

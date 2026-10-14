@@ -2,7 +2,7 @@ package com.adventofcode.year2020;
 
 import com.adventofcode.common.point.map.BooleanMap;
 import com.adventofcode.common.point.map.CharMap;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -15,11 +15,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day20Test extends AbstractTest {
-    Day20Test() {
-        super(2020, 20);
-    }
-
+@AdventOfCode(year = 2020, day = 20)
+class Day20Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day20Test.class);
 
     @Test
@@ -160,13 +157,13 @@ class Day20Test extends AbstractTest {
         assertThat(monster).isEqualTo(273L);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         // No-Op
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var tiles = new Int2ObjectOpenHashMap<List<CharMap>>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();

@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -19,11 +19,8 @@ import java.util.regex.Pattern;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day08Test extends AbstractTest {
-    Day08Test() {
-        super(2017, 8);
-    }
-
+@AdventOfCode(year = 2017, day = 8)
+class Day08Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Day08Test.class);
     private static final Pattern PATTERN = Pattern.compile("(\\w+) (inc|dec) (-?\\d+) if (\\w+) (.+) (-?\\d+)");
 
@@ -145,13 +142,13 @@ class Day08Test extends AbstractTest {
         assertThat(maxRegister).isPresent().hasValue(10);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(maxRegistersPartOne(scanner)).isPresent().hasValue(4448);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(maxRegistersPartTwo(scanner)).isPresent().hasValue(6582);
     }
 

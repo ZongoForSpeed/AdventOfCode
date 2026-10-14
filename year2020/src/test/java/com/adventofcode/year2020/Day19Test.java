@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day19Test extends AbstractTest {
-    Day19Test() {
-        super(2020, 19);
-    }
-
+@AdventOfCode(year = 2020, day = 19)
+class Day19Test {
     @Test
     void matchRules() {
         var simpleInput = List.of("0: 1 2",
@@ -101,16 +98,16 @@ class Day19Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var input = FileUtils.readLines(scanner);
 
         assertThat(Day19.matchMonsterMessages(input, false)).isEqualTo(176);
 
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var input = FileUtils.readLines(scanner);
 
         assertThat(Day19.matchMonsterMessages(input, true)).isEqualTo(352);

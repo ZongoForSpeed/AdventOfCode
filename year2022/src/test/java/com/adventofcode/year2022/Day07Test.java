@@ -1,17 +1,14 @@
 package com.adventofcode.year2022;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.OptionalLong;
 import java.util.Scanner;
 
-class Day07Test extends AbstractTest {
-    Day07Test() {
-        super(2022, 7);
-    }
-
+@AdventOfCode(year = 2022, day = 7)
+class Day07Test {
     @Test
     void inputExample() {
         var input = """
@@ -52,14 +49,14 @@ class Day07Test extends AbstractTest {
         }
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         long sum = Day07.PartOne.findSum(scanner);
         Assertions.assertThat(sum).isEqualTo(1307902);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         OptionalLong min = Day07.PartTwo.findSmallestToDelete(scanner);
         Assertions.assertThat(min).hasValue(7068748);
     }

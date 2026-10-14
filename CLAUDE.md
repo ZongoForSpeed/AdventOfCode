@@ -42,13 +42,13 @@ Every package has a `package-info.java` annotated with `@NullMarked` (JSpecify) 
 ## Architecture
 
 - **`common`**: shared algorithms and data structures used by the year modules. Packages: `graph` (AStar, Dijkstra, DisjointSet, Clique, Connectivity), `maths` (primes, GaussJordan, permutations/combinations), `matrix`, `point` (Point2D/3D/4D, Direction, `map` grids such as `CharMap`/`IntegerMap`/`SparseGrid`/`InfiniteBooleanMap`, `range` types such as `Range`/`Rectangle`/`Cuboid`), and `utils`. Check here before writing a new grid, pathfinding, or math helper. JMH benchmarks are in `common/src/test` (e.g. `PermutationsBenchmark`).
-- **`common-test`**: provides `AbstractTest`. Its constructor takes `(year, day)`, and it defines two `@Test` methods, `inputPartOne` and `inputPartTwo`. Each one opens the classpath resource `/<year>/day/<DD>/input` as a `Scanner` and passes it to the abstract `partOne(Scanner)` / `partTwo(Scanner)`.
+- **`common-test`**: shared test support. `@AdventOfCode(year = YYYY, day = N)` goes on a day's test class, and any `Scanner` parameter of its test methods is then injected (by `PuzzleInputExtension`) with the classpath resource `/<year>/day/<DD>/input`, closed after the test. `PackageInfoTest` is run in every module through Surefire's `dependenciesToScan` and checks that each package has a `package-info.java` with `@NullMarked` and `@CheckReturnValue`.
 - **`yearYYYY`**: one module per year. Each depends on `common` and `common-test` (test scope), and may also use libraries such as fastutil, commons-lang3, and Guava.
 
 ### Per-day conventions (`yearYYYY`)
 
 - `src/main/java/com/adventofcode/yearYYYY/DayNN.java`: a `final` utility class of static solver methods. The puzzle text is copied in as `///` Markdown doc comments, one block per part.
-- `src/test/java/com/adventofcode/yearYYYY/DayNNTest.java`: extends `AbstractTest` and calls `super(YYYY, NN)`. It usually adds an `inputExample()` test that runs the solver on the puzzle's sample input from a text block. `partOne`/`partTwo` assert the known answers for the real input.
+- `src/test/java/com/adventofcode/yearYYYY/DayNNTest.java`: annotated with `@AdventOfCode(year = YYYY, day = N)`. It usually has an `inputExample()` test that runs the solver on the puzzle's sample input from a text block, and `partOne(Scanner)` / `partTwo(Scanner)` tests that assert the known answers for the real input.
 - `src/test/resources/YYYY/day/NN/input`: the real puzzle input, committed to git.
 - `src/test/resources/junit-platform.properties` enables parallel test execution (classes run concurrently), so solvers must not rely on shared mutable static state.
 

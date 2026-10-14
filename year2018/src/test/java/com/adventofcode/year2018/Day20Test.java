@@ -1,17 +1,14 @@
 package com.adventofcode.year2018;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.OptionalInt;
 import java.util.Scanner;
 
-class Day20Test extends AbstractTest {
-    Day20Test() {
-        super(2018, 20);
-    }
-
+@AdventOfCode(year = 2018, day = 20)
+class Day20Test {
     @Test
     void example() {
 
@@ -36,16 +33,16 @@ class Day20Test extends AbstractTest {
                 .hasValue(31);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         OptionalInt max = Day20.PartOne.furthestDistance(scanner.nextLine());
         Assertions.assertThat(max)
                 .isPresent()
                 .hasValue(3151);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         long door1000 = Day20.PartTwo.door1000(scanner.nextLine());
         Assertions.assertThat(door1000).isEqualTo(8784);
     }

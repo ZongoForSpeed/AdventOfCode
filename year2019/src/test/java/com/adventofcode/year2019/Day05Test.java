@@ -1,7 +1,7 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.year2019.code.Intcode;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day05Test extends AbstractTest {
-    Day05Test() {
-        super(2019, 5);
-    }
-
+@AdventOfCode(year = 2019, day = 5)
+class Day05Test {
     @Test
     void simple() {
         int randomValue = new Random().nextInt();
@@ -77,14 +74,14 @@ class Day05Test extends AbstractTest {
         assertThat(Intcode.ioIntcode(codes, 8)).isEqualTo(1000);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         long result = Day05.diagnosticPartOne(scanner.nextLine());
         assertThat(result).isEqualTo(16209841);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day05.diagnosticPartTwo(scanner.nextLine())).isEqualTo(8834787);
     }
 }

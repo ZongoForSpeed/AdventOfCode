@@ -1,6 +1,6 @@
 package com.adventofcode.year2015;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day15Test extends AbstractTest {
-    Day15Test() {
-        super(2015, 15);
-    }
-
+@AdventOfCode(year = 2015, day = 15)
+class Day15Test {
     @Test
     void inputExample() {
         var input = """
@@ -23,13 +20,13 @@ class Day15Test extends AbstractTest {
         assertThat(Day15.highestCookieScore(new Scanner(input), true)).isEqualTo(57600000);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day15.highestCookieScore(scanner, false)).isEqualTo(222870);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day15.highestCookieScore(scanner, true)).isEqualTo(117936);
     }
 

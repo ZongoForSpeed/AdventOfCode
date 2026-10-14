@@ -1,6 +1,6 @@
 package com.adventofcode.year2016;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -8,11 +8,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day06Test extends AbstractTest {
-    Day06Test() {
-        super(2016, 6);
-    }
-
+@AdventOfCode(year = 2016, day = 6)
+class Day06Test {
     @Test
     void inputExample() {
         var input = """
@@ -37,13 +34,13 @@ class Day06Test extends AbstractTest {
         assertThat(Day06.decodePasswordLeastCommon(new Scanner(input))).isEqualTo("advent");
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day06.decodePasswordMostCommon(scanner)).isEqualTo("mlncjgdg");
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day06.decodePasswordLeastCommon(scanner)).isEqualTo("bipjaytb");
     }
 }

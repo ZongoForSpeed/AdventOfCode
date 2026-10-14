@@ -1,18 +1,15 @@
 package com.adventofcode.year2019;
 
 import com.adventofcode.year2019.code.Intcode;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day02Test extends AbstractTest {
-    Day02Test() {
-        super(2019, 2);
-    }
-
+@AdventOfCode(year = 2019, day = 2)
+class Day02Test {
     @Test
     void sum() {
         assertThat(Intcode.intcode("1,0,0,0,99")).isEqualTo("2,0,0,0,99");
@@ -30,14 +27,14 @@ class Day02Test extends AbstractTest {
         assertThat(Intcode.intcode("1,9,10,3,2,3,11,0,99,30,40,50")).isEqualTo("3500,9,10,70,2,3,11,0,99,30,40,50");
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         long[] output = Intcode.intcode(scanner.nextLine(), 12, 2);
         assertThat(output[0]).isEqualTo(3850704);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day02.solvePuzzle(scanner.nextLine(), 19690720)).isEqualTo(6718);
     }
 }

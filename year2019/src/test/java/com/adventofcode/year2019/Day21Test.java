@@ -1,18 +1,16 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
+import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day21Test extends AbstractTest {
-    Day21Test() {
-        super(2019, 21);
-    }
-
-    @Override
-    public void partOne(Scanner scanner) {
+@AdventOfCode(year = 2019, day = 21)
+class Day21Test {
+    @Test
+    void partOne(Scanner scanner) {
         String line = scanner.nextLine();
         var command = """
                 NOT A T
@@ -26,8 +24,8 @@ class Day21Test extends AbstractTest {
         assertThat(Day21.runSpringscript(line, command)).isEqualTo(19361023);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         String line = scanner.nextLine();
         var command = """
                 NOT F J

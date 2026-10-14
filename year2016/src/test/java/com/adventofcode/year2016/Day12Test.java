@@ -1,7 +1,7 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.year2016.code.Assembunny;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -10,11 +10,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day12Test extends AbstractTest {
-    Day12Test() {
-        super(2016, 12);
-    }
-
+@AdventOfCode(year = 2016, day = 12)
+class Day12Test {
     @Test
     void inputExample() {
         var input = """
@@ -82,8 +79,8 @@ class Day12Test extends AbstractTest {
     /// left in register a?
     ///
     /// Your puzzle answer was 318117.
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Assembunny.run(scanner)).containsEntry("a", 318117);
     }
 
@@ -97,8 +94,8 @@ class Day12Test extends AbstractTest {
     /// register a?
     ///
     /// Your puzzle answer was 9227771.
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Assembunny.run(scanner, Map.of("c", 1))).containsEntry("a", 9227771);
     }
 }

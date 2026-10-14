@@ -1,17 +1,14 @@
 package com.adventofcode.year2020;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day15Test extends AbstractTest {
-
-    protected Day15Test() {
-        super(2020, 15);
-    }
+@AdventOfCode(year = 2020, day = 15)
+class Day15Test {
 
     @Test
     void memoryGame() {
@@ -32,14 +29,14 @@ class Day15Test extends AbstractTest {
         assertThat(Day15.memoryGame("3,1,2", 30000000)).isEqualTo(362);
     }
 
-    @Override
-    public void partOne(Scanner scanner) throws Exception {
+    @Test
+    void partOne(Scanner scanner) throws Exception {
         assertThat(Day15.memoryGame(scanner.nextLine(), 2020)).isEqualTo(866);
 
     }
 
-    @Override
-    public void partTwo(Scanner scanner) throws Exception {
+    @Test
+    void partTwo(Scanner scanner) throws Exception {
         assertThat(Day15.memoryGame(scanner.nextLine(), 30000000)).isEqualTo(1437692);
     }
 }

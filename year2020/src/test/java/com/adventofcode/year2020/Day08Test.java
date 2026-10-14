@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.Pair;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +10,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day08Test extends AbstractTest {
-    Day08Test() {
-        super(2020, 8);
-    }
-
+@AdventOfCode(year = 2020, day = 8)
+class Day08Test {
     @Test
     void handheldGameConsole() {
         var program = List.of("nop +0",
@@ -32,15 +29,15 @@ class Day08Test extends AbstractTest {
         assertThat(Day08.fixHandheldGameConsole(program)).isEqualTo(8);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var program = FileUtils.readLines(scanner);
 
         assertThat(Day08.runHandheldGameConsole(program)).isEqualTo(Pair.of(1217L, false));
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var program = FileUtils.readLines(scanner);
 
         assertThat(Day08.fixHandheldGameConsole(program)).isEqualTo(501);

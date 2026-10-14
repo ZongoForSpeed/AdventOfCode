@@ -2,7 +2,7 @@ package com.adventofcode.year2021;
 
 import com.adventofcode.common.utils.FileUtils;
 import com.adventofcode.common.utils.IntegerPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,11 +10,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day03Test extends AbstractTest {
-    Day03Test() {
-        super(2021, 3);
-    }
-
+@AdventOfCode(year = 2021, day = 3)
+class Day03Test {
     @Test
     void inputExample() {
         var strings = List.of(
@@ -42,8 +39,8 @@ class Day03Test extends AbstractTest {
         assertThat(co2).isEqualTo(10);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var input = FileUtils.readLines(scanner);
 
         IntegerPair p = Day03.binaryDiagnostic(input);
@@ -51,8 +48,8 @@ class Day03Test extends AbstractTest {
         assertThat(p.left() * p.right()).isEqualTo(738234);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var input = FileUtils.readLines(scanner);
 
         int oxygen = Day03.oxygenGeneratorRating(input);

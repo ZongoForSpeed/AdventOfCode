@@ -1,6 +1,6 @@
 package com.adventofcode.year2021;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import org.junit.jupiter.api.Test;
@@ -10,11 +10,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day01Test extends AbstractTest {
-
-    Day01Test() {
-        super(2021, 1);
-    }
+@AdventOfCode(year = 2021, day = 1)
+class Day01Test {
 
     @Test
     void inputExample() {
@@ -26,8 +23,8 @@ class Day01Test extends AbstractTest {
         assertThat(Day01.measurementIncreases(array, 3)).isEqualTo(5);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         IntList list = new IntArrayList();
         while (scanner.hasNextInt()) {
             list.add(scanner.nextInt());
@@ -36,8 +33,8 @@ class Day01Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         IntList list = new IntArrayList();
         while (scanner.hasNextInt()) {
             list.add(scanner.nextInt());

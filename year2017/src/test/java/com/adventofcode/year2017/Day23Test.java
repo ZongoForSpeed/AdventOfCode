@@ -1,6 +1,6 @@
 package com.adventofcode.year2017;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +11,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day23Test extends AbstractTest {
-
-    Day23Test() {
-        super(2017, 23);
-    }
+@AdventOfCode(year = 2017, day = 23)
+class Day23Test {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day23Test.class);
 
@@ -103,8 +100,8 @@ class Day23Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var commands = Day23.readCommands(scanner);
 
         var registers = new HashMap<String, Long>(Map.of("a", 0L, "b", 0L, "c", 0L, "d", 0L, "e", 0L, "f", 0L, "g", 0L, "h", 0L));
@@ -112,8 +109,8 @@ class Day23Test extends AbstractTest {
         assertThat(Day23.runProgram(commands, registers)).isEqualTo(3025);
     }
 
-    @Override
-    public void partTwo(Scanner ignore) {
+    @Test
+    void partTwo() {
         assertThat(Day23.runProgramFast(105700, 122700)).isEqualTo(915L);
     }
 

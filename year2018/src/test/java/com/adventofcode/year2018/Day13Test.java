@@ -1,7 +1,7 @@
 package com.adventofcode.year2018;
 
 import com.adventofcode.common.point.Point2D;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day13Test extends AbstractTest {
-    Day13Test() {
-        super(2018, 13);
-    }
-
+@AdventOfCode(year = 2018, day = 13)
+class Day13Test {
     @Test
     @SuppressWarnings("MisleadingEscapedSpace")
     void inputExamplePartOne() {
@@ -44,13 +41,13 @@ class Day13Test extends AbstractTest {
         assertThat(Day13.findLastCart(scanner)).isEqualTo(Point2D.of(6, 4));
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day13.findCrashPosition(scanner)).isEqualTo(Point2D.of(100, 21));
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day13.findLastCart(scanner)).isEqualTo(Point2D.of(113, 109));
     }
 }

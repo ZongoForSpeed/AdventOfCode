@@ -1,7 +1,7 @@
 package com.adventofcode.year2017;
 
 import com.adventofcode.common.utils.IntegerPair;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day24Test extends AbstractTest {
-    Day24Test() {
-        super(2017, 24);
-    }
-
+@AdventOfCode(year = 2017, day = 24)
+class Day24Test {
     @Test
     void inputExample() {
         var input = """
@@ -41,15 +38,15 @@ class Day24Test extends AbstractTest {
         assertThat(Day24.strength(strongestBridge)).isEqualTo(19);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var strongestBridge = Day24.findStrongestBridgePartOne(scanner);
 
         assertThat(Day24.strength(strongestBridge)).isEqualTo(2006);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var strongestBridge = Day24.findStrongestBridgePartTwo(scanner);
 
         assertThat(Day24.strength(strongestBridge)).isEqualTo(1994);

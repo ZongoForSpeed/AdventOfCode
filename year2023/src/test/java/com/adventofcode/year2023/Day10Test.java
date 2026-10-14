@@ -1,6 +1,6 @@
 package com.adventofcode.year2023;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-class Day10Test extends AbstractTest {
-    Day10Test() {
-        super(2023, 10);
-    }
-
+@AdventOfCode(year = 2023, day = 10)
+class Day10Test {
     @Test
     void inputExample1() {
         var input = """
@@ -102,14 +99,14 @@ class Day10Test extends AbstractTest {
         Assertions.assertThat(count).isEqualTo(10);
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         int depth = Day10.PartOne.findMaxDepth(scanner);
         Assertions.assertThat(depth).isEqualTo(6613);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         int depth = Day10.PartTwo.countEnclosedTiles(scanner);
         Assertions.assertThat(depth).isEqualTo(511);
     }

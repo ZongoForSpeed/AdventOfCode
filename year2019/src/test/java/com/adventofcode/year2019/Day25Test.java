@@ -1,18 +1,16 @@
 package com.adventofcode.year2019;
 
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
+import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day25Test extends AbstractTest {
-    Day25Test() {
-        super(2019, 25);
-    }
-
-    @Override
-    public void partOne(Scanner scanner) throws Exception {
+@AdventOfCode(year = 2019, day = 25)
+class Day25Test {
+    @Test
+    void partOne(Scanner scanner) throws Exception {
         String line = scanner.nextLine();
         assertThat(Day25.findPassword(line)).isEqualTo("""
                 == Pressure-Sensitive Floor ==
@@ -27,8 +25,8 @@ class Day25Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partTwo(Scanner scanner) throws Exception {
+    @Test
+    void partTwo(Scanner scanner) throws Exception {
         // No-Op
     }
 }

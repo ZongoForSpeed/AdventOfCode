@@ -1,7 +1,7 @@
 package com.adventofcode.year2016;
 
 import com.adventofcode.common.point.map.BooleanMap;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class Day08Test extends AbstractTest {
-    Day08Test() {
-        super(2016, 8);
-    }
-
+@AdventOfCode(year = 2016, day = 8)
+class Day08Test {
     @Test
     void inputExample() {
         var input = """
@@ -34,13 +31,13 @@ class Day08Test extends AbstractTest {
 
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         assertThat(Day08.cardinality(scanner)).isEqualTo(121);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         assertThat(Day08.buildScreen(scanner, 50, 6)).hasToString("""
                 ###..#..#.###..#..#..##..####..##..####..###.#....
                 #..#.#..#.#..#.#..#.#..#.#....#..#.#......#..#....

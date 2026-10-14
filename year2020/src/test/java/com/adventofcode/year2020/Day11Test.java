@@ -1,7 +1,7 @@
 package com.adventofcode.year2020;
 
 import com.adventofcode.common.utils.FileUtils;
-import com.adventofcode.test.AbstractTest;
+import com.adventofcode.test.AdventOfCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,11 +9,8 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Day11Test extends AbstractTest {
-    Day11Test() {
-        super(2020, 11);
-    }
-
+@AdventOfCode(year = 2020, day = 11)
+class Day11Test {
     @Test
     void seatingSystem() {
         var inputGrid = List.of(
@@ -78,8 +75,8 @@ class Day11Test extends AbstractTest {
         assertThat(occupiedSeats).isZero();
     }
 
-    @Override
-    public void partOne(Scanner scanner) {
+    @Test
+    void partOne(Scanner scanner) {
         var inputGrid = FileUtils.readLines(scanner);
 
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
@@ -87,8 +84,8 @@ class Day11Test extends AbstractTest {
         assertThat(Day11.simulationSeatingSystem(grid, false)).isEqualTo(2472);
     }
 
-    @Override
-    public void partTwo(Scanner scanner) {
+    @Test
+    void partTwo(Scanner scanner) {
         var inputGrid = FileUtils.readLines(scanner);
 
         char[][] grid = inputGrid.stream().map(String::toCharArray).toArray(char[][]::new);
