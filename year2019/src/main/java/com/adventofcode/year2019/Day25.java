@@ -273,8 +273,10 @@ public final class Day25 {
 
         @Override
         public boolean equals(@Nullable Object o) {
-            if (!(o instanceof Position position1)) return false;
-            return Objects.equals(position, position1.position);
+            if (o instanceof Position position1) {
+                return Objects.equals(position, position1.position);
+            }
+            return false;
         }
 
         @Override

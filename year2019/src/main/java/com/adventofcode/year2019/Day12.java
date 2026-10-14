@@ -380,13 +380,15 @@ public final class Day12 {
 
         @Override
         public boolean equals(@Nullable Object o) {
-            if (!(o instanceof Moon moon)) return false;
-            return positionX == moon.positionX
-                   && positionY == moon.positionY
-                   && positionZ == moon.positionZ
-                   && velocityX == moon.velocityX
-                   && velocityY == moon.velocityY
-                   && velocityZ == moon.velocityZ;
+            if (o instanceof Moon moon) {
+                return positionX == moon.positionX
+                       && positionY == moon.positionY
+                       && positionZ == moon.positionZ
+                       && velocityX == moon.velocityX
+                       && velocityY == moon.velocityY
+                       && velocityZ == moon.velocityZ;
+            }
+            return false;
         }
 
         @Override

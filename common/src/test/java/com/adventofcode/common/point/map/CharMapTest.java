@@ -59,8 +59,8 @@ class CharMapTest {
         assertThat(points).containsExactly(Point2D.of(0, 0));
         
         assertThat(map.entries()).hasSize(1);
-        assertThat(map.entries().get(0).left()).isEqualTo(Point2D.of(0, 0));
-        assertThat(map.entries().get(0).right()).isEqualTo('A');
+        assertThat(map.entries().getFirst().left()).isEqualTo(Point2D.of(0, 0));
+        assertThat(map.entries().getFirst().rightChar()).isEqualTo('A');
     }
 
     @Test

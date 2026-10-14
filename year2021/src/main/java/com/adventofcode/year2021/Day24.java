@@ -251,8 +251,10 @@ public final class Day24 {
 
         @Override
         public boolean equals(@Nullable Object o) {
-            if (!(o instanceof State state)) return false;
-            return position == state.position && Objects.deepEquals(digits, state.digits);
+            if (o instanceof State(IntList digits1, int position1)) {
+                return position == position1 && Objects.deepEquals(digits, digits1);
+            }
+            return false;
         }
 
         @Override

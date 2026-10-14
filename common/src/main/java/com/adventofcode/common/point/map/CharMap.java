@@ -205,8 +205,10 @@ public class CharMap {
 
     @Override
     public boolean equals(@Nullable Object o) {
-        if (!(o instanceof CharMap charMap)) return false;
-        return Objects.deepEquals(map, charMap.map);
+        if (o instanceof CharMap charMap) {
+            return Objects.deepEquals(map, charMap.map);
+        }
+        return false;
     }
 
     @Override

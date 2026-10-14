@@ -94,9 +94,14 @@ public final class KnotHash {
 
         @Override
         public boolean equals(@Nullable Object o) {
-            if (!(o instanceof CircularSubList<?> that)) return false;
-            if (!super.equals(o)) return false;
-            return fromIndex == that.fromIndex && toIndex == that.toIndex && Objects.equals(root, that.root);
+            if (o instanceof CircularSubList<?> that) {
+                if (!super.equals(o)) {
+                    return false;
+                }
+                return fromIndex == that.fromIndex && toIndex == that.toIndex && Objects.equals(root, that.root);
+            } else {
+                return false;
+            }
         }
 
         @Override

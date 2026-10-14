@@ -60,9 +60,10 @@ public final class Matrix3D {
     @Override
     public boolean equals(@Nullable Object o) {
         if (this == o) return true;
-        if (!(o instanceof Matrix3D)) return false;
-        var matrix3D = (Matrix3D) o;
-        return Arrays.deepEquals(m, matrix3D.m);
+        if (o instanceof Matrix3D matrix3D) {
+            return Arrays.deepEquals(m, matrix3D.m);
+        }
+        return false;
     }
 
     @Override

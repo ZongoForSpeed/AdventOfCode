@@ -554,11 +554,13 @@ public final class Day15 {
 
         @Override
         public boolean equals(@Nullable Object o) {
-            if (!(o instanceof Unit unit)) return false;
-            return goblin == unit.goblin
-                   && health == unit.health
-                   && attackPower == unit.attackPower
-                   && Objects.equals(position, unit.position);
+            if (o instanceof Unit unit) {
+                return goblin == unit.goblin
+                       && health == unit.health
+                       && attackPower == unit.attackPower
+                       && Objects.equals(position, unit.position);
+            }
+            return false;
         }
 
         @Override

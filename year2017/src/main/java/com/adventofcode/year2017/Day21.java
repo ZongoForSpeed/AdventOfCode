@@ -236,8 +236,10 @@ public final class Day21 {
 
         @Override
         public boolean equals(@Nullable Object o) {
-            if (!(o instanceof Key key)) return false;
-            return hash == key.hash;
+            if (o instanceof Key key) {
+                return hash == key.hash;
+            }
+            return false;
         }
 
         @Override

@@ -206,13 +206,16 @@ public class BooleanMap {
 
     @Override
     public boolean equals(@Nullable Object o) {
-        if (!(o instanceof BooleanMap that)) return false;
-        int lastLine = lastNonEmptyLine();
-        if (lastLine != that.lastNonEmptyLine()) return false;
-        for (int y = 0; y <= lastLine; y++) {
-            if (!bitSets.get(y).equals(that.bitSets.get(y))) return false;
+        if (o instanceof BooleanMap that) {
+            int lastLine = lastNonEmptyLine();
+            if (lastLine != that.lastNonEmptyLine()) return false;
+            for (int y = 0; y <= lastLine; y++) {
+                if (!bitSets.get(y).equals(that.bitSets.get(y))) return false;
+            }
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
     @Override
